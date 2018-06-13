@@ -1,0 +1,25 @@
+group 'io.dronefleet.mavlink'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'io.dronefleet.mavlink.generator'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def genSrc = "src/main/java-gen"
+
+generateDialect {
+    definitions file('definition-xml')
+    generatedSources file(genSrc)
+}
+
+sourceSets.main.java.srcDirs += genSrc
+
+dependencies {
+    compile project('mavlink-protocol')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
