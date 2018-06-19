@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The offset in X, Y, Z and yaw between the {@link io.dronefleet.mavlink.common.LocalPositionNed LocalPositionNed} messages of MAV X and the global 
@@ -59,8 +62,20 @@ public final class LocalPositionNedSystemGlobalOffset {
     this.yaw = yaw;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LocalPositionNedSystemGlobalOffset{timeBootMs=" + timeBootMs
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw + "}";
   }
 
   /**
@@ -68,7 +83,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -79,7 +94,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -90,7 +105,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -101,7 +116,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -112,7 +127,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -123,7 +138,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -134,7 +149,7 @@ public final class LocalPositionNedSystemGlobalOffset {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -163,7 +178,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -175,7 +190,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -187,7 +202,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -199,7 +214,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -211,7 +226,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -223,7 +238,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -235,7 +250,7 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;

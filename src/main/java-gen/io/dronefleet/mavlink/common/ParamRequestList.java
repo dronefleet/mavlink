@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request all parameters of this component. After this request, all parameters are emitted. 
@@ -26,8 +29,15 @@ public final class ParamRequestList {
     this.targetComponent = targetComponent;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamRequestList{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent + "}";
   }
 
   /**
@@ -35,7 +45,7 @@ public final class ParamRequestList {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -46,7 +56,7 @@ public final class ParamRequestList {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -65,7 +75,7 @@ public final class ParamRequestList {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -77,7 +87,7 @@ public final class ParamRequestList {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;

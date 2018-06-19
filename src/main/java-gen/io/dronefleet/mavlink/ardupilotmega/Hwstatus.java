@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of key hardware 
@@ -26,8 +29,15 @@ public final class Hwstatus {
     this.i2cerr = i2cerr;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Hwstatus{vcc=" + vcc
+         + ", i2cerr=" + i2cerr + "}";
   }
 
   /**
@@ -35,7 +45,7 @@ public final class Hwstatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int vcc() {
     return vcc;
@@ -46,7 +56,7 @@ public final class Hwstatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int i2cerr() {
     return i2cerr;
@@ -65,7 +75,7 @@ public final class Hwstatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder vcc(int vcc) {
       this.vcc = vcc;
@@ -77,7 +87,7 @@ public final class Hwstatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder i2cerr(int i2cerr) {
       this.i2cerr = i2cerr;

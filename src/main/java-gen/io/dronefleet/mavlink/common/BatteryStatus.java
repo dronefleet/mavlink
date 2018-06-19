@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -14,19 +17,16 @@ import java.util.List;
 )
 public final class BatteryStatus {
   /**
-   * Battery ID 
+   * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
+   * consumption estimate 
    */
-  private final int id;
+  private final int currentConsumed;
 
   /**
-   * Function of the battery 
+   * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
+   * provide energy consumption estimate 
    */
-  private final MavBatteryFunction batteryFunction;
-
-  /**
-   * Type (chemistry) of the battery 
-   */
-  private final MavBatteryType type;
+  private final int energyConsumed;
 
   /**
    * Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temperature. 
@@ -46,16 +46,19 @@ public final class BatteryStatus {
   private final int currentBattery;
 
   /**
-   * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
-   * consumption estimate 
+   * Battery ID 
    */
-  private final int currentConsumed;
+  private final int id;
 
   /**
-   * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
-   * provide energy consumption estimate 
+   * Function of the battery 
    */
-  private final int energyConsumed;
+  private final MavBatteryFunction batteryFunction;
+
+  /**
+   * Type (chemistry) of the battery 
+   */
+  private final MavBatteryType type;
 
   /**
    * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot does not estimate the remaining 
@@ -74,58 +77,65 @@ public final class BatteryStatus {
    */
   private final MavBatteryChargeState chargeState;
 
-  private BatteryStatus(int id, MavBatteryFunction batteryFunction, MavBatteryType type,
-      int temperature, List<Integer> voltages, int currentBattery, int currentConsumed,
-      int energyConsumed, int batteryRemaining, int timeRemaining,
+  private BatteryStatus(int currentConsumed, int energyConsumed, int temperature,
+      List<Integer> voltages, int currentBattery, int id, MavBatteryFunction batteryFunction,
+      MavBatteryType type, int batteryRemaining, int timeRemaining,
       MavBatteryChargeState chargeState) {
-    this.id = id;
-    this.batteryFunction = batteryFunction;
-    this.type = type;
+    this.currentConsumed = currentConsumed;
+    this.energyConsumed = energyConsumed;
     this.temperature = temperature;
     this.voltages = voltages;
     this.currentBattery = currentBattery;
-    this.currentConsumed = currentConsumed;
-    this.energyConsumed = energyConsumed;
+    this.id = id;
+    this.batteryFunction = batteryFunction;
+    this.type = type;
     this.batteryRemaining = batteryRemaining;
     this.timeRemaining = timeRemaining;
     this.chargeState = chargeState;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Battery ID 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int id() {
-    return id;
+  @Override
+  public String toString() {
+    return "BatteryStatus{id=" + id
+         + ", batteryFunction=" + batteryFunction
+         + ", type=" + type
+         + ", temperature=" + temperature
+         + ", voltages=" + voltages
+         + ", currentBattery=" + currentBattery
+         + ", currentConsumed=" + currentConsumed
+         + ", energyConsumed=" + energyConsumed
+         + ", batteryRemaining=" + batteryRemaining
+         + ", timeRemaining=" + timeRemaining
+         + ", chargeState=" + chargeState + "}";
   }
 
   /**
-   * Function of the battery 
+   * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
+   * consumption estimate 
    */
   @MavlinkMessageField(
-      position = 2,
-      length = 1
+      position = 7,
+      unitSize = 4
   )
-  public final MavBatteryFunction batteryFunction() {
-    return batteryFunction;
+  public final int currentConsumed() {
+    return currentConsumed;
   }
 
   /**
-   * Type (chemistry) of the battery 
+   * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
+   * provide energy consumption estimate 
    */
   @MavlinkMessageField(
-      position = 3,
-      length = 1
+      position = 8,
+      unitSize = 4
   )
-  public final MavBatteryType type() {
-    return type;
+  public final int energyConsumed() {
+    return energyConsumed;
   }
 
   /**
@@ -133,7 +143,7 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int temperature() {
     return temperature;
@@ -145,7 +155,7 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2,
+      unitSize = 2,
       arraySize = 10
   )
   public final List<Integer> voltages() {
@@ -158,34 +168,43 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int currentBattery() {
     return currentBattery;
   }
 
   /**
-   * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
-   * consumption estimate 
+   * Battery ID 
    */
   @MavlinkMessageField(
-      position = 7,
-      length = 4
+      position = 1,
+      unitSize = 1
   )
-  public final int currentConsumed() {
-    return currentConsumed;
+  public final int id() {
+    return id;
   }
 
   /**
-   * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
-   * provide energy consumption estimate 
+   * Function of the battery 
    */
   @MavlinkMessageField(
-      position = 8,
-      length = 4
+      position = 2,
+      unitSize = 1
   )
-  public final int energyConsumed() {
-    return energyConsumed;
+  public final MavBatteryFunction batteryFunction() {
+    return batteryFunction;
+  }
+
+  /**
+   * Type (chemistry) of the battery 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final MavBatteryType type() {
+    return type;
   }
 
   /**
@@ -194,7 +213,7 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1
+      unitSize = 1
   )
   public final int batteryRemaining() {
     return batteryRemaining;
@@ -206,7 +225,7 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final int timeRemaining() {
@@ -218,7 +237,7 @@ public final class BatteryStatus {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final MavBatteryChargeState chargeState() {
@@ -226,11 +245,9 @@ public final class BatteryStatus {
   }
 
   public static class Builder {
-    private int id;
+    private int currentConsumed;
 
-    private MavBatteryFunction batteryFunction;
-
-    private MavBatteryType type;
+    private int energyConsumed;
 
     private int temperature;
 
@@ -238,9 +255,11 @@ public final class BatteryStatus {
 
     private int currentBattery;
 
-    private int currentConsumed;
+    private int id;
 
-    private int energyConsumed;
+    private MavBatteryFunction batteryFunction;
+
+    private MavBatteryType type;
 
     private int batteryRemaining;
 
@@ -252,38 +271,28 @@ public final class BatteryStatus {
     }
 
     /**
-     * Battery ID 
+     * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
+     * consumption estimate 
      */
     @MavlinkMessageField(
-        position = 1,
-        length = 1
+        position = 7,
+        unitSize = 4
     )
-    public final Builder id(int id) {
-      this.id = id;
+    public final Builder currentConsumed(int currentConsumed) {
+      this.currentConsumed = currentConsumed;
       return this;
     }
 
     /**
-     * Function of the battery 
+     * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
+     * provide energy consumption estimate 
      */
     @MavlinkMessageField(
-        position = 2,
-        length = 1
+        position = 8,
+        unitSize = 4
     )
-    public final Builder batteryFunction(MavBatteryFunction batteryFunction) {
-      this.batteryFunction = batteryFunction;
-      return this;
-    }
-
-    /**
-     * Type (chemistry) of the battery 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder type(MavBatteryType type) {
-      this.type = type;
+    public final Builder energyConsumed(int energyConsumed) {
+      this.energyConsumed = energyConsumed;
       return this;
     }
 
@@ -292,7 +301,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder temperature(int temperature) {
       this.temperature = temperature;
@@ -305,7 +314,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2,
+        unitSize = 2,
         arraySize = 10
     )
     public final Builder voltages(List<Integer> voltages) {
@@ -319,7 +328,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder currentBattery(int currentBattery) {
       this.currentBattery = currentBattery;
@@ -327,28 +336,38 @@ public final class BatteryStatus {
     }
 
     /**
-     * Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh 
-     * consumption estimate 
+     * Battery ID 
      */
     @MavlinkMessageField(
-        position = 7,
-        length = 4
+        position = 1,
+        unitSize = 1
     )
-    public final Builder currentConsumed(int currentConsumed) {
-      this.currentConsumed = currentConsumed;
+    public final Builder id(int id) {
+      this.id = id;
       return this;
     }
 
     /**
-     * Consumed energy, in HectoJoules (intergrated U*I*dt) (1 = 100 Joule), -1: autopilot does not 
-     * provide energy consumption estimate 
+     * Function of the battery 
      */
     @MavlinkMessageField(
-        position = 8,
-        length = 4
+        position = 2,
+        unitSize = 1
     )
-    public final Builder energyConsumed(int energyConsumed) {
-      this.energyConsumed = energyConsumed;
+    public final Builder batteryFunction(MavBatteryFunction batteryFunction) {
+      this.batteryFunction = batteryFunction;
+      return this;
+    }
+
+    /**
+     * Type (chemistry) of the battery 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder type(MavBatteryType type) {
+      this.type = type;
       return this;
     }
 
@@ -358,7 +377,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1
+        unitSize = 1
     )
     public final Builder batteryRemaining(int batteryRemaining) {
       this.batteryRemaining = batteryRemaining;
@@ -371,7 +390,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder timeRemaining(int timeRemaining) {
@@ -384,7 +403,7 @@ public final class BatteryStatus {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder chargeState(MavBatteryChargeState chargeState) {
@@ -393,7 +412,7 @@ public final class BatteryStatus {
     }
 
     public final BatteryStatus build() {
-      return new BatteryStatus(id, batteryFunction, type, temperature, voltages, currentBattery, currentConsumed, energyConsumed, batteryRemaining, timeRemaining, chargeState);
+      return new BatteryStatus(currentConsumed, energyConsumed, temperature, voltages, currentBattery, id, batteryFunction, type, batteryRemaining, timeRemaining, chargeState);
     }
   }
 }

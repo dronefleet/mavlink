@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Ack message during waypoint handling. The type field states if this message is a positive ack 
@@ -40,8 +43,17 @@ public final class MissionAck {
     this.missionType = missionType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MissionAck{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", type=" + type
+         + ", missionType=" + missionType + "}";
   }
 
   /**
@@ -49,7 +61,7 @@ public final class MissionAck {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -60,7 +72,7 @@ public final class MissionAck {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -71,7 +83,7 @@ public final class MissionAck {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final MavMissionResult type() {
     return type;
@@ -82,7 +94,7 @@ public final class MissionAck {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final MavMissionType missionType() {
@@ -106,7 +118,7 @@ public final class MissionAck {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -118,7 +130,7 @@ public final class MissionAck {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -130,7 +142,7 @@ public final class MissionAck {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder type(MavMissionResult type) {
       this.type = type;
@@ -142,7 +154,7 @@ public final class MissionAck {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder missionType(MavMissionType missionType) {

@@ -1,9 +1,12 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,11 +23,6 @@ public final class Trajectory {
    * Timestamp (microseconds since system boot or since UNIX epoch). 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-   */
-  private final MavTrajectoryRepresentation type;
 
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
@@ -52,25 +50,43 @@ public final class Trajectory {
   private final List<Float> point5;
 
   /**
+   * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
+   */
+  private final MavTrajectoryRepresentation type;
+
+  /**
    * States if respective point is valid (boolean) 
    */
   private final List<Integer> pointValid;
 
-  private Trajectory(BigInteger timeUsec, MavTrajectoryRepresentation type, List<Float> point1,
-      List<Float> point2, List<Float> point3, List<Float> point4, List<Float> point5,
+  private Trajectory(BigInteger timeUsec, List<Float> point1, List<Float> point2,
+      List<Float> point3, List<Float> point4, List<Float> point5, MavTrajectoryRepresentation type,
       List<Integer> pointValid) {
     this.timeUsec = timeUsec;
-    this.type = type;
     this.point1 = point1;
     this.point2 = point2;
     this.point3 = point3;
     this.point4 = point4;
     this.point5 = point5;
+    this.type = type;
     this.pointValid = pointValid;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Trajectory{timeUsec=" + timeUsec
+         + ", type=" + type
+         + ", point1=" + point1
+         + ", point2=" + point2
+         + ", point3=" + point3
+         + ", point4=" + point4
+         + ", point5=" + point5
+         + ", pointValid=" + pointValid + "}";
   }
 
   /**
@@ -78,21 +94,10 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final MavTrajectoryRepresentation type() {
-    return type;
   }
 
   /**
@@ -100,7 +105,7 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4,
+      unitSize = 4,
       arraySize = 11
   )
   public final List<Float> point1() {
@@ -112,7 +117,7 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4,
+      unitSize = 4,
       arraySize = 11
   )
   public final List<Float> point2() {
@@ -124,7 +129,7 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4,
+      unitSize = 4,
       arraySize = 11
   )
   public final List<Float> point3() {
@@ -136,7 +141,7 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4,
+      unitSize = 4,
       arraySize = 11
   )
   public final List<Float> point4() {
@@ -148,7 +153,7 @@ public final class Trajectory {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4,
+      unitSize = 4,
       arraySize = 11
   )
   public final List<Float> point5() {
@@ -156,11 +161,22 @@ public final class Trajectory {
   }
 
   /**
+   * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final MavTrajectoryRepresentation type() {
+    return type;
+  }
+
+  /**
    * States if respective point is valid (boolean) 
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1,
+      unitSize = 1,
       arraySize = 5
   )
   public final List<Integer> pointValid() {
@@ -169,8 +185,6 @@ public final class Trajectory {
 
   public static class Builder {
     private BigInteger timeUsec;
-
-    private MavTrajectoryRepresentation type;
 
     private List<Float> point1;
 
@@ -182,6 +196,8 @@ public final class Trajectory {
 
     private List<Float> point5;
 
+    private MavTrajectoryRepresentation type;
+
     private List<Integer> pointValid;
 
     private Builder() {
@@ -192,22 +208,10 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder type(MavTrajectoryRepresentation type) {
-      this.type = type;
       return this;
     }
 
@@ -216,7 +220,7 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4,
+        unitSize = 4,
         arraySize = 11
     )
     public final Builder point1(List<Float> point1) {
@@ -229,7 +233,7 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4,
+        unitSize = 4,
         arraySize = 11
     )
     public final Builder point2(List<Float> point2) {
@@ -242,7 +246,7 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4,
+        unitSize = 4,
         arraySize = 11
     )
     public final Builder point3(List<Float> point3) {
@@ -255,7 +259,7 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4,
+        unitSize = 4,
         arraySize = 11
     )
     public final Builder point4(List<Float> point4) {
@@ -268,7 +272,7 @@ public final class Trajectory {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4,
+        unitSize = 4,
         arraySize = 11
     )
     public final Builder point5(List<Float> point5) {
@@ -277,11 +281,23 @@ public final class Trajectory {
     }
 
     /**
+     * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder type(MavTrajectoryRepresentation type) {
+      this.type = type;
+      return this;
+    }
+
+    /**
      * States if respective point is valid (boolean) 
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1,
+        unitSize = 1,
         arraySize = 5
     )
     public final Builder pointValid(List<Integer> pointValid) {
@@ -290,7 +306,7 @@ public final class Trajectory {
     }
 
     public final Trajectory build() {
-      return new Trajectory(timeUsec, type, point1, point2, point3, point4, point5, pointValid);
+      return new Trajectory(timeUsec, point1, point2, point3, point4, point5, type, pointValid);
     }
   }
 }

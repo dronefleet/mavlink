@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F4: format 
@@ -77,8 +80,23 @@ public final class SerialUdbExtraF4 {
     this.sueRacingMode = sueRacingMode;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF4{sueRollStabilizationAilerons=" + sueRollStabilizationAilerons
+         + ", sueRollStabilizationRudder=" + sueRollStabilizationRudder
+         + ", suePitchStabilization=" + suePitchStabilization
+         + ", sueYawStabilizationRudder=" + sueYawStabilizationRudder
+         + ", sueYawStabilizationAileron=" + sueYawStabilizationAileron
+         + ", sueAileronNavigation=" + sueAileronNavigation
+         + ", sueRudderNavigation=" + sueRudderNavigation
+         + ", sueAltitudeholdStabilized=" + sueAltitudeholdStabilized
+         + ", sueAltitudeholdWaypoint=" + sueAltitudeholdWaypoint
+         + ", sueRacingMode=" + sueRacingMode + "}";
   }
 
   /**
@@ -86,7 +104,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int sueRollStabilizationAilerons() {
     return sueRollStabilizationAilerons;
@@ -97,7 +115,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int sueRollStabilizationRudder() {
     return sueRollStabilizationRudder;
@@ -108,7 +126,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int suePitchStabilization() {
     return suePitchStabilization;
@@ -119,7 +137,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int sueYawStabilizationRudder() {
     return sueYawStabilizationRudder;
@@ -130,7 +148,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int sueYawStabilizationAileron() {
     return sueYawStabilizationAileron;
@@ -141,7 +159,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int sueAileronNavigation() {
     return sueAileronNavigation;
@@ -152,7 +170,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int sueRudderNavigation() {
     return sueRudderNavigation;
@@ -163,7 +181,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int sueAltitudeholdStabilized() {
     return sueAltitudeholdStabilized;
@@ -174,7 +192,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1
+      unitSize = 1
   )
   public final int sueAltitudeholdWaypoint() {
     return sueAltitudeholdWaypoint;
@@ -185,7 +203,7 @@ public final class SerialUdbExtraF4 {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 1
+      unitSize = 1
   )
   public final int sueRacingMode() {
     return sueRacingMode;
@@ -220,7 +238,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRollStabilizationAilerons(int sueRollStabilizationAilerons) {
       this.sueRollStabilizationAilerons = sueRollStabilizationAilerons;
@@ -232,7 +250,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRollStabilizationRudder(int sueRollStabilizationRudder) {
       this.sueRollStabilizationRudder = sueRollStabilizationRudder;
@@ -244,7 +262,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder suePitchStabilization(int suePitchStabilization) {
       this.suePitchStabilization = suePitchStabilization;
@@ -256,7 +274,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueYawStabilizationRudder(int sueYawStabilizationRudder) {
       this.sueYawStabilizationRudder = sueYawStabilizationRudder;
@@ -268,7 +286,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueYawStabilizationAileron(int sueYawStabilizationAileron) {
       this.sueYawStabilizationAileron = sueYawStabilizationAileron;
@@ -280,7 +298,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueAileronNavigation(int sueAileronNavigation) {
       this.sueAileronNavigation = sueAileronNavigation;
@@ -292,7 +310,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRudderNavigation(int sueRudderNavigation) {
       this.sueRudderNavigation = sueRudderNavigation;
@@ -304,7 +322,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueAltitudeholdStabilized(int sueAltitudeholdStabilized) {
       this.sueAltitudeholdStabilized = sueAltitudeholdStabilized;
@@ -316,7 +334,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueAltitudeholdWaypoint(int sueAltitudeholdWaypoint) {
       this.sueAltitudeholdWaypoint = sueAltitudeholdWaypoint;
@@ -328,7 +346,7 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRacingMode(int sueRacingMode) {
       this.sueRacingMode = sueRacingMode;

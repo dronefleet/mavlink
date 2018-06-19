@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -14,14 +17,14 @@ import java.util.List;
 )
 public final class LogData {
   /**
-   * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-   */
-  private final int id;
-
-  /**
    * Offset into the log 
    */
   private final long ofs;
+
+  /**
+   * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
+   */
+  private final int id;
 
   /**
    * Number of bytes (zero for end of log) 
@@ -33,26 +36,24 @@ public final class LogData {
    */
   private final List<Integer> data;
 
-  private LogData(int id, long ofs, int count, List<Integer> data) {
-    this.id = id;
+  private LogData(long ofs, int id, int count, List<Integer> data) {
     this.ofs = ofs;
+    this.id = id;
     this.count = count;
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 2
-  )
-  public final int id() {
-    return id;
+  @Override
+  public String toString() {
+    return "LogData{id=" + id
+         + ", ofs=" + ofs
+         + ", count=" + count
+         + ", data=" + data + "}";
   }
 
   /**
@@ -60,10 +61,21 @@ public final class LogData {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long ofs() {
     return ofs;
+  }
+
+  /**
+   * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 2
+  )
+  public final int id() {
+    return id;
   }
 
   /**
@@ -71,7 +83,7 @@ public final class LogData {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int count() {
     return count;
@@ -82,7 +94,7 @@ public final class LogData {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 90
   )
   public final List<Integer> data() {
@@ -90,9 +102,9 @@ public final class LogData {
   }
 
   public static class Builder {
-    private int id;
-
     private long ofs;
+
+    private int id;
 
     private int count;
 
@@ -102,26 +114,26 @@ public final class LogData {
     }
 
     /**
-     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 2
-    )
-    public final Builder id(int id) {
-      this.id = id;
-      return this;
-    }
-
-    /**
      * Offset into the log 
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder ofs(long ofs) {
       this.ofs = ofs;
+      return this;
+    }
+
+    /**
+     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 2
+    )
+    public final Builder id(int id) {
+      this.id = id;
       return this;
     }
 
@@ -130,7 +142,7 @@ public final class LogData {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder count(int count) {
       this.count = count;
@@ -142,7 +154,7 @@ public final class LogData {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 90
     )
     public final Builder data(List<Integer> data) {
@@ -151,7 +163,7 @@ public final class LogData {
     }
 
     public final LogData build() {
-      return new LogData(id, ofs, count, data);
+      return new LogData(ofs, id, count, data);
     }
   }
 }

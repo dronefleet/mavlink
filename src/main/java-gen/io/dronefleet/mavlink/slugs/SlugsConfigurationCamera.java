@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Control for camara. 
@@ -32,8 +35,16 @@ public final class SlugsConfigurationCamera {
     this.order = order;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SlugsConfigurationCamera{target=" + target
+         + ", idorder=" + idorder
+         + ", order=" + order + "}";
   }
 
   /**
@@ -41,7 +52,7 @@ public final class SlugsConfigurationCamera {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int target() {
     return target;
@@ -52,7 +63,7 @@ public final class SlugsConfigurationCamera {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int idorder() {
     return idorder;
@@ -63,7 +74,7 @@ public final class SlugsConfigurationCamera {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int order() {
     return order;
@@ -84,7 +95,7 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder target(int target) {
       this.target = target;
@@ -96,7 +107,7 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder idorder(int idorder) {
       this.idorder = idorder;
@@ -108,7 +119,7 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder order(int order) {
       this.order = order;

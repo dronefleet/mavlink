@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.common.MavMountMode;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Message to configure a camera mount, directional antenna, etc. 
@@ -52,8 +55,19 @@ public final class MountConfigure {
     this.stabYaw = stabYaw;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MountConfigure{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", mountMode=" + mountMode
+         + ", stabRoll=" + stabRoll
+         + ", stabPitch=" + stabPitch
+         + ", stabYaw=" + stabYaw + "}";
   }
 
   /**
@@ -61,7 +75,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -72,7 +86,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -83,7 +97,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final MavMountMode mountMode() {
     return mountMode;
@@ -94,7 +108,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int stabRoll() {
     return stabRoll;
@@ -105,7 +119,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int stabPitch() {
     return stabPitch;
@@ -116,7 +130,7 @@ public final class MountConfigure {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int stabYaw() {
     return stabYaw;
@@ -143,7 +157,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -155,7 +169,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -167,7 +181,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder mountMode(MavMountMode mountMode) {
       this.mountMode = mountMode;
@@ -179,7 +193,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder stabRoll(int stabRoll) {
       this.stabRoll = stabRoll;
@@ -191,7 +205,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder stabPitch(int stabPitch) {
       this.stabPitch = stabPitch;
@@ -203,7 +217,7 @@ public final class MountConfigure {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder stabYaw(int stabYaw) {
       this.stabYaw = stabYaw;

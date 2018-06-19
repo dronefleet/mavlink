@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Deprecated. Use {@link io.dronefleet.mavlink.common.BatteryStatus BatteryStatus} instead. 2nd Battery status 
@@ -27,8 +30,15 @@ public final class Battery2 {
     this.currentBattery = currentBattery;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Battery2{voltage=" + voltage
+         + ", currentBattery=" + currentBattery + "}";
   }
 
   /**
@@ -36,7 +46,7 @@ public final class Battery2 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int voltage() {
     return voltage;
@@ -48,7 +58,7 @@ public final class Battery2 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int currentBattery() {
     return currentBattery;
@@ -67,7 +77,7 @@ public final class Battery2 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder voltage(int voltage) {
       this.voltage = voltage;
@@ -80,7 +90,7 @@ public final class Battery2 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder currentBattery(int currentBattery) {
       this.currentBattery = currentBattery;

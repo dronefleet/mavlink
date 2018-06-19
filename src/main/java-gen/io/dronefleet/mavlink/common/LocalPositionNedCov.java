@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -19,11 +22,6 @@ public final class LocalPositionNedCov {
    * Timestamp (microseconds since system boot or since UNIX epoch) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * Class id of the estimator this estimate originated from. 
-   */
-  private final MavEstimatorType estimatorType;
 
   /**
    * X Position 
@@ -76,10 +74,15 @@ public final class LocalPositionNedCov {
    */
   private final List<Float> covariance;
 
-  private LocalPositionNedCov(BigInteger timeUsec, MavEstimatorType estimatorType, float x, float y,
-      float z, float vx, float vy, float vz, float ax, float ay, float az, List<Float> covariance) {
+  /**
+   * Class id of the estimator this estimate originated from. 
+   */
+  private final MavEstimatorType estimatorType;
+
+  private LocalPositionNedCov(BigInteger timeUsec, float x, float y, float z, float vx, float vy,
+      float vz, float ax, float ay, float az, List<Float> covariance,
+      MavEstimatorType estimatorType) {
     this.timeUsec = timeUsec;
-    this.estimatorType = estimatorType;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -90,10 +93,28 @@ public final class LocalPositionNedCov {
     this.ay = ay;
     this.az = az;
     this.covariance = covariance;
+    this.estimatorType = estimatorType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LocalPositionNedCov{timeUsec=" + timeUsec
+         + ", estimatorType=" + estimatorType
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", ax=" + ax
+         + ", ay=" + ay
+         + ", az=" + az
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -101,21 +122,10 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Class id of the estimator this estimate originated from. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final MavEstimatorType estimatorType() {
-    return estimatorType;
   }
 
   /**
@@ -123,7 +133,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -134,7 +144,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -145,7 +155,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -156,7 +166,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float vx() {
     return vx;
@@ -167,7 +177,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float vy() {
     return vy;
@@ -178,7 +188,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float vz() {
     return vz;
@@ -189,7 +199,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float ax() {
     return ax;
@@ -200,7 +210,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float ay() {
     return ay;
@@ -211,7 +221,7 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float az() {
     return az;
@@ -223,17 +233,26 @@ public final class LocalPositionNedCov {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4,
+      unitSize = 4,
       arraySize = 45
   )
   public final List<Float> covariance() {
     return covariance;
   }
 
+  /**
+   * Class id of the estimator this estimate originated from. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final MavEstimatorType estimatorType() {
+    return estimatorType;
+  }
+
   public static class Builder {
     private BigInteger timeUsec;
-
-    private MavEstimatorType estimatorType;
 
     private float x;
 
@@ -255,6 +274,8 @@ public final class LocalPositionNedCov {
 
     private List<Float> covariance;
 
+    private MavEstimatorType estimatorType;
+
     private Builder() {
     }
 
@@ -263,22 +284,10 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Class id of the estimator this estimate originated from. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder estimatorType(MavEstimatorType estimatorType) {
-      this.estimatorType = estimatorType;
       return this;
     }
 
@@ -287,7 +296,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -299,7 +308,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -311,7 +320,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -323,7 +332,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder vx(float vx) {
       this.vx = vx;
@@ -335,7 +344,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder vy(float vy) {
       this.vy = vy;
@@ -347,7 +356,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder vz(float vz) {
       this.vz = vz;
@@ -359,7 +368,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder ax(float ax) {
       this.ax = ax;
@@ -371,7 +380,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder ay(float ay) {
       this.ay = ay;
@@ -383,7 +392,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder az(float az) {
       this.az = az;
@@ -396,7 +405,7 @@ public final class LocalPositionNedCov {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4,
+        unitSize = 4,
         arraySize = 45
     )
     public final Builder covariance(List<Float> covariance) {
@@ -404,8 +413,20 @@ public final class LocalPositionNedCov {
       return this;
     }
 
+    /**
+     * Class id of the estimator this estimate originated from. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder estimatorType(MavEstimatorType estimatorType) {
+      this.estimatorType = estimatorType;
+      return this;
+    }
+
     public final LocalPositionNedCov build() {
-      return new LocalPositionNedCov(timeUsec, estimatorType, x, y, z, vx, vy, vz, ax, ay, az, covariance);
+      return new LocalPositionNedCov(timeUsec, x, y, z, vx, vy, vz, ax, ay, az, covariance, estimatorType);
     }
   }
 }

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -115,8 +118,29 @@ public final class HilState {
     this.zacc = zacc;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilState{timeUsec=" + timeUsec
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", rollspeed=" + rollspeed
+         + ", pitchspeed=" + pitchspeed
+         + ", yawspeed=" + yawspeed
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", xacc=" + xacc
+         + ", yacc=" + yacc
+         + ", zacc=" + zacc + "}";
   }
 
   /**
@@ -124,7 +148,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -135,7 +159,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -146,7 +170,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -157,7 +181,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -168,7 +192,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float rollspeed() {
     return rollspeed;
@@ -179,7 +203,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pitchspeed() {
     return pitchspeed;
@@ -190,7 +214,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float yawspeed() {
     return yawspeed;
@@ -201,7 +225,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -212,7 +236,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -223,7 +247,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final int alt() {
     return alt;
@@ -234,7 +258,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int vx() {
     return vx;
@@ -245,7 +269,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int vy() {
     return vy;
@@ -256,7 +280,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int vz() {
     return vz;
@@ -267,7 +291,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2
+      unitSize = 2
   )
   public final int xacc() {
     return xacc;
@@ -278,7 +302,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final int yacc() {
     return yacc;
@@ -289,7 +313,7 @@ public final class HilState {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2
+      unitSize = 2
   )
   public final int zacc() {
     return zacc;
@@ -336,7 +360,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -348,7 +372,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -360,7 +384,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -372,7 +396,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -384,7 +408,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollspeed(float rollspeed) {
       this.rollspeed = rollspeed;
@@ -396,7 +420,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchspeed(float pitchspeed) {
       this.pitchspeed = pitchspeed;
@@ -408,7 +432,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawspeed(float yawspeed) {
       this.yawspeed = yawspeed;
@@ -420,7 +444,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -432,7 +456,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -444,7 +468,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(int alt) {
       this.alt = alt;
@@ -456,7 +480,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder vx(int vx) {
       this.vx = vx;
@@ -468,7 +492,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder vy(int vy) {
       this.vy = vy;
@@ -480,7 +504,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder vz(int vz) {
       this.vz = vz;
@@ -492,7 +516,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2
+        unitSize = 2
     )
     public final Builder xacc(int xacc) {
       this.xacc = xacc;
@@ -504,7 +528,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder yacc(int yacc) {
       this.yacc = yacc;
@@ -516,7 +540,7 @@ public final class HilState {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2
+        unitSize = 2
     )
     public final Builder zacc(int zacc) {
       this.zacc = zacc;

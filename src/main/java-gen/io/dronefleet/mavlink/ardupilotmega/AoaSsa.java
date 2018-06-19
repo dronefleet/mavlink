@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -33,8 +36,16 @@ public final class AoaSsa {
     this.ssa = ssa;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AoaSsa{timeUsec=" + timeUsec
+         + ", aoa=" + aoa
+         + ", ssa=" + ssa + "}";
   }
 
   /**
@@ -42,7 +53,7 @@ public final class AoaSsa {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -53,7 +64,7 @@ public final class AoaSsa {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float aoa() {
     return aoa;
@@ -64,7 +75,7 @@ public final class AoaSsa {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float ssa() {
     return ssa;
@@ -85,7 +96,7 @@ public final class AoaSsa {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -97,7 +108,7 @@ public final class AoaSsa {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder aoa(float aoa) {
       this.aoa = aoa;
@@ -109,7 +120,7 @@ public final class AoaSsa {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder ssa(float ssa) {
       this.ssa = ssa;

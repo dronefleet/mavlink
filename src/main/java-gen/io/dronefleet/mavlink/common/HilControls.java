@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -82,8 +85,24 @@ public final class HilControls {
     this.navMode = navMode;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilControls{timeUsec=" + timeUsec
+         + ", rollAilerons=" + rollAilerons
+         + ", pitchElevator=" + pitchElevator
+         + ", yawRudder=" + yawRudder
+         + ", throttle=" + throttle
+         + ", aux1=" + aux1
+         + ", aux2=" + aux2
+         + ", aux3=" + aux3
+         + ", aux4=" + aux4
+         + ", mode=" + mode
+         + ", navMode=" + navMode + "}";
   }
 
   /**
@@ -91,7 +110,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -102,7 +121,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float rollAilerons() {
     return rollAilerons;
@@ -113,7 +132,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float pitchElevator() {
     return pitchElevator;
@@ -124,7 +143,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float yawRudder() {
     return yawRudder;
@@ -135,7 +154,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float throttle() {
     return throttle;
@@ -146,7 +165,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float aux1() {
     return aux1;
@@ -157,7 +176,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float aux2() {
     return aux2;
@@ -168,7 +187,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float aux3() {
     return aux3;
@@ -179,7 +198,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float aux4() {
     return aux4;
@@ -190,7 +209,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 1
+      unitSize = 1
   )
   public final MavMode mode() {
     return mode;
@@ -201,7 +220,7 @@ public final class HilControls {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 1
+      unitSize = 1
   )
   public final int navMode() {
     return navMode;
@@ -238,7 +257,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -250,7 +269,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollAilerons(float rollAilerons) {
       this.rollAilerons = rollAilerons;
@@ -262,7 +281,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchElevator(float pitchElevator) {
       this.pitchElevator = pitchElevator;
@@ -274,7 +293,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawRudder(float yawRudder) {
       this.yawRudder = yawRudder;
@@ -286,7 +305,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder throttle(float throttle) {
       this.throttle = throttle;
@@ -298,7 +317,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder aux1(float aux1) {
       this.aux1 = aux1;
@@ -310,7 +329,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder aux2(float aux2) {
       this.aux2 = aux2;
@@ -322,7 +341,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder aux3(float aux3) {
       this.aux3 = aux3;
@@ -334,7 +353,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder aux4(float aux4) {
       this.aux4 = aux4;
@@ -346,7 +365,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 1
+        unitSize = 1
     )
     public final Builder mode(MavMode mode) {
       this.mode = mode;
@@ -358,7 +377,7 @@ public final class HilControls {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 1
+        unitSize = 1
     )
     public final Builder navMode(int navMode) {
       this.navMode = navMode;

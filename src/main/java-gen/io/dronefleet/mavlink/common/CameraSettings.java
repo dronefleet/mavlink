@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS. 
@@ -26,8 +29,15 @@ public final class CameraSettings {
     this.modeId = modeId;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "CameraSettings{timeBootMs=" + timeBootMs
+         + ", modeId=" + modeId + "}";
   }
 
   /**
@@ -35,7 +45,7 @@ public final class CameraSettings {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -46,7 +56,7 @@ public final class CameraSettings {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final CameraMode modeId() {
     return modeId;
@@ -65,7 +75,7 @@ public final class CameraSettings {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -77,7 +87,7 @@ public final class CameraSettings {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder modeId(CameraMode modeId) {
       this.modeId = modeId;

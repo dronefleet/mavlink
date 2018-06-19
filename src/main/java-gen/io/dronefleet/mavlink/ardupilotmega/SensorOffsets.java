@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Offsets and calibrations values for hardware sensors. This makes it easier to debug the 
@@ -12,21 +15,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 134
 )
 public final class SensorOffsets {
-  /**
-   * magnetometer X offset 
-   */
-  private final int magOfsX;
-
-  /**
-   * magnetometer Y offset 
-   */
-  private final int magOfsY;
-
-  /**
-   * magnetometer Z offset 
-   */
-  private final int magOfsZ;
-
   /**
    * magnetic declination (radians) 
    */
@@ -72,12 +60,24 @@ public final class SensorOffsets {
    */
   private final float accelCalZ;
 
-  private SensorOffsets(int magOfsX, int magOfsY, int magOfsZ, float magDeclination, int rawPress,
-      int rawTemp, float gyroCalX, float gyroCalY, float gyroCalZ, float accelCalX, float accelCalY,
-      float accelCalZ) {
-    this.magOfsX = magOfsX;
-    this.magOfsY = magOfsY;
-    this.magOfsZ = magOfsZ;
+  /**
+   * magnetometer X offset 
+   */
+  private final int magOfsX;
+
+  /**
+   * magnetometer Y offset 
+   */
+  private final int magOfsY;
+
+  /**
+   * magnetometer Z offset 
+   */
+  private final int magOfsZ;
+
+  private SensorOffsets(float magDeclination, int rawPress, int rawTemp, float gyroCalX,
+      float gyroCalY, float gyroCalZ, float accelCalX, float accelCalY, float accelCalZ,
+      int magOfsX, int magOfsY, int magOfsZ) {
     this.magDeclination = magDeclination;
     this.rawPress = rawPress;
     this.rawTemp = rawTemp;
@@ -87,43 +87,30 @@ public final class SensorOffsets {
     this.accelCalX = accelCalX;
     this.accelCalY = accelCalY;
     this.accelCalZ = accelCalZ;
+    this.magOfsX = magOfsX;
+    this.magOfsY = magOfsY;
+    this.magOfsZ = magOfsZ;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * magnetometer X offset 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 2
-  )
-  public final int magOfsX() {
-    return magOfsX;
-  }
-
-  /**
-   * magnetometer Y offset 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 2
-  )
-  public final int magOfsY() {
-    return magOfsY;
-  }
-
-  /**
-   * magnetometer Z offset 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int magOfsZ() {
-    return magOfsZ;
+  @Override
+  public String toString() {
+    return "SensorOffsets{magOfsX=" + magOfsX
+         + ", magOfsY=" + magOfsY
+         + ", magOfsZ=" + magOfsZ
+         + ", magDeclination=" + magDeclination
+         + ", rawPress=" + rawPress
+         + ", rawTemp=" + rawTemp
+         + ", gyroCalX=" + gyroCalX
+         + ", gyroCalY=" + gyroCalY
+         + ", gyroCalZ=" + gyroCalZ
+         + ", accelCalX=" + accelCalX
+         + ", accelCalY=" + accelCalY
+         + ", accelCalZ=" + accelCalZ + "}";
   }
 
   /**
@@ -131,7 +118,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float magDeclination() {
     return magDeclination;
@@ -142,7 +129,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int rawPress() {
     return rawPress;
@@ -153,7 +140,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int rawTemp() {
     return rawTemp;
@@ -164,7 +151,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float gyroCalX() {
     return gyroCalX;
@@ -175,7 +162,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float gyroCalY() {
     return gyroCalY;
@@ -186,7 +173,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float gyroCalZ() {
     return gyroCalZ;
@@ -197,7 +184,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float accelCalX() {
     return accelCalX;
@@ -208,7 +195,7 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float accelCalY() {
     return accelCalY;
@@ -219,19 +206,46 @@ public final class SensorOffsets {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float accelCalZ() {
     return accelCalZ;
   }
 
+  /**
+   * magnetometer X offset 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 2
+  )
+  public final int magOfsX() {
+    return magOfsX;
+  }
+
+  /**
+   * magnetometer Y offset 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 2
+  )
+  public final int magOfsY() {
+    return magOfsY;
+  }
+
+  /**
+   * magnetometer Z offset 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int magOfsZ() {
+    return magOfsZ;
+  }
+
   public static class Builder {
-    private int magOfsX;
-
-    private int magOfsY;
-
-    private int magOfsZ;
-
     private float magDeclination;
 
     private int rawPress;
@@ -250,43 +264,13 @@ public final class SensorOffsets {
 
     private float accelCalZ;
 
+    private int magOfsX;
+
+    private int magOfsY;
+
+    private int magOfsZ;
+
     private Builder() {
-    }
-
-    /**
-     * magnetometer X offset 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 2
-    )
-    public final Builder magOfsX(int magOfsX) {
-      this.magOfsX = magOfsX;
-      return this;
-    }
-
-    /**
-     * magnetometer Y offset 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 2
-    )
-    public final Builder magOfsY(int magOfsY) {
-      this.magOfsY = magOfsY;
-      return this;
-    }
-
-    /**
-     * magnetometer Z offset 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder magOfsZ(int magOfsZ) {
-      this.magOfsZ = magOfsZ;
-      return this;
     }
 
     /**
@@ -294,7 +278,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder magDeclination(float magDeclination) {
       this.magDeclination = magDeclination;
@@ -306,7 +290,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder rawPress(int rawPress) {
       this.rawPress = rawPress;
@@ -318,7 +302,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder rawTemp(int rawTemp) {
       this.rawTemp = rawTemp;
@@ -330,7 +314,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder gyroCalX(float gyroCalX) {
       this.gyroCalX = gyroCalX;
@@ -342,7 +326,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder gyroCalY(float gyroCalY) {
       this.gyroCalY = gyroCalY;
@@ -354,7 +338,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder gyroCalZ(float gyroCalZ) {
       this.gyroCalZ = gyroCalZ;
@@ -366,7 +350,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder accelCalX(float accelCalX) {
       this.accelCalX = accelCalX;
@@ -378,7 +362,7 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder accelCalY(float accelCalY) {
       this.accelCalY = accelCalY;
@@ -390,15 +374,51 @@ public final class SensorOffsets {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder accelCalZ(float accelCalZ) {
       this.accelCalZ = accelCalZ;
       return this;
     }
 
+    /**
+     * magnetometer X offset 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 2
+    )
+    public final Builder magOfsX(int magOfsX) {
+      this.magOfsX = magOfsX;
+      return this;
+    }
+
+    /**
+     * magnetometer Y offset 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 2
+    )
+    public final Builder magOfsY(int magOfsY) {
+      this.magOfsY = magOfsY;
+      return this;
+    }
+
+    /**
+     * magnetometer Z offset 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder magOfsZ(int magOfsZ) {
+      this.magOfsZ = magOfsZ;
+      return this;
+    }
+
     public final SensorOffsets build() {
-      return new SensorOffsets(magOfsX, magOfsY, magOfsZ, magDeclination, rawPress, rawTemp, gyroCalX, gyroCalY, gyroCalZ, accelCalX, accelCalY, accelCalZ);
+      return new SensorOffsets(magDeclination, rawPress, rawTemp, gyroCalX, gyroCalY, gyroCalZ, accelCalX, accelCalY, accelCalZ, magOfsX, magOfsY, magOfsZ);
     }
   }
 }

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Transmits the readings from the voltage and current sensors 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 17
 )
 public final class VoltSensor {
-  /**
-   * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
-   */
-  private final int r2type;
-
   /**
    * Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
    */
@@ -27,25 +25,27 @@ public final class VoltSensor {
    */
   private final int reading2;
 
-  private VoltSensor(int r2type, int voltage, int reading2) {
-    this.r2type = r2type;
+  /**
+   * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
+   */
+  private final int r2type;
+
+  private VoltSensor(int voltage, int reading2, int r2type) {
     this.voltage = voltage;
     this.reading2 = reading2;
+    this.r2type = r2type;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int r2type() {
-    return r2type;
+  @Override
+  public String toString() {
+    return "VoltSensor{r2type=" + r2type
+         + ", voltage=" + voltage
+         + ", reading2=" + reading2 + "}";
   }
 
   /**
@@ -53,7 +53,7 @@ public final class VoltSensor {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int voltage() {
     return voltage;
@@ -65,32 +65,31 @@ public final class VoltSensor {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int reading2() {
     return reading2;
   }
 
-  public static class Builder {
-    private int r2type;
+  /**
+   * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int r2type() {
+    return r2type;
+  }
 
+  public static class Builder {
     private int voltage;
 
     private int reading2;
 
-    private Builder() {
-    }
+    private int r2type;
 
-    /**
-     * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder r2type(int r2type) {
-      this.r2type = r2type;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -98,7 +97,7 @@ public final class VoltSensor {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder voltage(int voltage) {
       this.voltage = voltage;
@@ -111,15 +110,27 @@ public final class VoltSensor {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder reading2(int reading2) {
       this.reading2 = reading2;
       return this;
     }
 
+    /**
+     * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder r2type(int r2type) {
+      this.r2type = r2type;
+      return this;
+    }
+
     public final VoltSensor build() {
-      return new VoltSensor(r2type, voltage, reading2);
+      return new VoltSensor(voltage, reading2, r2type);
     }
   }
 }

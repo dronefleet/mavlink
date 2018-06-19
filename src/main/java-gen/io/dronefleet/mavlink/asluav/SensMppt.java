@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -28,16 +31,6 @@ public final class SensMppt {
   private final float mppt1Amp;
 
   /**
-   * MPPT1 pwm 
-   */
-  private final int mppt1Pwm;
-
-  /**
-   * MPPT1 status 
-   */
-  private final int mppt1Status;
-
-  /**
    * MPPT2 voltage 
    */
   private final float mppt2Volt;
@@ -46,16 +39,6 @@ public final class SensMppt {
    * MPPT2 current 
    */
   private final float mppt2Amp;
-
-  /**
-   * MPPT2 pwm 
-   */
-  private final int mppt2Pwm;
-
-  /**
-   * MPPT2 status 
-   */
-  private final int mppt2Status;
 
   /**
    * MPPT3 voltage 
@@ -68,35 +51,73 @@ public final class SensMppt {
   private final float mppt3Amp;
 
   /**
+   * MPPT1 pwm 
+   */
+  private final int mppt1Pwm;
+
+  /**
+   * MPPT2 pwm 
+   */
+  private final int mppt2Pwm;
+
+  /**
    * MPPT3 pwm 
    */
   private final int mppt3Pwm;
+
+  /**
+   * MPPT1 status 
+   */
+  private final int mppt1Status;
+
+  /**
+   * MPPT2 status 
+   */
+  private final int mppt2Status;
 
   /**
    * MPPT3 status 
    */
   private final int mppt3Status;
 
-  private SensMppt(BigInteger mpptTimestamp, float mppt1Volt, float mppt1Amp, int mppt1Pwm,
-      int mppt1Status, float mppt2Volt, float mppt2Amp, int mppt2Pwm, int mppt2Status,
-      float mppt3Volt, float mppt3Amp, int mppt3Pwm, int mppt3Status) {
+  private SensMppt(BigInteger mpptTimestamp, float mppt1Volt, float mppt1Amp, float mppt2Volt,
+      float mppt2Amp, float mppt3Volt, float mppt3Amp, int mppt1Pwm, int mppt2Pwm, int mppt3Pwm,
+      int mppt1Status, int mppt2Status, int mppt3Status) {
     this.mpptTimestamp = mpptTimestamp;
     this.mppt1Volt = mppt1Volt;
     this.mppt1Amp = mppt1Amp;
-    this.mppt1Pwm = mppt1Pwm;
-    this.mppt1Status = mppt1Status;
     this.mppt2Volt = mppt2Volt;
     this.mppt2Amp = mppt2Amp;
-    this.mppt2Pwm = mppt2Pwm;
-    this.mppt2Status = mppt2Status;
     this.mppt3Volt = mppt3Volt;
     this.mppt3Amp = mppt3Amp;
+    this.mppt1Pwm = mppt1Pwm;
+    this.mppt2Pwm = mppt2Pwm;
     this.mppt3Pwm = mppt3Pwm;
+    this.mppt1Status = mppt1Status;
+    this.mppt2Status = mppt2Status;
     this.mppt3Status = mppt3Status;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensMppt{mpptTimestamp=" + mpptTimestamp
+         + ", mppt1Volt=" + mppt1Volt
+         + ", mppt1Amp=" + mppt1Amp
+         + ", mppt1Pwm=" + mppt1Pwm
+         + ", mppt1Status=" + mppt1Status
+         + ", mppt2Volt=" + mppt2Volt
+         + ", mppt2Amp=" + mppt2Amp
+         + ", mppt2Pwm=" + mppt2Pwm
+         + ", mppt2Status=" + mppt2Status
+         + ", mppt3Volt=" + mppt3Volt
+         + ", mppt3Amp=" + mppt3Amp
+         + ", mppt3Pwm=" + mppt3Pwm
+         + ", mppt3Status=" + mppt3Status + "}";
   }
 
   /**
@@ -104,7 +125,7 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger mpptTimestamp() {
     return mpptTimestamp;
@@ -115,7 +136,7 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float mppt1Volt() {
     return mppt1Volt;
@@ -126,32 +147,10 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float mppt1Amp() {
     return mppt1Amp;
-  }
-
-  /**
-   * MPPT1 pwm 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int mppt1Pwm() {
-    return mppt1Pwm;
-  }
-
-  /**
-   * MPPT1 status 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 1
-  )
-  public final int mppt1Status() {
-    return mppt1Status;
   }
 
   /**
@@ -159,7 +158,7 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float mppt2Volt() {
     return mppt2Volt;
@@ -170,32 +169,10 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float mppt2Amp() {
     return mppt2Amp;
-  }
-
-  /**
-   * MPPT2 pwm 
-   */
-  @MavlinkMessageField(
-      position = 8,
-      length = 2
-  )
-  public final int mppt2Pwm() {
-    return mppt2Pwm;
-  }
-
-  /**
-   * MPPT2 status 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 1
-  )
-  public final int mppt2Status() {
-    return mppt2Status;
   }
 
   /**
@@ -203,7 +180,7 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float mppt3Volt() {
     return mppt3Volt;
@@ -214,10 +191,32 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float mppt3Amp() {
     return mppt3Amp;
+  }
+
+  /**
+   * MPPT1 pwm 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int mppt1Pwm() {
+    return mppt1Pwm;
+  }
+
+  /**
+   * MPPT2 pwm 
+   */
+  @MavlinkMessageField(
+      position = 8,
+      unitSize = 2
+  )
+  public final int mppt2Pwm() {
+    return mppt2Pwm;
   }
 
   /**
@@ -225,10 +224,32 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int mppt3Pwm() {
     return mppt3Pwm;
+  }
+
+  /**
+   * MPPT1 status 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 1
+  )
+  public final int mppt1Status() {
+    return mppt1Status;
+  }
+
+  /**
+   * MPPT2 status 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 1
+  )
+  public final int mppt2Status() {
+    return mppt2Status;
   }
 
   /**
@@ -236,7 +257,7 @@ public final class SensMppt {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 1
+      unitSize = 1
   )
   public final int mppt3Status() {
     return mppt3Status;
@@ -249,23 +270,23 @@ public final class SensMppt {
 
     private float mppt1Amp;
 
-    private int mppt1Pwm;
-
-    private int mppt1Status;
-
     private float mppt2Volt;
 
     private float mppt2Amp;
-
-    private int mppt2Pwm;
-
-    private int mppt2Status;
 
     private float mppt3Volt;
 
     private float mppt3Amp;
 
+    private int mppt1Pwm;
+
+    private int mppt2Pwm;
+
     private int mppt3Pwm;
+
+    private int mppt1Status;
+
+    private int mppt2Status;
 
     private int mppt3Status;
 
@@ -277,7 +298,7 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder mpptTimestamp(BigInteger mpptTimestamp) {
       this.mpptTimestamp = mpptTimestamp;
@@ -289,7 +310,7 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt1Volt(float mppt1Volt) {
       this.mppt1Volt = mppt1Volt;
@@ -301,34 +322,10 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt1Amp(float mppt1Amp) {
       this.mppt1Amp = mppt1Amp;
-      return this;
-    }
-
-    /**
-     * MPPT1 pwm 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder mppt1Pwm(int mppt1Pwm) {
-      this.mppt1Pwm = mppt1Pwm;
-      return this;
-    }
-
-    /**
-     * MPPT1 status 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 1
-    )
-    public final Builder mppt1Status(int mppt1Status) {
-      this.mppt1Status = mppt1Status;
       return this;
     }
 
@@ -337,7 +334,7 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt2Volt(float mppt2Volt) {
       this.mppt2Volt = mppt2Volt;
@@ -349,34 +346,10 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt2Amp(float mppt2Amp) {
       this.mppt2Amp = mppt2Amp;
-      return this;
-    }
-
-    /**
-     * MPPT2 pwm 
-     */
-    @MavlinkMessageField(
-        position = 8,
-        length = 2
-    )
-    public final Builder mppt2Pwm(int mppt2Pwm) {
-      this.mppt2Pwm = mppt2Pwm;
-      return this;
-    }
-
-    /**
-     * MPPT2 status 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 1
-    )
-    public final Builder mppt2Status(int mppt2Status) {
-      this.mppt2Status = mppt2Status;
       return this;
     }
 
@@ -385,7 +358,7 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt3Volt(float mppt3Volt) {
       this.mppt3Volt = mppt3Volt;
@@ -397,10 +370,34 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder mppt3Amp(float mppt3Amp) {
       this.mppt3Amp = mppt3Amp;
+      return this;
+    }
+
+    /**
+     * MPPT1 pwm 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder mppt1Pwm(int mppt1Pwm) {
+      this.mppt1Pwm = mppt1Pwm;
+      return this;
+    }
+
+    /**
+     * MPPT2 pwm 
+     */
+    @MavlinkMessageField(
+        position = 8,
+        unitSize = 2
+    )
+    public final Builder mppt2Pwm(int mppt2Pwm) {
+      this.mppt2Pwm = mppt2Pwm;
       return this;
     }
 
@@ -409,10 +406,34 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder mppt3Pwm(int mppt3Pwm) {
       this.mppt3Pwm = mppt3Pwm;
+      return this;
+    }
+
+    /**
+     * MPPT1 status 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 1
+    )
+    public final Builder mppt1Status(int mppt1Status) {
+      this.mppt1Status = mppt1Status;
+      return this;
+    }
+
+    /**
+     * MPPT2 status 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 1
+    )
+    public final Builder mppt2Status(int mppt2Status) {
+      this.mppt2Status = mppt2Status;
       return this;
     }
 
@@ -421,7 +442,7 @@ public final class SensMppt {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 1
+        unitSize = 1
     )
     public final Builder mppt3Status(int mppt3Status) {
       this.mppt3Status = mppt3Status;
@@ -429,7 +450,7 @@ public final class SensMppt {
     }
 
     public final SensMppt build() {
-      return new SensMppt(mpptTimestamp, mppt1Volt, mppt1Amp, mppt1Pwm, mppt1Status, mppt2Volt, mppt2Amp, mppt2Pwm, mppt2Status, mppt3Volt, mppt3Amp, mppt3Pwm, mppt3Status);
+      return new SensMppt(mpptTimestamp, mppt1Volt, mppt1Amp, mppt2Volt, mppt2Amp, mppt3Volt, mppt3Amp, mppt1Pwm, mppt2Pwm, mppt3Pwm, mppt1Status, mppt2Status, mppt3Status);
     }
   }
 }

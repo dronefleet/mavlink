@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,16 +19,6 @@ public final class SensPowerBoard {
    * Timestamp 
    */
   private final BigInteger timestamp;
-
-  /**
-   * Power board status register 
-   */
-  private final int pwrBrdStatus;
-
-  /**
-   * Power board leds status 
-   */
-  private final int pwrBrdLedStatus;
 
   /**
    * Power board system voltage 
@@ -72,13 +65,21 @@ public final class SensPowerBoard {
    */
   private final float pwrBrdAuxAmp;
 
-  private SensPowerBoard(BigInteger timestamp, int pwrBrdStatus, int pwrBrdLedStatus,
-      float pwrBrdSystemVolt, float pwrBrdServoVolt, float pwrBrdDigitalVolt, float pwrBrdMotLAmp,
-      float pwrBrdMotRAmp, float pwrBrdAnalogAmp, float pwrBrdDigitalAmp, float pwrBrdExtAmp,
-      float pwrBrdAuxAmp) {
+  /**
+   * Power board status register 
+   */
+  private final int pwrBrdStatus;
+
+  /**
+   * Power board leds status 
+   */
+  private final int pwrBrdLedStatus;
+
+  private SensPowerBoard(BigInteger timestamp, float pwrBrdSystemVolt, float pwrBrdServoVolt,
+      float pwrBrdDigitalVolt, float pwrBrdMotLAmp, float pwrBrdMotRAmp, float pwrBrdAnalogAmp,
+      float pwrBrdDigitalAmp, float pwrBrdExtAmp, float pwrBrdAuxAmp, int pwrBrdStatus,
+      int pwrBrdLedStatus) {
     this.timestamp = timestamp;
-    this.pwrBrdStatus = pwrBrdStatus;
-    this.pwrBrdLedStatus = pwrBrdLedStatus;
     this.pwrBrdSystemVolt = pwrBrdSystemVolt;
     this.pwrBrdServoVolt = pwrBrdServoVolt;
     this.pwrBrdDigitalVolt = pwrBrdDigitalVolt;
@@ -88,10 +89,29 @@ public final class SensPowerBoard {
     this.pwrBrdDigitalAmp = pwrBrdDigitalAmp;
     this.pwrBrdExtAmp = pwrBrdExtAmp;
     this.pwrBrdAuxAmp = pwrBrdAuxAmp;
+    this.pwrBrdStatus = pwrBrdStatus;
+    this.pwrBrdLedStatus = pwrBrdLedStatus;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensPowerBoard{timestamp=" + timestamp
+         + ", pwrBrdStatus=" + pwrBrdStatus
+         + ", pwrBrdLedStatus=" + pwrBrdLedStatus
+         + ", pwrBrdSystemVolt=" + pwrBrdSystemVolt
+         + ", pwrBrdServoVolt=" + pwrBrdServoVolt
+         + ", pwrBrdDigitalVolt=" + pwrBrdDigitalVolt
+         + ", pwrBrdMotLAmp=" + pwrBrdMotLAmp
+         + ", pwrBrdMotRAmp=" + pwrBrdMotRAmp
+         + ", pwrBrdAnalogAmp=" + pwrBrdAnalogAmp
+         + ", pwrBrdDigitalAmp=" + pwrBrdDigitalAmp
+         + ", pwrBrdExtAmp=" + pwrBrdExtAmp
+         + ", pwrBrdAuxAmp=" + pwrBrdAuxAmp + "}";
   }
 
   /**
@@ -99,32 +119,10 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
-  }
-
-  /**
-   * Power board status register 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int pwrBrdStatus() {
-    return pwrBrdStatus;
-  }
-
-  /**
-   * Power board leds status 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final int pwrBrdLedStatus() {
-    return pwrBrdLedStatus;
   }
 
   /**
@@ -132,7 +130,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdSystemVolt() {
     return pwrBrdSystemVolt;
@@ -143,7 +141,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdServoVolt() {
     return pwrBrdServoVolt;
@@ -154,7 +152,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdDigitalVolt() {
     return pwrBrdDigitalVolt;
@@ -165,7 +163,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdMotLAmp() {
     return pwrBrdMotLAmp;
@@ -176,7 +174,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdMotRAmp() {
     return pwrBrdMotRAmp;
@@ -187,7 +185,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdAnalogAmp() {
     return pwrBrdAnalogAmp;
@@ -198,7 +196,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdDigitalAmp() {
     return pwrBrdDigitalAmp;
@@ -209,7 +207,7 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdExtAmp() {
     return pwrBrdExtAmp;
@@ -220,18 +218,36 @@ public final class SensPowerBoard {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float pwrBrdAuxAmp() {
     return pwrBrdAuxAmp;
   }
 
+  /**
+   * Power board status register 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int pwrBrdStatus() {
+    return pwrBrdStatus;
+  }
+
+  /**
+   * Power board leds status 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final int pwrBrdLedStatus() {
+    return pwrBrdLedStatus;
+  }
+
   public static class Builder {
     private BigInteger timestamp;
-
-    private int pwrBrdStatus;
-
-    private int pwrBrdLedStatus;
 
     private float pwrBrdSystemVolt;
 
@@ -251,6 +267,10 @@ public final class SensPowerBoard {
 
     private float pwrBrdAuxAmp;
 
+    private int pwrBrdStatus;
+
+    private int pwrBrdLedStatus;
+
     private Builder() {
     }
 
@@ -259,34 +279,10 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
-      return this;
-    }
-
-    /**
-     * Power board status register 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder pwrBrdStatus(int pwrBrdStatus) {
-      this.pwrBrdStatus = pwrBrdStatus;
-      return this;
-    }
-
-    /**
-     * Power board leds status 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder pwrBrdLedStatus(int pwrBrdLedStatus) {
-      this.pwrBrdLedStatus = pwrBrdLedStatus;
       return this;
     }
 
@@ -295,7 +291,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdSystemVolt(float pwrBrdSystemVolt) {
       this.pwrBrdSystemVolt = pwrBrdSystemVolt;
@@ -307,7 +303,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdServoVolt(float pwrBrdServoVolt) {
       this.pwrBrdServoVolt = pwrBrdServoVolt;
@@ -319,7 +315,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdDigitalVolt(float pwrBrdDigitalVolt) {
       this.pwrBrdDigitalVolt = pwrBrdDigitalVolt;
@@ -331,7 +327,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdMotLAmp(float pwrBrdMotLAmp) {
       this.pwrBrdMotLAmp = pwrBrdMotLAmp;
@@ -343,7 +339,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdMotRAmp(float pwrBrdMotRAmp) {
       this.pwrBrdMotRAmp = pwrBrdMotRAmp;
@@ -355,7 +351,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdAnalogAmp(float pwrBrdAnalogAmp) {
       this.pwrBrdAnalogAmp = pwrBrdAnalogAmp;
@@ -367,7 +363,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdDigitalAmp(float pwrBrdDigitalAmp) {
       this.pwrBrdDigitalAmp = pwrBrdDigitalAmp;
@@ -379,7 +375,7 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdExtAmp(float pwrBrdExtAmp) {
       this.pwrBrdExtAmp = pwrBrdExtAmp;
@@ -391,15 +387,39 @@ public final class SensPowerBoard {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder pwrBrdAuxAmp(float pwrBrdAuxAmp) {
       this.pwrBrdAuxAmp = pwrBrdAuxAmp;
       return this;
     }
 
+    /**
+     * Power board status register 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder pwrBrdStatus(int pwrBrdStatus) {
+      this.pwrBrdStatus = pwrBrdStatus;
+      return this;
+    }
+
+    /**
+     * Power board leds status 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder pwrBrdLedStatus(int pwrBrdLedStatus) {
+      this.pwrBrdLedStatus = pwrBrdLedStatus;
+      return this;
+    }
+
     public final SensPowerBoard build() {
-      return new SensPowerBoard(timestamp, pwrBrdStatus, pwrBrdLedStatus, pwrBrdSystemVolt, pwrBrdServoVolt, pwrBrdDigitalVolt, pwrBrdMotLAmp, pwrBrdMotRAmp, pwrBrdAnalogAmp, pwrBrdDigitalAmp, pwrBrdExtAmp, pwrBrdAuxAmp);
+      return new SensPowerBoard(timestamp, pwrBrdSystemVolt, pwrBrdServoVolt, pwrBrdDigitalVolt, pwrBrdMotLAmp, pwrBrdMotRAmp, pwrBrdAnalogAmp, pwrBrdDigitalAmp, pwrBrdExtAmp, pwrBrdAuxAmp, pwrBrdStatus, pwrBrdLedStatus);
     }
   }
 }

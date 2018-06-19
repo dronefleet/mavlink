@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of simulation environment, if used 
@@ -142,8 +145,34 @@ public final class SimState {
     this.vd = vd;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SimState{q1=" + q1
+         + ", q2=" + q2
+         + ", q3=" + q3
+         + ", q4=" + q4
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", xacc=" + xacc
+         + ", yacc=" + yacc
+         + ", zacc=" + zacc
+         + ", xgyro=" + xgyro
+         + ", ygyro=" + ygyro
+         + ", zgyro=" + zgyro
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", stdDevHorz=" + stdDevHorz
+         + ", stdDevVert=" + stdDevVert
+         + ", vn=" + vn
+         + ", ve=" + ve
+         + ", vd=" + vd + "}";
   }
 
   /**
@@ -151,7 +180,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float q1() {
     return q1;
@@ -162,7 +191,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float q2() {
     return q2;
@@ -173,7 +202,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float q3() {
     return q3;
@@ -184,7 +213,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float q4() {
     return q4;
@@ -195,7 +224,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -206,7 +235,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -217,7 +246,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -228,7 +257,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float xacc() {
     return xacc;
@@ -239,7 +268,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float yacc() {
     return yacc;
@@ -250,7 +279,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float zacc() {
     return zacc;
@@ -261,7 +290,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float xgyro() {
     return xgyro;
@@ -272,7 +301,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float ygyro() {
     return ygyro;
@@ -283,7 +312,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float zgyro() {
     return zgyro;
@@ -294,7 +323,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float lat() {
     return lat;
@@ -305,7 +334,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4
+      unitSize = 4
   )
   public final float lon() {
     return lon;
@@ -316,7 +345,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 4
+      unitSize = 4
   )
   public final float alt() {
     return alt;
@@ -327,7 +356,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 4
+      unitSize = 4
   )
   public final float stdDevHorz() {
     return stdDevHorz;
@@ -338,7 +367,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 4
+      unitSize = 4
   )
   public final float stdDevVert() {
     return stdDevVert;
@@ -349,7 +378,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 4
+      unitSize = 4
   )
   public final float vn() {
     return vn;
@@ -360,7 +389,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 4
+      unitSize = 4
   )
   public final float ve() {
     return ve;
@@ -371,7 +400,7 @@ public final class SimState {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 4
+      unitSize = 4
   )
   public final float vd() {
     return vd;
@@ -428,7 +457,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder q1(float q1) {
       this.q1 = q1;
@@ -440,7 +469,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder q2(float q2) {
       this.q2 = q2;
@@ -452,7 +481,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder q3(float q3) {
       this.q3 = q3;
@@ -464,7 +493,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder q4(float q4) {
       this.q4 = q4;
@@ -476,7 +505,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -488,7 +517,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -500,7 +529,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -512,7 +541,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder xacc(float xacc) {
       this.xacc = xacc;
@@ -524,7 +553,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder yacc(float yacc) {
       this.yacc = yacc;
@@ -536,7 +565,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder zacc(float zacc) {
       this.zacc = zacc;
@@ -548,7 +577,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder xgyro(float xgyro) {
       this.xgyro = xgyro;
@@ -560,7 +589,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder ygyro(float ygyro) {
       this.ygyro = ygyro;
@@ -572,7 +601,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder zgyro(float zgyro) {
       this.zgyro = zgyro;
@@ -584,7 +613,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(float lat) {
       this.lat = lat;
@@ -596,7 +625,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(float lon) {
       this.lon = lon;
@@ -608,7 +637,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(float alt) {
       this.alt = alt;
@@ -620,7 +649,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 4
+        unitSize = 4
     )
     public final Builder stdDevHorz(float stdDevHorz) {
       this.stdDevHorz = stdDevHorz;
@@ -632,7 +661,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 4
+        unitSize = 4
     )
     public final Builder stdDevVert(float stdDevVert) {
       this.stdDevVert = stdDevVert;
@@ -644,7 +673,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 4
+        unitSize = 4
     )
     public final Builder vn(float vn) {
       this.vn = vn;
@@ -656,7 +685,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 4
+        unitSize = 4
     )
     public final Builder ve(float ve) {
       this.ve = ve;
@@ -668,7 +697,7 @@ public final class SimState {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 4
+        unitSize = 4
     )
     public final Builder vd(float vd) {
       this.vd = vd;

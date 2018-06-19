@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F8: format 
@@ -58,8 +61,20 @@ public final class SerialUdbExtraF8 {
     this.sueAltHoldPitchHigh = sueAltHoldPitchHigh;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF8{sueHeightTargetMax=" + sueHeightTargetMax
+         + ", sueHeightTargetMin=" + sueHeightTargetMin
+         + ", sueAltHoldThrottleMin=" + sueAltHoldThrottleMin
+         + ", sueAltHoldThrottleMax=" + sueAltHoldThrottleMax
+         + ", sueAltHoldPitchMin=" + sueAltHoldPitchMin
+         + ", sueAltHoldPitchMax=" + sueAltHoldPitchMax
+         + ", sueAltHoldPitchHigh=" + sueAltHoldPitchHigh + "}";
   }
 
   /**
@@ -67,7 +82,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float sueHeightTargetMax() {
     return sueHeightTargetMax;
@@ -78,7 +93,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float sueHeightTargetMin() {
     return sueHeightTargetMin;
@@ -89,7 +104,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float sueAltHoldThrottleMin() {
     return sueAltHoldThrottleMin;
@@ -100,7 +115,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float sueAltHoldThrottleMax() {
     return sueAltHoldThrottleMax;
@@ -111,7 +126,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float sueAltHoldPitchMin() {
     return sueAltHoldPitchMin;
@@ -122,7 +137,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float sueAltHoldPitchMax() {
     return sueAltHoldPitchMax;
@@ -133,7 +148,7 @@ public final class SerialUdbExtraF8 {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float sueAltHoldPitchHigh() {
     return sueAltHoldPitchHigh;
@@ -162,7 +177,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueHeightTargetMax(float sueHeightTargetMax) {
       this.sueHeightTargetMax = sueHeightTargetMax;
@@ -174,7 +189,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueHeightTargetMin(float sueHeightTargetMin) {
       this.sueHeightTargetMin = sueHeightTargetMin;
@@ -186,7 +201,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltHoldThrottleMin(float sueAltHoldThrottleMin) {
       this.sueAltHoldThrottleMin = sueAltHoldThrottleMin;
@@ -198,7 +213,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltHoldThrottleMax(float sueAltHoldThrottleMax) {
       this.sueAltHoldThrottleMax = sueAltHoldThrottleMax;
@@ -210,7 +225,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltHoldPitchMin(float sueAltHoldPitchMin) {
       this.sueAltHoldPitchMin = sueAltHoldPitchMin;
@@ -222,7 +237,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltHoldPitchMax(float sueAltHoldPitchMax) {
       this.sueAltHoldPitchMax = sueAltHoldPitchMax;
@@ -234,7 +249,7 @@ public final class SerialUdbExtraF8 {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltHoldPitchHigh(float sueAltHoldPitchHigh) {
       this.sueAltHoldPitchHigh = sueAltHoldPitchHigh;

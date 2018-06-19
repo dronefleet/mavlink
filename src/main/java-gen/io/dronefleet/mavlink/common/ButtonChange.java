@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Report button state change 
@@ -32,8 +35,16 @@ public final class ButtonChange {
     this.state = state;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ButtonChange{timeBootMs=" + timeBootMs
+         + ", lastChangeMs=" + lastChangeMs
+         + ", state=" + state + "}";
   }
 
   /**
@@ -41,7 +52,7 @@ public final class ButtonChange {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -52,7 +63,7 @@ public final class ButtonChange {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long lastChangeMs() {
     return lastChangeMs;
@@ -63,7 +74,7 @@ public final class ButtonChange {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int state() {
     return state;
@@ -84,7 +95,7 @@ public final class ButtonChange {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -96,7 +107,7 @@ public final class ButtonChange {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lastChangeMs(long lastChangeMs) {
       this.lastChangeMs = lastChangeMs;
@@ -108,7 +119,7 @@ public final class ButtonChange {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder state(int state) {
       this.state = state;

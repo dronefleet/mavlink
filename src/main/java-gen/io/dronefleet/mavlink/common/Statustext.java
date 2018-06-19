@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -30,8 +32,15 @@ public final class Statustext {
     this.text = text;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Statustext{severity=" + severity
+         + ", text=" + text + "}";
   }
 
   /**
@@ -39,7 +48,7 @@ public final class Statustext {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final MavSeverity severity() {
     return severity;
@@ -50,7 +59,7 @@ public final class Statustext {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 50
   )
   public final String text() {
@@ -70,7 +79,7 @@ public final class Statustext {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder severity(MavSeverity severity) {
       this.severity = severity;
@@ -82,7 +91,7 @@ public final class Statustext {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 50
     )
     public final Builder text(String text) {

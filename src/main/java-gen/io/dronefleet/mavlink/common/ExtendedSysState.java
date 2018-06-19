@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Provides state for additional features 
@@ -27,8 +30,15 @@ public final class ExtendedSysState {
     this.landedState = landedState;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ExtendedSysState{vtolState=" + vtolState
+         + ", landedState=" + landedState + "}";
   }
 
   /**
@@ -37,7 +47,7 @@ public final class ExtendedSysState {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final MavVtolState vtolState() {
     return vtolState;
@@ -48,7 +58,7 @@ public final class ExtendedSysState {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final MavLandedState landedState() {
     return landedState;
@@ -68,7 +78,7 @@ public final class ExtendedSysState {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder vtolState(MavVtolState vtolState) {
       this.vtolState = vtolState;
@@ -80,7 +90,7 @@ public final class ExtendedSysState {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder landedState(MavLandedState landedState) {
       this.landedState = landedState;

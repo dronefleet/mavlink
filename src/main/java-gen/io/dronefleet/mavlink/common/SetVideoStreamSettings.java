@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -12,6 +14,31 @@ import java.lang.String;
     crc = 232
 )
 public final class SetVideoStreamSettings {
+  /**
+   * Frames per second (set to -1 for highest framerate possible) 
+   */
+  private final float framerate;
+
+  /**
+   * Bit rate in bits per second (set to -1 for auto) 
+   */
+  private final long bitrate;
+
+  /**
+   * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
+   */
+  private final int resolutionH;
+
+  /**
+   * Resolution vertical in pixels (set to -1 for highest resolution possible) 
+   */
+  private final int resolutionV;
+
+  /**
+   * Video image rotation clockwise (0-359 degrees) 
+   */
+  private final int rotation;
+
   /**
    * system ID of the target 
    */
@@ -28,83 +55,39 @@ public final class SetVideoStreamSettings {
   private final int cameraId;
 
   /**
-   * Frames per second (set to -1 for highest framerate possible) 
-   */
-  private final float framerate;
-
-  /**
-   * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
-   */
-  private final int resolutionH;
-
-  /**
-   * Resolution vertical in pixels (set to -1 for highest resolution possible) 
-   */
-  private final int resolutionV;
-
-  /**
-   * Bit rate in bits per second (set to -1 for auto) 
-   */
-  private final long bitrate;
-
-  /**
-   * Video image rotation clockwise (0-359 degrees) 
-   */
-  private final int rotation;
-
-  /**
    * Video stream URI 
    */
   private final String uri;
 
-  private SetVideoStreamSettings(int targetSystem, int targetComponent, int cameraId,
-      float framerate, int resolutionH, int resolutionV, long bitrate, int rotation, String uri) {
+  private SetVideoStreamSettings(float framerate, long bitrate, int resolutionH, int resolutionV,
+      int rotation, int targetSystem, int targetComponent, int cameraId, String uri) {
+    this.framerate = framerate;
+    this.bitrate = bitrate;
+    this.resolutionH = resolutionH;
+    this.resolutionV = resolutionV;
+    this.rotation = rotation;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
     this.cameraId = cameraId;
-    this.framerate = framerate;
-    this.resolutionH = resolutionH;
-    this.resolutionV = resolutionV;
-    this.bitrate = bitrate;
-    this.rotation = rotation;
     this.uri = uri;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * system ID of the target 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * component ID of the target 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * Camera ID (1 for first, 2 for second, etc.) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final int cameraId() {
-    return cameraId;
+  @Override
+  public String toString() {
+    return "SetVideoStreamSettings{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", cameraId=" + cameraId
+         + ", framerate=" + framerate
+         + ", resolutionH=" + resolutionH
+         + ", resolutionV=" + resolutionV
+         + ", bitrate=" + bitrate
+         + ", rotation=" + rotation
+         + ", uri=" + uri + "}";
   }
 
   /**
@@ -112,10 +95,21 @@ public final class SetVideoStreamSettings {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float framerate() {
     return framerate;
+  }
+
+  /**
+   * Bit rate in bits per second (set to -1 for auto) 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 4
+  )
+  public final long bitrate() {
+    return bitrate;
   }
 
   /**
@@ -123,7 +117,7 @@ public final class SetVideoStreamSettings {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int resolutionH() {
     return resolutionH;
@@ -134,21 +128,10 @@ public final class SetVideoStreamSettings {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int resolutionV() {
     return resolutionV;
-  }
-
-  /**
-   * Bit rate in bits per second (set to -1 for auto) 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 4
-  )
-  public final long bitrate() {
-    return bitrate;
   }
 
   /**
@@ -156,10 +139,43 @@ public final class SetVideoStreamSettings {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int rotation() {
     return rotation;
+  }
+
+  /**
+   * system ID of the target 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * component ID of the target 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
+  /**
+   * Camera ID (1 for first, 2 for second, etc.) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final int cameraId() {
+    return cameraId;
   }
 
   /**
@@ -167,7 +183,7 @@ public final class SetVideoStreamSettings {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1,
+      unitSize = 1,
       arraySize = 230
   )
   public final String uri() {
@@ -175,21 +191,21 @@ public final class SetVideoStreamSettings {
   }
 
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private int cameraId;
-
     private float framerate;
+
+    private long bitrate;
 
     private int resolutionH;
 
     private int resolutionV;
 
-    private long bitrate;
-
     private int rotation;
+
+    private int targetSystem;
+
+    private int targetComponent;
+
+    private int cameraId;
 
     private String uri;
 
@@ -197,50 +213,26 @@ public final class SetVideoStreamSettings {
     }
 
     /**
-     * system ID of the target 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * component ID of the target 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder cameraId(int cameraId) {
-      this.cameraId = cameraId;
-      return this;
-    }
-
-    /**
      * Frames per second (set to -1 for highest framerate possible) 
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder framerate(float framerate) {
       this.framerate = framerate;
+      return this;
+    }
+
+    /**
+     * Bit rate in bits per second (set to -1 for auto) 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 4
+    )
+    public final Builder bitrate(long bitrate) {
+      this.bitrate = bitrate;
       return this;
     }
 
@@ -249,7 +241,7 @@ public final class SetVideoStreamSettings {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder resolutionH(int resolutionH) {
       this.resolutionH = resolutionH;
@@ -261,22 +253,10 @@ public final class SetVideoStreamSettings {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder resolutionV(int resolutionV) {
       this.resolutionV = resolutionV;
-      return this;
-    }
-
-    /**
-     * Bit rate in bits per second (set to -1 for auto) 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 4
-    )
-    public final Builder bitrate(long bitrate) {
-      this.bitrate = bitrate;
       return this;
     }
 
@@ -285,10 +265,46 @@ public final class SetVideoStreamSettings {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder rotation(int rotation) {
       this.rotation = rotation;
+      return this;
+    }
+
+    /**
+     * system ID of the target 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * component ID of the target 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
+    /**
+     * Camera ID (1 for first, 2 for second, etc.) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder cameraId(int cameraId) {
+      this.cameraId = cameraId;
       return this;
     }
 
@@ -297,7 +313,7 @@ public final class SetVideoStreamSettings {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1,
+        unitSize = 1,
         arraySize = 230
     )
     public final Builder uri(String uri) {
@@ -306,7 +322,7 @@ public final class SetVideoStreamSettings {
     }
 
     public final SetVideoStreamSettings build() {
-      return new SetVideoStreamSettings(targetSystem, targetComponent, cameraId, framerate, resolutionH, resolutionV, bitrate, rotation, uri);
+      return new SetVideoStreamSettings(framerate, bitrate, resolutionH, resolutionV, rotation, targetSystem, targetComponent, cameraId, uri);
     }
   }
 }

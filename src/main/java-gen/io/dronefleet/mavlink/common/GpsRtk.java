@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting 
@@ -17,39 +20,9 @@ public final class GpsRtk {
   private final long timeLastBaselineMs;
 
   /**
-   * Identification of connected RTK receiver. 
-   */
-  private final int rtkReceiverId;
-
-  /**
-   * GPS Week Number of last baseline 
-   */
-  private final int wn;
-
-  /**
    * GPS Time of Week of last baseline 
    */
   private final long tow;
-
-  /**
-   * GPS-specific health report for RTK data. 
-   */
-  private final int rtkHealth;
-
-  /**
-   * Rate of baseline messages being received by GPS, in HZ 
-   */
-  private final int rtkRate;
-
-  /**
-   * Current number of sats used for RTK calculation. 
-   */
-  private final int nsats;
-
-  /**
-   * Coordinate system of baseline 
-   */
-  private final RtkBaselineCoordinateSystem baselineCoordsType;
 
   /**
    * Current baseline in ECEF x or NED north component in mm. 
@@ -76,26 +49,74 @@ public final class GpsRtk {
    */
   private final int iarNumHypotheses;
 
-  private GpsRtk(long timeLastBaselineMs, int rtkReceiverId, int wn, long tow, int rtkHealth,
-      int rtkRate, int nsats, RtkBaselineCoordinateSystem baselineCoordsType, int baselineAMm,
-      int baselineBMm, int baselineCMm, long accuracy, int iarNumHypotheses) {
+  /**
+   * GPS Week Number of last baseline 
+   */
+  private final int wn;
+
+  /**
+   * Identification of connected RTK receiver. 
+   */
+  private final int rtkReceiverId;
+
+  /**
+   * GPS-specific health report for RTK data. 
+   */
+  private final int rtkHealth;
+
+  /**
+   * Rate of baseline messages being received by GPS, in HZ 
+   */
+  private final int rtkRate;
+
+  /**
+   * Current number of sats used for RTK calculation. 
+   */
+  private final int nsats;
+
+  /**
+   * Coordinate system of baseline 
+   */
+  private final RtkBaselineCoordinateSystem baselineCoordsType;
+
+  private GpsRtk(long timeLastBaselineMs, long tow, int baselineAMm, int baselineBMm,
+      int baselineCMm, long accuracy, int iarNumHypotheses, int wn, int rtkReceiverId,
+      int rtkHealth, int rtkRate, int nsats, RtkBaselineCoordinateSystem baselineCoordsType) {
     this.timeLastBaselineMs = timeLastBaselineMs;
-    this.rtkReceiverId = rtkReceiverId;
-    this.wn = wn;
     this.tow = tow;
-    this.rtkHealth = rtkHealth;
-    this.rtkRate = rtkRate;
-    this.nsats = nsats;
-    this.baselineCoordsType = baselineCoordsType;
     this.baselineAMm = baselineAMm;
     this.baselineBMm = baselineBMm;
     this.baselineCMm = baselineCMm;
     this.accuracy = accuracy;
     this.iarNumHypotheses = iarNumHypotheses;
+    this.wn = wn;
+    this.rtkReceiverId = rtkReceiverId;
+    this.rtkHealth = rtkHealth;
+    this.rtkRate = rtkRate;
+    this.nsats = nsats;
+    this.baselineCoordsType = baselineCoordsType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GpsRtk{timeLastBaselineMs=" + timeLastBaselineMs
+         + ", rtkReceiverId=" + rtkReceiverId
+         + ", wn=" + wn
+         + ", tow=" + tow
+         + ", rtkHealth=" + rtkHealth
+         + ", rtkRate=" + rtkRate
+         + ", nsats=" + nsats
+         + ", baselineCoordsType=" + baselineCoordsType
+         + ", baselineAMm=" + baselineAMm
+         + ", baselineBMm=" + baselineBMm
+         + ", baselineCMm=" + baselineCMm
+         + ", accuracy=" + accuracy
+         + ", iarNumHypotheses=" + iarNumHypotheses + "}";
   }
 
   /**
@@ -103,32 +124,10 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeLastBaselineMs() {
     return timeLastBaselineMs;
-  }
-
-  /**
-   * Identification of connected RTK receiver. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int rtkReceiverId() {
-    return rtkReceiverId;
-  }
-
-  /**
-   * GPS Week Number of last baseline 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int wn() {
-    return wn;
   }
 
   /**
@@ -136,54 +135,10 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final long tow() {
     return tow;
-  }
-
-  /**
-   * GPS-specific health report for RTK data. 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 1
-  )
-  public final int rtkHealth() {
-    return rtkHealth;
-  }
-
-  /**
-   * Rate of baseline messages being received by GPS, in HZ 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 1
-  )
-  public final int rtkRate() {
-    return rtkRate;
-  }
-
-  /**
-   * Current number of sats used for RTK calculation. 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 1
-  )
-  public final int nsats() {
-    return nsats;
-  }
-
-  /**
-   * Coordinate system of baseline 
-   */
-  @MavlinkMessageField(
-      position = 8,
-      length = 1
-  )
-  public final RtkBaselineCoordinateSystem baselineCoordsType() {
-    return baselineCoordsType;
   }
 
   /**
@@ -191,7 +146,7 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final int baselineAMm() {
     return baselineAMm;
@@ -202,7 +157,7 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final int baselineBMm() {
     return baselineBMm;
@@ -213,7 +168,7 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final int baselineCMm() {
     return baselineCMm;
@@ -224,7 +179,7 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final long accuracy() {
     return accuracy;
@@ -235,28 +190,82 @@ public final class GpsRtk {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final int iarNumHypotheses() {
     return iarNumHypotheses;
   }
 
+  /**
+   * GPS Week Number of last baseline 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int wn() {
+    return wn;
+  }
+
+  /**
+   * Identification of connected RTK receiver. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int rtkReceiverId() {
+    return rtkReceiverId;
+  }
+
+  /**
+   * GPS-specific health report for RTK data. 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 1
+  )
+  public final int rtkHealth() {
+    return rtkHealth;
+  }
+
+  /**
+   * Rate of baseline messages being received by GPS, in HZ 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 1
+  )
+  public final int rtkRate() {
+    return rtkRate;
+  }
+
+  /**
+   * Current number of sats used for RTK calculation. 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 1
+  )
+  public final int nsats() {
+    return nsats;
+  }
+
+  /**
+   * Coordinate system of baseline 
+   */
+  @MavlinkMessageField(
+      position = 8,
+      unitSize = 1
+  )
+  public final RtkBaselineCoordinateSystem baselineCoordsType() {
+    return baselineCoordsType;
+  }
+
   public static class Builder {
     private long timeLastBaselineMs;
 
-    private int rtkReceiverId;
-
-    private int wn;
-
     private long tow;
-
-    private int rtkHealth;
-
-    private int rtkRate;
-
-    private int nsats;
-
-    private RtkBaselineCoordinateSystem baselineCoordsType;
 
     private int baselineAMm;
 
@@ -268,6 +277,18 @@ public final class GpsRtk {
 
     private int iarNumHypotheses;
 
+    private int wn;
+
+    private int rtkReceiverId;
+
+    private int rtkHealth;
+
+    private int rtkRate;
+
+    private int nsats;
+
+    private RtkBaselineCoordinateSystem baselineCoordsType;
+
     private Builder() {
     }
 
@@ -276,34 +297,10 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeLastBaselineMs(long timeLastBaselineMs) {
       this.timeLastBaselineMs = timeLastBaselineMs;
-      return this;
-    }
-
-    /**
-     * Identification of connected RTK receiver. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder rtkReceiverId(int rtkReceiverId) {
-      this.rtkReceiverId = rtkReceiverId;
-      return this;
-    }
-
-    /**
-     * GPS Week Number of last baseline 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder wn(int wn) {
-      this.wn = wn;
       return this;
     }
 
@@ -312,58 +309,10 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder tow(long tow) {
       this.tow = tow;
-      return this;
-    }
-
-    /**
-     * GPS-specific health report for RTK data. 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 1
-    )
-    public final Builder rtkHealth(int rtkHealth) {
-      this.rtkHealth = rtkHealth;
-      return this;
-    }
-
-    /**
-     * Rate of baseline messages being received by GPS, in HZ 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 1
-    )
-    public final Builder rtkRate(int rtkRate) {
-      this.rtkRate = rtkRate;
-      return this;
-    }
-
-    /**
-     * Current number of sats used for RTK calculation. 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 1
-    )
-    public final Builder nsats(int nsats) {
-      this.nsats = nsats;
-      return this;
-    }
-
-    /**
-     * Coordinate system of baseline 
-     */
-    @MavlinkMessageField(
-        position = 8,
-        length = 1
-    )
-    public final Builder baselineCoordsType(RtkBaselineCoordinateSystem baselineCoordsType) {
-      this.baselineCoordsType = baselineCoordsType;
       return this;
     }
 
@@ -372,7 +321,7 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder baselineAMm(int baselineAMm) {
       this.baselineAMm = baselineAMm;
@@ -384,7 +333,7 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder baselineBMm(int baselineBMm) {
       this.baselineBMm = baselineBMm;
@@ -396,7 +345,7 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder baselineCMm(int baselineCMm) {
       this.baselineCMm = baselineCMm;
@@ -408,7 +357,7 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder accuracy(long accuracy) {
       this.accuracy = accuracy;
@@ -420,15 +369,87 @@ public final class GpsRtk {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder iarNumHypotheses(int iarNumHypotheses) {
       this.iarNumHypotheses = iarNumHypotheses;
       return this;
     }
 
+    /**
+     * GPS Week Number of last baseline 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder wn(int wn) {
+      this.wn = wn;
+      return this;
+    }
+
+    /**
+     * Identification of connected RTK receiver. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder rtkReceiverId(int rtkReceiverId) {
+      this.rtkReceiverId = rtkReceiverId;
+      return this;
+    }
+
+    /**
+     * GPS-specific health report for RTK data. 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 1
+    )
+    public final Builder rtkHealth(int rtkHealth) {
+      this.rtkHealth = rtkHealth;
+      return this;
+    }
+
+    /**
+     * Rate of baseline messages being received by GPS, in HZ 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 1
+    )
+    public final Builder rtkRate(int rtkRate) {
+      this.rtkRate = rtkRate;
+      return this;
+    }
+
+    /**
+     * Current number of sats used for RTK calculation. 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 1
+    )
+    public final Builder nsats(int nsats) {
+      this.nsats = nsats;
+      return this;
+    }
+
+    /**
+     * Coordinate system of baseline 
+     */
+    @MavlinkMessageField(
+        position = 8,
+        unitSize = 1
+    )
+    public final Builder baselineCoordsType(RtkBaselineCoordinateSystem baselineCoordsType) {
+      this.baselineCoordsType = baselineCoordsType;
+      return this;
+    }
+
     public final GpsRtk build() {
-      return new GpsRtk(timeLastBaselineMs, rtkReceiverId, wn, tow, rtkHealth, rtkRate, nsats, baselineCoordsType, baselineAMm, baselineBMm, baselineCMm, accuracy, iarNumHypotheses);
+      return new GpsRtk(timeLastBaselineMs, tow, baselineAMm, baselineBMm, baselineCMm, accuracy, iarNumHypotheses, wn, rtkReceiverId, rtkHealth, rtkRate, nsats, baselineCoordsType);
     }
   }
 }

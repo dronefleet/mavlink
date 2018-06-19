@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Voltage and current sensor data 
@@ -39,8 +42,17 @@ public final class SensPower {
     this.adc121Cs2Amp = adc121Cs2Amp;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensPower{adc121VspbVolt=" + adc121VspbVolt
+         + ", adc121CspbAmp=" + adc121CspbAmp
+         + ", adc121Cs1Amp=" + adc121Cs1Amp
+         + ", adc121Cs2Amp=" + adc121Cs2Amp + "}";
   }
 
   /**
@@ -48,7 +60,7 @@ public final class SensPower {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float adc121VspbVolt() {
     return adc121VspbVolt;
@@ -59,7 +71,7 @@ public final class SensPower {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float adc121CspbAmp() {
     return adc121CspbAmp;
@@ -70,7 +82,7 @@ public final class SensPower {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float adc121Cs1Amp() {
     return adc121Cs1Amp;
@@ -81,7 +93,7 @@ public final class SensPower {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float adc121Cs2Amp() {
     return adc121Cs2Amp;
@@ -104,7 +116,7 @@ public final class SensPower {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder adc121VspbVolt(float adc121VspbVolt) {
       this.adc121VspbVolt = adc121VspbVolt;
@@ -116,7 +128,7 @@ public final class SensPower {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder adc121CspbAmp(float adc121CspbAmp) {
       this.adc121CspbAmp = adc121CspbAmp;
@@ -128,7 +140,7 @@ public final class SensPower {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder adc121Cs1Amp(float adc121Cs1Amp) {
       this.adc121Cs1Amp = adc121Cs1Amp;
@@ -140,7 +152,7 @@ public final class SensPower {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder adc121Cs2Amp(float adc121Cs2Amp) {
       this.adc121Cs2Amp = adc121Cs2Amp;

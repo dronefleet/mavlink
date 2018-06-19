@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Message to control a camera mount, directional antenna, etc. 
@@ -11,16 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 21
 )
 public final class MountControl {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
   /**
    * pitch(deg*100) or lat, depending on mount mode 
    */
@@ -37,44 +30,43 @@ public final class MountControl {
   private final int inputC;
 
   /**
-   * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
-   */
-  private final int savePosition;
-
-  private MountControl(int targetSystem, int targetComponent, int inputA, int inputB, int inputC,
-      int savePosition) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.inputA = inputA;
-    this.inputB = inputB;
-    this.inputC = inputC;
-    this.savePosition = savePosition;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
-  /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  /**
+   * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
+   */
+  private final int savePosition;
+
+  private MountControl(int inputA, int inputB, int inputC, int targetSystem, int targetComponent,
+      int savePosition) {
+    this.inputA = inputA;
+    this.inputB = inputB;
+    this.inputC = inputC;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.savePosition = savePosition;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MountControl{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", inputA=" + inputA
+         + ", inputB=" + inputB
+         + ", inputC=" + inputC
+         + ", savePosition=" + savePosition + "}";
   }
 
   /**
@@ -82,7 +74,7 @@ public final class MountControl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int inputA() {
     return inputA;
@@ -93,7 +85,7 @@ public final class MountControl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int inputB() {
     return inputB;
@@ -104,10 +96,32 @@ public final class MountControl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int inputC() {
     return inputC;
+  }
+
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
   }
 
   /**
@@ -115,22 +129,22 @@ public final class MountControl {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int savePosition() {
     return savePosition;
   }
 
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private int inputA;
 
     private int inputB;
 
     private int inputC;
+
+    private int targetSystem;
+
+    private int targetComponent;
 
     private int savePosition;
 
@@ -138,35 +152,11 @@ public final class MountControl {
     }
 
     /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
      * pitch(deg*100) or lat, depending on mount mode 
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder inputA(int inputA) {
       this.inputA = inputA;
@@ -178,7 +168,7 @@ public final class MountControl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder inputB(int inputB) {
       this.inputB = inputB;
@@ -190,10 +180,34 @@ public final class MountControl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder inputC(int inputC) {
       this.inputC = inputC;
+      return this;
+    }
+
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
       return this;
     }
 
@@ -202,7 +216,7 @@ public final class MountControl {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder savePosition(int savePosition) {
       this.savePosition = savePosition;
@@ -210,7 +224,7 @@ public final class MountControl {
     }
 
     public final MountControl build() {
-      return new MountControl(targetSystem, targetComponent, inputA, inputB, inputC, savePosition);
+      return new MountControl(inputA, inputB, inputC, targetSystem, targetComponent, savePosition);
     }
   }
 }

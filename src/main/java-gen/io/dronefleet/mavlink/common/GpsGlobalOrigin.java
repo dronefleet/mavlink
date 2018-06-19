@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -40,8 +43,17 @@ public final class GpsGlobalOrigin {
     this.timeUsec = timeUsec;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GpsGlobalOrigin{latitude=" + latitude
+         + ", longitude=" + longitude
+         + ", altitude=" + altitude
+         + ", timeUsec=" + timeUsec + "}";
   }
 
   /**
@@ -49,7 +61,7 @@ public final class GpsGlobalOrigin {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int latitude() {
     return latitude;
@@ -60,7 +72,7 @@ public final class GpsGlobalOrigin {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int longitude() {
     return longitude;
@@ -71,7 +83,7 @@ public final class GpsGlobalOrigin {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int altitude() {
     return altitude;
@@ -82,7 +94,7 @@ public final class GpsGlobalOrigin {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 8,
+      unitSize = 8,
       extension = true
   )
   public final BigInteger timeUsec() {
@@ -106,7 +118,7 @@ public final class GpsGlobalOrigin {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder latitude(int latitude) {
       this.latitude = latitude;
@@ -118,7 +130,7 @@ public final class GpsGlobalOrigin {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder longitude(int longitude) {
       this.longitude = longitude;
@@ -130,7 +142,7 @@ public final class GpsGlobalOrigin {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitude(int altitude) {
       this.altitude = altitude;
@@ -142,7 +154,7 @@ public final class GpsGlobalOrigin {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 8,
+        unitSize = 8,
         extension = true
     )
     public final Builder timeUsec(BigInteger timeUsec) {

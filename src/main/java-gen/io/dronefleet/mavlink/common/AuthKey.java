@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -22,8 +24,14 @@ public final class AuthKey {
     this.key = key;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AuthKey{key=" + key + "}";
   }
 
   /**
@@ -31,7 +39,7 @@ public final class AuthKey {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 32
   )
   public final String key() {
@@ -49,7 +57,7 @@ public final class AuthKey {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 32
     )
     public final Builder key(String key) {

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F17 format 
@@ -32,8 +35,16 @@ public final class SerialUdbExtraF17 {
     this.sueTurnRateFbw = sueTurnRateFbw;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF17{sueFeedForward=" + sueFeedForward
+         + ", sueTurnRateNav=" + sueTurnRateNav
+         + ", sueTurnRateFbw=" + sueTurnRateFbw + "}";
   }
 
   /**
@@ -41,7 +52,7 @@ public final class SerialUdbExtraF17 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float sueFeedForward() {
     return sueFeedForward;
@@ -52,7 +63,7 @@ public final class SerialUdbExtraF17 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float sueTurnRateNav() {
     return sueTurnRateNav;
@@ -63,7 +74,7 @@ public final class SerialUdbExtraF17 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float sueTurnRateFbw() {
     return sueTurnRateFbw;
@@ -84,7 +95,7 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueFeedForward(float sueFeedForward) {
       this.sueFeedForward = sueFeedForward;
@@ -96,7 +107,7 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueTurnRateNav(float sueTurnRateNav) {
       this.sueTurnRateNav = sueTurnRateNav;
@@ -108,7 +119,7 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueTurnRateFbw(float sueTurnRateFbw) {
       this.sueTurnRateFbw = sueTurnRateFbw;

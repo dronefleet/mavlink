@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
@@ -11,6 +14,16 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 78
 )
 public final class FencePoint {
+  /**
+   * Latitude of point 
+   */
+  private final float lat;
+
+  /**
+   * Longitude of point 
+   */
+  private final float lng;
+
   /**
    * System ID 
    */
@@ -31,72 +44,29 @@ public final class FencePoint {
    */
   private final int count;
 
-  /**
-   * Latitude of point 
-   */
-  private final float lat;
-
-  /**
-   * Longitude of point 
-   */
-  private final float lng;
-
-  private FencePoint(int targetSystem, int targetComponent, int idx, int count, float lat,
-      float lng) {
+  private FencePoint(float lat, float lng, int targetSystem, int targetComponent, int idx,
+      int count) {
+    this.lat = lat;
+    this.lng = lng;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
     this.idx = idx;
     this.count = count;
-    this.lat = lat;
-    this.lng = lng;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * System ID 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * point index (first point is 1, 0 is for return point) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final int idx() {
-    return idx;
-  }
-
-  /**
-   * total number of points (for sanity checking) 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 1
-  )
-  public final int count() {
-    return count;
+  @Override
+  public String toString() {
+    return "FencePoint{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", idx=" + idx
+         + ", count=" + count
+         + ", lat=" + lat
+         + ", lng=" + lng + "}";
   }
 
   /**
@@ -104,7 +74,7 @@ public final class FencePoint {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float lat() {
     return lat;
@@ -115,13 +85,61 @@ public final class FencePoint {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float lng() {
     return lng;
   }
 
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
+  /**
+   * point index (first point is 1, 0 is for return point) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final int idx() {
+    return idx;
+  }
+
+  /**
+   * total number of points (for sanity checking) 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 1
+  )
+  public final int count() {
+    return count;
+  }
+
   public static class Builder {
+    private float lat;
+
+    private float lng;
+
     private int targetSystem;
 
     private int targetComponent;
@@ -130,59 +148,7 @@ public final class FencePoint {
 
     private int count;
 
-    private float lat;
-
-    private float lng;
-
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * point index (first point is 1, 0 is for return point) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder idx(int idx) {
-      this.idx = idx;
-      return this;
-    }
-
-    /**
-     * total number of points (for sanity checking) 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 1
-    )
-    public final Builder count(int count) {
-      this.count = count;
-      return this;
     }
 
     /**
@@ -190,7 +156,7 @@ public final class FencePoint {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(float lat) {
       this.lat = lat;
@@ -202,15 +168,63 @@ public final class FencePoint {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder lng(float lng) {
       this.lng = lng;
       return this;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
+    /**
+     * point index (first point is 1, 0 is for return point) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder idx(int idx) {
+      this.idx = idx;
+      return this;
+    }
+
+    /**
+     * total number of points (for sanity checking) 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 1
+    )
+    public final Builder count(int count) {
+      this.count = count;
+      return this;
+    }
+
     public final FencePoint build() {
-      return new FencePoint(targetSystem, targetComponent, idx, count, lat, lng);
+      return new FencePoint(lat, lng, targetSystem, targetComponent, idx, count);
     }
   }
 }

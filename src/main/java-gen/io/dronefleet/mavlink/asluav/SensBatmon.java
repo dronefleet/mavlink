@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -23,6 +26,16 @@ public final class SensBatmon {
   private final float temperature;
 
   /**
+   * Battery monitor safetystatus report bits in Hex 
+   */
+  private final long safetystatus;
+
+  /**
+   * Battery monitor operation status report bits in Hex 
+   */
+  private final long operationstatus;
+
+  /**
    * Battery pack voltage 
    */
   private final int voltage;
@@ -33,11 +46,6 @@ public final class SensBatmon {
   private final int current;
 
   /**
-   * Battery pack state-of-charge 
-   */
-  private final int soc;
-
-  /**
    * Battery monitor status report bits in Hex 
    */
   private final int batterystatus;
@@ -46,16 +54,6 @@ public final class SensBatmon {
    * Battery monitor serial number in Hex 
    */
   private final int serialnumber;
-
-  /**
-   * Battery monitor safetystatus report bits in Hex 
-   */
-  private final long safetystatus;
-
-  /**
-   * Battery monitor operation status report bits in Hex 
-   */
-  private final long operationstatus;
 
   /**
    * Battery pack cell 1 voltage 
@@ -87,29 +85,54 @@ public final class SensBatmon {
    */
   private final int cellvoltage6;
 
-  private SensBatmon(BigInteger batmonTimestamp, float temperature, int voltage, int current,
-      int soc, int batterystatus, int serialnumber, long safetystatus, long operationstatus,
+  /**
+   * Battery pack state-of-charge 
+   */
+  private final int soc;
+
+  private SensBatmon(BigInteger batmonTimestamp, float temperature, long safetystatus,
+      long operationstatus, int voltage, int current, int batterystatus, int serialnumber,
       int cellvoltage1, int cellvoltage2, int cellvoltage3, int cellvoltage4, int cellvoltage5,
-      int cellvoltage6) {
+      int cellvoltage6, int soc) {
     this.batmonTimestamp = batmonTimestamp;
     this.temperature = temperature;
-    this.voltage = voltage;
-    this.current = current;
-    this.soc = soc;
-    this.batterystatus = batterystatus;
-    this.serialnumber = serialnumber;
     this.safetystatus = safetystatus;
     this.operationstatus = operationstatus;
+    this.voltage = voltage;
+    this.current = current;
+    this.batterystatus = batterystatus;
+    this.serialnumber = serialnumber;
     this.cellvoltage1 = cellvoltage1;
     this.cellvoltage2 = cellvoltage2;
     this.cellvoltage3 = cellvoltage3;
     this.cellvoltage4 = cellvoltage4;
     this.cellvoltage5 = cellvoltage5;
     this.cellvoltage6 = cellvoltage6;
+    this.soc = soc;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensBatmon{batmonTimestamp=" + batmonTimestamp
+         + ", temperature=" + temperature
+         + ", voltage=" + voltage
+         + ", current=" + current
+         + ", soc=" + soc
+         + ", batterystatus=" + batterystatus
+         + ", serialnumber=" + serialnumber
+         + ", safetystatus=" + safetystatus
+         + ", operationstatus=" + operationstatus
+         + ", cellvoltage1=" + cellvoltage1
+         + ", cellvoltage2=" + cellvoltage2
+         + ", cellvoltage3=" + cellvoltage3
+         + ", cellvoltage4=" + cellvoltage4
+         + ", cellvoltage5=" + cellvoltage5
+         + ", cellvoltage6=" + cellvoltage6 + "}";
   }
 
   /**
@@ -117,7 +140,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger batmonTimestamp() {
     return batmonTimestamp;
@@ -128,65 +151,10 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float temperature() {
     return temperature;
-  }
-
-  /**
-   * Battery pack voltage 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int voltage() {
-    return voltage;
-  }
-
-  /**
-   * Battery pack current 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int current() {
-    return current;
-  }
-
-  /**
-   * Battery pack state-of-charge 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 1
-  )
-  public final int soc() {
-    return soc;
-  }
-
-  /**
-   * Battery monitor status report bits in Hex 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 2
-  )
-  public final int batterystatus() {
-    return batterystatus;
-  }
-
-  /**
-   * Battery monitor serial number in Hex 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 2
-  )
-  public final int serialnumber() {
-    return serialnumber;
   }
 
   /**
@@ -194,7 +162,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final long safetystatus() {
     return safetystatus;
@@ -205,10 +173,54 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final long operationstatus() {
     return operationstatus;
+  }
+
+  /**
+   * Battery pack voltage 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int voltage() {
+    return voltage;
+  }
+
+  /**
+   * Battery pack current 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int current() {
+    return current;
+  }
+
+  /**
+   * Battery monitor status report bits in Hex 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 2
+  )
+  public final int batterystatus() {
+    return batterystatus;
+  }
+
+  /**
+   * Battery monitor serial number in Hex 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 2
+  )
+  public final int serialnumber() {
+    return serialnumber;
   }
 
   /**
@@ -216,7 +228,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage1() {
     return cellvoltage1;
@@ -227,7 +239,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage2() {
     return cellvoltage2;
@@ -238,7 +250,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage3() {
     return cellvoltage3;
@@ -249,7 +261,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage4() {
     return cellvoltage4;
@@ -260,7 +272,7 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage5() {
     return cellvoltage5;
@@ -271,10 +283,21 @@ public final class SensBatmon {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final int cellvoltage6() {
     return cellvoltage6;
+  }
+
+  /**
+   * Battery pack state-of-charge 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 1
+  )
+  public final int soc() {
+    return soc;
   }
 
   public static class Builder {
@@ -282,19 +305,17 @@ public final class SensBatmon {
 
     private float temperature;
 
+    private long safetystatus;
+
+    private long operationstatus;
+
     private int voltage;
 
     private int current;
 
-    private int soc;
-
     private int batterystatus;
 
     private int serialnumber;
-
-    private long safetystatus;
-
-    private long operationstatus;
 
     private int cellvoltage1;
 
@@ -308,6 +329,8 @@ public final class SensBatmon {
 
     private int cellvoltage6;
 
+    private int soc;
+
     private Builder() {
     }
 
@@ -316,7 +339,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder batmonTimestamp(BigInteger batmonTimestamp) {
       this.batmonTimestamp = batmonTimestamp;
@@ -328,70 +351,10 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder temperature(float temperature) {
       this.temperature = temperature;
-      return this;
-    }
-
-    /**
-     * Battery pack voltage 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder voltage(int voltage) {
-      this.voltage = voltage;
-      return this;
-    }
-
-    /**
-     * Battery pack current 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder current(int current) {
-      this.current = current;
-      return this;
-    }
-
-    /**
-     * Battery pack state-of-charge 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 1
-    )
-    public final Builder soc(int soc) {
-      this.soc = soc;
-      return this;
-    }
-
-    /**
-     * Battery monitor status report bits in Hex 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 2
-    )
-    public final Builder batterystatus(int batterystatus) {
-      this.batterystatus = batterystatus;
-      return this;
-    }
-
-    /**
-     * Battery monitor serial number in Hex 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 2
-    )
-    public final Builder serialnumber(int serialnumber) {
-      this.serialnumber = serialnumber;
       return this;
     }
 
@@ -400,7 +363,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder safetystatus(long safetystatus) {
       this.safetystatus = safetystatus;
@@ -412,10 +375,58 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder operationstatus(long operationstatus) {
       this.operationstatus = operationstatus;
+      return this;
+    }
+
+    /**
+     * Battery pack voltage 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder voltage(int voltage) {
+      this.voltage = voltage;
+      return this;
+    }
+
+    /**
+     * Battery pack current 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder current(int current) {
+      this.current = current;
+      return this;
+    }
+
+    /**
+     * Battery monitor status report bits in Hex 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 2
+    )
+    public final Builder batterystatus(int batterystatus) {
+      this.batterystatus = batterystatus;
+      return this;
+    }
+
+    /**
+     * Battery monitor serial number in Hex 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 2
+    )
+    public final Builder serialnumber(int serialnumber) {
+      this.serialnumber = serialnumber;
       return this;
     }
 
@@ -424,7 +435,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage1(int cellvoltage1) {
       this.cellvoltage1 = cellvoltage1;
@@ -436,7 +447,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage2(int cellvoltage2) {
       this.cellvoltage2 = cellvoltage2;
@@ -448,7 +459,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage3(int cellvoltage3) {
       this.cellvoltage3 = cellvoltage3;
@@ -460,7 +471,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage4(int cellvoltage4) {
       this.cellvoltage4 = cellvoltage4;
@@ -472,7 +483,7 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage5(int cellvoltage5) {
       this.cellvoltage5 = cellvoltage5;
@@ -484,15 +495,27 @@ public final class SensBatmon {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder cellvoltage6(int cellvoltage6) {
       this.cellvoltage6 = cellvoltage6;
       return this;
     }
 
+    /**
+     * Battery pack state-of-charge 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 1
+    )
+    public final Builder soc(int soc) {
+      this.soc = soc;
+      return this;
+    }
+
     public final SensBatmon build() {
-      return new SensBatmon(batmonTimestamp, temperature, voltage, current, soc, batterystatus, serialnumber, safetystatus, operationstatus, cellvoltage1, cellvoltage2, cellvoltage3, cellvoltage4, cellvoltage5, cellvoltage6);
+      return new SensBatmon(batmonTimestamp, temperature, safetystatus, operationstatus, voltage, current, batterystatus, serialnumber, cellvoltage1, cellvoltage2, cellvoltage3, cellvoltage4, cellvoltage5, cellvoltage6, soc);
     }
   }
 }

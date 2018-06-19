@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Configurable diagnostic messages. 
@@ -51,8 +54,19 @@ public final class Diagnostic {
     this.diagsh3 = diagsh3;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Diagnostic{diagfl1=" + diagfl1
+         + ", diagfl2=" + diagfl2
+         + ", diagfl3=" + diagfl3
+         + ", diagsh1=" + diagsh1
+         + ", diagsh2=" + diagsh2
+         + ", diagsh3=" + diagsh3 + "}";
   }
 
   /**
@@ -60,7 +74,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float diagfl1() {
     return diagfl1;
@@ -71,7 +85,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float diagfl2() {
     return diagfl2;
@@ -82,7 +96,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float diagfl3() {
     return diagfl3;
@@ -93,7 +107,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int diagsh1() {
     return diagsh1;
@@ -104,7 +118,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int diagsh2() {
     return diagsh2;
@@ -115,7 +129,7 @@ public final class Diagnostic {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int diagsh3() {
     return diagsh3;
@@ -142,7 +156,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagfl1(float diagfl1) {
       this.diagfl1 = diagfl1;
@@ -154,7 +168,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagfl2(float diagfl2) {
       this.diagfl2 = diagfl2;
@@ -166,7 +180,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagfl3(float diagfl3) {
       this.diagfl3 = diagfl3;
@@ -178,7 +192,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder diagsh1(int diagsh1) {
       this.diagsh1 = diagsh1;
@@ -190,7 +204,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder diagsh2(int diagsh2) {
       this.diagsh2 = diagsh2;
@@ -202,7 +216,7 @@ public final class Diagnostic {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder diagsh3(int diagsh3) {
       this.diagsh3 = diagsh3;

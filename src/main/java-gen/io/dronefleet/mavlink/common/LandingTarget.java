@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -18,17 +21,6 @@ public final class LandingTarget {
    * Timestamp (micros since boot or Unix epoch) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * The ID of the target if multiple targets are present 
-   */
-  private final int targetNum;
-
-  /**
-   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
-   * etc. 
-   */
-  private final MavFrame frame;
 
   /**
    * X-axis angular offset (in radians) of the target from the center of the image 
@@ -54,6 +46,17 @@ public final class LandingTarget {
    * Size in radians of target along y-axis 
    */
   private final float sizeY;
+
+  /**
+   * The ID of the target if multiple targets are present 
+   */
+  private final int targetNum;
+
+  /**
+   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
+   * etc. 
+   */
+  private final MavFrame frame;
 
   /**
    * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
@@ -86,17 +89,17 @@ public final class LandingTarget {
    */
   private final int positionValid;
 
-  private LandingTarget(BigInteger timeUsec, int targetNum, MavFrame frame, float angleX,
-      float angleY, float distance, float sizeX, float sizeY, float x, float y, float z,
+  private LandingTarget(BigInteger timeUsec, float angleX, float angleY, float distance,
+      float sizeX, float sizeY, int targetNum, MavFrame frame, float x, float y, float z,
       List<Float> q, LandingTargetType type, int positionValid) {
     this.timeUsec = timeUsec;
-    this.targetNum = targetNum;
-    this.frame = frame;
     this.angleX = angleX;
     this.angleY = angleY;
     this.distance = distance;
     this.sizeX = sizeX;
     this.sizeY = sizeY;
+    this.targetNum = targetNum;
+    this.frame = frame;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -105,8 +108,27 @@ public final class LandingTarget {
     this.positionValid = positionValid;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LandingTarget{timeUsec=" + timeUsec
+         + ", targetNum=" + targetNum
+         + ", frame=" + frame
+         + ", angleX=" + angleX
+         + ", angleY=" + angleY
+         + ", distance=" + distance
+         + ", sizeX=" + sizeX
+         + ", sizeY=" + sizeY
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", q=" + q
+         + ", type=" + type
+         + ", positionValid=" + positionValid + "}";
   }
 
   /**
@@ -114,10 +136,65 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
+  }
+
+  /**
+   * X-axis angular offset (in radians) of the target from the center of the image 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 4
+  )
+  public final float angleX() {
+    return angleX;
+  }
+
+  /**
+   * Y-axis angular offset (in radians) of the target from the center of the image 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 4
+  )
+  public final float angleY() {
+    return angleY;
+  }
+
+  /**
+   * Distance to the target from the vehicle in meters 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 4
+  )
+  public final float distance() {
+    return distance;
+  }
+
+  /**
+   * Size in radians of target along x-axis 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 4
+  )
+  public final float sizeX() {
+    return sizeX;
+  }
+
+  /**
+   * Size in radians of target along y-axis 
+   */
+  @MavlinkMessageField(
+      position = 8,
+      unitSize = 4
+  )
+  public final float sizeY() {
+    return sizeY;
   }
 
   /**
@@ -125,7 +202,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetNum() {
     return targetNum;
@@ -137,65 +214,10 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final MavFrame frame() {
     return frame;
-  }
-
-  /**
-   * X-axis angular offset (in radians) of the target from the center of the image 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 4
-  )
-  public final float angleX() {
-    return angleX;
-  }
-
-  /**
-   * Y-axis angular offset (in radians) of the target from the center of the image 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 4
-  )
-  public final float angleY() {
-    return angleY;
-  }
-
-  /**
-   * Distance to the target from the vehicle in meters 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 4
-  )
-  public final float distance() {
-    return distance;
-  }
-
-  /**
-   * Size in radians of target along x-axis 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 4
-  )
-  public final float sizeX() {
-    return sizeX;
-  }
-
-  /**
-   * Size in radians of target along y-axis 
-   */
-  @MavlinkMessageField(
-      position = 8,
-      length = 4
-  )
-  public final float sizeY() {
-    return sizeY;
   }
 
   /**
@@ -203,7 +225,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final float x() {
@@ -215,7 +237,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final float y() {
@@ -227,7 +249,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final float z() {
@@ -239,7 +261,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4,
+      unitSize = 4,
       arraySize = 4,
       extension = true
   )
@@ -252,7 +274,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final LandingTargetType type() {
@@ -265,7 +287,7 @@ public final class LandingTarget {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final int positionValid() {
@@ -274,10 +296,6 @@ public final class LandingTarget {
 
   public static class Builder {
     private BigInteger timeUsec;
-
-    private int targetNum;
-
-    private MavFrame frame;
 
     private float angleX;
 
@@ -288,6 +306,10 @@ public final class LandingTarget {
     private float sizeX;
 
     private float sizeY;
+
+    private int targetNum;
+
+    private MavFrame frame;
 
     private float x;
 
@@ -309,10 +331,70 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
+      return this;
+    }
+
+    /**
+     * X-axis angular offset (in radians) of the target from the center of the image 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 4
+    )
+    public final Builder angleX(float angleX) {
+      this.angleX = angleX;
+      return this;
+    }
+
+    /**
+     * Y-axis angular offset (in radians) of the target from the center of the image 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 4
+    )
+    public final Builder angleY(float angleY) {
+      this.angleY = angleY;
+      return this;
+    }
+
+    /**
+     * Distance to the target from the vehicle in meters 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 4
+    )
+    public final Builder distance(float distance) {
+      this.distance = distance;
+      return this;
+    }
+
+    /**
+     * Size in radians of target along x-axis 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 4
+    )
+    public final Builder sizeX(float sizeX) {
+      this.sizeX = sizeX;
+      return this;
+    }
+
+    /**
+     * Size in radians of target along y-axis 
+     */
+    @MavlinkMessageField(
+        position = 8,
+        unitSize = 4
+    )
+    public final Builder sizeY(float sizeY) {
+      this.sizeY = sizeY;
       return this;
     }
 
@@ -321,7 +403,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetNum(int targetNum) {
       this.targetNum = targetNum;
@@ -334,70 +416,10 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder frame(MavFrame frame) {
       this.frame = frame;
-      return this;
-    }
-
-    /**
-     * X-axis angular offset (in radians) of the target from the center of the image 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder angleX(float angleX) {
-      this.angleX = angleX;
-      return this;
-    }
-
-    /**
-     * Y-axis angular offset (in radians) of the target from the center of the image 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 4
-    )
-    public final Builder angleY(float angleY) {
-      this.angleY = angleY;
-      return this;
-    }
-
-    /**
-     * Distance to the target from the vehicle in meters 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 4
-    )
-    public final Builder distance(float distance) {
-      this.distance = distance;
-      return this;
-    }
-
-    /**
-     * Size in radians of target along x-axis 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 4
-    )
-    public final Builder sizeX(float sizeX) {
-      this.sizeX = sizeX;
-      return this;
-    }
-
-    /**
-     * Size in radians of target along y-axis 
-     */
-    @MavlinkMessageField(
-        position = 8,
-        length = 4
-    )
-    public final Builder sizeY(float sizeY) {
-      this.sizeY = sizeY;
       return this;
     }
 
@@ -406,7 +428,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder x(float x) {
@@ -419,7 +441,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder y(float y) {
@@ -432,7 +454,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder z(float z) {
@@ -445,7 +467,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4,
+        unitSize = 4,
         arraySize = 4,
         extension = true
     )
@@ -459,7 +481,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder type(LandingTargetType type) {
@@ -473,7 +495,7 @@ public final class LandingTarget {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder positionValid(int positionValid) {
@@ -482,7 +504,7 @@ public final class LandingTarget {
     }
 
     public final LandingTarget build() {
-      return new LandingTarget(timeUsec, targetNum, frame, angleX, angleY, distance, sizeX, sizeY, x, y, z, q, type, positionValid);
+      return new LandingTarget(timeUsec, angleX, angleY, distance, sizeX, sizeY, targetNum, frame, x, y, z, q, type, positionValid);
     }
   }
 }

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The boot message indicates that a system is starting. The onboard software version allows to 
@@ -22,8 +25,14 @@ public final class Boot {
     this.version = version;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Boot{version=" + version + "}";
   }
 
   /**
@@ -31,7 +40,7 @@ public final class Boot {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long version() {
     return version;
@@ -48,7 +57,7 @@ public final class Boot {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder version(long version) {
       this.version = version;

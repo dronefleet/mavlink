@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -117,8 +120,29 @@ public final class HilStateQuaternion {
     this.zacc = zacc;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilStateQuaternion{timeUsec=" + timeUsec
+         + ", attitudeQuaternion=" + attitudeQuaternion
+         + ", rollspeed=" + rollspeed
+         + ", pitchspeed=" + pitchspeed
+         + ", yawspeed=" + yawspeed
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", indAirspeed=" + indAirspeed
+         + ", trueAirspeed=" + trueAirspeed
+         + ", xacc=" + xacc
+         + ", yacc=" + yacc
+         + ", zacc=" + zacc + "}";
   }
 
   /**
@@ -126,7 +150,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -138,7 +162,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> attitudeQuaternion() {
@@ -150,7 +174,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float rollspeed() {
     return rollspeed;
@@ -161,7 +185,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float pitchspeed() {
     return pitchspeed;
@@ -172,7 +196,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float yawspeed() {
     return yawspeed;
@@ -183,7 +207,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -194,7 +218,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -205,7 +229,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final int alt() {
     return alt;
@@ -216,7 +240,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int vx() {
     return vx;
@@ -227,7 +251,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int vy() {
     return vy;
@@ -238,7 +262,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int vz() {
     return vz;
@@ -249,7 +273,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int indAirspeed() {
     return indAirspeed;
@@ -260,7 +284,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int trueAirspeed() {
     return trueAirspeed;
@@ -271,7 +295,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2
+      unitSize = 2
   )
   public final int xacc() {
     return xacc;
@@ -282,7 +306,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final int yacc() {
     return yacc;
@@ -293,7 +317,7 @@ public final class HilStateQuaternion {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2
+      unitSize = 2
   )
   public final int zacc() {
     return zacc;
@@ -340,7 +364,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -353,7 +377,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder attitudeQuaternion(List<Float> attitudeQuaternion) {
@@ -366,7 +390,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollspeed(float rollspeed) {
       this.rollspeed = rollspeed;
@@ -378,7 +402,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchspeed(float pitchspeed) {
       this.pitchspeed = pitchspeed;
@@ -390,7 +414,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawspeed(float yawspeed) {
       this.yawspeed = yawspeed;
@@ -402,7 +426,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -414,7 +438,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -426,7 +450,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(int alt) {
       this.alt = alt;
@@ -438,7 +462,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder vx(int vx) {
       this.vx = vx;
@@ -450,7 +474,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder vy(int vy) {
       this.vy = vy;
@@ -462,7 +486,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder vz(int vz) {
       this.vz = vz;
@@ -474,7 +498,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder indAirspeed(int indAirspeed) {
       this.indAirspeed = indAirspeed;
@@ -486,7 +510,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder trueAirspeed(int trueAirspeed) {
       this.trueAirspeed = trueAirspeed;
@@ -498,7 +522,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2
+        unitSize = 2
     )
     public final Builder xacc(int xacc) {
       this.xacc = xacc;
@@ -510,7 +534,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder yacc(int yacc) {
       this.yacc = yacc;
@@ -522,7 +546,7 @@ public final class HilStateQuaternion {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2
+        unitSize = 2
     )
     public final Builder zacc(int zacc) {
       this.zacc = zacc;

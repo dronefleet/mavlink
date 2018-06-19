@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Time synchronization message. 
@@ -26,8 +29,15 @@ public final class Timesync {
     this.ts1 = ts1;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Timesync{tc1=" + tc1
+         + ", ts1=" + ts1 + "}";
   }
 
   /**
@@ -35,7 +45,7 @@ public final class Timesync {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final long tc1() {
     return tc1;
@@ -46,7 +56,7 @@ public final class Timesync {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 8
+      unitSize = 8
   )
   public final long ts1() {
     return ts1;
@@ -65,7 +75,7 @@ public final class Timesync {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder tc1(long tc1) {
       this.tc1 = tc1;
@@ -77,7 +87,7 @@ public final class Timesync {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 8
+        unitSize = 8
     )
     public final Builder ts1(long ts1) {
       this.ts1 = ts1;

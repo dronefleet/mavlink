@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -13,6 +15,11 @@ import java.lang.String;
 )
 public final class DeviceOpRead {
   /**
+   * request ID - copied to reply 
+   */
+  private final long requestId;
+
+  /**
    * System ID 
    */
   private final int targetSystem;
@@ -21,11 +28,6 @@ public final class DeviceOpRead {
    * Component ID 
    */
   private final int targetComponent;
-
-  /**
-   * request ID - copied to reply 
-   */
-  private final long requestId;
 
   /**
    * The bus type 
@@ -57,11 +59,11 @@ public final class DeviceOpRead {
    */
   private final int count;
 
-  private DeviceOpRead(int targetSystem, int targetComponent, long requestId,
+  private DeviceOpRead(long requestId, int targetSystem, int targetComponent,
       DeviceOpBustype bustype, int bus, int address, String busname, int regstart, int count) {
+    this.requestId = requestId;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
-    this.requestId = requestId;
     this.bustype = bustype;
     this.bus = bus;
     this.address = address;
@@ -70,8 +72,33 @@ public final class DeviceOpRead {
     this.count = count;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "DeviceOpRead{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", requestId=" + requestId
+         + ", bustype=" + bustype
+         + ", bus=" + bus
+         + ", address=" + address
+         + ", busname=" + busname
+         + ", regstart=" + regstart
+         + ", count=" + count + "}";
+  }
+
+  /**
+   * request ID - copied to reply 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 4
+  )
+  public final long requestId() {
+    return requestId;
   }
 
   /**
@@ -79,7 +106,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -90,21 +117,10 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
-  }
-
-  /**
-   * request ID - copied to reply 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 4
-  )
-  public final long requestId() {
-    return requestId;
   }
 
   /**
@@ -112,7 +128,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final DeviceOpBustype bustype() {
     return bustype;
@@ -123,7 +139,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int bus() {
     return bus;
@@ -134,7 +150,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int address() {
     return address;
@@ -145,7 +161,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1,
+      unitSize = 1,
       arraySize = 40
   )
   public final String busname() {
@@ -157,7 +173,7 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int regstart() {
     return regstart;
@@ -168,18 +184,18 @@ public final class DeviceOpRead {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1
+      unitSize = 1
   )
   public final int count() {
     return count;
   }
 
   public static class Builder {
+    private long requestId;
+
     private int targetSystem;
 
     private int targetComponent;
-
-    private long requestId;
 
     private DeviceOpBustype bustype;
 
@@ -197,11 +213,23 @@ public final class DeviceOpRead {
     }
 
     /**
+     * request ID - copied to reply 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 4
+    )
+    public final Builder requestId(long requestId) {
+      this.requestId = requestId;
+      return this;
+    }
+
+    /**
      * System ID 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -213,22 +241,10 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * request ID - copied to reply 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 4
-    )
-    public final Builder requestId(long requestId) {
-      this.requestId = requestId;
       return this;
     }
 
@@ -237,7 +253,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder bustype(DeviceOpBustype bustype) {
       this.bustype = bustype;
@@ -249,7 +265,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder bus(int bus) {
       this.bus = bus;
@@ -261,7 +277,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder address(int address) {
       this.address = address;
@@ -273,7 +289,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1,
+        unitSize = 1,
         arraySize = 40
     )
     public final Builder busname(String busname) {
@@ -286,7 +302,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder regstart(int regstart) {
       this.regstart = regstart;
@@ -298,7 +314,7 @@ public final class DeviceOpRead {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1
+        unitSize = 1
     )
     public final Builder count(int count) {
       this.count = count;
@@ -306,7 +322,7 @@ public final class DeviceOpRead {
     }
 
     public final DeviceOpRead build() {
-      return new DeviceOpRead(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count);
+      return new DeviceOpRead(requestId, targetSystem, targetComponent, bustype, bus, address, busname, regstart, count);
     }
   }
 }

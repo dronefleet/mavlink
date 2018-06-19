@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -64,8 +67,21 @@ public final class AslObctrl {
     this.obctrlStatus = obctrlStatus;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AslObctrl{timestamp=" + timestamp
+         + ", uelev=" + uelev
+         + ", uthrot=" + uthrot
+         + ", uthrot2=" + uthrot2
+         + ", uaill=" + uaill
+         + ", uailr=" + uailr
+         + ", urud=" + urud
+         + ", obctrlStatus=" + obctrlStatus + "}";
   }
 
   /**
@@ -73,7 +89,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
@@ -84,7 +100,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float uelev() {
     return uelev;
@@ -95,7 +111,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float uthrot() {
     return uthrot;
@@ -106,7 +122,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float uthrot2() {
     return uthrot2;
@@ -117,7 +133,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float uaill() {
     return uaill;
@@ -128,7 +144,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float uailr() {
     return uailr;
@@ -139,7 +155,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float urud() {
     return urud;
@@ -150,7 +166,7 @@ public final class AslObctrl {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int obctrlStatus() {
     return obctrlStatus;
@@ -181,7 +197,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
@@ -193,7 +209,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder uelev(float uelev) {
       this.uelev = uelev;
@@ -205,7 +221,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder uthrot(float uthrot) {
       this.uthrot = uthrot;
@@ -217,7 +233,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder uthrot2(float uthrot2) {
       this.uthrot2 = uthrot2;
@@ -229,7 +245,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder uaill(float uaill) {
       this.uaill = uaill;
@@ -241,7 +257,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder uailr(float uailr) {
       this.uailr = uailr;
@@ -253,7 +269,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder urud(float urud) {
       this.urud = urud;
@@ -265,7 +281,7 @@ public final class AslObctrl {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder obctrlStatus(int obctrlStatus) {
       this.obctrlStatus = obctrlStatus;

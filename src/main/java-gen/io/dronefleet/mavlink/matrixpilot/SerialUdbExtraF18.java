@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F18 format 
@@ -45,8 +48,18 @@ public final class SerialUdbExtraF18 {
     this.referenceSpeed = referenceSpeed;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF18{angleOfAttackNormal=" + angleOfAttackNormal
+         + ", angleOfAttackInverted=" + angleOfAttackInverted
+         + ", elevatorTrimNormal=" + elevatorTrimNormal
+         + ", elevatorTrimInverted=" + elevatorTrimInverted
+         + ", referenceSpeed=" + referenceSpeed + "}";
   }
 
   /**
@@ -54,7 +67,7 @@ public final class SerialUdbExtraF18 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float angleOfAttackNormal() {
     return angleOfAttackNormal;
@@ -65,7 +78,7 @@ public final class SerialUdbExtraF18 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float angleOfAttackInverted() {
     return angleOfAttackInverted;
@@ -76,7 +89,7 @@ public final class SerialUdbExtraF18 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float elevatorTrimNormal() {
     return elevatorTrimNormal;
@@ -87,7 +100,7 @@ public final class SerialUdbExtraF18 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float elevatorTrimInverted() {
     return elevatorTrimInverted;
@@ -98,7 +111,7 @@ public final class SerialUdbExtraF18 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float referenceSpeed() {
     return referenceSpeed;
@@ -123,7 +136,7 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder angleOfAttackNormal(float angleOfAttackNormal) {
       this.angleOfAttackNormal = angleOfAttackNormal;
@@ -135,7 +148,7 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder angleOfAttackInverted(float angleOfAttackInverted) {
       this.angleOfAttackInverted = angleOfAttackInverted;
@@ -147,7 +160,7 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder elevatorTrimNormal(float elevatorTrimNormal) {
       this.elevatorTrimNormal = elevatorTrimNormal;
@@ -159,7 +172,7 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder elevatorTrimInverted(float elevatorTrimInverted) {
       this.elevatorTrimInverted = elevatorTrimInverted;
@@ -171,7 +184,7 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder referenceSpeed(float referenceSpeed) {
       this.referenceSpeed = referenceSpeed;

@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -42,8 +44,17 @@ public final class ParamExtAck {
     this.paramResult = paramResult;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamExtAck{paramId=" + paramId
+         + ", paramValue=" + paramValue
+         + ", paramType=" + paramType
+         + ", paramResult=" + paramResult + "}";
   }
 
   /**
@@ -53,7 +64,7 @@ public final class ParamExtAck {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final String paramId() {
@@ -65,7 +76,7 @@ public final class ParamExtAck {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 128
   )
   public final String paramValue() {
@@ -77,7 +88,7 @@ public final class ParamExtAck {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final MavParamExtType paramType() {
     return paramType;
@@ -88,7 +99,7 @@ public final class ParamExtAck {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final ParamAck paramResult() {
     return paramResult;
@@ -113,7 +124,7 @@ public final class ParamExtAck {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder paramId(String paramId) {
@@ -126,7 +137,7 @@ public final class ParamExtAck {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 128
     )
     public final Builder paramValue(String paramValue) {
@@ -139,7 +150,7 @@ public final class ParamExtAck {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder paramType(MavParamExtType paramType) {
       this.paramType = paramType;
@@ -151,7 +162,7 @@ public final class ParamExtAck {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder paramResult(ParamAck paramResult) {
       this.paramResult = paramResult;

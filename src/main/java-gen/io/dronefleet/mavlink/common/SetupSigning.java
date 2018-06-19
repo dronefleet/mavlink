@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -15,6 +18,11 @@ import java.util.List;
     crc = 71
 )
 public final class SetupSigning {
+  /**
+   * initial timestamp 
+   */
+  private final BigInteger initialTimestamp;
+
   /**
    * system id of the target 
    */
@@ -30,21 +38,36 @@ public final class SetupSigning {
    */
   private final List<Integer> secretKey;
 
-  /**
-   * initial timestamp 
-   */
-  private final BigInteger initialTimestamp;
-
-  private SetupSigning(int targetSystem, int targetComponent, List<Integer> secretKey,
-      BigInteger initialTimestamp) {
+  private SetupSigning(BigInteger initialTimestamp, int targetSystem, int targetComponent,
+      List<Integer> secretKey) {
+    this.initialTimestamp = initialTimestamp;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
     this.secretKey = secretKey;
-    this.initialTimestamp = initialTimestamp;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SetupSigning{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", secretKey=" + secretKey
+         + ", initialTimestamp=" + initialTimestamp + "}";
+  }
+
+  /**
+   * initial timestamp 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 8
+  )
+  public final BigInteger initialTimestamp() {
+    return initialTimestamp;
   }
 
   /**
@@ -52,7 +75,7 @@ public final class SetupSigning {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -63,7 +86,7 @@ public final class SetupSigning {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -74,34 +97,35 @@ public final class SetupSigning {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 32
   )
   public final List<Integer> secretKey() {
     return secretKey;
   }
 
-  /**
-   * initial timestamp 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 8
-  )
-  public final BigInteger initialTimestamp() {
-    return initialTimestamp;
-  }
-
   public static class Builder {
+    private BigInteger initialTimestamp;
+
     private int targetSystem;
 
     private int targetComponent;
 
     private List<Integer> secretKey;
 
-    private BigInteger initialTimestamp;
-
     private Builder() {
+    }
+
+    /**
+     * initial timestamp 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 8
+    )
+    public final Builder initialTimestamp(BigInteger initialTimestamp) {
+      this.initialTimestamp = initialTimestamp;
+      return this;
     }
 
     /**
@@ -109,7 +133,7 @@ public final class SetupSigning {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -121,7 +145,7 @@ public final class SetupSigning {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -133,7 +157,7 @@ public final class SetupSigning {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 32
     )
     public final Builder secretKey(List<Integer> secretKey) {
@@ -141,20 +165,8 @@ public final class SetupSigning {
       return this;
     }
 
-    /**
-     * initial timestamp 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 8
-    )
-    public final Builder initialTimestamp(BigInteger initialTimestamp) {
-      this.initialTimestamp = initialTimestamp;
-      return this;
-    }
-
     public final SetupSigning build() {
-      return new SetupSigning(targetSystem, targetComponent, secretKey, initialTimestamp);
+      return new SetupSigning(initialTimestamp, targetSystem, targetComponent, secretKey);
     }
   }
 }

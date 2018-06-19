@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,11 +19,6 @@ public final class AslctrlData {
    * Timestamp 
    */
   private final BigInteger timestamp;
-
-  /**
-   * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
-   */
-  private final int aslctrlMode;
 
   /**
    * See sourcecode for a description of these values... 
@@ -83,11 +81,6 @@ public final class AslctrlData {
   private final float airspeedref;
 
   /**
-   * null
-   */
-  private final int spoilersengaged;
-
-  /**
    * Yaw angle 
    */
   private final float yawangle;
@@ -137,13 +130,22 @@ public final class AslctrlData {
    */
   private final float urud;
 
-  private AslctrlData(BigInteger timestamp, int aslctrlMode, float h, float href, float hrefT,
-      float pitchangle, float pitchangleref, float q, float qref, float uelev, float uthrot,
-      float uthrot2, float nz, float airspeedref, int spoilersengaged, float yawangle,
-      float yawangleref, float rollangle, float rollangleref, float p, float pref, float r,
-      float rref, float uail, float urud) {
+  /**
+   * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
+   */
+  private final int aslctrlMode;
+
+  /**
+   * null
+   */
+  private final int spoilersengaged;
+
+  private AslctrlData(BigInteger timestamp, float h, float href, float hrefT, float pitchangle,
+      float pitchangleref, float q, float qref, float uelev, float uthrot, float uthrot2, float nz,
+      float airspeedref, float yawangle, float yawangleref, float rollangle, float rollangleref,
+      float p, float pref, float r, float rref, float uail, float urud, int aslctrlMode,
+      int spoilersengaged) {
     this.timestamp = timestamp;
-    this.aslctrlMode = aslctrlMode;
     this.h = h;
     this.href = href;
     this.hrefT = hrefT;
@@ -156,7 +158,6 @@ public final class AslctrlData {
     this.uthrot2 = uthrot2;
     this.nz = nz;
     this.airspeedref = airspeedref;
-    this.spoilersengaged = spoilersengaged;
     this.yawangle = yawangle;
     this.yawangleref = yawangleref;
     this.rollangle = rollangle;
@@ -167,10 +168,42 @@ public final class AslctrlData {
     this.rref = rref;
     this.uail = uail;
     this.urud = urud;
+    this.aslctrlMode = aslctrlMode;
+    this.spoilersengaged = spoilersengaged;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AslctrlData{timestamp=" + timestamp
+         + ", aslctrlMode=" + aslctrlMode
+         + ", h=" + h
+         + ", href=" + href
+         + ", hrefT=" + hrefT
+         + ", pitchangle=" + pitchangle
+         + ", pitchangleref=" + pitchangleref
+         + ", q=" + q
+         + ", qref=" + qref
+         + ", uelev=" + uelev
+         + ", uthrot=" + uthrot
+         + ", uthrot2=" + uthrot2
+         + ", nz=" + nz
+         + ", airspeedref=" + airspeedref
+         + ", spoilersengaged=" + spoilersengaged
+         + ", yawangle=" + yawangle
+         + ", yawangleref=" + yawangleref
+         + ", rollangle=" + rollangle
+         + ", rollangleref=" + rollangleref
+         + ", p=" + p
+         + ", pref=" + pref
+         + ", r=" + r
+         + ", rref=" + rref
+         + ", uail=" + uail
+         + ", urud=" + urud + "}";
   }
 
   /**
@@ -178,21 +211,10 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
-  }
-
-  /**
-   * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int aslctrlMode() {
-    return aslctrlMode;
   }
 
   /**
@@ -200,7 +222,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float h() {
     return h;
@@ -211,7 +233,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float href() {
     return href;
@@ -222,7 +244,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float hrefT() {
     return hrefT;
@@ -233,7 +255,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pitchangle() {
     return pitchangle;
@@ -244,7 +266,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float pitchangleref() {
     return pitchangleref;
@@ -255,7 +277,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float q() {
     return q;
@@ -266,7 +288,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float qref() {
     return qref;
@@ -277,7 +299,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float uelev() {
     return uelev;
@@ -288,7 +310,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float uthrot() {
     return uthrot;
@@ -299,7 +321,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float uthrot2() {
     return uthrot2;
@@ -310,7 +332,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float nz() {
     return nz;
@@ -321,21 +343,10 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float airspeedref() {
     return airspeedref;
-  }
-
-  /**
-   * null
-   */
-  @MavlinkMessageField(
-      position = 15,
-      length = 1
-  )
-  public final int spoilersengaged() {
-    return spoilersengaged;
   }
 
   /**
@@ -343,7 +354,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 4
+      unitSize = 4
   )
   public final float yawangle() {
     return yawangle;
@@ -354,7 +365,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 4
+      unitSize = 4
   )
   public final float yawangleref() {
     return yawangleref;
@@ -365,7 +376,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 4
+      unitSize = 4
   )
   public final float rollangle() {
     return rollangle;
@@ -376,7 +387,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 4
+      unitSize = 4
   )
   public final float rollangleref() {
     return rollangleref;
@@ -387,7 +398,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 4
+      unitSize = 4
   )
   public final float p() {
     return p;
@@ -398,7 +409,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 4
+      unitSize = 4
   )
   public final float pref() {
     return pref;
@@ -409,7 +420,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 22,
-      length = 4
+      unitSize = 4
   )
   public final float r() {
     return r;
@@ -420,7 +431,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 23,
-      length = 4
+      unitSize = 4
   )
   public final float rref() {
     return rref;
@@ -431,7 +442,7 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 24,
-      length = 4
+      unitSize = 4
   )
   public final float uail() {
     return uail;
@@ -442,16 +453,36 @@ public final class AslctrlData {
    */
   @MavlinkMessageField(
       position = 25,
-      length = 4
+      unitSize = 4
   )
   public final float urud() {
     return urud;
   }
 
+  /**
+   * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int aslctrlMode() {
+    return aslctrlMode;
+  }
+
+  /**
+   * null
+   */
+  @MavlinkMessageField(
+      position = 15,
+      unitSize = 1
+  )
+  public final int spoilersengaged() {
+    return spoilersengaged;
+  }
+
   public static class Builder {
     private BigInteger timestamp;
-
-    private int aslctrlMode;
 
     private float h;
 
@@ -477,8 +508,6 @@ public final class AslctrlData {
 
     private float airspeedref;
 
-    private int spoilersengaged;
-
     private float yawangle;
 
     private float yawangleref;
@@ -499,6 +528,10 @@ public final class AslctrlData {
 
     private float urud;
 
+    private int aslctrlMode;
+
+    private int spoilersengaged;
+
     private Builder() {
     }
 
@@ -507,22 +540,10 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
-      return this;
-    }
-
-    /**
-     * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder aslctrlMode(int aslctrlMode) {
-      this.aslctrlMode = aslctrlMode;
       return this;
     }
 
@@ -531,7 +552,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder h(float h) {
       this.h = h;
@@ -543,7 +564,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder href(float href) {
       this.href = href;
@@ -555,7 +576,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder hrefT(float hrefT) {
       this.hrefT = hrefT;
@@ -567,7 +588,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchangle(float pitchangle) {
       this.pitchangle = pitchangle;
@@ -579,7 +600,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchangleref(float pitchangleref) {
       this.pitchangleref = pitchangleref;
@@ -591,7 +612,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder q(float q) {
       this.q = q;
@@ -603,7 +624,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder qref(float qref) {
       this.qref = qref;
@@ -615,7 +636,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder uelev(float uelev) {
       this.uelev = uelev;
@@ -627,7 +648,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder uthrot(float uthrot) {
       this.uthrot = uthrot;
@@ -639,7 +660,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder uthrot2(float uthrot2) {
       this.uthrot2 = uthrot2;
@@ -651,7 +672,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder nz(float nz) {
       this.nz = nz;
@@ -663,22 +684,10 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder airspeedref(float airspeedref) {
       this.airspeedref = airspeedref;
-      return this;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkMessageField(
-        position = 15,
-        length = 1
-    )
-    public final Builder spoilersengaged(int spoilersengaged) {
-      this.spoilersengaged = spoilersengaged;
       return this;
     }
 
@@ -687,7 +696,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawangle(float yawangle) {
       this.yawangle = yawangle;
@@ -699,7 +708,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawangleref(float yawangleref) {
       this.yawangleref = yawangleref;
@@ -711,7 +720,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollangle(float rollangle) {
       this.rollangle = rollangle;
@@ -723,7 +732,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollangleref(float rollangleref) {
       this.rollangleref = rollangleref;
@@ -735,7 +744,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 4
+        unitSize = 4
     )
     public final Builder p(float p) {
       this.p = p;
@@ -747,7 +756,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 4
+        unitSize = 4
     )
     public final Builder pref(float pref) {
       this.pref = pref;
@@ -759,7 +768,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 22,
-        length = 4
+        unitSize = 4
     )
     public final Builder r(float r) {
       this.r = r;
@@ -771,7 +780,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 23,
-        length = 4
+        unitSize = 4
     )
     public final Builder rref(float rref) {
       this.rref = rref;
@@ -783,7 +792,7 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 24,
-        length = 4
+        unitSize = 4
     )
     public final Builder uail(float uail) {
       this.uail = uail;
@@ -795,15 +804,39 @@ public final class AslctrlData {
      */
     @MavlinkMessageField(
         position = 25,
-        length = 4
+        unitSize = 4
     )
     public final Builder urud(float urud) {
       this.urud = urud;
       return this;
     }
 
+    /**
+     * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder aslctrlMode(int aslctrlMode) {
+      this.aslctrlMode = aslctrlMode;
+      return this;
+    }
+
+    /**
+     * null
+     */
+    @MavlinkMessageField(
+        position = 15,
+        unitSize = 1
+    )
+    public final Builder spoilersengaged(int spoilersengaged) {
+      this.spoilersengaged = spoilersengaged;
+      return this;
+    }
+
     public final AslctrlData build() {
-      return new AslctrlData(timestamp, aslctrlMode, h, href, hrefT, pitchangle, pitchangleref, q, qref, uelev, uthrot, uthrot2, nz, airspeedref, spoilersengaged, yawangle, yawangleref, rollangle, rollangleref, p, pref, r, rref, uail, urud);
+      return new AslctrlData(timestamp, h, href, hrefT, pitchangle, pitchangleref, q, qref, uelev, uthrot, uthrot2, nz, airspeedref, yawangle, yawangleref, rollangle, rollangleref, p, pref, r, rref, uail, urud, aslctrlMode, spoilersengaged);
     }
   }
 }

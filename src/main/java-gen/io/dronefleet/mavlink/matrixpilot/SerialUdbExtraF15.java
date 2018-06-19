@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -29,8 +32,15 @@ public final class SerialUdbExtraF15 {
     this.sueIdVehicleRegistration = sueIdVehicleRegistration;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF15{sueIdVehicleModelName=" + sueIdVehicleModelName
+         + ", sueIdVehicleRegistration=" + sueIdVehicleRegistration + "}";
   }
 
   /**
@@ -38,7 +48,7 @@ public final class SerialUdbExtraF15 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 40
   )
   public final List<Integer> sueIdVehicleModelName() {
@@ -50,7 +60,7 @@ public final class SerialUdbExtraF15 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> sueIdVehicleRegistration() {
@@ -70,7 +80,7 @@ public final class SerialUdbExtraF15 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 40
     )
     public final Builder sueIdVehicleModelName(List<Integer> sueIdVehicleModelName) {
@@ -83,7 +93,7 @@ public final class SerialUdbExtraF15 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder sueIdVehicleRegistration(List<Integer> sueIdVehicleRegistration) {

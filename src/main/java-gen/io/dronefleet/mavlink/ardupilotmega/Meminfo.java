@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * state of APM memory 
@@ -32,8 +35,16 @@ public final class Meminfo {
     this.freemem32 = freemem32;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Meminfo{brkval=" + brkval
+         + ", freemem=" + freemem
+         + ", freemem32=" + freemem32 + "}";
   }
 
   /**
@@ -41,7 +52,7 @@ public final class Meminfo {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int brkval() {
     return brkval;
@@ -52,7 +63,7 @@ public final class Meminfo {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int freemem() {
     return freemem;
@@ -63,7 +74,7 @@ public final class Meminfo {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final long freemem32() {
@@ -85,7 +96,7 @@ public final class Meminfo {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder brkval(int brkval) {
       this.brkval = brkval;
@@ -97,7 +108,7 @@ public final class Meminfo {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder freemem(int freemem) {
       this.freemem = freemem;
@@ -109,7 +120,7 @@ public final class Meminfo {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder freemem32(long freemem32) {

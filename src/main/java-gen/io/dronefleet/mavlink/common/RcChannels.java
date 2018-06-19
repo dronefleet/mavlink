@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The PPM values of the RC channels received. The standard PPM modulation is as follows: 1000 
@@ -17,13 +20,6 @@ public final class RcChannels {
    * Timestamp (milliseconds since system boot) 
    */
   private final long timeBootMs;
-
-  /**
-   * Total number of RC channels being received. This can be larger than 18, indicating that more 
-   * channels are available but not given in this message. This value should be 0 when no RC channels 
-   * are available. 
-   */
-  private final int chancount;
 
   /**
    * RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
@@ -116,16 +112,22 @@ public final class RcChannels {
   private final int chan18Raw;
 
   /**
+   * Total number of RC channels being received. This can be larger than 18, indicating that more 
+   * channels are available but not given in this message. This value should be 0 when no RC channels 
+   * are available. 
+   */
+  private final int chancount;
+
+  /**
    * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
    */
   private final int rssi;
 
-  private RcChannels(long timeBootMs, int chancount, int chan1Raw, int chan2Raw, int chan3Raw,
-      int chan4Raw, int chan5Raw, int chan6Raw, int chan7Raw, int chan8Raw, int chan9Raw,
-      int chan10Raw, int chan11Raw, int chan12Raw, int chan13Raw, int chan14Raw, int chan15Raw,
-      int chan16Raw, int chan17Raw, int chan18Raw, int rssi) {
+  private RcChannels(long timeBootMs, int chan1Raw, int chan2Raw, int chan3Raw, int chan4Raw,
+      int chan5Raw, int chan6Raw, int chan7Raw, int chan8Raw, int chan9Raw, int chan10Raw,
+      int chan11Raw, int chan12Raw, int chan13Raw, int chan14Raw, int chan15Raw, int chan16Raw,
+      int chan17Raw, int chan18Raw, int chancount, int rssi) {
     this.timeBootMs = timeBootMs;
-    this.chancount = chancount;
     this.chan1Raw = chan1Raw;
     this.chan2Raw = chan2Raw;
     this.chan3Raw = chan3Raw;
@@ -144,11 +146,38 @@ public final class RcChannels {
     this.chan16Raw = chan16Raw;
     this.chan17Raw = chan17Raw;
     this.chan18Raw = chan18Raw;
+    this.chancount = chancount;
     this.rssi = rssi;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "RcChannels{timeBootMs=" + timeBootMs
+         + ", chancount=" + chancount
+         + ", chan1Raw=" + chan1Raw
+         + ", chan2Raw=" + chan2Raw
+         + ", chan3Raw=" + chan3Raw
+         + ", chan4Raw=" + chan4Raw
+         + ", chan5Raw=" + chan5Raw
+         + ", chan6Raw=" + chan6Raw
+         + ", chan7Raw=" + chan7Raw
+         + ", chan8Raw=" + chan8Raw
+         + ", chan9Raw=" + chan9Raw
+         + ", chan10Raw=" + chan10Raw
+         + ", chan11Raw=" + chan11Raw
+         + ", chan12Raw=" + chan12Raw
+         + ", chan13Raw=" + chan13Raw
+         + ", chan14Raw=" + chan14Raw
+         + ", chan15Raw=" + chan15Raw
+         + ", chan16Raw=" + chan16Raw
+         + ", chan17Raw=" + chan17Raw
+         + ", chan18Raw=" + chan18Raw
+         + ", rssi=" + rssi + "}";
   }
 
   /**
@@ -156,23 +185,10 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
-  }
-
-  /**
-   * Total number of RC channels being received. This can be larger than 18, indicating that more 
-   * channels are available but not given in this message. This value should be 0 when no RC channels 
-   * are available. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int chancount() {
-    return chancount;
   }
 
   /**
@@ -180,7 +196,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int chan1Raw() {
     return chan1Raw;
@@ -191,7 +207,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int chan2Raw() {
     return chan2Raw;
@@ -202,7 +218,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int chan3Raw() {
     return chan3Raw;
@@ -213,7 +229,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int chan4Raw() {
     return chan4Raw;
@@ -224,7 +240,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int chan5Raw() {
     return chan5Raw;
@@ -235,7 +251,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int chan6Raw() {
     return chan6Raw;
@@ -246,7 +262,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int chan7Raw() {
     return chan7Raw;
@@ -257,7 +273,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int chan8Raw() {
     return chan8Raw;
@@ -268,7 +284,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int chan9Raw() {
     return chan9Raw;
@@ -279,7 +295,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int chan10Raw() {
     return chan10Raw;
@@ -290,7 +306,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int chan11Raw() {
     return chan11Raw;
@@ -301,7 +317,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2
+      unitSize = 2
   )
   public final int chan12Raw() {
     return chan12Raw;
@@ -312,7 +328,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final int chan13Raw() {
     return chan13Raw;
@@ -323,7 +339,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2
+      unitSize = 2
   )
   public final int chan14Raw() {
     return chan14Raw;
@@ -334,7 +350,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 2
+      unitSize = 2
   )
   public final int chan15Raw() {
     return chan15Raw;
@@ -345,7 +361,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 2
+      unitSize = 2
   )
   public final int chan16Raw() {
     return chan16Raw;
@@ -356,7 +372,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 2
+      unitSize = 2
   )
   public final int chan17Raw() {
     return chan17Raw;
@@ -367,10 +383,23 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 2
+      unitSize = 2
   )
   public final int chan18Raw() {
     return chan18Raw;
+  }
+
+  /**
+   * Total number of RC channels being received. This can be larger than 18, indicating that more 
+   * channels are available but not given in this message. This value should be 0 when no RC channels 
+   * are available. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int chancount() {
+    return chancount;
   }
 
   /**
@@ -378,7 +407,7 @@ public final class RcChannels {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 1
+      unitSize = 1
   )
   public final int rssi() {
     return rssi;
@@ -386,8 +415,6 @@ public final class RcChannels {
 
   public static class Builder {
     private long timeBootMs;
-
-    private int chancount;
 
     private int chan1Raw;
 
@@ -425,6 +452,8 @@ public final class RcChannels {
 
     private int chan18Raw;
 
+    private int chancount;
+
     private int rssi;
 
     private Builder() {
@@ -435,24 +464,10 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
-      return this;
-    }
-
-    /**
-     * Total number of RC channels being received. This can be larger than 18, indicating that more 
-     * channels are available but not given in this message. This value should be 0 when no RC channels 
-     * are available. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder chancount(int chancount) {
-      this.chancount = chancount;
       return this;
     }
 
@@ -461,7 +476,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan1Raw(int chan1Raw) {
       this.chan1Raw = chan1Raw;
@@ -473,7 +488,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan2Raw(int chan2Raw) {
       this.chan2Raw = chan2Raw;
@@ -485,7 +500,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan3Raw(int chan3Raw) {
       this.chan3Raw = chan3Raw;
@@ -497,7 +512,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan4Raw(int chan4Raw) {
       this.chan4Raw = chan4Raw;
@@ -509,7 +524,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan5Raw(int chan5Raw) {
       this.chan5Raw = chan5Raw;
@@ -521,7 +536,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan6Raw(int chan6Raw) {
       this.chan6Raw = chan6Raw;
@@ -533,7 +548,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan7Raw(int chan7Raw) {
       this.chan7Raw = chan7Raw;
@@ -545,7 +560,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan8Raw(int chan8Raw) {
       this.chan8Raw = chan8Raw;
@@ -557,7 +572,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan9Raw(int chan9Raw) {
       this.chan9Raw = chan9Raw;
@@ -569,7 +584,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan10Raw(int chan10Raw) {
       this.chan10Raw = chan10Raw;
@@ -581,7 +596,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan11Raw(int chan11Raw) {
       this.chan11Raw = chan11Raw;
@@ -593,7 +608,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan12Raw(int chan12Raw) {
       this.chan12Raw = chan12Raw;
@@ -605,7 +620,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan13Raw(int chan13Raw) {
       this.chan13Raw = chan13Raw;
@@ -617,7 +632,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan14Raw(int chan14Raw) {
       this.chan14Raw = chan14Raw;
@@ -629,7 +644,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan15Raw(int chan15Raw) {
       this.chan15Raw = chan15Raw;
@@ -641,7 +656,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan16Raw(int chan16Raw) {
       this.chan16Raw = chan16Raw;
@@ -653,7 +668,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan17Raw(int chan17Raw) {
       this.chan17Raw = chan17Raw;
@@ -665,10 +680,24 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan18Raw(int chan18Raw) {
       this.chan18Raw = chan18Raw;
+      return this;
+    }
+
+    /**
+     * Total number of RC channels being received. This can be larger than 18, indicating that more 
+     * channels are available but not given in this message. This value should be 0 when no RC channels 
+     * are available. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder chancount(int chancount) {
+      this.chancount = chancount;
       return this;
     }
 
@@ -677,7 +706,7 @@ public final class RcChannels {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 1
+        unitSize = 1
     )
     public final Builder rssi(int rssi) {
       this.rssi = rssi;
@@ -685,7 +714,7 @@ public final class RcChannels {
     }
 
     public final RcChannels build() {
-      return new RcChannels(timeBootMs, chancount, chan1Raw, chan2Raw, chan3Raw, chan4Raw, chan5Raw, chan6Raw, chan7Raw, chan8Raw, chan9Raw, chan10Raw, chan11Raw, chan12Raw, chan13Raw, chan14Raw, chan15Raw, chan16Raw, chan17Raw, chan18Raw, rssi);
+      return new RcChannels(timeBootMs, chan1Raw, chan2Raw, chan3Raw, chan4Raw, chan5Raw, chan6Raw, chan7Raw, chan8Raw, chan9Raw, chan10Raw, chan11Raw, chan12Raw, chan13Raw, chan14Raw, chan15Raw, chan16Raw, chan17Raw, chan18Raw, chancount, rssi);
     }
   }
 }

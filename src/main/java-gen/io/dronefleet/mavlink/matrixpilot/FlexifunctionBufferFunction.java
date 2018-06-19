@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -13,16 +16,6 @@ import java.util.List;
     crc = 101
 )
 public final class FlexifunctionBufferFunction {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
   /**
    * Function index 
    */
@@ -44,45 +37,45 @@ public final class FlexifunctionBufferFunction {
   private final int dataSize;
 
   /**
-   * Settings data 
-   */
-  private final List<Integer> data;
-
-  private FlexifunctionBufferFunction(int targetSystem, int targetComponent, int funcIndex,
-      int funcCount, int dataAddress, int dataSize, List<Integer> data) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.funcIndex = funcIndex;
-    this.funcCount = funcCount;
-    this.dataAddress = dataAddress;
-    this.dataSize = dataSize;
-    this.data = data;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
-  /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  /**
+   * Settings data 
+   */
+  private final List<Integer> data;
+
+  private FlexifunctionBufferFunction(int funcIndex, int funcCount, int dataAddress, int dataSize,
+      int targetSystem, int targetComponent, List<Integer> data) {
+    this.funcIndex = funcIndex;
+    this.funcCount = funcCount;
+    this.dataAddress = dataAddress;
+    this.dataSize = dataSize;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.data = data;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "FlexifunctionBufferFunction{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", funcIndex=" + funcIndex
+         + ", funcCount=" + funcCount
+         + ", dataAddress=" + dataAddress
+         + ", dataSize=" + dataSize
+         + ", data=" + data + "}";
   }
 
   /**
@@ -90,7 +83,7 @@ public final class FlexifunctionBufferFunction {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int funcIndex() {
     return funcIndex;
@@ -101,7 +94,7 @@ public final class FlexifunctionBufferFunction {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int funcCount() {
     return funcCount;
@@ -112,7 +105,7 @@ public final class FlexifunctionBufferFunction {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int dataAddress() {
     return dataAddress;
@@ -123,10 +116,32 @@ public final class FlexifunctionBufferFunction {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int dataSize() {
     return dataSize;
+  }
+
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
   }
 
   /**
@@ -134,7 +149,7 @@ public final class FlexifunctionBufferFunction {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1,
+      unitSize = 1,
       arraySize = 48
   )
   public final List<Integer> data() {
@@ -142,10 +157,6 @@ public final class FlexifunctionBufferFunction {
   }
 
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private int funcIndex;
 
     private int funcCount;
@@ -154,33 +165,13 @@ public final class FlexifunctionBufferFunction {
 
     private int dataSize;
 
+    private int targetSystem;
+
+    private int targetComponent;
+
     private List<Integer> data;
 
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -188,7 +179,7 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder funcIndex(int funcIndex) {
       this.funcIndex = funcIndex;
@@ -200,7 +191,7 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder funcCount(int funcCount) {
       this.funcCount = funcCount;
@@ -212,7 +203,7 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder dataAddress(int dataAddress) {
       this.dataAddress = dataAddress;
@@ -224,10 +215,34 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder dataSize(int dataSize) {
       this.dataSize = dataSize;
+      return this;
+    }
+
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
       return this;
     }
 
@@ -236,7 +251,7 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1,
+        unitSize = 1,
         arraySize = 48
     )
     public final Builder data(List<Integer> data) {
@@ -245,7 +260,7 @@ public final class FlexifunctionBufferFunction {
     }
 
     public final FlexifunctionBufferFunction build() {
-      return new FlexifunctionBufferFunction(targetSystem, targetComponent, funcIndex, funcCount, dataAddress, dataSize, data);
+      return new FlexifunctionBufferFunction(funcIndex, funcCount, dataAddress, dataSize, targetSystem, targetComponent, data);
     }
   }
 }

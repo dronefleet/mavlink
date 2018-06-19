@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The general system state. If the system is following the MAVLink standard, the system state is 
@@ -57,11 +60,6 @@ public final class SysStatus {
   private final int currentBattery;
 
   /**
-   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
-   */
-  private final int batteryRemaining;
-
-  /**
    * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
    * on all links (packets that were corrupted on reception on the MAV) 
    */
@@ -93,28 +91,51 @@ public final class SysStatus {
    */
   private final int errorsCount4;
 
+  /**
+   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
+   */
+  private final int batteryRemaining;
+
   private SysStatus(EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent,
       EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled,
       EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth, int load, int voltageBattery,
-      int currentBattery, int batteryRemaining, int dropRateComm, int errorsComm, int errorsCount1,
-      int errorsCount2, int errorsCount3, int errorsCount4) {
+      int currentBattery, int dropRateComm, int errorsComm, int errorsCount1, int errorsCount2,
+      int errorsCount3, int errorsCount4, int batteryRemaining) {
     this.onboardControlSensorsPresent = onboardControlSensorsPresent;
     this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
     this.onboardControlSensorsHealth = onboardControlSensorsHealth;
     this.load = load;
     this.voltageBattery = voltageBattery;
     this.currentBattery = currentBattery;
-    this.batteryRemaining = batteryRemaining;
     this.dropRateComm = dropRateComm;
     this.errorsComm = errorsComm;
     this.errorsCount1 = errorsCount1;
     this.errorsCount2 = errorsCount2;
     this.errorsCount3 = errorsCount3;
     this.errorsCount4 = errorsCount4;
+    this.batteryRemaining = batteryRemaining;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SysStatus{onboardControlSensorsPresent=" + onboardControlSensorsPresent
+         + ", onboardControlSensorsEnabled=" + onboardControlSensorsEnabled
+         + ", onboardControlSensorsHealth=" + onboardControlSensorsHealth
+         + ", load=" + load
+         + ", voltageBattery=" + voltageBattery
+         + ", currentBattery=" + currentBattery
+         + ", batteryRemaining=" + batteryRemaining
+         + ", dropRateComm=" + dropRateComm
+         + ", errorsComm=" + errorsComm
+         + ", errorsCount1=" + errorsCount1
+         + ", errorsCount2=" + errorsCount2
+         + ", errorsCount3=" + errorsCount3
+         + ", errorsCount4=" + errorsCount4 + "}";
   }
 
   /**
@@ -123,7 +144,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent() {
     return onboardControlSensorsPresent;
@@ -135,7 +156,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled() {
     return onboardControlSensorsEnabled;
@@ -147,7 +168,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth() {
     return onboardControlSensorsHealth;
@@ -158,7 +179,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int load() {
     return load;
@@ -169,7 +190,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int voltageBattery() {
     return voltageBattery;
@@ -181,21 +202,10 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int currentBattery() {
     return currentBattery;
-  }
-
-  /**
-   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 1
-  )
-  public final int batteryRemaining() {
-    return batteryRemaining;
   }
 
   /**
@@ -204,7 +214,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int dropRateComm() {
     return dropRateComm;
@@ -216,7 +226,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int errorsComm() {
     return errorsComm;
@@ -227,7 +237,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int errorsCount1() {
     return errorsCount1;
@@ -238,7 +248,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int errorsCount2() {
     return errorsCount2;
@@ -249,7 +259,7 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int errorsCount3() {
     return errorsCount3;
@@ -260,10 +270,21 @@ public final class SysStatus {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int errorsCount4() {
     return errorsCount4;
+  }
+
+  /**
+   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 1
+  )
+  public final int batteryRemaining() {
+    return batteryRemaining;
   }
 
   public static class Builder {
@@ -279,8 +300,6 @@ public final class SysStatus {
 
     private int currentBattery;
 
-    private int batteryRemaining;
-
     private int dropRateComm;
 
     private int errorsComm;
@@ -293,6 +312,8 @@ public final class SysStatus {
 
     private int errorsCount4;
 
+    private int batteryRemaining;
+
     private Builder() {
     }
 
@@ -302,7 +323,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder onboardControlSensorsPresent(
         EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent) {
@@ -316,7 +337,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder onboardControlSensorsEnabled(
         EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled) {
@@ -330,7 +351,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder onboardControlSensorsHealth(
         EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth) {
@@ -343,7 +364,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder load(int load) {
       this.load = load;
@@ -355,7 +376,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder voltageBattery(int voltageBattery) {
       this.voltageBattery = voltageBattery;
@@ -368,22 +389,10 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder currentBattery(int currentBattery) {
       this.currentBattery = currentBattery;
-      return this;
-    }
-
-    /**
-     * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 1
-    )
-    public final Builder batteryRemaining(int batteryRemaining) {
-      this.batteryRemaining = batteryRemaining;
       return this;
     }
 
@@ -393,7 +402,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder dropRateComm(int dropRateComm) {
       this.dropRateComm = dropRateComm;
@@ -406,7 +415,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder errorsComm(int errorsComm) {
       this.errorsComm = errorsComm;
@@ -418,7 +427,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder errorsCount1(int errorsCount1) {
       this.errorsCount1 = errorsCount1;
@@ -430,7 +439,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder errorsCount2(int errorsCount2) {
       this.errorsCount2 = errorsCount2;
@@ -442,7 +451,7 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder errorsCount3(int errorsCount3) {
       this.errorsCount3 = errorsCount3;
@@ -454,15 +463,27 @@ public final class SysStatus {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder errorsCount4(int errorsCount4) {
       this.errorsCount4 = errorsCount4;
       return this;
     }
 
+    /**
+     * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 1
+    )
+    public final Builder batteryRemaining(int batteryRemaining) {
+      this.batteryRemaining = batteryRemaining;
+      return this;
+    }
+
     public final SysStatus build() {
-      return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, batteryRemaining, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4);
+      return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4, batteryRemaining);
     }
   }
 }

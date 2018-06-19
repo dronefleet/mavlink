@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Transmits the actual status values UAV in flight 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 160
 )
 public final class UavStatus {
-  /**
-   * The ID system reporting the action 
-   */
-  private final int target;
-
   /**
    * Latitude UAV 
    */
@@ -41,29 +39,34 @@ public final class UavStatus {
    */
   private final float course;
 
-  private UavStatus(int target, float latitude, float longitude, float altitude, float speed,
-      float course) {
-    this.target = target;
+  /**
+   * The ID system reporting the action 
+   */
+  private final int target;
+
+  private UavStatus(float latitude, float longitude, float altitude, float speed, float course,
+      int target) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.altitude = altitude;
     this.speed = speed;
     this.course = course;
+    this.target = target;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * The ID system reporting the action 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int target() {
-    return target;
+  @Override
+  public String toString() {
+    return "UavStatus{target=" + target
+         + ", latitude=" + latitude
+         + ", longitude=" + longitude
+         + ", altitude=" + altitude
+         + ", speed=" + speed
+         + ", course=" + course + "}";
   }
 
   /**
@@ -71,7 +74,7 @@ public final class UavStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float latitude() {
     return latitude;
@@ -82,7 +85,7 @@ public final class UavStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float longitude() {
     return longitude;
@@ -93,7 +96,7 @@ public final class UavStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float altitude() {
     return altitude;
@@ -104,7 +107,7 @@ public final class UavStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float speed() {
     return speed;
@@ -115,15 +118,24 @@ public final class UavStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float course() {
     return course;
   }
 
-  public static class Builder {
-    private int target;
+  /**
+   * The ID system reporting the action 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int target() {
+    return target;
+  }
 
+  public static class Builder {
     private float latitude;
 
     private float longitude;
@@ -134,19 +146,9 @@ public final class UavStatus {
 
     private float course;
 
-    private Builder() {
-    }
+    private int target;
 
-    /**
-     * The ID system reporting the action 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder target(int target) {
-      this.target = target;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -154,7 +156,7 @@ public final class UavStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder latitude(float latitude) {
       this.latitude = latitude;
@@ -166,7 +168,7 @@ public final class UavStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder longitude(float longitude) {
       this.longitude = longitude;
@@ -178,7 +180,7 @@ public final class UavStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitude(float altitude) {
       this.altitude = altitude;
@@ -190,7 +192,7 @@ public final class UavStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder speed(float speed) {
       this.speed = speed;
@@ -202,15 +204,27 @@ public final class UavStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder course(float course) {
       this.course = course;
       return this;
     }
 
+    /**
+     * The ID system reporting the action 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder target(int target) {
+      this.target = target;
+      return this;
+    }
+
     public final UavStatus build() {
-      return new UavStatus(target, latitude, longitude, altitude, speed, course);
+      return new UavStatus(latitude, longitude, altitude, speed, course, target);
     }
   }
 }

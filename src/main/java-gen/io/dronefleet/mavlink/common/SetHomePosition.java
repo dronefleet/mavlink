@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,11 +23,6 @@ import java.util.List;
     crc = 85
 )
 public final class SetHomePosition {
-  /**
-   * System ID. 
-   */
-  private final int targetSystem;
-
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
@@ -86,14 +84,18 @@ public final class SetHomePosition {
   private final float approachZ;
 
   /**
+   * System ID. 
+   */
+  private final int targetSystem;
+
+  /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
   private final BigInteger timeUsec;
 
-  private SetHomePosition(int targetSystem, int latitude, int longitude, int altitude, float x,
-      float y, float z, List<Float> q, float approachX, float approachY, float approachZ,
+  private SetHomePosition(int latitude, int longitude, int altitude, float x, float y, float z,
+      List<Float> q, float approachX, float approachY, float approachZ, int targetSystem,
       BigInteger timeUsec) {
-    this.targetSystem = targetSystem;
     this.latitude = latitude;
     this.longitude = longitude;
     this.altitude = altitude;
@@ -104,22 +106,29 @@ public final class SetHomePosition {
     this.approachX = approachX;
     this.approachY = approachY;
     this.approachZ = approachZ;
+    this.targetSystem = targetSystem;
     this.timeUsec = timeUsec;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * System ID. 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
+  @Override
+  public String toString() {
+    return "SetHomePosition{targetSystem=" + targetSystem
+         + ", latitude=" + latitude
+         + ", longitude=" + longitude
+         + ", altitude=" + altitude
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", q=" + q
+         + ", approachX=" + approachX
+         + ", approachY=" + approachY
+         + ", approachZ=" + approachZ
+         + ", timeUsec=" + timeUsec + "}";
   }
 
   /**
@@ -127,7 +136,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int latitude() {
     return latitude;
@@ -138,7 +147,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int longitude() {
     return longitude;
@@ -149,7 +158,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int altitude() {
     return altitude;
@@ -160,7 +169,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -171,7 +180,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -182,7 +191,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -194,7 +203,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> q() {
@@ -209,7 +218,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float approachX() {
     return approachX;
@@ -223,7 +232,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float approachY() {
     return approachY;
@@ -237,10 +246,21 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float approachZ() {
     return approachZ;
+  }
+
+  /**
+   * System ID. 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
   }
 
   /**
@@ -248,7 +268,7 @@ public final class SetHomePosition {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 8,
+      unitSize = 8,
       extension = true
   )
   public final BigInteger timeUsec() {
@@ -256,8 +276,6 @@ public final class SetHomePosition {
   }
 
   public static class Builder {
-    private int targetSystem;
-
     private int latitude;
 
     private int longitude;
@@ -278,21 +296,11 @@ public final class SetHomePosition {
 
     private float approachZ;
 
+    private int targetSystem;
+
     private BigInteger timeUsec;
 
     private Builder() {
-    }
-
-    /**
-     * System ID. 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
     }
 
     /**
@@ -300,7 +308,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder latitude(int latitude) {
       this.latitude = latitude;
@@ -312,7 +320,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder longitude(int longitude) {
       this.longitude = longitude;
@@ -324,7 +332,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitude(int altitude) {
       this.altitude = altitude;
@@ -336,7 +344,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -348,7 +356,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -360,7 +368,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -373,7 +381,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder q(List<Float> q) {
@@ -389,7 +397,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder approachX(float approachX) {
       this.approachX = approachX;
@@ -404,7 +412,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder approachY(float approachY) {
       this.approachY = approachY;
@@ -419,10 +427,22 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder approachZ(float approachZ) {
       this.approachZ = approachZ;
+      return this;
+    }
+
+    /**
+     * System ID. 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
       return this;
     }
 
@@ -431,7 +451,7 @@ public final class SetHomePosition {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 8,
+        unitSize = 8,
         extension = true
     )
     public final Builder timeUsec(BigInteger timeUsec) {
@@ -440,7 +460,7 @@ public final class SetHomePosition {
     }
 
     public final SetHomePosition build() {
-      return new SetHomePosition(targetSystem, latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, timeUsec);
+      return new SetHomePosition(latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, targetSystem, timeUsec);
     }
   }
 }

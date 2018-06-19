@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Power supply status 
@@ -33,8 +36,16 @@ public final class PowerStatus {
     this.flags = flags;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "PowerStatus{vcc=" + vcc
+         + ", vservo=" + vservo
+         + ", flags=" + flags + "}";
   }
 
   /**
@@ -42,7 +53,7 @@ public final class PowerStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int vcc() {
     return vcc;
@@ -53,7 +64,7 @@ public final class PowerStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int vservo() {
     return vservo;
@@ -64,7 +75,7 @@ public final class PowerStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final EnumFlagSet<MavPowerStatus> flags() {
     return flags;
@@ -85,7 +96,7 @@ public final class PowerStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder vcc(int vcc) {
       this.vcc = vcc;
@@ -97,7 +108,7 @@ public final class PowerStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder vservo(int vservo) {
       this.vservo = vservo;
@@ -109,7 +120,7 @@ public final class PowerStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder flags(EnumFlagSet<MavPowerStatus> flags) {
       this.flags = flags;

@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -13,6 +16,17 @@ import java.util.List;
     crc = 8
 )
 public final class V2Extension {
+  /**
+   * A code that identifies the software component that understands this message (analogous to usb 
+   * device classes or mime type strings). If this code is less than 32768, it is considered a 
+   * 'registered' protocol extension and the corresponding entry should be added to 
+   * https://github.com/mavlink/mavlink/extension-message-ids.xml. Software creators can 
+   * register blocks of message IDs as needed (useful for GCS specific metadata, etc...). 
+   * Message_types greater than 32767 are considered local experiments and should not be checked 
+   * in to any widely distributed codebase. 
+   */
+  private final int messageType;
+
   /**
    * Network ID (0 for broadcast) 
    */
@@ -29,17 +43,6 @@ public final class V2Extension {
   private final int targetComponent;
 
   /**
-   * A code that identifies the software component that understands this message (analogous to usb 
-   * device classes or mime type strings). If this code is less than 32768, it is considered a 
-   * 'registered' protocol extension and the corresponding entry should be added to 
-   * https://github.com/mavlink/mavlink/extension-message-ids.xml. Software creators can 
-   * register blocks of message IDs as needed (useful for GCS specific metadata, etc...). 
-   * Message_types greater than 32767 are considered local experiments and should not be checked 
-   * in to any widely distributed codebase. 
-   */
-  private final int messageType;
-
-  /**
    * Variable length payload. The length is defined by the remaining message length when 
    * subtracting the header and other fields. The entire content of this block is opaque unless you 
    * understand any the encoding message_type. The particular encoding used can be extension 
@@ -47,50 +50,27 @@ public final class V2Extension {
    */
   private final List<Integer> payload;
 
-  private V2Extension(int targetNetwork, int targetSystem, int targetComponent, int messageType,
+  private V2Extension(int messageType, int targetNetwork, int targetSystem, int targetComponent,
       List<Integer> payload) {
+    this.messageType = messageType;
     this.targetNetwork = targetNetwork;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
-    this.messageType = messageType;
     this.payload = payload;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Network ID (0 for broadcast) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetNetwork() {
-    return targetNetwork;
-  }
-
-  /**
-   * System ID (0 for broadcast) 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID (0 for broadcast) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  @Override
+  public String toString() {
+    return "V2Extension{targetNetwork=" + targetNetwork
+         + ", targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", messageType=" + messageType
+         + ", payload=" + payload + "}";
   }
 
   /**
@@ -104,10 +84,43 @@ public final class V2Extension {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int messageType() {
     return messageType;
+  }
+
+  /**
+   * Network ID (0 for broadcast) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetNetwork() {
+    return targetNetwork;
+  }
+
+  /**
+   * System ID (0 for broadcast) 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID (0 for broadcast) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
   }
 
   /**
@@ -118,7 +131,7 @@ public final class V2Extension {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       arraySize = 249
   )
   public final List<Integer> payload() {
@@ -126,53 +139,17 @@ public final class V2Extension {
   }
 
   public static class Builder {
+    private int messageType;
+
     private int targetNetwork;
 
     private int targetSystem;
 
     private int targetComponent;
 
-    private int messageType;
-
     private List<Integer> payload;
 
     private Builder() {
-    }
-
-    /**
-     * Network ID (0 for broadcast) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetNetwork(int targetNetwork) {
-      this.targetNetwork = targetNetwork;
-      return this;
-    }
-
-    /**
-     * System ID (0 for broadcast) 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID (0 for broadcast) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -186,10 +163,46 @@ public final class V2Extension {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder messageType(int messageType) {
       this.messageType = messageType;
+      return this;
+    }
+
+    /**
+     * Network ID (0 for broadcast) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetNetwork(int targetNetwork) {
+      this.targetNetwork = targetNetwork;
+      return this;
+    }
+
+    /**
+     * System ID (0 for broadcast) 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID (0 for broadcast) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
       return this;
     }
 
@@ -201,7 +214,7 @@ public final class V2Extension {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         arraySize = 249
     )
     public final Builder payload(List<Integer> payload) {
@@ -210,7 +223,7 @@ public final class V2Extension {
     }
 
     public final V2Extension build() {
-      return new V2Extension(targetNetwork, targetSystem, targetComponent, messageType, payload);
+      return new V2Extension(messageType, targetNetwork, targetSystem, targetComponent, payload);
     }
   }
 }

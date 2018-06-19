@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Airspeed auto-calibration 
@@ -87,8 +90,25 @@ public final class AirspeedAutocal {
     this.pcz = pcz;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AirspeedAutocal{vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", diffPressure=" + diffPressure
+         + ", eas2tas=" + eas2tas
+         + ", ratio=" + ratio
+         + ", stateX=" + stateX
+         + ", stateY=" + stateY
+         + ", stateZ=" + stateZ
+         + ", pax=" + pax
+         + ", pby=" + pby
+         + ", pcz=" + pcz + "}";
   }
 
   /**
@@ -96,7 +116,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float vx() {
     return vx;
@@ -107,7 +127,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float vy() {
     return vy;
@@ -118,7 +138,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float vz() {
     return vz;
@@ -129,7 +149,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float diffPressure() {
     return diffPressure;
@@ -140,7 +160,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float eas2tas() {
     return eas2tas;
@@ -151,7 +171,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float ratio() {
     return ratio;
@@ -162,7 +182,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float stateX() {
     return stateX;
@@ -173,7 +193,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float stateY() {
     return stateY;
@@ -184,7 +204,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float stateZ() {
     return stateZ;
@@ -195,7 +215,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float pax() {
     return pax;
@@ -206,7 +226,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float pby() {
     return pby;
@@ -217,7 +237,7 @@ public final class AirspeedAutocal {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float pcz() {
     return pcz;
@@ -256,7 +276,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder vx(float vx) {
       this.vx = vx;
@@ -268,7 +288,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder vy(float vy) {
       this.vy = vy;
@@ -280,7 +300,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder vz(float vz) {
       this.vz = vz;
@@ -292,7 +312,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder diffPressure(float diffPressure) {
       this.diffPressure = diffPressure;
@@ -304,7 +324,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder eas2tas(float eas2tas) {
       this.eas2tas = eas2tas;
@@ -316,7 +336,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder ratio(float ratio) {
       this.ratio = ratio;
@@ -328,7 +348,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder stateX(float stateX) {
       this.stateX = stateX;
@@ -340,7 +360,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder stateY(float stateY) {
       this.stateY = stateY;
@@ -352,7 +372,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder stateZ(float stateZ) {
       this.stateZ = stateZ;
@@ -364,7 +384,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder pax(float pax) {
       this.pax = pax;
@@ -376,7 +396,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder pby(float pby) {
       this.pby = pby;
@@ -388,7 +408,7 @@ public final class AirspeedAutocal {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder pcz(float pcz) {
       this.pcz = pcz;

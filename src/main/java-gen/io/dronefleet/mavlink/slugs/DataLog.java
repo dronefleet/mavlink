@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Configurable data log probes to be used inside Simulink 
@@ -50,8 +53,19 @@ public final class DataLog {
     this.fl6 = fl6;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "DataLog{fl1=" + fl1
+         + ", fl2=" + fl2
+         + ", fl3=" + fl3
+         + ", fl4=" + fl4
+         + ", fl5=" + fl5
+         + ", fl6=" + fl6 + "}";
   }
 
   /**
@@ -59,7 +73,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float fl1() {
     return fl1;
@@ -70,7 +84,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float fl2() {
     return fl2;
@@ -81,7 +95,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float fl3() {
     return fl3;
@@ -92,7 +106,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float fl4() {
     return fl4;
@@ -103,7 +117,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float fl5() {
     return fl5;
@@ -114,7 +128,7 @@ public final class DataLog {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float fl6() {
     return fl6;
@@ -141,7 +155,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl1(float fl1) {
       this.fl1 = fl1;
@@ -153,7 +167,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl2(float fl2) {
       this.fl2 = fl2;
@@ -165,7 +179,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl3(float fl3) {
       this.fl3 = fl3;
@@ -177,7 +191,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl4(float fl4) {
       this.fl4 = fl4;
@@ -189,7 +203,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl5(float fl5) {
       this.fl5 = fl5;
@@ -201,7 +215,7 @@ public final class DataLog {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder fl6(float fl6) {
       this.fl6 = fl6;

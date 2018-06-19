@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Heartbeat from a HeroBus attached GoPro 
@@ -34,8 +37,16 @@ public final class GoproHeartbeat {
     this.flags = flags;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GoproHeartbeat{status=" + status
+         + ", captureMode=" + captureMode
+         + ", flags=" + flags + "}";
   }
 
   /**
@@ -43,7 +54,7 @@ public final class GoproHeartbeat {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final GoproHeartbeatStatus status() {
     return status;
@@ -54,7 +65,7 @@ public final class GoproHeartbeat {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final GoproCaptureMode captureMode() {
     return captureMode;
@@ -65,7 +76,7 @@ public final class GoproHeartbeat {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<GoproHeartbeatFlags> flags() {
     return flags;
@@ -86,7 +97,7 @@ public final class GoproHeartbeat {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder status(GoproHeartbeatStatus status) {
       this.status = status;
@@ -98,7 +109,7 @@ public final class GoproHeartbeat {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder captureMode(GoproCaptureMode captureMode) {
       this.captureMode = captureMode;
@@ -110,7 +121,7 @@ public final class GoproHeartbeat {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder flags(EnumFlagSet<GoproHeartbeatFlags> flags) {
       this.flags = flags;

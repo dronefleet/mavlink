@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * This message provides an API for manually controlling the vehicle using standard joystick 
@@ -13,11 +16,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 243
 )
 public final class ManualControl {
-  /**
-   * The system to be controlled. 
-   */
-  private final int target;
-
   /**
    * X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is 
    * invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick 
@@ -53,28 +51,33 @@ public final class ManualControl {
    */
   private final int buttons;
 
-  private ManualControl(int target, int x, int y, int z, int r, int buttons) {
-    this.target = target;
+  /**
+   * The system to be controlled. 
+   */
+  private final int target;
+
+  private ManualControl(int x, int y, int z, int r, int buttons, int target) {
     this.x = x;
     this.y = y;
     this.z = z;
     this.r = r;
     this.buttons = buttons;
+    this.target = target;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * The system to be controlled. 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int target() {
-    return target;
+  @Override
+  public String toString() {
+    return "ManualControl{target=" + target
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", r=" + r
+         + ", buttons=" + buttons + "}";
   }
 
   /**
@@ -84,7 +87,7 @@ public final class ManualControl {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int x() {
     return x;
@@ -97,7 +100,7 @@ public final class ManualControl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int y() {
     return y;
@@ -111,7 +114,7 @@ public final class ManualControl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int z() {
     return z;
@@ -124,7 +127,7 @@ public final class ManualControl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int r() {
     return r;
@@ -136,15 +139,24 @@ public final class ManualControl {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int buttons() {
     return buttons;
   }
 
-  public static class Builder {
-    private int target;
+  /**
+   * The system to be controlled. 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int target() {
+    return target;
+  }
 
+  public static class Builder {
     private int x;
 
     private int y;
@@ -155,19 +167,9 @@ public final class ManualControl {
 
     private int buttons;
 
-    private Builder() {
-    }
+    private int target;
 
-    /**
-     * The system to be controlled. 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder target(int target) {
-      this.target = target;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -177,7 +179,7 @@ public final class ManualControl {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder x(int x) {
       this.x = x;
@@ -191,7 +193,7 @@ public final class ManualControl {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder y(int y) {
       this.y = y;
@@ -206,7 +208,7 @@ public final class ManualControl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder z(int z) {
       this.z = z;
@@ -220,7 +222,7 @@ public final class ManualControl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder r(int r) {
       this.r = r;
@@ -233,15 +235,27 @@ public final class ManualControl {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder buttons(int buttons) {
       this.buttons = buttons;
       return this;
     }
 
+    /**
+     * The system to be controlled. 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder target(int target) {
+      this.target = target;
+      return this;
+    }
+
     public final ManualControl build() {
-      return new ManualControl(target, x, y, z, r, buttons);
+      return new ManualControl(x, y, z, r, buttons, target);
     }
   }
 }

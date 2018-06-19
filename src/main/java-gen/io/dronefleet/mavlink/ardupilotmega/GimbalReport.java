@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * 3 axis gimbal mesuraments 
@@ -11,16 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 134
 )
 public final class GimbalReport {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
   /**
    * Time since last update (seconds) 
    */
@@ -71,11 +64,19 @@ public final class GimbalReport {
    */
   private final float jointAz;
 
-  private GimbalReport(int targetSystem, int targetComponent, float deltaTime, float deltaAngleX,
-      float deltaAngleY, float deltaAngleZ, float deltaVelocityX, float deltaVelocityY,
-      float deltaVelocityZ, float jointRoll, float jointEl, float jointAz) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
+  /**
+   * System ID 
+   */
+  private final int targetSystem;
+
+  /**
+   * Component ID 
+   */
+  private final int targetComponent;
+
+  private GimbalReport(float deltaTime, float deltaAngleX, float deltaAngleY, float deltaAngleZ,
+      float deltaVelocityX, float deltaVelocityY, float deltaVelocityZ, float jointRoll,
+      float jointEl, float jointAz, int targetSystem, int targetComponent) {
     this.deltaTime = deltaTime;
     this.deltaAngleX = deltaAngleX;
     this.deltaAngleY = deltaAngleY;
@@ -86,32 +87,29 @@ public final class GimbalReport {
     this.jointRoll = jointRoll;
     this.jointEl = jointEl;
     this.jointAz = jointAz;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * System ID 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  @Override
+  public String toString() {
+    return "GimbalReport{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", deltaTime=" + deltaTime
+         + ", deltaAngleX=" + deltaAngleX
+         + ", deltaAngleY=" + deltaAngleY
+         + ", deltaAngleZ=" + deltaAngleZ
+         + ", deltaVelocityX=" + deltaVelocityX
+         + ", deltaVelocityY=" + deltaVelocityY
+         + ", deltaVelocityZ=" + deltaVelocityZ
+         + ", jointRoll=" + jointRoll
+         + ", jointEl=" + jointEl
+         + ", jointAz=" + jointAz + "}";
   }
 
   /**
@@ -119,7 +117,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float deltaTime() {
     return deltaTime;
@@ -130,7 +128,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float deltaAngleX() {
     return deltaAngleX;
@@ -141,7 +139,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float deltaAngleY() {
     return deltaAngleY;
@@ -152,7 +150,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float deltaAngleZ() {
     return deltaAngleZ;
@@ -163,7 +161,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float deltaVelocityX() {
     return deltaVelocityX;
@@ -174,7 +172,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float deltaVelocityY() {
     return deltaVelocityY;
@@ -185,7 +183,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float deltaVelocityZ() {
     return deltaVelocityZ;
@@ -196,7 +194,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float jointRoll() {
     return jointRoll;
@@ -207,7 +205,7 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float jointEl() {
     return jointEl;
@@ -218,17 +216,35 @@ public final class GimbalReport {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float jointAz() {
     return jointAz;
   }
 
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private float deltaTime;
 
     private float deltaAngleX;
@@ -249,31 +265,11 @@ public final class GimbalReport {
 
     private float jointAz;
 
+    private int targetSystem;
+
+    private int targetComponent;
+
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -281,7 +277,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaTime(float deltaTime) {
       this.deltaTime = deltaTime;
@@ -293,7 +289,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaAngleX(float deltaAngleX) {
       this.deltaAngleX = deltaAngleX;
@@ -305,7 +301,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaAngleY(float deltaAngleY) {
       this.deltaAngleY = deltaAngleY;
@@ -317,7 +313,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaAngleZ(float deltaAngleZ) {
       this.deltaAngleZ = deltaAngleZ;
@@ -329,7 +325,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaVelocityX(float deltaVelocityX) {
       this.deltaVelocityX = deltaVelocityX;
@@ -341,7 +337,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaVelocityY(float deltaVelocityY) {
       this.deltaVelocityY = deltaVelocityY;
@@ -353,7 +349,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder deltaVelocityZ(float deltaVelocityZ) {
       this.deltaVelocityZ = deltaVelocityZ;
@@ -365,7 +361,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder jointRoll(float jointRoll) {
       this.jointRoll = jointRoll;
@@ -377,7 +373,7 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder jointEl(float jointEl) {
       this.jointEl = jointEl;
@@ -389,15 +385,39 @@ public final class GimbalReport {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder jointAz(float jointAz) {
       this.jointAz = jointAz;
       return this;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
     public final GimbalReport build() {
-      return new GimbalReport(targetSystem, targetComponent, deltaTime, deltaAngleX, deltaAngleY, deltaAngleZ, deltaVelocityX, deltaVelocityY, deltaVelocityZ, jointRoll, jointEl, jointAz);
+      return new GimbalReport(deltaTime, deltaAngleX, deltaAngleY, deltaAngleZ, deltaVelocityX, deltaVelocityY, deltaVelocityZ, jointRoll, jointEl, jointAz, targetSystem, targetComponent);
     }
   }
 }

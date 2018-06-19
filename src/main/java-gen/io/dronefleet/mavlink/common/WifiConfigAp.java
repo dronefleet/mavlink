@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -27,8 +29,15 @@ public final class WifiConfigAp {
     this.password = password;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "WifiConfigAp{ssid=" + ssid
+         + ", password=" + password + "}";
   }
 
   /**
@@ -36,7 +45,7 @@ public final class WifiConfigAp {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 32
   )
   public final String ssid() {
@@ -48,7 +57,7 @@ public final class WifiConfigAp {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 64
   )
   public final String password() {
@@ -68,7 +77,7 @@ public final class WifiConfigAp {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 32
     )
     public final Builder ssid(String ssid) {
@@ -81,7 +90,7 @@ public final class WifiConfigAp {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 64
     )
     public final Builder password(String password) {

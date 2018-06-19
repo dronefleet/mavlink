@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -18,12 +21,6 @@ public final class HilGps {
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
-   * is at least two, so always correctly fill in the fix. 
-   */
-  private final int fixType;
 
   /**
    * Latitude (WGS84), in degrees * 1E7 
@@ -77,14 +74,19 @@ public final class HilGps {
   private final int cog;
 
   /**
+   * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
+   * is at least two, so always correctly fill in the fix. 
+   */
+  private final int fixType;
+
+  /**
    * Number of satellites visible. If unknown, set to 255 
    */
   private final int satellitesVisible;
 
-  private HilGps(BigInteger timeUsec, int fixType, int lat, int lon, int alt, int eph, int epv,
-      int vel, int vn, int ve, int vd, int cog, int satellitesVisible) {
+  private HilGps(BigInteger timeUsec, int lat, int lon, int alt, int eph, int epv, int vel, int vn,
+      int ve, int vd, int cog, int fixType, int satellitesVisible) {
     this.timeUsec = timeUsec;
-    this.fixType = fixType;
     this.lat = lat;
     this.lon = lon;
     this.alt = alt;
@@ -95,11 +97,30 @@ public final class HilGps {
     this.ve = ve;
     this.vd = vd;
     this.cog = cog;
+    this.fixType = fixType;
     this.satellitesVisible = satellitesVisible;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilGps{timeUsec=" + timeUsec
+         + ", fixType=" + fixType
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", eph=" + eph
+         + ", epv=" + epv
+         + ", vel=" + vel
+         + ", vn=" + vn
+         + ", ve=" + ve
+         + ", vd=" + vd
+         + ", cog=" + cog
+         + ", satellitesVisible=" + satellitesVisible + "}";
   }
 
   /**
@@ -107,22 +128,10 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
-   * is at least two, so always correctly fill in the fix. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int fixType() {
-    return fixType;
   }
 
   /**
@@ -130,7 +139,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -141,7 +150,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -152,7 +161,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int alt() {
     return alt;
@@ -163,7 +172,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int eph() {
     return eph;
@@ -174,7 +183,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int epv() {
     return epv;
@@ -185,7 +194,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int vel() {
     return vel;
@@ -196,7 +205,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int vn() {
     return vn;
@@ -207,7 +216,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int ve() {
     return ve;
@@ -218,7 +227,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int vd() {
     return vd;
@@ -230,10 +239,22 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int cog() {
     return cog;
+  }
+
+  /**
+   * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
+   * is at least two, so always correctly fill in the fix. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int fixType() {
+    return fixType;
   }
 
   /**
@@ -241,7 +262,7 @@ public final class HilGps {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 1
+      unitSize = 1
   )
   public final int satellitesVisible() {
     return satellitesVisible;
@@ -249,8 +270,6 @@ public final class HilGps {
 
   public static class Builder {
     private BigInteger timeUsec;
-
-    private int fixType;
 
     private int lat;
 
@@ -272,6 +291,8 @@ public final class HilGps {
 
     private int cog;
 
+    private int fixType;
+
     private int satellitesVisible;
 
     private Builder() {
@@ -282,23 +303,10 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
-     * is at least two, so always correctly fill in the fix. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder fixType(int fixType) {
-      this.fixType = fixType;
       return this;
     }
 
@@ -307,7 +315,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -319,7 +327,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -331,7 +339,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(int alt) {
       this.alt = alt;
@@ -343,7 +351,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder eph(int eph) {
       this.eph = eph;
@@ -355,7 +363,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder epv(int epv) {
       this.epv = epv;
@@ -367,7 +375,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder vel(int vel) {
       this.vel = vel;
@@ -379,7 +387,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder vn(int vn) {
       this.vn = vn;
@@ -391,7 +399,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder ve(int ve) {
       this.ve = ve;
@@ -403,7 +411,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder vd(int vd) {
       this.vd = vd;
@@ -416,10 +424,23 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder cog(int cog) {
       this.cog = cog;
+      return this;
+    }
+
+    /**
+     * 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it 
+     * is at least two, so always correctly fill in the fix. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder fixType(int fixType) {
+      this.fixType = fixType;
       return this;
     }
 
@@ -428,7 +449,7 @@ public final class HilGps {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 1
+        unitSize = 1
     )
     public final Builder satellitesVisible(int satellitesVisible) {
       this.satellitesVisible = satellitesVisible;
@@ -436,7 +457,7 @@ public final class HilGps {
     }
 
     public final HilGps build() {
-      return new HilGps(timeUsec, fixType, lat, lon, alt, eph, epv, vel, vn, ve, vd, cog, satellitesVisible);
+      return new HilGps(timeUsec, lat, lon, alt, eph, epv, vel, vn, ve, vd, cog, fixType, satellitesVisible);
     }
   }
 }

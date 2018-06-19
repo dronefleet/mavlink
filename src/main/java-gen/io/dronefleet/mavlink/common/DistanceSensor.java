@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * null
@@ -66,8 +69,21 @@ public final class DistanceSensor {
     this.covariance = covariance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "DistanceSensor{timeBootMs=" + timeBootMs
+         + ", minDistance=" + minDistance
+         + ", maxDistance=" + maxDistance
+         + ", currentDistance=" + currentDistance
+         + ", type=" + type
+         + ", id=" + id
+         + ", orientation=" + orientation
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -75,7 +91,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 0,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -86,7 +102,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int minDistance() {
     return minDistance;
@@ -97,7 +113,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int maxDistance() {
     return maxDistance;
@@ -108,7 +124,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int currentDistance() {
     return currentDistance;
@@ -119,7 +135,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final MavDistanceSensor type() {
     return type;
@@ -130,7 +146,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int id() {
     return id;
@@ -144,7 +160,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final MavSensorOrientation orientation() {
     return orientation;
@@ -155,7 +171,7 @@ public final class DistanceSensor {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int covariance() {
     return covariance;
@@ -186,7 +202,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 0,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -198,7 +214,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder minDistance(int minDistance) {
       this.minDistance = minDistance;
@@ -210,7 +226,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder maxDistance(int maxDistance) {
       this.maxDistance = maxDistance;
@@ -222,7 +238,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder currentDistance(int currentDistance) {
       this.currentDistance = currentDistance;
@@ -234,7 +250,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder type(MavDistanceSensor type) {
       this.type = type;
@@ -246,7 +262,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder id(int id) {
       this.id = id;
@@ -261,7 +277,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder orientation(MavSensorOrientation orientation) {
       this.orientation = orientation;
@@ -273,7 +289,7 @@ public final class DistanceSensor {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder covariance(int covariance) {
       this.covariance = covariance;

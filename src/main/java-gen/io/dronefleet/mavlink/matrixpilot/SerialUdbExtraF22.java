@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F22 format 
@@ -52,8 +55,19 @@ public final class SerialUdbExtraF22 {
     this.sueGyroZAtCalibration = sueGyroZAtCalibration;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF22{sueAccelXAtCalibration=" + sueAccelXAtCalibration
+         + ", sueAccelYAtCalibration=" + sueAccelYAtCalibration
+         + ", sueAccelZAtCalibration=" + sueAccelZAtCalibration
+         + ", sueGyroXAtCalibration=" + sueGyroXAtCalibration
+         + ", sueGyroYAtCalibration=" + sueGyroYAtCalibration
+         + ", sueGyroZAtCalibration=" + sueGyroZAtCalibration + "}";
   }
 
   /**
@@ -61,7 +75,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelXAtCalibration() {
     return sueAccelXAtCalibration;
@@ -72,7 +86,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelYAtCalibration() {
     return sueAccelYAtCalibration;
@@ -83,7 +97,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelZAtCalibration() {
     return sueAccelZAtCalibration;
@@ -94,7 +108,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroXAtCalibration() {
     return sueGyroXAtCalibration;
@@ -105,7 +119,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroYAtCalibration() {
     return sueGyroYAtCalibration;
@@ -116,7 +130,7 @@ public final class SerialUdbExtraF22 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroZAtCalibration() {
     return sueGyroZAtCalibration;
@@ -143,7 +157,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelXAtCalibration(int sueAccelXAtCalibration) {
       this.sueAccelXAtCalibration = sueAccelXAtCalibration;
@@ -155,7 +169,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelYAtCalibration(int sueAccelYAtCalibration) {
       this.sueAccelYAtCalibration = sueAccelYAtCalibration;
@@ -167,7 +181,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelZAtCalibration(int sueAccelZAtCalibration) {
       this.sueAccelZAtCalibration = sueAccelZAtCalibration;
@@ -179,7 +193,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroXAtCalibration(int sueGyroXAtCalibration) {
       this.sueGyroXAtCalibration = sueGyroXAtCalibration;
@@ -191,7 +205,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroYAtCalibration(int sueGyroYAtCalibration) {
       this.sueGyroYAtCalibration = sueGyroYAtCalibration;
@@ -203,7 +217,7 @@ public final class SerialUdbExtraF22 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroZAtCalibration(int sueGyroZAtCalibration) {
       this.sueGyroZAtCalibration = sueGyroZAtCalibration;

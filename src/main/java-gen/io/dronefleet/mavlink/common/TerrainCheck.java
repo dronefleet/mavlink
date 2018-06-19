@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request that the vehicle report terrain height at the given location. Used by GCS to check if 
@@ -27,8 +30,15 @@ public final class TerrainCheck {
     this.lon = lon;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "TerrainCheck{lat=" + lat
+         + ", lon=" + lon + "}";
   }
 
   /**
@@ -36,7 +46,7 @@ public final class TerrainCheck {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -47,7 +57,7 @@ public final class TerrainCheck {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -66,7 +76,7 @@ public final class TerrainCheck {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -78,7 +88,7 @@ public final class TerrainCheck {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;

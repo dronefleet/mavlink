@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Reports results of completed compass calibration. Sent until MAG_CAL_ACK received. 
@@ -11,26 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 36
 )
 public final class MagCalReport {
-  /**
-   * Compass being calibrated 
-   */
-  private final int compassId;
-
-  /**
-   * Bitmask of compasses being calibrated 
-   */
-  private final int calMask;
-
-  /**
-   * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
-   */
-  private final MagCalStatus calStatus;
-
-  /**
-   * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
-   */
-  private final int autosaved;
-
   /**
    * RMS milligauss residuals 
    */
@@ -81,13 +64,29 @@ public final class MagCalReport {
    */
   private final float offdiagZ;
 
-  private MagCalReport(int compassId, int calMask, MagCalStatus calStatus, int autosaved,
-      float fitness, float ofsX, float ofsY, float ofsZ, float diagX, float diagY, float diagZ,
-      float offdiagX, float offdiagY, float offdiagZ) {
-    this.compassId = compassId;
-    this.calMask = calMask;
-    this.calStatus = calStatus;
-    this.autosaved = autosaved;
+  /**
+   * Compass being calibrated 
+   */
+  private final int compassId;
+
+  /**
+   * Bitmask of compasses being calibrated 
+   */
+  private final int calMask;
+
+  /**
+   * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
+   */
+  private final MagCalStatus calStatus;
+
+  /**
+   * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
+   */
+  private final int autosaved;
+
+  private MagCalReport(float fitness, float ofsX, float ofsY, float ofsZ, float diagX, float diagY,
+      float diagZ, float offdiagX, float offdiagY, float offdiagZ, int compassId, int calMask,
+      MagCalStatus calStatus, int autosaved) {
     this.fitness = fitness;
     this.ofsX = ofsX;
     this.ofsY = ofsY;
@@ -98,54 +97,33 @@ public final class MagCalReport {
     this.offdiagX = offdiagX;
     this.offdiagY = offdiagY;
     this.offdiagZ = offdiagZ;
+    this.compassId = compassId;
+    this.calMask = calMask;
+    this.calStatus = calStatus;
+    this.autosaved = autosaved;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Compass being calibrated 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int compassId() {
-    return compassId;
-  }
-
-  /**
-   * Bitmask of compasses being calibrated 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int calMask() {
-    return calMask;
-  }
-
-  /**
-   * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final MagCalStatus calStatus() {
-    return calStatus;
-  }
-
-  /**
-   * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 1
-  )
-  public final int autosaved() {
-    return autosaved;
+  @Override
+  public String toString() {
+    return "MagCalReport{compassId=" + compassId
+         + ", calMask=" + calMask
+         + ", calStatus=" + calStatus
+         + ", autosaved=" + autosaved
+         + ", fitness=" + fitness
+         + ", ofsX=" + ofsX
+         + ", ofsY=" + ofsY
+         + ", ofsZ=" + ofsZ
+         + ", diagX=" + diagX
+         + ", diagY=" + diagY
+         + ", diagZ=" + diagZ
+         + ", offdiagX=" + offdiagX
+         + ", offdiagY=" + offdiagY
+         + ", offdiagZ=" + offdiagZ + "}";
   }
 
   /**
@@ -153,7 +131,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float fitness() {
     return fitness;
@@ -164,7 +142,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float ofsX() {
     return ofsX;
@@ -175,7 +153,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float ofsY() {
     return ofsY;
@@ -186,7 +164,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float ofsZ() {
     return ofsZ;
@@ -197,7 +175,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float diagX() {
     return diagX;
@@ -208,7 +186,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float diagY() {
     return diagY;
@@ -219,7 +197,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float diagZ() {
     return diagZ;
@@ -230,7 +208,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float offdiagX() {
     return offdiagX;
@@ -241,7 +219,7 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float offdiagY() {
     return offdiagY;
@@ -252,21 +230,57 @@ public final class MagCalReport {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float offdiagZ() {
     return offdiagZ;
   }
 
+  /**
+   * Compass being calibrated 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int compassId() {
+    return compassId;
+  }
+
+  /**
+   * Bitmask of compasses being calibrated 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int calMask() {
+    return calMask;
+  }
+
+  /**
+   * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final MagCalStatus calStatus() {
+    return calStatus;
+  }
+
+  /**
+   * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 1
+  )
+  public final int autosaved() {
+    return autosaved;
+  }
+
   public static class Builder {
-    private int compassId;
-
-    private int calMask;
-
-    private MagCalStatus calStatus;
-
-    private int autosaved;
-
     private float fitness;
 
     private float ofsX;
@@ -287,55 +301,15 @@ public final class MagCalReport {
 
     private float offdiagZ;
 
+    private int compassId;
+
+    private int calMask;
+
+    private MagCalStatus calStatus;
+
+    private int autosaved;
+
     private Builder() {
-    }
-
-    /**
-     * Compass being calibrated 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder compassId(int compassId) {
-      this.compassId = compassId;
-      return this;
-    }
-
-    /**
-     * Bitmask of compasses being calibrated 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder calMask(int calMask) {
-      this.calMask = calMask;
-      return this;
-    }
-
-    /**
-     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder calStatus(MagCalStatus calStatus) {
-      this.calStatus = calStatus;
-      return this;
-    }
-
-    /**
-     * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 1
-    )
-    public final Builder autosaved(int autosaved) {
-      this.autosaved = autosaved;
-      return this;
     }
 
     /**
@@ -343,7 +317,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder fitness(float fitness) {
       this.fitness = fitness;
@@ -355,7 +329,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder ofsX(float ofsX) {
       this.ofsX = ofsX;
@@ -367,7 +341,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder ofsY(float ofsY) {
       this.ofsY = ofsY;
@@ -379,7 +353,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder ofsZ(float ofsZ) {
       this.ofsZ = ofsZ;
@@ -391,7 +365,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagX(float diagX) {
       this.diagX = diagX;
@@ -403,7 +377,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagY(float diagY) {
       this.diagY = diagY;
@@ -415,7 +389,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder diagZ(float diagZ) {
       this.diagZ = diagZ;
@@ -427,7 +401,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder offdiagX(float offdiagX) {
       this.offdiagX = offdiagX;
@@ -439,7 +413,7 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder offdiagY(float offdiagY) {
       this.offdiagY = offdiagY;
@@ -451,15 +425,63 @@ public final class MagCalReport {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder offdiagZ(float offdiagZ) {
       this.offdiagZ = offdiagZ;
       return this;
     }
 
+    /**
+     * Compass being calibrated 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder compassId(int compassId) {
+      this.compassId = compassId;
+      return this;
+    }
+
+    /**
+     * Bitmask of compasses being calibrated 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder calMask(int calMask) {
+      this.calMask = calMask;
+      return this;
+    }
+
+    /**
+     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder calStatus(MagCalStatus calStatus) {
+      this.calStatus = calStatus;
+      return this;
+    }
+
+    /**
+     * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 1
+    )
+    public final Builder autosaved(int autosaved) {
+      this.autosaved = autosaved;
+      return this;
+    }
+
     public final MagCalReport build() {
-      return new MagCalReport(compassId, calMask, calStatus, autosaved, fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ);
+      return new MagCalReport(fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ, compassId, calMask, calStatus, autosaved);
     }
   }
 }

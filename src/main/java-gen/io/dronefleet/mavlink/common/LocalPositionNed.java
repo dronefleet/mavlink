@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The filtered local position (e.g. fused computer vision and accelerometers). Coordinate 
@@ -58,8 +61,20 @@ public final class LocalPositionNed {
     this.vz = vz;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LocalPositionNed{timeBootMs=" + timeBootMs
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz + "}";
   }
 
   /**
@@ -67,7 +82,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -78,7 +93,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -89,7 +104,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -100,7 +115,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -111,7 +126,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float vx() {
     return vx;
@@ -122,7 +137,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float vy() {
     return vy;
@@ -133,7 +148,7 @@ public final class LocalPositionNed {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float vz() {
     return vz;
@@ -162,7 +177,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -174,7 +189,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -186,7 +201,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -198,7 +213,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -210,7 +225,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder vx(float vx) {
       this.vx = vx;
@@ -222,7 +237,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder vy(float vy) {
       this.vy = vy;
@@ -234,7 +249,7 @@ public final class LocalPositionNed {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder vz(float vz) {
       this.vz = vz;

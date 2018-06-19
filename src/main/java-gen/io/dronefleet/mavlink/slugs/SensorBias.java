@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Accelerometer and gyro biases. 
@@ -51,8 +54,19 @@ public final class SensorBias {
     this.gzbias = gzbias;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensorBias{axbias=" + axbias
+         + ", aybias=" + aybias
+         + ", azbias=" + azbias
+         + ", gxbias=" + gxbias
+         + ", gybias=" + gybias
+         + ", gzbias=" + gzbias + "}";
   }
 
   /**
@@ -60,7 +74,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float axbias() {
     return axbias;
@@ -71,7 +85,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float aybias() {
     return aybias;
@@ -82,7 +96,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float azbias() {
     return azbias;
@@ -93,7 +107,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float gxbias() {
     return gxbias;
@@ -104,7 +118,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float gybias() {
     return gybias;
@@ -115,7 +129,7 @@ public final class SensorBias {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float gzbias() {
     return gzbias;
@@ -142,7 +156,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder axbias(float axbias) {
       this.axbias = axbias;
@@ -154,7 +168,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder aybias(float aybias) {
       this.aybias = aybias;
@@ -166,7 +180,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder azbias(float azbias) {
       this.azbias = azbias;
@@ -178,7 +192,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder gxbias(float gxbias) {
       this.gxbias = gxbias;
@@ -190,7 +204,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder gybias(float gybias) {
       this.gybias = gybias;
@@ -202,7 +216,7 @@ public final class SensorBias {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder gzbias(float gzbias) {
       this.gzbias = gzbias;

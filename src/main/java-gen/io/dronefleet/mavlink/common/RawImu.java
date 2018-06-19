@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -77,8 +80,23 @@ public final class RawImu {
     this.zmag = zmag;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "RawImu{timeUsec=" + timeUsec
+         + ", xacc=" + xacc
+         + ", yacc=" + yacc
+         + ", zacc=" + zacc
+         + ", xgyro=" + xgyro
+         + ", ygyro=" + ygyro
+         + ", zgyro=" + zgyro
+         + ", xmag=" + xmag
+         + ", ymag=" + ymag
+         + ", zmag=" + zmag + "}";
   }
 
   /**
@@ -86,7 +104,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -97,7 +115,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int xacc() {
     return xacc;
@@ -108,7 +126,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int yacc() {
     return yacc;
@@ -119,7 +137,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int zacc() {
     return zacc;
@@ -130,7 +148,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int xgyro() {
     return xgyro;
@@ -141,7 +159,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int ygyro() {
     return ygyro;
@@ -152,7 +170,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int zgyro() {
     return zgyro;
@@ -163,7 +181,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int xmag() {
     return xmag;
@@ -174,7 +192,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int ymag() {
     return ymag;
@@ -185,7 +203,7 @@ public final class RawImu {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int zmag() {
     return zmag;
@@ -220,7 +238,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -232,7 +250,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder xacc(int xacc) {
       this.xacc = xacc;
@@ -244,7 +262,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder yacc(int yacc) {
       this.yacc = yacc;
@@ -256,7 +274,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder zacc(int zacc) {
       this.zacc = zacc;
@@ -268,7 +286,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder xgyro(int xgyro) {
       this.xgyro = xgyro;
@@ -280,7 +298,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder ygyro(int ygyro) {
       this.ygyro = ygyro;
@@ -292,7 +310,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder zgyro(int zgyro) {
       this.zgyro = zgyro;
@@ -304,7 +322,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder xmag(int xmag) {
       this.xmag = xmag;
@@ -316,7 +334,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder ymag(int ymag) {
       this.ymag = ymag;
@@ -328,7 +346,7 @@ public final class RawImu {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder zmag(int zmag) {
       this.zmag = zmag;

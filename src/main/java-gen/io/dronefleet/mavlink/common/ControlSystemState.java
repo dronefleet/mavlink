@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -122,8 +125,30 @@ public final class ControlSystemState {
     this.yawRate = yawRate;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ControlSystemState{timeUsec=" + timeUsec
+         + ", xAcc=" + xAcc
+         + ", yAcc=" + yAcc
+         + ", zAcc=" + zAcc
+         + ", xVel=" + xVel
+         + ", yVel=" + yVel
+         + ", zVel=" + zVel
+         + ", xPos=" + xPos
+         + ", yPos=" + yPos
+         + ", zPos=" + zPos
+         + ", airspeed=" + airspeed
+         + ", velVariance=" + velVariance
+         + ", posVariance=" + posVariance
+         + ", q=" + q
+         + ", rollRate=" + rollRate
+         + ", pitchRate=" + pitchRate
+         + ", yawRate=" + yawRate + "}";
   }
 
   /**
@@ -131,7 +156,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -142,7 +167,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float xAcc() {
     return xAcc;
@@ -153,7 +178,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float yAcc() {
     return yAcc;
@@ -164,7 +189,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float zAcc() {
     return zAcc;
@@ -175,7 +200,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float xVel() {
     return xVel;
@@ -186,7 +211,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float yVel() {
     return yVel;
@@ -197,7 +222,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float zVel() {
     return zVel;
@@ -208,7 +233,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float xPos() {
     return xPos;
@@ -219,7 +244,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float yPos() {
     return yPos;
@@ -230,7 +255,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float zPos() {
     return zPos;
@@ -241,7 +266,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float airspeed() {
     return airspeed;
@@ -252,7 +277,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> velVariance() {
@@ -264,7 +289,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> posVariance() {
@@ -276,7 +301,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> q() {
@@ -288,7 +313,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4
+      unitSize = 4
   )
   public final float rollRate() {
     return rollRate;
@@ -299,7 +324,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 4
+      unitSize = 4
   )
   public final float pitchRate() {
     return pitchRate;
@@ -310,7 +335,7 @@ public final class ControlSystemState {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 4
+      unitSize = 4
   )
   public final float yawRate() {
     return yawRate;
@@ -359,7 +384,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -371,7 +396,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder xAcc(float xAcc) {
       this.xAcc = xAcc;
@@ -383,7 +408,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder yAcc(float yAcc) {
       this.yAcc = yAcc;
@@ -395,7 +420,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder zAcc(float zAcc) {
       this.zAcc = zAcc;
@@ -407,7 +432,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder xVel(float xVel) {
       this.xVel = xVel;
@@ -419,7 +444,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder yVel(float yVel) {
       this.yVel = yVel;
@@ -431,7 +456,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder zVel(float zVel) {
       this.zVel = zVel;
@@ -443,7 +468,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder xPos(float xPos) {
       this.xPos = xPos;
@@ -455,7 +480,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder yPos(float yPos) {
       this.yPos = yPos;
@@ -467,7 +492,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder zPos(float zPos) {
       this.zPos = zPos;
@@ -479,7 +504,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder airspeed(float airspeed) {
       this.airspeed = airspeed;
@@ -491,7 +516,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder velVariance(List<Float> velVariance) {
@@ -504,7 +529,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder posVariance(List<Float> posVariance) {
@@ -517,7 +542,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder q(List<Float> q) {
@@ -530,7 +555,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollRate(float rollRate) {
       this.rollRate = rollRate;
@@ -542,7 +567,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchRate(float pitchRate) {
       this.pitchRate = pitchRate;
@@ -554,7 +579,7 @@ public final class ControlSystemState {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawRate(float yawRate) {
       this.yawRate = yawRate;

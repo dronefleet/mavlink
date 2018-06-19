@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * null
@@ -11,12 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 29
 )
 public final class DataTransmissionHandshake {
-  /**
-   * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-   * mavlink/include/mavlink_types.h) 
-   */
-  private final int type;
-
   /**
    * total data size in bytes (set on ACK only) 
    */
@@ -38,6 +35,12 @@ public final class DataTransmissionHandshake {
   private final int packets;
 
   /**
+   * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
+   * mavlink/include/mavlink_types.h) 
+   */
+  private final int type;
+
+  /**
    * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
    * (set on ACK only) 
    */
@@ -48,31 +51,31 @@ public final class DataTransmissionHandshake {
    */
   private final int jpgQuality;
 
-  private DataTransmissionHandshake(int type, long size, int width, int height, int packets,
+  private DataTransmissionHandshake(long size, int width, int height, int packets, int type,
       int payload, int jpgQuality) {
-    this.type = type;
     this.size = size;
     this.width = width;
     this.height = height;
     this.packets = packets;
+    this.type = type;
     this.payload = payload;
     this.jpgQuality = jpgQuality;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-   * mavlink/include/mavlink_types.h) 
-   */
-  @MavlinkMessageField(
-      position = 0,
-      length = 1
-  )
-  public final int type() {
-    return type;
+  @Override
+  public String toString() {
+    return "DataTransmissionHandshake{type=" + type
+         + ", size=" + size
+         + ", width=" + width
+         + ", height=" + height
+         + ", packets=" + packets
+         + ", payload=" + payload
+         + ", jpgQuality=" + jpgQuality + "}";
   }
 
   /**
@@ -80,7 +83,7 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long size() {
     return size;
@@ -91,7 +94,7 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int width() {
     return width;
@@ -102,7 +105,7 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int height() {
     return height;
@@ -113,10 +116,22 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int packets() {
     return packets;
+  }
+
+  /**
+   * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
+   * mavlink/include/mavlink_types.h) 
+   */
+  @MavlinkMessageField(
+      position = 0,
+      unitSize = 1
+  )
+  public final int type() {
+    return type;
   }
 
   /**
@@ -125,7 +140,7 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int payload() {
     return payload;
@@ -136,15 +151,13 @@ public final class DataTransmissionHandshake {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int jpgQuality() {
     return jpgQuality;
   }
 
   public static class Builder {
-    private int type;
-
     private long size;
 
     private int width;
@@ -152,6 +165,8 @@ public final class DataTransmissionHandshake {
     private int height;
 
     private int packets;
+
+    private int type;
 
     private int payload;
 
@@ -161,24 +176,11 @@ public final class DataTransmissionHandshake {
     }
 
     /**
-     * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-     * mavlink/include/mavlink_types.h) 
-     */
-    @MavlinkMessageField(
-        position = 0,
-        length = 1
-    )
-    public final Builder type(int type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
      * total data size in bytes (set on ACK only) 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder size(long size) {
       this.size = size;
@@ -190,7 +192,7 @@ public final class DataTransmissionHandshake {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder width(int width) {
       this.width = width;
@@ -202,7 +204,7 @@ public final class DataTransmissionHandshake {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder height(int height) {
       this.height = height;
@@ -214,10 +216,23 @@ public final class DataTransmissionHandshake {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder packets(int packets) {
       this.packets = packets;
+      return this;
+    }
+
+    /**
+     * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
+     * mavlink/include/mavlink_types.h) 
+     */
+    @MavlinkMessageField(
+        position = 0,
+        unitSize = 1
+    )
+    public final Builder type(int type) {
+      this.type = type;
       return this;
     }
 
@@ -227,7 +242,7 @@ public final class DataTransmissionHandshake {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder payload(int payload) {
       this.payload = payload;
@@ -239,7 +254,7 @@ public final class DataTransmissionHandshake {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder jpgQuality(int jpgQuality) {
       this.jpgQuality = jpgQuality;
@@ -247,7 +262,7 @@ public final class DataTransmissionHandshake {
     }
 
     public final DataTransmissionHandshake build() {
-      return new DataTransmissionHandshake(type, size, width, height, packets, payload, jpgQuality);
+      return new DataTransmissionHandshake(size, width, height, packets, type, payload, jpgQuality);
     }
   }
 }

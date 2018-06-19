@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,9 +23,9 @@ public final class FollowTarget {
   private final BigInteger timestamp;
 
   /**
-   * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
+   * button states or switches of a tracker device 
    */
-  private final int estCapabilities;
+  private final BigInteger customState;
 
   /**
    * Latitude (WGS84), in degrees * 1E7 
@@ -65,15 +68,15 @@ public final class FollowTarget {
   private final List<Float> positionCov;
 
   /**
-   * button states or switches of a tracker device 
+   * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
    */
-  private final BigInteger customState;
+  private final int estCapabilities;
 
-  private FollowTarget(BigInteger timestamp, int estCapabilities, int lat, int lon, float alt,
+  private FollowTarget(BigInteger timestamp, BigInteger customState, int lat, int lon, float alt,
       List<Float> vel, List<Float> acc, List<Float> attitudeQ, List<Float> rates,
-      List<Float> positionCov, BigInteger customState) {
+      List<Float> positionCov, int estCapabilities) {
     this.timestamp = timestamp;
-    this.estCapabilities = estCapabilities;
+    this.customState = customState;
     this.lat = lat;
     this.lon = lon;
     this.alt = alt;
@@ -82,11 +85,27 @@ public final class FollowTarget {
     this.attitudeQ = attitudeQ;
     this.rates = rates;
     this.positionCov = positionCov;
-    this.customState = customState;
+    this.estCapabilities = estCapabilities;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "FollowTarget{timestamp=" + timestamp
+         + ", estCapabilities=" + estCapabilities
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", vel=" + vel
+         + ", acc=" + acc
+         + ", attitudeQ=" + attitudeQ
+         + ", rates=" + rates
+         + ", positionCov=" + positionCov
+         + ", customState=" + customState + "}";
   }
 
   /**
@@ -94,21 +113,21 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
   }
 
   /**
-   * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
+   * button states or switches of a tracker device 
    */
   @MavlinkMessageField(
-      position = 2,
-      length = 1
+      position = 11,
+      unitSize = 8
   )
-  public final int estCapabilities() {
-    return estCapabilities;
+  public final BigInteger customState() {
+    return customState;
   }
 
   /**
@@ -116,7 +135,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -127,7 +146,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -138,7 +157,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float alt() {
     return alt;
@@ -149,7 +168,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> vel() {
@@ -161,7 +180,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> acc() {
@@ -173,7 +192,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> attitudeQ() {
@@ -185,7 +204,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> rates() {
@@ -197,7 +216,7 @@ public final class FollowTarget {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> positionCov() {
@@ -205,20 +224,20 @@ public final class FollowTarget {
   }
 
   /**
-   * button states or switches of a tracker device 
+   * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
    */
   @MavlinkMessageField(
-      position = 11,
-      length = 8
+      position = 2,
+      unitSize = 1
   )
-  public final BigInteger customState() {
-    return customState;
+  public final int estCapabilities() {
+    return estCapabilities;
   }
 
   public static class Builder {
     private BigInteger timestamp;
 
-    private int estCapabilities;
+    private BigInteger customState;
 
     private int lat;
 
@@ -236,7 +255,7 @@ public final class FollowTarget {
 
     private List<Float> positionCov;
 
-    private BigInteger customState;
+    private int estCapabilities;
 
     private Builder() {
     }
@@ -246,7 +265,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
@@ -254,14 +273,14 @@ public final class FollowTarget {
     }
 
     /**
-     * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
+     * button states or switches of a tracker device 
      */
     @MavlinkMessageField(
-        position = 2,
-        length = 1
+        position = 11,
+        unitSize = 8
     )
-    public final Builder estCapabilities(int estCapabilities) {
-      this.estCapabilities = estCapabilities;
+    public final Builder customState(BigInteger customState) {
+      this.customState = customState;
       return this;
     }
 
@@ -270,7 +289,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -282,7 +301,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -294,7 +313,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(float alt) {
       this.alt = alt;
@@ -306,7 +325,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder vel(List<Float> vel) {
@@ -319,7 +338,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder acc(List<Float> acc) {
@@ -332,7 +351,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder attitudeQ(List<Float> attitudeQ) {
@@ -345,7 +364,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder rates(List<Float> rates) {
@@ -358,7 +377,7 @@ public final class FollowTarget {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder positionCov(List<Float> positionCov) {
@@ -367,19 +386,19 @@ public final class FollowTarget {
     }
 
     /**
-     * button states or switches of a tracker device 
+     * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
      */
     @MavlinkMessageField(
-        position = 11,
-        length = 8
+        position = 2,
+        unitSize = 1
     )
-    public final Builder customState(BigInteger customState) {
-      this.customState = customState;
+    public final Builder estCapabilities(int estCapabilities) {
+      this.estCapabilities = estCapabilities;
       return this;
     }
 
     public final FollowTarget build() {
-      return new FollowTarget(timestamp, estCapabilities, lat, lon, alt, vel, acc, attitudeQ, rates, positionCov, customState);
+      return new FollowTarget(timestamp, customState, lat, lon, alt, vel, acc, attitudeQ, rates, positionCov, estCapabilities);
     }
   }
 }

@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -51,8 +54,18 @@ public final class ProtocolVersion {
     this.libraryVersionHash = libraryVersionHash;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ProtocolVersion{version=" + version
+         + ", minVersion=" + minVersion
+         + ", maxVersion=" + maxVersion
+         + ", specVersionHash=" + specVersionHash
+         + ", libraryVersionHash=" + libraryVersionHash + "}";
   }
 
   /**
@@ -60,7 +73,7 @@ public final class ProtocolVersion {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int version() {
     return version;
@@ -71,7 +84,7 @@ public final class ProtocolVersion {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int minVersion() {
     return minVersion;
@@ -82,7 +95,7 @@ public final class ProtocolVersion {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int maxVersion() {
     return maxVersion;
@@ -93,7 +106,7 @@ public final class ProtocolVersion {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 8
   )
   public final List<Integer> specVersionHash() {
@@ -105,7 +118,7 @@ public final class ProtocolVersion {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       arraySize = 8
   )
   public final List<Integer> libraryVersionHash() {
@@ -131,7 +144,7 @@ public final class ProtocolVersion {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder version(int version) {
       this.version = version;
@@ -143,7 +156,7 @@ public final class ProtocolVersion {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder minVersion(int minVersion) {
       this.minVersion = minVersion;
@@ -155,7 +168,7 @@ public final class ProtocolVersion {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder maxVersion(int maxVersion) {
       this.maxVersion = maxVersion;
@@ -167,7 +180,7 @@ public final class ProtocolVersion {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 8
     )
     public final Builder specVersionHash(List<Integer> specVersionHash) {
@@ -180,7 +193,7 @@ public final class ProtocolVersion {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         arraySize = 8
     )
     public final Builder libraryVersionHash(List<Integer> libraryVersionHash) {

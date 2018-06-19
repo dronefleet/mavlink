@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -30,25 +33,35 @@ public final class TerrainData {
   private final int gridSpacing;
 
   /**
-   * bit within the terrain request mask 
-   */
-  private final int gridbit;
-
-  /**
    * Terrain data in meters AMSL 
    */
   private final List<Integer> data;
 
-  private TerrainData(int lat, int lon, int gridSpacing, int gridbit, List<Integer> data) {
+  /**
+   * bit within the terrain request mask 
+   */
+  private final int gridbit;
+
+  private TerrainData(int lat, int lon, int gridSpacing, List<Integer> data, int gridbit) {
     this.lat = lat;
     this.lon = lon;
     this.gridSpacing = gridSpacing;
-    this.gridbit = gridbit;
     this.data = data;
+    this.gridbit = gridbit;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "TerrainData{lat=" + lat
+         + ", lon=" + lon
+         + ", gridSpacing=" + gridSpacing
+         + ", gridbit=" + gridbit
+         + ", data=" + data + "}";
   }
 
   /**
@@ -56,7 +69,7 @@ public final class TerrainData {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -67,7 +80,7 @@ public final class TerrainData {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -78,21 +91,10 @@ public final class TerrainData {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int gridSpacing() {
     return gridSpacing;
-  }
-
-  /**
-   * bit within the terrain request mask 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 1
-  )
-  public final int gridbit() {
-    return gridbit;
   }
 
   /**
@@ -100,11 +102,22 @@ public final class TerrainData {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2,
+      unitSize = 2,
       arraySize = 16
   )
   public final List<Integer> data() {
     return data;
+  }
+
+  /**
+   * bit within the terrain request mask 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 1
+  )
+  public final int gridbit() {
+    return gridbit;
   }
 
   public static class Builder {
@@ -114,9 +127,9 @@ public final class TerrainData {
 
     private int gridSpacing;
 
-    private int gridbit;
-
     private List<Integer> data;
+
+    private int gridbit;
 
     private Builder() {
     }
@@ -126,7 +139,7 @@ public final class TerrainData {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -138,7 +151,7 @@ public final class TerrainData {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -150,22 +163,10 @@ public final class TerrainData {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder gridSpacing(int gridSpacing) {
       this.gridSpacing = gridSpacing;
-      return this;
-    }
-
-    /**
-     * bit within the terrain request mask 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 1
-    )
-    public final Builder gridbit(int gridbit) {
-      this.gridbit = gridbit;
       return this;
     }
 
@@ -174,7 +175,7 @@ public final class TerrainData {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2,
+        unitSize = 2,
         arraySize = 16
     )
     public final Builder data(List<Integer> data) {
@@ -182,8 +183,20 @@ public final class TerrainData {
       return this;
     }
 
+    /**
+     * bit within the terrain request mask 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 1
+    )
+    public final Builder gridbit(int gridbit) {
+      this.gridbit = gridbit;
+      return this;
+    }
+
     public final TerrainData build() {
-      return new TerrainData(lat, lon, gridSpacing, gridbit, data);
+      return new TerrainData(lat, lon, gridSpacing, data, gridbit);
     }
   }
 }

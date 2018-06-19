@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -40,8 +43,17 @@ public final class GpsInjectData {
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GpsInjectData{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", len=" + len
+         + ", data=" + data + "}";
   }
 
   /**
@@ -49,7 +61,7 @@ public final class GpsInjectData {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -60,7 +72,7 @@ public final class GpsInjectData {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -71,7 +83,7 @@ public final class GpsInjectData {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int len() {
     return len;
@@ -82,7 +94,7 @@ public final class GpsInjectData {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 110
   )
   public final List<Integer> data() {
@@ -106,7 +118,7 @@ public final class GpsInjectData {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -118,7 +130,7 @@ public final class GpsInjectData {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -130,7 +142,7 @@ public final class GpsInjectData {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder len(int len) {
       this.len = len;
@@ -142,7 +154,7 @@ public final class GpsInjectData {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 110
     )
     public final Builder data(List<Integer> data) {

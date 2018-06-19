@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F13: format 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 249
 )
 public final class SerialUdbExtraF13 {
-  /**
-   * Serial UDB Extra GPS Week Number 
-   */
-  private final int sueWeekNo;
-
   /**
    * Serial UDB Extra MP Origin Latitude 
    */
@@ -31,26 +29,29 @@ public final class SerialUdbExtraF13 {
    */
   private final int sueAltOrigin;
 
-  private SerialUdbExtraF13(int sueWeekNo, int sueLatOrigin, int sueLonOrigin, int sueAltOrigin) {
-    this.sueWeekNo = sueWeekNo;
+  /**
+   * Serial UDB Extra GPS Week Number 
+   */
+  private final int sueWeekNo;
+
+  private SerialUdbExtraF13(int sueLatOrigin, int sueLonOrigin, int sueAltOrigin, int sueWeekNo) {
     this.sueLatOrigin = sueLatOrigin;
     this.sueLonOrigin = sueLonOrigin;
     this.sueAltOrigin = sueAltOrigin;
+    this.sueWeekNo = sueWeekNo;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Serial UDB Extra GPS Week Number 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 2
-  )
-  public final int sueWeekNo() {
-    return sueWeekNo;
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF13{sueWeekNo=" + sueWeekNo
+         + ", sueLatOrigin=" + sueLatOrigin
+         + ", sueLonOrigin=" + sueLonOrigin
+         + ", sueAltOrigin=" + sueAltOrigin + "}";
   }
 
   /**
@@ -58,7 +59,7 @@ public final class SerialUdbExtraF13 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int sueLatOrigin() {
     return sueLatOrigin;
@@ -69,7 +70,7 @@ public final class SerialUdbExtraF13 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int sueLonOrigin() {
     return sueLonOrigin;
@@ -80,34 +81,33 @@ public final class SerialUdbExtraF13 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int sueAltOrigin() {
     return sueAltOrigin;
   }
 
-  public static class Builder {
-    private int sueWeekNo;
+  /**
+   * Serial UDB Extra GPS Week Number 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 2
+  )
+  public final int sueWeekNo() {
+    return sueWeekNo;
+  }
 
+  public static class Builder {
     private int sueLatOrigin;
 
     private int sueLonOrigin;
 
     private int sueAltOrigin;
 
-    private Builder() {
-    }
+    private int sueWeekNo;
 
-    /**
-     * Serial UDB Extra GPS Week Number 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 2
-    )
-    public final Builder sueWeekNo(int sueWeekNo) {
-      this.sueWeekNo = sueWeekNo;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -115,7 +115,7 @@ public final class SerialUdbExtraF13 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueLatOrigin(int sueLatOrigin) {
       this.sueLatOrigin = sueLatOrigin;
@@ -127,7 +127,7 @@ public final class SerialUdbExtraF13 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueLonOrigin(int sueLonOrigin) {
       this.sueLonOrigin = sueLonOrigin;
@@ -139,15 +139,27 @@ public final class SerialUdbExtraF13 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltOrigin(int sueAltOrigin) {
       this.sueAltOrigin = sueAltOrigin;
       return this;
     }
 
+    /**
+     * Serial UDB Extra GPS Week Number 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 2
+    )
+    public final Builder sueWeekNo(int sueWeekNo) {
+      this.sueWeekNo = sueWeekNo;
+      return this;
+    }
+
     public final SerialUdbExtraF13 build() {
-      return new SerialUdbExtraF13(sueWeekNo, sueLatOrigin, sueLonOrigin, sueAltOrigin);
+      return new SerialUdbExtraF13(sueLatOrigin, sueLonOrigin, sueAltOrigin, sueWeekNo);
     }
   }
 }

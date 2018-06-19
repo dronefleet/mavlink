@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of DCM attitude estimator 
@@ -57,8 +60,20 @@ public final class Ahrs {
     this.errorYaw = errorYaw;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Ahrs{omegaix=" + omegaix
+         + ", omegaiy=" + omegaiy
+         + ", omegaiz=" + omegaiz
+         + ", accelWeight=" + accelWeight
+         + ", renormVal=" + renormVal
+         + ", errorRp=" + errorRp
+         + ", errorYaw=" + errorYaw + "}";
   }
 
   /**
@@ -66,7 +81,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float omegaix() {
     return omegaix;
@@ -77,7 +92,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float omegaiy() {
     return omegaiy;
@@ -88,7 +103,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float omegaiz() {
     return omegaiz;
@@ -99,7 +114,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float accelWeight() {
     return accelWeight;
@@ -110,7 +125,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float renormVal() {
     return renormVal;
@@ -121,7 +136,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float errorRp() {
     return errorRp;
@@ -132,7 +147,7 @@ public final class Ahrs {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float errorYaw() {
     return errorYaw;
@@ -161,7 +176,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder omegaix(float omegaix) {
       this.omegaix = omegaix;
@@ -173,7 +188,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder omegaiy(float omegaiy) {
       this.omegaiy = omegaiy;
@@ -185,7 +200,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder omegaiz(float omegaiz) {
       this.omegaiz = omegaiz;
@@ -197,7 +212,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder accelWeight(float accelWeight) {
       this.accelWeight = accelWeight;
@@ -209,7 +224,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder renormVal(float renormVal) {
       this.renormVal = renormVal;
@@ -221,7 +236,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder errorRp(float errorRp) {
       this.errorRp = errorRp;
@@ -233,7 +248,7 @@ public final class Ahrs {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder errorYaw(float errorYaw) {
       this.errorYaw = errorYaw;

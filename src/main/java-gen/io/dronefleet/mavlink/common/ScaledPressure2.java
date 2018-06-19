@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Barometer readings for 2nd barometer 
@@ -38,8 +41,17 @@ public final class ScaledPressure2 {
     this.temperature = temperature;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ScaledPressure2{timeBootMs=" + timeBootMs
+         + ", pressAbs=" + pressAbs
+         + ", pressDiff=" + pressDiff
+         + ", temperature=" + temperature + "}";
   }
 
   /**
@@ -47,7 +59,7 @@ public final class ScaledPressure2 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -58,7 +70,7 @@ public final class ScaledPressure2 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float pressAbs() {
     return pressAbs;
@@ -69,7 +81,7 @@ public final class ScaledPressure2 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float pressDiff() {
     return pressDiff;
@@ -80,7 +92,7 @@ public final class ScaledPressure2 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int temperature() {
     return temperature;
@@ -103,7 +115,7 @@ public final class ScaledPressure2 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -115,7 +127,7 @@ public final class ScaledPressure2 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder pressAbs(float pressAbs) {
       this.pressAbs = pressAbs;
@@ -127,7 +139,7 @@ public final class ScaledPressure2 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder pressDiff(float pressDiff) {
       this.pressDiff = pressDiff;
@@ -139,7 +151,7 @@ public final class ScaledPressure2 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder temperature(int temperature) {
       this.temperature = temperature;

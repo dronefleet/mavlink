@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,6 +19,11 @@ public final class SensorpodStatus {
    * Timestamp in linuxtime (since 1.1.1970) 
    */
   private final BigInteger timestamp;
+
+  /**
+   * Free space available in recordings directory in [Gb] * 1e2 
+   */
+  private final int freeSpace;
 
   /**
    * Rate of ROS topic 1 
@@ -47,25 +55,33 @@ public final class SensorpodStatus {
    */
   private final int cpuTemp;
 
-  /**
-   * Free space available in recordings directory in [Gb] * 1e2 
-   */
-  private final int freeSpace;
-
-  private SensorpodStatus(BigInteger timestamp, int visensorRate1, int visensorRate2,
-      int visensorRate3, int visensorRate4, int recordingNodesCount, int cpuTemp, int freeSpace) {
+  private SensorpodStatus(BigInteger timestamp, int freeSpace, int visensorRate1, int visensorRate2,
+      int visensorRate3, int visensorRate4, int recordingNodesCount, int cpuTemp) {
     this.timestamp = timestamp;
+    this.freeSpace = freeSpace;
     this.visensorRate1 = visensorRate1;
     this.visensorRate2 = visensorRate2;
     this.visensorRate3 = visensorRate3;
     this.visensorRate4 = visensorRate4;
     this.recordingNodesCount = recordingNodesCount;
     this.cpuTemp = cpuTemp;
-    this.freeSpace = freeSpace;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensorpodStatus{timestamp=" + timestamp
+         + ", visensorRate1=" + visensorRate1
+         + ", visensorRate2=" + visensorRate2
+         + ", visensorRate3=" + visensorRate3
+         + ", visensorRate4=" + visensorRate4
+         + ", recordingNodesCount=" + recordingNodesCount
+         + ", cpuTemp=" + cpuTemp
+         + ", freeSpace=" + freeSpace + "}";
   }
 
   /**
@@ -73,10 +89,21 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
+  }
+
+  /**
+   * Free space available in recordings directory in [Gb] * 1e2 
+   */
+  @MavlinkMessageField(
+      position = 8,
+      unitSize = 2
+  )
+  public final int freeSpace() {
+    return freeSpace;
   }
 
   /**
@@ -84,7 +111,7 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int visensorRate1() {
     return visensorRate1;
@@ -95,7 +122,7 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int visensorRate2() {
     return visensorRate2;
@@ -106,7 +133,7 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int visensorRate3() {
     return visensorRate3;
@@ -117,7 +144,7 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int visensorRate4() {
     return visensorRate4;
@@ -128,7 +155,7 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int recordingNodesCount() {
     return recordingNodesCount;
@@ -139,25 +166,16 @@ public final class SensorpodStatus {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int cpuTemp() {
     return cpuTemp;
   }
 
-  /**
-   * Free space available in recordings directory in [Gb] * 1e2 
-   */
-  @MavlinkMessageField(
-      position = 8,
-      length = 2
-  )
-  public final int freeSpace() {
-    return freeSpace;
-  }
-
   public static class Builder {
     private BigInteger timestamp;
+
+    private int freeSpace;
 
     private int visensorRate1;
 
@@ -171,8 +189,6 @@ public final class SensorpodStatus {
 
     private int cpuTemp;
 
-    private int freeSpace;
-
     private Builder() {
     }
 
@@ -181,10 +197,22 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
+      return this;
+    }
+
+    /**
+     * Free space available in recordings directory in [Gb] * 1e2 
+     */
+    @MavlinkMessageField(
+        position = 8,
+        unitSize = 2
+    )
+    public final Builder freeSpace(int freeSpace) {
+      this.freeSpace = freeSpace;
       return this;
     }
 
@@ -193,7 +221,7 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder visensorRate1(int visensorRate1) {
       this.visensorRate1 = visensorRate1;
@@ -205,7 +233,7 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder visensorRate2(int visensorRate2) {
       this.visensorRate2 = visensorRate2;
@@ -217,7 +245,7 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder visensorRate3(int visensorRate3) {
       this.visensorRate3 = visensorRate3;
@@ -229,7 +257,7 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder visensorRate4(int visensorRate4) {
       this.visensorRate4 = visensorRate4;
@@ -241,7 +269,7 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder recordingNodesCount(int recordingNodesCount) {
       this.recordingNodesCount = recordingNodesCount;
@@ -253,27 +281,15 @@ public final class SensorpodStatus {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder cpuTemp(int cpuTemp) {
       this.cpuTemp = cpuTemp;
       return this;
     }
 
-    /**
-     * Free space available in recordings directory in [Gb] * 1e2 
-     */
-    @MavlinkMessageField(
-        position = 8,
-        length = 2
-    )
-    public final Builder freeSpace(int freeSpace) {
-      this.freeSpace = freeSpace;
-      return this;
-    }
-
     public final SensorpodStatus build() {
-      return new SensorpodStatus(timestamp, visensorRate1, visensorRate2, visensorRate3, visensorRate4, recordingNodesCount, cpuTemp, freeSpace);
+      return new SensorpodStatus(timestamp, freeSpace, visensorRate1, visensorRate2, visensorRate3, visensorRate4, recordingNodesCount, cpuTemp);
     }
   }
 }

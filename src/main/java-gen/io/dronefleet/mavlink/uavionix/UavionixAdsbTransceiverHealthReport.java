@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.uavionix;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Transceiver heartbeat with health report (updated every 10s) 
@@ -21,8 +24,14 @@ public final class UavionixAdsbTransceiverHealthReport {
     this.rfhealth = rfhealth;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "UavionixAdsbTransceiverHealthReport{rfhealth=" + rfhealth + "}";
   }
 
   /**
@@ -30,7 +39,7 @@ public final class UavionixAdsbTransceiverHealthReport {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<UavionixAdsbRfHealth> rfhealth() {
     return rfhealth;
@@ -47,7 +56,7 @@ public final class UavionixAdsbTransceiverHealthReport {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder rfhealth(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
       this.rfhealth = rfhealth;

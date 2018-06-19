@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -50,8 +53,18 @@ public final class VisionPositionDelta {
     this.confidence = confidence;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "VisionPositionDelta{timeUsec=" + timeUsec
+         + ", timeDeltaUsec=" + timeDeltaUsec
+         + ", angleDelta=" + angleDelta
+         + ", positionDelta=" + positionDelta
+         + ", confidence=" + confidence + "}";
   }
 
   /**
@@ -59,7 +72,7 @@ public final class VisionPositionDelta {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -70,7 +83,7 @@ public final class VisionPositionDelta {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeDeltaUsec() {
     return timeDeltaUsec;
@@ -82,7 +95,7 @@ public final class VisionPositionDelta {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> angleDelta() {
@@ -95,7 +108,7 @@ public final class VisionPositionDelta {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4,
+      unitSize = 4,
       arraySize = 3
   )
   public final List<Float> positionDelta() {
@@ -107,7 +120,7 @@ public final class VisionPositionDelta {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float confidence() {
     return confidence;
@@ -132,7 +145,7 @@ public final class VisionPositionDelta {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -144,7 +157,7 @@ public final class VisionPositionDelta {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeDeltaUsec(BigInteger timeDeltaUsec) {
       this.timeDeltaUsec = timeDeltaUsec;
@@ -157,7 +170,7 @@ public final class VisionPositionDelta {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder angleDelta(List<Float> angleDelta) {
@@ -171,7 +184,7 @@ public final class VisionPositionDelta {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4,
+        unitSize = 4,
         arraySize = 3
     )
     public final Builder positionDelta(List<Float> positionDelta) {
@@ -184,7 +197,7 @@ public final class VisionPositionDelta {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder confidence(float confidence) {
       this.confidence = confidence;

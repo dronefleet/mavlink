@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * WIP: Message appropriate for high latency connections like Iridium (version 2) 
@@ -18,21 +21,6 @@ public final class HighLatency2 {
   private final long timestamp;
 
   /**
-   * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-   */
-  private final MavType type;
-
-  /**
-   * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-   */
-  private final MavAutopilot autopilot;
-
-  /**
-   * A bitfield for use for autopilot-specific flags (2 byte version). 
-   */
-  private final int customMode;
-
-  /**
    * Latitude, expressed as degrees * 1E7 
    */
   private final int latitude;
@@ -41,6 +29,11 @@ public final class HighLatency2 {
    * Longitude, expressed as degrees * 1E7 
    */
   private final int longitude;
+
+  /**
+   * A bitfield for use for autopilot-specific flags (2 byte version). 
+   */
+  private final int customMode;
 
   /**
    * Altitude above mean sea level 
@@ -53,6 +46,31 @@ public final class HighLatency2 {
   private final int targetAltitude;
 
   /**
+   * Distance to target waypoint or position (meters / 10) 
+   */
+  private final int targetDistance;
+
+  /**
+   * Current waypoint number 
+   */
+  private final int wpNum;
+
+  /**
+   * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
+   */
+  private final EnumFlagSet<HlFailureFlag> failureFlags;
+
+  /**
+   * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
+   */
+  private final MavType type;
+
+  /**
+   * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
+   */
+  private final MavAutopilot autopilot;
+
+  /**
    * Heading (degrees / 2) 
    */
   private final int heading;
@@ -61,11 +79,6 @@ public final class HighLatency2 {
    * Heading setpoint (degrees / 2) 
    */
   private final int targetHeading;
-
-  /**
-   * Distance to target waypoint or position (meters / 10) 
-   */
-  private final int targetDistance;
 
   /**
    * Throttle (percentage) 
@@ -123,16 +136,6 @@ public final class HighLatency2 {
   private final int battery;
 
   /**
-   * Current waypoint number 
-   */
-  private final int wpNum;
-
-  /**
-   * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
-   */
-  private final EnumFlagSet<HlFailureFlag> failureFlags;
-
-  /**
    * Field for custom payload. 
    */
   private final int custom0;
@@ -147,23 +150,25 @@ public final class HighLatency2 {
    */
   private final int custom2;
 
-  private HighLatency2(long timestamp, MavType type, MavAutopilot autopilot, int customMode,
-      int latitude, int longitude, int altitude, int targetAltitude, int heading, int targetHeading,
-      int targetDistance, int throttle, int airspeed, int airspeedSp, int groundspeed,
-      int windspeed, int windHeading, int eph, int epv, int temperatureAir, int climbRate,
-      int battery, int wpNum, EnumFlagSet<HlFailureFlag> failureFlags, int custom0, int custom1,
+  private HighLatency2(long timestamp, int latitude, int longitude, int customMode, int altitude,
+      int targetAltitude, int targetDistance, int wpNum, EnumFlagSet<HlFailureFlag> failureFlags,
+      MavType type, MavAutopilot autopilot, int heading, int targetHeading, int throttle,
+      int airspeed, int airspeedSp, int groundspeed, int windspeed, int windHeading, int eph,
+      int epv, int temperatureAir, int climbRate, int battery, int custom0, int custom1,
       int custom2) {
     this.timestamp = timestamp;
-    this.type = type;
-    this.autopilot = autopilot;
-    this.customMode = customMode;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.customMode = customMode;
     this.altitude = altitude;
     this.targetAltitude = targetAltitude;
+    this.targetDistance = targetDistance;
+    this.wpNum = wpNum;
+    this.failureFlags = failureFlags;
+    this.type = type;
+    this.autopilot = autopilot;
     this.heading = heading;
     this.targetHeading = targetHeading;
-    this.targetDistance = targetDistance;
     this.throttle = throttle;
     this.airspeed = airspeed;
     this.airspeedSp = airspeedSp;
@@ -175,15 +180,45 @@ public final class HighLatency2 {
     this.temperatureAir = temperatureAir;
     this.climbRate = climbRate;
     this.battery = battery;
-    this.wpNum = wpNum;
-    this.failureFlags = failureFlags;
     this.custom0 = custom0;
     this.custom1 = custom1;
     this.custom2 = custom2;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HighLatency2{timestamp=" + timestamp
+         + ", type=" + type
+         + ", autopilot=" + autopilot
+         + ", customMode=" + customMode
+         + ", latitude=" + latitude
+         + ", longitude=" + longitude
+         + ", altitude=" + altitude
+         + ", targetAltitude=" + targetAltitude
+         + ", heading=" + heading
+         + ", targetHeading=" + targetHeading
+         + ", targetDistance=" + targetDistance
+         + ", throttle=" + throttle
+         + ", airspeed=" + airspeed
+         + ", airspeedSp=" + airspeedSp
+         + ", groundspeed=" + groundspeed
+         + ", windspeed=" + windspeed
+         + ", windHeading=" + windHeading
+         + ", eph=" + eph
+         + ", epv=" + epv
+         + ", temperatureAir=" + temperatureAir
+         + ", climbRate=" + climbRate
+         + ", battery=" + battery
+         + ", wpNum=" + wpNum
+         + ", failureFlags=" + failureFlags
+         + ", custom0=" + custom0
+         + ", custom1=" + custom1
+         + ", custom2=" + custom2 + "}";
   }
 
   /**
@@ -191,43 +226,10 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timestamp() {
     return timestamp;
-  }
-
-  /**
-   * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final MavType type() {
-    return type;
-  }
-
-  /**
-   * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final MavAutopilot autopilot() {
-    return autopilot;
-  }
-
-  /**
-   * A bitfield for use for autopilot-specific flags (2 byte version). 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int customMode() {
-    return customMode;
   }
 
   /**
@@ -235,7 +237,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int latitude() {
     return latitude;
@@ -246,10 +248,21 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int longitude() {
     return longitude;
+  }
+
+  /**
+   * A bitfield for use for autopilot-specific flags (2 byte version). 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int customMode() {
+    return customMode;
   }
 
   /**
@@ -257,7 +270,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int altitude() {
     return altitude;
@@ -268,32 +281,10 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int targetAltitude() {
     return targetAltitude;
-  }
-
-  /**
-   * Heading (degrees / 2) 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 1
-  )
-  public final int heading() {
-    return heading;
-  }
-
-  /**
-   * Heading setpoint (degrees / 2) 
-   */
-  @MavlinkMessageField(
-      position = 10,
-      length = 1
-  )
-  public final int targetHeading() {
-    return targetHeading;
   }
 
   /**
@@ -301,131 +292,10 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int targetDistance() {
     return targetDistance;
-  }
-
-  /**
-   * Throttle (percentage) 
-   */
-  @MavlinkMessageField(
-      position = 12,
-      length = 1
-  )
-  public final int throttle() {
-    return throttle;
-  }
-
-  /**
-   * Airspeed (m/s * 5) 
-   */
-  @MavlinkMessageField(
-      position = 13,
-      length = 1
-  )
-  public final int airspeed() {
-    return airspeed;
-  }
-
-  /**
-   * Airspeed setpoint (m/s * 5) 
-   */
-  @MavlinkMessageField(
-      position = 14,
-      length = 1
-  )
-  public final int airspeedSp() {
-    return airspeedSp;
-  }
-
-  /**
-   * Groundspeed (m/s * 5) 
-   */
-  @MavlinkMessageField(
-      position = 15,
-      length = 1
-  )
-  public final int groundspeed() {
-    return groundspeed;
-  }
-
-  /**
-   * Windspeed (m/s * 5) 
-   */
-  @MavlinkMessageField(
-      position = 16,
-      length = 1
-  )
-  public final int windspeed() {
-    return windspeed;
-  }
-
-  /**
-   * Wind heading (deg / 2) 
-   */
-  @MavlinkMessageField(
-      position = 17,
-      length = 1
-  )
-  public final int windHeading() {
-    return windHeading;
-  }
-
-  /**
-   * Maximum error horizontal position since last message (m * 10) 
-   */
-  @MavlinkMessageField(
-      position = 18,
-      length = 1
-  )
-  public final int eph() {
-    return eph;
-  }
-
-  /**
-   * Maximum error vertical position since last message (m * 10) 
-   */
-  @MavlinkMessageField(
-      position = 19,
-      length = 1
-  )
-  public final int epv() {
-    return epv;
-  }
-
-  /**
-   * Air temperature (degrees C) from airspeed sensor 
-   */
-  @MavlinkMessageField(
-      position = 20,
-      length = 1
-  )
-  public final int temperatureAir() {
-    return temperatureAir;
-  }
-
-  /**
-   * Maximum climb rate magnitude since last message (m/s * 10) 
-   */
-  @MavlinkMessageField(
-      position = 21,
-      length = 1
-  )
-  public final int climbRate() {
-    return climbRate;
-  }
-
-  /**
-   * Battery (percentage, -1 for DNU) 
-   */
-  @MavlinkMessageField(
-      position = 22,
-      length = 1
-  )
-  public final int battery() {
-    return battery;
   }
 
   /**
@@ -433,7 +303,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 23,
-      length = 2
+      unitSize = 2
   )
   public final int wpNum() {
     return wpNum;
@@ -444,10 +314,175 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 24,
-      length = 2
+      unitSize = 2
   )
   public final EnumFlagSet<HlFailureFlag> failureFlags() {
     return failureFlags;
+  }
+
+  /**
+   * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final MavType type() {
+    return type;
+  }
+
+  /**
+   * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final MavAutopilot autopilot() {
+    return autopilot;
+  }
+
+  /**
+   * Heading (degrees / 2) 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 1
+  )
+  public final int heading() {
+    return heading;
+  }
+
+  /**
+   * Heading setpoint (degrees / 2) 
+   */
+  @MavlinkMessageField(
+      position = 10,
+      unitSize = 1
+  )
+  public final int targetHeading() {
+    return targetHeading;
+  }
+
+  /**
+   * Throttle (percentage) 
+   */
+  @MavlinkMessageField(
+      position = 12,
+      unitSize = 1
+  )
+  public final int throttle() {
+    return throttle;
+  }
+
+  /**
+   * Airspeed (m/s * 5) 
+   */
+  @MavlinkMessageField(
+      position = 13,
+      unitSize = 1
+  )
+  public final int airspeed() {
+    return airspeed;
+  }
+
+  /**
+   * Airspeed setpoint (m/s * 5) 
+   */
+  @MavlinkMessageField(
+      position = 14,
+      unitSize = 1
+  )
+  public final int airspeedSp() {
+    return airspeedSp;
+  }
+
+  /**
+   * Groundspeed (m/s * 5) 
+   */
+  @MavlinkMessageField(
+      position = 15,
+      unitSize = 1
+  )
+  public final int groundspeed() {
+    return groundspeed;
+  }
+
+  /**
+   * Windspeed (m/s * 5) 
+   */
+  @MavlinkMessageField(
+      position = 16,
+      unitSize = 1
+  )
+  public final int windspeed() {
+    return windspeed;
+  }
+
+  /**
+   * Wind heading (deg / 2) 
+   */
+  @MavlinkMessageField(
+      position = 17,
+      unitSize = 1
+  )
+  public final int windHeading() {
+    return windHeading;
+  }
+
+  /**
+   * Maximum error horizontal position since last message (m * 10) 
+   */
+  @MavlinkMessageField(
+      position = 18,
+      unitSize = 1
+  )
+  public final int eph() {
+    return eph;
+  }
+
+  /**
+   * Maximum error vertical position since last message (m * 10) 
+   */
+  @MavlinkMessageField(
+      position = 19,
+      unitSize = 1
+  )
+  public final int epv() {
+    return epv;
+  }
+
+  /**
+   * Air temperature (degrees C) from airspeed sensor 
+   */
+  @MavlinkMessageField(
+      position = 20,
+      unitSize = 1
+  )
+  public final int temperatureAir() {
+    return temperatureAir;
+  }
+
+  /**
+   * Maximum climb rate magnitude since last message (m/s * 10) 
+   */
+  @MavlinkMessageField(
+      position = 21,
+      unitSize = 1
+  )
+  public final int climbRate() {
+    return climbRate;
+  }
+
+  /**
+   * Battery (percentage, -1 for DNU) 
+   */
+  @MavlinkMessageField(
+      position = 22,
+      unitSize = 1
+  )
+  public final int battery() {
+    return battery;
   }
 
   /**
@@ -455,7 +490,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 25,
-      length = 1
+      unitSize = 1
   )
   public final int custom0() {
     return custom0;
@@ -466,7 +501,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 26,
-      length = 1
+      unitSize = 1
   )
   public final int custom1() {
     return custom1;
@@ -477,7 +512,7 @@ public final class HighLatency2 {
    */
   @MavlinkMessageField(
       position = 27,
-      length = 1
+      unitSize = 1
   )
   public final int custom2() {
     return custom2;
@@ -486,25 +521,29 @@ public final class HighLatency2 {
   public static class Builder {
     private long timestamp;
 
-    private MavType type;
-
-    private MavAutopilot autopilot;
-
-    private int customMode;
-
     private int latitude;
 
     private int longitude;
+
+    private int customMode;
 
     private int altitude;
 
     private int targetAltitude;
 
+    private int targetDistance;
+
+    private int wpNum;
+
+    private EnumFlagSet<HlFailureFlag> failureFlags;
+
+    private MavType type;
+
+    private MavAutopilot autopilot;
+
     private int heading;
 
     private int targetHeading;
-
-    private int targetDistance;
 
     private int throttle;
 
@@ -528,10 +567,6 @@ public final class HighLatency2 {
 
     private int battery;
 
-    private int wpNum;
-
-    private EnumFlagSet<HlFailureFlag> failureFlags;
-
     private int custom0;
 
     private int custom1;
@@ -546,46 +581,10 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timestamp(long timestamp) {
       this.timestamp = timestamp;
-      return this;
-    }
-
-    /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder type(MavType type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder autopilot(MavAutopilot autopilot) {
-      this.autopilot = autopilot;
-      return this;
-    }
-
-    /**
-     * A bitfield for use for autopilot-specific flags (2 byte version). 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder customMode(int customMode) {
-      this.customMode = customMode;
       return this;
     }
 
@@ -594,7 +593,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder latitude(int latitude) {
       this.latitude = latitude;
@@ -606,10 +605,22 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder longitude(int longitude) {
       this.longitude = longitude;
+      return this;
+    }
+
+    /**
+     * A bitfield for use for autopilot-specific flags (2 byte version). 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder customMode(int customMode) {
+      this.customMode = customMode;
       return this;
     }
 
@@ -618,7 +629,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder altitude(int altitude) {
       this.altitude = altitude;
@@ -630,34 +641,10 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder targetAltitude(int targetAltitude) {
       this.targetAltitude = targetAltitude;
-      return this;
-    }
-
-    /**
-     * Heading (degrees / 2) 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 1
-    )
-    public final Builder heading(int heading) {
-      this.heading = heading;
-      return this;
-    }
-
-    /**
-     * Heading setpoint (degrees / 2) 
-     */
-    @MavlinkMessageField(
-        position = 10,
-        length = 1
-    )
-    public final Builder targetHeading(int targetHeading) {
-      this.targetHeading = targetHeading;
       return this;
     }
 
@@ -666,142 +653,10 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder targetDistance(int targetDistance) {
       this.targetDistance = targetDistance;
-      return this;
-    }
-
-    /**
-     * Throttle (percentage) 
-     */
-    @MavlinkMessageField(
-        position = 12,
-        length = 1
-    )
-    public final Builder throttle(int throttle) {
-      this.throttle = throttle;
-      return this;
-    }
-
-    /**
-     * Airspeed (m/s * 5) 
-     */
-    @MavlinkMessageField(
-        position = 13,
-        length = 1
-    )
-    public final Builder airspeed(int airspeed) {
-      this.airspeed = airspeed;
-      return this;
-    }
-
-    /**
-     * Airspeed setpoint (m/s * 5) 
-     */
-    @MavlinkMessageField(
-        position = 14,
-        length = 1
-    )
-    public final Builder airspeedSp(int airspeedSp) {
-      this.airspeedSp = airspeedSp;
-      return this;
-    }
-
-    /**
-     * Groundspeed (m/s * 5) 
-     */
-    @MavlinkMessageField(
-        position = 15,
-        length = 1
-    )
-    public final Builder groundspeed(int groundspeed) {
-      this.groundspeed = groundspeed;
-      return this;
-    }
-
-    /**
-     * Windspeed (m/s * 5) 
-     */
-    @MavlinkMessageField(
-        position = 16,
-        length = 1
-    )
-    public final Builder windspeed(int windspeed) {
-      this.windspeed = windspeed;
-      return this;
-    }
-
-    /**
-     * Wind heading (deg / 2) 
-     */
-    @MavlinkMessageField(
-        position = 17,
-        length = 1
-    )
-    public final Builder windHeading(int windHeading) {
-      this.windHeading = windHeading;
-      return this;
-    }
-
-    /**
-     * Maximum error horizontal position since last message (m * 10) 
-     */
-    @MavlinkMessageField(
-        position = 18,
-        length = 1
-    )
-    public final Builder eph(int eph) {
-      this.eph = eph;
-      return this;
-    }
-
-    /**
-     * Maximum error vertical position since last message (m * 10) 
-     */
-    @MavlinkMessageField(
-        position = 19,
-        length = 1
-    )
-    public final Builder epv(int epv) {
-      this.epv = epv;
-      return this;
-    }
-
-    /**
-     * Air temperature (degrees C) from airspeed sensor 
-     */
-    @MavlinkMessageField(
-        position = 20,
-        length = 1
-    )
-    public final Builder temperatureAir(int temperatureAir) {
-      this.temperatureAir = temperatureAir;
-      return this;
-    }
-
-    /**
-     * Maximum climb rate magnitude since last message (m/s * 10) 
-     */
-    @MavlinkMessageField(
-        position = 21,
-        length = 1
-    )
-    public final Builder climbRate(int climbRate) {
-      this.climbRate = climbRate;
-      return this;
-    }
-
-    /**
-     * Battery (percentage, -1 for DNU) 
-     */
-    @MavlinkMessageField(
-        position = 22,
-        length = 1
-    )
-    public final Builder battery(int battery) {
-      this.battery = battery;
       return this;
     }
 
@@ -810,7 +665,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 23,
-        length = 2
+        unitSize = 2
     )
     public final Builder wpNum(int wpNum) {
       this.wpNum = wpNum;
@@ -822,10 +677,190 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 24,
-        length = 2
+        unitSize = 2
     )
     public final Builder failureFlags(EnumFlagSet<HlFailureFlag> failureFlags) {
       this.failureFlags = failureFlags;
+      return this;
+    }
+
+    /**
+     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder type(MavType type) {
+      this.type = type;
+      return this;
+    }
+
+    /**
+     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder autopilot(MavAutopilot autopilot) {
+      this.autopilot = autopilot;
+      return this;
+    }
+
+    /**
+     * Heading (degrees / 2) 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 1
+    )
+    public final Builder heading(int heading) {
+      this.heading = heading;
+      return this;
+    }
+
+    /**
+     * Heading setpoint (degrees / 2) 
+     */
+    @MavlinkMessageField(
+        position = 10,
+        unitSize = 1
+    )
+    public final Builder targetHeading(int targetHeading) {
+      this.targetHeading = targetHeading;
+      return this;
+    }
+
+    /**
+     * Throttle (percentage) 
+     */
+    @MavlinkMessageField(
+        position = 12,
+        unitSize = 1
+    )
+    public final Builder throttle(int throttle) {
+      this.throttle = throttle;
+      return this;
+    }
+
+    /**
+     * Airspeed (m/s * 5) 
+     */
+    @MavlinkMessageField(
+        position = 13,
+        unitSize = 1
+    )
+    public final Builder airspeed(int airspeed) {
+      this.airspeed = airspeed;
+      return this;
+    }
+
+    /**
+     * Airspeed setpoint (m/s * 5) 
+     */
+    @MavlinkMessageField(
+        position = 14,
+        unitSize = 1
+    )
+    public final Builder airspeedSp(int airspeedSp) {
+      this.airspeedSp = airspeedSp;
+      return this;
+    }
+
+    /**
+     * Groundspeed (m/s * 5) 
+     */
+    @MavlinkMessageField(
+        position = 15,
+        unitSize = 1
+    )
+    public final Builder groundspeed(int groundspeed) {
+      this.groundspeed = groundspeed;
+      return this;
+    }
+
+    /**
+     * Windspeed (m/s * 5) 
+     */
+    @MavlinkMessageField(
+        position = 16,
+        unitSize = 1
+    )
+    public final Builder windspeed(int windspeed) {
+      this.windspeed = windspeed;
+      return this;
+    }
+
+    /**
+     * Wind heading (deg / 2) 
+     */
+    @MavlinkMessageField(
+        position = 17,
+        unitSize = 1
+    )
+    public final Builder windHeading(int windHeading) {
+      this.windHeading = windHeading;
+      return this;
+    }
+
+    /**
+     * Maximum error horizontal position since last message (m * 10) 
+     */
+    @MavlinkMessageField(
+        position = 18,
+        unitSize = 1
+    )
+    public final Builder eph(int eph) {
+      this.eph = eph;
+      return this;
+    }
+
+    /**
+     * Maximum error vertical position since last message (m * 10) 
+     */
+    @MavlinkMessageField(
+        position = 19,
+        unitSize = 1
+    )
+    public final Builder epv(int epv) {
+      this.epv = epv;
+      return this;
+    }
+
+    /**
+     * Air temperature (degrees C) from airspeed sensor 
+     */
+    @MavlinkMessageField(
+        position = 20,
+        unitSize = 1
+    )
+    public final Builder temperatureAir(int temperatureAir) {
+      this.temperatureAir = temperatureAir;
+      return this;
+    }
+
+    /**
+     * Maximum climb rate magnitude since last message (m/s * 10) 
+     */
+    @MavlinkMessageField(
+        position = 21,
+        unitSize = 1
+    )
+    public final Builder climbRate(int climbRate) {
+      this.climbRate = climbRate;
+      return this;
+    }
+
+    /**
+     * Battery (percentage, -1 for DNU) 
+     */
+    @MavlinkMessageField(
+        position = 22,
+        unitSize = 1
+    )
+    public final Builder battery(int battery) {
+      this.battery = battery;
       return this;
     }
 
@@ -834,7 +869,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 25,
-        length = 1
+        unitSize = 1
     )
     public final Builder custom0(int custom0) {
       this.custom0 = custom0;
@@ -846,7 +881,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 26,
-        length = 1
+        unitSize = 1
     )
     public final Builder custom1(int custom1) {
       this.custom1 = custom1;
@@ -858,7 +893,7 @@ public final class HighLatency2 {
      */
     @MavlinkMessageField(
         position = 27,
-        length = 1
+        unitSize = 1
     )
     public final Builder custom2(int custom2) {
       this.custom2 = custom2;
@@ -866,7 +901,7 @@ public final class HighLatency2 {
     }
 
     public final HighLatency2 build() {
-      return new HighLatency2(timestamp, type, autopilot, customMode, latitude, longitude, altitude, targetAltitude, heading, targetHeading, targetDistance, throttle, airspeed, airspeedSp, groundspeed, windspeed, windHeading, eph, epv, temperatureAir, climbRate, battery, wpNum, failureFlags, custom0, custom1, custom2);
+      return new HighLatency2(timestamp, latitude, longitude, customMode, altitude, targetAltitude, targetDistance, wpNum, failureFlags, type, autopilot, heading, targetHeading, throttle, airspeed, airspeedSp, groundspeed, windspeed, windHeading, eph, epv, temperatureAir, climbRate, battery, custom0, custom1, custom2);
     }
   }
 }

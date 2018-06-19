@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -25,12 +28,6 @@ public final class EstimatorStatus {
    * Timestamp (micros since boot or Unix epoch) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * Integer bitmask indicating which EKF outputs are valid. See definition for 
-   * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
-   */
-  private final EnumFlagSet<EstimatorStatusFlags> flags;
 
   /**
    * Velocity innovation test ratio 
@@ -72,11 +69,16 @@ public final class EstimatorStatus {
    */
   private final float posVertAccuracy;
 
-  private EstimatorStatus(BigInteger timeUsec, EnumFlagSet<EstimatorStatusFlags> flags,
-      float velRatio, float posHorizRatio, float posVertRatio, float magRatio, float haglRatio,
-      float tasRatio, float posHorizAccuracy, float posVertAccuracy) {
+  /**
+   * Integer bitmask indicating which EKF outputs are valid. See definition for 
+   * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
+   */
+  private final EnumFlagSet<EstimatorStatusFlags> flags;
+
+  private EstimatorStatus(BigInteger timeUsec, float velRatio, float posHorizRatio,
+      float posVertRatio, float magRatio, float haglRatio, float tasRatio, float posHorizAccuracy,
+      float posVertAccuracy, EnumFlagSet<EstimatorStatusFlags> flags) {
     this.timeUsec = timeUsec;
-    this.flags = flags;
     this.velRatio = velRatio;
     this.posHorizRatio = posHorizRatio;
     this.posVertRatio = posVertRatio;
@@ -85,10 +87,26 @@ public final class EstimatorStatus {
     this.tasRatio = tasRatio;
     this.posHorizAccuracy = posHorizAccuracy;
     this.posVertAccuracy = posVertAccuracy;
+    this.flags = flags;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "EstimatorStatus{timeUsec=" + timeUsec
+         + ", flags=" + flags
+         + ", velRatio=" + velRatio
+         + ", posHorizRatio=" + posHorizRatio
+         + ", posVertRatio=" + posVertRatio
+         + ", magRatio=" + magRatio
+         + ", haglRatio=" + haglRatio
+         + ", tasRatio=" + tasRatio
+         + ", posHorizAccuracy=" + posHorizAccuracy
+         + ", posVertAccuracy=" + posVertAccuracy + "}";
   }
 
   /**
@@ -96,22 +114,10 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Integer bitmask indicating which EKF outputs are valid. See definition for 
-   * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 2
-  )
-  public final EnumFlagSet<EstimatorStatusFlags> flags() {
-    return flags;
   }
 
   /**
@@ -119,7 +125,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float velRatio() {
     return velRatio;
@@ -130,7 +136,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float posHorizRatio() {
     return posHorizRatio;
@@ -141,7 +147,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float posVertRatio() {
     return posVertRatio;
@@ -152,7 +158,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float magRatio() {
     return magRatio;
@@ -163,7 +169,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float haglRatio() {
     return haglRatio;
@@ -174,7 +180,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float tasRatio() {
     return tasRatio;
@@ -185,7 +191,7 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float posHorizAccuracy() {
     return posHorizAccuracy;
@@ -196,16 +202,26 @@ public final class EstimatorStatus {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float posVertAccuracy() {
     return posVertAccuracy;
   }
 
+  /**
+   * Integer bitmask indicating which EKF outputs are valid. See definition for 
+   * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 2
+  )
+  public final EnumFlagSet<EstimatorStatusFlags> flags() {
+    return flags;
+  }
+
   public static class Builder {
     private BigInteger timeUsec;
-
-    private EnumFlagSet<EstimatorStatusFlags> flags;
 
     private float velRatio;
 
@@ -223,6 +239,8 @@ public final class EstimatorStatus {
 
     private float posVertAccuracy;
 
+    private EnumFlagSet<EstimatorStatusFlags> flags;
+
     private Builder() {
     }
 
@@ -231,23 +249,10 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Integer bitmask indicating which EKF outputs are valid. See definition for 
-     * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 2
-    )
-    public final Builder flags(EnumFlagSet<EstimatorStatusFlags> flags) {
-      this.flags = flags;
       return this;
     }
 
@@ -256,7 +261,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder velRatio(float velRatio) {
       this.velRatio = velRatio;
@@ -268,7 +273,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder posHorizRatio(float posHorizRatio) {
       this.posHorizRatio = posHorizRatio;
@@ -280,7 +285,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder posVertRatio(float posVertRatio) {
       this.posVertRatio = posVertRatio;
@@ -292,7 +297,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder magRatio(float magRatio) {
       this.magRatio = magRatio;
@@ -304,7 +309,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder haglRatio(float haglRatio) {
       this.haglRatio = haglRatio;
@@ -316,7 +321,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder tasRatio(float tasRatio) {
       this.tasRatio = tasRatio;
@@ -328,7 +333,7 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder posHorizAccuracy(float posHorizAccuracy) {
       this.posHorizAccuracy = posHorizAccuracy;
@@ -340,15 +345,28 @@ public final class EstimatorStatus {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder posVertAccuracy(float posVertAccuracy) {
       this.posVertAccuracy = posVertAccuracy;
       return this;
     }
 
+    /**
+     * Integer bitmask indicating which EKF outputs are valid. See definition for 
+     * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 2
+    )
+    public final Builder flags(EnumFlagSet<EstimatorStatusFlags> flags) {
+      this.flags = flags;
+      return this;
+    }
+
     public final EstimatorStatus build() {
-      return new EstimatorStatus(timeUsec, flags, velRatio, posHorizRatio, posVertRatio, magRatio, haglRatio, tasRatio, posHorizAccuracy, posVertAccuracy);
+      return new EstimatorStatus(timeUsec, velRatio, posHorizRatio, posVertRatio, magRatio, haglRatio, tasRatio, posHorizAccuracy, posVertAccuracy, flags);
     }
   }
 }

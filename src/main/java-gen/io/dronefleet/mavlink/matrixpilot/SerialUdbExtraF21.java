@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F21 format 
@@ -51,8 +54,19 @@ public final class SerialUdbExtraF21 {
     this.sueGyroZOffset = sueGyroZOffset;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF21{sueAccelXOffset=" + sueAccelXOffset
+         + ", sueAccelYOffset=" + sueAccelYOffset
+         + ", sueAccelZOffset=" + sueAccelZOffset
+         + ", sueGyroXOffset=" + sueGyroXOffset
+         + ", sueGyroYOffset=" + sueGyroYOffset
+         + ", sueGyroZOffset=" + sueGyroZOffset + "}";
   }
 
   /**
@@ -60,7 +74,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelXOffset() {
     return sueAccelXOffset;
@@ -71,7 +85,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelYOffset() {
     return sueAccelYOffset;
@@ -82,7 +96,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int sueAccelZOffset() {
     return sueAccelZOffset;
@@ -93,7 +107,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroXOffset() {
     return sueGyroXOffset;
@@ -104,7 +118,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroYOffset() {
     return sueGyroYOffset;
@@ -115,7 +129,7 @@ public final class SerialUdbExtraF21 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int sueGyroZOffset() {
     return sueGyroZOffset;
@@ -142,7 +156,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelXOffset(int sueAccelXOffset) {
       this.sueAccelXOffset = sueAccelXOffset;
@@ -154,7 +168,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelYOffset(int sueAccelYOffset) {
       this.sueAccelYOffset = sueAccelYOffset;
@@ -166,7 +180,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAccelZOffset(int sueAccelZOffset) {
       this.sueAccelZOffset = sueAccelZOffset;
@@ -178,7 +192,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroXOffset(int sueGyroXOffset) {
       this.sueGyroXOffset = sueGyroXOffset;
@@ -190,7 +204,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroYOffset(int sueGyroYOffset) {
       this.sueGyroYOffset = sueGyroYOffset;
@@ -202,7 +216,7 @@ public final class SerialUdbExtraF21 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueGyroZOffset(int sueGyroZOffset) {
       this.sueGyroZOffset = sueGyroZOffset;

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -17,21 +20,6 @@ public final class CameraFeedback {
    * autopilot if no CCB) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Camera ID 
-   */
-  private final int camIdx;
-
-  /**
-   * Image index 
-   */
-  private final int imgIdx;
 
   /**
    * Latitude in (deg * 1E7) 
@@ -74,6 +62,21 @@ public final class CameraFeedback {
   private final float focLen;
 
   /**
+   * Image index 
+   */
+  private final int imgIdx;
+
+  /**
+   * System ID 
+   */
+  private final int targetSystem;
+
+  /**
+   * Camera ID 
+   */
+  private final int camIdx;
+
+  /**
    * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CameraFeedbackFlags} enum for definition of the bitmask 
    */
   private final CameraFeedbackFlags flags;
@@ -83,13 +86,10 @@ public final class CameraFeedback {
    */
   private final int completedCaptures;
 
-  private CameraFeedback(BigInteger timeUsec, int targetSystem, int camIdx, int imgIdx, int lat,
-      int lng, float altMsl, float altRel, float roll, float pitch, float yaw, float focLen,
+  private CameraFeedback(BigInteger timeUsec, int lat, int lng, float altMsl, float altRel,
+      float roll, float pitch, float yaw, float focLen, int imgIdx, int targetSystem, int camIdx,
       CameraFeedbackFlags flags, int completedCaptures) {
     this.timeUsec = timeUsec;
-    this.targetSystem = targetSystem;
-    this.camIdx = camIdx;
-    this.imgIdx = imgIdx;
     this.lat = lat;
     this.lng = lng;
     this.altMsl = altMsl;
@@ -98,12 +98,34 @@ public final class CameraFeedback {
     this.pitch = pitch;
     this.yaw = yaw;
     this.focLen = focLen;
+    this.imgIdx = imgIdx;
+    this.targetSystem = targetSystem;
+    this.camIdx = camIdx;
     this.flags = flags;
     this.completedCaptures = completedCaptures;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "CameraFeedback{timeUsec=" + timeUsec
+         + ", targetSystem=" + targetSystem
+         + ", camIdx=" + camIdx
+         + ", imgIdx=" + imgIdx
+         + ", lat=" + lat
+         + ", lng=" + lng
+         + ", altMsl=" + altMsl
+         + ", altRel=" + altRel
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", focLen=" + focLen
+         + ", flags=" + flags
+         + ", completedCaptures=" + completedCaptures + "}";
   }
 
   /**
@@ -112,43 +134,10 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Camera ID 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final int camIdx() {
-    return camIdx;
-  }
-
-  /**
-   * Image index 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int imgIdx() {
-    return imgIdx;
   }
 
   /**
@@ -156,7 +145,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -167,7 +156,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int lng() {
     return lng;
@@ -178,7 +167,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float altMsl() {
     return altMsl;
@@ -189,7 +178,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float altRel() {
     return altRel;
@@ -200,7 +189,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -211,7 +200,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -222,7 +211,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -233,10 +222,43 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float focLen() {
     return focLen;
+  }
+
+  /**
+   * Image index 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int imgIdx() {
+    return imgIdx;
+  }
+
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Camera ID 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final int camIdx() {
+    return camIdx;
   }
 
   /**
@@ -244,7 +266,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 1
+      unitSize = 1
   )
   public final CameraFeedbackFlags flags() {
     return flags;
@@ -255,7 +277,7 @@ public final class CameraFeedback {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int completedCaptures() {
@@ -264,12 +286,6 @@ public final class CameraFeedback {
 
   public static class Builder {
     private BigInteger timeUsec;
-
-    private int targetSystem;
-
-    private int camIdx;
-
-    private int imgIdx;
 
     private int lat;
 
@@ -287,6 +303,12 @@ public final class CameraFeedback {
 
     private float focLen;
 
+    private int imgIdx;
+
+    private int targetSystem;
+
+    private int camIdx;
+
     private CameraFeedbackFlags flags;
 
     private int completedCaptures;
@@ -300,46 +322,10 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Camera ID 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder camIdx(int camIdx) {
-      this.camIdx = camIdx;
-      return this;
-    }
-
-    /**
-     * Image index 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder imgIdx(int imgIdx) {
-      this.imgIdx = imgIdx;
       return this;
     }
 
@@ -348,7 +334,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -360,7 +346,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder lng(int lng) {
       this.lng = lng;
@@ -372,7 +358,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder altMsl(float altMsl) {
       this.altMsl = altMsl;
@@ -384,7 +370,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder altRel(float altRel) {
       this.altRel = altRel;
@@ -396,7 +382,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -408,7 +394,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -420,7 +406,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -432,10 +418,46 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder focLen(float focLen) {
       this.focLen = focLen;
+      return this;
+    }
+
+    /**
+     * Image index 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder imgIdx(int imgIdx) {
+      this.imgIdx = imgIdx;
+      return this;
+    }
+
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Camera ID 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder camIdx(int camIdx) {
+      this.camIdx = camIdx;
       return this;
     }
 
@@ -444,7 +466,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 1
+        unitSize = 1
     )
     public final Builder flags(CameraFeedbackFlags flags) {
       this.flags = flags;
@@ -456,7 +478,7 @@ public final class CameraFeedback {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder completedCaptures(int completedCaptures) {
@@ -465,7 +487,7 @@ public final class CameraFeedback {
     }
 
     public final CameraFeedback build() {
-      return new CameraFeedback(timeUsec, targetSystem, camIdx, imgIdx, lat, lng, altMsl, altRel, roll, pitch, yaw, focLen, flags, completedCaptures);
+      return new CameraFeedback(timeUsec, lat, lng, altMsl, altRel, roll, pitch, yaw, focLen, imgIdx, targetSystem, camIdx, flags, completedCaptures);
     }
   }
 }

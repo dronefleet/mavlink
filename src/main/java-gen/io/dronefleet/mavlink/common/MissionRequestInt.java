@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request the information of the mission item with the sequence number seq. The response of the 
@@ -14,6 +17,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class MissionRequestInt {
   /**
+   * Sequence 
+   */
+  private final int seq;
+
+  /**
    * System ID 
    */
   private final int targetSystem;
@@ -24,25 +32,40 @@ public final class MissionRequestInt {
   private final int targetComponent;
 
   /**
-   * Sequence 
-   */
-  private final int seq;
-
-  /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
   private final MavMissionType missionType;
 
-  private MissionRequestInt(int targetSystem, int targetComponent, int seq,
+  private MissionRequestInt(int seq, int targetSystem, int targetComponent,
       MavMissionType missionType) {
+    this.seq = seq;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
-    this.seq = seq;
     this.missionType = missionType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MissionRequestInt{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", seq=" + seq
+         + ", missionType=" + missionType + "}";
+  }
+
+  /**
+   * Sequence 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int seq() {
+    return seq;
   }
 
   /**
@@ -50,7 +73,7 @@ public final class MissionRequestInt {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -61,21 +84,10 @@ public final class MissionRequestInt {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
-  }
-
-  /**
-   * Sequence 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int seq() {
-    return seq;
   }
 
   /**
@@ -83,7 +95,7 @@ public final class MissionRequestInt {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final MavMissionType missionType() {
@@ -91,11 +103,11 @@ public final class MissionRequestInt {
   }
 
   public static class Builder {
+    private int seq;
+
     private int targetSystem;
 
     private int targetComponent;
-
-    private int seq;
 
     private MavMissionType missionType;
 
@@ -103,11 +115,23 @@ public final class MissionRequestInt {
     }
 
     /**
+     * Sequence 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder seq(int seq) {
+      this.seq = seq;
+      return this;
+    }
+
+    /**
      * System ID 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -119,22 +143,10 @@ public final class MissionRequestInt {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * Sequence 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder seq(int seq) {
-      this.seq = seq;
       return this;
     }
 
@@ -143,7 +155,7 @@ public final class MissionRequestInt {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder missionType(MavMissionType missionType) {
@@ -152,7 +164,7 @@ public final class MissionRequestInt {
     }
 
     public final MissionRequestInt build() {
-      return new MissionRequestInt(targetSystem, targetComponent, seq, missionType);
+      return new MissionRequestInt(seq, targetSystem, targetComponent, missionType);
     }
   }
 }

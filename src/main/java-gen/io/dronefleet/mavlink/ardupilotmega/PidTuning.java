@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * PID tuning information 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 98
 )
 public final class PidTuning {
-  /**
-   * axis 
-   */
-  private final PidTuningAxis axis;
-
   /**
    * desired rate (degrees/s) 
    */
@@ -46,30 +44,36 @@ public final class PidTuning {
    */
   private final float d;
 
-  private PidTuning(PidTuningAxis axis, float desired, float achieved, float ff, float p, float i,
-      float d) {
-    this.axis = axis;
+  /**
+   * axis 
+   */
+  private final PidTuningAxis axis;
+
+  private PidTuning(float desired, float achieved, float ff, float p, float i, float d,
+      PidTuningAxis axis) {
     this.desired = desired;
     this.achieved = achieved;
     this.ff = ff;
     this.p = p;
     this.i = i;
     this.d = d;
+    this.axis = axis;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * axis 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final PidTuningAxis axis() {
-    return axis;
+  @Override
+  public String toString() {
+    return "PidTuning{axis=" + axis
+         + ", desired=" + desired
+         + ", achieved=" + achieved
+         + ", ff=" + ff
+         + ", p=" + p
+         + ", i=" + i
+         + ", d=" + d + "}";
   }
 
   /**
@@ -77,7 +81,7 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float desired() {
     return desired;
@@ -88,7 +92,7 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float achieved() {
     return achieved;
@@ -99,7 +103,7 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float ff() {
     return ff;
@@ -110,7 +114,7 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float p() {
     return p;
@@ -121,7 +125,7 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float i() {
     return i;
@@ -132,15 +136,24 @@ public final class PidTuning {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float d() {
     return d;
   }
 
-  public static class Builder {
-    private PidTuningAxis axis;
+  /**
+   * axis 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final PidTuningAxis axis() {
+    return axis;
+  }
 
+  public static class Builder {
     private float desired;
 
     private float achieved;
@@ -153,19 +166,9 @@ public final class PidTuning {
 
     private float d;
 
-    private Builder() {
-    }
+    private PidTuningAxis axis;
 
-    /**
-     * axis 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder axis(PidTuningAxis axis) {
-      this.axis = axis;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -173,7 +176,7 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder desired(float desired) {
       this.desired = desired;
@@ -185,7 +188,7 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder achieved(float achieved) {
       this.achieved = achieved;
@@ -197,7 +200,7 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder ff(float ff) {
       this.ff = ff;
@@ -209,7 +212,7 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder p(float p) {
       this.p = p;
@@ -221,7 +224,7 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder i(float i) {
       this.i = i;
@@ -233,15 +236,27 @@ public final class PidTuning {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder d(float d) {
       this.d = d;
       return this;
     }
 
+    /**
+     * axis 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder axis(PidTuningAxis axis) {
+      this.axis = axis;
+      return this;
+    }
+
     public final PidTuning build() {
-      return new PidTuning(axis, desired, achieved, ff, p, i, d);
+      return new PidTuning(desired, achieved, ff, p, i, d, axis);
     }
   }
 }

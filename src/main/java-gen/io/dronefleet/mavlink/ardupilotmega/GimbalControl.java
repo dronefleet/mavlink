@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Control message for rate gimbal 
@@ -11,16 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 205
 )
 public final class GimbalControl {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
   /**
    * Demanded angular rate X (rad/s) 
    */
@@ -36,39 +29,37 @@ public final class GimbalControl {
    */
   private final float demandedRateZ;
 
-  private GimbalControl(int targetSystem, int targetComponent, float demandedRateX,
-      float demandedRateY, float demandedRateZ) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.demandedRateX = demandedRateX;
-    this.demandedRateY = demandedRateY;
-    this.demandedRateZ = demandedRateZ;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
   /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  private GimbalControl(float demandedRateX, float demandedRateY, float demandedRateZ,
+      int targetSystem, int targetComponent) {
+    this.demandedRateX = demandedRateX;
+    this.demandedRateY = demandedRateY;
+    this.demandedRateZ = demandedRateZ;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GimbalControl{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", demandedRateX=" + demandedRateX
+         + ", demandedRateY=" + demandedRateY
+         + ", demandedRateZ=" + demandedRateZ + "}";
   }
 
   /**
@@ -76,7 +67,7 @@ public final class GimbalControl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float demandedRateX() {
     return demandedRateX;
@@ -87,7 +78,7 @@ public final class GimbalControl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float demandedRateY() {
     return demandedRateY;
@@ -98,48 +89,46 @@ public final class GimbalControl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float demandedRateZ() {
     return demandedRateZ;
   }
 
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private float demandedRateX;
 
     private float demandedRateY;
 
     private float demandedRateZ;
 
+    private int targetSystem;
+
+    private int targetComponent;
+
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -147,7 +136,7 @@ public final class GimbalControl {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder demandedRateX(float demandedRateX) {
       this.demandedRateX = demandedRateX;
@@ -159,7 +148,7 @@ public final class GimbalControl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder demandedRateY(float demandedRateY) {
       this.demandedRateY = demandedRateY;
@@ -171,15 +160,39 @@ public final class GimbalControl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder demandedRateZ(float demandedRateZ) {
       this.demandedRateZ = demandedRateZ;
       return this;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
     public final GimbalControl build() {
-      return new GimbalControl(targetSystem, targetComponent, demandedRateX, demandedRateY, demandedRateZ);
+      return new GimbalControl(demandedRateX, demandedRateY, demandedRateZ, targetSystem, targetComponent);
     }
   }
 }

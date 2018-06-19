@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -13,6 +16,11 @@ import java.util.List;
     crc = 97
 )
 public final class AsluavStatus {
+  /**
+   * Motor RPM 
+   */
+  private final float motorRpm;
+
   /**
    * Status of the position-indicator LEDs 
    */
@@ -28,20 +36,35 @@ public final class AsluavStatus {
    */
   private final List<Integer> servoStatus;
 
-  /**
-   * Motor RPM 
-   */
-  private final float motorRpm;
-
-  private AsluavStatus(int ledStatus, int satcomStatus, List<Integer> servoStatus, float motorRpm) {
+  private AsluavStatus(float motorRpm, int ledStatus, int satcomStatus, List<Integer> servoStatus) {
+    this.motorRpm = motorRpm;
     this.ledStatus = ledStatus;
     this.satcomStatus = satcomStatus;
     this.servoStatus = servoStatus;
-    this.motorRpm = motorRpm;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AsluavStatus{ledStatus=" + ledStatus
+         + ", satcomStatus=" + satcomStatus
+         + ", servoStatus=" + servoStatus
+         + ", motorRpm=" + motorRpm + "}";
+  }
+
+  /**
+   * Motor RPM 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 4
+  )
+  public final float motorRpm() {
+    return motorRpm;
   }
 
   /**
@@ -49,7 +72,7 @@ public final class AsluavStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int ledStatus() {
     return ledStatus;
@@ -60,7 +83,7 @@ public final class AsluavStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int satcomStatus() {
     return satcomStatus;
@@ -71,34 +94,35 @@ public final class AsluavStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 8
   )
   public final List<Integer> servoStatus() {
     return servoStatus;
   }
 
-  /**
-   * Motor RPM 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 4
-  )
-  public final float motorRpm() {
-    return motorRpm;
-  }
-
   public static class Builder {
+    private float motorRpm;
+
     private int ledStatus;
 
     private int satcomStatus;
 
     private List<Integer> servoStatus;
 
-    private float motorRpm;
-
     private Builder() {
+    }
+
+    /**
+     * Motor RPM 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 4
+    )
+    public final Builder motorRpm(float motorRpm) {
+      this.motorRpm = motorRpm;
+      return this;
     }
 
     /**
@@ -106,7 +130,7 @@ public final class AsluavStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder ledStatus(int ledStatus) {
       this.ledStatus = ledStatus;
@@ -118,7 +142,7 @@ public final class AsluavStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder satcomStatus(int satcomStatus) {
       this.satcomStatus = satcomStatus;
@@ -130,7 +154,7 @@ public final class AsluavStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 8
     )
     public final Builder servoStatus(List<Integer> servoStatus) {
@@ -138,20 +162,8 @@ public final class AsluavStatus {
       return this;
     }
 
-    /**
-     * Motor RPM 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder motorRpm(float motorRpm) {
-      this.motorRpm = motorRpm;
-      return this;
-    }
-
     public final AsluavStatus build() {
-      return new AsluavStatus(ledStatus, satcomStatus, servoStatus, motorRpm);
+      return new AsluavStatus(motorRpm, ledStatus, satcomStatus, servoStatus);
     }
   }
 }

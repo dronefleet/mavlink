@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -19,23 +21,31 @@ public final class NamedValueFloat {
   private final long timeBootMs;
 
   /**
-   * Name of the debug variable 
-   */
-  private final String name;
-
-  /**
    * Floating point value 
    */
   private final float value;
 
-  private NamedValueFloat(long timeBootMs, String name, float value) {
+  /**
+   * Name of the debug variable 
+   */
+  private final String name;
+
+  private NamedValueFloat(long timeBootMs, float value, String name) {
     this.timeBootMs = timeBootMs;
-    this.name = name;
     this.value = value;
+    this.name = name;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "NamedValueFloat{timeBootMs=" + timeBootMs
+         + ", name=" + name
+         + ", value=" + value + "}";
   }
 
   /**
@@ -43,22 +53,10 @@ public final class NamedValueFloat {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
-  }
-
-  /**
-   * Name of the debug variable 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1,
-      arraySize = 10
-  )
-  public final String name() {
-    return name;
   }
 
   /**
@@ -66,18 +64,30 @@ public final class NamedValueFloat {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float value() {
     return value;
   }
 
+  /**
+   * Name of the debug variable 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1,
+      arraySize = 10
+  )
+  public final String name() {
+    return name;
+  }
+
   public static class Builder {
     private long timeBootMs;
 
-    private String name;
-
     private float value;
+
+    private String name;
 
     private Builder() {
     }
@@ -87,23 +97,10 @@ public final class NamedValueFloat {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
-      return this;
-    }
-
-    /**
-     * Name of the debug variable 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1,
-        arraySize = 10
-    )
-    public final Builder name(String name) {
-      this.name = name;
       return this;
     }
 
@@ -112,15 +109,28 @@ public final class NamedValueFloat {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder value(float value) {
       this.value = value;
       return this;
     }
 
+    /**
+     * Name of the debug variable 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1,
+        arraySize = 10
+    )
+    public final Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
     public final NamedValueFloat build() {
-      return new NamedValueFloat(timeBootMs, name, value);
+      return new NamedValueFloat(timeBootMs, value, name);
     }
   }
 }

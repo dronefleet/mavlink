@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of AP_Limits. Sent in extended status stream when AP_Limits is enabled 
@@ -12,11 +15,6 @@ import io.dronefleet.mavlink.util.EnumFlagSet;
     crc = 144
 )
 public final class LimitsStatus {
-  /**
-   * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
-   */
-  private final LimitsState limitsState;
-
   /**
    * time of last breach in milliseconds since boot 
    */
@@ -43,6 +41,11 @@ public final class LimitsStatus {
   private final int breachCount;
 
   /**
+   * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
+   */
+  private final LimitsState limitsState;
+
+  /**
    * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
    */
   private final EnumFlagSet<LimitModule> modsEnabled;
@@ -57,33 +60,36 @@ public final class LimitsStatus {
    */
   private final EnumFlagSet<LimitModule> modsTriggered;
 
-  private LimitsStatus(LimitsState limitsState, long lastTrigger, long lastAction,
-      long lastRecovery, long lastClear, int breachCount, EnumFlagSet<LimitModule> modsEnabled,
+  private LimitsStatus(long lastTrigger, long lastAction, long lastRecovery, long lastClear,
+      int breachCount, LimitsState limitsState, EnumFlagSet<LimitModule> modsEnabled,
       EnumFlagSet<LimitModule> modsRequired, EnumFlagSet<LimitModule> modsTriggered) {
-    this.limitsState = limitsState;
     this.lastTrigger = lastTrigger;
     this.lastAction = lastAction;
     this.lastRecovery = lastRecovery;
     this.lastClear = lastClear;
     this.breachCount = breachCount;
+    this.limitsState = limitsState;
     this.modsEnabled = modsEnabled;
     this.modsRequired = modsRequired;
     this.modsTriggered = modsTriggered;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final LimitsState limitsState() {
-    return limitsState;
+  @Override
+  public String toString() {
+    return "LimitsStatus{limitsState=" + limitsState
+         + ", lastTrigger=" + lastTrigger
+         + ", lastAction=" + lastAction
+         + ", lastRecovery=" + lastRecovery
+         + ", lastClear=" + lastClear
+         + ", breachCount=" + breachCount
+         + ", modsEnabled=" + modsEnabled
+         + ", modsRequired=" + modsRequired
+         + ", modsTriggered=" + modsTriggered + "}";
   }
 
   /**
@@ -91,7 +97,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long lastTrigger() {
     return lastTrigger;
@@ -102,7 +108,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final long lastAction() {
     return lastAction;
@@ -113,7 +119,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final long lastRecovery() {
     return lastRecovery;
@@ -124,7 +130,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final long lastClear() {
     return lastClear;
@@ -135,10 +141,21 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int breachCount() {
     return breachCount;
+  }
+
+  /**
+   * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final LimitsState limitsState() {
+    return limitsState;
   }
 
   /**
@@ -146,7 +163,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<LimitModule> modsEnabled() {
     return modsEnabled;
@@ -157,7 +174,7 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<LimitModule> modsRequired() {
     return modsRequired;
@@ -168,15 +185,13 @@ public final class LimitsStatus {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<LimitModule> modsTriggered() {
     return modsTriggered;
   }
 
   public static class Builder {
-    private LimitsState limitsState;
-
     private long lastTrigger;
 
     private long lastAction;
@@ -186,6 +201,8 @@ public final class LimitsStatus {
     private long lastClear;
 
     private int breachCount;
+
+    private LimitsState limitsState;
 
     private EnumFlagSet<LimitModule> modsEnabled;
 
@@ -197,23 +214,11 @@ public final class LimitsStatus {
     }
 
     /**
-     * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder limitsState(LimitsState limitsState) {
-      this.limitsState = limitsState;
-      return this;
-    }
-
-    /**
      * time of last breach in milliseconds since boot 
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lastTrigger(long lastTrigger) {
       this.lastTrigger = lastTrigger;
@@ -225,7 +230,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder lastAction(long lastAction) {
       this.lastAction = lastAction;
@@ -237,7 +242,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder lastRecovery(long lastRecovery) {
       this.lastRecovery = lastRecovery;
@@ -249,7 +254,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder lastClear(long lastClear) {
       this.lastClear = lastClear;
@@ -261,10 +266,22 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder breachCount(int breachCount) {
       this.breachCount = breachCount;
+      return this;
+    }
+
+    /**
+     * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder limitsState(LimitsState limitsState) {
+      this.limitsState = limitsState;
       return this;
     }
 
@@ -273,7 +290,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder modsEnabled(EnumFlagSet<LimitModule> modsEnabled) {
       this.modsEnabled = modsEnabled;
@@ -285,7 +302,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder modsRequired(EnumFlagSet<LimitModule> modsRequired) {
       this.modsRequired = modsRequired;
@@ -297,7 +314,7 @@ public final class LimitsStatus {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1
+        unitSize = 1
     )
     public final Builder modsTriggered(EnumFlagSet<LimitModule> modsTriggered) {
       this.modsTriggered = modsTriggered;
@@ -305,7 +322,7 @@ public final class LimitsStatus {
     }
 
     public final LimitsStatus build() {
-      return new LimitsStatus(limitsState, lastTrigger, lastAction, lastRecovery, lastClear, breachCount, modsEnabled, modsRequired, modsTriggered);
+      return new LimitsStatus(lastTrigger, lastAction, lastRecovery, lastClear, breachCount, limitsState, modsEnabled, modsRequired, modsTriggered);
     }
   }
 }

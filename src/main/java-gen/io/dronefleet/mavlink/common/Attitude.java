@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right). 
@@ -57,8 +60,20 @@ public final class Attitude {
     this.yawspeed = yawspeed;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Attitude{timeBootMs=" + timeBootMs
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", rollspeed=" + rollspeed
+         + ", pitchspeed=" + pitchspeed
+         + ", yawspeed=" + yawspeed + "}";
   }
 
   /**
@@ -66,7 +81,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -77,7 +92,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -88,7 +103,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -99,7 +114,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -110,7 +125,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float rollspeed() {
     return rollspeed;
@@ -121,7 +136,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float pitchspeed() {
     return pitchspeed;
@@ -132,7 +147,7 @@ public final class Attitude {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float yawspeed() {
     return yawspeed;
@@ -161,7 +176,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -173,7 +188,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -185,7 +200,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -197,7 +212,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -209,7 +224,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollspeed(float rollspeed) {
       this.rollspeed = rollspeed;
@@ -221,7 +236,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchspeed(float pitchspeed) {
       this.pitchspeed = pitchspeed;
@@ -233,7 +248,7 @@ public final class Attitude {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawspeed(float yawspeed) {
       this.yawspeed = yawspeed;

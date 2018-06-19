@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F20 format 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 144
 )
 public final class SerialUdbExtraF20 {
-  /**
-   * SUE Number of Input Channels 
-   */
-  private final int sueNumberOfInputs;
-
   /**
    * SUE UDB PWM Trim Value on Input 1 
    */
@@ -76,12 +74,16 @@ public final class SerialUdbExtraF20 {
    */
   private final int sueTrimValueInput12;
 
-  private SerialUdbExtraF20(int sueNumberOfInputs, int sueTrimValueInput1, int sueTrimValueInput2,
-      int sueTrimValueInput3, int sueTrimValueInput4, int sueTrimValueInput5,
-      int sueTrimValueInput6, int sueTrimValueInput7, int sueTrimValueInput8,
-      int sueTrimValueInput9, int sueTrimValueInput10, int sueTrimValueInput11,
-      int sueTrimValueInput12) {
-    this.sueNumberOfInputs = sueNumberOfInputs;
+  /**
+   * SUE Number of Input Channels 
+   */
+  private final int sueNumberOfInputs;
+
+  private SerialUdbExtraF20(int sueTrimValueInput1, int sueTrimValueInput2, int sueTrimValueInput3,
+      int sueTrimValueInput4, int sueTrimValueInput5, int sueTrimValueInput6,
+      int sueTrimValueInput7, int sueTrimValueInput8, int sueTrimValueInput9,
+      int sueTrimValueInput10, int sueTrimValueInput11, int sueTrimValueInput12,
+      int sueNumberOfInputs) {
     this.sueTrimValueInput1 = sueTrimValueInput1;
     this.sueTrimValueInput2 = sueTrimValueInput2;
     this.sueTrimValueInput3 = sueTrimValueInput3;
@@ -94,21 +96,29 @@ public final class SerialUdbExtraF20 {
     this.sueTrimValueInput10 = sueTrimValueInput10;
     this.sueTrimValueInput11 = sueTrimValueInput11;
     this.sueTrimValueInput12 = sueTrimValueInput12;
+    this.sueNumberOfInputs = sueNumberOfInputs;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * SUE Number of Input Channels 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int sueNumberOfInputs() {
-    return sueNumberOfInputs;
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF20{sueNumberOfInputs=" + sueNumberOfInputs
+         + ", sueTrimValueInput1=" + sueTrimValueInput1
+         + ", sueTrimValueInput2=" + sueTrimValueInput2
+         + ", sueTrimValueInput3=" + sueTrimValueInput3
+         + ", sueTrimValueInput4=" + sueTrimValueInput4
+         + ", sueTrimValueInput5=" + sueTrimValueInput5
+         + ", sueTrimValueInput6=" + sueTrimValueInput6
+         + ", sueTrimValueInput7=" + sueTrimValueInput7
+         + ", sueTrimValueInput8=" + sueTrimValueInput8
+         + ", sueTrimValueInput9=" + sueTrimValueInput9
+         + ", sueTrimValueInput10=" + sueTrimValueInput10
+         + ", sueTrimValueInput11=" + sueTrimValueInput11
+         + ", sueTrimValueInput12=" + sueTrimValueInput12 + "}";
   }
 
   /**
@@ -116,7 +126,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput1() {
     return sueTrimValueInput1;
@@ -127,7 +137,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput2() {
     return sueTrimValueInput2;
@@ -138,7 +148,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput3() {
     return sueTrimValueInput3;
@@ -149,7 +159,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput4() {
     return sueTrimValueInput4;
@@ -160,7 +170,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput5() {
     return sueTrimValueInput5;
@@ -171,7 +181,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput6() {
     return sueTrimValueInput6;
@@ -182,7 +192,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput7() {
     return sueTrimValueInput7;
@@ -193,7 +203,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput8() {
     return sueTrimValueInput8;
@@ -204,7 +214,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput9() {
     return sueTrimValueInput9;
@@ -215,7 +225,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput10() {
     return sueTrimValueInput10;
@@ -226,7 +236,7 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput11() {
     return sueTrimValueInput11;
@@ -237,15 +247,24 @@ public final class SerialUdbExtraF20 {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int sueTrimValueInput12() {
     return sueTrimValueInput12;
   }
 
-  public static class Builder {
-    private int sueNumberOfInputs;
+  /**
+   * SUE Number of Input Channels 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int sueNumberOfInputs() {
+    return sueNumberOfInputs;
+  }
 
+  public static class Builder {
     private int sueTrimValueInput1;
 
     private int sueTrimValueInput2;
@@ -270,19 +289,9 @@ public final class SerialUdbExtraF20 {
 
     private int sueTrimValueInput12;
 
-    private Builder() {
-    }
+    private int sueNumberOfInputs;
 
-    /**
-     * SUE Number of Input Channels 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder sueNumberOfInputs(int sueNumberOfInputs) {
-      this.sueNumberOfInputs = sueNumberOfInputs;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -290,7 +299,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput1(int sueTrimValueInput1) {
       this.sueTrimValueInput1 = sueTrimValueInput1;
@@ -302,7 +311,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput2(int sueTrimValueInput2) {
       this.sueTrimValueInput2 = sueTrimValueInput2;
@@ -314,7 +323,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput3(int sueTrimValueInput3) {
       this.sueTrimValueInput3 = sueTrimValueInput3;
@@ -326,7 +335,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput4(int sueTrimValueInput4) {
       this.sueTrimValueInput4 = sueTrimValueInput4;
@@ -338,7 +347,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput5(int sueTrimValueInput5) {
       this.sueTrimValueInput5 = sueTrimValueInput5;
@@ -350,7 +359,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput6(int sueTrimValueInput6) {
       this.sueTrimValueInput6 = sueTrimValueInput6;
@@ -362,7 +371,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput7(int sueTrimValueInput7) {
       this.sueTrimValueInput7 = sueTrimValueInput7;
@@ -374,7 +383,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput8(int sueTrimValueInput8) {
       this.sueTrimValueInput8 = sueTrimValueInput8;
@@ -386,7 +395,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput9(int sueTrimValueInput9) {
       this.sueTrimValueInput9 = sueTrimValueInput9;
@@ -398,7 +407,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput10(int sueTrimValueInput10) {
       this.sueTrimValueInput10 = sueTrimValueInput10;
@@ -410,7 +419,7 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput11(int sueTrimValueInput11) {
       this.sueTrimValueInput11 = sueTrimValueInput11;
@@ -422,15 +431,27 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueTrimValueInput12(int sueTrimValueInput12) {
       this.sueTrimValueInput12 = sueTrimValueInput12;
       return this;
     }
 
+    /**
+     * SUE Number of Input Channels 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder sueNumberOfInputs(int sueNumberOfInputs) {
+      this.sueNumberOfInputs = sueNumberOfInputs;
+      return this;
+    }
+
     public final SerialUdbExtraF20 build() {
-      return new SerialUdbExtraF20(sueNumberOfInputs, sueTrimValueInput1, sueTrimValueInput2, sueTrimValueInput3, sueTrimValueInput4, sueTrimValueInput5, sueTrimValueInput6, sueTrimValueInput7, sueTrimValueInput8, sueTrimValueInput9, sueTrimValueInput10, sueTrimValueInput11, sueTrimValueInput12);
+      return new SerialUdbExtraF20(sueTrimValueInput1, sueTrimValueInput2, sueTrimValueInput3, sueTrimValueInput4, sueTrimValueInput5, sueTrimValueInput6, sueTrimValueInput7, sueTrimValueInput8, sueTrimValueInput9, sueTrimValueInput10, sueTrimValueInput11, sueTrimValueInput12, sueNumberOfInputs);
     }
   }
 }

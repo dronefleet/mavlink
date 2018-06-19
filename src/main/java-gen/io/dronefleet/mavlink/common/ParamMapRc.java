@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -12,35 +14,6 @@ import java.lang.String;
     crc = 78
 )
 public final class ParamMapRc {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
-  /**
-   * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
-   * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
-   * provide 16+1 bytes storage if the ID is stored as string 
-   */
-  private final String paramId;
-
-  /**
-   * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-   * ignored), send -2 to disable any existing map for this rc_channel_index. 
-   */
-  private final int paramIndex;
-
-  /**
-   * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
-   * potentiometer-knob on the RC. 
-   */
-  private final int parameterRcChannelIndex;
-
   /**
    * Initial parameter value 
    */
@@ -63,22 +36,123 @@ public final class ParamMapRc {
    */
   private final float paramValueMax;
 
-  private ParamMapRc(int targetSystem, int targetComponent, String paramId, int paramIndex,
-      int parameterRcChannelIndex, float paramValue0, float scale, float paramValueMin,
-      float paramValueMax) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.paramId = paramId;
-    this.paramIndex = paramIndex;
-    this.parameterRcChannelIndex = parameterRcChannelIndex;
+  /**
+   * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
+   * ignored), send -2 to disable any existing map for this rc_channel_index. 
+   */
+  private final int paramIndex;
+
+  /**
+   * System ID 
+   */
+  private final int targetSystem;
+
+  /**
+   * Component ID 
+   */
+  private final int targetComponent;
+
+  /**
+   * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
+   * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
+   * provide 16+1 bytes storage if the ID is stored as string 
+   */
+  private final String paramId;
+
+  /**
+   * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
+   * potentiometer-knob on the RC. 
+   */
+  private final int parameterRcChannelIndex;
+
+  private ParamMapRc(float paramValue0, float scale, float paramValueMin, float paramValueMax,
+      int paramIndex, int targetSystem, int targetComponent, String paramId,
+      int parameterRcChannelIndex) {
     this.paramValue0 = paramValue0;
     this.scale = scale;
     this.paramValueMin = paramValueMin;
     this.paramValueMax = paramValueMax;
+    this.paramIndex = paramIndex;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.paramId = paramId;
+    this.parameterRcChannelIndex = parameterRcChannelIndex;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamMapRc{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", paramId=" + paramId
+         + ", paramIndex=" + paramIndex
+         + ", parameterRcChannelIndex=" + parameterRcChannelIndex
+         + ", paramValue0=" + paramValue0
+         + ", scale=" + scale
+         + ", paramValueMin=" + paramValueMin
+         + ", paramValueMax=" + paramValueMax + "}";
+  }
+
+  /**
+   * Initial parameter value 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 4
+  )
+  public final float paramValue0() {
+    return paramValue0;
+  }
+
+  /**
+   * Scale, maps the RC range [-1, 1] to a parameter value 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 4
+  )
+  public final float scale() {
+    return scale;
+  }
+
+  /**
+   * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
+   * (Depends on implementation) 
+   */
+  @MavlinkMessageField(
+      position = 8,
+      unitSize = 4
+  )
+  public final float paramValueMin() {
+    return paramValueMin;
+  }
+
+  /**
+   * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
+   * (Depends on implementation) 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 4
+  )
+  public final float paramValueMax() {
+    return paramValueMax;
+  }
+
+  /**
+   * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
+   * ignored), send -2 to disable any existing map for this rc_channel_index. 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int paramIndex() {
+    return paramIndex;
   }
 
   /**
@@ -86,7 +160,7 @@ public final class ParamMapRc {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -97,7 +171,7 @@ public final class ParamMapRc {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -110,23 +184,11 @@ public final class ParamMapRc {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final String paramId() {
     return paramId;
-  }
-
-  /**
-   * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-   * ignored), send -2 to disable any existing map for this rc_channel_index. 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int paramIndex() {
-    return paramIndex;
   }
 
   /**
@@ -135,69 +197,13 @@ public final class ParamMapRc {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int parameterRcChannelIndex() {
     return parameterRcChannelIndex;
   }
 
-  /**
-   * Initial parameter value 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 4
-  )
-  public final float paramValue0() {
-    return paramValue0;
-  }
-
-  /**
-   * Scale, maps the RC range [-1, 1] to a parameter value 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 4
-  )
-  public final float scale() {
-    return scale;
-  }
-
-  /**
-   * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
-   * (Depends on implementation) 
-   */
-  @MavlinkMessageField(
-      position = 8,
-      length = 4
-  )
-  public final float paramValueMin() {
-    return paramValueMin;
-  }
-
-  /**
-   * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
-   * (Depends on implementation) 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 4
-  )
-  public final float paramValueMax() {
-    return paramValueMax;
-  }
-
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private String paramId;
-
-    private int paramIndex;
-
-    private int parameterRcChannelIndex;
-
     private float paramValue0;
 
     private float scale;
@@ -206,7 +212,80 @@ public final class ParamMapRc {
 
     private float paramValueMax;
 
+    private int paramIndex;
+
+    private int targetSystem;
+
+    private int targetComponent;
+
+    private String paramId;
+
+    private int parameterRcChannelIndex;
+
     private Builder() {
+    }
+
+    /**
+     * Initial parameter value 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 4
+    )
+    public final Builder paramValue0(float paramValue0) {
+      this.paramValue0 = paramValue0;
+      return this;
+    }
+
+    /**
+     * Scale, maps the RC range [-1, 1] to a parameter value 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 4
+    )
+    public final Builder scale(float scale) {
+      this.scale = scale;
+      return this;
+    }
+
+    /**
+     * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
+     * (Depends on implementation) 
+     */
+    @MavlinkMessageField(
+        position = 8,
+        unitSize = 4
+    )
+    public final Builder paramValueMin(float paramValueMin) {
+      this.paramValueMin = paramValueMin;
+      return this;
+    }
+
+    /**
+     * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
+     * (Depends on implementation) 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 4
+    )
+    public final Builder paramValueMax(float paramValueMax) {
+      this.paramValueMax = paramValueMax;
+      return this;
+    }
+
+    /**
+     * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
+     * ignored), send -2 to disable any existing map for this rc_channel_index. 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder paramIndex(int paramIndex) {
+      this.paramIndex = paramIndex;
+      return this;
     }
 
     /**
@@ -214,7 +293,7 @@ public final class ParamMapRc {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -226,7 +305,7 @@ public final class ParamMapRc {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -240,24 +319,11 @@ public final class ParamMapRc {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder paramId(String paramId) {
       this.paramId = paramId;
-      return this;
-    }
-
-    /**
-     * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-     * ignored), send -2 to disable any existing map for this rc_channel_index. 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder paramIndex(int paramIndex) {
-      this.paramIndex = paramIndex;
       return this;
     }
 
@@ -267,65 +333,15 @@ public final class ParamMapRc {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder parameterRcChannelIndex(int parameterRcChannelIndex) {
       this.parameterRcChannelIndex = parameterRcChannelIndex;
       return this;
     }
 
-    /**
-     * Initial parameter value 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 4
-    )
-    public final Builder paramValue0(float paramValue0) {
-      this.paramValue0 = paramValue0;
-      return this;
-    }
-
-    /**
-     * Scale, maps the RC range [-1, 1] to a parameter value 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 4
-    )
-    public final Builder scale(float scale) {
-      this.scale = scale;
-      return this;
-    }
-
-    /**
-     * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
-     * (Depends on implementation) 
-     */
-    @MavlinkMessageField(
-        position = 8,
-        length = 4
-    )
-    public final Builder paramValueMin(float paramValueMin) {
-      this.paramValueMin = paramValueMin;
-      return this;
-    }
-
-    /**
-     * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
-     * (Depends on implementation) 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 4
-    )
-    public final Builder paramValueMax(float paramValueMax) {
-      this.paramValueMax = paramValueMax;
-      return this;
-    }
-
     public final ParamMapRc build() {
-      return new ParamMapRc(targetSystem, targetComponent, paramId, paramIndex, parameterRcChannelIndex, paramValue0, scale, paramValueMin, paramValueMax);
+      return new ParamMapRc(paramValue0, scale, paramValueMin, paramValueMax, paramIndex, targetSystem, targetComponent, paramId, parameterRcChannelIndex);
     }
   }
 }

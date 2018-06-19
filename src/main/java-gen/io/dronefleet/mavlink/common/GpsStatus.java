@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -56,8 +59,19 @@ public final class GpsStatus {
     this.satelliteSnr = satelliteSnr;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GpsStatus{satellitesVisible=" + satellitesVisible
+         + ", satellitePrn=" + satellitePrn
+         + ", satelliteUsed=" + satelliteUsed
+         + ", satelliteElevation=" + satelliteElevation
+         + ", satelliteAzimuth=" + satelliteAzimuth
+         + ", satelliteSnr=" + satelliteSnr + "}";
   }
 
   /**
@@ -65,7 +79,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int satellitesVisible() {
     return satellitesVisible;
@@ -76,7 +90,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> satellitePrn() {
@@ -88,7 +102,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> satelliteUsed() {
@@ -100,7 +114,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> satelliteElevation() {
@@ -112,7 +126,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> satelliteAzimuth() {
@@ -124,7 +138,7 @@ public final class GpsStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 20
   )
   public final List<Integer> satelliteSnr() {
@@ -152,7 +166,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder satellitesVisible(int satellitesVisible) {
       this.satellitesVisible = satellitesVisible;
@@ -164,7 +178,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder satellitePrn(List<Integer> satellitePrn) {
@@ -177,7 +191,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder satelliteUsed(List<Integer> satelliteUsed) {
@@ -190,7 +204,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder satelliteElevation(List<Integer> satelliteElevation) {
@@ -203,7 +217,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder satelliteAzimuth(List<Integer> satelliteAzimuth) {
@@ -216,7 +230,7 @@ public final class GpsStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 20
     )
     public final Builder satelliteSnr(List<Integer> satelliteSnr) {

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The scaled values of the RC channels received. (-100%) -10000, (0%) 0, (100%) 10000. Channels 
@@ -16,12 +19,6 @@ public final class RcChannelsScaled {
    * Timestamp (milliseconds since system boot) 
    */
   private final long timeBootMs;
-
-  /**
-   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-   * than 8 servos. 
-   */
-  private final int port;
 
   /**
    * RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
@@ -64,15 +61,20 @@ public final class RcChannelsScaled {
   private final int chan8Scaled;
 
   /**
+   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
+   * than 8 servos. 
+   */
+  private final int port;
+
+  /**
    * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
    */
   private final int rssi;
 
-  private RcChannelsScaled(long timeBootMs, int port, int chan1Scaled, int chan2Scaled,
-      int chan3Scaled, int chan4Scaled, int chan5Scaled, int chan6Scaled, int chan7Scaled,
-      int chan8Scaled, int rssi) {
+  private RcChannelsScaled(long timeBootMs, int chan1Scaled, int chan2Scaled, int chan3Scaled,
+      int chan4Scaled, int chan5Scaled, int chan6Scaled, int chan7Scaled, int chan8Scaled, int port,
+      int rssi) {
     this.timeBootMs = timeBootMs;
-    this.port = port;
     this.chan1Scaled = chan1Scaled;
     this.chan2Scaled = chan2Scaled;
     this.chan3Scaled = chan3Scaled;
@@ -81,11 +83,28 @@ public final class RcChannelsScaled {
     this.chan6Scaled = chan6Scaled;
     this.chan7Scaled = chan7Scaled;
     this.chan8Scaled = chan8Scaled;
+    this.port = port;
     this.rssi = rssi;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "RcChannelsScaled{timeBootMs=" + timeBootMs
+         + ", port=" + port
+         + ", chan1Scaled=" + chan1Scaled
+         + ", chan2Scaled=" + chan2Scaled
+         + ", chan3Scaled=" + chan3Scaled
+         + ", chan4Scaled=" + chan4Scaled
+         + ", chan5Scaled=" + chan5Scaled
+         + ", chan6Scaled=" + chan6Scaled
+         + ", chan7Scaled=" + chan7Scaled
+         + ", chan8Scaled=" + chan8Scaled
+         + ", rssi=" + rssi + "}";
   }
 
   /**
@@ -93,22 +112,10 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
-  }
-
-  /**
-   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-   * than 8 servos. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int port() {
-    return port;
   }
 
   /**
@@ -116,7 +123,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int chan1Scaled() {
     return chan1Scaled;
@@ -127,7 +134,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int chan2Scaled() {
     return chan2Scaled;
@@ -138,7 +145,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int chan3Scaled() {
     return chan3Scaled;
@@ -149,7 +156,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int chan4Scaled() {
     return chan4Scaled;
@@ -160,7 +167,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int chan5Scaled() {
     return chan5Scaled;
@@ -171,7 +178,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int chan6Scaled() {
     return chan6Scaled;
@@ -182,7 +189,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int chan7Scaled() {
     return chan7Scaled;
@@ -193,10 +200,22 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int chan8Scaled() {
     return chan8Scaled;
+  }
+
+  /**
+   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
+   * than 8 servos. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int port() {
+    return port;
   }
 
   /**
@@ -204,7 +223,7 @@ public final class RcChannelsScaled {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 1
+      unitSize = 1
   )
   public final int rssi() {
     return rssi;
@@ -212,8 +231,6 @@ public final class RcChannelsScaled {
 
   public static class Builder {
     private long timeBootMs;
-
-    private int port;
 
     private int chan1Scaled;
 
@@ -231,6 +248,8 @@ public final class RcChannelsScaled {
 
     private int chan8Scaled;
 
+    private int port;
+
     private int rssi;
 
     private Builder() {
@@ -241,23 +260,10 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
-      return this;
-    }
-
-    /**
-     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-     * than 8 servos. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder port(int port) {
-      this.port = port;
       return this;
     }
 
@@ -266,7 +272,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan1Scaled(int chan1Scaled) {
       this.chan1Scaled = chan1Scaled;
@@ -278,7 +284,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan2Scaled(int chan2Scaled) {
       this.chan2Scaled = chan2Scaled;
@@ -290,7 +296,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan3Scaled(int chan3Scaled) {
       this.chan3Scaled = chan3Scaled;
@@ -302,7 +308,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan4Scaled(int chan4Scaled) {
       this.chan4Scaled = chan4Scaled;
@@ -314,7 +320,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan5Scaled(int chan5Scaled) {
       this.chan5Scaled = chan5Scaled;
@@ -326,7 +332,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan6Scaled(int chan6Scaled) {
       this.chan6Scaled = chan6Scaled;
@@ -338,7 +344,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan7Scaled(int chan7Scaled) {
       this.chan7Scaled = chan7Scaled;
@@ -350,10 +356,23 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan8Scaled(int chan8Scaled) {
       this.chan8Scaled = chan8Scaled;
+      return this;
+    }
+
+    /**
+     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
+     * than 8 servos. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder port(int port) {
+      this.port = port;
       return this;
     }
 
@@ -362,7 +381,7 @@ public final class RcChannelsScaled {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 1
+        unitSize = 1
     )
     public final Builder rssi(int rssi) {
       this.rssi = rssi;
@@ -370,7 +389,7 @@ public final class RcChannelsScaled {
     }
 
     public final RcChannelsScaled build() {
-      return new RcChannelsScaled(timeBootMs, port, chan1Scaled, chan2Scaled, chan3Scaled, chan4Scaled, chan5Scaled, chan6Scaled, chan7Scaled, chan8Scaled, rssi);
+      return new RcChannelsScaled(timeBootMs, chan1Scaled, chan2Scaled, chan3Scaled, chan4Scaled, chan5Scaled, chan6Scaled, chan7Scaled, chan8Scaled, port, rssi);
     }
   }
 }

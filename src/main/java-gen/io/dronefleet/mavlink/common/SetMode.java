@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE COMMAND_LONG with MAV_CMD_DO_SET_MODE INSTEAD. Set the 
@@ -14,6 +17,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class SetMode {
   /**
+   * The new autopilot-specific mode. This field can be ignored by an autopilot. 
+   */
+  private final long customMode;
+
+  /**
    * The system setting the mode 
    */
   private final int targetSystem;
@@ -23,19 +31,33 @@ public final class SetMode {
    */
   private final MavMode baseMode;
 
+  private SetMode(long customMode, int targetSystem, MavMode baseMode) {
+    this.customMode = customMode;
+    this.targetSystem = targetSystem;
+    this.baseMode = baseMode;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SetMode{targetSystem=" + targetSystem
+         + ", baseMode=" + baseMode
+         + ", customMode=" + customMode + "}";
+  }
+
   /**
    * The new autopilot-specific mode. This field can be ignored by an autopilot. 
    */
-  private final long customMode;
-
-  private SetMode(int targetSystem, MavMode baseMode, long customMode) {
-    this.targetSystem = targetSystem;
-    this.baseMode = baseMode;
-    this.customMode = customMode;
-  }
-
-  public static Builder builder() {
-    return new Builder();
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 4
+  )
+  public final long customMode() {
+    return customMode;
   }
 
   /**
@@ -43,7 +65,7 @@ public final class SetMode {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -54,31 +76,32 @@ public final class SetMode {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final MavMode baseMode() {
     return baseMode;
   }
 
-  /**
-   * The new autopilot-specific mode. This field can be ignored by an autopilot. 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 4
-  )
-  public final long customMode() {
-    return customMode;
-  }
-
   public static class Builder {
+    private long customMode;
+
     private int targetSystem;
 
     private MavMode baseMode;
 
-    private long customMode;
-
     private Builder() {
+    }
+
+    /**
+     * The new autopilot-specific mode. This field can be ignored by an autopilot. 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 4
+    )
+    public final Builder customMode(long customMode) {
+      this.customMode = customMode;
+      return this;
     }
 
     /**
@@ -86,7 +109,7 @@ public final class SetMode {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -98,27 +121,15 @@ public final class SetMode {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder baseMode(MavMode baseMode) {
       this.baseMode = baseMode;
       return this;
     }
 
-    /**
-     * The new autopilot-specific mode. This field can be ignored by an autopilot. 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 4
-    )
-    public final Builder customMode(long customMode) {
-      this.customMode = customMode;
-      return this;
-    }
-
     public final SetMode build() {
-      return new SetMode(targetSystem, baseMode, customMode);
+      return new SetMode(customMode, targetSystem, baseMode);
     }
   }
 }

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Write registers reply 
@@ -26,8 +29,15 @@ public final class DeviceOpWriteReply {
     this.result = result;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "DeviceOpWriteReply{requestId=" + requestId
+         + ", result=" + result + "}";
   }
 
   /**
@@ -35,7 +45,7 @@ public final class DeviceOpWriteReply {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long requestId() {
     return requestId;
@@ -46,7 +56,7 @@ public final class DeviceOpWriteReply {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int result() {
     return result;
@@ -65,7 +75,7 @@ public final class DeviceOpWriteReply {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder requestId(long requestId) {
       this.requestId = requestId;
@@ -77,7 +87,7 @@ public final class DeviceOpWriteReply {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder result(int result) {
       this.result = result;

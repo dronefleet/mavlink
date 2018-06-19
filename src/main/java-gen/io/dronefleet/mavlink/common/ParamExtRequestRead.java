@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -12,6 +14,12 @@ import java.lang.String;
     crc = 243
 )
 public final class ParamExtRequestRead {
+  /**
+   * Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be 
+   * ignored) 
+   */
+  private final int paramIndex;
+
   /**
    * System ID 
    */
@@ -29,22 +37,37 @@ public final class ParamExtRequestRead {
    */
   private final String paramId;
 
+  private ParamExtRequestRead(int paramIndex, int targetSystem, int targetComponent,
+      String paramId) {
+    this.paramIndex = paramIndex;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.paramId = paramId;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamExtRequestRead{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", paramId=" + paramId
+         + ", paramIndex=" + paramIndex + "}";
+  }
+
   /**
    * Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be 
    * ignored) 
    */
-  private final int paramIndex;
-
-  private ParamExtRequestRead(int targetSystem, int targetComponent, String paramId,
-      int paramIndex) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.paramId = paramId;
-    this.paramIndex = paramIndex;
-  }
-
-  public static Builder builder() {
-    return new Builder();
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int paramIndex() {
+    return paramIndex;
   }
 
   /**
@@ -52,7 +75,7 @@ public final class ParamExtRequestRead {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -63,7 +86,7 @@ public final class ParamExtRequestRead {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -76,35 +99,36 @@ public final class ParamExtRequestRead {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final String paramId() {
     return paramId;
   }
 
-  /**
-   * Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be 
-   * ignored) 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int paramIndex() {
-    return paramIndex;
-  }
-
   public static class Builder {
+    private int paramIndex;
+
     private int targetSystem;
 
     private int targetComponent;
 
     private String paramId;
 
-    private int paramIndex;
-
     private Builder() {
+    }
+
+    /**
+     * Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be 
+     * ignored) 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder paramIndex(int paramIndex) {
+      this.paramIndex = paramIndex;
+      return this;
     }
 
     /**
@@ -112,7 +136,7 @@ public final class ParamExtRequestRead {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -124,7 +148,7 @@ public final class ParamExtRequestRead {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -138,7 +162,7 @@ public final class ParamExtRequestRead {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder paramId(String paramId) {
@@ -146,21 +170,8 @@ public final class ParamExtRequestRead {
       return this;
     }
 
-    /**
-     * Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be 
-     * ignored) 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder paramIndex(int paramIndex) {
-      this.paramIndex = paramIndex;
-      return this;
-    }
-
     public final ParamExtRequestRead build() {
-      return new ParamExtRequestRead(targetSystem, targetComponent, paramId, paramIndex);
+      return new ParamExtRequestRead(paramIndex, targetSystem, targetComponent, paramId);
     }
   }
 }

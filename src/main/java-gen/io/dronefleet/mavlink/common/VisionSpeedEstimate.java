@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -47,8 +50,18 @@ public final class VisionSpeedEstimate {
     this.covariance = covariance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "VisionSpeedEstimate{usec=" + usec
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -56,7 +69,7 @@ public final class VisionSpeedEstimate {
    */
   @MavlinkMessageField(
       position = 0,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger usec() {
     return usec;
@@ -67,7 +80,7 @@ public final class VisionSpeedEstimate {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -78,7 +91,7 @@ public final class VisionSpeedEstimate {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -89,7 +102,7 @@ public final class VisionSpeedEstimate {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -100,7 +113,7 @@ public final class VisionSpeedEstimate {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4,
+      unitSize = 4,
       arraySize = 9,
       extension = true
   )
@@ -127,7 +140,7 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkMessageField(
         position = 0,
-        length = 8
+        unitSize = 8
     )
     public final Builder usec(BigInteger usec) {
       this.usec = usec;
@@ -139,7 +152,7 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -151,7 +164,7 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -163,7 +176,7 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -175,7 +188,7 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4,
+        unitSize = 4,
         arraySize = 9,
         extension = true
     )

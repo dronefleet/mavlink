@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.paparazzi;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request script item with the sequence number seq. The response of the system to this message 
@@ -13,6 +16,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class ScriptRequest {
   /**
+   * Sequence 
+   */
+  private final int seq;
+
+  /**
    * System ID 
    */
   private final int targetSystem;
@@ -22,19 +30,33 @@ public final class ScriptRequest {
    */
   private final int targetComponent;
 
+  private ScriptRequest(int seq, int targetSystem, int targetComponent) {
+    this.seq = seq;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ScriptRequest{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", seq=" + seq + "}";
+  }
+
   /**
    * Sequence 
    */
-  private final int seq;
-
-  private ScriptRequest(int targetSystem, int targetComponent, int seq) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.seq = seq;
-  }
-
-  public static Builder builder() {
-    return new Builder();
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int seq() {
+    return seq;
   }
 
   /**
@@ -42,7 +64,7 @@ public final class ScriptRequest {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -53,31 +75,32 @@ public final class ScriptRequest {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
   }
 
-  /**
-   * Sequence 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int seq() {
-    return seq;
-  }
-
   public static class Builder {
+    private int seq;
+
     private int targetSystem;
 
     private int targetComponent;
 
-    private int seq;
-
     private Builder() {
+    }
+
+    /**
+     * Sequence 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder seq(int seq) {
+      this.seq = seq;
+      return this;
     }
 
     /**
@@ -85,7 +108,7 @@ public final class ScriptRequest {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -97,27 +120,15 @@ public final class ScriptRequest {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
       return this;
     }
 
-    /**
-     * Sequence 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder seq(int seq) {
-      this.seq = seq;
-      return this;
-    }
-
     public final ScriptRequest build() {
-      return new ScriptRequest(targetSystem, targetComponent, seq);
+      return new ScriptRequest(seq, targetSystem, targetComponent);
     }
   }
 }

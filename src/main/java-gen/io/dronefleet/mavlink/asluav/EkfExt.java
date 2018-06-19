@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -58,8 +61,20 @@ public final class EkfExt {
     this.alpha = alpha;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "EkfExt{timestamp=" + timestamp
+         + ", windspeed=" + windspeed
+         + ", winddir=" + winddir
+         + ", windz=" + windz
+         + ", airspeed=" + airspeed
+         + ", beta=" + beta
+         + ", alpha=" + alpha + "}";
   }
 
   /**
@@ -67,7 +82,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
@@ -78,7 +93,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float windspeed() {
     return windspeed;
@@ -89,7 +104,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float winddir() {
     return winddir;
@@ -100,7 +115,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float windz() {
     return windz;
@@ -111,7 +126,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float airspeed() {
     return airspeed;
@@ -122,7 +137,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float beta() {
     return beta;
@@ -133,7 +148,7 @@ public final class EkfExt {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float alpha() {
     return alpha;
@@ -162,7 +177,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
@@ -174,7 +189,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder windspeed(float windspeed) {
       this.windspeed = windspeed;
@@ -186,7 +201,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder winddir(float winddir) {
       this.winddir = winddir;
@@ -198,7 +213,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder windz(float windz) {
       this.windz = windz;
@@ -210,7 +225,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder airspeed(float airspeed) {
       this.airspeed = airspeed;
@@ -222,7 +237,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder beta(float beta) {
       this.beta = beta;
@@ -234,7 +249,7 @@ public final class EkfExt {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder alpha(float alpha) {
       this.alpha = alpha;

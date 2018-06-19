@@ -1,9 +1,9 @@
 package io.dronefleet.mavlink.protocol;
 
-public class ByteArray {
+class ByteArray {
     private final byte[] bytes;
 
-    public ByteArray(byte[] bytes) {
+    ByteArray(byte[] bytes) {
         this.bytes = bytes;
     }
 

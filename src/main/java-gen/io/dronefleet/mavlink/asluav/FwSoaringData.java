@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.asluav;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -170,8 +173,38 @@ public final class FwSoaringData {
     this.valid = valid;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "FwSoaringData{timestamp=" + timestamp
+         + ", timestampmodechanged=" + timestampmodechanged
+         + ", xw=" + xw
+         + ", xr=" + xr
+         + ", xlat=" + xlat
+         + ", xlon=" + xlon
+         + ", varw=" + varw
+         + ", varr=" + varr
+         + ", varlat=" + varlat
+         + ", varlon=" + varlon
+         + ", loiterradius=" + loiterradius
+         + ", loiterdirection=" + loiterdirection
+         + ", disttosoarpoint=" + disttosoarpoint
+         + ", vsinkexp=" + vsinkexp
+         + ", z1Localupdraftspeed=" + z1Localupdraftspeed
+         + ", z2Deltaroll=" + z2Deltaroll
+         + ", z1Exp=" + z1Exp
+         + ", z2Exp=" + z2Exp
+         + ", thermalgsnorth=" + thermalgsnorth
+         + ", thermalgseast=" + thermalgseast
+         + ", tseDot=" + tseDot
+         + ", debugvar1=" + debugvar1
+         + ", debugvar2=" + debugvar2
+         + ", controlmode=" + controlmode
+         + ", valid=" + valid + "}";
   }
 
   /**
@@ -179,7 +212,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestamp() {
     return timestamp;
@@ -190,7 +223,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timestampmodechanged() {
     return timestampmodechanged;
@@ -201,7 +234,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float xw() {
     return xw;
@@ -212,7 +245,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float xr() {
     return xr;
@@ -223,7 +256,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float xlat() {
     return xlat;
@@ -234,7 +267,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float xlon() {
     return xlon;
@@ -245,7 +278,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float varw() {
     return varw;
@@ -256,7 +289,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float varr() {
     return varr;
@@ -267,7 +300,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float varlat() {
     return varlat;
@@ -278,7 +311,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float varlon() {
     return varlon;
@@ -289,7 +322,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float loiterradius() {
     return loiterradius;
@@ -300,7 +333,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float loiterdirection() {
     return loiterdirection;
@@ -311,7 +344,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float disttosoarpoint() {
     return disttosoarpoint;
@@ -322,7 +355,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float vsinkexp() {
     return vsinkexp;
@@ -333,7 +366,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4
+      unitSize = 4
   )
   public final float z1Localupdraftspeed() {
     return z1Localupdraftspeed;
@@ -344,7 +377,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 4
+      unitSize = 4
   )
   public final float z2Deltaroll() {
     return z2Deltaroll;
@@ -355,7 +388,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 4
+      unitSize = 4
   )
   public final float z1Exp() {
     return z1Exp;
@@ -366,7 +399,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 4
+      unitSize = 4
   )
   public final float z2Exp() {
     return z2Exp;
@@ -377,7 +410,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 4
+      unitSize = 4
   )
   public final float thermalgsnorth() {
     return thermalgsnorth;
@@ -388,7 +421,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 4
+      unitSize = 4
   )
   public final float thermalgseast() {
     return thermalgseast;
@@ -399,7 +432,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 4
+      unitSize = 4
   )
   public final float tseDot() {
     return tseDot;
@@ -410,7 +443,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 22,
-      length = 4
+      unitSize = 4
   )
   public final float debugvar1() {
     return debugvar1;
@@ -421,7 +454,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 23,
-      length = 4
+      unitSize = 4
   )
   public final float debugvar2() {
     return debugvar2;
@@ -432,7 +465,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 24,
-      length = 1
+      unitSize = 1
   )
   public final int controlmode() {
     return controlmode;
@@ -443,7 +476,7 @@ public final class FwSoaringData {
    */
   @MavlinkMessageField(
       position = 25,
-      length = 1
+      unitSize = 1
   )
   public final int valid() {
     return valid;
@@ -508,7 +541,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestamp(BigInteger timestamp) {
       this.timestamp = timestamp;
@@ -520,7 +553,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 8
+        unitSize = 8
     )
     public final Builder timestampmodechanged(BigInteger timestampmodechanged) {
       this.timestampmodechanged = timestampmodechanged;
@@ -532,7 +565,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder xw(float xw) {
       this.xw = xw;
@@ -544,7 +577,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder xr(float xr) {
       this.xr = xr;
@@ -556,7 +589,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder xlat(float xlat) {
       this.xlat = xlat;
@@ -568,7 +601,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder xlon(float xlon) {
       this.xlon = xlon;
@@ -580,7 +613,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder varw(float varw) {
       this.varw = varw;
@@ -592,7 +625,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder varr(float varr) {
       this.varr = varr;
@@ -604,7 +637,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder varlat(float varlat) {
       this.varlat = varlat;
@@ -616,7 +649,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder varlon(float varlon) {
       this.varlon = varlon;
@@ -628,7 +661,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder loiterradius(float loiterradius) {
       this.loiterradius = loiterradius;
@@ -640,7 +673,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder loiterdirection(float loiterdirection) {
       this.loiterdirection = loiterdirection;
@@ -652,7 +685,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder disttosoarpoint(float disttosoarpoint) {
       this.disttosoarpoint = disttosoarpoint;
@@ -664,7 +697,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder vsinkexp(float vsinkexp) {
       this.vsinkexp = vsinkexp;
@@ -676,7 +709,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4
+        unitSize = 4
     )
     public final Builder z1Localupdraftspeed(float z1Localupdraftspeed) {
       this.z1Localupdraftspeed = z1Localupdraftspeed;
@@ -688,7 +721,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 4
+        unitSize = 4
     )
     public final Builder z2Deltaroll(float z2Deltaroll) {
       this.z2Deltaroll = z2Deltaroll;
@@ -700,7 +733,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 4
+        unitSize = 4
     )
     public final Builder z1Exp(float z1Exp) {
       this.z1Exp = z1Exp;
@@ -712,7 +745,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 4
+        unitSize = 4
     )
     public final Builder z2Exp(float z2Exp) {
       this.z2Exp = z2Exp;
@@ -724,7 +757,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 4
+        unitSize = 4
     )
     public final Builder thermalgsnorth(float thermalgsnorth) {
       this.thermalgsnorth = thermalgsnorth;
@@ -736,7 +769,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 4
+        unitSize = 4
     )
     public final Builder thermalgseast(float thermalgseast) {
       this.thermalgseast = thermalgseast;
@@ -748,7 +781,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 4
+        unitSize = 4
     )
     public final Builder tseDot(float tseDot) {
       this.tseDot = tseDot;
@@ -760,7 +793,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 22,
-        length = 4
+        unitSize = 4
     )
     public final Builder debugvar1(float debugvar1) {
       this.debugvar1 = debugvar1;
@@ -772,7 +805,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 23,
-        length = 4
+        unitSize = 4
     )
     public final Builder debugvar2(float debugvar2) {
       this.debugvar2 = debugvar2;
@@ -784,7 +817,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 24,
-        length = 1
+        unitSize = 1
     )
     public final Builder controlmode(int controlmode) {
       this.controlmode = controlmode;
@@ -796,7 +829,7 @@ public final class FwSoaringData {
      */
     @MavlinkMessageField(
         position = 25,
-        length = 1
+        unitSize = 1
     )
     public final Builder valid(int valid) {
       this.valid = valid;

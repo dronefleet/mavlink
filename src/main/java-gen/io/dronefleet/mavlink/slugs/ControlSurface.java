@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Control for surface; pending and order to origin. 
@@ -12,16 +15,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class ControlSurface {
   /**
-   * The system setting the commands 
-   */
-  private final int target;
-
-  /**
-   * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
-   */
-  private final int idsurface;
-
-  /**
    * Pending 
    */
   private final float mcontrol;
@@ -31,37 +24,34 @@ public final class ControlSurface {
    */
   private final float bcontrol;
 
-  private ControlSurface(int target, int idsurface, float mcontrol, float bcontrol) {
-    this.target = target;
-    this.idsurface = idsurface;
-    this.mcontrol = mcontrol;
-    this.bcontrol = bcontrol;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
   /**
    * The system setting the commands 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int target() {
-    return target;
-  }
+  private final int target;
 
   /**
    * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int idsurface() {
-    return idsurface;
+  private final int idsurface;
+
+  private ControlSurface(float mcontrol, float bcontrol, int target, int idsurface) {
+    this.mcontrol = mcontrol;
+    this.bcontrol = bcontrol;
+    this.target = target;
+    this.idsurface = idsurface;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ControlSurface{target=" + target
+         + ", idsurface=" + idsurface
+         + ", mcontrol=" + mcontrol
+         + ", bcontrol=" + bcontrol + "}";
   }
 
   /**
@@ -69,7 +59,7 @@ public final class ControlSurface {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float mcontrol() {
     return mcontrol;
@@ -80,46 +70,44 @@ public final class ControlSurface {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float bcontrol() {
     return bcontrol;
   }
 
+  /**
+   * The system setting the commands 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int target() {
+    return target;
+  }
+
+  /**
+   * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int idsurface() {
+    return idsurface;
+  }
+
   public static class Builder {
-    private int target;
-
-    private int idsurface;
-
     private float mcontrol;
 
     private float bcontrol;
 
+    private int target;
+
+    private int idsurface;
+
     private Builder() {
-    }
-
-    /**
-     * The system setting the commands 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder target(int target) {
-      this.target = target;
-      return this;
-    }
-
-    /**
-     * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder idsurface(int idsurface) {
-      this.idsurface = idsurface;
-      return this;
     }
 
     /**
@@ -127,7 +115,7 @@ public final class ControlSurface {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder mcontrol(float mcontrol) {
       this.mcontrol = mcontrol;
@@ -139,15 +127,39 @@ public final class ControlSurface {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder bcontrol(float bcontrol) {
       this.bcontrol = bcontrol;
       return this;
     }
 
+    /**
+     * The system setting the commands 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder target(int target) {
+      this.target = target;
+      return this;
+    }
+
+    /**
+     * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder idsurface(int idsurface) {
+      this.idsurface = idsurface;
+      return this;
+    }
+
     public final ControlSurface build() {
-      return new ControlSurface(target, idsurface, mcontrol, bcontrol);
+      return new ControlSurface(mcontrol, bcontrol, target, idsurface);
     }
   }
 }

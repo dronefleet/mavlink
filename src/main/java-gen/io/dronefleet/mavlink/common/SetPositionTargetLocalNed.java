@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Sets a desired vehicle position in a local north-east-down coordinate frame. Used by an 
@@ -16,31 +19,6 @@ public final class SetPositionTargetLocalNed {
    * Timestamp in milliseconds since system boot 
    */
   private final long timeBootMs;
-
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
-  /**
-   * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
-   * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
-   */
-  private final MavFrame coordinateFrame;
-
-  /**
-   * Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 
-   * 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions 
-   * should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead 
-   * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
-   * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
-   */
-  private final int typeMask;
 
   /**
    * X Position in NED frame in meters 
@@ -97,14 +75,35 @@ public final class SetPositionTargetLocalNed {
    */
   private final float yawRate;
 
-  private SetPositionTargetLocalNed(long timeBootMs, int targetSystem, int targetComponent,
-      MavFrame coordinateFrame, int typeMask, float x, float y, float z, float vx, float vy,
-      float vz, float afx, float afy, float afz, float yaw, float yawRate) {
+  /**
+   * Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 
+   * 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions 
+   * should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead 
+   * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
+   * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
+   */
+  private final int typeMask;
+
+  /**
+   * System ID 
+   */
+  private final int targetSystem;
+
+  /**
+   * Component ID 
+   */
+  private final int targetComponent;
+
+  /**
+   * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+   * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+   */
+  private final MavFrame coordinateFrame;
+
+  private SetPositionTargetLocalNed(long timeBootMs, float x, float y, float z, float vx, float vy,
+      float vz, float afx, float afy, float afz, float yaw, float yawRate, int typeMask,
+      int targetSystem, int targetComponent, MavFrame coordinateFrame) {
     this.timeBootMs = timeBootMs;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.coordinateFrame = coordinateFrame;
-    this.typeMask = typeMask;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -116,10 +115,35 @@ public final class SetPositionTargetLocalNed {
     this.afz = afz;
     this.yaw = yaw;
     this.yawRate = yawRate;
+    this.typeMask = typeMask;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.coordinateFrame = coordinateFrame;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SetPositionTargetLocalNed{timeBootMs=" + timeBootMs
+         + ", targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", coordinateFrame=" + coordinateFrame
+         + ", typeMask=" + typeMask
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", afx=" + afx
+         + ", afy=" + afy
+         + ", afz=" + afz
+         + ", yaw=" + yaw
+         + ", yawRate=" + yawRate + "}";
   }
 
   /**
@@ -127,44 +151,131 @@ public final class SetPositionTargetLocalNed {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
   }
 
   /**
-   * System ID 
+   * X Position in NED frame in meters 
    */
   @MavlinkMessageField(
-      position = 2,
-      length = 1
+      position = 6,
+      unitSize = 4
   )
-  public final int targetSystem() {
-    return targetSystem;
+  public final float x() {
+    return x;
   }
 
   /**
-   * Component ID 
+   * Y Position in NED frame in meters 
    */
   @MavlinkMessageField(
-      position = 3,
-      length = 1
+      position = 7,
+      unitSize = 4
   )
-  public final int targetComponent() {
-    return targetComponent;
+  public final float y() {
+    return y;
   }
 
   /**
-   * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
-   * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+   * Z Position in NED frame in meters (note, altitude is negative in NED) 
    */
   @MavlinkMessageField(
-      position = 4,
-      length = 1
+      position = 8,
+      unitSize = 4
   )
-  public final MavFrame coordinateFrame() {
-    return coordinateFrame;
+  public final float z() {
+    return z;
+  }
+
+  /**
+   * X velocity in NED frame in meter / s 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 4
+  )
+  public final float vx() {
+    return vx;
+  }
+
+  /**
+   * Y velocity in NED frame in meter / s 
+   */
+  @MavlinkMessageField(
+      position = 10,
+      unitSize = 4
+  )
+  public final float vy() {
+    return vy;
+  }
+
+  /**
+   * Z velocity in NED frame in meter / s 
+   */
+  @MavlinkMessageField(
+      position = 11,
+      unitSize = 4
+  )
+  public final float vz() {
+    return vz;
+  }
+
+  /**
+   * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+   */
+  @MavlinkMessageField(
+      position = 12,
+      unitSize = 4
+  )
+  public final float afx() {
+    return afx;
+  }
+
+  /**
+   * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+   */
+  @MavlinkMessageField(
+      position = 13,
+      unitSize = 4
+  )
+  public final float afy() {
+    return afy;
+  }
+
+  /**
+   * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+   */
+  @MavlinkMessageField(
+      position = 14,
+      unitSize = 4
+  )
+  public final float afz() {
+    return afz;
+  }
+
+  /**
+   * yaw setpoint in rad 
+   */
+  @MavlinkMessageField(
+      position = 15,
+      unitSize = 4
+  )
+  public final float yaw() {
+    return yaw;
+  }
+
+  /**
+   * yaw rate setpoint in rad/s 
+   */
+  @MavlinkMessageField(
+      position = 16,
+      unitSize = 4
+  )
+  public final float yawRate() {
+    return yawRate;
   }
 
   /**
@@ -176,143 +287,48 @@ public final class SetPositionTargetLocalNed {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int typeMask() {
     return typeMask;
   }
 
   /**
-   * X Position in NED frame in meters 
+   * System ID 
    */
   @MavlinkMessageField(
-      position = 6,
-      length = 4
+      position = 2,
+      unitSize = 1
   )
-  public final float x() {
-    return x;
+  public final int targetSystem() {
+    return targetSystem;
   }
 
   /**
-   * Y Position in NED frame in meters 
+   * Component ID 
    */
   @MavlinkMessageField(
-      position = 7,
-      length = 4
+      position = 3,
+      unitSize = 1
   )
-  public final float y() {
-    return y;
+  public final int targetComponent() {
+    return targetComponent;
   }
 
   /**
-   * Z Position in NED frame in meters (note, altitude is negative in NED) 
+   * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+   * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
    */
   @MavlinkMessageField(
-      position = 8,
-      length = 4
+      position = 4,
+      unitSize = 1
   )
-  public final float z() {
-    return z;
-  }
-
-  /**
-   * X velocity in NED frame in meter / s 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 4
-  )
-  public final float vx() {
-    return vx;
-  }
-
-  /**
-   * Y velocity in NED frame in meter / s 
-   */
-  @MavlinkMessageField(
-      position = 10,
-      length = 4
-  )
-  public final float vy() {
-    return vy;
-  }
-
-  /**
-   * Z velocity in NED frame in meter / s 
-   */
-  @MavlinkMessageField(
-      position = 11,
-      length = 4
-  )
-  public final float vz() {
-    return vz;
-  }
-
-  /**
-   * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-   */
-  @MavlinkMessageField(
-      position = 12,
-      length = 4
-  )
-  public final float afx() {
-    return afx;
-  }
-
-  /**
-   * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-   */
-  @MavlinkMessageField(
-      position = 13,
-      length = 4
-  )
-  public final float afy() {
-    return afy;
-  }
-
-  /**
-   * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-   */
-  @MavlinkMessageField(
-      position = 14,
-      length = 4
-  )
-  public final float afz() {
-    return afz;
-  }
-
-  /**
-   * yaw setpoint in rad 
-   */
-  @MavlinkMessageField(
-      position = 15,
-      length = 4
-  )
-  public final float yaw() {
-    return yaw;
-  }
-
-  /**
-   * yaw rate setpoint in rad/s 
-   */
-  @MavlinkMessageField(
-      position = 16,
-      length = 4
-  )
-  public final float yawRate() {
-    return yawRate;
+  public final MavFrame coordinateFrame() {
+    return coordinateFrame;
   }
 
   public static class Builder {
     private long timeBootMs;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private MavFrame coordinateFrame;
-
-    private int typeMask;
 
     private float x;
 
@@ -336,6 +352,14 @@ public final class SetPositionTargetLocalNed {
 
     private float yawRate;
 
+    private int typeMask;
+
+    private int targetSystem;
+
+    private int targetComponent;
+
+    private MavFrame coordinateFrame;
+
     private Builder() {
     }
 
@@ -344,7 +368,7 @@ public final class SetPositionTargetLocalNed {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -352,39 +376,134 @@ public final class SetPositionTargetLocalNed {
     }
 
     /**
-     * System ID 
+     * X Position in NED frame in meters 
      */
     @MavlinkMessageField(
-        position = 2,
-        length = 1
+        position = 6,
+        unitSize = 4
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
+    public final Builder x(float x) {
+      this.x = x;
       return this;
     }
 
     /**
-     * Component ID 
+     * Y Position in NED frame in meters 
      */
     @MavlinkMessageField(
-        position = 3,
-        length = 1
+        position = 7,
+        unitSize = 4
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
+    public final Builder y(float y) {
+      this.y = y;
       return this;
     }
 
     /**
-     * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
-     * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+     * Z Position in NED frame in meters (note, altitude is negative in NED) 
      */
     @MavlinkMessageField(
-        position = 4,
-        length = 1
+        position = 8,
+        unitSize = 4
     )
-    public final Builder coordinateFrame(MavFrame coordinateFrame) {
-      this.coordinateFrame = coordinateFrame;
+    public final Builder z(float z) {
+      this.z = z;
+      return this;
+    }
+
+    /**
+     * X velocity in NED frame in meter / s 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 4
+    )
+    public final Builder vx(float vx) {
+      this.vx = vx;
+      return this;
+    }
+
+    /**
+     * Y velocity in NED frame in meter / s 
+     */
+    @MavlinkMessageField(
+        position = 10,
+        unitSize = 4
+    )
+    public final Builder vy(float vy) {
+      this.vy = vy;
+      return this;
+    }
+
+    /**
+     * Z velocity in NED frame in meter / s 
+     */
+    @MavlinkMessageField(
+        position = 11,
+        unitSize = 4
+    )
+    public final Builder vz(float vz) {
+      this.vz = vz;
+      return this;
+    }
+
+    /**
+     * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+     */
+    @MavlinkMessageField(
+        position = 12,
+        unitSize = 4
+    )
+    public final Builder afx(float afx) {
+      this.afx = afx;
+      return this;
+    }
+
+    /**
+     * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+     */
+    @MavlinkMessageField(
+        position = 13,
+        unitSize = 4
+    )
+    public final Builder afy(float afy) {
+      this.afy = afy;
+      return this;
+    }
+
+    /**
+     * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
+     */
+    @MavlinkMessageField(
+        position = 14,
+        unitSize = 4
+    )
+    public final Builder afz(float afz) {
+      this.afz = afz;
+      return this;
+    }
+
+    /**
+     * yaw setpoint in rad 
+     */
+    @MavlinkMessageField(
+        position = 15,
+        unitSize = 4
+    )
+    public final Builder yaw(float yaw) {
+      this.yaw = yaw;
+      return this;
+    }
+
+    /**
+     * yaw rate setpoint in rad/s 
+     */
+    @MavlinkMessageField(
+        position = 16,
+        unitSize = 4
+    )
+    public final Builder yawRate(float yawRate) {
+      this.yawRate = yawRate;
       return this;
     }
 
@@ -397,7 +516,7 @@ public final class SetPositionTargetLocalNed {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder typeMask(int typeMask) {
       this.typeMask = typeMask;
@@ -405,139 +524,44 @@ public final class SetPositionTargetLocalNed {
     }
 
     /**
-     * X Position in NED frame in meters 
+     * System ID 
      */
     @MavlinkMessageField(
-        position = 6,
-        length = 4
+        position = 2,
+        unitSize = 1
     )
-    public final Builder x(float x) {
-      this.x = x;
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
       return this;
     }
 
     /**
-     * Y Position in NED frame in meters 
+     * Component ID 
      */
     @MavlinkMessageField(
-        position = 7,
-        length = 4
+        position = 3,
+        unitSize = 1
     )
-    public final Builder y(float y) {
-      this.y = y;
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
       return this;
     }
 
     /**
-     * Z Position in NED frame in meters (note, altitude is negative in NED) 
+     * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+     * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
      */
     @MavlinkMessageField(
-        position = 8,
-        length = 4
+        position = 4,
+        unitSize = 1
     )
-    public final Builder z(float z) {
-      this.z = z;
-      return this;
-    }
-
-    /**
-     * X velocity in NED frame in meter / s 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 4
-    )
-    public final Builder vx(float vx) {
-      this.vx = vx;
-      return this;
-    }
-
-    /**
-     * Y velocity in NED frame in meter / s 
-     */
-    @MavlinkMessageField(
-        position = 10,
-        length = 4
-    )
-    public final Builder vy(float vy) {
-      this.vy = vy;
-      return this;
-    }
-
-    /**
-     * Z velocity in NED frame in meter / s 
-     */
-    @MavlinkMessageField(
-        position = 11,
-        length = 4
-    )
-    public final Builder vz(float vz) {
-      this.vz = vz;
-      return this;
-    }
-
-    /**
-     * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-     */
-    @MavlinkMessageField(
-        position = 12,
-        length = 4
-    )
-    public final Builder afx(float afx) {
-      this.afx = afx;
-      return this;
-    }
-
-    /**
-     * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-     */
-    @MavlinkMessageField(
-        position = 13,
-        length = 4
-    )
-    public final Builder afy(float afy) {
-      this.afy = afy;
-      return this;
-    }
-
-    /**
-     * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
-     */
-    @MavlinkMessageField(
-        position = 14,
-        length = 4
-    )
-    public final Builder afz(float afz) {
-      this.afz = afz;
-      return this;
-    }
-
-    /**
-     * yaw setpoint in rad 
-     */
-    @MavlinkMessageField(
-        position = 15,
-        length = 4
-    )
-    public final Builder yaw(float yaw) {
-      this.yaw = yaw;
-      return this;
-    }
-
-    /**
-     * yaw rate setpoint in rad/s 
-     */
-    @MavlinkMessageField(
-        position = 16,
-        length = 4
-    )
-    public final Builder yawRate(float yawRate) {
-      this.yawRate = yawRate;
+    public final Builder coordinateFrame(MavFrame coordinateFrame) {
+      this.coordinateFrame = coordinateFrame;
       return this;
     }
 
     public final SetPositionTargetLocalNed build() {
-      return new SetPositionTargetLocalNed(timeBootMs, targetSystem, targetComponent, coordinateFrame, typeMask, x, y, z, vx, vy, vz, afx, afy, afz, yaw, yawRate);
+      return new SetPositionTargetLocalNed(timeBootMs, x, y, z, vx, vy, vz, afx, afy, afz, yaw, yawRate, typeMask, targetSystem, targetComponent, coordinateFrame);
     }
   }
 }

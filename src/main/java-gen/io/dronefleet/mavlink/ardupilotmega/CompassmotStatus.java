@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of compassmot calibration 
@@ -12,19 +15,9 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class CompassmotStatus {
   /**
-   * throttle (percent*10) 
-   */
-  private final int throttle;
-
-  /**
    * current (Ampere) 
    */
   private final float current;
-
-  /**
-   * interference (percent) 
-   */
-  private final int interference;
 
   /**
    * Motor Compensation X 
@@ -41,29 +34,39 @@ public final class CompassmotStatus {
    */
   private final float compensationz;
 
-  private CompassmotStatus(int throttle, float current, int interference, float compensationx,
-      float compensationy, float compensationz) {
-    this.throttle = throttle;
+  /**
+   * throttle (percent*10) 
+   */
+  private final int throttle;
+
+  /**
+   * interference (percent) 
+   */
+  private final int interference;
+
+  private CompassmotStatus(float current, float compensationx, float compensationy,
+      float compensationz, int throttle, int interference) {
     this.current = current;
-    this.interference = interference;
     this.compensationx = compensationx;
     this.compensationy = compensationy;
     this.compensationz = compensationz;
+    this.throttle = throttle;
+    this.interference = interference;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * throttle (percent*10) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 2
-  )
-  public final int throttle() {
-    return throttle;
+  @Override
+  public String toString() {
+    return "CompassmotStatus{throttle=" + throttle
+         + ", current=" + current
+         + ", interference=" + interference
+         + ", compensationx=" + compensationx
+         + ", compensationy=" + compensationy
+         + ", compensationz=" + compensationz + "}";
   }
 
   /**
@@ -71,21 +74,10 @@ public final class CompassmotStatus {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float current() {
     return current;
-  }
-
-  /**
-   * interference (percent) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int interference() {
-    return interference;
   }
 
   /**
@@ -93,7 +85,7 @@ public final class CompassmotStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float compensationx() {
     return compensationx;
@@ -104,7 +96,7 @@ public final class CompassmotStatus {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float compensationy() {
     return compensationy;
@@ -115,18 +107,36 @@ public final class CompassmotStatus {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float compensationz() {
     return compensationz;
   }
 
+  /**
+   * throttle (percent*10) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 2
+  )
+  public final int throttle() {
+    return throttle;
+  }
+
+  /**
+   * interference (percent) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int interference() {
+    return interference;
+  }
+
   public static class Builder {
-    private int throttle;
-
     private float current;
-
-    private int interference;
 
     private float compensationx;
 
@@ -134,19 +144,11 @@ public final class CompassmotStatus {
 
     private float compensationz;
 
-    private Builder() {
-    }
+    private int throttle;
 
-    /**
-     * throttle (percent*10) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 2
-    )
-    public final Builder throttle(int throttle) {
-      this.throttle = throttle;
-      return this;
+    private int interference;
+
+    private Builder() {
     }
 
     /**
@@ -154,22 +156,10 @@ public final class CompassmotStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder current(float current) {
       this.current = current;
-      return this;
-    }
-
-    /**
-     * interference (percent) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder interference(int interference) {
-      this.interference = interference;
       return this;
     }
 
@@ -178,7 +168,7 @@ public final class CompassmotStatus {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder compensationx(float compensationx) {
       this.compensationx = compensationx;
@@ -190,7 +180,7 @@ public final class CompassmotStatus {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder compensationy(float compensationy) {
       this.compensationy = compensationy;
@@ -202,15 +192,39 @@ public final class CompassmotStatus {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder compensationz(float compensationz) {
       this.compensationz = compensationz;
       return this;
     }
 
+    /**
+     * throttle (percent*10) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 2
+    )
+    public final Builder throttle(int throttle) {
+      this.throttle = throttle;
+      return this;
+    }
+
+    /**
+     * interference (percent) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder interference(int interference) {
+      this.interference = interference;
+      return this;
+    }
+
     public final CompassmotStatus build() {
-      return new CompassmotStatus(throttle, current, interference, compensationx, compensationy, compensationz);
+      return new CompassmotStatus(current, compensationx, compensationy, compensationz, throttle, interference);
     }
   }
 }

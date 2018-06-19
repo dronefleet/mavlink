@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -53,8 +56,19 @@ public final class FlexifunctionDirectory {
     this.directoryData = directoryData;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "FlexifunctionDirectory{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", directoryType=" + directoryType
+         + ", startIndex=" + startIndex
+         + ", count=" + count
+         + ", directoryData=" + directoryData + "}";
   }
 
   /**
@@ -62,7 +76,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -73,7 +87,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -84,7 +98,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int directoryType() {
     return directoryType;
@@ -95,7 +109,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int startIndex() {
     return startIndex;
@@ -106,7 +120,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int count() {
     return count;
@@ -117,7 +131,7 @@ public final class FlexifunctionDirectory {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 48
   )
   public final List<Integer> directoryData() {
@@ -145,7 +159,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -157,7 +171,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -169,7 +183,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder directoryType(int directoryType) {
       this.directoryType = directoryType;
@@ -181,7 +195,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder startIndex(int startIndex) {
       this.startIndex = startIndex;
@@ -193,7 +207,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder count(int count) {
       this.count = count;
@@ -205,7 +219,7 @@ public final class FlexifunctionDirectory {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 48
     )
     public final Builder directoryData(List<Integer> directoryData) {

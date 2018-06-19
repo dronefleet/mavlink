@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The state of the fixed wing navigation and position controller. 
@@ -22,21 +25,6 @@ public final class NavControllerOutput {
   private final float navPitch;
 
   /**
-   * Current desired heading in degrees 
-   */
-  private final int navBearing;
-
-  /**
-   * Bearing to current waypoint/target in degrees 
-   */
-  private final int targetBearing;
-
-  /**
-   * Distance to active waypoint in meters 
-   */
-  private final int wpDist;
-
-  /**
    * Current altitude error in meters 
    */
   private final float altError;
@@ -51,20 +39,48 @@ public final class NavControllerOutput {
    */
   private final float xtrackError;
 
-  private NavControllerOutput(float navRoll, float navPitch, int navBearing, int targetBearing,
-      int wpDist, float altError, float aspdError, float xtrackError) {
+  /**
+   * Current desired heading in degrees 
+   */
+  private final int navBearing;
+
+  /**
+   * Bearing to current waypoint/target in degrees 
+   */
+  private final int targetBearing;
+
+  /**
+   * Distance to active waypoint in meters 
+   */
+  private final int wpDist;
+
+  private NavControllerOutput(float navRoll, float navPitch, float altError, float aspdError,
+      float xtrackError, int navBearing, int targetBearing, int wpDist) {
     this.navRoll = navRoll;
     this.navPitch = navPitch;
-    this.navBearing = navBearing;
-    this.targetBearing = targetBearing;
-    this.wpDist = wpDist;
     this.altError = altError;
     this.aspdError = aspdError;
     this.xtrackError = xtrackError;
+    this.navBearing = navBearing;
+    this.targetBearing = targetBearing;
+    this.wpDist = wpDist;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "NavControllerOutput{navRoll=" + navRoll
+         + ", navPitch=" + navPitch
+         + ", navBearing=" + navBearing
+         + ", targetBearing=" + targetBearing
+         + ", wpDist=" + wpDist
+         + ", altError=" + altError
+         + ", aspdError=" + aspdError
+         + ", xtrackError=" + xtrackError + "}";
   }
 
   /**
@@ -72,7 +88,7 @@ public final class NavControllerOutput {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float navRoll() {
     return navRoll;
@@ -83,43 +99,10 @@ public final class NavControllerOutput {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float navPitch() {
     return navPitch;
-  }
-
-  /**
-   * Current desired heading in degrees 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int navBearing() {
-    return navBearing;
-  }
-
-  /**
-   * Bearing to current waypoint/target in degrees 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 2
-  )
-  public final int targetBearing() {
-    return targetBearing;
-  }
-
-  /**
-   * Distance to active waypoint in meters 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 2
-  )
-  public final int wpDist() {
-    return wpDist;
   }
 
   /**
@@ -127,7 +110,7 @@ public final class NavControllerOutput {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float altError() {
     return altError;
@@ -138,7 +121,7 @@ public final class NavControllerOutput {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float aspdError() {
     return aspdError;
@@ -149,10 +132,43 @@ public final class NavControllerOutput {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float xtrackError() {
     return xtrackError;
+  }
+
+  /**
+   * Current desired heading in degrees 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int navBearing() {
+    return navBearing;
+  }
+
+  /**
+   * Bearing to current waypoint/target in degrees 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 2
+  )
+  public final int targetBearing() {
+    return targetBearing;
+  }
+
+  /**
+   * Distance to active waypoint in meters 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 2
+  )
+  public final int wpDist() {
+    return wpDist;
   }
 
   public static class Builder {
@@ -160,17 +176,17 @@ public final class NavControllerOutput {
 
     private float navPitch;
 
-    private int navBearing;
-
-    private int targetBearing;
-
-    private int wpDist;
-
     private float altError;
 
     private float aspdError;
 
     private float xtrackError;
+
+    private int navBearing;
+
+    private int targetBearing;
+
+    private int wpDist;
 
     private Builder() {
     }
@@ -180,7 +196,7 @@ public final class NavControllerOutput {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder navRoll(float navRoll) {
       this.navRoll = navRoll;
@@ -192,46 +208,10 @@ public final class NavControllerOutput {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder navPitch(float navPitch) {
       this.navPitch = navPitch;
-      return this;
-    }
-
-    /**
-     * Current desired heading in degrees 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder navBearing(int navBearing) {
-      this.navBearing = navBearing;
-      return this;
-    }
-
-    /**
-     * Bearing to current waypoint/target in degrees 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 2
-    )
-    public final Builder targetBearing(int targetBearing) {
-      this.targetBearing = targetBearing;
-      return this;
-    }
-
-    /**
-     * Distance to active waypoint in meters 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 2
-    )
-    public final Builder wpDist(int wpDist) {
-      this.wpDist = wpDist;
       return this;
     }
 
@@ -240,7 +220,7 @@ public final class NavControllerOutput {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder altError(float altError) {
       this.altError = altError;
@@ -252,7 +232,7 @@ public final class NavControllerOutput {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder aspdError(float aspdError) {
       this.aspdError = aspdError;
@@ -264,15 +244,51 @@ public final class NavControllerOutput {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder xtrackError(float xtrackError) {
       this.xtrackError = xtrackError;
       return this;
     }
 
+    /**
+     * Current desired heading in degrees 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder navBearing(int navBearing) {
+      this.navBearing = navBearing;
+      return this;
+    }
+
+    /**
+     * Bearing to current waypoint/target in degrees 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 2
+    )
+    public final Builder targetBearing(int targetBearing) {
+      this.targetBearing = targetBearing;
+      return this;
+    }
+
+    /**
+     * Distance to active waypoint in meters 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 2
+    )
+    public final Builder wpDist(int wpDist) {
+      this.wpDist = wpDist;
+      return this;
+    }
+
     public final NavControllerOutput build() {
-      return new NavControllerOutput(navRoll, navPitch, navBearing, targetBearing, wpDist, altError, aspdError, xtrackError);
+      return new NavControllerOutput(navRoll, navPitch, altError, aspdError, xtrackError, navBearing, targetBearing, wpDist);
     }
   }
 }

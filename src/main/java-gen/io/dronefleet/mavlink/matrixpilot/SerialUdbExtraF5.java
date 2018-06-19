@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F5: format 
@@ -39,8 +42,17 @@ public final class SerialUdbExtraF5 {
     this.sueRollkd = sueRollkd;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF5{sueYawkpAileron=" + sueYawkpAileron
+         + ", sueYawkdAileron=" + sueYawkdAileron
+         + ", sueRollkp=" + sueRollkp
+         + ", sueRollkd=" + sueRollkd + "}";
   }
 
   /**
@@ -48,7 +60,7 @@ public final class SerialUdbExtraF5 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float sueYawkpAileron() {
     return sueYawkpAileron;
@@ -59,7 +71,7 @@ public final class SerialUdbExtraF5 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float sueYawkdAileron() {
     return sueYawkdAileron;
@@ -70,7 +82,7 @@ public final class SerialUdbExtraF5 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float sueRollkp() {
     return sueRollkp;
@@ -81,7 +93,7 @@ public final class SerialUdbExtraF5 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float sueRollkd() {
     return sueRollkd;
@@ -104,7 +116,7 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueYawkpAileron(float sueYawkpAileron) {
       this.sueYawkpAileron = sueYawkpAileron;
@@ -116,7 +128,7 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueYawkdAileron(float sueYawkdAileron) {
       this.sueYawkdAileron = sueYawkdAileron;
@@ -128,7 +140,7 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRollkp(float sueRollkp) {
       this.sueRollkp = sueRollkp;
@@ -140,7 +152,7 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRollkd(float sueRollkd) {
       this.sueRollkd = sueRollkd;

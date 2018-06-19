@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -21,22 +24,12 @@ public final class ObstacleDistance {
   private final BigInteger timeUsec;
 
   /**
-   * Class id of the distance sensor type. 
-   */
-  private final MavDistanceSensor sensorType;
-
-  /**
    * Distance of obstacles around the UAV with index 0 corresponding to local North. A value of 0 
    * means that the obstacle is right in front of the sensor. A value of max_distance +1 means no 
    * obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit 
    * corresponds to 1cm. 
    */
   private final List<Integer> distances;
-
-  /**
-   * Angular width in degrees of each array element. 
-   */
-  private final int increment;
 
   /**
    * Minimum distance the sensor can measure in centimeters. 
@@ -48,18 +41,39 @@ public final class ObstacleDistance {
    */
   private final int maxDistance;
 
-  private ObstacleDistance(BigInteger timeUsec, MavDistanceSensor sensorType,
-      List<Integer> distances, int increment, int minDistance, int maxDistance) {
+  /**
+   * Class id of the distance sensor type. 
+   */
+  private final MavDistanceSensor sensorType;
+
+  /**
+   * Angular width in degrees of each array element. 
+   */
+  private final int increment;
+
+  private ObstacleDistance(BigInteger timeUsec, List<Integer> distances, int minDistance,
+      int maxDistance, MavDistanceSensor sensorType, int increment) {
     this.timeUsec = timeUsec;
-    this.sensorType = sensorType;
     this.distances = distances;
-    this.increment = increment;
     this.minDistance = minDistance;
     this.maxDistance = maxDistance;
+    this.sensorType = sensorType;
+    this.increment = increment;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ObstacleDistance{timeUsec=" + timeUsec
+         + ", sensorType=" + sensorType
+         + ", distances=" + distances
+         + ", increment=" + increment
+         + ", minDistance=" + minDistance
+         + ", maxDistance=" + maxDistance + "}";
   }
 
   /**
@@ -67,21 +81,10 @@ public final class ObstacleDistance {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Class id of the distance sensor type. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final MavDistanceSensor sensorType() {
-    return sensorType;
   }
 
   /**
@@ -92,7 +95,7 @@ public final class ObstacleDistance {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2,
+      unitSize = 2,
       arraySize = 72
   )
   public final List<Integer> distances() {
@@ -100,22 +103,11 @@ public final class ObstacleDistance {
   }
 
   /**
-   * Angular width in degrees of each array element. 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 1
-  )
-  public final int increment() {
-    return increment;
-  }
-
-  /**
    * Minimum distance the sensor can measure in centimeters. 
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int minDistance() {
     return minDistance;
@@ -126,24 +118,46 @@ public final class ObstacleDistance {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int maxDistance() {
     return maxDistance;
   }
 
+  /**
+   * Class id of the distance sensor type. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final MavDistanceSensor sensorType() {
+    return sensorType;
+  }
+
+  /**
+   * Angular width in degrees of each array element. 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 1
+  )
+  public final int increment() {
+    return increment;
+  }
+
   public static class Builder {
     private BigInteger timeUsec;
 
-    private MavDistanceSensor sensorType;
-
     private List<Integer> distances;
-
-    private int increment;
 
     private int minDistance;
 
     private int maxDistance;
+
+    private MavDistanceSensor sensorType;
+
+    private int increment;
 
     private Builder() {
     }
@@ -153,22 +167,10 @@ public final class ObstacleDistance {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Class id of the distance sensor type. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder sensorType(MavDistanceSensor sensorType) {
-      this.sensorType = sensorType;
       return this;
     }
 
@@ -180,7 +182,7 @@ public final class ObstacleDistance {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2,
+        unitSize = 2,
         arraySize = 72
     )
     public final Builder distances(List<Integer> distances) {
@@ -189,23 +191,11 @@ public final class ObstacleDistance {
     }
 
     /**
-     * Angular width in degrees of each array element. 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 1
-    )
-    public final Builder increment(int increment) {
-      this.increment = increment;
-      return this;
-    }
-
-    /**
      * Minimum distance the sensor can measure in centimeters. 
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder minDistance(int minDistance) {
       this.minDistance = minDistance;
@@ -217,15 +207,39 @@ public final class ObstacleDistance {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder maxDistance(int maxDistance) {
       this.maxDistance = maxDistance;
       return this;
     }
 
+    /**
+     * Class id of the distance sensor type. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder sensorType(MavDistanceSensor sensorType) {
+      this.sensorType = sensorType;
+      return this;
+    }
+
+    /**
+     * Angular width in degrees of each array element. 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 1
+    )
+    public final Builder increment(int increment) {
+      this.increment = increment;
+      return this;
+    }
+
     public final ObstacleDistance build() {
-      return new ObstacleDistance(timeUsec, sensorType, distances, increment, minDistance, maxDistance);
+      return new ObstacleDistance(timeUsec, distances, minDistance, maxDistance, sensorType, increment);
     }
   }
 }

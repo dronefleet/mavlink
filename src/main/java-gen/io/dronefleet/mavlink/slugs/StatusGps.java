@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * This contains the status of the GPS readings 
@@ -11,6 +14,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 51
 )
 public final class StatusGps {
+  /**
+   * Magnetic variation 
+   */
+  private final float magvar;
+
   /**
    * Number of times checksum has failed 
    */
@@ -33,11 +41,6 @@ public final class StatusGps {
   private final int posstatus;
 
   /**
-   * Magnetic variation 
-   */
-  private final float magvar;
-
-  /**
    * Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and 
    * Westerly variation (W) adds to True course 
    */
@@ -49,19 +52,42 @@ public final class StatusGps {
    */
   private final int modeind;
 
-  private StatusGps(int csfails, int gpsquality, int msgstype, int posstatus, float magvar,
+  private StatusGps(float magvar, int csfails, int gpsquality, int msgstype, int posstatus,
       int magdir, int modeind) {
+    this.magvar = magvar;
     this.csfails = csfails;
     this.gpsquality = gpsquality;
     this.msgstype = msgstype;
     this.posstatus = posstatus;
-    this.magvar = magvar;
     this.magdir = magdir;
     this.modeind = modeind;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "StatusGps{csfails=" + csfails
+         + ", gpsquality=" + gpsquality
+         + ", msgstype=" + msgstype
+         + ", posstatus=" + posstatus
+         + ", magvar=" + magvar
+         + ", magdir=" + magdir
+         + ", modeind=" + modeind + "}";
+  }
+
+  /**
+   * Magnetic variation 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 4
+  )
+  public final float magvar() {
+    return magvar;
   }
 
   /**
@@ -69,7 +95,7 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int csfails() {
     return csfails;
@@ -81,7 +107,7 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int gpsquality() {
     return gpsquality;
@@ -92,7 +118,7 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int msgstype() {
     return msgstype;
@@ -103,21 +129,10 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int posstatus() {
     return posstatus;
-  }
-
-  /**
-   * Magnetic variation 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 4
-  )
-  public final float magvar() {
-    return magvar;
   }
 
   /**
@@ -126,7 +141,7 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int magdir() {
     return magdir;
@@ -138,13 +153,15 @@ public final class StatusGps {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int modeind() {
     return modeind;
   }
 
   public static class Builder {
+    private float magvar;
+
     private int csfails;
 
     private int gpsquality;
@@ -152,8 +169,6 @@ public final class StatusGps {
     private int msgstype;
 
     private int posstatus;
-
-    private float magvar;
 
     private int magdir;
 
@@ -163,11 +178,23 @@ public final class StatusGps {
     }
 
     /**
+     * Magnetic variation 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 4
+    )
+    public final Builder magvar(float magvar) {
+      this.magvar = magvar;
+      return this;
+    }
+
+    /**
      * Number of times checksum has failed 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder csfails(int csfails) {
       this.csfails = csfails;
@@ -180,7 +207,7 @@ public final class StatusGps {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder gpsquality(int gpsquality) {
       this.gpsquality = gpsquality;
@@ -192,7 +219,7 @@ public final class StatusGps {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder msgstype(int msgstype) {
       this.msgstype = msgstype;
@@ -204,22 +231,10 @@ public final class StatusGps {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder posstatus(int posstatus) {
       this.posstatus = posstatus;
-      return this;
-    }
-
-    /**
-     * Magnetic variation 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 4
-    )
-    public final Builder magvar(float magvar) {
-      this.magvar = magvar;
       return this;
     }
 
@@ -229,7 +244,7 @@ public final class StatusGps {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder magdir(int magdir) {
       this.magdir = magdir;
@@ -242,7 +257,7 @@ public final class StatusGps {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder modeind(int modeind) {
       this.modeind = modeind;
@@ -250,7 +265,7 @@ public final class StatusGps {
     }
 
     public final StatusGps build() {
-      return new StatusGps(csfails, gpsquality, msgstype, posstatus, magvar, magdir, modeind);
+      return new StatusGps(magvar, csfails, gpsquality, msgstype, posstatus, magdir, modeind);
     }
   }
 }

@@ -1,9 +1,12 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -18,6 +21,16 @@ import java.util.List;
 )
 public final class SerialControl {
   /**
+   * Baudrate of transfer. Zero means no change. 
+   */
+  private final long baudrate;
+
+  /**
+   * Timeout for reply data in milliseconds 
+   */
+  private final int timeout;
+
+  /**
    * See {@link io.dronefleet.mavlink.common.SerialControlDev SerialControlDev} enum 
    */
   private final SerialControlDev device;
@@ -26,16 +39,6 @@ public final class SerialControl {
    * See {@link io.dronefleet.mavlink.common.SerialControlFlag SerialControlFlag} enum 
    */
   private final EnumFlagSet<SerialControlFlag> flags;
-
-  /**
-   * Timeout for reply data in milliseconds 
-   */
-  private final int timeout;
-
-  /**
-   * Baudrate of transfer. Zero means no change. 
-   */
-  private final long baudrate;
 
   /**
    * how many bytes in this transfer 
@@ -47,18 +50,51 @@ public final class SerialControl {
    */
   private final List<Integer> data;
 
-  private SerialControl(SerialControlDev device, EnumFlagSet<SerialControlFlag> flags, int timeout,
-      long baudrate, int count, List<Integer> data) {
+  private SerialControl(long baudrate, int timeout, SerialControlDev device,
+      EnumFlagSet<SerialControlFlag> flags, int count, List<Integer> data) {
+    this.baudrate = baudrate;
+    this.timeout = timeout;
     this.device = device;
     this.flags = flags;
-    this.timeout = timeout;
-    this.baudrate = baudrate;
     this.count = count;
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialControl{device=" + device
+         + ", flags=" + flags
+         + ", timeout=" + timeout
+         + ", baudrate=" + baudrate
+         + ", count=" + count
+         + ", data=" + data + "}";
+  }
+
+  /**
+   * Baudrate of transfer. Zero means no change. 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 4
+  )
+  public final long baudrate() {
+    return baudrate;
+  }
+
+  /**
+   * Timeout for reply data in milliseconds 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int timeout() {
+    return timeout;
   }
 
   /**
@@ -66,7 +102,7 @@ public final class SerialControl {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final SerialControlDev device() {
     return device;
@@ -77,32 +113,10 @@ public final class SerialControl {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<SerialControlFlag> flags() {
     return flags;
-  }
-
-  /**
-   * Timeout for reply data in milliseconds 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int timeout() {
-    return timeout;
-  }
-
-  /**
-   * Baudrate of transfer. Zero means no change. 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 4
-  )
-  public final long baudrate() {
-    return baudrate;
   }
 
   /**
@@ -110,7 +124,7 @@ public final class SerialControl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int count() {
     return count;
@@ -121,7 +135,7 @@ public final class SerialControl {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 70
   )
   public final List<Integer> data() {
@@ -129,13 +143,13 @@ public final class SerialControl {
   }
 
   public static class Builder {
-    private SerialControlDev device;
-
-    private EnumFlagSet<SerialControlFlag> flags;
+    private long baudrate;
 
     private int timeout;
 
-    private long baudrate;
+    private SerialControlDev device;
+
+    private EnumFlagSet<SerialControlFlag> flags;
 
     private int count;
 
@@ -145,11 +159,35 @@ public final class SerialControl {
     }
 
     /**
+     * Baudrate of transfer. Zero means no change. 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 4
+    )
+    public final Builder baudrate(long baudrate) {
+      this.baudrate = baudrate;
+      return this;
+    }
+
+    /**
+     * Timeout for reply data in milliseconds 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder timeout(int timeout) {
+      this.timeout = timeout;
+      return this;
+    }
+
+    /**
      * See {@link io.dronefleet.mavlink.common.SerialControlDev SerialControlDev} enum 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder device(SerialControlDev device) {
       this.device = device;
@@ -161,34 +199,10 @@ public final class SerialControl {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder flags(EnumFlagSet<SerialControlFlag> flags) {
       this.flags = flags;
-      return this;
-    }
-
-    /**
-     * Timeout for reply data in milliseconds 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder timeout(int timeout) {
-      this.timeout = timeout;
-      return this;
-    }
-
-    /**
-     * Baudrate of transfer. Zero means no change. 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder baudrate(long baudrate) {
-      this.baudrate = baudrate;
       return this;
     }
 
@@ -197,7 +211,7 @@ public final class SerialControl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder count(int count) {
       this.count = count;
@@ -209,7 +223,7 @@ public final class SerialControl {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 70
     )
     public final Builder data(List<Integer> data) {
@@ -218,7 +232,7 @@ public final class SerialControl {
     }
 
     public final SerialControl build() {
-      return new SerialControl(device, flags, timeout, baudrate, count, data);
+      return new SerialControl(baudrate, timeout, device, flags, count, data);
     }
   }
 }

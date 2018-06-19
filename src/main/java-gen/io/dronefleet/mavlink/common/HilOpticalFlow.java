@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,11 +19,6 @@ public final class HilOpticalFlow {
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * Sensor ID 
-   */
-  private final int sensorId;
 
   /**
    * Integration time in microseconds. Divide integrated_x and integrated_y by the integration 
@@ -56,16 +54,6 @@ public final class HilOpticalFlow {
   private final float integratedZgyro;
 
   /**
-   * Temperature * 100 in centi-degrees Celsius 
-   */
-  private final int temperature;
-
-  /**
-   * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
-   */
-  private final int quality;
-
-  /**
    * Time in microseconds since the distance was sampled. 
    */
   private final long timeDeltaDistanceUs;
@@ -76,26 +64,57 @@ public final class HilOpticalFlow {
    */
   private final float distance;
 
-  private HilOpticalFlow(BigInteger timeUsec, int sensorId, long integrationTimeUs,
-      float integratedX, float integratedY, float integratedXgyro, float integratedYgyro,
-      float integratedZgyro, int temperature, int quality, long timeDeltaDistanceUs,
-      float distance) {
+  /**
+   * Temperature * 100 in centi-degrees Celsius 
+   */
+  private final int temperature;
+
+  /**
+   * Sensor ID 
+   */
+  private final int sensorId;
+
+  /**
+   * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
+   */
+  private final int quality;
+
+  private HilOpticalFlow(BigInteger timeUsec, long integrationTimeUs, float integratedX,
+      float integratedY, float integratedXgyro, float integratedYgyro, float integratedZgyro,
+      long timeDeltaDistanceUs, float distance, int temperature, int sensorId, int quality) {
     this.timeUsec = timeUsec;
-    this.sensorId = sensorId;
     this.integrationTimeUs = integrationTimeUs;
     this.integratedX = integratedX;
     this.integratedY = integratedY;
     this.integratedXgyro = integratedXgyro;
     this.integratedYgyro = integratedYgyro;
     this.integratedZgyro = integratedZgyro;
-    this.temperature = temperature;
-    this.quality = quality;
     this.timeDeltaDistanceUs = timeDeltaDistanceUs;
     this.distance = distance;
+    this.temperature = temperature;
+    this.sensorId = sensorId;
+    this.quality = quality;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilOpticalFlow{timeUsec=" + timeUsec
+         + ", sensorId=" + sensorId
+         + ", integrationTimeUs=" + integrationTimeUs
+         + ", integratedX=" + integratedX
+         + ", integratedY=" + integratedY
+         + ", integratedXgyro=" + integratedXgyro
+         + ", integratedYgyro=" + integratedYgyro
+         + ", integratedZgyro=" + integratedZgyro
+         + ", temperature=" + temperature
+         + ", quality=" + quality
+         + ", timeDeltaDistanceUs=" + timeDeltaDistanceUs
+         + ", distance=" + distance + "}";
   }
 
   /**
@@ -103,21 +122,10 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Sensor ID 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int sensorId() {
-    return sensorId;
   }
 
   /**
@@ -126,7 +134,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final long integrationTimeUs() {
     return integrationTimeUs;
@@ -138,7 +146,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float integratedX() {
     return integratedX;
@@ -150,7 +158,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float integratedY() {
     return integratedY;
@@ -161,7 +169,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float integratedXgyro() {
     return integratedXgyro;
@@ -172,7 +180,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float integratedYgyro() {
     return integratedYgyro;
@@ -183,32 +191,10 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float integratedZgyro() {
     return integratedZgyro;
-  }
-
-  /**
-   * Temperature * 100 in centi-degrees Celsius 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 2
-  )
-  public final int temperature() {
-    return temperature;
-  }
-
-  /**
-   * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
-   */
-  @MavlinkMessageField(
-      position = 10,
-      length = 1
-  )
-  public final int quality() {
-    return quality;
   }
 
   /**
@@ -216,7 +202,7 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final long timeDeltaDistanceUs() {
     return timeDeltaDistanceUs;
@@ -228,16 +214,47 @@ public final class HilOpticalFlow {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float distance() {
     return distance;
   }
 
+  /**
+   * Temperature * 100 in centi-degrees Celsius 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 2
+  )
+  public final int temperature() {
+    return temperature;
+  }
+
+  /**
+   * Sensor ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int sensorId() {
+    return sensorId;
+  }
+
+  /**
+   * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
+   */
+  @MavlinkMessageField(
+      position = 10,
+      unitSize = 1
+  )
+  public final int quality() {
+    return quality;
+  }
+
   public static class Builder {
     private BigInteger timeUsec;
-
-    private int sensorId;
 
     private long integrationTimeUs;
 
@@ -251,13 +268,15 @@ public final class HilOpticalFlow {
 
     private float integratedZgyro;
 
-    private int temperature;
-
-    private int quality;
-
     private long timeDeltaDistanceUs;
 
     private float distance;
+
+    private int temperature;
+
+    private int sensorId;
+
+    private int quality;
 
     private Builder() {
     }
@@ -267,22 +286,10 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Sensor ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder sensorId(int sensorId) {
-      this.sensorId = sensorId;
       return this;
     }
 
@@ -292,7 +299,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder integrationTimeUs(long integrationTimeUs) {
       this.integrationTimeUs = integrationTimeUs;
@@ -305,7 +312,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder integratedX(float integratedX) {
       this.integratedX = integratedX;
@@ -318,7 +325,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder integratedY(float integratedY) {
       this.integratedY = integratedY;
@@ -330,7 +337,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder integratedXgyro(float integratedXgyro) {
       this.integratedXgyro = integratedXgyro;
@@ -342,7 +349,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder integratedYgyro(float integratedYgyro) {
       this.integratedYgyro = integratedYgyro;
@@ -354,34 +361,10 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder integratedZgyro(float integratedZgyro) {
       this.integratedZgyro = integratedZgyro;
-      return this;
-    }
-
-    /**
-     * Temperature * 100 in centi-degrees Celsius 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 2
-    )
-    public final Builder temperature(int temperature) {
-      this.temperature = temperature;
-      return this;
-    }
-
-    /**
-     * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
-     */
-    @MavlinkMessageField(
-        position = 10,
-        length = 1
-    )
-    public final Builder quality(int quality) {
-      this.quality = quality;
       return this;
     }
 
@@ -390,7 +373,7 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeDeltaDistanceUs(long timeDeltaDistanceUs) {
       this.timeDeltaDistanceUs = timeDeltaDistanceUs;
@@ -403,15 +386,51 @@ public final class HilOpticalFlow {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder distance(float distance) {
       this.distance = distance;
       return this;
     }
 
+    /**
+     * Temperature * 100 in centi-degrees Celsius 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 2
+    )
+    public final Builder temperature(int temperature) {
+      this.temperature = temperature;
+      return this;
+    }
+
+    /**
+     * Sensor ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder sensorId(int sensorId) {
+      this.sensorId = sensorId;
+      return this;
+    }
+
+    /**
+     * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
+     */
+    @MavlinkMessageField(
+        position = 10,
+        unitSize = 1
+    )
+    public final Builder quality(int quality) {
+      this.quality = quality;
+      return this;
+    }
+
     public final HilOpticalFlow build() {
-      return new HilOpticalFlow(timeUsec, sensorId, integrationTimeUs, integratedX, integratedY, integratedXgyro, integratedYgyro, integratedZgyro, temperature, quality, timeDeltaDistanceUs, distance);
+      return new HilOpticalFlow(timeUsec, integrationTimeUs, integratedX, integratedY, integratedXgyro, integratedYgyro, integratedZgyro, timeDeltaDistanceUs, distance, temperature, sensorId, quality);
     }
   }
 }

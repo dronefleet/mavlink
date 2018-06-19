@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -67,8 +70,21 @@ public final class ViconPositionEstimate {
     this.covariance = covariance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ViconPositionEstimate{usec=" + usec
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -76,7 +92,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 0,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger usec() {
     return usec;
@@ -87,7 +103,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -98,7 +114,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -109,7 +125,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -120,7 +136,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -131,7 +147,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -142,7 +158,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -154,7 +170,7 @@ public final class ViconPositionEstimate {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4,
+      unitSize = 4,
       arraySize = 21,
       extension = true
   )
@@ -187,7 +203,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 0,
-        length = 8
+        unitSize = 8
     )
     public final Builder usec(BigInteger usec) {
       this.usec = usec;
@@ -199,7 +215,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -211,7 +227,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -223,7 +239,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -235,7 +251,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -247,7 +263,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -259,7 +275,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -272,7 +288,7 @@ public final class ViconPositionEstimate {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4,
+        unitSize = 4,
         arraySize = 21,
         extension = true
     )

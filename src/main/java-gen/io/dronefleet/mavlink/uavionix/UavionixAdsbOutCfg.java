@@ -1,9 +1,11 @@
 package io.dronefleet.mavlink.uavionix;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.common.AdsbEmitterType;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -19,6 +21,11 @@ public final class UavionixAdsbOutCfg {
    * Vehicle address (24 bit) 
    */
   private final long icao;
+
+  /**
+   * Aircraft stall speed in cm/s 
+   */
+  private final int stallspeed;
 
   /**
    * Vehicle identifier (8 characters, null terminated, valid characters are A-Z, 0-9, " " only) 
@@ -47,31 +54,39 @@ public final class UavionixAdsbOutCfg {
   private final UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon;
 
   /**
-   * Aircraft stall speed in cm/s 
-   */
-  private final int stallspeed;
-
-  /**
    * ADS-B transponder reciever and transmit enable flags 
    */
   private final EnumFlagSet<UavionixAdsbOutRfSelect> rfselect;
 
-  private UavionixAdsbOutCfg(long icao, String callsign, AdsbEmitterType emittertype,
-      UavionixAdsbOutCfgAircraftSize aircraftsize, UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat,
-      UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon, int stallspeed,
+  private UavionixAdsbOutCfg(long icao, int stallspeed, String callsign,
+      AdsbEmitterType emittertype, UavionixAdsbOutCfgAircraftSize aircraftsize,
+      UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat, UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon,
       EnumFlagSet<UavionixAdsbOutRfSelect> rfselect) {
     this.icao = icao;
+    this.stallspeed = stallspeed;
     this.callsign = callsign;
     this.emittertype = emittertype;
     this.aircraftsize = aircraftsize;
     this.gpsoffsetlat = gpsoffsetlat;
     this.gpsoffsetlon = gpsoffsetlon;
-    this.stallspeed = stallspeed;
     this.rfselect = rfselect;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "UavionixAdsbOutCfg{icao=" + icao
+         + ", callsign=" + callsign
+         + ", emittertype=" + emittertype
+         + ", aircraftsize=" + aircraftsize
+         + ", gpsoffsetlat=" + gpsoffsetlat
+         + ", gpsoffsetlon=" + gpsoffsetlon
+         + ", stallspeed=" + stallspeed
+         + ", rfselect=" + rfselect + "}";
   }
 
   /**
@@ -79,10 +94,21 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long icao() {
     return icao;
+  }
+
+  /**
+   * Aircraft stall speed in cm/s 
+   */
+  @MavlinkMessageField(
+      position = 7,
+      unitSize = 2
+  )
+  public final int stallspeed() {
+    return stallspeed;
   }
 
   /**
@@ -90,7 +116,7 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 9
   )
   public final String callsign() {
@@ -102,7 +128,7 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final AdsbEmitterType emittertype() {
     return emittertype;
@@ -113,7 +139,7 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final UavionixAdsbOutCfgAircraftSize aircraftsize() {
     return aircraftsize;
@@ -124,7 +150,7 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat() {
     return gpsoffsetlat;
@@ -136,21 +162,10 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon() {
     return gpsoffsetlon;
-  }
-
-  /**
-   * Aircraft stall speed in cm/s 
-   */
-  @MavlinkMessageField(
-      position = 7,
-      length = 2
-  )
-  public final int stallspeed() {
-    return stallspeed;
   }
 
   /**
@@ -158,7 +173,7 @@ public final class UavionixAdsbOutCfg {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<UavionixAdsbOutRfSelect> rfselect() {
     return rfselect;
@@ -166,6 +181,8 @@ public final class UavionixAdsbOutCfg {
 
   public static class Builder {
     private long icao;
+
+    private int stallspeed;
 
     private String callsign;
 
@@ -177,8 +194,6 @@ public final class UavionixAdsbOutCfg {
 
     private UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon;
 
-    private int stallspeed;
-
     private EnumFlagSet<UavionixAdsbOutRfSelect> rfselect;
 
     private Builder() {
@@ -189,10 +204,22 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder icao(long icao) {
       this.icao = icao;
+      return this;
+    }
+
+    /**
+     * Aircraft stall speed in cm/s 
+     */
+    @MavlinkMessageField(
+        position = 7,
+        unitSize = 2
+    )
+    public final Builder stallspeed(int stallspeed) {
+      this.stallspeed = stallspeed;
       return this;
     }
 
@@ -201,7 +228,7 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 9
     )
     public final Builder callsign(String callsign) {
@@ -214,7 +241,7 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder emittertype(AdsbEmitterType emittertype) {
       this.emittertype = emittertype;
@@ -226,7 +253,7 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder aircraftsize(UavionixAdsbOutCfgAircraftSize aircraftsize) {
       this.aircraftsize = aircraftsize;
@@ -238,7 +265,7 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder gpsoffsetlat(UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat) {
       this.gpsoffsetlat = gpsoffsetlat;
@@ -251,22 +278,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder gpsoffsetlon(UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon) {
       this.gpsoffsetlon = gpsoffsetlon;
-      return this;
-    }
-
-    /**
-     * Aircraft stall speed in cm/s 
-     */
-    @MavlinkMessageField(
-        position = 7,
-        length = 2
-    )
-    public final Builder stallspeed(int stallspeed) {
-      this.stallspeed = stallspeed;
       return this;
     }
 
@@ -275,7 +290,7 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder rfselect(EnumFlagSet<UavionixAdsbOutRfSelect> rfselect) {
       this.rfselect = rfselect;
@@ -283,7 +298,7 @@ public final class UavionixAdsbOutCfg {
     }
 
     public final UavionixAdsbOutCfg build() {
-      return new UavionixAdsbOutCfg(icao, callsign, emittertype, aircraftsize, gpsoffsetlat, gpsoffsetlon, stallspeed, rfselect);
+      return new UavionixAdsbOutCfg(icao, stallspeed, callsign, emittertype, aircraftsize, gpsoffsetlat, gpsoffsetlon, rfselect);
     }
   }
 }

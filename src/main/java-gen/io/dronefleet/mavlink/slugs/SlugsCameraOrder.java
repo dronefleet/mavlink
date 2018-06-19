@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Orders generated to the SLUGS camera mount. 
@@ -45,8 +48,18 @@ public final class SlugsCameraOrder {
     this.movehome = movehome;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SlugsCameraOrder{target=" + target
+         + ", pan=" + pan
+         + ", tilt=" + tilt
+         + ", zoom=" + zoom
+         + ", movehome=" + movehome + "}";
   }
 
   /**
@@ -54,7 +67,7 @@ public final class SlugsCameraOrder {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int target() {
     return target;
@@ -65,7 +78,7 @@ public final class SlugsCameraOrder {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int pan() {
     return pan;
@@ -76,7 +89,7 @@ public final class SlugsCameraOrder {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int tilt() {
     return tilt;
@@ -87,7 +100,7 @@ public final class SlugsCameraOrder {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int zoom() {
     return zoom;
@@ -99,7 +112,7 @@ public final class SlugsCameraOrder {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int movehome() {
     return movehome;
@@ -124,7 +137,7 @@ public final class SlugsCameraOrder {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder target(int target) {
       this.target = target;
@@ -136,7 +149,7 @@ public final class SlugsCameraOrder {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder pan(int pan) {
       this.pan = pan;
@@ -148,7 +161,7 @@ public final class SlugsCameraOrder {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder tilt(int tilt) {
       this.tilt = tilt;
@@ -160,7 +173,7 @@ public final class SlugsCameraOrder {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder zoom(int zoom) {
       this.zoom = zoom;
@@ -173,7 +186,7 @@ public final class SlugsCameraOrder {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder movehome(int movehome) {
       this.movehome = movehome;

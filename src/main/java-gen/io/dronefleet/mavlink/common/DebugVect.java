@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 
@@ -13,11 +15,6 @@ import java.math.BigInteger;
     crc = 49
 )
 public final class DebugVect {
-  /**
-   * Name 
-   */
-  private final String name;
-
   /**
    * Timestamp 
    */
@@ -38,28 +35,31 @@ public final class DebugVect {
    */
   private final float z;
 
-  private DebugVect(String name, BigInteger timeUsec, float x, float y, float z) {
-    this.name = name;
+  /**
+   * Name 
+   */
+  private final String name;
+
+  private DebugVect(BigInteger timeUsec, float x, float y, float z, String name) {
     this.timeUsec = timeUsec;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.name = name;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Name 
-   */
-  @MavlinkMessageField(
-      position = 0,
-      length = 1,
-      arraySize = 10
-  )
-  public final String name() {
-    return name;
+  @Override
+  public String toString() {
+    return "DebugVect{name=" + name
+         + ", timeUsec=" + timeUsec
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z + "}";
   }
 
   /**
@@ -67,7 +67,7 @@ public final class DebugVect {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -78,7 +78,7 @@ public final class DebugVect {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -89,7 +89,7 @@ public final class DebugVect {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -100,15 +100,25 @@ public final class DebugVect {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
   }
 
-  public static class Builder {
-    private String name;
+  /**
+   * Name 
+   */
+  @MavlinkMessageField(
+      position = 0,
+      unitSize = 1,
+      arraySize = 10
+  )
+  public final String name() {
+    return name;
+  }
 
+  public static class Builder {
     private BigInteger timeUsec;
 
     private float x;
@@ -117,20 +127,9 @@ public final class DebugVect {
 
     private float z;
 
-    private Builder() {
-    }
+    private String name;
 
-    /**
-     * Name 
-     */
-    @MavlinkMessageField(
-        position = 0,
-        length = 1,
-        arraySize = 10
-    )
-    public final Builder name(String name) {
-      this.name = name;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -138,7 +137,7 @@ public final class DebugVect {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -150,7 +149,7 @@ public final class DebugVect {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -162,7 +161,7 @@ public final class DebugVect {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -174,15 +173,28 @@ public final class DebugVect {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
       return this;
     }
 
+    /**
+     * Name 
+     */
+    @MavlinkMessageField(
+        position = 0,
+        unitSize = 1,
+        arraySize = 10
+    )
+    public final Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
     public final DebugVect build() {
-      return new DebugVect(name, timeUsec, x, y, z);
+      return new DebugVect(timeUsec, x, y, z, name);
     }
   }
 }

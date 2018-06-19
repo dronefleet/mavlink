@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -51,8 +53,18 @@ public final class ParamExtSet {
     this.paramType = paramType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamExtSet{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", paramId=" + paramId
+         + ", paramValue=" + paramValue
+         + ", paramType=" + paramType + "}";
   }
 
   /**
@@ -60,7 +72,7 @@ public final class ParamExtSet {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -71,7 +83,7 @@ public final class ParamExtSet {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -84,7 +96,7 @@ public final class ParamExtSet {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final String paramId() {
@@ -96,7 +108,7 @@ public final class ParamExtSet {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 128
   )
   public final String paramValue() {
@@ -108,7 +120,7 @@ public final class ParamExtSet {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final MavParamExtType paramType() {
     return paramType;
@@ -133,7 +145,7 @@ public final class ParamExtSet {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -145,7 +157,7 @@ public final class ParamExtSet {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -159,7 +171,7 @@ public final class ParamExtSet {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder paramId(String paramId) {
@@ -172,7 +184,7 @@ public final class ParamExtSet {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 128
     )
     public final Builder paramValue(String paramValue) {
@@ -185,7 +197,7 @@ public final class ParamExtSet {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder paramType(MavParamExtType paramType) {
       this.paramType = paramType;

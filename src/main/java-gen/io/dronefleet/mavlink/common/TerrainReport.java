@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.common.TerrainCheck TerrainCheck} request 
@@ -22,11 +25,6 @@ public final class TerrainReport {
   private final int lon;
 
   /**
-   * grid spacing (zero if terrain at this location unavailable) 
-   */
-  private final int spacing;
-
-  /**
    * Terrain height in meters AMSL 
    */
   private final float terrainHeight;
@@ -35,6 +33,11 @@ public final class TerrainReport {
    * Current vehicle height above lat/lon terrain height (meters) 
    */
   private final float currentHeight;
+
+  /**
+   * grid spacing (zero if terrain at this location unavailable) 
+   */
+  private final int spacing;
 
   /**
    * Number of 4x4 terrain blocks waiting to be received or read from disk 
@@ -46,19 +49,31 @@ public final class TerrainReport {
    */
   private final int loaded;
 
-  private TerrainReport(int lat, int lon, int spacing, float terrainHeight, float currentHeight,
+  private TerrainReport(int lat, int lon, float terrainHeight, float currentHeight, int spacing,
       int pending, int loaded) {
     this.lat = lat;
     this.lon = lon;
-    this.spacing = spacing;
     this.terrainHeight = terrainHeight;
     this.currentHeight = currentHeight;
+    this.spacing = spacing;
     this.pending = pending;
     this.loaded = loaded;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "TerrainReport{lat=" + lat
+         + ", lon=" + lon
+         + ", spacing=" + spacing
+         + ", terrainHeight=" + terrainHeight
+         + ", currentHeight=" + currentHeight
+         + ", pending=" + pending
+         + ", loaded=" + loaded + "}";
   }
 
   /**
@@ -66,7 +81,7 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -77,21 +92,10 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
-  }
-
-  /**
-   * grid spacing (zero if terrain at this location unavailable) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int spacing() {
-    return spacing;
   }
 
   /**
@@ -99,7 +103,7 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float terrainHeight() {
     return terrainHeight;
@@ -110,10 +114,21 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float currentHeight() {
     return currentHeight;
+  }
+
+  /**
+   * grid spacing (zero if terrain at this location unavailable) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int spacing() {
+    return spacing;
   }
 
   /**
@@ -121,7 +136,7 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int pending() {
     return pending;
@@ -132,7 +147,7 @@ public final class TerrainReport {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int loaded() {
     return loaded;
@@ -143,11 +158,11 @@ public final class TerrainReport {
 
     private int lon;
 
-    private int spacing;
-
     private float terrainHeight;
 
     private float currentHeight;
+
+    private int spacing;
 
     private int pending;
 
@@ -161,7 +176,7 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -173,22 +188,10 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
-      return this;
-    }
-
-    /**
-     * grid spacing (zero if terrain at this location unavailable) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder spacing(int spacing) {
-      this.spacing = spacing;
       return this;
     }
 
@@ -197,7 +200,7 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder terrainHeight(float terrainHeight) {
       this.terrainHeight = terrainHeight;
@@ -209,10 +212,22 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder currentHeight(float currentHeight) {
       this.currentHeight = currentHeight;
+      return this;
+    }
+
+    /**
+     * grid spacing (zero if terrain at this location unavailable) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder spacing(int spacing) {
+      this.spacing = spacing;
       return this;
     }
 
@@ -221,7 +236,7 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder pending(int pending) {
       this.pending = pending;
@@ -233,7 +248,7 @@ public final class TerrainReport {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder loaded(int loaded) {
       this.loaded = loaded;
@@ -241,7 +256,7 @@ public final class TerrainReport {
     }
 
     public final TerrainReport build() {
-      return new TerrainReport(lat, lon, spacing, terrainHeight, currentHeight, pending, loaded);
+      return new TerrainReport(lat, lon, terrainHeight, currentHeight, spacing, pending, loaded);
     }
   }
 }

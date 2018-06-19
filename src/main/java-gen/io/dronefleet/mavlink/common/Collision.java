@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Information about a potential collision 
@@ -12,24 +15,9 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class Collision {
   /**
-   * Collision data source 
-   */
-  private final MavCollisionSrc src;
-
-  /**
    * Unique identifier, domain based on src field 
    */
   private final long id;
-
-  /**
-   * Action that is being taken to avoid this collision 
-   */
-  private final MavCollisionAction action;
-
-  /**
-   * How concerned the aircraft is about this collision 
-   */
-  private final MavCollisionThreatLevel threatLevel;
 
   /**
    * Estimated time until collision occurs (seconds) 
@@ -46,31 +34,47 @@ public final class Collision {
    */
   private final float horizontalMinimumDelta;
 
-  private Collision(MavCollisionSrc src, long id, MavCollisionAction action,
-      MavCollisionThreatLevel threatLevel, float timeToMinimumDelta, float altitudeMinimumDelta,
-      float horizontalMinimumDelta) {
-    this.src = src;
+  /**
+   * Collision data source 
+   */
+  private final MavCollisionSrc src;
+
+  /**
+   * Action that is being taken to avoid this collision 
+   */
+  private final MavCollisionAction action;
+
+  /**
+   * How concerned the aircraft is about this collision 
+   */
+  private final MavCollisionThreatLevel threatLevel;
+
+  private Collision(long id, float timeToMinimumDelta, float altitudeMinimumDelta,
+      float horizontalMinimumDelta, MavCollisionSrc src, MavCollisionAction action,
+      MavCollisionThreatLevel threatLevel) {
     this.id = id;
-    this.action = action;
-    this.threatLevel = threatLevel;
     this.timeToMinimumDelta = timeToMinimumDelta;
     this.altitudeMinimumDelta = altitudeMinimumDelta;
     this.horizontalMinimumDelta = horizontalMinimumDelta;
+    this.src = src;
+    this.action = action;
+    this.threatLevel = threatLevel;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Collision data source 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final MavCollisionSrc src() {
-    return src;
+  @Override
+  public String toString() {
+    return "Collision{src=" + src
+         + ", id=" + id
+         + ", action=" + action
+         + ", threatLevel=" + threatLevel
+         + ", timeToMinimumDelta=" + timeToMinimumDelta
+         + ", altitudeMinimumDelta=" + altitudeMinimumDelta
+         + ", horizontalMinimumDelta=" + horizontalMinimumDelta + "}";
   }
 
   /**
@@ -78,32 +82,10 @@ public final class Collision {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long id() {
     return id;
-  }
-
-  /**
-   * Action that is being taken to avoid this collision 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final MavCollisionAction action() {
-    return action;
-  }
-
-  /**
-   * How concerned the aircraft is about this collision 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 1
-  )
-  public final MavCollisionThreatLevel threatLevel() {
-    return threatLevel;
   }
 
   /**
@@ -111,7 +93,7 @@ public final class Collision {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float timeToMinimumDelta() {
     return timeToMinimumDelta;
@@ -122,7 +104,7 @@ public final class Collision {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeMinimumDelta() {
     return altitudeMinimumDelta;
@@ -133,20 +115,47 @@ public final class Collision {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float horizontalMinimumDelta() {
     return horizontalMinimumDelta;
   }
 
+  /**
+   * Collision data source 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final MavCollisionSrc src() {
+    return src;
+  }
+
+  /**
+   * Action that is being taken to avoid this collision 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final MavCollisionAction action() {
+    return action;
+  }
+
+  /**
+   * How concerned the aircraft is about this collision 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 1
+  )
+  public final MavCollisionThreatLevel threatLevel() {
+    return threatLevel;
+  }
+
   public static class Builder {
-    private MavCollisionSrc src;
-
     private long id;
-
-    private MavCollisionAction action;
-
-    private MavCollisionThreatLevel threatLevel;
 
     private float timeToMinimumDelta;
 
@@ -154,19 +163,13 @@ public final class Collision {
 
     private float horizontalMinimumDelta;
 
-    private Builder() {
-    }
+    private MavCollisionSrc src;
 
-    /**
-     * Collision data source 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder src(MavCollisionSrc src) {
-      this.src = src;
-      return this;
+    private MavCollisionAction action;
+
+    private MavCollisionThreatLevel threatLevel;
+
+    private Builder() {
     }
 
     /**
@@ -174,34 +177,10 @@ public final class Collision {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder id(long id) {
       this.id = id;
-      return this;
-    }
-
-    /**
-     * Action that is being taken to avoid this collision 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder action(MavCollisionAction action) {
-      this.action = action;
-      return this;
-    }
-
-    /**
-     * How concerned the aircraft is about this collision 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 1
-    )
-    public final Builder threatLevel(MavCollisionThreatLevel threatLevel) {
-      this.threatLevel = threatLevel;
       return this;
     }
 
@@ -210,7 +189,7 @@ public final class Collision {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeToMinimumDelta(float timeToMinimumDelta) {
       this.timeToMinimumDelta = timeToMinimumDelta;
@@ -222,7 +201,7 @@ public final class Collision {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeMinimumDelta(float altitudeMinimumDelta) {
       this.altitudeMinimumDelta = altitudeMinimumDelta;
@@ -234,15 +213,51 @@ public final class Collision {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder horizontalMinimumDelta(float horizontalMinimumDelta) {
       this.horizontalMinimumDelta = horizontalMinimumDelta;
       return this;
     }
 
+    /**
+     * Collision data source 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder src(MavCollisionSrc src) {
+      this.src = src;
+      return this;
+    }
+
+    /**
+     * Action that is being taken to avoid this collision 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder action(MavCollisionAction action) {
+      this.action = action;
+      return this;
+    }
+
+    /**
+     * How concerned the aircraft is about this collision 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 1
+    )
+    public final Builder threatLevel(MavCollisionThreatLevel threatLevel) {
+      this.threatLevel = threatLevel;
+      return this;
+    }
+
     public final Collision build() {
-      return new Collision(src, id, action, threatLevel, timeToMinimumDelta, altitudeMinimumDelta, horizontalMinimumDelta);
+      return new Collision(id, timeToMinimumDelta, altitudeMinimumDelta, horizontalMinimumDelta, src, action, threatLevel);
     }
   }
 }

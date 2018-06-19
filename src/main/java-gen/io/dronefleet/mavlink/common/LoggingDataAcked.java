@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -14,6 +17,11 @@ import java.util.List;
 )
 public final class LoggingDataAcked {
   /**
+   * sequence number (can wrap) 
+   */
+  private final int sequence;
+
+  /**
    * system ID of the target 
    */
   private final int targetSystem;
@@ -22,11 +30,6 @@ public final class LoggingDataAcked {
    * component ID of the target 
    */
   private final int targetComponent;
-
-  /**
-   * sequence number (can wrap) 
-   */
-  private final int sequence;
 
   /**
    * data length 
@@ -44,18 +47,40 @@ public final class LoggingDataAcked {
    */
   private final List<Integer> data;
 
-  private LoggingDataAcked(int targetSystem, int targetComponent, int sequence, int length,
+  private LoggingDataAcked(int sequence, int targetSystem, int targetComponent, int length,
       int firstMessageOffset, List<Integer> data) {
+    this.sequence = sequence;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
-    this.sequence = sequence;
     this.length = length;
     this.firstMessageOffset = firstMessageOffset;
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LoggingDataAcked{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", sequence=" + sequence
+         + ", length=" + length
+         + ", firstMessageOffset=" + firstMessageOffset
+         + ", data=" + data + "}";
+  }
+
+  /**
+   * sequence number (can wrap) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int sequence() {
+    return sequence;
   }
 
   /**
@@ -63,7 +88,7 @@ public final class LoggingDataAcked {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -74,21 +99,10 @@ public final class LoggingDataAcked {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
-  }
-
-  /**
-   * sequence number (can wrap) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int sequence() {
-    return sequence;
   }
 
   /**
@@ -96,7 +110,7 @@ public final class LoggingDataAcked {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int length() {
     return length;
@@ -108,7 +122,7 @@ public final class LoggingDataAcked {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int firstMessageOffset() {
     return firstMessageOffset;
@@ -119,7 +133,7 @@ public final class LoggingDataAcked {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 249
   )
   public final List<Integer> data() {
@@ -127,11 +141,11 @@ public final class LoggingDataAcked {
   }
 
   public static class Builder {
+    private int sequence;
+
     private int targetSystem;
 
     private int targetComponent;
-
-    private int sequence;
 
     private int length;
 
@@ -143,11 +157,23 @@ public final class LoggingDataAcked {
     }
 
     /**
+     * sequence number (can wrap) 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder sequence(int sequence) {
+      this.sequence = sequence;
+      return this;
+    }
+
+    /**
      * system ID of the target 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -159,22 +185,10 @@ public final class LoggingDataAcked {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * sequence number (can wrap) 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder sequence(int sequence) {
-      this.sequence = sequence;
       return this;
     }
 
@@ -183,7 +197,7 @@ public final class LoggingDataAcked {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder length(int length) {
       this.length = length;
@@ -196,7 +210,7 @@ public final class LoggingDataAcked {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder firstMessageOffset(int firstMessageOffset) {
       this.firstMessageOffset = firstMessageOffset;
@@ -208,7 +222,7 @@ public final class LoggingDataAcked {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 249
     )
     public final Builder data(List<Integer> data) {
@@ -217,7 +231,7 @@ public final class LoggingDataAcked {
     }
 
     public final LoggingDataAcked build() {
-      return new LoggingDataAcked(targetSystem, targetComponent, sequence, length, firstMessageOffset, data);
+      return new LoggingDataAcked(sequence, targetSystem, targetComponent, length, firstMessageOffset, data);
     }
   }
 }

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F7: format 
@@ -51,8 +54,19 @@ public final class SerialUdbExtraF7 {
     this.sueRtlPitchDown = sueRtlPitchDown;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF7{sueYawkpRudder=" + sueYawkpRudder
+         + ", sueYawkdRudder=" + sueYawkdRudder
+         + ", sueRollkpRudder=" + sueRollkpRudder
+         + ", sueRollkdRudder=" + sueRollkdRudder
+         + ", sueRudderBoost=" + sueRudderBoost
+         + ", sueRtlPitchDown=" + sueRtlPitchDown + "}";
   }
 
   /**
@@ -60,7 +74,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float sueYawkpRudder() {
     return sueYawkpRudder;
@@ -71,7 +85,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float sueYawkdRudder() {
     return sueYawkdRudder;
@@ -82,7 +96,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float sueRollkpRudder() {
     return sueRollkpRudder;
@@ -93,7 +107,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float sueRollkdRudder() {
     return sueRollkdRudder;
@@ -104,7 +118,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float sueRudderBoost() {
     return sueRudderBoost;
@@ -115,7 +129,7 @@ public final class SerialUdbExtraF7 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float sueRtlPitchDown() {
     return sueRtlPitchDown;
@@ -142,7 +156,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueYawkpRudder(float sueYawkpRudder) {
       this.sueYawkpRudder = sueYawkpRudder;
@@ -154,7 +168,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueYawkdRudder(float sueYawkdRudder) {
       this.sueYawkdRudder = sueYawkdRudder;
@@ -166,7 +180,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRollkpRudder(float sueRollkpRudder) {
       this.sueRollkpRudder = sueRollkpRudder;
@@ -178,7 +192,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRollkdRudder(float sueRollkdRudder) {
       this.sueRollkdRudder = sueRollkdRudder;
@@ -190,7 +204,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRudderBoost(float sueRudderBoost) {
       this.sueRudderBoost = sueRudderBoost;
@@ -202,7 +216,7 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRtlPitchDown(float sueRtlPitchDown) {
       this.sueRtlPitchDown = sueRtlPitchDown;

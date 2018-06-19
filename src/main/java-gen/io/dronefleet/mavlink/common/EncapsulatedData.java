@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -28,8 +31,15 @@ public final class EncapsulatedData {
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "EncapsulatedData{seqnr=" + seqnr
+         + ", data=" + data + "}";
   }
 
   /**
@@ -37,7 +47,7 @@ public final class EncapsulatedData {
    */
   @MavlinkMessageField(
       position = 0,
-      length = 2
+      unitSize = 2
   )
   public final int seqnr() {
     return seqnr;
@@ -48,7 +58,7 @@ public final class EncapsulatedData {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 253
   )
   public final List<Integer> data() {
@@ -68,7 +78,7 @@ public final class EncapsulatedData {
      */
     @MavlinkMessageField(
         position = 0,
-        length = 2
+        unitSize = 2
     )
     public final Builder seqnr(int seqnr) {
       this.seqnr = seqnr;
@@ -80,7 +90,7 @@ public final class EncapsulatedData {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 253
     )
     public final Builder data(List<Integer> data) {

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The altitude measured by sensors and IMU 
@@ -57,8 +60,20 @@ public final class Altitudes {
     this.altExtra = altExtra;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Altitudes{timeBootMs=" + timeBootMs
+         + ", altGps=" + altGps
+         + ", altImu=" + altImu
+         + ", altBarometric=" + altBarometric
+         + ", altOpticalFlow=" + altOpticalFlow
+         + ", altRangeFinder=" + altRangeFinder
+         + ", altExtra=" + altExtra + "}";
   }
 
   /**
@@ -66,7 +81,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -77,7 +92,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int altGps() {
     return altGps;
@@ -88,7 +103,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int altImu() {
     return altImu;
@@ -99,7 +114,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int altBarometric() {
     return altBarometric;
@@ -110,7 +125,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int altOpticalFlow() {
     return altOpticalFlow;
@@ -121,7 +136,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int altRangeFinder() {
     return altRangeFinder;
@@ -132,7 +147,7 @@ public final class Altitudes {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final int altExtra() {
     return altExtra;
@@ -161,7 +176,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -173,7 +188,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder altGps(int altGps) {
       this.altGps = altGps;
@@ -185,7 +200,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder altImu(int altImu) {
       this.altImu = altImu;
@@ -197,7 +212,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder altBarometric(int altBarometric) {
       this.altBarometric = altBarometric;
@@ -209,7 +224,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder altOpticalFlow(int altOpticalFlow) {
       this.altOpticalFlow = altOpticalFlow;
@@ -221,7 +236,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder altRangeFinder(int altRangeFinder) {
       this.altRangeFinder = altRangeFinder;
@@ -233,7 +248,7 @@ public final class Altitudes {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder altExtra(int altExtra) {
       this.altExtra = altExtra;

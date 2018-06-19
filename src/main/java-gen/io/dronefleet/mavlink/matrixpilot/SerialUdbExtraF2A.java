@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible MAVLink version of SERIAL_UDB_EXTRA - F2: Format Part A 
@@ -15,11 +18,6 @@ public final class SerialUdbExtraF2A {
    * Serial UDB Extra Time 
    */
   private final long sueTime;
-
-  /**
-   * Serial UDB Extra Status 
-   */
-  private final int sueStatus;
 
   /**
    * Serial UDB Extra Latitude 
@@ -146,14 +144,18 @@ public final class SerialUdbExtraF2A {
    */
   private final int sueHdop;
 
-  private SerialUdbExtraF2A(long sueTime, int sueStatus, int sueLatitude, int sueLongitude,
-      int sueAltitude, int sueWaypointIndex, int sueRmat0, int sueRmat1, int sueRmat2, int sueRmat3,
-      int sueRmat4, int sueRmat5, int sueRmat6, int sueRmat7, int sueRmat8, int sueCog, int sueSog,
+  /**
+   * Serial UDB Extra Status 
+   */
+  private final int sueStatus;
+
+  private SerialUdbExtraF2A(long sueTime, int sueLatitude, int sueLongitude, int sueAltitude,
+      int sueWaypointIndex, int sueRmat0, int sueRmat1, int sueRmat2, int sueRmat3, int sueRmat4,
+      int sueRmat5, int sueRmat6, int sueRmat7, int sueRmat8, int sueCog, int sueSog,
       int sueCpuLoad, int sueAirSpeed3dimu, int sueEstimatedWind0, int sueEstimatedWind1,
       int sueEstimatedWind2, int sueMagfieldearth0, int sueMagfieldearth1, int sueMagfieldearth2,
-      int sueSvs, int sueHdop) {
+      int sueSvs, int sueHdop, int sueStatus) {
     this.sueTime = sueTime;
-    this.sueStatus = sueStatus;
     this.sueLatitude = sueLatitude;
     this.sueLongitude = sueLongitude;
     this.sueAltitude = sueAltitude;
@@ -179,10 +181,43 @@ public final class SerialUdbExtraF2A {
     this.sueMagfieldearth2 = sueMagfieldearth2;
     this.sueSvs = sueSvs;
     this.sueHdop = sueHdop;
+    this.sueStatus = sueStatus;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF2A{sueTime=" + sueTime
+         + ", sueStatus=" + sueStatus
+         + ", sueLatitude=" + sueLatitude
+         + ", sueLongitude=" + sueLongitude
+         + ", sueAltitude=" + sueAltitude
+         + ", sueWaypointIndex=" + sueWaypointIndex
+         + ", sueRmat0=" + sueRmat0
+         + ", sueRmat1=" + sueRmat1
+         + ", sueRmat2=" + sueRmat2
+         + ", sueRmat3=" + sueRmat3
+         + ", sueRmat4=" + sueRmat4
+         + ", sueRmat5=" + sueRmat5
+         + ", sueRmat6=" + sueRmat6
+         + ", sueRmat7=" + sueRmat7
+         + ", sueRmat8=" + sueRmat8
+         + ", sueCog=" + sueCog
+         + ", sueSog=" + sueSog
+         + ", sueCpuLoad=" + sueCpuLoad
+         + ", sueAirSpeed3dimu=" + sueAirSpeed3dimu
+         + ", sueEstimatedWind0=" + sueEstimatedWind0
+         + ", sueEstimatedWind1=" + sueEstimatedWind1
+         + ", sueEstimatedWind2=" + sueEstimatedWind2
+         + ", sueMagfieldearth0=" + sueMagfieldearth0
+         + ", sueMagfieldearth1=" + sueMagfieldearth1
+         + ", sueMagfieldearth2=" + sueMagfieldearth2
+         + ", sueSvs=" + sueSvs
+         + ", sueHdop=" + sueHdop + "}";
   }
 
   /**
@@ -190,21 +225,10 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long sueTime() {
     return sueTime;
-  }
-
-  /**
-   * Serial UDB Extra Status 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int sueStatus() {
-    return sueStatus;
   }
 
   /**
@@ -212,7 +236,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int sueLatitude() {
     return sueLatitude;
@@ -223,7 +247,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int sueLongitude() {
     return sueLongitude;
@@ -234,7 +258,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int sueAltitude() {
     return sueAltitude;
@@ -245,7 +269,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int sueWaypointIndex() {
     return sueWaypointIndex;
@@ -256,7 +280,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat0() {
     return sueRmat0;
@@ -267,7 +291,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat1() {
     return sueRmat1;
@@ -278,7 +302,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat2() {
     return sueRmat2;
@@ -289,7 +313,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat3() {
     return sueRmat3;
@@ -300,7 +324,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat4() {
     return sueRmat4;
@@ -311,7 +335,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat5() {
     return sueRmat5;
@@ -322,7 +346,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat6() {
     return sueRmat6;
@@ -333,7 +357,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat7() {
     return sueRmat7;
@@ -344,7 +368,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final int sueRmat8() {
     return sueRmat8;
@@ -355,7 +379,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2
+      unitSize = 2
   )
   public final int sueCog() {
     return sueCog;
@@ -366,7 +390,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 2
+      unitSize = 2
   )
   public final int sueSog() {
     return sueSog;
@@ -377,7 +401,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 2
+      unitSize = 2
   )
   public final int sueCpuLoad() {
     return sueCpuLoad;
@@ -388,7 +412,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 2
+      unitSize = 2
   )
   public final int sueAirSpeed3dimu() {
     return sueAirSpeed3dimu;
@@ -399,7 +423,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 2
+      unitSize = 2
   )
   public final int sueEstimatedWind0() {
     return sueEstimatedWind0;
@@ -410,7 +434,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 2
+      unitSize = 2
   )
   public final int sueEstimatedWind1() {
     return sueEstimatedWind1;
@@ -421,7 +445,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 22,
-      length = 2
+      unitSize = 2
   )
   public final int sueEstimatedWind2() {
     return sueEstimatedWind2;
@@ -432,7 +456,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 23,
-      length = 2
+      unitSize = 2
   )
   public final int sueMagfieldearth0() {
     return sueMagfieldearth0;
@@ -443,7 +467,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 24,
-      length = 2
+      unitSize = 2
   )
   public final int sueMagfieldearth1() {
     return sueMagfieldearth1;
@@ -454,7 +478,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 25,
-      length = 2
+      unitSize = 2
   )
   public final int sueMagfieldearth2() {
     return sueMagfieldearth2;
@@ -465,7 +489,7 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 26,
-      length = 2
+      unitSize = 2
   )
   public final int sueSvs() {
     return sueSvs;
@@ -476,16 +500,25 @@ public final class SerialUdbExtraF2A {
    */
   @MavlinkMessageField(
       position = 27,
-      length = 2
+      unitSize = 2
   )
   public final int sueHdop() {
     return sueHdop;
   }
 
+  /**
+   * Serial UDB Extra Status 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int sueStatus() {
+    return sueStatus;
+  }
+
   public static class Builder {
     private long sueTime;
-
-    private int sueStatus;
 
     private int sueLatitude;
 
@@ -537,6 +570,8 @@ public final class SerialUdbExtraF2A {
 
     private int sueHdop;
 
+    private int sueStatus;
+
     private Builder() {
     }
 
@@ -545,22 +580,10 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueTime(long sueTime) {
       this.sueTime = sueTime;
-      return this;
-    }
-
-    /**
-     * Serial UDB Extra Status 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder sueStatus(int sueStatus) {
-      this.sueStatus = sueStatus;
       return this;
     }
 
@@ -569,7 +592,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueLatitude(int sueLatitude) {
       this.sueLatitude = sueLatitude;
@@ -581,7 +604,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueLongitude(int sueLongitude) {
       this.sueLongitude = sueLongitude;
@@ -593,7 +616,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueAltitude(int sueAltitude) {
       this.sueAltitude = sueAltitude;
@@ -605,7 +628,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueWaypointIndex(int sueWaypointIndex) {
       this.sueWaypointIndex = sueWaypointIndex;
@@ -617,7 +640,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat0(int sueRmat0) {
       this.sueRmat0 = sueRmat0;
@@ -629,7 +652,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat1(int sueRmat1) {
       this.sueRmat1 = sueRmat1;
@@ -641,7 +664,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat2(int sueRmat2) {
       this.sueRmat2 = sueRmat2;
@@ -653,7 +676,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat3(int sueRmat3) {
       this.sueRmat3 = sueRmat3;
@@ -665,7 +688,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat4(int sueRmat4) {
       this.sueRmat4 = sueRmat4;
@@ -677,7 +700,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat5(int sueRmat5) {
       this.sueRmat5 = sueRmat5;
@@ -689,7 +712,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat6(int sueRmat6) {
       this.sueRmat6 = sueRmat6;
@@ -701,7 +724,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat7(int sueRmat7) {
       this.sueRmat7 = sueRmat7;
@@ -713,7 +736,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueRmat8(int sueRmat8) {
       this.sueRmat8 = sueRmat8;
@@ -725,7 +748,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueCog(int sueCog) {
       this.sueCog = sueCog;
@@ -737,7 +760,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueSog(int sueSog) {
       this.sueSog = sueSog;
@@ -749,7 +772,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueCpuLoad(int sueCpuLoad) {
       this.sueCpuLoad = sueCpuLoad;
@@ -761,7 +784,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueAirSpeed3dimu(int sueAirSpeed3dimu) {
       this.sueAirSpeed3dimu = sueAirSpeed3dimu;
@@ -773,7 +796,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueEstimatedWind0(int sueEstimatedWind0) {
       this.sueEstimatedWind0 = sueEstimatedWind0;
@@ -785,7 +808,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueEstimatedWind1(int sueEstimatedWind1) {
       this.sueEstimatedWind1 = sueEstimatedWind1;
@@ -797,7 +820,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 22,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueEstimatedWind2(int sueEstimatedWind2) {
       this.sueEstimatedWind2 = sueEstimatedWind2;
@@ -809,7 +832,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 23,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueMagfieldearth0(int sueMagfieldearth0) {
       this.sueMagfieldearth0 = sueMagfieldearth0;
@@ -821,7 +844,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 24,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueMagfieldearth1(int sueMagfieldearth1) {
       this.sueMagfieldearth1 = sueMagfieldearth1;
@@ -833,7 +856,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 25,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueMagfieldearth2(int sueMagfieldearth2) {
       this.sueMagfieldearth2 = sueMagfieldearth2;
@@ -845,7 +868,7 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 26,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueSvs(int sueSvs) {
       this.sueSvs = sueSvs;
@@ -857,15 +880,27 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkMessageField(
         position = 27,
-        length = 2
+        unitSize = 2
     )
     public final Builder sueHdop(int sueHdop) {
       this.sueHdop = sueHdop;
       return this;
     }
 
+    /**
+     * Serial UDB Extra Status 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder sueStatus(int sueStatus) {
+      this.sueStatus = sueStatus;
+      return this;
+    }
+
     public final SerialUdbExtraF2A build() {
-      return new SerialUdbExtraF2A(sueTime, sueStatus, sueLatitude, sueLongitude, sueAltitude, sueWaypointIndex, sueRmat0, sueRmat1, sueRmat2, sueRmat3, sueRmat4, sueRmat5, sueRmat6, sueRmat7, sueRmat8, sueCog, sueSog, sueCpuLoad, sueAirSpeed3dimu, sueEstimatedWind0, sueEstimatedWind1, sueEstimatedWind2, sueMagfieldearth0, sueMagfieldearth1, sueMagfieldearth2, sueSvs, sueHdop);
+      return new SerialUdbExtraF2A(sueTime, sueLatitude, sueLongitude, sueAltitude, sueWaypointIndex, sueRmat0, sueRmat1, sueRmat2, sueRmat3, sueRmat4, sueRmat5, sueRmat6, sueRmat7, sueRmat8, sueCog, sueSog, sueCpuLoad, sueAirSpeed3dimu, sueEstimatedWind0, sueEstimatedWind1, sueEstimatedWind2, sueMagfieldearth0, sueMagfieldearth1, sueMagfieldearth2, sueSvs, sueHdop, sueStatus);
     }
   }
 }

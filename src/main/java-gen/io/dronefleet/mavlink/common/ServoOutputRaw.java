@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The RAW values of the servo outputs (for RC input from the remote, use the RC_CHANNELS 
@@ -17,12 +20,6 @@ public final class ServoOutputRaw {
    * Timestamp (microseconds since system boot) 
    */
   private final long timeUsec;
-
-  /**
-   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
-   * encode more than 8 servos. 
-   */
-  private final int port;
 
   /**
    * Servo output 1 value, in microseconds 
@@ -65,6 +62,12 @@ public final class ServoOutputRaw {
   private final int servo8Raw;
 
   /**
+   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
+   * encode more than 8 servos. 
+   */
+  private final int port;
+
+  /**
    * Servo output 9 value, in microseconds 
    */
   private final int servo9Raw;
@@ -104,12 +107,11 @@ public final class ServoOutputRaw {
    */
   private final int servo16Raw;
 
-  private ServoOutputRaw(long timeUsec, int port, int servo1Raw, int servo2Raw, int servo3Raw,
-      int servo4Raw, int servo5Raw, int servo6Raw, int servo7Raw, int servo8Raw, int servo9Raw,
+  private ServoOutputRaw(long timeUsec, int servo1Raw, int servo2Raw, int servo3Raw, int servo4Raw,
+      int servo5Raw, int servo6Raw, int servo7Raw, int servo8Raw, int port, int servo9Raw,
       int servo10Raw, int servo11Raw, int servo12Raw, int servo13Raw, int servo14Raw,
       int servo15Raw, int servo16Raw) {
     this.timeUsec = timeUsec;
-    this.port = port;
     this.servo1Raw = servo1Raw;
     this.servo2Raw = servo2Raw;
     this.servo3Raw = servo3Raw;
@@ -118,6 +120,7 @@ public final class ServoOutputRaw {
     this.servo6Raw = servo6Raw;
     this.servo7Raw = servo7Raw;
     this.servo8Raw = servo8Raw;
+    this.port = port;
     this.servo9Raw = servo9Raw;
     this.servo10Raw = servo10Raw;
     this.servo11Raw = servo11Raw;
@@ -128,8 +131,31 @@ public final class ServoOutputRaw {
     this.servo16Raw = servo16Raw;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ServoOutputRaw{timeUsec=" + timeUsec
+         + ", port=" + port
+         + ", servo1Raw=" + servo1Raw
+         + ", servo2Raw=" + servo2Raw
+         + ", servo3Raw=" + servo3Raw
+         + ", servo4Raw=" + servo4Raw
+         + ", servo5Raw=" + servo5Raw
+         + ", servo6Raw=" + servo6Raw
+         + ", servo7Raw=" + servo7Raw
+         + ", servo8Raw=" + servo8Raw
+         + ", servo9Raw=" + servo9Raw
+         + ", servo10Raw=" + servo10Raw
+         + ", servo11Raw=" + servo11Raw
+         + ", servo12Raw=" + servo12Raw
+         + ", servo13Raw=" + servo13Raw
+         + ", servo14Raw=" + servo14Raw
+         + ", servo15Raw=" + servo15Raw
+         + ", servo16Raw=" + servo16Raw + "}";
   }
 
   /**
@@ -137,22 +163,10 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
-   * encode more than 8 servos. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int port() {
-    return port;
   }
 
   /**
@@ -160,7 +174,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int servo1Raw() {
     return servo1Raw;
@@ -171,7 +185,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int servo2Raw() {
     return servo2Raw;
@@ -182,7 +196,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int servo3Raw() {
     return servo3Raw;
@@ -193,7 +207,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int servo4Raw() {
     return servo4Raw;
@@ -204,7 +218,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int servo5Raw() {
     return servo5Raw;
@@ -215,7 +229,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int servo6Raw() {
     return servo6Raw;
@@ -226,7 +240,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int servo7Raw() {
     return servo7Raw;
@@ -237,10 +251,22 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int servo8Raw() {
     return servo8Raw;
+  }
+
+  /**
+   * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
+   * encode more than 8 servos. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int port() {
+    return port;
   }
 
   /**
@@ -248,7 +274,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo9Raw() {
@@ -260,7 +286,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo10Raw() {
@@ -272,7 +298,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo11Raw() {
@@ -284,7 +310,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo12Raw() {
@@ -296,7 +322,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo13Raw() {
@@ -308,7 +334,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo14Raw() {
@@ -320,7 +346,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo15Raw() {
@@ -332,7 +358,7 @@ public final class ServoOutputRaw {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 2,
+      unitSize = 2,
       extension = true
   )
   public final int servo16Raw() {
@@ -341,8 +367,6 @@ public final class ServoOutputRaw {
 
   public static class Builder {
     private long timeUsec;
-
-    private int port;
 
     private int servo1Raw;
 
@@ -359,6 +383,8 @@ public final class ServoOutputRaw {
     private int servo7Raw;
 
     private int servo8Raw;
+
+    private int port;
 
     private int servo9Raw;
 
@@ -384,23 +410,10 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeUsec(long timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
-     * encode more than 8 servos. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder port(int port) {
-      this.port = port;
       return this;
     }
 
@@ -409,7 +422,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo1Raw(int servo1Raw) {
       this.servo1Raw = servo1Raw;
@@ -421,7 +434,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo2Raw(int servo2Raw) {
       this.servo2Raw = servo2Raw;
@@ -433,7 +446,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo3Raw(int servo3Raw) {
       this.servo3Raw = servo3Raw;
@@ -445,7 +458,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo4Raw(int servo4Raw) {
       this.servo4Raw = servo4Raw;
@@ -457,7 +470,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo5Raw(int servo5Raw) {
       this.servo5Raw = servo5Raw;
@@ -469,7 +482,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo6Raw(int servo6Raw) {
       this.servo6Raw = servo6Raw;
@@ -481,7 +494,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo7Raw(int servo7Raw) {
       this.servo7Raw = servo7Raw;
@@ -493,10 +506,23 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder servo8Raw(int servo8Raw) {
       this.servo8Raw = servo8Raw;
+      return this;
+    }
+
+    /**
+     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
+     * encode more than 8 servos. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder port(int port) {
+      this.port = port;
       return this;
     }
 
@@ -505,7 +531,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo9Raw(int servo9Raw) {
@@ -518,7 +544,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo10Raw(int servo10Raw) {
@@ -531,7 +557,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo11Raw(int servo11Raw) {
@@ -544,7 +570,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo12Raw(int servo12Raw) {
@@ -557,7 +583,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo13Raw(int servo13Raw) {
@@ -570,7 +596,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo14Raw(int servo14Raw) {
@@ -583,7 +609,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo15Raw(int servo15Raw) {
@@ -596,7 +622,7 @@ public final class ServoOutputRaw {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 2,
+        unitSize = 2,
         extension = true
     )
     public final Builder servo16Raw(int servo16Raw) {
@@ -605,7 +631,7 @@ public final class ServoOutputRaw {
     }
 
     public final ServoOutputRaw build() {
-      return new ServoOutputRaw(timeUsec, port, servo1Raw, servo2Raw, servo3Raw, servo4Raw, servo5Raw, servo6Raw, servo7Raw, servo8Raw, servo9Raw, servo10Raw, servo11Raw, servo12Raw, servo13Raw, servo14Raw, servo15Raw, servo16Raw);
+      return new ServoOutputRaw(timeUsec, servo1Raw, servo2Raw, servo3Raw, servo4Raw, servo5Raw, servo6Raw, servo7Raw, servo8Raw, port, servo9Raw, servo10Raw, servo11Raw, servo12Raw, servo13Raw, servo14Raw, servo15Raw, servo16Raw);
     }
   }
 }

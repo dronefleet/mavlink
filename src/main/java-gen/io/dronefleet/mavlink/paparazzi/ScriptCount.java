@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.paparazzi;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * This message is emitted as response to {@link io.dronefleet.mavlink.paparazzi.ScriptRequestList ScriptRequestList} by the MAV to get the number of 
@@ -13,6 +16,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class ScriptCount {
   /**
+   * Number of script items in the sequence 
+   */
+  private final int count;
+
+  /**
    * System ID 
    */
   private final int targetSystem;
@@ -22,19 +30,33 @@ public final class ScriptCount {
    */
   private final int targetComponent;
 
+  private ScriptCount(int count, int targetSystem, int targetComponent) {
+    this.count = count;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ScriptCount{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", count=" + count + "}";
+  }
+
   /**
    * Number of script items in the sequence 
    */
-  private final int count;
-
-  private ScriptCount(int targetSystem, int targetComponent, int count) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.count = count;
-  }
-
-  public static Builder builder() {
-    return new Builder();
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int count() {
+    return count;
   }
 
   /**
@@ -42,7 +64,7 @@ public final class ScriptCount {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -53,31 +75,32 @@ public final class ScriptCount {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
   }
 
-  /**
-   * Number of script items in the sequence 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int count() {
-    return count;
-  }
-
   public static class Builder {
+    private int count;
+
     private int targetSystem;
 
     private int targetComponent;
 
-    private int count;
-
     private Builder() {
+    }
+
+    /**
+     * Number of script items in the sequence 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder count(int count) {
+      this.count = count;
+      return this;
     }
 
     /**
@@ -85,7 +108,7 @@ public final class ScriptCount {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -97,27 +120,15 @@ public final class ScriptCount {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
       return this;
     }
 
-    /**
-     * Number of script items in the sequence 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder count(int count) {
-      this.count = count;
-      return this;
-    }
-
     public final ScriptCount build() {
-      return new ScriptCount(targetSystem, targetComponent, count);
+      return new ScriptCount(count, targetSystem, targetComponent);
     }
   }
 }

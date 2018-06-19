@@ -1,8 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
@@ -30,6 +32,12 @@ public final class UavcanNodeInfo {
    * The number of seconds since the start-up of the node. 
    */
   private final long uptimeSec;
+
+  /**
+   * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
+   * unknown. 
+   */
+  private final long swVcsCommit;
 
   /**
    * Node name string. For example, "sapog.px4.io". 
@@ -61,28 +69,36 @@ public final class UavcanNodeInfo {
    */
   private final int swVersionMinor;
 
-  /**
-   * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
-   * unknown. 
-   */
-  private final long swVcsCommit;
-
-  private UavcanNodeInfo(BigInteger timeUsec, long uptimeSec, String name, int hwVersionMajor,
-      int hwVersionMinor, List<Integer> hwUniqueId, int swVersionMajor, int swVersionMinor,
-      long swVcsCommit) {
+  private UavcanNodeInfo(BigInteger timeUsec, long uptimeSec, long swVcsCommit, String name,
+      int hwVersionMajor, int hwVersionMinor, List<Integer> hwUniqueId, int swVersionMajor,
+      int swVersionMinor) {
     this.timeUsec = timeUsec;
     this.uptimeSec = uptimeSec;
+    this.swVcsCommit = swVcsCommit;
     this.name = name;
     this.hwVersionMajor = hwVersionMajor;
     this.hwVersionMinor = hwVersionMinor;
     this.hwUniqueId = hwUniqueId;
     this.swVersionMajor = swVersionMajor;
     this.swVersionMinor = swVersionMinor;
-    this.swVcsCommit = swVcsCommit;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "UavcanNodeInfo{timeUsec=" + timeUsec
+         + ", uptimeSec=" + uptimeSec
+         + ", name=" + name
+         + ", hwVersionMajor=" + hwVersionMajor
+         + ", hwVersionMinor=" + hwVersionMinor
+         + ", hwUniqueId=" + hwUniqueId
+         + ", swVersionMajor=" + swVersionMajor
+         + ", swVersionMinor=" + swVersionMinor
+         + ", swVcsCommit=" + swVcsCommit + "}";
   }
 
   /**
@@ -90,7 +106,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -101,10 +117,22 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long uptimeSec() {
     return uptimeSec;
+  }
+
+  /**
+   * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
+   * unknown. 
+   */
+  @MavlinkMessageField(
+      position = 9,
+      unitSize = 4
+  )
+  public final long swVcsCommit() {
+    return swVcsCommit;
   }
 
   /**
@@ -112,7 +140,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 80
   )
   public final String name() {
@@ -124,7 +152,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int hwVersionMajor() {
     return hwVersionMajor;
@@ -135,7 +163,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int hwVersionMinor() {
     return hwVersionMinor;
@@ -146,7 +174,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final List<Integer> hwUniqueId() {
@@ -158,7 +186,7 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int swVersionMajor() {
     return swVersionMajor;
@@ -169,28 +197,18 @@ public final class UavcanNodeInfo {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int swVersionMinor() {
     return swVersionMinor;
-  }
-
-  /**
-   * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
-   * unknown. 
-   */
-  @MavlinkMessageField(
-      position = 9,
-      length = 4
-  )
-  public final long swVcsCommit() {
-    return swVcsCommit;
   }
 
   public static class Builder {
     private BigInteger timeUsec;
 
     private long uptimeSec;
+
+    private long swVcsCommit;
 
     private String name;
 
@@ -204,8 +222,6 @@ public final class UavcanNodeInfo {
 
     private int swVersionMinor;
 
-    private long swVcsCommit;
-
     private Builder() {
     }
 
@@ -214,7 +230,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -226,10 +242,23 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder uptimeSec(long uptimeSec) {
       this.uptimeSec = uptimeSec;
+      return this;
+    }
+
+    /**
+     * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
+     * unknown. 
+     */
+    @MavlinkMessageField(
+        position = 9,
+        unitSize = 4
+    )
+    public final Builder swVcsCommit(long swVcsCommit) {
+      this.swVcsCommit = swVcsCommit;
       return this;
     }
 
@@ -238,7 +267,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 80
     )
     public final Builder name(String name) {
@@ -251,7 +280,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder hwVersionMajor(int hwVersionMajor) {
       this.hwVersionMajor = hwVersionMajor;
@@ -263,7 +292,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder hwVersionMinor(int hwVersionMinor) {
       this.hwVersionMinor = hwVersionMinor;
@@ -275,7 +304,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder hwUniqueId(List<Integer> hwUniqueId) {
@@ -288,7 +317,7 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder swVersionMajor(int swVersionMajor) {
       this.swVersionMajor = swVersionMajor;
@@ -300,28 +329,15 @@ public final class UavcanNodeInfo {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder swVersionMinor(int swVersionMinor) {
       this.swVersionMinor = swVersionMinor;
       return this;
     }
 
-    /**
-     * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
-     * unknown. 
-     */
-    @MavlinkMessageField(
-        position = 9,
-        length = 4
-    )
-    public final Builder swVcsCommit(long swVcsCommit) {
-      this.swVcsCommit = swVcsCommit;
-      return this;
-    }
-
     public final UavcanNodeInfo build() {
-      return new UavcanNodeInfo(timeUsec, uptimeSec, name, hwVersionMajor, hwVersionMinor, hwUniqueId, swVersionMajor, swVersionMinor, swVcsCommit);
+      return new UavcanNodeInfo(timeUsec, uptimeSec, swVcsCommit, name, hwVersionMajor, hwVersionMinor, hwUniqueId, swVersionMajor, swVersionMinor);
     }
   }
 }

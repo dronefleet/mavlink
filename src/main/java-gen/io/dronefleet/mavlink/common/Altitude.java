@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -70,8 +73,20 @@ public final class Altitude {
     this.bottomClearance = bottomClearance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Altitude{timeUsec=" + timeUsec
+         + ", altitudeMonotonic=" + altitudeMonotonic
+         + ", altitudeAmsl=" + altitudeAmsl
+         + ", altitudeLocal=" + altitudeLocal
+         + ", altitudeRelative=" + altitudeRelative
+         + ", altitudeTerrain=" + altitudeTerrain
+         + ", bottomClearance=" + bottomClearance + "}";
   }
 
   /**
@@ -79,7 +94,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -94,7 +109,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeMonotonic() {
     return altitudeMonotonic;
@@ -108,7 +123,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeAmsl() {
     return altitudeAmsl;
@@ -120,7 +135,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeLocal() {
     return altitudeLocal;
@@ -132,7 +147,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeRelative() {
     return altitudeRelative;
@@ -144,7 +159,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float altitudeTerrain() {
     return altitudeTerrain;
@@ -157,7 +172,7 @@ public final class Altitude {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float bottomClearance() {
     return bottomClearance;
@@ -186,7 +201,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -202,7 +217,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeMonotonic(float altitudeMonotonic) {
       this.altitudeMonotonic = altitudeMonotonic;
@@ -217,7 +232,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeAmsl(float altitudeAmsl) {
       this.altitudeAmsl = altitudeAmsl;
@@ -230,7 +245,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeLocal(float altitudeLocal) {
       this.altitudeLocal = altitudeLocal;
@@ -243,7 +258,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeRelative(float altitudeRelative) {
       this.altitudeRelative = altitudeRelative;
@@ -256,7 +271,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitudeTerrain(float altitudeTerrain) {
       this.altitudeTerrain = altitudeTerrain;
@@ -270,7 +285,7 @@ public final class Altitude {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder bottomClearance(float bottomClearance) {
       this.bottomClearance = bottomClearance;

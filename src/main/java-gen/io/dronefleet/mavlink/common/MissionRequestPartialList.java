@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request a partial list of mission items from the system/component. 
@@ -14,16 +17,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class MissionRequestPartialList {
   /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
-  /**
    * Start index, 0 by default 
    */
   private final int startIndex;
@@ -34,43 +27,41 @@ public final class MissionRequestPartialList {
   private final int endIndex;
 
   /**
-   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-   */
-  private final MavMissionType missionType;
-
-  private MissionRequestPartialList(int targetSystem, int targetComponent, int startIndex,
-      int endIndex, MavMissionType missionType) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.startIndex = startIndex;
-    this.endIndex = endIndex;
-    this.missionType = missionType;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
-  /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  /**
+   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+   */
+  private final MavMissionType missionType;
+
+  private MissionRequestPartialList(int startIndex, int endIndex, int targetSystem,
+      int targetComponent, MavMissionType missionType) {
+    this.startIndex = startIndex;
+    this.endIndex = endIndex;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+    this.missionType = missionType;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MissionRequestPartialList{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", startIndex=" + startIndex
+         + ", endIndex=" + endIndex
+         + ", missionType=" + missionType + "}";
   }
 
   /**
@@ -78,7 +69,7 @@ public final class MissionRequestPartialList {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int startIndex() {
     return startIndex;
@@ -89,10 +80,32 @@ public final class MissionRequestPartialList {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int endIndex() {
     return endIndex;
+  }
+
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
   }
 
   /**
@@ -100,7 +113,7 @@ public final class MissionRequestPartialList {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final MavMissionType missionType() {
@@ -108,13 +121,13 @@ public final class MissionRequestPartialList {
   }
 
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private int startIndex;
 
     private int endIndex;
+
+    private int targetSystem;
+
+    private int targetComponent;
 
     private MavMissionType missionType;
 
@@ -122,35 +135,11 @@ public final class MissionRequestPartialList {
     }
 
     /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
      * Start index, 0 by default 
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder startIndex(int startIndex) {
       this.startIndex = startIndex;
@@ -162,10 +151,34 @@ public final class MissionRequestPartialList {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder endIndex(int endIndex) {
       this.endIndex = endIndex;
+      return this;
+    }
+
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
       return this;
     }
 
@@ -174,7 +187,7 @@ public final class MissionRequestPartialList {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder missionType(MavMissionType missionType) {
@@ -183,7 +196,7 @@ public final class MissionRequestPartialList {
     }
 
     public final MissionRequestPartialList build() {
-      return new MissionRequestPartialList(targetSystem, targetComponent, startIndex, endIndex, missionType);
+      return new MissionRequestPartialList(startIndex, endIndex, targetSystem, targetComponent, missionType);
     }
   }
 }

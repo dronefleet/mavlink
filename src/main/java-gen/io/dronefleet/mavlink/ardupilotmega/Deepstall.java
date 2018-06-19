@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Deepstall path planning 
@@ -76,8 +79,23 @@ public final class Deepstall {
     this.stage = stage;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Deepstall{landingLat=" + landingLat
+         + ", landingLon=" + landingLon
+         + ", pathLat=" + pathLat
+         + ", pathLon=" + pathLon
+         + ", arcEntryLat=" + arcEntryLat
+         + ", arcEntryLon=" + arcEntryLon
+         + ", altitude=" + altitude
+         + ", expectedTravelDistance=" + expectedTravelDistance
+         + ", crossTrackError=" + crossTrackError
+         + ", stage=" + stage + "}";
   }
 
   /**
@@ -85,7 +103,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int landingLat() {
     return landingLat;
@@ -96,7 +114,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int landingLon() {
     return landingLon;
@@ -107,7 +125,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int pathLat() {
     return pathLat;
@@ -118,7 +136,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int pathLon() {
     return pathLon;
@@ -129,7 +147,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int arcEntryLat() {
     return arcEntryLat;
@@ -140,7 +158,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int arcEntryLon() {
     return arcEntryLon;
@@ -151,7 +169,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float altitude() {
     return altitude;
@@ -162,7 +180,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float expectedTravelDistance() {
     return expectedTravelDistance;
@@ -173,7 +191,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float crossTrackError() {
     return crossTrackError;
@@ -184,7 +202,7 @@ public final class Deepstall {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 1
+      unitSize = 1
   )
   public final DeepstallStage stage() {
     return stage;
@@ -219,7 +237,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder landingLat(int landingLat) {
       this.landingLat = landingLat;
@@ -231,7 +249,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder landingLon(int landingLon) {
       this.landingLon = landingLon;
@@ -243,7 +261,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder pathLat(int pathLat) {
       this.pathLat = pathLat;
@@ -255,7 +273,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder pathLon(int pathLon) {
       this.pathLon = pathLon;
@@ -267,7 +285,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder arcEntryLat(int arcEntryLat) {
       this.arcEntryLat = arcEntryLat;
@@ -279,7 +297,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder arcEntryLon(int arcEntryLon) {
       this.arcEntryLon = arcEntryLon;
@@ -291,7 +309,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitude(float altitude) {
       this.altitude = altitude;
@@ -303,7 +321,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder expectedTravelDistance(float expectedTravelDistance) {
       this.expectedTravelDistance = expectedTravelDistance;
@@ -315,7 +333,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder crossTrackError(float crossTrackError) {
       this.crossTrackError = crossTrackError;
@@ -327,7 +345,7 @@ public final class Deepstall {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 1
+        unitSize = 1
     )
     public final Builder stage(DeepstallStage stage) {
       this.stage = stage;

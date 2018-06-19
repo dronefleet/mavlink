@@ -20,14 +20,14 @@ public class MavlinkPacket {
 
         return new MavlinkPacket(
                 versionMarker,
-                0,
-                0,
+                -1,
+                -1,
                 sequence,
                 systemId,
                 componentId,
                 messageId,
-                0,
-                0,
+                -1,
+                -1,
                 payload,
                 checksum,
                 null,

@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * This message is emitted as response to {@link io.dronefleet.mavlink.common.MissionRequestList MissionRequestList} by the MAV and to initiate a write 
@@ -14,6 +17,11 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class MissionCount {
   /**
+   * Number of mission items in the sequence 
+   */
+  private final int count;
+
+  /**
    * System ID 
    */
   private final int targetSystem;
@@ -24,25 +32,40 @@ public final class MissionCount {
   private final int targetComponent;
 
   /**
-   * Number of mission items in the sequence 
-   */
-  private final int count;
-
-  /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
   private final MavMissionType missionType;
 
-  private MissionCount(int targetSystem, int targetComponent, int count,
+  private MissionCount(int count, int targetSystem, int targetComponent,
       MavMissionType missionType) {
+    this.count = count;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
-    this.count = count;
     this.missionType = missionType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "MissionCount{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", count=" + count
+         + ", missionType=" + missionType + "}";
+  }
+
+  /**
+   * Number of mission items in the sequence 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 2
+  )
+  public final int count() {
+    return count;
   }
 
   /**
@@ -50,7 +73,7 @@ public final class MissionCount {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -61,21 +84,10 @@ public final class MissionCount {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
-  }
-
-  /**
-   * Number of mission items in the sequence 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 2
-  )
-  public final int count() {
-    return count;
   }
 
   /**
@@ -83,7 +95,7 @@ public final class MissionCount {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final MavMissionType missionType() {
@@ -91,11 +103,11 @@ public final class MissionCount {
   }
 
   public static class Builder {
+    private int count;
+
     private int targetSystem;
 
     private int targetComponent;
-
-    private int count;
 
     private MavMissionType missionType;
 
@@ -103,11 +115,23 @@ public final class MissionCount {
     }
 
     /**
+     * Number of mission items in the sequence 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 2
+    )
+    public final Builder count(int count) {
+      this.count = count;
+      return this;
+    }
+
+    /**
      * System ID 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -119,22 +143,10 @@ public final class MissionCount {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
-      return this;
-    }
-
-    /**
-     * Number of mission items in the sequence 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 2
-    )
-    public final Builder count(int count) {
-      this.count = count;
       return this;
     }
 
@@ -143,7 +155,7 @@ public final class MissionCount {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder missionType(MavMissionType missionType) {
@@ -152,7 +164,7 @@ public final class MissionCount {
     }
 
     public final MissionCount build() {
-      return new MissionCount(targetSystem, targetComponent, count, missionType);
+      return new MissionCount(count, targetSystem, targetComponent, missionType);
     }
   }
 }

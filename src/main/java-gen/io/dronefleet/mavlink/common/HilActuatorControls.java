@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -21,6 +24,11 @@ public final class HilActuatorControls {
   private final BigInteger timeUsec;
 
   /**
+   * Flags as bitfield, reserved for future use. 
+   */
+  private final BigInteger flags;
+
+  /**
    * Control outputs -1 .. 1. Channel assignment depends on the simulated hardware. 
    */
   private final List<Float> controls;
@@ -30,21 +38,25 @@ public final class HilActuatorControls {
    */
   private final MavMode mode;
 
-  /**
-   * Flags as bitfield, reserved for future use. 
-   */
-  private final BigInteger flags;
-
-  private HilActuatorControls(BigInteger timeUsec, List<Float> controls, MavMode mode,
-      BigInteger flags) {
+  private HilActuatorControls(BigInteger timeUsec, BigInteger flags, List<Float> controls,
+      MavMode mode) {
     this.timeUsec = timeUsec;
+    this.flags = flags;
     this.controls = controls;
     this.mode = mode;
-    this.flags = flags;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilActuatorControls{timeUsec=" + timeUsec
+         + ", controls=" + controls
+         + ", mode=" + mode
+         + ", flags=" + flags + "}";
   }
 
   /**
@@ -52,10 +64,21 @@ public final class HilActuatorControls {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
+  }
+
+  /**
+   * Flags as bitfield, reserved for future use. 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 8
+  )
+  public final BigInteger flags() {
+    return flags;
   }
 
   /**
@@ -63,7 +86,7 @@ public final class HilActuatorControls {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4,
+      unitSize = 4,
       arraySize = 16
   )
   public final List<Float> controls() {
@@ -75,31 +98,20 @@ public final class HilActuatorControls {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final MavMode mode() {
     return mode;
   }
 
-  /**
-   * Flags as bitfield, reserved for future use. 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 8
-  )
-  public final BigInteger flags() {
-    return flags;
-  }
-
   public static class Builder {
     private BigInteger timeUsec;
+
+    private BigInteger flags;
 
     private List<Float> controls;
 
     private MavMode mode;
-
-    private BigInteger flags;
 
     private Builder() {
     }
@@ -109,10 +121,22 @@ public final class HilActuatorControls {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
+      return this;
+    }
+
+    /**
+     * Flags as bitfield, reserved for future use. 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 8
+    )
+    public final Builder flags(BigInteger flags) {
+      this.flags = flags;
       return this;
     }
 
@@ -121,7 +145,7 @@ public final class HilActuatorControls {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4,
+        unitSize = 4,
         arraySize = 16
     )
     public final Builder controls(List<Float> controls) {
@@ -134,27 +158,15 @@ public final class HilActuatorControls {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder mode(MavMode mode) {
       this.mode = mode;
       return this;
     }
 
-    /**
-     * Flags as bitfield, reserved for future use. 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 8
-    )
-    public final Builder flags(BigInteger flags) {
-      this.flags = flags;
-      return this;
-    }
-
     public final HilActuatorControls build() {
-      return new HilActuatorControls(timeUsec, controls, mode, flags);
+      return new HilActuatorControls(timeUsec, flags, controls, mode);
     }
   }
 }

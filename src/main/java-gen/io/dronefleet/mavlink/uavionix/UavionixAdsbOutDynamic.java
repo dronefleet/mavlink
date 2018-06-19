@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.uavionix;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Dynamic data used to generate ADS-B out transponder data (send at 5Hz) 
@@ -31,16 +34,6 @@ public final class UavionixAdsbOutDynamic {
    * Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX 
    */
   private final int gpsalt;
-
-  /**
-   * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
-   */
-  private final UavionixAdsbOutDynamicGpsFix gpsfix;
-
-  /**
-   * Number of satellites visible. If unknown set to UINT8_MAX 
-   */
-  private final int numsats;
 
   /**
    * Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar 
@@ -79,11 +72,6 @@ public final class UavionixAdsbOutDynamic {
   private final int velew;
 
   /**
-   * Emergency status 
-   */
-  private final UavionixAdsbEmergencyStatus emergencystatus;
-
-  /**
    * ADS-B transponder dynamic input state flags 
    */
   private final EnumFlagSet<UavionixAdsbOutDynamicState> state;
@@ -93,17 +81,30 @@ public final class UavionixAdsbOutDynamic {
    */
   private final int squawk;
 
-  private UavionixAdsbOutDynamic(long utctime, int gpslat, int gpslon, int gpsalt,
-      UavionixAdsbOutDynamicGpsFix gpsfix, int numsats, int baroaltmsl, long accuracyhor,
-      int accuracyvert, int accuracyvel, int velvert, int velns, int velew,
-      UavionixAdsbEmergencyStatus emergencystatus, EnumFlagSet<UavionixAdsbOutDynamicState> state,
-      int squawk) {
+  /**
+   * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+   */
+  private final UavionixAdsbOutDynamicGpsFix gpsfix;
+
+  /**
+   * Number of satellites visible. If unknown set to UINT8_MAX 
+   */
+  private final int numsats;
+
+  /**
+   * Emergency status 
+   */
+  private final UavionixAdsbEmergencyStatus emergencystatus;
+
+  private UavionixAdsbOutDynamic(long utctime, int gpslat, int gpslon, int gpsalt, int baroaltmsl,
+      long accuracyhor, int accuracyvert, int accuracyvel, int velvert, int velns, int velew,
+      EnumFlagSet<UavionixAdsbOutDynamicState> state, int squawk,
+      UavionixAdsbOutDynamicGpsFix gpsfix, int numsats,
+      UavionixAdsbEmergencyStatus emergencystatus) {
     this.utctime = utctime;
     this.gpslat = gpslat;
     this.gpslon = gpslon;
     this.gpsalt = gpsalt;
-    this.gpsfix = gpsfix;
-    this.numsats = numsats;
     this.baroaltmsl = baroaltmsl;
     this.accuracyhor = accuracyhor;
     this.accuracyvert = accuracyvert;
@@ -111,13 +112,36 @@ public final class UavionixAdsbOutDynamic {
     this.velvert = velvert;
     this.velns = velns;
     this.velew = velew;
-    this.emergencystatus = emergencystatus;
     this.state = state;
     this.squawk = squawk;
+    this.gpsfix = gpsfix;
+    this.numsats = numsats;
+    this.emergencystatus = emergencystatus;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "UavionixAdsbOutDynamic{utctime=" + utctime
+         + ", gpslat=" + gpslat
+         + ", gpslon=" + gpslon
+         + ", gpsalt=" + gpsalt
+         + ", gpsfix=" + gpsfix
+         + ", numsats=" + numsats
+         + ", baroaltmsl=" + baroaltmsl
+         + ", accuracyhor=" + accuracyhor
+         + ", accuracyvert=" + accuracyvert
+         + ", accuracyvel=" + accuracyvel
+         + ", velvert=" + velvert
+         + ", velns=" + velns
+         + ", velew=" + velew
+         + ", emergencystatus=" + emergencystatus
+         + ", state=" + state
+         + ", squawk=" + squawk + "}";
   }
 
   /**
@@ -125,7 +149,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long utctime() {
     return utctime;
@@ -136,7 +160,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int gpslat() {
     return gpslat;
@@ -147,7 +171,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int gpslon() {
     return gpslon;
@@ -158,32 +182,10 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int gpsalt() {
     return gpsalt;
-  }
-
-  /**
-   * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
-   */
-  @MavlinkMessageField(
-      position = 5,
-      length = 1
-  )
-  public final UavionixAdsbOutDynamicGpsFix gpsfix() {
-    return gpsfix;
-  }
-
-  /**
-   * Number of satellites visible. If unknown set to UINT8_MAX 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 1
-  )
-  public final int numsats() {
-    return numsats;
   }
 
   /**
@@ -192,7 +194,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final int baroaltmsl() {
     return baroaltmsl;
@@ -203,7 +205,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final long accuracyhor() {
     return accuracyhor;
@@ -214,7 +216,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int accuracyvert() {
     return accuracyvert;
@@ -225,7 +227,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int accuracyvel() {
     return accuracyvel;
@@ -236,7 +238,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int velvert() {
     return velvert;
@@ -247,7 +249,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int velns() {
     return velns;
@@ -258,21 +260,10 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int velew() {
     return velew;
-  }
-
-  /**
-   * Emergency status 
-   */
-  @MavlinkMessageField(
-      position = 14,
-      length = 1
-  )
-  public final UavionixAdsbEmergencyStatus emergencystatus() {
-    return emergencystatus;
   }
 
   /**
@@ -280,7 +271,7 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 2
+      unitSize = 2
   )
   public final EnumFlagSet<UavionixAdsbOutDynamicState> state() {
     return state;
@@ -291,10 +282,43 @@ public final class UavionixAdsbOutDynamic {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 2
+      unitSize = 2
   )
   public final int squawk() {
     return squawk;
+  }
+
+  /**
+   * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+   */
+  @MavlinkMessageField(
+      position = 5,
+      unitSize = 1
+  )
+  public final UavionixAdsbOutDynamicGpsFix gpsfix() {
+    return gpsfix;
+  }
+
+  /**
+   * Number of satellites visible. If unknown set to UINT8_MAX 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 1
+  )
+  public final int numsats() {
+    return numsats;
+  }
+
+  /**
+   * Emergency status 
+   */
+  @MavlinkMessageField(
+      position = 14,
+      unitSize = 1
+  )
+  public final UavionixAdsbEmergencyStatus emergencystatus() {
+    return emergencystatus;
   }
 
   public static class Builder {
@@ -305,10 +329,6 @@ public final class UavionixAdsbOutDynamic {
     private int gpslon;
 
     private int gpsalt;
-
-    private UavionixAdsbOutDynamicGpsFix gpsfix;
-
-    private int numsats;
 
     private int baroaltmsl;
 
@@ -324,11 +344,15 @@ public final class UavionixAdsbOutDynamic {
 
     private int velew;
 
-    private UavionixAdsbEmergencyStatus emergencystatus;
-
     private EnumFlagSet<UavionixAdsbOutDynamicState> state;
 
     private int squawk;
+
+    private UavionixAdsbOutDynamicGpsFix gpsfix;
+
+    private int numsats;
+
+    private UavionixAdsbEmergencyStatus emergencystatus;
 
     private Builder() {
     }
@@ -338,7 +362,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder utctime(long utctime) {
       this.utctime = utctime;
@@ -350,7 +374,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder gpslat(int gpslat) {
       this.gpslat = gpslat;
@@ -362,7 +386,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder gpslon(int gpslon) {
       this.gpslon = gpslon;
@@ -374,34 +398,10 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder gpsalt(int gpsalt) {
       this.gpsalt = gpsalt;
-      return this;
-    }
-
-    /**
-     * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
-     */
-    @MavlinkMessageField(
-        position = 5,
-        length = 1
-    )
-    public final Builder gpsfix(UavionixAdsbOutDynamicGpsFix gpsfix) {
-      this.gpsfix = gpsfix;
-      return this;
-    }
-
-    /**
-     * Number of satellites visible. If unknown set to UINT8_MAX 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 1
-    )
-    public final Builder numsats(int numsats) {
-      this.numsats = numsats;
       return this;
     }
 
@@ -411,7 +411,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder baroaltmsl(int baroaltmsl) {
       this.baroaltmsl = baroaltmsl;
@@ -423,7 +423,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder accuracyhor(long accuracyhor) {
       this.accuracyhor = accuracyhor;
@@ -435,7 +435,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder accuracyvert(int accuracyvert) {
       this.accuracyvert = accuracyvert;
@@ -447,7 +447,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder accuracyvel(int accuracyvel) {
       this.accuracyvel = accuracyvel;
@@ -459,7 +459,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder velvert(int velvert) {
       this.velvert = velvert;
@@ -471,7 +471,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder velns(int velns) {
       this.velns = velns;
@@ -483,22 +483,10 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder velew(int velew) {
       this.velew = velew;
-      return this;
-    }
-
-    /**
-     * Emergency status 
-     */
-    @MavlinkMessageField(
-        position = 14,
-        length = 1
-    )
-    public final Builder emergencystatus(UavionixAdsbEmergencyStatus emergencystatus) {
-      this.emergencystatus = emergencystatus;
       return this;
     }
 
@@ -507,7 +495,7 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 2
+        unitSize = 2
     )
     public final Builder state(EnumFlagSet<UavionixAdsbOutDynamicState> state) {
       this.state = state;
@@ -519,15 +507,51 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 2
+        unitSize = 2
     )
     public final Builder squawk(int squawk) {
       this.squawk = squawk;
       return this;
     }
 
+    /**
+     * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+     */
+    @MavlinkMessageField(
+        position = 5,
+        unitSize = 1
+    )
+    public final Builder gpsfix(UavionixAdsbOutDynamicGpsFix gpsfix) {
+      this.gpsfix = gpsfix;
+      return this;
+    }
+
+    /**
+     * Number of satellites visible. If unknown set to UINT8_MAX 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 1
+    )
+    public final Builder numsats(int numsats) {
+      this.numsats = numsats;
+      return this;
+    }
+
+    /**
+     * Emergency status 
+     */
+    @MavlinkMessageField(
+        position = 14,
+        unitSize = 1
+    )
+    public final Builder emergencystatus(UavionixAdsbEmergencyStatus emergencystatus) {
+      this.emergencystatus = emergencystatus;
+      return this;
+    }
+
     public final UavionixAdsbOutDynamic build() {
-      return new UavionixAdsbOutDynamic(utctime, gpslat, gpslon, gpsalt, gpsfix, numsats, baroaltmsl, accuracyhor, accuracyvert, accuracyvel, velvert, velns, velew, emergencystatus, state, squawk);
+      return new UavionixAdsbOutDynamic(utctime, gpslat, gpslon, gpsalt, baroaltmsl, accuracyhor, accuracyvert, accuracyvel, velvert, velns, velew, state, squawk, gpsfix, numsats, emergencystatus);
     }
   }
 }

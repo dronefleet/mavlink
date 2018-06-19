@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Pilot console PWM messges. 
@@ -87,8 +90,25 @@ public final class GpsDateTime {
     this.percentused = percentused;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GpsDateTime{year=" + year
+         + ", month=" + month
+         + ", day=" + day
+         + ", hour=" + hour
+         + ", min=" + min
+         + ", sec=" + sec
+         + ", clockstat=" + clockstat
+         + ", vissat=" + vissat
+         + ", usesat=" + usesat
+         + ", gppgl=" + gppgl
+         + ", sigusedmask=" + sigusedmask
+         + ", percentused=" + percentused + "}";
   }
 
   /**
@@ -96,7 +116,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int year() {
     return year;
@@ -107,7 +127,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int month() {
     return month;
@@ -118,7 +138,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int day() {
     return day;
@@ -129,7 +149,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int hour() {
     return hour;
@@ -140,7 +160,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int min() {
     return min;
@@ -151,7 +171,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int sec() {
     return sec;
@@ -162,7 +182,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int clockstat() {
     return clockstat;
@@ -173,7 +193,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int vissat() {
     return vissat;
@@ -184,7 +204,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 1
+      unitSize = 1
   )
   public final int usesat() {
     return usesat;
@@ -195,7 +215,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 1
+      unitSize = 1
   )
   public final int gppgl() {
     return gppgl;
@@ -206,7 +226,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 1
+      unitSize = 1
   )
   public final int sigusedmask() {
     return sigusedmask;
@@ -217,7 +237,7 @@ public final class GpsDateTime {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 1
+      unitSize = 1
   )
   public final int percentused() {
     return percentused;
@@ -256,7 +276,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder year(int year) {
       this.year = year;
@@ -268,7 +288,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder month(int month) {
       this.month = month;
@@ -280,7 +300,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder day(int day) {
       this.day = day;
@@ -292,7 +312,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder hour(int hour) {
       this.hour = hour;
@@ -304,7 +324,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder min(int min) {
       this.min = min;
@@ -316,7 +336,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder sec(int sec) {
       this.sec = sec;
@@ -328,7 +348,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder clockstat(int clockstat) {
       this.clockstat = clockstat;
@@ -340,7 +360,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder vissat(int vissat) {
       this.vissat = vissat;
@@ -352,7 +372,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 1
+        unitSize = 1
     )
     public final Builder usesat(int usesat) {
       this.usesat = usesat;
@@ -364,7 +384,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 1
+        unitSize = 1
     )
     public final Builder gppgl(int gppgl) {
       this.gppgl = gppgl;
@@ -376,7 +396,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 1
+        unitSize = 1
     )
     public final Builder sigusedmask(int sigusedmask) {
       this.sigusedmask = sigusedmask;
@@ -388,7 +408,7 @@ public final class GpsDateTime {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 1
+        unitSize = 1
     )
     public final Builder percentused(int percentused) {
       this.percentused = percentused;

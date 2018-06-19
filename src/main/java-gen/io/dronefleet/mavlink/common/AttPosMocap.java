@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -55,8 +58,19 @@ public final class AttPosMocap {
     this.covariance = covariance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AttPosMocap{timeUsec=" + timeUsec
+         + ", q=" + q
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -64,7 +78,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -75,7 +89,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> q() {
@@ -87,7 +101,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -98,7 +112,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -109,7 +123,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -121,7 +135,7 @@ public final class AttPosMocap {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4,
+      unitSize = 4,
       arraySize = 21,
       extension = true
   )
@@ -150,7 +164,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -162,7 +176,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder q(List<Float> q) {
@@ -175,7 +189,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -187,7 +201,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -199,7 +213,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -212,7 +226,7 @@ public final class AttPosMocap {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4,
+        unitSize = 4,
         arraySize = 21,
         extension = true
     )

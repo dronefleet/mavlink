@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.autoquad;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Sends up to 20 raw float values. 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 241
 )
 public final class AqTelemetryF {
-  /**
-   * Index of message 
-   */
-  private final int index;
-
   /**
    * value1 
    */
@@ -116,11 +114,15 @@ public final class AqTelemetryF {
    */
   private final float value20;
 
-  private AqTelemetryF(int index, float value1, float value2, float value3, float value4,
-      float value5, float value6, float value7, float value8, float value9, float value10,
-      float value11, float value12, float value13, float value14, float value15, float value16,
-      float value17, float value18, float value19, float value20) {
-    this.index = index;
+  /**
+   * Index of message 
+   */
+  private final int index;
+
+  private AqTelemetryF(float value1, float value2, float value3, float value4, float value5,
+      float value6, float value7, float value8, float value9, float value10, float value11,
+      float value12, float value13, float value14, float value15, float value16, float value17,
+      float value18, float value19, float value20, int index) {
     this.value1 = value1;
     this.value2 = value2;
     this.value3 = value3;
@@ -141,21 +143,37 @@ public final class AqTelemetryF {
     this.value18 = value18;
     this.value19 = value19;
     this.value20 = value20;
+    this.index = index;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Index of message 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 2
-  )
-  public final int index() {
-    return index;
+  @Override
+  public String toString() {
+    return "AqTelemetryF{index=" + index
+         + ", value1=" + value1
+         + ", value2=" + value2
+         + ", value3=" + value3
+         + ", value4=" + value4
+         + ", value5=" + value5
+         + ", value6=" + value6
+         + ", value7=" + value7
+         + ", value8=" + value8
+         + ", value9=" + value9
+         + ", value10=" + value10
+         + ", value11=" + value11
+         + ", value12=" + value12
+         + ", value13=" + value13
+         + ", value14=" + value14
+         + ", value15=" + value15
+         + ", value16=" + value16
+         + ", value17=" + value17
+         + ", value18=" + value18
+         + ", value19=" + value19
+         + ", value20=" + value20 + "}";
   }
 
   /**
@@ -163,7 +181,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float value1() {
     return value1;
@@ -174,7 +192,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float value2() {
     return value2;
@@ -185,7 +203,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float value3() {
     return value3;
@@ -196,7 +214,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float value4() {
     return value4;
@@ -207,7 +225,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float value5() {
     return value5;
@@ -218,7 +236,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float value6() {
     return value6;
@@ -229,7 +247,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float value7() {
     return value7;
@@ -240,7 +258,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float value8() {
     return value8;
@@ -251,7 +269,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float value9() {
     return value9;
@@ -262,7 +280,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float value10() {
     return value10;
@@ -273,7 +291,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float value11() {
     return value11;
@@ -284,7 +302,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float value12() {
     return value12;
@@ -295,7 +313,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float value13() {
     return value13;
@@ -306,7 +324,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4
+      unitSize = 4
   )
   public final float value14() {
     return value14;
@@ -317,7 +335,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 16,
-      length = 4
+      unitSize = 4
   )
   public final float value15() {
     return value15;
@@ -328,7 +346,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 17,
-      length = 4
+      unitSize = 4
   )
   public final float value16() {
     return value16;
@@ -339,7 +357,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 18,
-      length = 4
+      unitSize = 4
   )
   public final float value17() {
     return value17;
@@ -350,7 +368,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 19,
-      length = 4
+      unitSize = 4
   )
   public final float value18() {
     return value18;
@@ -361,7 +379,7 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 20,
-      length = 4
+      unitSize = 4
   )
   public final float value19() {
     return value19;
@@ -372,15 +390,24 @@ public final class AqTelemetryF {
    */
   @MavlinkMessageField(
       position = 21,
-      length = 4
+      unitSize = 4
   )
   public final float value20() {
     return value20;
   }
 
-  public static class Builder {
-    private int index;
+  /**
+   * Index of message 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 2
+  )
+  public final int index() {
+    return index;
+  }
 
+  public static class Builder {
     private float value1;
 
     private float value2;
@@ -421,19 +448,9 @@ public final class AqTelemetryF {
 
     private float value20;
 
-    private Builder() {
-    }
+    private int index;
 
-    /**
-     * Index of message 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 2
-    )
-    public final Builder index(int index) {
-      this.index = index;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -441,7 +458,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder value1(float value1) {
       this.value1 = value1;
@@ -453,7 +470,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder value2(float value2) {
       this.value2 = value2;
@@ -465,7 +482,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder value3(float value3) {
       this.value3 = value3;
@@ -477,7 +494,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder value4(float value4) {
       this.value4 = value4;
@@ -489,7 +506,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder value5(float value5) {
       this.value5 = value5;
@@ -501,7 +518,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder value6(float value6) {
       this.value6 = value6;
@@ -513,7 +530,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder value7(float value7) {
       this.value7 = value7;
@@ -525,7 +542,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder value8(float value8) {
       this.value8 = value8;
@@ -537,7 +554,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder value9(float value9) {
       this.value9 = value9;
@@ -549,7 +566,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder value10(float value10) {
       this.value10 = value10;
@@ -561,7 +578,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder value11(float value11) {
       this.value11 = value11;
@@ -573,7 +590,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder value12(float value12) {
       this.value12 = value12;
@@ -585,7 +602,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder value13(float value13) {
       this.value13 = value13;
@@ -597,7 +614,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4
+        unitSize = 4
     )
     public final Builder value14(float value14) {
       this.value14 = value14;
@@ -609,7 +626,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 16,
-        length = 4
+        unitSize = 4
     )
     public final Builder value15(float value15) {
       this.value15 = value15;
@@ -621,7 +638,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 17,
-        length = 4
+        unitSize = 4
     )
     public final Builder value16(float value16) {
       this.value16 = value16;
@@ -633,7 +650,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 18,
-        length = 4
+        unitSize = 4
     )
     public final Builder value17(float value17) {
       this.value17 = value17;
@@ -645,7 +662,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 19,
-        length = 4
+        unitSize = 4
     )
     public final Builder value18(float value18) {
       this.value18 = value18;
@@ -657,7 +674,7 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 20,
-        length = 4
+        unitSize = 4
     )
     public final Builder value19(float value19) {
       this.value19 = value19;
@@ -669,15 +686,27 @@ public final class AqTelemetryF {
      */
     @MavlinkMessageField(
         position = 21,
-        length = 4
+        unitSize = 4
     )
     public final Builder value20(float value20) {
       this.value20 = value20;
       return this;
     }
 
+    /**
+     * Index of message 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 2
+    )
+    public final Builder index(int index) {
+      this.index = index;
+      return this;
+    }
+
     public final AqTelemetryF build() {
-      return new AqTelemetryF(index, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12, value13, value14, value15, value16, value17, value18, value19, value20);
+      return new AqTelemetryF(value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12, value13, value14, value15, value16, value17, value18, value19, value20, index);
     }
   }
 }

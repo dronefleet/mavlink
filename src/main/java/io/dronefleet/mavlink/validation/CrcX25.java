@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.util;
+package io.dronefleet.mavlink.validation;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,18 +14,29 @@ public class CrcX25 {
     }
 
     public void accumulate(byte[] bytes) {
-        for (byte b : bytes) {
-            accumulate(b);
+        accumulate(bytes, 0, bytes.length);
+    }
+
+    public void accumulate(byte[] bytes, int offset, int length) {
+        for (int i = offset; i < length; i++) {
+            accumulate(bytes[i]);
         }
     }
 
     public void accumulate(int b) {
         b = b ^ (crc & 0xff);
         b ^= (b << 4) & 0xff;
+        b &= 0xff;
         crc = (crc >> 8) ^ (b << 8) ^ (b << 3) ^ (b >> 4);
     }
 
     public int get() {
-        return (crc ^ (crc >> 8));
+        return crc;
+    }
+
+    public int checksum() {
+        int a = crc & 0xff00;
+        int b = crc & 0x00ff;
+        return (a >> 8) | (b << 8);
     }
 }

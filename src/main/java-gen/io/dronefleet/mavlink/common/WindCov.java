@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -70,8 +73,22 @@ public final class WindCov {
     this.vertAccuracy = vertAccuracy;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "WindCov{timeUsec=" + timeUsec
+         + ", windX=" + windX
+         + ", windY=" + windY
+         + ", windZ=" + windZ
+         + ", varHoriz=" + varHoriz
+         + ", varVert=" + varVert
+         + ", windAlt=" + windAlt
+         + ", horizAccuracy=" + horizAccuracy
+         + ", vertAccuracy=" + vertAccuracy + "}";
   }
 
   /**
@@ -79,7 +96,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 0,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -90,7 +107,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float windX() {
     return windX;
@@ -101,7 +118,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float windY() {
     return windY;
@@ -112,7 +129,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float windZ() {
     return windZ;
@@ -123,7 +140,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float varHoriz() {
     return varHoriz;
@@ -134,7 +151,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float varVert() {
     return varVert;
@@ -145,7 +162,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float windAlt() {
     return windAlt;
@@ -156,7 +173,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float horizAccuracy() {
     return horizAccuracy;
@@ -167,7 +184,7 @@ public final class WindCov {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float vertAccuracy() {
     return vertAccuracy;
@@ -200,7 +217,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 0,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -212,7 +229,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder windX(float windX) {
       this.windX = windX;
@@ -224,7 +241,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder windY(float windY) {
       this.windY = windY;
@@ -236,7 +253,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder windZ(float windZ) {
       this.windZ = windZ;
@@ -248,7 +265,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder varHoriz(float varHoriz) {
       this.varHoriz = varHoriz;
@@ -260,7 +277,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder varVert(float varVert) {
       this.varVert = varVert;
@@ -272,7 +289,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder windAlt(float windAlt) {
       this.windAlt = windAlt;
@@ -284,7 +301,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder horizAccuracy(float horizAccuracy) {
       this.horizAccuracy = horizAccuracy;
@@ -296,7 +313,7 @@ public final class WindCov {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder vertAccuracy(float vertAccuracy) {
       this.vertAccuracy = vertAccuracy;

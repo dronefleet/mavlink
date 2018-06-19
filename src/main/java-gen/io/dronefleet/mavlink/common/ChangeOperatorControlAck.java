@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Accept / deny control of this MAV 
@@ -33,8 +36,16 @@ public final class ChangeOperatorControlAck {
     this.ack = ack;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ChangeOperatorControlAck{gcsSystemId=" + gcsSystemId
+         + ", controlRequest=" + controlRequest
+         + ", ack=" + ack + "}";
   }
 
   /**
@@ -42,7 +53,7 @@ public final class ChangeOperatorControlAck {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int gcsSystemId() {
     return gcsSystemId;
@@ -53,7 +64,7 @@ public final class ChangeOperatorControlAck {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int controlRequest() {
     return controlRequest;
@@ -65,7 +76,7 @@ public final class ChangeOperatorControlAck {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int ack() {
     return ack;
@@ -86,7 +97,7 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder gcsSystemId(int gcsSystemId) {
       this.gcsSystemId = gcsSystemId;
@@ -98,7 +109,7 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder controlRequest(int controlRequest) {
       this.controlRequest = controlRequest;
@@ -111,7 +122,7 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder ack(int ack) {
       this.ack = ack;

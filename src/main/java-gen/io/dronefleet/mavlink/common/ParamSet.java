@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -17,6 +19,11 @@ import java.lang.String;
     crc = 168
 )
 public final class ParamSet {
+  /**
+   * Onboard parameter value 
+   */
+  private final float paramValue;
+
   /**
    * System ID 
    */
@@ -35,26 +42,42 @@ public final class ParamSet {
   private final String paramId;
 
   /**
-   * Onboard parameter value 
-   */
-  private final float paramValue;
-
-  /**
    * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
    */
   private final MavParamType paramType;
 
-  private ParamSet(int targetSystem, int targetComponent, String paramId, float paramValue,
+  private ParamSet(float paramValue, int targetSystem, int targetComponent, String paramId,
       MavParamType paramType) {
+    this.paramValue = paramValue;
     this.targetSystem = targetSystem;
     this.targetComponent = targetComponent;
     this.paramId = paramId;
-    this.paramValue = paramValue;
     this.paramType = paramType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ParamSet{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", paramId=" + paramId
+         + ", paramValue=" + paramValue
+         + ", paramType=" + paramType + "}";
+  }
+
+  /**
+   * Onboard parameter value 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 4
+  )
+  public final float paramValue() {
+    return paramValue;
   }
 
   /**
@@ -62,7 +85,7 @@ public final class ParamSet {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -73,7 +96,7 @@ public final class ParamSet {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -86,7 +109,7 @@ public final class ParamSet {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 16
   )
   public final String paramId() {
@@ -94,35 +117,24 @@ public final class ParamSet {
   }
 
   /**
-   * Onboard parameter value 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 4
-  )
-  public final float paramValue() {
-    return paramValue;
-  }
-
-  /**
    * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final MavParamType paramType() {
     return paramType;
   }
 
   public static class Builder {
+    private float paramValue;
+
     private int targetSystem;
 
     private int targetComponent;
 
     private String paramId;
-
-    private float paramValue;
 
     private MavParamType paramType;
 
@@ -130,11 +142,23 @@ public final class ParamSet {
     }
 
     /**
+     * Onboard parameter value 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 4
+    )
+    public final Builder paramValue(float paramValue) {
+      this.paramValue = paramValue;
+      return this;
+    }
+
+    /**
      * System ID 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -146,7 +170,7 @@ public final class ParamSet {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -160,7 +184,7 @@ public final class ParamSet {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 16
     )
     public final Builder paramId(String paramId) {
@@ -169,23 +193,11 @@ public final class ParamSet {
     }
 
     /**
-     * Onboard parameter value 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder paramValue(float paramValue) {
-      this.paramValue = paramValue;
-      return this;
-    }
-
-    /**
      * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder paramType(MavParamType paramType) {
       this.paramType = paramType;
@@ -193,7 +205,7 @@ public final class ParamSet {
     }
 
     public final ParamSet build() {
-      return new ParamSet(targetSystem, targetComponent, paramId, paramValue, paramType);
+      return new ParamSet(paramValue, targetSystem, targetComponent, paramId, paramType);
     }
   }
 }

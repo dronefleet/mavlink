@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.common.FenceBreach;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of geo-fencing. Sent in extended status stream when fencing enabled 
@@ -13,9 +16,9 @@ import io.dronefleet.mavlink.common.FenceBreach;
 )
 public final class FenceStatus {
   /**
-   * 0 if currently inside fence, 1 if outside 
+   * time of last breach in milliseconds since boot 
    */
-  private final int breachStatus;
+  private final long breachTime;
 
   /**
    * number of fence breaches 
@@ -23,57 +26,33 @@ public final class FenceStatus {
   private final int breachCount;
 
   /**
+   * 0 if currently inside fence, 1 if outside 
+   */
+  private final int breachStatus;
+
+  /**
    * last breach type (see FENCE_BREACH_* enum) 
    */
   private final FenceBreach breachType;
 
-  /**
-   * time of last breach in milliseconds since boot 
-   */
-  private final long breachTime;
-
-  private FenceStatus(int breachStatus, int breachCount, FenceBreach breachType, long breachTime) {
-    this.breachStatus = breachStatus;
-    this.breachCount = breachCount;
-    this.breachType = breachType;
+  private FenceStatus(long breachTime, int breachCount, int breachStatus, FenceBreach breachType) {
     this.breachTime = breachTime;
+    this.breachCount = breachCount;
+    this.breachStatus = breachStatus;
+    this.breachType = breachType;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * 0 if currently inside fence, 1 if outside 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int breachStatus() {
-    return breachStatus;
-  }
-
-  /**
-   * number of fence breaches 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 2
-  )
-  public final int breachCount() {
-    return breachCount;
-  }
-
-  /**
-   * last breach type (see FENCE_BREACH_* enum) 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final FenceBreach breachType() {
-    return breachType;
+  @Override
+  public String toString() {
+    return "FenceStatus{breachStatus=" + breachStatus
+         + ", breachCount=" + breachCount
+         + ", breachType=" + breachType
+         + ", breachTime=" + breachTime + "}";
   }
 
   /**
@@ -81,33 +60,66 @@ public final class FenceStatus {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final long breachTime() {
     return breachTime;
   }
 
+  /**
+   * number of fence breaches 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 2
+  )
+  public final int breachCount() {
+    return breachCount;
+  }
+
+  /**
+   * 0 if currently inside fence, 1 if outside 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int breachStatus() {
+    return breachStatus;
+  }
+
+  /**
+   * last breach type (see FENCE_BREACH_* enum) 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final FenceBreach breachType() {
+    return breachType;
+  }
+
   public static class Builder {
-    private int breachStatus;
+    private long breachTime;
 
     private int breachCount;
 
-    private FenceBreach breachType;
+    private int breachStatus;
 
-    private long breachTime;
+    private FenceBreach breachType;
 
     private Builder() {
     }
 
     /**
-     * 0 if currently inside fence, 1 if outside 
+     * time of last breach in milliseconds since boot 
      */
     @MavlinkMessageField(
-        position = 1,
-        length = 1
+        position = 4,
+        unitSize = 4
     )
-    public final Builder breachStatus(int breachStatus) {
-      this.breachStatus = breachStatus;
+    public final Builder breachTime(long breachTime) {
+      this.breachTime = breachTime;
       return this;
     }
 
@@ -116,10 +128,22 @@ public final class FenceStatus {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder breachCount(int breachCount) {
       this.breachCount = breachCount;
+      return this;
+    }
+
+    /**
+     * 0 if currently inside fence, 1 if outside 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder breachStatus(int breachStatus) {
+      this.breachStatus = breachStatus;
       return this;
     }
 
@@ -128,27 +152,15 @@ public final class FenceStatus {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder breachType(FenceBreach breachType) {
       this.breachType = breachType;
       return this;
     }
 
-    /**
-     * time of last breach in milliseconds since boot 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder breachTime(long breachTime) {
-      this.breachTime = breachTime;
-      return this;
-    }
-
     public final FenceStatus build() {
-      return new FenceStatus(breachStatus, breachCount, breachType, breachTime);
+      return new FenceStatus(breachTime, breachCount, breachStatus, breachType);
     }
   }
 }

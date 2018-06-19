@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -49,8 +52,18 @@ public final class ResourceRequest {
     this.storage = storage;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ResourceRequest{requestId=" + requestId
+         + ", uriType=" + uriType
+         + ", uri=" + uri
+         + ", transferType=" + transferType
+         + ", storage=" + storage + "}";
   }
 
   /**
@@ -58,7 +71,7 @@ public final class ResourceRequest {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int requestId() {
     return requestId;
@@ -69,7 +82,7 @@ public final class ResourceRequest {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int uriType() {
     return uriType;
@@ -81,7 +94,7 @@ public final class ResourceRequest {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1,
+      unitSize = 1,
       arraySize = 120
   )
   public final List<Integer> uri() {
@@ -93,7 +106,7 @@ public final class ResourceRequest {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int transferType() {
     return transferType;
@@ -105,7 +118,7 @@ public final class ResourceRequest {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       arraySize = 120
   )
   public final List<Integer> storage() {
@@ -131,7 +144,7 @@ public final class ResourceRequest {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder requestId(int requestId) {
       this.requestId = requestId;
@@ -143,7 +156,7 @@ public final class ResourceRequest {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder uriType(int uriType) {
       this.uriType = uriType;
@@ -156,7 +169,7 @@ public final class ResourceRequest {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1,
+        unitSize = 1,
         arraySize = 120
     )
     public final Builder uri(List<Integer> uri) {
@@ -169,7 +182,7 @@ public final class ResourceRequest {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder transferType(int transferType) {
       this.transferType = transferType;
@@ -182,7 +195,7 @@ public final class ResourceRequest {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         arraySize = 120
     )
     public final Builder storage(List<Integer> storage) {

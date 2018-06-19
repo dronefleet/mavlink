@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F6: format 
@@ -45,8 +48,18 @@ public final class SerialUdbExtraF6 {
     this.sueElevatorBoost = sueElevatorBoost;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF6{suePitchgain=" + suePitchgain
+         + ", suePitchkd=" + suePitchkd
+         + ", sueRudderElevMix=" + sueRudderElevMix
+         + ", sueRollElevMix=" + sueRollElevMix
+         + ", sueElevatorBoost=" + sueElevatorBoost + "}";
   }
 
   /**
@@ -54,7 +67,7 @@ public final class SerialUdbExtraF6 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float suePitchgain() {
     return suePitchgain;
@@ -65,7 +78,7 @@ public final class SerialUdbExtraF6 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float suePitchkd() {
     return suePitchkd;
@@ -76,7 +89,7 @@ public final class SerialUdbExtraF6 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float sueRudderElevMix() {
     return sueRudderElevMix;
@@ -87,7 +100,7 @@ public final class SerialUdbExtraF6 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float sueRollElevMix() {
     return sueRollElevMix;
@@ -98,7 +111,7 @@ public final class SerialUdbExtraF6 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float sueElevatorBoost() {
     return sueElevatorBoost;
@@ -123,7 +136,7 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder suePitchgain(float suePitchgain) {
       this.suePitchgain = suePitchgain;
@@ -135,7 +148,7 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder suePitchkd(float suePitchkd) {
       this.suePitchkd = suePitchkd;
@@ -147,7 +160,7 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRudderElevMix(float sueRudderElevMix) {
       this.sueRudderElevMix = sueRudderElevMix;
@@ -159,7 +172,7 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueRollElevMix(float sueRollElevMix) {
       this.sueRollElevMix = sueRollElevMix;
@@ -171,7 +184,7 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder sueElevatorBoost(float sueElevatorBoost) {
       this.sueElevatorBoost = sueElevatorBoost;

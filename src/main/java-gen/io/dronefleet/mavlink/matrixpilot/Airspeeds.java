@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The airspeed measured by sensors and IMU 
@@ -57,8 +60,20 @@ public final class Airspeeds {
     this.aoy = aoy;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Airspeeds{timeBootMs=" + timeBootMs
+         + ", airspeedImu=" + airspeedImu
+         + ", airspeedPitot=" + airspeedPitot
+         + ", airspeedHotWire=" + airspeedHotWire
+         + ", airspeedUltrasonic=" + airspeedUltrasonic
+         + ", aoa=" + aoa
+         + ", aoy=" + aoy + "}";
   }
 
   /**
@@ -66,7 +81,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -77,7 +92,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int airspeedImu() {
     return airspeedImu;
@@ -88,7 +103,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int airspeedPitot() {
     return airspeedPitot;
@@ -99,7 +114,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int airspeedHotWire() {
     return airspeedHotWire;
@@ -110,7 +125,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int airspeedUltrasonic() {
     return airspeedUltrasonic;
@@ -121,7 +136,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int aoa() {
     return aoa;
@@ -132,7 +147,7 @@ public final class Airspeeds {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int aoy() {
     return aoy;
@@ -161,7 +176,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -173,7 +188,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder airspeedImu(int airspeedImu) {
       this.airspeedImu = airspeedImu;
@@ -185,7 +200,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder airspeedPitot(int airspeedPitot) {
       this.airspeedPitot = airspeedPitot;
@@ -197,7 +212,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder airspeedHotWire(int airspeedHotWire) {
       this.airspeedHotWire = airspeedHotWire;
@@ -209,7 +224,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder airspeedUltrasonic(int airspeedUltrasonic) {
       this.airspeedUltrasonic = airspeedUltrasonic;
@@ -221,7 +236,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder aoa(int aoa) {
       this.aoa = aoa;
@@ -233,7 +248,7 @@ public final class Airspeeds {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder aoy(int aoy) {
       this.aoy = aoy;

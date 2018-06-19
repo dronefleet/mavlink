@@ -27,6 +27,7 @@ public class MavlinkDialectGenerator {
     private static final ClassName MAVLINK_ENUM_ENTRY = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkEnumEntry");
     private static final ClassName MAVLINK_MESSAGE = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessage");
     private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageField");
+    private static final ClassName MAVLINK_MESSAGE_BUILDER = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageBuilder");
 
     private class PackageSources {
         private final List<PackageSources> dependencies;
@@ -249,7 +250,6 @@ public class MavlinkDialectGenerator {
                         }
                     }
                 })
-                .sorted(Comparator.comparing(MavlinkFieldDef::getIndex))
                 .forEach(fd -> {
                     TypeName fieldType = getFieldType(fd, sources);
                     String fieldName = toCamelCase(fd.getName());
@@ -285,7 +285,9 @@ public class MavlinkDialectGenerator {
 
         builder.addMethod(MethodSpec.methodBuilder("build")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                .addStatement("return new $T($L)", messageClassName, messageDef.getFields().stream()
+                .addStatement("return new $T($L)", messageClassName, messageDef.getFields()
+                        .stream()
+                        .sorted()
                         .map(MavlinkFieldDef::getName)
                         .map(this::toCamelCase)
                         .collect(Collectors.joining(", ")))
@@ -301,8 +303,23 @@ public class MavlinkDialectGenerator {
                         .build())
                 .addMethod(MethodSpec.methodBuilder("builder")
                         .addModifiers(Modifier.STATIC, Modifier.PUBLIC)
+                        .addAnnotation(MAVLINK_MESSAGE_BUILDER)
                         .addStatement("return new $T()", builderClassName)
                         .returns(builderClassName)
+                        .build())
+                .addMethod(MethodSpec.methodBuilder("toString")
+                        .addModifiers(Modifier.PUBLIC)
+                        .addAnnotation(Override.class)
+                        .addStatement("return $L", messageDef.getFields().stream()
+                                .map(MavlinkFieldDef::getName)
+                                .map(this::toCamelCase)
+                                .map(f -> f + "=\" + " + f)
+                                .collect(Collectors.joining(
+                                        "\n + \", ",
+                                        "\"" + messageClassName.simpleName() + "{",
+                                        " + \"}\""
+                                )))
+                        .returns(String.class)
                         .build())
                 .addType(builder.build());
 
@@ -316,7 +333,7 @@ public class MavlinkDialectGenerator {
     private AnnotationSpec generateFieldAnnotation(MavlinkFieldDef fieldDef) {
         AnnotationSpec.Builder builder = AnnotationSpec.builder(MAVLINK_MESSAGE_FIELD)
                 .addMember("position", "$L", fieldDef.getIndex())
-                .addMember("length", "$L", fieldDef.getType().getTypeLength());
+                .addMember("unitSize", "$L", fieldDef.getType().getTypeLength());
 
         if (fieldDef.getType().isArray()) {
             builder.addMember("arraySize", "$L", fieldDef.getType().getArrayLength());

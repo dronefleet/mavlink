@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Wind estimation 
@@ -32,8 +35,16 @@ public final class Wind {
     this.speedZ = speedZ;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Wind{direction=" + direction
+         + ", speed=" + speed
+         + ", speedZ=" + speedZ + "}";
   }
 
   /**
@@ -41,7 +52,7 @@ public final class Wind {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float direction() {
     return direction;
@@ -52,7 +63,7 @@ public final class Wind {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float speed() {
     return speed;
@@ -63,7 +74,7 @@ public final class Wind {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float speedZ() {
     return speedZ;
@@ -84,7 +95,7 @@ public final class Wind {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder direction(float direction) {
       this.direction = direction;
@@ -96,7 +107,7 @@ public final class Wind {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder speed(float speed) {
       this.speed = speed;
@@ -108,7 +119,7 @@ public final class Wind {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder speedZ(float speedZ) {
       this.speedZ = speedZ;

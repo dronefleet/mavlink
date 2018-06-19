@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -12,6 +15,11 @@ import java.math.BigInteger;
     crc = 6
 )
 public final class TerrainRequest {
+  /**
+   * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+   */
+  private final BigInteger mask;
+
   /**
    * Latitude of SW corner of first grid (degrees *10^7) 
    */
@@ -27,20 +35,35 @@ public final class TerrainRequest {
    */
   private final int gridSpacing;
 
-  /**
-   * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
-   */
-  private final BigInteger mask;
-
-  private TerrainRequest(int lat, int lon, int gridSpacing, BigInteger mask) {
+  private TerrainRequest(BigInteger mask, int lat, int lon, int gridSpacing) {
+    this.mask = mask;
     this.lat = lat;
     this.lon = lon;
     this.gridSpacing = gridSpacing;
-    this.mask = mask;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "TerrainRequest{lat=" + lat
+         + ", lon=" + lon
+         + ", gridSpacing=" + gridSpacing
+         + ", mask=" + mask + "}";
+  }
+
+  /**
+   * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 8
+  )
+  public final BigInteger mask() {
+    return mask;
   }
 
   /**
@@ -48,7 +71,7 @@ public final class TerrainRequest {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -59,7 +82,7 @@ public final class TerrainRequest {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -70,33 +93,34 @@ public final class TerrainRequest {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int gridSpacing() {
     return gridSpacing;
   }
 
-  /**
-   * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 8
-  )
-  public final BigInteger mask() {
-    return mask;
-  }
-
   public static class Builder {
+    private BigInteger mask;
+
     private int lat;
 
     private int lon;
 
     private int gridSpacing;
 
-    private BigInteger mask;
-
     private Builder() {
+    }
+
+    /**
+     * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 8
+    )
+    public final Builder mask(BigInteger mask) {
+      this.mask = mask;
+      return this;
     }
 
     /**
@@ -104,7 +128,7 @@ public final class TerrainRequest {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -116,7 +140,7 @@ public final class TerrainRequest {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -128,27 +152,15 @@ public final class TerrainRequest {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder gridSpacing(int gridSpacing) {
       this.gridSpacing = gridSpacing;
       return this;
     }
 
-    /**
-     * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 8
-    )
-    public final Builder mask(BigInteger mask) {
-      this.mask = mask;
-      return this;
-    }
-
     public final TerrainRequest build() {
-      return new TerrainRequest(lat, lon, gridSpacing, mask);
+      return new TerrainRequest(mask, lat, lon, gridSpacing);
     }
   }
 }

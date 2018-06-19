@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -103,8 +106,27 @@ public final class HilRcInputsRaw {
     this.rssi = rssi;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilRcInputsRaw{timeUsec=" + timeUsec
+         + ", chan1Raw=" + chan1Raw
+         + ", chan2Raw=" + chan2Raw
+         + ", chan3Raw=" + chan3Raw
+         + ", chan4Raw=" + chan4Raw
+         + ", chan5Raw=" + chan5Raw
+         + ", chan6Raw=" + chan6Raw
+         + ", chan7Raw=" + chan7Raw
+         + ", chan8Raw=" + chan8Raw
+         + ", chan9Raw=" + chan9Raw
+         + ", chan10Raw=" + chan10Raw
+         + ", chan11Raw=" + chan11Raw
+         + ", chan12Raw=" + chan12Raw
+         + ", rssi=" + rssi + "}";
   }
 
   /**
@@ -112,7 +134,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -123,7 +145,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int chan1Raw() {
     return chan1Raw;
@@ -134,7 +156,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int chan2Raw() {
     return chan2Raw;
@@ -145,7 +167,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int chan3Raw() {
     return chan3Raw;
@@ -156,7 +178,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int chan4Raw() {
     return chan4Raw;
@@ -167,7 +189,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int chan5Raw() {
     return chan5Raw;
@@ -178,7 +200,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int chan6Raw() {
     return chan6Raw;
@@ -189,7 +211,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int chan7Raw() {
     return chan7Raw;
@@ -200,7 +222,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int chan8Raw() {
     return chan8Raw;
@@ -211,7 +233,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 2
+      unitSize = 2
   )
   public final int chan9Raw() {
     return chan9Raw;
@@ -222,7 +244,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 2
+      unitSize = 2
   )
   public final int chan10Raw() {
     return chan10Raw;
@@ -233,7 +255,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 2
+      unitSize = 2
   )
   public final int chan11Raw() {
     return chan11Raw;
@@ -244,7 +266,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 2
+      unitSize = 2
   )
   public final int chan12Raw() {
     return chan12Raw;
@@ -255,7 +277,7 @@ public final class HilRcInputsRaw {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 1
+      unitSize = 1
   )
   public final int rssi() {
     return rssi;
@@ -298,7 +320,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -310,7 +332,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan1Raw(int chan1Raw) {
       this.chan1Raw = chan1Raw;
@@ -322,7 +344,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan2Raw(int chan2Raw) {
       this.chan2Raw = chan2Raw;
@@ -334,7 +356,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan3Raw(int chan3Raw) {
       this.chan3Raw = chan3Raw;
@@ -346,7 +368,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan4Raw(int chan4Raw) {
       this.chan4Raw = chan4Raw;
@@ -358,7 +380,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan5Raw(int chan5Raw) {
       this.chan5Raw = chan5Raw;
@@ -370,7 +392,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan6Raw(int chan6Raw) {
       this.chan6Raw = chan6Raw;
@@ -382,7 +404,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan7Raw(int chan7Raw) {
       this.chan7Raw = chan7Raw;
@@ -394,7 +416,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan8Raw(int chan8Raw) {
       this.chan8Raw = chan8Raw;
@@ -406,7 +428,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan9Raw(int chan9Raw) {
       this.chan9Raw = chan9Raw;
@@ -418,7 +440,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan10Raw(int chan10Raw) {
       this.chan10Raw = chan10Raw;
@@ -430,7 +452,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan11Raw(int chan11Raw) {
       this.chan11Raw = chan11Raw;
@@ -442,7 +464,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 2
+        unitSize = 2
     )
     public final Builder chan12Raw(int chan12Raw) {
       this.chan12Raw = chan12Raw;
@@ -454,7 +476,7 @@ public final class HilRcInputsRaw {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 1
+        unitSize = 1
     )
     public final Builder rssi(int rssi) {
       this.rssi = rssi;

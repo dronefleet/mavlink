@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -42,8 +44,17 @@ public final class ChangeOperatorControl {
     this.passkey = passkey;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ChangeOperatorControl{targetSystem=" + targetSystem
+         + ", controlRequest=" + controlRequest
+         + ", version=" + version
+         + ", passkey=" + passkey + "}";
   }
 
   /**
@@ -51,7 +62,7 @@ public final class ChangeOperatorControl {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -62,7 +73,7 @@ public final class ChangeOperatorControl {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int controlRequest() {
     return controlRequest;
@@ -75,7 +86,7 @@ public final class ChangeOperatorControl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int version() {
     return version;
@@ -87,7 +98,7 @@ public final class ChangeOperatorControl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       arraySize = 25
   )
   public final String passkey() {
@@ -111,7 +122,7 @@ public final class ChangeOperatorControl {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -123,7 +134,7 @@ public final class ChangeOperatorControl {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder controlRequest(int controlRequest) {
       this.controlRequest = controlRequest;
@@ -137,7 +148,7 @@ public final class ChangeOperatorControl {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder version(int version) {
       this.version = version;
@@ -150,7 +161,7 @@ public final class ChangeOperatorControl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         arraySize = 25
     )
     public final Builder passkey(String passkey) {

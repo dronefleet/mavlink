@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The filtered global position (e.g. fused GPS and accelerometers). The position is in 
@@ -73,8 +76,22 @@ public final class GlobalPositionInt {
     this.hdg = hdg;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "GlobalPositionInt{timeBootMs=" + timeBootMs
+         + ", lat=" + lat
+         + ", lon=" + lon
+         + ", alt=" + alt
+         + ", relativeAlt=" + relativeAlt
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", hdg=" + hdg + "}";
   }
 
   /**
@@ -82,7 +99,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -93,7 +110,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -104,7 +121,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final int lon() {
     return lon;
@@ -116,7 +133,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final int alt() {
     return alt;
@@ -127,7 +144,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int relativeAlt() {
     return relativeAlt;
@@ -138,7 +155,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int vx() {
     return vx;
@@ -149,7 +166,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int vy() {
     return vy;
@@ -160,7 +177,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 2
+      unitSize = 2
   )
   public final int vz() {
     return vz;
@@ -172,7 +189,7 @@ public final class GlobalPositionInt {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 2
+      unitSize = 2
   )
   public final int hdg() {
     return hdg;
@@ -205,7 +222,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;
@@ -217,7 +234,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -229,7 +246,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder lon(int lon) {
       this.lon = lon;
@@ -242,7 +259,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder alt(int alt) {
       this.alt = alt;
@@ -254,7 +271,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder relativeAlt(int relativeAlt) {
       this.relativeAlt = relativeAlt;
@@ -266,7 +283,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder vx(int vx) {
       this.vx = vx;
@@ -278,7 +295,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder vy(int vy) {
       this.vy = vy;
@@ -290,7 +307,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 2
+        unitSize = 2
     )
     public final Builder vz(int vz) {
       this.vz = vz;
@@ -303,7 +320,7 @@ public final class GlobalPositionInt {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 2
+        unitSize = 2
     )
     public final Builder hdg(int hdg) {
       this.hdg = hdg;

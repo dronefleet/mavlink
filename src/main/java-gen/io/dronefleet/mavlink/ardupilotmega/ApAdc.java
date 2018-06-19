@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * raw ADC output 
@@ -50,8 +53,19 @@ public final class ApAdc {
     this.adc6 = adc6;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "ApAdc{adc1=" + adc1
+         + ", adc2=" + adc2
+         + ", adc3=" + adc3
+         + ", adc4=" + adc4
+         + ", adc5=" + adc5
+         + ", adc6=" + adc6 + "}";
   }
 
   /**
@@ -59,7 +73,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final int adc1() {
     return adc1;
@@ -70,7 +84,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int adc2() {
     return adc2;
@@ -81,7 +95,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int adc3() {
     return adc3;
@@ -92,7 +106,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int adc4() {
     return adc4;
@@ -103,7 +117,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int adc5() {
     return adc5;
@@ -114,7 +128,7 @@ public final class ApAdc {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 2
+      unitSize = 2
   )
   public final int adc6() {
     return adc6;
@@ -141,7 +155,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc1(int adc1) {
       this.adc1 = adc1;
@@ -153,7 +167,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc2(int adc2) {
       this.adc2 = adc2;
@@ -165,7 +179,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc3(int adc3) {
       this.adc3 = adc3;
@@ -177,7 +191,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc4(int adc4) {
       this.adc4 = adc4;
@@ -189,7 +203,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc5(int adc5) {
       this.adc5 = adc5;
@@ -201,7 +215,7 @@ public final class ApAdc {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 2
+        unitSize = 2
     )
     public final Builder adc6(int adc6) {
       this.adc6 = adc6;

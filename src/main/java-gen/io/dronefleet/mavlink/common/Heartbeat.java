@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * The heartbeat message shows that a system is present and responding. The type of the MAV and 
@@ -14,6 +17,11 @@ import io.dronefleet.mavlink.util.EnumFlagSet;
     crc = 50
 )
 public final class Heartbeat {
+  /**
+   * A bitfield for use for autopilot-specific flags 
+   */
+  private final long customMode;
+
   /**
    * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
    */
@@ -30,11 +38,6 @@ public final class Heartbeat {
   private final EnumFlagSet<MavModeFlag> baseMode;
 
   /**
-   * A bitfield for use for autopilot-specific flags 
-   */
-  private final long customMode;
-
-  /**
    * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
    */
   private final MavState systemStatus;
@@ -45,18 +48,40 @@ public final class Heartbeat {
    */
   private final int mavlinkVersion;
 
-  private Heartbeat(MavType type, MavAutopilot autopilot, EnumFlagSet<MavModeFlag> baseMode,
-      long customMode, MavState systemStatus, int mavlinkVersion) {
+  private Heartbeat(long customMode, MavType type, MavAutopilot autopilot,
+      EnumFlagSet<MavModeFlag> baseMode, MavState systemStatus, int mavlinkVersion) {
+    this.customMode = customMode;
     this.type = type;
     this.autopilot = autopilot;
     this.baseMode = baseMode;
-    this.customMode = customMode;
     this.systemStatus = systemStatus;
     this.mavlinkVersion = mavlinkVersion;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Heartbeat{type=" + type
+         + ", autopilot=" + autopilot
+         + ", baseMode=" + baseMode
+         + ", customMode=" + customMode
+         + ", systemStatus=" + systemStatus
+         + ", mavlinkVersion=" + mavlinkVersion + "}";
+  }
+
+  /**
+   * A bitfield for use for autopilot-specific flags 
+   */
+  @MavlinkMessageField(
+      position = 4,
+      unitSize = 4
+  )
+  public final long customMode() {
+    return customMode;
   }
 
   /**
@@ -64,7 +89,7 @@ public final class Heartbeat {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final MavType type() {
     return type;
@@ -75,7 +100,7 @@ public final class Heartbeat {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final MavAutopilot autopilot() {
     return autopilot;
@@ -86,21 +111,10 @@ public final class Heartbeat {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final EnumFlagSet<MavModeFlag> baseMode() {
     return baseMode;
-  }
-
-  /**
-   * A bitfield for use for autopilot-specific flags 
-   */
-  @MavlinkMessageField(
-      position = 4,
-      length = 4
-  )
-  public final long customMode() {
-    return customMode;
   }
 
   /**
@@ -108,7 +122,7 @@ public final class Heartbeat {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final MavState systemStatus() {
     return systemStatus;
@@ -120,20 +134,20 @@ public final class Heartbeat {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int mavlinkVersion() {
     return mavlinkVersion;
   }
 
   public static class Builder {
+    private long customMode;
+
     private MavType type;
 
     private MavAutopilot autopilot;
 
     private EnumFlagSet<MavModeFlag> baseMode;
-
-    private long customMode;
 
     private MavState systemStatus;
 
@@ -143,11 +157,23 @@ public final class Heartbeat {
     }
 
     /**
+     * A bitfield for use for autopilot-specific flags 
+     */
+    @MavlinkMessageField(
+        position = 4,
+        unitSize = 4
+    )
+    public final Builder customMode(long customMode) {
+      this.customMode = customMode;
+      return this;
+    }
+
+    /**
      * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder type(MavType type) {
       this.type = type;
@@ -159,7 +185,7 @@ public final class Heartbeat {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder autopilot(MavAutopilot autopilot) {
       this.autopilot = autopilot;
@@ -171,22 +197,10 @@ public final class Heartbeat {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder baseMode(EnumFlagSet<MavModeFlag> baseMode) {
       this.baseMode = baseMode;
-      return this;
-    }
-
-    /**
-     * A bitfield for use for autopilot-specific flags 
-     */
-    @MavlinkMessageField(
-        position = 4,
-        length = 4
-    )
-    public final Builder customMode(long customMode) {
-      this.customMode = customMode;
       return this;
     }
 
@@ -195,7 +209,7 @@ public final class Heartbeat {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder systemStatus(MavState systemStatus) {
       this.systemStatus = systemStatus;
@@ -208,7 +222,7 @@ public final class Heartbeat {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder mavlinkVersion(int mavlinkVersion) {
       this.mavlinkVersion = mavlinkVersion;
@@ -216,7 +230,7 @@ public final class Heartbeat {
     }
 
     public final Heartbeat build() {
-      return new Heartbeat(type, autopilot, baseMode, customMode, systemStatus, mavlinkVersion);
+      return new Heartbeat(customMode, type, autopilot, baseMode, systemStatus, mavlinkVersion);
     }
   }
 }

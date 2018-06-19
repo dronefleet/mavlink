@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -55,8 +58,19 @@ public final class AttitudeQuaternionCov {
     this.covariance = covariance;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "AttitudeQuaternionCov{timeUsec=" + timeUsec
+         + ", q=" + q
+         + ", rollspeed=" + rollspeed
+         + ", pitchspeed=" + pitchspeed
+         + ", yawspeed=" + yawspeed
+         + ", covariance=" + covariance + "}";
   }
 
   /**
@@ -64,7 +78,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -75,7 +89,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> q() {
@@ -87,7 +101,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float rollspeed() {
     return rollspeed;
@@ -98,7 +112,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float pitchspeed() {
     return pitchspeed;
@@ -109,7 +123,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float yawspeed() {
     return yawspeed;
@@ -120,7 +134,7 @@ public final class AttitudeQuaternionCov {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4,
+      unitSize = 4,
       arraySize = 9
   )
   public final List<Float> covariance() {
@@ -148,7 +162,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -160,7 +174,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder q(List<Float> q) {
@@ -173,7 +187,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollspeed(float rollspeed) {
       this.rollspeed = rollspeed;
@@ -185,7 +199,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchspeed(float pitchspeed) {
       this.pitchspeed = pitchspeed;
@@ -197,7 +211,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawspeed(float yawspeed) {
       this.yawspeed = yawspeed;
@@ -209,7 +223,7 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4,
+        unitSize = 4,
         arraySize = 9
     )
     public final Builder covariance(List<Float> covariance) {

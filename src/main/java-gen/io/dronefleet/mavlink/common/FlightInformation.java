@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -12,11 +15,6 @@ import java.math.BigInteger;
     crc = 49
 )
 public final class FlightInformation {
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  private final long timeBootMs;
-
   /**
    * Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown 
    */
@@ -32,27 +30,30 @@ public final class FlightInformation {
    */
   private final BigInteger flightUuid;
 
-  private FlightInformation(long timeBootMs, BigInteger armingTimeUtc, BigInteger takeoffTimeUtc,
-      BigInteger flightUuid) {
-    this.timeBootMs = timeBootMs;
+  /**
+   * Timestamp (milliseconds since system boot) 
+   */
+  private final long timeBootMs;
+
+  private FlightInformation(BigInteger armingTimeUtc, BigInteger takeoffTimeUtc,
+      BigInteger flightUuid, long timeBootMs) {
     this.armingTimeUtc = armingTimeUtc;
     this.takeoffTimeUtc = takeoffTimeUtc;
     this.flightUuid = flightUuid;
+    this.timeBootMs = timeBootMs;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 4
-  )
-  public final long timeBootMs() {
-    return timeBootMs;
+  @Override
+  public String toString() {
+    return "FlightInformation{timeBootMs=" + timeBootMs
+         + ", armingTimeUtc=" + armingTimeUtc
+         + ", takeoffTimeUtc=" + takeoffTimeUtc
+         + ", flightUuid=" + flightUuid + "}";
   }
 
   /**
@@ -60,7 +61,7 @@ public final class FlightInformation {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger armingTimeUtc() {
     return armingTimeUtc;
@@ -71,7 +72,7 @@ public final class FlightInformation {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger takeoffTimeUtc() {
     return takeoffTimeUtc;
@@ -82,34 +83,33 @@ public final class FlightInformation {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger flightUuid() {
     return flightUuid;
   }
 
-  public static class Builder {
-    private long timeBootMs;
+  /**
+   * Timestamp (milliseconds since system boot) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 4
+  )
+  public final long timeBootMs() {
+    return timeBootMs;
+  }
 
+  public static class Builder {
     private BigInteger armingTimeUtc;
 
     private BigInteger takeoffTimeUtc;
 
     private BigInteger flightUuid;
 
-    private Builder() {
-    }
+    private long timeBootMs;
 
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 4
-    )
-    public final Builder timeBootMs(long timeBootMs) {
-      this.timeBootMs = timeBootMs;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -117,7 +117,7 @@ public final class FlightInformation {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 8
+        unitSize = 8
     )
     public final Builder armingTimeUtc(BigInteger armingTimeUtc) {
       this.armingTimeUtc = armingTimeUtc;
@@ -129,7 +129,7 @@ public final class FlightInformation {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 8
+        unitSize = 8
     )
     public final Builder takeoffTimeUtc(BigInteger takeoffTimeUtc) {
       this.takeoffTimeUtc = takeoffTimeUtc;
@@ -141,15 +141,27 @@ public final class FlightInformation {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 8
+        unitSize = 8
     )
     public final Builder flightUuid(BigInteger flightUuid) {
       this.flightUuid = flightUuid;
       return this;
     }
 
+    /**
+     * Timestamp (milliseconds since system boot) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 4
+    )
+    public final Builder timeBootMs(long timeBootMs) {
+      this.timeBootMs = timeBootMs;
+      return this;
+    }
+
     public final FlightInformation build() {
-      return new FlightInformation(timeBootMs, armingTimeUtc, takeoffTimeUtc, flightUuid);
+      return new FlightInformation(armingTimeUtc, takeoffTimeUtc, flightUuid, timeBootMs);
     }
   }
 }

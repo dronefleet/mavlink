@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -108,8 +111,28 @@ public final class HilSensor {
     this.fieldsUpdated = fieldsUpdated;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "HilSensor{timeUsec=" + timeUsec
+         + ", xacc=" + xacc
+         + ", yacc=" + yacc
+         + ", zacc=" + zacc
+         + ", xgyro=" + xgyro
+         + ", ygyro=" + ygyro
+         + ", zgyro=" + zgyro
+         + ", xmag=" + xmag
+         + ", ymag=" + ymag
+         + ", zmag=" + zmag
+         + ", absPressure=" + absPressure
+         + ", diffPressure=" + diffPressure
+         + ", pressureAlt=" + pressureAlt
+         + ", temperature=" + temperature
+         + ", fieldsUpdated=" + fieldsUpdated + "}";
   }
 
   /**
@@ -117,7 +140,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -128,7 +151,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float xacc() {
     return xacc;
@@ -139,7 +162,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float yacc() {
     return yacc;
@@ -150,7 +173,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float zacc() {
     return zacc;
@@ -161,7 +184,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float xgyro() {
     return xgyro;
@@ -172,7 +195,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float ygyro() {
     return ygyro;
@@ -183,7 +206,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float zgyro() {
     return zgyro;
@@ -194,7 +217,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float xmag() {
     return xmag;
@@ -205,7 +228,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float ymag() {
     return ymag;
@@ -216,7 +239,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float zmag() {
     return zmag;
@@ -227,7 +250,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float absPressure() {
     return absPressure;
@@ -238,7 +261,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float diffPressure() {
     return diffPressure;
@@ -249,7 +272,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float pressureAlt() {
     return pressureAlt;
@@ -260,7 +283,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4
+      unitSize = 4
   )
   public final float temperature() {
     return temperature;
@@ -272,7 +295,7 @@ public final class HilSensor {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4
+      unitSize = 4
   )
   public final long fieldsUpdated() {
     return fieldsUpdated;
@@ -317,7 +340,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -329,7 +352,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder xacc(float xacc) {
       this.xacc = xacc;
@@ -341,7 +364,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder yacc(float yacc) {
       this.yacc = yacc;
@@ -353,7 +376,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder zacc(float zacc) {
       this.zacc = zacc;
@@ -365,7 +388,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder xgyro(float xgyro) {
       this.xgyro = xgyro;
@@ -377,7 +400,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder ygyro(float ygyro) {
       this.ygyro = ygyro;
@@ -389,7 +412,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder zgyro(float zgyro) {
       this.zgyro = zgyro;
@@ -401,7 +424,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder xmag(float xmag) {
       this.xmag = xmag;
@@ -413,7 +436,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder ymag(float ymag) {
       this.ymag = ymag;
@@ -425,7 +448,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder zmag(float zmag) {
       this.zmag = zmag;
@@ -437,7 +460,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder absPressure(float absPressure) {
       this.absPressure = absPressure;
@@ -449,7 +472,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder diffPressure(float diffPressure) {
       this.diffPressure = diffPressure;
@@ -461,7 +484,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder pressureAlt(float pressureAlt) {
       this.pressureAlt = pressureAlt;
@@ -473,7 +496,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4
+        unitSize = 4
     )
     public final Builder temperature(float temperature) {
       this.temperature = temperature;
@@ -486,7 +509,7 @@ public final class HilSensor {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4
+        unitSize = 4
     )
     public final Builder fieldsUpdated(long fieldsUpdated) {
       this.fieldsUpdated = fieldsUpdated;

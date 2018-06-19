@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F19 format 
@@ -64,8 +67,21 @@ public final class SerialUdbExtraF19 {
     this.sueRudderReversed = sueRudderReversed;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF19{sueAileronOutputChannel=" + sueAileronOutputChannel
+         + ", sueAileronReversed=" + sueAileronReversed
+         + ", sueElevatorOutputChannel=" + sueElevatorOutputChannel
+         + ", sueElevatorReversed=" + sueElevatorReversed
+         + ", sueThrottleOutputChannel=" + sueThrottleOutputChannel
+         + ", sueThrottleReversed=" + sueThrottleReversed
+         + ", sueRudderOutputChannel=" + sueRudderOutputChannel
+         + ", sueRudderReversed=" + sueRudderReversed + "}";
   }
 
   /**
@@ -73,7 +89,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int sueAileronOutputChannel() {
     return sueAileronOutputChannel;
@@ -84,7 +100,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int sueAileronReversed() {
     return sueAileronReversed;
@@ -95,7 +111,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int sueElevatorOutputChannel() {
     return sueElevatorOutputChannel;
@@ -106,7 +122,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int sueElevatorReversed() {
     return sueElevatorReversed;
@@ -117,7 +133,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int sueThrottleOutputChannel() {
     return sueThrottleOutputChannel;
@@ -128,7 +144,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1
+      unitSize = 1
   )
   public final int sueThrottleReversed() {
     return sueThrottleReversed;
@@ -139,7 +155,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1
+      unitSize = 1
   )
   public final int sueRudderOutputChannel() {
     return sueRudderOutputChannel;
@@ -150,7 +166,7 @@ public final class SerialUdbExtraF19 {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1
+      unitSize = 1
   )
   public final int sueRudderReversed() {
     return sueRudderReversed;
@@ -181,7 +197,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueAileronOutputChannel(int sueAileronOutputChannel) {
       this.sueAileronOutputChannel = sueAileronOutputChannel;
@@ -193,7 +209,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueAileronReversed(int sueAileronReversed) {
       this.sueAileronReversed = sueAileronReversed;
@@ -205,7 +221,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueElevatorOutputChannel(int sueElevatorOutputChannel) {
       this.sueElevatorOutputChannel = sueElevatorOutputChannel;
@@ -217,7 +233,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueElevatorReversed(int sueElevatorReversed) {
       this.sueElevatorReversed = sueElevatorReversed;
@@ -229,7 +245,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueThrottleOutputChannel(int sueThrottleOutputChannel) {
       this.sueThrottleOutputChannel = sueThrottleOutputChannel;
@@ -241,7 +257,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueThrottleReversed(int sueThrottleReversed) {
       this.sueThrottleReversed = sueThrottleReversed;
@@ -253,7 +269,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRudderOutputChannel(int sueRudderOutputChannel) {
       this.sueRudderOutputChannel = sueRudderOutputChannel;
@@ -265,7 +281,7 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1
+        unitSize = 1
     )
     public final Builder sueRudderReversed(int sueRudderReversed) {
       this.sueRudderReversed = sueRudderReversed;

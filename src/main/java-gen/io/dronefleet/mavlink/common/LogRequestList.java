@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Request a list of available logs. On some systems calling this may stop on-board logging until 
@@ -13,16 +16,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class LogRequestList {
   /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
-  /**
    * First log id (0 for first available) 
    */
   private final int start;
@@ -32,37 +25,34 @@ public final class LogRequestList {
    */
   private final int end;
 
-  private LogRequestList(int targetSystem, int targetComponent, int start, int end) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.start = start;
-    this.end = end;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
   /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  private LogRequestList(int start, int end, int targetSystem, int targetComponent) {
+    this.start = start;
+    this.end = end;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LogRequestList{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", start=" + start
+         + ", end=" + end + "}";
   }
 
   /**
@@ -70,7 +60,7 @@ public final class LogRequestList {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int start() {
     return start;
@@ -81,46 +71,44 @@ public final class LogRequestList {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int end() {
     return end;
   }
 
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private int start;
 
     private int end;
 
+    private int targetSystem;
+
+    private int targetComponent;
+
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -128,7 +116,7 @@ public final class LogRequestList {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder start(int start) {
       this.start = start;
@@ -140,15 +128,39 @@ public final class LogRequestList {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder end(int end) {
       this.end = end;
       return this;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
     public final LogRequestList build() {
-      return new LogRequestList(targetSystem, targetComponent, start, end);
+      return new LogRequestList(start, end, targetSystem, targetComponent);
     }
   }
 }

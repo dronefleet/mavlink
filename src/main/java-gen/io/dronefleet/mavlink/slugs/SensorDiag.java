@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.slugs;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Diagnostic data Sensor MCU 
@@ -38,8 +41,17 @@ public final class SensorDiag {
     this.char1 = char1;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SensorDiag{float1=" + float1
+         + ", float2=" + float2
+         + ", int1=" + int1
+         + ", char1=" + char1 + "}";
   }
 
   /**
@@ -47,7 +59,7 @@ public final class SensorDiag {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float float1() {
     return float1;
@@ -58,7 +70,7 @@ public final class SensorDiag {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float float2() {
     return float2;
@@ -69,7 +81,7 @@ public final class SensorDiag {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int int1() {
     return int1;
@@ -80,7 +92,7 @@ public final class SensorDiag {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int char1() {
     return char1;
@@ -103,7 +115,7 @@ public final class SensorDiag {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder float1(float float1) {
       this.float1 = float1;
@@ -115,7 +127,7 @@ public final class SensorDiag {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder float2(float float2) {
       this.float2 = float2;
@@ -127,7 +139,7 @@ public final class SensorDiag {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder int1(int int1) {
       this.int1 = int1;
@@ -139,7 +151,7 @@ public final class SensorDiag {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder char1(int char1) {
       this.char1 = char1;

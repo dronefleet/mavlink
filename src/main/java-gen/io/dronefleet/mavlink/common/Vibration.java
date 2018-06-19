@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -58,8 +61,20 @@ public final class Vibration {
     this.clipping2 = clipping2;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Vibration{timeUsec=" + timeUsec
+         + ", vibrationX=" + vibrationX
+         + ", vibrationY=" + vibrationY
+         + ", vibrationZ=" + vibrationZ
+         + ", clipping0=" + clipping0
+         + ", clipping1=" + clipping1
+         + ", clipping2=" + clipping2 + "}";
   }
 
   /**
@@ -67,7 +82,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -78,7 +93,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float vibrationX() {
     return vibrationX;
@@ -89,7 +104,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float vibrationY() {
     return vibrationY;
@@ -100,7 +115,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float vibrationZ() {
     return vibrationZ;
@@ -111,7 +126,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final long clipping0() {
     return clipping0;
@@ -122,7 +137,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final long clipping1() {
     return clipping1;
@@ -133,7 +148,7 @@ public final class Vibration {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final long clipping2() {
     return clipping2;
@@ -162,7 +177,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -174,7 +189,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder vibrationX(float vibrationX) {
       this.vibrationX = vibrationX;
@@ -186,7 +201,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder vibrationY(float vibrationY) {
       this.vibrationY = vibrationY;
@@ -198,7 +213,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder vibrationZ(float vibrationZ) {
       this.vibrationZ = vibrationZ;
@@ -210,7 +225,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder clipping0(long clipping0) {
       this.clipping0 = clipping0;
@@ -222,7 +237,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder clipping1(long clipping1) {
       this.clipping1 = clipping1;
@@ -234,7 +249,7 @@ public final class Vibration {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder clipping2(long clipping2) {
       this.clipping2 = clipping2;

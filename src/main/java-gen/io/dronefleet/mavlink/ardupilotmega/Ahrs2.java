@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs Ahrs} filter if available 
@@ -50,8 +53,19 @@ public final class Ahrs2 {
     this.lng = lng;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Ahrs2{roll=" + roll
+         + ", pitch=" + pitch
+         + ", yaw=" + yaw
+         + ", altitude=" + altitude
+         + ", lat=" + lat
+         + ", lng=" + lng + "}";
   }
 
   /**
@@ -59,7 +73,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final float roll() {
     return roll;
@@ -70,7 +84,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float pitch() {
     return pitch;
@@ -81,7 +95,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float yaw() {
     return yaw;
@@ -92,7 +106,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float altitude() {
     return altitude;
@@ -103,7 +117,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final int lat() {
     return lat;
@@ -114,7 +128,7 @@ public final class Ahrs2 {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final int lng() {
     return lng;
@@ -141,7 +155,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder roll(float roll) {
       this.roll = roll;
@@ -153,7 +167,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitch(float pitch) {
       this.pitch = pitch;
@@ -165,7 +179,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder yaw(float yaw) {
       this.yaw = yaw;
@@ -177,7 +191,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder altitude(float altitude) {
       this.altitude = altitude;
@@ -189,7 +203,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder lat(int lat) {
       this.lat = lat;
@@ -201,7 +215,7 @@ public final class Ahrs2 {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder lng(int lng) {
       this.lng = lng;

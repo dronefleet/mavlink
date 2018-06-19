@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -28,8 +31,15 @@ public final class SystemTime {
     this.timeBootMs = timeBootMs;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SystemTime{timeUnixUsec=" + timeUnixUsec
+         + ", timeBootMs=" + timeBootMs + "}";
   }
 
   /**
@@ -37,7 +47,7 @@ public final class SystemTime {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUnixUsec() {
     return timeUnixUsec;
@@ -48,7 +58,7 @@ public final class SystemTime {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final long timeBootMs() {
     return timeBootMs;
@@ -67,7 +77,7 @@ public final class SystemTime {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUnixUsec(BigInteger timeUnixUsec) {
       this.timeUnixUsec = timeUnixUsec;
@@ -79,7 +89,7 @@ public final class SystemTime {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder timeBootMs(long timeBootMs) {
       this.timeBootMs = timeBootMs;

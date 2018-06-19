@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Report status of a command. Includes feedback whether the command was executed. 
@@ -54,8 +57,19 @@ public final class CommandAck {
     this.targetComponent = targetComponent;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "CommandAck{command=" + command
+         + ", result=" + result
+         + ", progress=" + progress
+         + ", resultParam2=" + resultParam2
+         + ", targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent + "}";
   }
 
   /**
@@ -63,7 +77,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 2
+      unitSize = 2
   )
   public final MavCmd command() {
     return command;
@@ -74,7 +88,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final MavResult result() {
     return result;
@@ -87,7 +101,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final int progress() {
@@ -100,7 +114,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4,
+      unitSize = 4,
       extension = true
   )
   public final int resultParam2() {
@@ -112,7 +126,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final int targetSystem() {
@@ -124,7 +138,7 @@ public final class CommandAck {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 1,
+      unitSize = 1,
       extension = true
   )
   public final int targetComponent() {
@@ -152,7 +166,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 2
+        unitSize = 2
     )
     public final Builder command(MavCmd command) {
       this.command = command;
@@ -164,7 +178,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder result(MavResult result) {
       this.result = result;
@@ -178,7 +192,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder progress(int progress) {
@@ -192,7 +206,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4,
+        unitSize = 4,
         extension = true
     )
     public final Builder resultParam2(int resultParam2) {
@@ -205,7 +219,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder targetSystem(int targetSystem) {
@@ -218,7 +232,7 @@ public final class CommandAck {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 1,
+        unitSize = 1,
         extension = true
     )
     public final Builder targetComponent(int targetComponent) {

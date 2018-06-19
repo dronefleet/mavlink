@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -47,8 +50,18 @@ public final class DeviceOpReadReply {
     this.data = data;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "DeviceOpReadReply{requestId=" + requestId
+         + ", result=" + result
+         + ", regstart=" + regstart
+         + ", count=" + count
+         + ", data=" + data + "}";
   }
 
   /**
@@ -56,7 +69,7 @@ public final class DeviceOpReadReply {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 4
+      unitSize = 4
   )
   public final long requestId() {
     return requestId;
@@ -67,7 +80,7 @@ public final class DeviceOpReadReply {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int result() {
     return result;
@@ -78,7 +91,7 @@ public final class DeviceOpReadReply {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int regstart() {
     return regstart;
@@ -89,7 +102,7 @@ public final class DeviceOpReadReply {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int count() {
     return count;
@@ -100,7 +113,7 @@ public final class DeviceOpReadReply {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1,
+      unitSize = 1,
       arraySize = 128
   )
   public final List<Integer> data() {
@@ -126,7 +139,7 @@ public final class DeviceOpReadReply {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 4
+        unitSize = 4
     )
     public final Builder requestId(long requestId) {
       this.requestId = requestId;
@@ -138,7 +151,7 @@ public final class DeviceOpReadReply {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder result(int result) {
       this.result = result;
@@ -150,7 +163,7 @@ public final class DeviceOpReadReply {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder regstart(int regstart) {
       this.regstart = regstart;
@@ -162,7 +175,7 @@ public final class DeviceOpReadReply {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder count(int count) {
       this.count = count;
@@ -174,7 +187,7 @@ public final class DeviceOpReadReply {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1,
+        unitSize = 1,
         arraySize = 128
     )
     public final Builder data(List<Integer> data) {

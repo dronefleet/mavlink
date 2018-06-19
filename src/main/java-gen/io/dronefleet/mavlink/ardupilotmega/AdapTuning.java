@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Adaptive Controller tuning information 
@@ -11,11 +14,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
     crc = 46
 )
 public final class AdapTuning {
-  /**
-   * axis 
-   */
-  private final PidTuningAxis axis;
-
   /**
    * desired rate (degrees/s) 
    */
@@ -76,10 +74,14 @@ public final class AdapTuning {
    */
   private final float u;
 
-  private AdapTuning(PidTuningAxis axis, float desired, float achieved, float error, float theta,
-      float omega, float sigma, float thetaDot, float omegaDot, float sigmaDot, float f, float fDot,
-      float u) {
-    this.axis = axis;
+  /**
+   * axis 
+   */
+  private final PidTuningAxis axis;
+
+  private AdapTuning(float desired, float achieved, float error, float theta, float omega,
+      float sigma, float thetaDot, float omegaDot, float sigmaDot, float f, float fDot, float u,
+      PidTuningAxis axis) {
     this.desired = desired;
     this.achieved = achieved;
     this.error = error;
@@ -92,21 +94,29 @@ public final class AdapTuning {
     this.f = f;
     this.fDot = fDot;
     this.u = u;
+    this.axis = axis;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * axis 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final PidTuningAxis axis() {
-    return axis;
+  @Override
+  public String toString() {
+    return "AdapTuning{axis=" + axis
+         + ", desired=" + desired
+         + ", achieved=" + achieved
+         + ", error=" + error
+         + ", theta=" + theta
+         + ", omega=" + omega
+         + ", sigma=" + sigma
+         + ", thetaDot=" + thetaDot
+         + ", omegaDot=" + omegaDot
+         + ", sigmaDot=" + sigmaDot
+         + ", f=" + f
+         + ", fDot=" + fDot
+         + ", u=" + u + "}";
   }
 
   /**
@@ -114,7 +124,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 4
+      unitSize = 4
   )
   public final float desired() {
     return desired;
@@ -125,7 +135,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float achieved() {
     return achieved;
@@ -136,7 +146,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float error() {
     return error;
@@ -147,7 +157,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float theta() {
     return theta;
@@ -158,7 +168,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float omega() {
     return omega;
@@ -169,7 +179,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4
+      unitSize = 4
   )
   public final float sigma() {
     return sigma;
@@ -180,7 +190,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float thetaDot() {
     return thetaDot;
@@ -191,7 +201,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float omegaDot() {
     return omegaDot;
@@ -202,7 +212,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float sigmaDot() {
     return sigmaDot;
@@ -213,7 +223,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float f() {
     return f;
@@ -224,7 +234,7 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float fDot() {
     return fDot;
@@ -235,15 +245,24 @@ public final class AdapTuning {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float u() {
     return u;
   }
 
-  public static class Builder {
-    private PidTuningAxis axis;
+  /**
+   * axis 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final PidTuningAxis axis() {
+    return axis;
+  }
 
+  public static class Builder {
     private float desired;
 
     private float achieved;
@@ -268,19 +287,9 @@ public final class AdapTuning {
 
     private float u;
 
-    private Builder() {
-    }
+    private PidTuningAxis axis;
 
-    /**
-     * axis 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder axis(PidTuningAxis axis) {
-      this.axis = axis;
-      return this;
+    private Builder() {
     }
 
     /**
@@ -288,7 +297,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 4
+        unitSize = 4
     )
     public final Builder desired(float desired) {
       this.desired = desired;
@@ -300,7 +309,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder achieved(float achieved) {
       this.achieved = achieved;
@@ -312,7 +321,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder error(float error) {
       this.error = error;
@@ -324,7 +333,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder theta(float theta) {
       this.theta = theta;
@@ -336,7 +345,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder omega(float omega) {
       this.omega = omega;
@@ -348,7 +357,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4
+        unitSize = 4
     )
     public final Builder sigma(float sigma) {
       this.sigma = sigma;
@@ -360,7 +369,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder thetaDot(float thetaDot) {
       this.thetaDot = thetaDot;
@@ -372,7 +381,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder omegaDot(float omegaDot) {
       this.omegaDot = omegaDot;
@@ -384,7 +393,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder sigmaDot(float sigmaDot) {
       this.sigmaDot = sigmaDot;
@@ -396,7 +405,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder f(float f) {
       this.f = f;
@@ -408,7 +417,7 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder fDot(float fDot) {
       this.fDot = fDot;
@@ -420,15 +429,27 @@ public final class AdapTuning {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder u(float u) {
       this.u = u;
       return this;
     }
 
+    /**
+     * axis 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder axis(PidTuningAxis axis) {
+      this.axis = axis;
+      return this;
+    }
+
     public final AdapTuning build() {
-      return new AdapTuning(axis, desired, achieved, error, theta, omega, sigma, thetaDot, omegaDot, sigmaDot, f, fDot, u);
+      return new AdapTuning(desired, achieved, error, theta, omega, sigma, thetaDot, omegaDot, sigmaDot, f, fDot, u, axis);
     }
   }
 }

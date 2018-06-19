@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -47,8 +50,18 @@ public final class RawPressure {
     this.temperature = temperature;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "RawPressure{timeUsec=" + timeUsec
+         + ", pressAbs=" + pressAbs
+         + ", pressDiff1=" + pressDiff1
+         + ", pressDiff2=" + pressDiff2
+         + ", temperature=" + temperature + "}";
   }
 
   /**
@@ -56,7 +69,7 @@ public final class RawPressure {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
@@ -67,7 +80,7 @@ public final class RawPressure {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 2
+      unitSize = 2
   )
   public final int pressAbs() {
     return pressAbs;
@@ -78,7 +91,7 @@ public final class RawPressure {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int pressDiff1() {
     return pressDiff1;
@@ -89,7 +102,7 @@ public final class RawPressure {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int pressDiff2() {
     return pressDiff2;
@@ -100,7 +113,7 @@ public final class RawPressure {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int temperature() {
     return temperature;
@@ -125,7 +138,7 @@ public final class RawPressure {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
@@ -137,7 +150,7 @@ public final class RawPressure {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 2
+        unitSize = 2
     )
     public final Builder pressAbs(int pressAbs) {
       this.pressAbs = pressAbs;
@@ -149,7 +162,7 @@ public final class RawPressure {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder pressDiff1(int pressDiff1) {
       this.pressDiff1 = pressDiff1;
@@ -161,7 +174,7 @@ public final class RawPressure {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder pressDiff2(int pressDiff2) {
       this.pressDiff2 = pressDiff2;
@@ -173,7 +186,7 @@ public final class RawPressure {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder temperature(int temperature) {
       this.temperature = temperature;

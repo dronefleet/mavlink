@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Float;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -19,17 +22,6 @@ public final class Odometry {
    * Timestamp (microseconds since system boot or since UNIX epoch). 
    */
   private final BigInteger timeUsec;
-
-  /**
-   * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-   */
-  private final MavFrame frameId;
-
-  /**
-   * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-   */
-  private final MavFrame childFrameId;
 
   /**
    * X Position 
@@ -93,12 +85,22 @@ public final class Odometry {
    */
   private final List<Float> twistCovariance;
 
-  private Odometry(BigInteger timeUsec, MavFrame frameId, MavFrame childFrameId, float x, float y,
-      float z, List<Float> q, float vx, float vy, float vz, float rollspeed, float pitchspeed,
-      float yawspeed, List<Float> poseCovariance, List<Float> twistCovariance) {
+  /**
+   * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+   */
+  private final MavFrame frameId;
+
+  /**
+   * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
+   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+   */
+  private final MavFrame childFrameId;
+
+  private Odometry(BigInteger timeUsec, float x, float y, float z, List<Float> q, float vx,
+      float vy, float vz, float rollspeed, float pitchspeed, float yawspeed,
+      List<Float> poseCovariance, List<Float> twistCovariance, MavFrame frameId,
+      MavFrame childFrameId) {
     this.timeUsec = timeUsec;
-    this.frameId = frameId;
-    this.childFrameId = childFrameId;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -111,10 +113,32 @@ public final class Odometry {
     this.yawspeed = yawspeed;
     this.poseCovariance = poseCovariance;
     this.twistCovariance = twistCovariance;
+    this.frameId = frameId;
+    this.childFrameId = childFrameId;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "Odometry{timeUsec=" + timeUsec
+         + ", frameId=" + frameId
+         + ", childFrameId=" + childFrameId
+         + ", x=" + x
+         + ", y=" + y
+         + ", z=" + z
+         + ", q=" + q
+         + ", vx=" + vx
+         + ", vy=" + vy
+         + ", vz=" + vz
+         + ", rollspeed=" + rollspeed
+         + ", pitchspeed=" + pitchspeed
+         + ", yawspeed=" + yawspeed
+         + ", poseCovariance=" + poseCovariance
+         + ", twistCovariance=" + twistCovariance + "}";
   }
 
   /**
@@ -122,33 +146,10 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 8
+      unitSize = 8
   )
   public final BigInteger timeUsec() {
     return timeUsec;
-  }
-
-  /**
-   * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final MavFrame frameId() {
-    return frameId;
-  }
-
-  /**
-   * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-   */
-  @MavlinkMessageField(
-      position = 3,
-      length = 1
-  )
-  public final MavFrame childFrameId() {
-    return childFrameId;
   }
 
   /**
@@ -156,7 +157,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 4
+      unitSize = 4
   )
   public final float x() {
     return x;
@@ -167,7 +168,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 4
+      unitSize = 4
   )
   public final float y() {
     return y;
@@ -178,7 +179,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 4
+      unitSize = 4
   )
   public final float z() {
     return z;
@@ -189,7 +190,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 4,
+      unitSize = 4,
       arraySize = 4
   )
   public final List<Float> q() {
@@ -201,7 +202,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 4
+      unitSize = 4
   )
   public final float vx() {
     return vx;
@@ -212,7 +213,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 9,
-      length = 4
+      unitSize = 4
   )
   public final float vy() {
     return vy;
@@ -223,7 +224,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 10,
-      length = 4
+      unitSize = 4
   )
   public final float vz() {
     return vz;
@@ -234,7 +235,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 11,
-      length = 4
+      unitSize = 4
   )
   public final float rollspeed() {
     return rollspeed;
@@ -245,7 +246,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 12,
-      length = 4
+      unitSize = 4
   )
   public final float pitchspeed() {
     return pitchspeed;
@@ -256,7 +257,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 13,
-      length = 4
+      unitSize = 4
   )
   public final float yawspeed() {
     return yawspeed;
@@ -268,7 +269,7 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 14,
-      length = 4,
+      unitSize = 4,
       arraySize = 21
   )
   public final List<Float> poseCovariance() {
@@ -281,19 +282,38 @@ public final class Odometry {
    */
   @MavlinkMessageField(
       position = 15,
-      length = 4,
+      unitSize = 4,
       arraySize = 21
   )
   public final List<Float> twistCovariance() {
     return twistCovariance;
   }
 
+  /**
+   * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final MavFrame frameId() {
+    return frameId;
+  }
+
+  /**
+   * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
+   * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+   */
+  @MavlinkMessageField(
+      position = 3,
+      unitSize = 1
+  )
+  public final MavFrame childFrameId() {
+    return childFrameId;
+  }
+
   public static class Builder {
     private BigInteger timeUsec;
-
-    private MavFrame frameId;
-
-    private MavFrame childFrameId;
 
     private float x;
 
@@ -319,6 +339,10 @@ public final class Odometry {
 
     private List<Float> twistCovariance;
 
+    private MavFrame frameId;
+
+    private MavFrame childFrameId;
+
     private Builder() {
     }
 
@@ -327,35 +351,10 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 8
+        unitSize = 8
     )
     public final Builder timeUsec(BigInteger timeUsec) {
       this.timeUsec = timeUsec;
-      return this;
-    }
-
-    /**
-     * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder frameId(MavFrame frameId) {
-      this.frameId = frameId;
-      return this;
-    }
-
-    /**
-     * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-     * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
-     */
-    @MavlinkMessageField(
-        position = 3,
-        length = 1
-    )
-    public final Builder childFrameId(MavFrame childFrameId) {
-      this.childFrameId = childFrameId;
       return this;
     }
 
@@ -364,7 +363,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 4
+        unitSize = 4
     )
     public final Builder x(float x) {
       this.x = x;
@@ -376,7 +375,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 4
+        unitSize = 4
     )
     public final Builder y(float y) {
       this.y = y;
@@ -388,7 +387,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 4
+        unitSize = 4
     )
     public final Builder z(float z) {
       this.z = z;
@@ -400,7 +399,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 4,
+        unitSize = 4,
         arraySize = 4
     )
     public final Builder q(List<Float> q) {
@@ -413,7 +412,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 4
+        unitSize = 4
     )
     public final Builder vx(float vx) {
       this.vx = vx;
@@ -425,7 +424,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 9,
-        length = 4
+        unitSize = 4
     )
     public final Builder vy(float vy) {
       this.vy = vy;
@@ -437,7 +436,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 10,
-        length = 4
+        unitSize = 4
     )
     public final Builder vz(float vz) {
       this.vz = vz;
@@ -449,7 +448,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 11,
-        length = 4
+        unitSize = 4
     )
     public final Builder rollspeed(float rollspeed) {
       this.rollspeed = rollspeed;
@@ -461,7 +460,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 12,
-        length = 4
+        unitSize = 4
     )
     public final Builder pitchspeed(float pitchspeed) {
       this.pitchspeed = pitchspeed;
@@ -473,7 +472,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 13,
-        length = 4
+        unitSize = 4
     )
     public final Builder yawspeed(float yawspeed) {
       this.yawspeed = yawspeed;
@@ -486,7 +485,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 14,
-        length = 4,
+        unitSize = 4,
         arraySize = 21
     )
     public final Builder poseCovariance(List<Float> poseCovariance) {
@@ -500,7 +499,7 @@ public final class Odometry {
      */
     @MavlinkMessageField(
         position = 15,
-        length = 4,
+        unitSize = 4,
         arraySize = 21
     )
     public final Builder twistCovariance(List<Float> twistCovariance) {
@@ -508,8 +507,33 @@ public final class Odometry {
       return this;
     }
 
+    /**
+     * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder frameId(MavFrame frameId) {
+      this.frameId = frameId;
+      return this;
+    }
+
+    /**
+     * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
+     * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
+     */
+    @MavlinkMessageField(
+        position = 3,
+        unitSize = 1
+    )
+    public final Builder childFrameId(MavFrame childFrameId) {
+      this.childFrameId = childFrameId;
+      return this;
+    }
+
     public final Odometry build() {
-      return new Odometry(timeUsec, frameId, childFrameId, x, y, z, q, vx, vy, vz, rollspeed, pitchspeed, yawspeed, poseCovariance, twistCovariance);
+      return new Odometry(timeUsec, x, y, z, q, vx, vy, vz, rollspeed, pitchspeed, yawspeed, poseCovariance, twistCovariance, frameId, childFrameId);
     }
   }
 }

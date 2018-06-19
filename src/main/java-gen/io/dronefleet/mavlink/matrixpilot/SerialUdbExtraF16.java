@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -28,8 +31,15 @@ public final class SerialUdbExtraF16 {
     this.sueIdDiyDronesUrl = sueIdDiyDronesUrl;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "SerialUdbExtraF16{sueIdLeadPilot=" + sueIdLeadPilot
+         + ", sueIdDiyDronesUrl=" + sueIdDiyDronesUrl + "}";
   }
 
   /**
@@ -37,7 +47,7 @@ public final class SerialUdbExtraF16 {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1,
+      unitSize = 1,
       arraySize = 40
   )
   public final List<Integer> sueIdLeadPilot() {
@@ -49,7 +59,7 @@ public final class SerialUdbExtraF16 {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1,
+      unitSize = 1,
       arraySize = 70
   )
   public final List<Integer> sueIdDiyDronesUrl() {
@@ -69,7 +79,7 @@ public final class SerialUdbExtraF16 {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1,
+        unitSize = 1,
         arraySize = 40
     )
     public final Builder sueIdLeadPilot(List<Integer> sueIdLeadPilot) {
@@ -82,7 +92,7 @@ public final class SerialUdbExtraF16 {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1,
+        unitSize = 1,
         arraySize = 70
     )
     public final Builder sueIdDiyDronesUrl(List<Integer> sueIdDiyDronesUrl) {

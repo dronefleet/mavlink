@@ -1,7 +1,10 @@
 package io.dronefleet.mavlink.matrixpilot;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
+import java.lang.String;
 
 /**
  * Reqest reading of flexifunction data 
@@ -12,16 +15,6 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 )
 public final class FlexifunctionReadReq {
   /**
-   * System ID 
-   */
-  private final int targetSystem;
-
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
-
-  /**
    * Type of flexifunction data requested 
    */
   private final int readReqType;
@@ -31,38 +24,35 @@ public final class FlexifunctionReadReq {
    */
   private final int dataIndex;
 
-  private FlexifunctionReadReq(int targetSystem, int targetComponent, int readReqType,
-      int dataIndex) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.readReqType = readReqType;
-    this.dataIndex = dataIndex;
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
   /**
    * System ID 
    */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
+  private final int targetSystem;
 
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
+  private final int targetComponent;
+
+  private FlexifunctionReadReq(int readReqType, int dataIndex, int targetSystem,
+      int targetComponent) {
+    this.readReqType = readReqType;
+    this.dataIndex = dataIndex;
+    this.targetSystem = targetSystem;
+    this.targetComponent = targetComponent;
+  }
+
+  @MavlinkMessageBuilder
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "FlexifunctionReadReq{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", readReqType=" + readReqType
+         + ", dataIndex=" + dataIndex + "}";
   }
 
   /**
@@ -70,7 +60,7 @@ public final class FlexifunctionReadReq {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 2
+      unitSize = 2
   )
   public final int readReqType() {
     return readReqType;
@@ -81,46 +71,44 @@ public final class FlexifunctionReadReq {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int dataIndex() {
     return dataIndex;
   }
 
+  /**
+   * System ID 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int targetSystem() {
+    return targetSystem;
+  }
+
+  /**
+   * Component ID 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int targetComponent() {
+    return targetComponent;
+  }
+
   public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
     private int readReqType;
 
     private int dataIndex;
 
+    private int targetSystem;
+
+    private int targetComponent;
+
     private Builder() {
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
     }
 
     /**
@@ -128,7 +116,7 @@ public final class FlexifunctionReadReq {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 2
+        unitSize = 2
     )
     public final Builder readReqType(int readReqType) {
       this.readReqType = readReqType;
@@ -140,15 +128,39 @@ public final class FlexifunctionReadReq {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder dataIndex(int dataIndex) {
       this.dataIndex = dataIndex;
       return this;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder targetSystem(int targetSystem) {
+      this.targetSystem = targetSystem;
+      return this;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder targetComponent(int targetComponent) {
+      this.targetComponent = targetComponent;
+      return this;
+    }
+
     public final FlexifunctionReadReq build() {
-      return new FlexifunctionReadReq(targetSystem, targetComponent, readReqType, dataIndex);
+      return new FlexifunctionReadReq(readReqType, dataIndex, targetSystem, targetComponent);
     }
   }
 }

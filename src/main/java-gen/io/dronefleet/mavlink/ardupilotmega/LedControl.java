@@ -1,8 +1,11 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 
 /**
@@ -53,8 +56,19 @@ public final class LedControl {
     this.customBytes = customBytes;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
+  }
+
+  @Override
+  public String toString() {
+    return "LedControl{targetSystem=" + targetSystem
+         + ", targetComponent=" + targetComponent
+         + ", instance=" + instance
+         + ", pattern=" + pattern
+         + ", customLen=" + customLen
+         + ", customBytes=" + customBytes + "}";
   }
 
   /**
@@ -62,7 +76,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 1,
-      length = 1
+      unitSize = 1
   )
   public final int targetSystem() {
     return targetSystem;
@@ -73,7 +87,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 2,
-      length = 1
+      unitSize = 1
   )
   public final int targetComponent() {
     return targetComponent;
@@ -84,7 +98,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 1
+      unitSize = 1
   )
   public final int instance() {
     return instance;
@@ -95,7 +109,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 1
+      unitSize = 1
   )
   public final int pattern() {
     return pattern;
@@ -106,7 +120,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 1
+      unitSize = 1
   )
   public final int customLen() {
     return customLen;
@@ -117,7 +131,7 @@ public final class LedControl {
    */
   @MavlinkMessageField(
       position = 6,
-      length = 1,
+      unitSize = 1,
       arraySize = 24
   )
   public final List<Integer> customBytes() {
@@ -145,7 +159,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 1,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetSystem(int targetSystem) {
       this.targetSystem = targetSystem;
@@ -157,7 +171,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 2,
-        length = 1
+        unitSize = 1
     )
     public final Builder targetComponent(int targetComponent) {
       this.targetComponent = targetComponent;
@@ -169,7 +183,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 3,
-        length = 1
+        unitSize = 1
     )
     public final Builder instance(int instance) {
       this.instance = instance;
@@ -181,7 +195,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 1
+        unitSize = 1
     )
     public final Builder pattern(int pattern) {
       this.pattern = pattern;
@@ -193,7 +207,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 1
+        unitSize = 1
     )
     public final Builder customLen(int customLen) {
       this.customLen = customLen;
@@ -205,7 +219,7 @@ public final class LedControl {
      */
     @MavlinkMessageField(
         position = 6,
-        length = 1,
+        unitSize = 1,
         arraySize = 24
     )
     public final Builder customBytes(List<Integer> customBytes) {

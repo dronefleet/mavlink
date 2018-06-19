@@ -1,7 +1,9 @@
 package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -13,19 +15,14 @@ import java.lang.String;
 )
 public final class VideoStreamInformation {
   /**
-   * Camera ID (1 for first, 2 for second, etc.) 
-   */
-  private final int cameraId;
-
-  /**
-   * Current status of video streaming (0: not running, 1: in progress) 
-   */
-  private final int status;
-
-  /**
    * Frames per second 
    */
   private final float framerate;
+
+  /**
+   * Bit rate in bits per second 
+   */
+  private final long bitrate;
 
   /**
    * Resolution horizontal in pixels 
@@ -38,56 +35,52 @@ public final class VideoStreamInformation {
   private final int resolutionV;
 
   /**
-   * Bit rate in bits per second 
-   */
-  private final long bitrate;
-
-  /**
    * Video image rotation clockwise 
    */
   private final int rotation;
+
+  /**
+   * Camera ID (1 for first, 2 for second, etc.) 
+   */
+  private final int cameraId;
+
+  /**
+   * Current status of video streaming (0: not running, 1: in progress) 
+   */
+  private final int status;
 
   /**
    * Video stream URI 
    */
   private final String uri;
 
-  private VideoStreamInformation(int cameraId, int status, float framerate, int resolutionH,
-      int resolutionV, long bitrate, int rotation, String uri) {
-    this.cameraId = cameraId;
-    this.status = status;
+  private VideoStreamInformation(float framerate, long bitrate, int resolutionH, int resolutionV,
+      int rotation, int cameraId, int status, String uri) {
     this.framerate = framerate;
+    this.bitrate = bitrate;
     this.resolutionH = resolutionH;
     this.resolutionV = resolutionV;
-    this.bitrate = bitrate;
     this.rotation = rotation;
+    this.cameraId = cameraId;
+    this.status = status;
     this.uri = uri;
   }
 
+  @MavlinkMessageBuilder
   public static Builder builder() {
     return new Builder();
   }
 
-  /**
-   * Camera ID (1 for first, 2 for second, etc.) 
-   */
-  @MavlinkMessageField(
-      position = 1,
-      length = 1
-  )
-  public final int cameraId() {
-    return cameraId;
-  }
-
-  /**
-   * Current status of video streaming (0: not running, 1: in progress) 
-   */
-  @MavlinkMessageField(
-      position = 2,
-      length = 1
-  )
-  public final int status() {
-    return status;
+  @Override
+  public String toString() {
+    return "VideoStreamInformation{cameraId=" + cameraId
+         + ", status=" + status
+         + ", framerate=" + framerate
+         + ", resolutionH=" + resolutionH
+         + ", resolutionV=" + resolutionV
+         + ", bitrate=" + bitrate
+         + ", rotation=" + rotation
+         + ", uri=" + uri + "}";
   }
 
   /**
@@ -95,10 +88,21 @@ public final class VideoStreamInformation {
    */
   @MavlinkMessageField(
       position = 3,
-      length = 4
+      unitSize = 4
   )
   public final float framerate() {
     return framerate;
+  }
+
+  /**
+   * Bit rate in bits per second 
+   */
+  @MavlinkMessageField(
+      position = 6,
+      unitSize = 4
+  )
+  public final long bitrate() {
+    return bitrate;
   }
 
   /**
@@ -106,7 +110,7 @@ public final class VideoStreamInformation {
    */
   @MavlinkMessageField(
       position = 4,
-      length = 2
+      unitSize = 2
   )
   public final int resolutionH() {
     return resolutionH;
@@ -117,21 +121,10 @@ public final class VideoStreamInformation {
    */
   @MavlinkMessageField(
       position = 5,
-      length = 2
+      unitSize = 2
   )
   public final int resolutionV() {
     return resolutionV;
-  }
-
-  /**
-   * Bit rate in bits per second 
-   */
-  @MavlinkMessageField(
-      position = 6,
-      length = 4
-  )
-  public final long bitrate() {
-    return bitrate;
   }
 
   /**
@@ -139,10 +132,32 @@ public final class VideoStreamInformation {
    */
   @MavlinkMessageField(
       position = 7,
-      length = 2
+      unitSize = 2
   )
   public final int rotation() {
     return rotation;
+  }
+
+  /**
+   * Camera ID (1 for first, 2 for second, etc.) 
+   */
+  @MavlinkMessageField(
+      position = 1,
+      unitSize = 1
+  )
+  public final int cameraId() {
+    return cameraId;
+  }
+
+  /**
+   * Current status of video streaming (0: not running, 1: in progress) 
+   */
+  @MavlinkMessageField(
+      position = 2,
+      unitSize = 1
+  )
+  public final int status() {
+    return status;
   }
 
   /**
@@ -150,7 +165,7 @@ public final class VideoStreamInformation {
    */
   @MavlinkMessageField(
       position = 8,
-      length = 1,
+      unitSize = 1,
       arraySize = 230
   )
   public final String uri() {
@@ -158,19 +173,19 @@ public final class VideoStreamInformation {
   }
 
   public static class Builder {
-    private int cameraId;
-
-    private int status;
-
     private float framerate;
+
+    private long bitrate;
 
     private int resolutionH;
 
     private int resolutionV;
 
-    private long bitrate;
-
     private int rotation;
+
+    private int cameraId;
+
+    private int status;
 
     private String uri;
 
@@ -178,38 +193,26 @@ public final class VideoStreamInformation {
     }
 
     /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
-    @MavlinkMessageField(
-        position = 1,
-        length = 1
-    )
-    public final Builder cameraId(int cameraId) {
-      this.cameraId = cameraId;
-      return this;
-    }
-
-    /**
-     * Current status of video streaming (0: not running, 1: in progress) 
-     */
-    @MavlinkMessageField(
-        position = 2,
-        length = 1
-    )
-    public final Builder status(int status) {
-      this.status = status;
-      return this;
-    }
-
-    /**
      * Frames per second 
      */
     @MavlinkMessageField(
         position = 3,
-        length = 4
+        unitSize = 4
     )
     public final Builder framerate(float framerate) {
       this.framerate = framerate;
+      return this;
+    }
+
+    /**
+     * Bit rate in bits per second 
+     */
+    @MavlinkMessageField(
+        position = 6,
+        unitSize = 4
+    )
+    public final Builder bitrate(long bitrate) {
+      this.bitrate = bitrate;
       return this;
     }
 
@@ -218,7 +221,7 @@ public final class VideoStreamInformation {
      */
     @MavlinkMessageField(
         position = 4,
-        length = 2
+        unitSize = 2
     )
     public final Builder resolutionH(int resolutionH) {
       this.resolutionH = resolutionH;
@@ -230,22 +233,10 @@ public final class VideoStreamInformation {
      */
     @MavlinkMessageField(
         position = 5,
-        length = 2
+        unitSize = 2
     )
     public final Builder resolutionV(int resolutionV) {
       this.resolutionV = resolutionV;
-      return this;
-    }
-
-    /**
-     * Bit rate in bits per second 
-     */
-    @MavlinkMessageField(
-        position = 6,
-        length = 4
-    )
-    public final Builder bitrate(long bitrate) {
-      this.bitrate = bitrate;
       return this;
     }
 
@@ -254,10 +245,34 @@ public final class VideoStreamInformation {
      */
     @MavlinkMessageField(
         position = 7,
-        length = 2
+        unitSize = 2
     )
     public final Builder rotation(int rotation) {
       this.rotation = rotation;
+      return this;
+    }
+
+    /**
+     * Camera ID (1 for first, 2 for second, etc.) 
+     */
+    @MavlinkMessageField(
+        position = 1,
+        unitSize = 1
+    )
+    public final Builder cameraId(int cameraId) {
+      this.cameraId = cameraId;
+      return this;
+    }
+
+    /**
+     * Current status of video streaming (0: not running, 1: in progress) 
+     */
+    @MavlinkMessageField(
+        position = 2,
+        unitSize = 1
+    )
+    public final Builder status(int status) {
+      this.status = status;
       return this;
     }
 
@@ -266,7 +281,7 @@ public final class VideoStreamInformation {
      */
     @MavlinkMessageField(
         position = 8,
-        length = 1,
+        unitSize = 1,
         arraySize = 230
     )
     public final Builder uri(String uri) {
@@ -275,7 +290,7 @@ public final class VideoStreamInformation {
     }
 
     public final VideoStreamInformation build() {
-      return new VideoStreamInformation(cameraId, status, framerate, resolutionH, resolutionV, bitrate, rotation, uri);
+      return new VideoStreamInformation(framerate, bitrate, resolutionH, resolutionV, rotation, cameraId, status, uri);
     }
   }
 }
