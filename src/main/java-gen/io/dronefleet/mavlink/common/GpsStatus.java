@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * information about each satellite visible to the receiver. See message GLOBAL_POSITION for 
  * the global position estimate. This message can contain information for up to 20 satellites. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 25,
     crc = 23
 )
@@ -77,7 +77,7 @@ public final class GpsStatus {
   /**
    * Number of satellites visible 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -88,7 +88,7 @@ public final class GpsStatus {
   /**
    * Global satellite ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 20
@@ -100,7 +100,7 @@ public final class GpsStatus {
   /**
    * 0: Satellite not used, 1: used for localization 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 20
@@ -112,7 +112,7 @@ public final class GpsStatus {
   /**
    * Elevation (0: right on top of receiver, 90: on the horizon) of satellite 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 20
@@ -124,7 +124,7 @@ public final class GpsStatus {
   /**
    * Direction of satellite, 0: 0 deg, 255: 360 deg. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 20
@@ -136,7 +136,7 @@ public final class GpsStatus {
   /**
    * Signal to noise ratio of satellite 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 20
@@ -164,7 +164,7 @@ public final class GpsStatus {
     /**
      * Number of satellites visible 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -176,7 +176,7 @@ public final class GpsStatus {
     /**
      * Global satellite ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 20
@@ -189,7 +189,7 @@ public final class GpsStatus {
     /**
      * 0: Satellite not used, 1: used for localization 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 20
@@ -202,7 +202,7 @@ public final class GpsStatus {
     /**
      * Elevation (0: right on top of receiver, 90: on the horizon) of satellite 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 20
@@ -215,7 +215,7 @@ public final class GpsStatus {
     /**
      * Direction of satellite, 0: 0 deg, 255: 360 deg. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 20
@@ -228,7 +228,7 @@ public final class GpsStatus {
     /**
      * Signal to noise ratio of satellite 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 20

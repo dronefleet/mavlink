@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Atmospheric sensors (temperature, humidity, ...) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 208,
     crc = 175
 )
@@ -43,7 +43,7 @@ public final class SensAtmos {
   /**
    * Ambient temperature 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -54,7 +54,7 @@ public final class SensAtmos {
   /**
    * Relative humidity 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -73,7 +73,7 @@ public final class SensAtmos {
     /**
      * Ambient temperature 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -85,7 +85,7 @@ public final class SensAtmos {
     /**
      * Relative humidity 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )

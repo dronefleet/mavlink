@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.paparazzi;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Request script item with the sequence number seq. The response of the system to this message 
  * should be a {@link io.dronefleet.mavlink.paparazzi.ScriptItem ScriptItem} message. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 181,
     crc = 129
 )
@@ -51,7 +51,7 @@ public final class ScriptRequest {
   /**
    * Sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -62,7 +62,7 @@ public final class ScriptRequest {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class ScriptRequest {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -94,7 +94,7 @@ public final class ScriptRequest {
     /**
      * Sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -106,7 +106,7 @@ public final class ScriptRequest {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -118,7 +118,7 @@ public final class ScriptRequest {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

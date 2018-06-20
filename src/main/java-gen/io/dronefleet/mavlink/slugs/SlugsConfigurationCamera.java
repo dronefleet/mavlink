@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Control for camara. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 188,
     crc = 5
 )
@@ -50,7 +50,7 @@ public final class SlugsConfigurationCamera {
   /**
    * The system setting the commands 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -61,7 +61,7 @@ public final class SlugsConfigurationCamera {
   /**
    * ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -72,7 +72,7 @@ public final class SlugsConfigurationCamera {
   /**
    * 1: up/on 2: down/off 3: auto/reset/no action 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class SlugsConfigurationCamera {
     /**
      * The system setting the commands 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -105,7 +105,7 @@ public final class SlugsConfigurationCamera {
     /**
      * ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -117,7 +117,7 @@ public final class SlugsConfigurationCamera {
     /**
      * 1: up/on 2: down/off 3: auto/reset/no action 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

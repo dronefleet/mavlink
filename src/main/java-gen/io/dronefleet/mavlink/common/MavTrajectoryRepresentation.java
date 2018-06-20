@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * WORK IN PROGRESS! DO NOT DEPLOY! Enumeration of possible waypoint/trajectory 
@@ -23,7 +23,7 @@ public enum MavTrajectoryRepresentation {
    * param[10]: Yaw [rad], set to NaN for unchanged
    * param[11]: Yaw-rate [rad/s], set to NaN for unchanged
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_TRAJECTORY_REPRESENTATION_WAYPOINTS,
 
   /**
@@ -34,6 +34,6 @@ public enum MavTrajectoryRepresentation {
    * param[4]: Bezier time horizon [s], set to NaN if velocity/acceleration should not be incorporated
    * param[5]: Yaw [rad], set to NaN for unchanged
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_TRAJECTORY_REPRESENTATION_BEZIER
 }

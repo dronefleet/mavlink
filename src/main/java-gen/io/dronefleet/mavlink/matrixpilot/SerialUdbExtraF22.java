@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F22 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 188,
     crc = 91
 )
@@ -73,7 +73,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE X accelerometer at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -84,7 +84,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE Y accelerometer at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -95,7 +95,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE Z accelerometer at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -106,7 +106,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE X gyro at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -117,7 +117,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE Y gyro at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -128,7 +128,7 @@ public final class SerialUdbExtraF22 {
   /**
    * SUE Z gyro at calibration time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -155,7 +155,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE X accelerometer at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -167,7 +167,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE Y accelerometer at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -179,7 +179,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE Z accelerometer at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -191,7 +191,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE X gyro at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -203,7 +203,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE Y gyro at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -215,7 +215,7 @@ public final class SerialUdbExtraF22 {
     /**
      * SUE Z gyro at calibration time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )

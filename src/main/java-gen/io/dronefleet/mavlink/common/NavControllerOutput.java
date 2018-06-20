@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * The state of the fixed wing navigation and position controller. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 62,
     crc = 183
 )
@@ -86,7 +86,7 @@ public final class NavControllerOutput {
   /**
    * Current desired roll in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -97,7 +97,7 @@ public final class NavControllerOutput {
   /**
    * Current desired pitch in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -108,7 +108,7 @@ public final class NavControllerOutput {
   /**
    * Current altitude error in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -119,7 +119,7 @@ public final class NavControllerOutput {
   /**
    * Current airspeed error in meters/second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -130,7 +130,7 @@ public final class NavControllerOutput {
   /**
    * Current crosstrack error on x-y plane in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -141,7 +141,7 @@ public final class NavControllerOutput {
   /**
    * Current desired heading in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -152,7 +152,7 @@ public final class NavControllerOutput {
   /**
    * Bearing to current waypoint/target in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -163,7 +163,7 @@ public final class NavControllerOutput {
   /**
    * Distance to active waypoint in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -194,7 +194,7 @@ public final class NavControllerOutput {
     /**
      * Current desired roll in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -206,7 +206,7 @@ public final class NavControllerOutput {
     /**
      * Current desired pitch in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -218,7 +218,7 @@ public final class NavControllerOutput {
     /**
      * Current altitude error in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -230,7 +230,7 @@ public final class NavControllerOutput {
     /**
      * Current airspeed error in meters/second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -242,7 +242,7 @@ public final class NavControllerOutput {
     /**
      * Current crosstrack error on x-y plane in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -254,7 +254,7 @@ public final class NavControllerOutput {
     /**
      * Current desired heading in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -266,7 +266,7 @@ public final class NavControllerOutput {
     /**
      * Bearing to current waypoint/target in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -278,7 +278,7 @@ public final class NavControllerOutput {
     /**
      * Distance to active waypoint in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )

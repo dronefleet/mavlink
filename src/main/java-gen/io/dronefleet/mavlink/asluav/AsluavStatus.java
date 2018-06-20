@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Extended state information for ASLUAVs 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 205,
     crc = 97
 )
@@ -59,7 +59,7 @@ public final class AsluavStatus {
   /**
    * Motor RPM 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -70,7 +70,7 @@ public final class AsluavStatus {
   /**
    * Status of the position-indicator LEDs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -81,7 +81,7 @@ public final class AsluavStatus {
   /**
    * Status of the IRIDIUM satellite communication system 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -92,7 +92,7 @@ public final class AsluavStatus {
   /**
    * Status vector for up to 8 servos 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 8
@@ -116,7 +116,7 @@ public final class AsluavStatus {
     /**
      * Motor RPM 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -128,7 +128,7 @@ public final class AsluavStatus {
     /**
      * Status of the position-indicator LEDs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -140,7 +140,7 @@ public final class AsluavStatus {
     /**
      * Status of the IRIDIUM satellite communication system 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -152,7 +152,7 @@ public final class AsluavStatus {
     /**
      * Status vector for up to 8 servos 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 8

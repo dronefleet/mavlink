@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Override;
@@ -14,7 +14,7 @@ import java.util.List;
  * WORK IN PROGRESS! DO NOT DEPLOY! Message to describe a trajectory in the local frame. Supported 
  * trajectory types are enumerated in {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 332,
     crc = 131
 )
@@ -92,7 +92,7 @@ public final class Trajectory {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -103,7 +103,7 @@ public final class Trajectory {
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4,
       arraySize = 11
@@ -115,7 +115,7 @@ public final class Trajectory {
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4,
       arraySize = 11
@@ -127,7 +127,7 @@ public final class Trajectory {
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4,
       arraySize = 11
@@ -139,7 +139,7 @@ public final class Trajectory {
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4,
       arraySize = 11
@@ -151,7 +151,7 @@ public final class Trajectory {
   /**
    * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4,
       arraySize = 11
@@ -163,7 +163,7 @@ public final class Trajectory {
   /**
    * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class Trajectory {
   /**
    * States if respective point is valid (boolean) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1,
       arraySize = 5
@@ -206,7 +206,7 @@ public final class Trajectory {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -218,7 +218,7 @@ public final class Trajectory {
     /**
      * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4,
         arraySize = 11
@@ -231,7 +231,7 @@ public final class Trajectory {
     /**
      * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4,
         arraySize = 11
@@ -244,7 +244,7 @@ public final class Trajectory {
     /**
      * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4,
         arraySize = 11
@@ -257,7 +257,7 @@ public final class Trajectory {
     /**
      * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4,
         arraySize = 11
@@ -270,7 +270,7 @@ public final class Trajectory {
     /**
      * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4,
         arraySize = 11
@@ -283,7 +283,7 @@ public final class Trajectory {
     /**
      * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -295,7 +295,7 @@ public final class Trajectory {
     /**
      * States if respective point is valid (boolean) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1,
         arraySize = 5

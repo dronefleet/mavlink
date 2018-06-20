@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Ack message during waypoint handling. The type field states if this message is a positive ack 
  * (type=0) or if an error happened (type=non-zero). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 47,
     crc = 153
 )
@@ -59,7 +59,7 @@ public final class MissionAck {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -70,7 +70,7 @@ public final class MissionAck {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -81,7 +81,7 @@ public final class MissionAck {
   /**
    * See {@link io.dronefleet.mavlink.common.MavMissionResult MavMissionResult} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -92,7 +92,7 @@ public final class MissionAck {
   /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       extension = true
@@ -116,7 +116,7 @@ public final class MissionAck {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -128,7 +128,7 @@ public final class MissionAck {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -140,7 +140,7 @@ public final class MissionAck {
     /**
      * See {@link io.dronefleet.mavlink.common.MavMissionResult MavMissionResult} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -152,7 +152,7 @@ public final class MissionAck {
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         extension = true

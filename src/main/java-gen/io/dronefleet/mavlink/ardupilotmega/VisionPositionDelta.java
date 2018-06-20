@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * camera vision based attitude and position deltas 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11011,
     crc = 106
 )
@@ -70,7 +70,7 @@ public final class VisionPositionDelta {
   /**
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -81,7 +81,7 @@ public final class VisionPositionDelta {
   /**
    * Time in microseconds since the last reported camera frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 8
   )
@@ -93,7 +93,7 @@ public final class VisionPositionDelta {
    * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
    * current orientation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4,
       arraySize = 3
@@ -106,7 +106,7 @@ public final class VisionPositionDelta {
    * Change in position in meters from previous to current frame rotated into body frame 
    * (0=forward, 1=right, 2=down) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4,
       arraySize = 3
@@ -118,7 +118,7 @@ public final class VisionPositionDelta {
   /**
    * normalised confidence value from 0 to 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -143,7 +143,7 @@ public final class VisionPositionDelta {
     /**
      * Timestamp (microseconds, synced to UNIX time or since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -155,7 +155,7 @@ public final class VisionPositionDelta {
     /**
      * Time in microseconds since the last reported camera frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 8
     )
@@ -168,7 +168,7 @@ public final class VisionPositionDelta {
      * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
      * current orientation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4,
         arraySize = 3
@@ -182,7 +182,7 @@ public final class VisionPositionDelta {
      * Change in position in meters from previous to current frame rotated into body frame 
      * (0=forward, 1=right, 2=down) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4,
         arraySize = 3
@@ -195,7 +195,7 @@ public final class VisionPositionDelta {
     /**
      * normalised confidence value from 0 to 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * GPS sensor input message. This is a raw sensor value sent by the GPS. This is NOT the global 
  * position estimate of the sytem. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 232,
     crc = 151
 )
@@ -162,7 +162,7 @@ public final class GpsInput {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -173,7 +173,7 @@ public final class GpsInput {
   /**
    * GPS time (milliseconds from start of GPS week) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -184,7 +184,7 @@ public final class GpsInput {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -195,7 +195,7 @@ public final class GpsInput {
   /**
    * Longitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -206,7 +206,7 @@ public final class GpsInput {
   /**
    * Altitude (AMSL, not WGS84), in m (positive for up) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -217,7 +217,7 @@ public final class GpsInput {
   /**
    * GPS HDOP horizontal dilution of position in m 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -228,7 +228,7 @@ public final class GpsInput {
   /**
    * GPS VDOP vertical dilution of position in m 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -239,7 +239,7 @@ public final class GpsInput {
   /**
    * GPS velocity in m/s in NORTH direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -250,7 +250,7 @@ public final class GpsInput {
   /**
    * GPS velocity in m/s in EAST direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -261,7 +261,7 @@ public final class GpsInput {
   /**
    * GPS velocity in m/s in DOWN direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -272,7 +272,7 @@ public final class GpsInput {
   /**
    * GPS speed accuracy in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -283,7 +283,7 @@ public final class GpsInput {
   /**
    * GPS horizontal accuracy in m 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -294,7 +294,7 @@ public final class GpsInput {
   /**
    * GPS vertical accuracy in m 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 4
   )
@@ -306,7 +306,7 @@ public final class GpsInput {
    * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GpsInputIgnoreFlags} enum). All other fields 
    * must be provided. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -317,7 +317,7 @@ public final class GpsInput {
   /**
    * GPS week number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -328,7 +328,7 @@ public final class GpsInput {
   /**
    * ID of the GPS for multiple GPS inputs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -339,7 +339,7 @@ public final class GpsInput {
   /**
    * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -350,7 +350,7 @@ public final class GpsInput {
   /**
    * Number of satellites visible. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 1
   )
@@ -401,7 +401,7 @@ public final class GpsInput {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -413,7 +413,7 @@ public final class GpsInput {
     /**
      * GPS time (milliseconds from start of GPS week) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -425,7 +425,7 @@ public final class GpsInput {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -437,7 +437,7 @@ public final class GpsInput {
     /**
      * Longitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -449,7 +449,7 @@ public final class GpsInput {
     /**
      * Altitude (AMSL, not WGS84), in m (positive for up) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -461,7 +461,7 @@ public final class GpsInput {
     /**
      * GPS HDOP horizontal dilution of position in m 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -473,7 +473,7 @@ public final class GpsInput {
     /**
      * GPS VDOP vertical dilution of position in m 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -485,7 +485,7 @@ public final class GpsInput {
     /**
      * GPS velocity in m/s in NORTH direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -497,7 +497,7 @@ public final class GpsInput {
     /**
      * GPS velocity in m/s in EAST direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -509,7 +509,7 @@ public final class GpsInput {
     /**
      * GPS velocity in m/s in DOWN direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -521,7 +521,7 @@ public final class GpsInput {
     /**
      * GPS speed accuracy in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -533,7 +533,7 @@ public final class GpsInput {
     /**
      * GPS horizontal accuracy in m 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -545,7 +545,7 @@ public final class GpsInput {
     /**
      * GPS vertical accuracy in m 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 4
     )
@@ -558,7 +558,7 @@ public final class GpsInput {
      * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GpsInputIgnoreFlags} enum). All other fields 
      * must be provided. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -570,7 +570,7 @@ public final class GpsInput {
     /**
      * GPS week number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -582,7 +582,7 @@ public final class GpsInput {
     /**
      * ID of the GPS for multiple GPS inputs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -594,7 +594,7 @@ public final class GpsInput {
     /**
      * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -606,7 +606,7 @@ public final class GpsInput {
     /**
      * Number of satellites visible. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 1
     )

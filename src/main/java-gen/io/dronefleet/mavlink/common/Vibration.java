@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Vibration levels and accelerometer clipping 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 241,
     crc = 90
 )
@@ -80,7 +80,7 @@ public final class Vibration {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -91,7 +91,7 @@ public final class Vibration {
   /**
    * Vibration levels on X-axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class Vibration {
   /**
    * Vibration levels on Y-axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class Vibration {
   /**
    * Vibration levels on Z-axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class Vibration {
   /**
    * first accelerometer clipping count 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class Vibration {
   /**
    * second accelerometer clipping count 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -146,7 +146,7 @@ public final class Vibration {
   /**
    * third accelerometer clipping count 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -175,7 +175,7 @@ public final class Vibration {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -187,7 +187,7 @@ public final class Vibration {
     /**
      * Vibration levels on X-axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -199,7 +199,7 @@ public final class Vibration {
     /**
      * Vibration levels on Y-axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -211,7 +211,7 @@ public final class Vibration {
     /**
      * Vibration levels on Z-axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -223,7 +223,7 @@ public final class Vibration {
     /**
      * first accelerometer clipping count 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -235,7 +235,7 @@ public final class Vibration {
     /**
      * second accelerometer clipping count 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class Vibration {
     /**
      * third accelerometer clipping count 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )

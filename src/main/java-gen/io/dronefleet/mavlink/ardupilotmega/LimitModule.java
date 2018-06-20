@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,18 +11,18 @@ public enum LimitModule {
   /**
    * pre-initialization
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   LIMIT_GPSLOCK,
 
   /**
    * disabled
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   LIMIT_GEOFENCE,
 
   /**
    * checking limits
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   LIMIT_ALTITUDE
 }

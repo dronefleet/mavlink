@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F15 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 179,
     crc = 7
 )
@@ -46,7 +46,7 @@ public final class SerialUdbExtraF15 {
   /**
    * Serial UDB Extra Model Name Of Vehicle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1,
       arraySize = 40
@@ -58,7 +58,7 @@ public final class SerialUdbExtraF15 {
   /**
    * Serial UDB Extra Registraton Number of Vehicle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 20
@@ -78,7 +78,7 @@ public final class SerialUdbExtraF15 {
     /**
      * Serial UDB Extra Model Name Of Vehicle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1,
         arraySize = 40
@@ -91,7 +91,7 @@ public final class SerialUdbExtraF15 {
     /**
      * Serial UDB Extra Registraton Number of Vehicle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 20

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * 100 Hz gimbal torque command telemetry 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 214,
     crc = 69
 )
@@ -65,7 +65,7 @@ public final class GimbalTorqueCmdReport {
   /**
    * Roll Torque Command 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -76,7 +76,7 @@ public final class GimbalTorqueCmdReport {
   /**
    * Elevation Torque Command 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -87,7 +87,7 @@ public final class GimbalTorqueCmdReport {
   /**
    * Azimuth Torque Command 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -98,7 +98,7 @@ public final class GimbalTorqueCmdReport {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class GimbalTorqueCmdReport {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class GimbalTorqueCmdReport {
     /**
      * Roll Torque Command 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -146,7 +146,7 @@ public final class GimbalTorqueCmdReport {
     /**
      * Elevation Torque Command 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -158,7 +158,7 @@ public final class GimbalTorqueCmdReport {
     /**
      * Azimuth Torque Command 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -170,7 +170,7 @@ public final class GimbalTorqueCmdReport {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -182,7 +182,7 @@ public final class GimbalTorqueCmdReport {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

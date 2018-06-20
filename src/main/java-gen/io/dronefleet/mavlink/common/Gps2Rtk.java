@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 128,
     crc = 226
 )
@@ -122,7 +122,7 @@ public final class Gps2Rtk {
   /**
    * Time since boot of last baseline message received in ms. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class Gps2Rtk {
   /**
    * GPS Time of Week of last baseline 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class Gps2Rtk {
   /**
    * Current baseline in ECEF x or NED north component in mm. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class Gps2Rtk {
   /**
    * Current baseline in ECEF y or NED east component in mm. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class Gps2Rtk {
   /**
    * Current baseline in ECEF z or NED down component in mm. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class Gps2Rtk {
   /**
    * Current estimate of baseline accuracy. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -188,7 +188,7 @@ public final class Gps2Rtk {
   /**
    * Current number of integer ambiguity hypotheses. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -199,7 +199,7 @@ public final class Gps2Rtk {
   /**
    * GPS Week Number of last baseline 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -210,7 +210,7 @@ public final class Gps2Rtk {
   /**
    * Identification of connected RTK receiver. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -221,7 +221,7 @@ public final class Gps2Rtk {
   /**
    * GPS-specific health report for RTK data. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -232,7 +232,7 @@ public final class Gps2Rtk {
   /**
    * Rate of baseline messages being received by GPS, in HZ 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -243,7 +243,7 @@ public final class Gps2Rtk {
   /**
    * Current number of sats used for RTK calculation. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -254,7 +254,7 @@ public final class Gps2Rtk {
   /**
    * Coordinate system of baseline 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -295,7 +295,7 @@ public final class Gps2Rtk {
     /**
      * Time since boot of last baseline message received in ms. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -307,7 +307,7 @@ public final class Gps2Rtk {
     /**
      * GPS Time of Week of last baseline 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -319,7 +319,7 @@ public final class Gps2Rtk {
     /**
      * Current baseline in ECEF x or NED north component in mm. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -331,7 +331,7 @@ public final class Gps2Rtk {
     /**
      * Current baseline in ECEF y or NED east component in mm. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -343,7 +343,7 @@ public final class Gps2Rtk {
     /**
      * Current baseline in ECEF z or NED down component in mm. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -355,7 +355,7 @@ public final class Gps2Rtk {
     /**
      * Current estimate of baseline accuracy. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -367,7 +367,7 @@ public final class Gps2Rtk {
     /**
      * Current number of integer ambiguity hypotheses. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -379,7 +379,7 @@ public final class Gps2Rtk {
     /**
      * GPS Week Number of last baseline 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -391,7 +391,7 @@ public final class Gps2Rtk {
     /**
      * Identification of connected RTK receiver. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -403,7 +403,7 @@ public final class Gps2Rtk {
     /**
      * GPS-specific health report for RTK data. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -415,7 +415,7 @@ public final class Gps2Rtk {
     /**
      * Rate of baseline messages being received by GPS, in HZ 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -427,7 +427,7 @@ public final class Gps2Rtk {
     /**
      * Current number of sats used for RTK calculation. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -439,7 +439,7 @@ public final class Gps2Rtk {
     /**
      * Coordinate system of baseline 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )

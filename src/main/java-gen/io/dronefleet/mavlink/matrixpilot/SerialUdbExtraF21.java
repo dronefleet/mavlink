@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F21 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 187,
     crc = 134
 )
@@ -72,7 +72,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE X accelerometer offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -83,7 +83,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE Y accelerometer offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -94,7 +94,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE Z accelerometer offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -105,7 +105,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE X gyro offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -116,7 +116,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE Y gyro offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -127,7 +127,7 @@ public final class SerialUdbExtraF21 {
   /**
    * SUE Z gyro offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -154,7 +154,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE X accelerometer offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -166,7 +166,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE Y accelerometer offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -178,7 +178,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE Z accelerometer offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -190,7 +190,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE X gyro offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -202,7 +202,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE Y gyro offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -214,7 +214,7 @@ public final class SerialUdbExtraF21 {
     /**
      * SUE Z gyro offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )

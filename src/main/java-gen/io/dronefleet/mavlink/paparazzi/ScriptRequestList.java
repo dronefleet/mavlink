@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.paparazzi;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Request the overall list of mission items from the system/component. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 182,
     crc = 115
 )
@@ -43,7 +43,7 @@ public final class ScriptRequestList {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -54,7 +54,7 @@ public final class ScriptRequestList {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class ScriptRequestList {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -85,7 +85,7 @@ public final class ScriptRequestList {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

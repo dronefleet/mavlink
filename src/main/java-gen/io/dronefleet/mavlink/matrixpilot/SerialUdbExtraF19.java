@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F19 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 185,
     crc = 87
 )
@@ -87,7 +87,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE aileron output channel 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -98,7 +98,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE aileron reversed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE elevator output channel 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -120,7 +120,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE elevator reversed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -131,7 +131,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE throttle output channel 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -142,7 +142,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE throttle reversed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -153,7 +153,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE rudder output channel 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -164,7 +164,7 @@ public final class SerialUdbExtraF19 {
   /**
    * SUE rudder reversed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -195,7 +195,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE aileron output channel 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -207,7 +207,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE aileron reversed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -219,7 +219,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE elevator output channel 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -231,7 +231,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE elevator reversed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -243,7 +243,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE throttle output channel 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -255,7 +255,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE throttle reversed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -267,7 +267,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE rudder output channel 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -279,7 +279,7 @@ public final class SerialUdbExtraF19 {
     /**
      * SUE rudder reversed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )

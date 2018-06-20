@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * THIS INTERFACE IS DEPRECATED AS OF JANUARY 2018. Please use MAV_CMD_DO_SET_ROI_* messages 
@@ -13,30 +13,30 @@ public enum MavRoi {
   /**
    * No region of interest.
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_ROI_NONE,
 
   /**
    * Point toward next waypoint, with optional pitch/roll/yaw offset.
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_ROI_WPNEXT,
 
   /**
    * Point toward given waypoint.
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_ROI_WPINDEX,
 
   /**
    * Point toward fixed location.
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   MAV_ROI_LOCATION,
 
   /**
    * Point toward of given id.
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_ROI_TARGET
 }

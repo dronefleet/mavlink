@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Gripper actions. 
@@ -11,12 +11,12 @@ public enum GripperActions {
   /**
    * gripper release of cargo
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   GRIPPER_ACTION_RELEASE,
 
   /**
    * gripper grabs onto cargo
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   GRIPPER_ACTION_GRAB
 }

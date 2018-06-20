@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F6: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 174,
     crc = 54
 )
@@ -65,7 +65,7 @@ public final class SerialUdbExtraF6 {
   /**
    * Serial UDB Extra PITCHGAIN Proportional Control 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -76,7 +76,7 @@ public final class SerialUdbExtraF6 {
   /**
    * Serial UDB Extra Pitch Rate Control 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -87,7 +87,7 @@ public final class SerialUdbExtraF6 {
   /**
    * Serial UDB Extra Rudder to Elevator Mix 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -98,7 +98,7 @@ public final class SerialUdbExtraF6 {
   /**
    * Serial UDB Extra Roll to Elevator Mix 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -109,7 +109,7 @@ public final class SerialUdbExtraF6 {
   /**
    * Gain For Boosting Manual Elevator control When Plane Stabilized 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class SerialUdbExtraF6 {
     /**
      * Serial UDB Extra PITCHGAIN Proportional Control 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -146,7 +146,7 @@ public final class SerialUdbExtraF6 {
     /**
      * Serial UDB Extra Pitch Rate Control 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -158,7 +158,7 @@ public final class SerialUdbExtraF6 {
     /**
      * Serial UDB Extra Rudder to Elevator Mix 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -170,7 +170,7 @@ public final class SerialUdbExtraF6 {
     /**
      * Serial UDB Extra Roll to Elevator Mix 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -182,7 +182,7 @@ public final class SerialUdbExtraF6 {
     /**
      * Gain For Boosting Manual Elevator control When Plane Stabilized 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )

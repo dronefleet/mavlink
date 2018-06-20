@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Configure AP SSID and Password. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 299,
     crc = 19
 )
@@ -43,7 +43,7 @@ public final class WifiConfigAp {
   /**
    * Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1,
       arraySize = 32
@@ -55,7 +55,7 @@ public final class WifiConfigAp {
   /**
    * Password. Leave it blank for an open AP. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 64
@@ -75,7 +75,7 @@ public final class WifiConfigAp {
     /**
      * Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1,
         arraySize = 32
@@ -88,7 +88,7 @@ public final class WifiConfigAp {
     /**
      * Password. Leave it blank for an open AP. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 64

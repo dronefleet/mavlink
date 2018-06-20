@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * RTCM message for injecting into the onboard GPS (used for DGPS) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 233,
     crc = 35
 )
@@ -66,7 +66,7 @@ public final class GpsRtcmData {
    * This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to 
    * recover from a unreliable transport delivery order. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -77,7 +77,7 @@ public final class GpsRtcmData {
   /**
    * data length 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -88,7 +88,7 @@ public final class GpsRtcmData {
   /**
    * RTCM message (may be fragmented) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 180
@@ -117,7 +117,7 @@ public final class GpsRtcmData {
      * This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to 
      * recover from a unreliable transport delivery order. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -129,7 +129,7 @@ public final class GpsRtcmData {
     /**
      * data length 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -141,7 +141,7 @@ public final class GpsRtcmData {
     /**
      * RTCM message (may be fragmented) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 180

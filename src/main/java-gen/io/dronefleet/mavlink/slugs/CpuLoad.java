@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Sensor and DSC control loads. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 170,
     crc = 75
 )
@@ -50,7 +50,7 @@ public final class CpuLoad {
   /**
    * Battery Voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -61,7 +61,7 @@ public final class CpuLoad {
   /**
    * Sensor DSC Load 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -72,7 +72,7 @@ public final class CpuLoad {
   /**
    * Control DSC Load 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class CpuLoad {
     /**
      * Battery Voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -105,7 +105,7 @@ public final class CpuLoad {
     /**
      * Sensor DSC Load 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -117,7 +117,7 @@ public final class CpuLoad {
     /**
      * Control DSC Load 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

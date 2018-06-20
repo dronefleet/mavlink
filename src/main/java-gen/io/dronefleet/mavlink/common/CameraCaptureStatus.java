@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Information about the status of a capture 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 262,
     crc = 12
 )
@@ -73,7 +73,7 @@ public final class CameraCaptureStatus {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -84,7 +84,7 @@ public final class CameraCaptureStatus {
   /**
    * Image capture interval in seconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -95,7 +95,7 @@ public final class CameraCaptureStatus {
   /**
    * Time in milliseconds since recording started 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -106,7 +106,7 @@ public final class CameraCaptureStatus {
   /**
    * Available storage capacity in MiB 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -118,7 +118,7 @@ public final class CameraCaptureStatus {
    * Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: 
    * interval set and capture in progress) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -129,7 +129,7 @@ public final class CameraCaptureStatus {
   /**
    * Current status of video capturing (0: idle, 1: capture in progress) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -156,7 +156,7 @@ public final class CameraCaptureStatus {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -168,7 +168,7 @@ public final class CameraCaptureStatus {
     /**
      * Image capture interval in seconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -180,7 +180,7 @@ public final class CameraCaptureStatus {
     /**
      * Time in milliseconds since recording started 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -192,7 +192,7 @@ public final class CameraCaptureStatus {
     /**
      * Available storage capacity in MiB 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -205,7 +205,7 @@ public final class CameraCaptureStatus {
      * Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: 
      * interval set and capture in progress) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -217,7 +217,7 @@ public final class CameraCaptureStatus {
     /**
      * Current status of video capturing (0: idle, 1: capture in progress) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Sent from autopilot to simulation. Hardware in the loop control outputs 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 91,
     crc = 63
 )
@@ -108,7 +108,7 @@ public final class HilControls {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -119,7 +119,7 @@ public final class HilControls {
   /**
    * Control output -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -130,7 +130,7 @@ public final class HilControls {
   /**
    * Control output -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -141,7 +141,7 @@ public final class HilControls {
   /**
    * Control output -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -152,7 +152,7 @@ public final class HilControls {
   /**
    * Throttle 0 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -163,7 +163,7 @@ public final class HilControls {
   /**
    * Aux 1, -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -174,7 +174,7 @@ public final class HilControls {
   /**
    * Aux 2, -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -185,7 +185,7 @@ public final class HilControls {
   /**
    * Aux 3, -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -196,7 +196,7 @@ public final class HilControls {
   /**
    * Aux 4, -1 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -207,7 +207,7 @@ public final class HilControls {
   /**
    * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -218,7 +218,7 @@ public final class HilControls {
   /**
    * Navigation mode (MAV_NAV_MODE) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -255,7 +255,7 @@ public final class HilControls {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -267,7 +267,7 @@ public final class HilControls {
     /**
      * Control output -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -279,7 +279,7 @@ public final class HilControls {
     /**
      * Control output -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -291,7 +291,7 @@ public final class HilControls {
     /**
      * Control output -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -303,7 +303,7 @@ public final class HilControls {
     /**
      * Throttle 0 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -315,7 +315,7 @@ public final class HilControls {
     /**
      * Aux 1, -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -327,7 +327,7 @@ public final class HilControls {
     /**
      * Aux 2, -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -339,7 +339,7 @@ public final class HilControls {
     /**
      * Aux 3, -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -351,7 +351,7 @@ public final class HilControls {
     /**
      * Aux 4, -1 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -363,7 +363,7 @@ public final class HilControls {
     /**
      * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -375,7 +375,7 @@ public final class HilControls {
     /**
      * Navigation mode (MAV_NAV_MODE) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )

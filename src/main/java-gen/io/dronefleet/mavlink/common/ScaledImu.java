@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * The RAW IMU readings for the usual 9DOF sensor setup. This message should contain the scaled 
  * values to the described units 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 26,
     crc = 170
 )
@@ -101,7 +101,7 @@ public final class ScaledImu {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class ScaledImu {
   /**
    * X acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -123,7 +123,7 @@ public final class ScaledImu {
   /**
    * Y acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -134,7 +134,7 @@ public final class ScaledImu {
   /**
    * Z acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -145,7 +145,7 @@ public final class ScaledImu {
   /**
    * Angular speed around X axis (millirad /sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -156,7 +156,7 @@ public final class ScaledImu {
   /**
    * Angular speed around Y axis (millirad /sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -167,7 +167,7 @@ public final class ScaledImu {
   /**
    * Angular speed around Z axis (millirad /sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -178,7 +178,7 @@ public final class ScaledImu {
   /**
    * X Magnetic field (milli tesla) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -189,7 +189,7 @@ public final class ScaledImu {
   /**
    * Y Magnetic field (milli tesla) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -200,7 +200,7 @@ public final class ScaledImu {
   /**
    * Z Magnetic field (milli tesla) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -235,7 +235,7 @@ public final class ScaledImu {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class ScaledImu {
     /**
      * X acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -259,7 +259,7 @@ public final class ScaledImu {
     /**
      * Y acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -271,7 +271,7 @@ public final class ScaledImu {
     /**
      * Z acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -283,7 +283,7 @@ public final class ScaledImu {
     /**
      * Angular speed around X axis (millirad /sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -295,7 +295,7 @@ public final class ScaledImu {
     /**
      * Angular speed around Y axis (millirad /sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -307,7 +307,7 @@ public final class ScaledImu {
     /**
      * Angular speed around Z axis (millirad /sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -319,7 +319,7 @@ public final class ScaledImu {
     /**
      * X Magnetic field (milli tesla) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -331,7 +331,7 @@ public final class ScaledImu {
     /**
      * Y Magnetic field (milli tesla) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -343,7 +343,7 @@ public final class ScaledImu {
     /**
      * Z Magnetic field (milli tesla) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )

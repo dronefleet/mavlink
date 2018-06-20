@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Message with some status from APM to GCS about camera or antenna mount 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 158,
     crc = 134
 )
@@ -65,7 +65,7 @@ public final class MountStatus {
   /**
    * pitch(deg*100) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -76,7 +76,7 @@ public final class MountStatus {
   /**
    * roll(deg*100) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -87,7 +87,7 @@ public final class MountStatus {
   /**
    * yaw(deg*100) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -98,7 +98,7 @@ public final class MountStatus {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class MountStatus {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class MountStatus {
     /**
      * pitch(deg*100) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -146,7 +146,7 @@ public final class MountStatus {
     /**
      * roll(deg*100) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -158,7 +158,7 @@ public final class MountStatus {
     /**
      * yaw(deg*100) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -170,7 +170,7 @@ public final class MountStatus {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -182,7 +182,7 @@ public final class MountStatus {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * A mapping of sub flight modes for custom_mode field of heartbeat 
@@ -11,54 +11,54 @@ public enum SubMode {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   SUB_MODE_STABILIZE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   SUB_MODE_ACRO,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   SUB_MODE_ALT_HOLD,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   SUB_MODE_AUTO,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   SUB_MODE_GUIDED,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(7)
+  @MavlinkEntryInfo(7)
   SUB_MODE_CIRCLE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(9)
+  @MavlinkEntryInfo(9)
   SUB_MODE_SURFACE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   SUB_MODE_POSHOLD,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(19)
+  @MavlinkEntryInfo(19)
   SUB_MODE_MANUAL
 }

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs Ahrs} filter if available 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 178,
     crc = 47
 )
@@ -71,7 +71,7 @@ public final class Ahrs2 {
   /**
    * Roll angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -82,7 +82,7 @@ public final class Ahrs2 {
   /**
    * Pitch angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -93,7 +93,7 @@ public final class Ahrs2 {
   /**
    * Yaw angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -104,7 +104,7 @@ public final class Ahrs2 {
   /**
    * Altitude (MSL) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -115,7 +115,7 @@ public final class Ahrs2 {
   /**
    * Latitude in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -126,7 +126,7 @@ public final class Ahrs2 {
   /**
    * Longitude in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class Ahrs2 {
     /**
      * Roll angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -165,7 +165,7 @@ public final class Ahrs2 {
     /**
      * Pitch angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -177,7 +177,7 @@ public final class Ahrs2 {
     /**
      * Yaw angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -189,7 +189,7 @@ public final class Ahrs2 {
     /**
      * Altitude (MSL) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -201,7 +201,7 @@ public final class Ahrs2 {
     /**
      * Latitude in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -213,7 +213,7 @@ public final class Ahrs2 {
     /**
      * Longitude in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )

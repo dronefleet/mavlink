@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 160,
     crc = 78
 )
@@ -72,7 +72,7 @@ public final class FencePoint {
   /**
    * Latitude of point 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -83,7 +83,7 @@ public final class FencePoint {
   /**
    * Longitude of point 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -94,7 +94,7 @@ public final class FencePoint {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -105,7 +105,7 @@ public final class FencePoint {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -116,7 +116,7 @@ public final class FencePoint {
   /**
    * point index (first point is 1, 0 is for return point) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -127,7 +127,7 @@ public final class FencePoint {
   /**
    * total number of points (for sanity checking) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -154,7 +154,7 @@ public final class FencePoint {
     /**
      * Latitude of point 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -166,7 +166,7 @@ public final class FencePoint {
     /**
      * Longitude of point 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -178,7 +178,7 @@ public final class FencePoint {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -190,7 +190,7 @@ public final class FencePoint {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -202,7 +202,7 @@ public final class FencePoint {
     /**
      * point index (first point is 1, 0 is for return point) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -214,7 +214,7 @@ public final class FencePoint {
     /**
      * total number of points (for sanity checking) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

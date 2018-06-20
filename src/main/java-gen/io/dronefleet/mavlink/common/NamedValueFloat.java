@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Send a key-value pair as float. The use of this message is discouraged for normal packets, but a 
  * quite efficient way for testing new messages and getting experimental debug output. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 251,
     crc = 170
 )
@@ -51,7 +51,7 @@ public final class NamedValueFloat {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -62,7 +62,7 @@ public final class NamedValueFloat {
   /**
    * Floating point value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -73,7 +73,7 @@ public final class NamedValueFloat {
   /**
    * Name of the debug variable 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 10
@@ -95,7 +95,7 @@ public final class NamedValueFloat {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -107,7 +107,7 @@ public final class NamedValueFloat {
     /**
      * Floating point value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -119,7 +119,7 @@ public final class NamedValueFloat {
     /**
      * Name of the debug variable 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 10

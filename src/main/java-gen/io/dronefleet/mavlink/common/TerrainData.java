@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
  * Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a 
  * {@link io.dronefleet.mavlink.common.TerrainRequest TerrainRequest} 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 134,
     crc = 229
 )
@@ -67,7 +67,7 @@ public final class TerrainData {
   /**
    * Latitude of SW corner of first grid (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -78,7 +78,7 @@ public final class TerrainData {
   /**
    * Longitude of SW corner of first grid (in degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -89,7 +89,7 @@ public final class TerrainData {
   /**
    * Grid spacing in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -100,7 +100,7 @@ public final class TerrainData {
   /**
    * Terrain data in meters AMSL 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2,
       arraySize = 16
@@ -112,7 +112,7 @@ public final class TerrainData {
   /**
    * bit within the terrain request mask 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -137,7 +137,7 @@ public final class TerrainData {
     /**
      * Latitude of SW corner of first grid (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -149,7 +149,7 @@ public final class TerrainData {
     /**
      * Longitude of SW corner of first grid (in degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -161,7 +161,7 @@ public final class TerrainData {
     /**
      * Grid spacing in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -173,7 +173,7 @@ public final class TerrainData {
     /**
      * Terrain data in meters AMSL 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2,
         arraySize = 16
@@ -186,7 +186,7 @@ public final class TerrainData {
     /**
      * bit within the terrain request mask 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

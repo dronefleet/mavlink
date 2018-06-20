@@ -1,13 +1,13 @@
 package io.dronefleet.mavlink;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.*;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
 import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
 import io.dronefleet.mavlink.serialization.MavlinkPacketDeserializer;
 import io.dronefleet.mavlink.serialization.MavlinkPacketSerializer;
-import io.dronefleet.mavlink.serialization.ReflectionPacketDeserializer;
-import io.dronefleet.mavlink.serialization.ReflectionPacketSerializer;
+import io.dronefleet.mavlink.serialization.reflection.ReflectionPacketDeserializer;
+import io.dronefleet.mavlink.serialization.reflection.ReflectionPacketSerializer;
 import io.dronefleet.mavlink.validation.Mavlink1PacketValidator;
 import io.dronefleet.mavlink.validation.Mavlink2PacketValidator;
 import io.dronefleet.mavlink.validation.MavlinkPacketValidator;
@@ -47,12 +47,14 @@ public class Mavlink implements Runnable {
                 new ReflectionPacketDeserializer(),
                 new ReflectionPacketSerializer());
 
-        mavlink.send(CommandLong.builder()
-                .command(MavCmd.MAV_CMD_NAV_TAKEOFF)
-                .targetComponent(1)
-                .targetSystem(1)
-                .confirmation(0)
-                .build());
+        mavlink.send(new MavlinkMessage<>(
+                255, 1,
+                CommandLong.builder()
+                        .command(MavCmd.MAV_CMD_NAV_TAKEOFF)
+                        .targetComponent(1)
+                        .targetSystem(1)
+                        .confirmation(0)
+                        .build()));
 
         mavlink.run();
     }
@@ -97,7 +99,7 @@ public class Mavlink implements Runnable {
                 }
 
                 Class<?> messageType = messageTypes.get(packet.getMessageId());
-                int crc = messageType.getAnnotation(MavlinkMessage.class).crc();
+                int crc = messageType.getAnnotation(MavlinkMessageInfo.class).crc();
 
                 if (!validator.validate(packet, crc)) {
                     reader.drop();
@@ -112,10 +114,11 @@ public class Mavlink implements Runnable {
         }
     }
 
-    public synchronized void send(Object o) throws IOException {
-        out.write(serializer.serialize(o,
+    public synchronized void send(MavlinkMessage message) throws IOException {
+        out.write(serializer.serialize(
+                message,
                 sequence++,
                 1,
-                1));
+                0));
     }
 }

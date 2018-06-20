@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.icarous;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,36 +11,36 @@ public enum IcarousFmsState {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   ICAROUS_FMS_STATE_IDLE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   ICAROUS_FMS_STATE_TAKEOFF,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   ICAROUS_FMS_STATE_CLIMB,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   ICAROUS_FMS_STATE_CRUISE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   ICAROUS_FMS_STATE_APPROACH,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   ICAROUS_FMS_STATE_LAND
 }

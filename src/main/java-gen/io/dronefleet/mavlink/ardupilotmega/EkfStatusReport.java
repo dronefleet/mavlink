@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * EKF Status message including flags and variances 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 193,
     crc = 71
 )
@@ -80,7 +80,7 @@ public final class EkfStatusReport {
   /**
    * Velocity variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class EkfStatusReport {
   /**
    * Horizontal Position variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class EkfStatusReport {
   /**
    * Vertical Position variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class EkfStatusReport {
   /**
    * Compass variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class EkfStatusReport {
   /**
    * Terrain Altitude variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class EkfStatusReport {
   /**
    * Flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -146,7 +146,7 @@ public final class EkfStatusReport {
   /**
    * Airspeed variance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       extension = true
@@ -176,7 +176,7 @@ public final class EkfStatusReport {
     /**
      * Velocity variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -188,7 +188,7 @@ public final class EkfStatusReport {
     /**
      * Horizontal Position variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -200,7 +200,7 @@ public final class EkfStatusReport {
     /**
      * Vertical Position variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -212,7 +212,7 @@ public final class EkfStatusReport {
     /**
      * Compass variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -224,7 +224,7 @@ public final class EkfStatusReport {
     /**
      * Terrain Altitude variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -236,7 +236,7 @@ public final class EkfStatusReport {
     /**
      * Flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -248,7 +248,7 @@ public final class EkfStatusReport {
     /**
      * Airspeed variance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         extension = true

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 132,
     crc = 85
 )
@@ -89,7 +89,7 @@ public final class DistanceSensor {
   /**
    * Time since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 4
   )
@@ -100,7 +100,7 @@ public final class DistanceSensor {
   /**
    * Minimum distance the sensor can measure in centimeters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -111,7 +111,7 @@ public final class DistanceSensor {
   /**
    * Maximum distance the sensor can measure in centimeters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -122,7 +122,7 @@ public final class DistanceSensor {
   /**
    * Current distance reading 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -133,7 +133,7 @@ public final class DistanceSensor {
   /**
    * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MavDistanceSensor} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -144,7 +144,7 @@ public final class DistanceSensor {
   /**
    * Onboard ID of the sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -158,7 +158,7 @@ public final class DistanceSensor {
    * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
    * right-facing: ROTATION_YAW_270 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -169,7 +169,7 @@ public final class DistanceSensor {
   /**
    * Measurement covariance in centimeters, 0 for unknown / invalid readings 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -200,7 +200,7 @@ public final class DistanceSensor {
     /**
      * Time since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 4
     )
@@ -212,7 +212,7 @@ public final class DistanceSensor {
     /**
      * Minimum distance the sensor can measure in centimeters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -224,7 +224,7 @@ public final class DistanceSensor {
     /**
      * Maximum distance the sensor can measure in centimeters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -236,7 +236,7 @@ public final class DistanceSensor {
     /**
      * Current distance reading 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -248,7 +248,7 @@ public final class DistanceSensor {
     /**
      * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MavDistanceSensor} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -260,7 +260,7 @@ public final class DistanceSensor {
     /**
      * Onboard ID of the sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -275,7 +275,7 @@ public final class DistanceSensor {
      * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
      * right-facing: ROTATION_YAW_270 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -287,7 +287,7 @@ public final class DistanceSensor {
     /**
      * Measurement covariance in centimeters, 0 for unknown / invalid readings 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

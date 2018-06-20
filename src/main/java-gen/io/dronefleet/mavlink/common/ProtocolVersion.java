@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -15,7 +15,7 @@ import java.util.List;
  * to enable the handshaking. Library implementers should consider adding this into the default 
  * decoding state machine to allow the protocol core to respond directly. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 300,
     crc = 217
 )
@@ -71,7 +71,7 @@ public final class ProtocolVersion {
   /**
    * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -82,7 +82,7 @@ public final class ProtocolVersion {
   /**
    * Minimum MAVLink version supported 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -93,7 +93,7 @@ public final class ProtocolVersion {
   /**
    * Maximum MAVLink version supported (set to the same value as version by default) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -104,7 +104,7 @@ public final class ProtocolVersion {
   /**
    * The first 8 bytes (not characters printed in hex!) of the git hash. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 8
@@ -116,7 +116,7 @@ public final class ProtocolVersion {
   /**
    * The first 8 bytes (not characters printed in hex!) of the git hash. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 8
@@ -142,7 +142,7 @@ public final class ProtocolVersion {
     /**
      * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -154,7 +154,7 @@ public final class ProtocolVersion {
     /**
      * Minimum MAVLink version supported 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -166,7 +166,7 @@ public final class ProtocolVersion {
     /**
      * Maximum MAVLink version supported (set to the same value as version by default) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -178,7 +178,7 @@ public final class ProtocolVersion {
     /**
      * The first 8 bytes (not characters printed in hex!) of the git hash. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 8
@@ -191,7 +191,7 @@ public final class ProtocolVersion {
     /**
      * The first 8 bytes (not characters printed in hex!) of the git hash. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 8

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * A message containing logged data which requires a LOGGING_ACK to be sent back 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 267,
     crc = 35
 )
@@ -75,7 +75,7 @@ public final class LoggingDataAcked {
   /**
    * sequence number (can wrap) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -86,7 +86,7 @@ public final class LoggingDataAcked {
   /**
    * system ID of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -97,7 +97,7 @@ public final class LoggingDataAcked {
   /**
    * component ID of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -108,7 +108,7 @@ public final class LoggingDataAcked {
   /**
    * data length 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -120,7 +120,7 @@ public final class LoggingDataAcked {
    * offset into data where first message starts. This can be used for recovery, when a previous 
    * message got lost (set to 255 if no start exists). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -131,7 +131,7 @@ public final class LoggingDataAcked {
   /**
    * logged data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 249
@@ -159,7 +159,7 @@ public final class LoggingDataAcked {
     /**
      * sequence number (can wrap) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -171,7 +171,7 @@ public final class LoggingDataAcked {
     /**
      * system ID of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -183,7 +183,7 @@ public final class LoggingDataAcked {
     /**
      * component ID of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -195,7 +195,7 @@ public final class LoggingDataAcked {
     /**
      * data length 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -208,7 +208,7 @@ public final class LoggingDataAcked {
      * offset into data where first message starts. This can be used for recovery, when a previous 
      * message got lost (set to 255 if no start exists). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -220,7 +220,7 @@ public final class LoggingDataAcked {
     /**
      * logged data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 249

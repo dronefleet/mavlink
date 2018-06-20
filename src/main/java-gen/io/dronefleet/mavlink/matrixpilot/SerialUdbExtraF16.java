@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F16 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 180,
     crc = 222
 )
@@ -45,7 +45,7 @@ public final class SerialUdbExtraF16 {
   /**
    * Serial UDB Extra Name of Expected Lead Pilot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1,
       arraySize = 40
@@ -57,7 +57,7 @@ public final class SerialUdbExtraF16 {
   /**
    * Serial UDB Extra URL of Lead Pilot or Team 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 70
@@ -77,7 +77,7 @@ public final class SerialUdbExtraF16 {
     /**
      * Serial UDB Extra Name of Expected Lead Pilot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1,
         arraySize = 40
@@ -90,7 +90,7 @@ public final class SerialUdbExtraF16 {
     /**
      * Serial UDB Extra URL of Lead Pilot or Team 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 70

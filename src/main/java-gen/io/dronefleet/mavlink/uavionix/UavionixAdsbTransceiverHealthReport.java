@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.uavionix;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Transceiver heartbeat with health report (updated every 10s) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 10003,
     crc = 4
 )
@@ -37,7 +37,7 @@ public final class UavionixAdsbTransceiverHealthReport {
   /**
    * ADS-B transponder messages 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -54,7 +54,7 @@ public final class UavionixAdsbTransceiverHealthReport {
     /**
      * ADS-B transponder messages 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

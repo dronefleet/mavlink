@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Control for surface; pending and order to origin. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 185,
     crc = 113
 )
@@ -57,7 +57,7 @@ public final class ControlSurface {
   /**
    * Pending 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -68,7 +68,7 @@ public final class ControlSurface {
   /**
    * Order to origin 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -79,7 +79,7 @@ public final class ControlSurface {
   /**
    * The system setting the commands 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -90,7 +90,7 @@ public final class ControlSurface {
   /**
    * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -113,7 +113,7 @@ public final class ControlSurface {
     /**
      * Pending 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -125,7 +125,7 @@ public final class ControlSurface {
     /**
      * Order to origin 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -137,7 +137,7 @@ public final class ControlSurface {
     /**
      * The system setting the commands 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -149,7 +149,7 @@ public final class ControlSurface {
     /**
      * ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

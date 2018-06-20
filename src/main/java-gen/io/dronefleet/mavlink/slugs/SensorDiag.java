@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Diagnostic data Sensor MCU 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 196,
     crc = 129
 )
@@ -57,7 +57,7 @@ public final class SensorDiag {
   /**
    * Float field 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -68,7 +68,7 @@ public final class SensorDiag {
   /**
    * Float field 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -79,7 +79,7 @@ public final class SensorDiag {
   /**
    * Int 16 field 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -90,7 +90,7 @@ public final class SensorDiag {
   /**
    * Int 8 field 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -113,7 +113,7 @@ public final class SensorDiag {
     /**
      * Float field 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -125,7 +125,7 @@ public final class SensorDiag {
     /**
      * Float field 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -137,7 +137,7 @@ public final class SensorDiag {
     /**
      * Int 16 field 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -149,7 +149,7 @@ public final class SensorDiag {
     /**
      * Int 8 field 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

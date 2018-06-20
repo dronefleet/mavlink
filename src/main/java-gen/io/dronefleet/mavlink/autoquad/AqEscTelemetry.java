@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.autoquad;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Override;
@@ -16,7 +16,7 @@ import java.util.List;
  * (255/100) // - Data Version 2 - // unsigned int errors : 9; // Bad detects error count // - Data 
  * Version 3 - // unsigned int temp : 9; // (Deg C + 32) * 4 // unsigned int errCode : 3; 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 152,
     crc = 115
 )
@@ -103,7 +103,7 @@ public final class AqEscTelemetry {
   /**
    * Timestamp of the component clock since boot time in ms. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -114,7 +114,7 @@ public final class AqEscTelemetry {
   /**
    * Data bits 1-32 for each ESC. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       arraySize = 4
@@ -126,7 +126,7 @@ public final class AqEscTelemetry {
   /**
    * Data bits 33-64 for each ESC. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4,
       arraySize = 4
@@ -139,7 +139,7 @@ public final class AqEscTelemetry {
    * Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no 
    * data. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2,
       arraySize = 4
@@ -151,7 +151,7 @@ public final class AqEscTelemetry {
   /**
    * Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -162,7 +162,7 @@ public final class AqEscTelemetry {
   /**
    * Total number of active ESCs/motors on the system. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class AqEscTelemetry {
    * Number of active ESCs in this sequence (1 through this many array members will be populated with 
    * data) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -185,7 +185,7 @@ public final class AqEscTelemetry {
   /**
    * ESC/Motor ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 4
@@ -197,7 +197,7 @@ public final class AqEscTelemetry {
   /**
    * Version of data structure (determines contents). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1,
       arraySize = 4
@@ -231,7 +231,7 @@ public final class AqEscTelemetry {
     /**
      * Timestamp of the component clock since boot time in ms. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -243,7 +243,7 @@ public final class AqEscTelemetry {
     /**
      * Data bits 1-32 for each ESC. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         arraySize = 4
@@ -256,7 +256,7 @@ public final class AqEscTelemetry {
     /**
      * Data bits 33-64 for each ESC. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4,
         arraySize = 4
@@ -270,7 +270,7 @@ public final class AqEscTelemetry {
      * Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no 
      * data. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2,
         arraySize = 4
@@ -283,7 +283,7 @@ public final class AqEscTelemetry {
     /**
      * Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -295,7 +295,7 @@ public final class AqEscTelemetry {
     /**
      * Total number of active ESCs/motors on the system. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -308,7 +308,7 @@ public final class AqEscTelemetry {
      * Number of active ESCs in this sequence (1 through this many array members will be populated with 
      * data) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -320,7 +320,7 @@ public final class AqEscTelemetry {
     /**
      * ESC/Motor ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 4
@@ -333,7 +333,7 @@ public final class AqEscTelemetry {
     /**
      * Version of data structure (determines contents). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1,
         arraySize = 4

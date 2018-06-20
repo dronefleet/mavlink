@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 175,
     crc = 138
 )
@@ -101,7 +101,7 @@ public final class RallyPoint {
   /**
    * Latitude of point in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class RallyPoint {
   /**
    * Longitude of point in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class RallyPoint {
   /**
    * Transit / loiter altitude in meters relative to home 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -134,7 +134,7 @@ public final class RallyPoint {
   /**
    * Break altitude in meters relative to home 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -145,7 +145,7 @@ public final class RallyPoint {
   /**
    * Heading to aim for when landing. In centi-degrees. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -156,7 +156,7 @@ public final class RallyPoint {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -167,7 +167,7 @@ public final class RallyPoint {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -178,7 +178,7 @@ public final class RallyPoint {
   /**
    * point index (first point is 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -189,7 +189,7 @@ public final class RallyPoint {
   /**
    * total number of points (for sanity checking) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -200,7 +200,7 @@ public final class RallyPoint {
   /**
    * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RallyFlags} enum for definition of the bitmask. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -235,7 +235,7 @@ public final class RallyPoint {
     /**
      * Latitude of point in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class RallyPoint {
     /**
      * Longitude of point in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -259,7 +259,7 @@ public final class RallyPoint {
     /**
      * Transit / loiter altitude in meters relative to home 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -271,7 +271,7 @@ public final class RallyPoint {
     /**
      * Break altitude in meters relative to home 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -283,7 +283,7 @@ public final class RallyPoint {
     /**
      * Heading to aim for when landing. In centi-degrees. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -295,7 +295,7 @@ public final class RallyPoint {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -307,7 +307,7 @@ public final class RallyPoint {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -319,7 +319,7 @@ public final class RallyPoint {
     /**
      * point index (first point is 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -331,7 +331,7 @@ public final class RallyPoint {
     /**
      * total number of points (for sanity checking) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -343,7 +343,7 @@ public final class RallyPoint {
     /**
      * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RallyFlags} enum for definition of the bitmask. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.uavionix;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Dynamic data used to generate ADS-B out transponder data (send at 5Hz) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 10002,
     crc = 186
 )
@@ -147,7 +147,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -158,7 +158,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -169,7 +169,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -180,7 +180,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -192,7 +192,7 @@ public final class UavionixAdsbOutDynamic {
    * Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar 
    * corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -203,7 +203,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -214,7 +214,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Vertical accuracy in cm. If unknown set to UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -225,7 +225,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -236,7 +236,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * GPS vertical speed in cm/s. If unknown set to INT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -247,7 +247,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * North-South velocity over ground in cm/s North +ve. If unknown set to INT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -258,7 +258,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * East-West velocity over ground in cm/s East +ve. If unknown set to INT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -269,7 +269,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * ADS-B transponder dynamic input state flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2
   )
@@ -280,7 +280,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Mode A code (typically 1200 [0x04B0] for VFR) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2
   )
@@ -291,7 +291,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -302,7 +302,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Number of satellites visible. If unknown set to UINT8_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -313,7 +313,7 @@ public final class UavionixAdsbOutDynamic {
   /**
    * Emergency status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1
   )
@@ -360,7 +360,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -372,7 +372,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -384,7 +384,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -396,7 +396,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -409,7 +409,7 @@ public final class UavionixAdsbOutDynamic {
      * Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar 
      * corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -421,7 +421,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -433,7 +433,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Vertical accuracy in cm. If unknown set to UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -445,7 +445,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -457,7 +457,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * GPS vertical speed in cm/s. If unknown set to INT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -469,7 +469,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * North-South velocity over ground in cm/s North +ve. If unknown set to INT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -481,7 +481,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * East-West velocity over ground in cm/s East +ve. If unknown set to INT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -493,7 +493,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * ADS-B transponder dynamic input state flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2
     )
@@ -505,7 +505,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Mode A code (typically 1200 [0x04B0] for VFR) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2
     )
@@ -517,7 +517,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -529,7 +529,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Number of satellites visible. If unknown set to UINT8_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -541,7 +541,7 @@ public final class UavionixAdsbOutDynamic {
     /**
      * Emergency status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1
     )

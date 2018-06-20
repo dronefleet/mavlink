@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Request a chunk of a log 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 119,
     crc = 116
 )
@@ -64,7 +64,7 @@ public final class LogRequestData {
   /**
    * Offset into the log 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -75,7 +75,7 @@ public final class LogRequestData {
   /**
    * Number of bytes 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -86,7 +86,7 @@ public final class LogRequestData {
   /**
    * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -97,7 +97,7 @@ public final class LogRequestData {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -108,7 +108,7 @@ public final class LogRequestData {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -133,7 +133,7 @@ public final class LogRequestData {
     /**
      * Offset into the log 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -145,7 +145,7 @@ public final class LogRequestData {
     /**
      * Number of bytes 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -157,7 +157,7 @@ public final class LogRequestData {
     /**
      * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -169,7 +169,7 @@ public final class LogRequestData {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -181,7 +181,7 @@ public final class LogRequestData {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

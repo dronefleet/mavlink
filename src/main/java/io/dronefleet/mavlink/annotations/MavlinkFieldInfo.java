@@ -8,8 +8,8 @@ import java.util.Comparator;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-public @interface MavlinkMessageField {
-    Comparator<MavlinkMessageField> WIRE_COMPARATOR = (a,b) -> {
+public @interface MavlinkFieldInfo {
+    Comparator<MavlinkFieldInfo> WIRE_COMPARATOR = (a, b) -> {
         if (a.extension() && !b.extension()) {
             return 1;
         }

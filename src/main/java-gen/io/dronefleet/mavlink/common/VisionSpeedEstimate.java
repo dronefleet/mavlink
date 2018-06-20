@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 103,
     crc = 208
 )
@@ -67,7 +67,7 @@ public final class VisionSpeedEstimate {
   /**
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 8
   )
@@ -78,7 +78,7 @@ public final class VisionSpeedEstimate {
   /**
    * Global X speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -89,7 +89,7 @@ public final class VisionSpeedEstimate {
   /**
    * Global Y speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -100,7 +100,7 @@ public final class VisionSpeedEstimate {
   /**
    * Global Z speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -111,7 +111,7 @@ public final class VisionSpeedEstimate {
   /**
    * Linear velocity covariance matrix (1st three entries - 1st row, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4,
       arraySize = 9,
@@ -138,7 +138,7 @@ public final class VisionSpeedEstimate {
     /**
      * Timestamp (microseconds, synced to UNIX time or since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 8
     )
@@ -150,7 +150,7 @@ public final class VisionSpeedEstimate {
     /**
      * Global X speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -162,7 +162,7 @@ public final class VisionSpeedEstimate {
     /**
      * Global Y speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -174,7 +174,7 @@ public final class VisionSpeedEstimate {
     /**
      * Global Z speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class VisionSpeedEstimate {
     /**
      * Linear velocity covariance matrix (1st three entries - 1st row, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4,
         arraySize = 9,

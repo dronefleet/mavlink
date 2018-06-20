@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.lang.String;
  * Autopilot hardware allow the receiving system to treat further messages from this system 
  * appropriate (e.g. by laying out the user interface based on the autopilot). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 0,
     crc = 50
 )
@@ -76,7 +76,7 @@ public final class Heartbeat {
   /**
    * A bitfield for use for autopilot-specific flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -87,7 +87,7 @@ public final class Heartbeat {
   /**
    * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -98,7 +98,7 @@ public final class Heartbeat {
   /**
    * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class Heartbeat {
   /**
    * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -120,7 +120,7 @@ public final class Heartbeat {
   /**
    * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -132,7 +132,7 @@ public final class Heartbeat {
    * MAVLink version, not writable by user, gets added by protocol because of magic data type: 
    * uint8_t_mavlink_version 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -159,7 +159,7 @@ public final class Heartbeat {
     /**
      * A bitfield for use for autopilot-specific flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -171,7 +171,7 @@ public final class Heartbeat {
     /**
      * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -183,7 +183,7 @@ public final class Heartbeat {
     /**
      * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -195,7 +195,7 @@ public final class Heartbeat {
     /**
      * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -207,7 +207,7 @@ public final class Heartbeat {
     /**
      * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -220,7 +220,7 @@ public final class Heartbeat {
      * MAVLink version, not writable by user, gets added by protocol because of magic data type: 
      * uint8_t_mavlink_version 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )

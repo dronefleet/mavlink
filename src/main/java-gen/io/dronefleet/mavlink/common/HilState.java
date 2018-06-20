@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * angles. Please use HIL_STATE_QUATERNION instead. Sent from simulation to autopilot. This 
  * packet is useful for high throughput applications such as hardware in the loop simulations. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 90,
     crc = 183
 )
@@ -146,7 +146,7 @@ public final class HilState {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -157,7 +157,7 @@ public final class HilState {
   /**
    * Roll angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -168,7 +168,7 @@ public final class HilState {
   /**
    * Pitch angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -179,7 +179,7 @@ public final class HilState {
   /**
    * Yaw angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -190,7 +190,7 @@ public final class HilState {
   /**
    * Body frame roll / phi angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -201,7 +201,7 @@ public final class HilState {
   /**
    * Body frame pitch / theta angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -212,7 +212,7 @@ public final class HilState {
   /**
    * Body frame yaw / psi angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -223,7 +223,7 @@ public final class HilState {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -234,7 +234,7 @@ public final class HilState {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -245,7 +245,7 @@ public final class HilState {
   /**
    * Altitude in meters, expressed as * 1000 (millimeters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -256,7 +256,7 @@ public final class HilState {
   /**
    * Ground X Speed (Latitude), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -267,7 +267,7 @@ public final class HilState {
   /**
    * Ground Y Speed (Longitude), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -278,7 +278,7 @@ public final class HilState {
   /**
    * Ground Z Speed (Altitude), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -289,7 +289,7 @@ public final class HilState {
   /**
    * X acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2
   )
@@ -300,7 +300,7 @@ public final class HilState {
   /**
    * Y acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2
   )
@@ -311,7 +311,7 @@ public final class HilState {
   /**
    * Z acceleration (mg) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2
   )
@@ -358,7 +358,7 @@ public final class HilState {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -370,7 +370,7 @@ public final class HilState {
     /**
      * Roll angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -382,7 +382,7 @@ public final class HilState {
     /**
      * Pitch angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -394,7 +394,7 @@ public final class HilState {
     /**
      * Yaw angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -406,7 +406,7 @@ public final class HilState {
     /**
      * Body frame roll / phi angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -418,7 +418,7 @@ public final class HilState {
     /**
      * Body frame pitch / theta angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -430,7 +430,7 @@ public final class HilState {
     /**
      * Body frame yaw / psi angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -442,7 +442,7 @@ public final class HilState {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -454,7 +454,7 @@ public final class HilState {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -466,7 +466,7 @@ public final class HilState {
     /**
      * Altitude in meters, expressed as * 1000 (millimeters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -478,7 +478,7 @@ public final class HilState {
     /**
      * Ground X Speed (Latitude), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -490,7 +490,7 @@ public final class HilState {
     /**
      * Ground Y Speed (Longitude), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -502,7 +502,7 @@ public final class HilState {
     /**
      * Ground Z Speed (Altitude), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -514,7 +514,7 @@ public final class HilState {
     /**
      * X acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2
     )
@@ -526,7 +526,7 @@ public final class HilState {
     /**
      * Y acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2
     )
@@ -538,7 +538,7 @@ public final class HilState {
     /**
      * Z acceleration (mg) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2
     )

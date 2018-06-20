@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * data for injecting into the onboard GPS (used for DGPS) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 123,
     crc = 250
 )
@@ -59,7 +59,7 @@ public final class GpsInjectData {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -70,7 +70,7 @@ public final class GpsInjectData {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -81,7 +81,7 @@ public final class GpsInjectData {
   /**
    * data length 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -92,7 +92,7 @@ public final class GpsInjectData {
   /**
    * raw data (110 is enough for 12 satellites of RTCMv2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 110
@@ -116,7 +116,7 @@ public final class GpsInjectData {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -128,7 +128,7 @@ public final class GpsInjectData {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -140,7 +140,7 @@ public final class GpsInjectData {
     /**
      * data length 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -152,7 +152,7 @@ public final class GpsInjectData {
     /**
      * raw data (110 is enough for 12 satellites of RTCMv2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 110

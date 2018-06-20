@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Motion capture attitude and position 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 138,
     crc = 109
 )
@@ -76,7 +76,7 @@ public final class AttPosMocap {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -87,7 +87,7 @@ public final class AttPosMocap {
   /**
    * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4,
       arraySize = 4
@@ -99,7 +99,7 @@ public final class AttPosMocap {
   /**
    * X position in meters (NED) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -110,7 +110,7 @@ public final class AttPosMocap {
   /**
    * Y position in meters (NED) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -121,7 +121,7 @@ public final class AttPosMocap {
   /**
    * Z position in meters (NED) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class AttPosMocap {
    * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
    * entries are the second ROW, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4,
       arraySize = 21,
@@ -162,7 +162,7 @@ public final class AttPosMocap {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -174,7 +174,7 @@ public final class AttPosMocap {
     /**
      * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4,
         arraySize = 4
@@ -187,7 +187,7 @@ public final class AttPosMocap {
     /**
      * X position in meters (NED) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -199,7 +199,7 @@ public final class AttPosMocap {
     /**
      * Y position in meters (NED) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -211,7 +211,7 @@ public final class AttPosMocap {
     /**
      * Z position in meters (NED) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -224,7 +224,7 @@ public final class AttPosMocap {
      * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
      * entries are the second ROW, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4,
         arraySize = 21,

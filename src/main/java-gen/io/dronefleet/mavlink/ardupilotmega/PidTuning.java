@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * PID tuning information 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 194,
     crc = 98
 )
@@ -79,7 +79,7 @@ public final class PidTuning {
   /**
    * desired rate (degrees/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class PidTuning {
   /**
    * achieved rate (degrees/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class PidTuning {
   /**
    * FF component 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class PidTuning {
   /**
    * P component 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class PidTuning {
   /**
    * I component 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class PidTuning {
   /**
    * D component 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class PidTuning {
   /**
    * axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class PidTuning {
     /**
      * desired rate (degrees/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class PidTuning {
     /**
      * achieved rate (degrees/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -198,7 +198,7 @@ public final class PidTuning {
     /**
      * FF component 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -210,7 +210,7 @@ public final class PidTuning {
     /**
      * P component 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -222,7 +222,7 @@ public final class PidTuning {
     /**
      * I component 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -234,7 +234,7 @@ public final class PidTuning {
     /**
      * D component 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -246,7 +246,7 @@ public final class PidTuning {
     /**
      * axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

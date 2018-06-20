@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Transmits the diagnostics data from the Novatel OEMStar GPS 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 195,
     crc = 59
 )
@@ -79,7 +79,7 @@ public final class NovatelDiag {
   /**
    * Status Bitfield. See table 69 page 350 Novatel OEMstar Manual 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class NovatelDiag {
   /**
    * Age of the position solution 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class NovatelDiag {
   /**
    * Times the CRC has failed since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -112,7 +112,7 @@ public final class NovatelDiag {
   /**
    * The Time Status. See Table 8 page 27 Novatel OEMStar Manual 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -123,7 +123,7 @@ public final class NovatelDiag {
   /**
    * solution Status. See table 44 page 197 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class NovatelDiag {
   /**
    * position type. See table 43 page 196 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -145,7 +145,7 @@ public final class NovatelDiag {
   /**
    * velocity type. See table 43 page 196 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class NovatelDiag {
     /**
      * Status Bitfield. See table 69 page 350 Novatel OEMstar Manual 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class NovatelDiag {
     /**
      * Age of the position solution 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -198,7 +198,7 @@ public final class NovatelDiag {
     /**
      * Times the CRC has failed since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -210,7 +210,7 @@ public final class NovatelDiag {
     /**
      * The Time Status. See Table 8 page 27 Novatel OEMStar Manual 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -222,7 +222,7 @@ public final class NovatelDiag {
     /**
      * solution Status. See table 44 page 197 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -234,7 +234,7 @@ public final class NovatelDiag {
     /**
      * position type. See table 43 page 196 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -246,7 +246,7 @@ public final class NovatelDiag {
     /**
      * velocity type. See table 43 page 196 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Transmits the position of watch 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 189,
     crc = 246
 )
@@ -79,7 +79,7 @@ public final class IsrLocation {
   /**
    * ISR Latitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class IsrLocation {
   /**
    * ISR Longitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class IsrLocation {
   /**
    * ISR Height 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class IsrLocation {
   /**
    * The system reporting the action 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -123,7 +123,7 @@ public final class IsrLocation {
   /**
    * Option 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class IsrLocation {
   /**
    * Option 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -145,7 +145,7 @@ public final class IsrLocation {
   /**
    * Option 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class IsrLocation {
     /**
      * ISR Latitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class IsrLocation {
     /**
      * ISR Longitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -198,7 +198,7 @@ public final class IsrLocation {
     /**
      * ISR Height 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -210,7 +210,7 @@ public final class IsrLocation {
     /**
      * The system reporting the action 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -222,7 +222,7 @@ public final class IsrLocation {
     /**
      * Option 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -234,7 +234,7 @@ public final class IsrLocation {
     /**
      * Option 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -246,7 +246,7 @@ public final class IsrLocation {
     /**
      * Option 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

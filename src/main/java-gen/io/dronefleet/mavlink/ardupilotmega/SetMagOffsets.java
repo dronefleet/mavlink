@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Deprecated. Use MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS instead. Set the magnetometer 
  * offsets 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 151,
     crc = 219
 )
@@ -66,7 +66,7 @@ public final class SetMagOffsets {
   /**
    * magnetometer X offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -77,7 +77,7 @@ public final class SetMagOffsets {
   /**
    * magnetometer Y offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -88,7 +88,7 @@ public final class SetMagOffsets {
   /**
    * magnetometer Z offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -99,7 +99,7 @@ public final class SetMagOffsets {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -110,7 +110,7 @@ public final class SetMagOffsets {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -135,7 +135,7 @@ public final class SetMagOffsets {
     /**
      * magnetometer X offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -147,7 +147,7 @@ public final class SetMagOffsets {
     /**
      * magnetometer Y offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -159,7 +159,7 @@ public final class SetMagOffsets {
     /**
      * magnetometer Z offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -171,7 +171,7 @@ public final class SetMagOffsets {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -183,7 +183,7 @@ public final class SetMagOffsets {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

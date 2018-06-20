@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Send a command with up to seven parameters to the MAV 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 76,
     crc = 152
 )
@@ -109,7 +109,7 @@ public final class CommandLong {
   /**
    * Parameter 1, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -120,7 +120,7 @@ public final class CommandLong {
   /**
    * Parameter 2, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -131,7 +131,7 @@ public final class CommandLong {
   /**
    * Parameter 3, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -142,7 +142,7 @@ public final class CommandLong {
   /**
    * Parameter 4, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class CommandLong {
   /**
    * Parameter 5, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -164,7 +164,7 @@ public final class CommandLong {
   /**
    * Parameter 6, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -175,7 +175,7 @@ public final class CommandLong {
   /**
    * Parameter 7, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -186,7 +186,7 @@ public final class CommandLong {
   /**
    * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -197,7 +197,7 @@ public final class CommandLong {
   /**
    * System which should execute the command 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -208,7 +208,7 @@ public final class CommandLong {
   /**
    * Component which should execute the command, 0 for all components 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -220,7 +220,7 @@ public final class CommandLong {
    * 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill 
    * command) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -257,7 +257,7 @@ public final class CommandLong {
     /**
      * Parameter 1, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -269,7 +269,7 @@ public final class CommandLong {
     /**
      * Parameter 2, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -281,7 +281,7 @@ public final class CommandLong {
     /**
      * Parameter 3, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -293,7 +293,7 @@ public final class CommandLong {
     /**
      * Parameter 4, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -305,7 +305,7 @@ public final class CommandLong {
     /**
      * Parameter 5, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -317,7 +317,7 @@ public final class CommandLong {
     /**
      * Parameter 6, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -329,7 +329,7 @@ public final class CommandLong {
     /**
      * Parameter 7, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -341,7 +341,7 @@ public final class CommandLong {
     /**
      * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -353,7 +353,7 @@ public final class CommandLong {
     /**
      * System which should execute the command 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -365,7 +365,7 @@ public final class CommandLong {
     /**
      * Component which should execute the command, 0 for all components 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -378,7 +378,7 @@ public final class CommandLong {
      * 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill 
      * command) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

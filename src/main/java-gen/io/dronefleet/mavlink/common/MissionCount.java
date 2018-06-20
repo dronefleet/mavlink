@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * transaction. The GCS can then request the individual mission item based on the knowledge of the 
  * total number of waypoints. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 44,
     crc = 221
 )
@@ -60,7 +60,7 @@ public final class MissionCount {
   /**
    * Number of mission items in the sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -71,7 +71,7 @@ public final class MissionCount {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -82,7 +82,7 @@ public final class MissionCount {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class MissionCount {
   /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       extension = true
@@ -117,7 +117,7 @@ public final class MissionCount {
     /**
      * Number of mission items in the sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -129,7 +129,7 @@ public final class MissionCount {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -141,7 +141,7 @@ public final class MissionCount {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -153,7 +153,7 @@ public final class MissionCount {
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         extension = true

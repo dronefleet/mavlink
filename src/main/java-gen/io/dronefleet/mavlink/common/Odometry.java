@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * Odometry message to communicate odometry information with an external interface. Fits ROS 
  * REP 147 standard for aerial vehicles (http://www.ros.org/reps/rep-0147.html). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 331,
     crc = 58
 )
@@ -144,7 +144,7 @@ public final class Odometry {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -155,7 +155,7 @@ public final class Odometry {
   /**
    * X Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class Odometry {
   /**
    * Y Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class Odometry {
   /**
    * Z Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -188,7 +188,7 @@ public final class Odometry {
   /**
    * Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4,
       arraySize = 4
@@ -200,7 +200,7 @@ public final class Odometry {
   /**
    * X linear speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -211,7 +211,7 @@ public final class Odometry {
   /**
    * Y linear speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -222,7 +222,7 @@ public final class Odometry {
   /**
    * Z linear speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -233,7 +233,7 @@ public final class Odometry {
   /**
    * Roll angular speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -244,7 +244,7 @@ public final class Odometry {
   /**
    * Pitch angular speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -255,7 +255,7 @@ public final class Odometry {
   /**
    * Yaw angular speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -267,7 +267,7 @@ public final class Odometry {
    * Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six 
    * entries are the first ROW, next five entries are the second ROW, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4,
       arraySize = 21
@@ -280,7 +280,7 @@ public final class Odometry {
    * Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right 
    * triangle (first six entries are the first ROW, next five entries are the second ROW, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4,
       arraySize = 21
@@ -292,7 +292,7 @@ public final class Odometry {
   /**
    * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -304,7 +304,7 @@ public final class Odometry {
    * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
    * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -349,7 +349,7 @@ public final class Odometry {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -361,7 +361,7 @@ public final class Odometry {
     /**
      * X Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -373,7 +373,7 @@ public final class Odometry {
     /**
      * Y Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -385,7 +385,7 @@ public final class Odometry {
     /**
      * Z Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -397,7 +397,7 @@ public final class Odometry {
     /**
      * Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4,
         arraySize = 4
@@ -410,7 +410,7 @@ public final class Odometry {
     /**
      * X linear speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -422,7 +422,7 @@ public final class Odometry {
     /**
      * Y linear speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -434,7 +434,7 @@ public final class Odometry {
     /**
      * Z linear speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -446,7 +446,7 @@ public final class Odometry {
     /**
      * Roll angular speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -458,7 +458,7 @@ public final class Odometry {
     /**
      * Pitch angular speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -470,7 +470,7 @@ public final class Odometry {
     /**
      * Yaw angular speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -483,7 +483,7 @@ public final class Odometry {
      * Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six 
      * entries are the first ROW, next five entries are the second ROW, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4,
         arraySize = 21
@@ -497,7 +497,7 @@ public final class Odometry {
      * Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right 
      * triangle (first six entries are the first ROW, next five entries are the second ROW, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4,
         arraySize = 21
@@ -510,7 +510,7 @@ public final class Odometry {
     /**
      * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -523,7 +523,7 @@ public final class Odometry {
      * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
      * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

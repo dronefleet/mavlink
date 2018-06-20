@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Send a block of log data to remote location 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 184,
     crc = 159
 )
@@ -60,7 +60,7 @@ public final class RemoteLogDataBlock {
   /**
    * log data block sequence number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -71,7 +71,7 @@ public final class RemoteLogDataBlock {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -82,7 +82,7 @@ public final class RemoteLogDataBlock {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class RemoteLogDataBlock {
   /**
    * log data block 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 200
@@ -117,7 +117,7 @@ public final class RemoteLogDataBlock {
     /**
      * log data block sequence number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -129,7 +129,7 @@ public final class RemoteLogDataBlock {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -141,7 +141,7 @@ public final class RemoteLogDataBlock {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -153,7 +153,7 @@ public final class RemoteLogDataBlock {
     /**
      * log data block 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 200

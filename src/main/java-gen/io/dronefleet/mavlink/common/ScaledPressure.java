@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * The pressure readings for the typical setup of one absolute and differential pressure sensor. 
  * The units are as specified in each field. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 29,
     crc = 115
 )
@@ -58,7 +58,7 @@ public final class ScaledPressure {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -69,7 +69,7 @@ public final class ScaledPressure {
   /**
    * Absolute pressure (hectopascal) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -80,7 +80,7 @@ public final class ScaledPressure {
   /**
    * Differential pressure 1 (hectopascal) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class ScaledPressure {
   /**
    * Temperature measurement (0.01 degrees celsius) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -114,7 +114,7 @@ public final class ScaledPressure {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -126,7 +126,7 @@ public final class ScaledPressure {
     /**
      * Absolute pressure (hectopascal) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -138,7 +138,7 @@ public final class ScaledPressure {
     /**
      * Differential pressure 1 (hectopascal) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -150,7 +150,7 @@ public final class ScaledPressure {
     /**
      * Temperature measurement (0.01 degrees celsius) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )

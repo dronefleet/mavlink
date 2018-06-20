@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,12 +11,12 @@ public enum GoproProtuneColour {
   /**
    * Auto
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   GOPRO_PROTUNE_COLOUR_STANDARD,
 
   /**
    * Neutral
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   GOPRO_PROTUNE_COLOUR_NEUTRAL
 }

@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,36 +11,36 @@ public enum LimitsState {
   /**
    * pre-initialization
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   LIMITS_INIT,
 
   /**
    * disabled
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   LIMITS_DISABLED,
 
   /**
    * checking limits
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   LIMITS_ENABLED,
 
   /**
    * a limit has been breached
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   LIMITS_TRIGGERED,
 
   /**
    * taking action eg. RTL
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   LIMITS_RECOVERING,
 
   /**
    * we're no longer in breach of a limit
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   LIMITS_RECOVERED
 }

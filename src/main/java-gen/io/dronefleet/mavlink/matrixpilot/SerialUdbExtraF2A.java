@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible MAVLink version of SERIAL_UDB_EXTRA - F2: Format Part A 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 170,
     crc = 103
 )
@@ -223,7 +223,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -234,7 +234,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Latitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -245,7 +245,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Longitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -256,7 +256,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Altitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -267,7 +267,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Waypoint Index 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -278,7 +278,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 0 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -289,7 +289,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -300,7 +300,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -311,7 +311,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -322,7 +322,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -333,7 +333,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -344,7 +344,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -355,7 +355,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2
   )
@@ -366,7 +366,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Rmat 8 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2
   )
@@ -377,7 +377,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra GPS Course Over Ground 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2
   )
@@ -388,7 +388,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Speed Over Ground 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 2
   )
@@ -399,7 +399,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra CPU Load 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 2
   )
@@ -410,7 +410,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra 3D IMU Air Speed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 2
   )
@@ -421,7 +421,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Estimated Wind 0 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 2
   )
@@ -432,7 +432,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Estimated Wind 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 2
   )
@@ -443,7 +443,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Estimated Wind 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 2
   )
@@ -454,7 +454,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Magnetic Field Earth 0 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 2
   )
@@ -465,7 +465,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Magnetic Field Earth 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 2
   )
@@ -476,7 +476,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Magnetic Field Earth 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 25,
       unitSize = 2
   )
@@ -487,7 +487,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Number of Sattelites in View 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 26,
       unitSize = 2
   )
@@ -498,7 +498,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra GPS Horizontal Dilution of Precision 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 27,
       unitSize = 2
   )
@@ -509,7 +509,7 @@ public final class SerialUdbExtraF2A {
   /**
    * Serial UDB Extra Status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -578,7 +578,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -590,7 +590,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Latitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -602,7 +602,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Longitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -614,7 +614,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Altitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -626,7 +626,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Waypoint Index 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -638,7 +638,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 0 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -650,7 +650,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -662,7 +662,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -674,7 +674,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -686,7 +686,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -698,7 +698,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -710,7 +710,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -722,7 +722,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2
     )
@@ -734,7 +734,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Rmat 8 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2
     )
@@ -746,7 +746,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra GPS Course Over Ground 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2
     )
@@ -758,7 +758,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Speed Over Ground 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 2
     )
@@ -770,7 +770,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra CPU Load 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 2
     )
@@ -782,7 +782,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra 3D IMU Air Speed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 2
     )
@@ -794,7 +794,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Estimated Wind 0 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 2
     )
@@ -806,7 +806,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Estimated Wind 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 2
     )
@@ -818,7 +818,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Estimated Wind 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 2
     )
@@ -830,7 +830,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Magnetic Field Earth 0 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 2
     )
@@ -842,7 +842,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Magnetic Field Earth 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 2
     )
@@ -854,7 +854,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Magnetic Field Earth 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 25,
         unitSize = 2
     )
@@ -866,7 +866,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Number of Sattelites in View 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 26,
         unitSize = 2
     )
@@ -878,7 +878,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra GPS Horizontal Dilution of Precision 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 27,
         unitSize = 2
     )
@@ -890,7 +890,7 @@ public final class SerialUdbExtraF2A {
     /**
      * Serial UDB Extra Status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

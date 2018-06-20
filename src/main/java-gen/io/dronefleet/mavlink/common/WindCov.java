@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 231,
     crc = 105
 )
@@ -94,7 +94,7 @@ public final class WindCov {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 8
   )
@@ -105,7 +105,7 @@ public final class WindCov {
   /**
    * Wind in X (NED) direction in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -116,7 +116,7 @@ public final class WindCov {
   /**
    * Wind in Y (NED) direction in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -127,7 +127,7 @@ public final class WindCov {
   /**
    * Wind in Z (NED) direction in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class WindCov {
   /**
    * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -149,7 +149,7 @@ public final class WindCov {
   /**
    * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class WindCov {
   /**
    * AMSL altitude (m) this measurement was taken at 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class WindCov {
   /**
    * Horizontal speed 1-STD accuracy 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class WindCov {
   /**
    * Vertical speed 1-STD accuracy 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -215,7 +215,7 @@ public final class WindCov {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 8
     )
@@ -227,7 +227,7 @@ public final class WindCov {
     /**
      * Wind in X (NED) direction in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -239,7 +239,7 @@ public final class WindCov {
     /**
      * Wind in Y (NED) direction in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -251,7 +251,7 @@ public final class WindCov {
     /**
      * Wind in Z (NED) direction in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -263,7 +263,7 @@ public final class WindCov {
     /**
      * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -275,7 +275,7 @@ public final class WindCov {
     /**
      * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -287,7 +287,7 @@ public final class WindCov {
     /**
      * AMSL altitude (m) this measurement was taken at 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -299,7 +299,7 @@ public final class WindCov {
     /**
      * Horizontal speed 1-STD accuracy 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -311,7 +311,7 @@ public final class WindCov {
     /**
      * Vertical speed 1-STD accuracy 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )

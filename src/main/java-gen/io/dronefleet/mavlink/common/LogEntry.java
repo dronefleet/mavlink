@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Reply to {@link io.dronefleet.mavlink.common.LogRequestList LogRequestList} 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 118,
     crc = 56
 )
@@ -64,7 +64,7 @@ public final class LogEntry {
   /**
    * UTC timestamp of log in seconds since 1970, or 0 if not available 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -75,7 +75,7 @@ public final class LogEntry {
   /**
    * Size of the log (may be approximate) in bytes 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -86,7 +86,7 @@ public final class LogEntry {
   /**
    * Log id 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -97,7 +97,7 @@ public final class LogEntry {
   /**
    * Total number of logs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -108,7 +108,7 @@ public final class LogEntry {
   /**
    * High log number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -133,7 +133,7 @@ public final class LogEntry {
     /**
      * UTC timestamp of log in seconds since 1970, or 0 if not available 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -145,7 +145,7 @@ public final class LogEntry {
     /**
      * Size of the log (may be approximate) in bytes 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -157,7 +157,7 @@ public final class LogEntry {
     /**
      * Log id 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -169,7 +169,7 @@ public final class LogEntry {
     /**
      * Total number of logs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -181,7 +181,7 @@ public final class LogEntry {
     /**
      * High log number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )

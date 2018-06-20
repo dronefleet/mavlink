@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Commands to be executed by the MAV. They can be executed on user request, or as part of a mission 
@@ -22,7 +22,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   MAV_CMD_NAV_WAYPOINT,
 
   /**
@@ -35,7 +35,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(17)
+  @MavlinkEntryInfo(17)
   MAV_CMD_NAV_LOITER_UNLIM,
 
   /**
@@ -48,7 +48,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(18)
+  @MavlinkEntryInfo(18)
   MAV_CMD_NAV_LOITER_TURNS,
 
   /**
@@ -61,7 +61,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(19)
+  @MavlinkEntryInfo(19)
   MAV_CMD_NAV_LOITER_TIME,
 
   /**
@@ -74,7 +74,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(20)
+  @MavlinkEntryInfo(20)
   MAV_CMD_NAV_RETURN_TO_LAUNCH,
 
   /**
@@ -87,7 +87,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude (ground level)
    */
-  @MavlinkEnumEntry(21)
+  @MavlinkEntryInfo(21)
   MAV_CMD_NAV_LAND,
 
   /**
@@ -100,7 +100,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(22)
+  @MavlinkEntryInfo(22)
   MAV_CMD_NAV_TAKEOFF,
 
   /**
@@ -113,7 +113,7 @@ public enum MavCmd {
    * param[6]: X-axis position [m]
    * param[7]: Z-axis / ground level position [m]
    */
-  @MavlinkEnumEntry(23)
+  @MavlinkEntryInfo(23)
   MAV_CMD_NAV_LAND_LOCAL,
 
   /**
@@ -126,7 +126,7 @@ public enum MavCmd {
    * param[6]: X-axis position [m]
    * param[7]: Z-axis position [m]
    */
-  @MavlinkEnumEntry(24)
+  @MavlinkEntryInfo(24)
   MAV_CMD_NAV_TAKEOFF_LOCAL,
 
   /**
@@ -139,7 +139,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(25)
+  @MavlinkEntryInfo(25)
   MAV_CMD_NAV_FOLLOW,
 
   /**
@@ -152,7 +152,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Desired altitude in meters
    */
-  @MavlinkEnumEntry(30)
+  @MavlinkEntryInfo(30)
   MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT,
 
   /**
@@ -165,7 +165,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(31)
+  @MavlinkEntryInfo(31)
   MAV_CMD_NAV_LOITER_TO_ALT,
 
   /**
@@ -178,7 +178,7 @@ public enum MavCmd {
    * param[6]: RESERVED
    * param[7]: TTL in seconds in which the MAV should go to the default position hold mode after a message rx timeout
    */
-  @MavlinkEnumEntry(32)
+  @MavlinkEntryInfo(32)
   MAV_CMD_DO_FOLLOW,
 
   /**
@@ -191,7 +191,7 @@ public enum MavCmd {
    * param[6]: X offset from target (m)
    * param[7]: Y offset from target (m)
    */
-  @MavlinkEnumEntry(33)
+  @MavlinkEntryInfo(33)
   MAV_CMD_DO_FOLLOW_REPOSITION,
 
   /**
@@ -204,7 +204,7 @@ public enum MavCmd {
    * param[6]: y
    * param[7]: z
    */
-  @MavlinkEnumEntry(80)
+  @MavlinkEntryInfo(80)
   MAV_CMD_NAV_ROI,
 
   /**
@@ -217,7 +217,7 @@ public enum MavCmd {
    * param[6]: Longitude/Y of goal
    * param[7]: Altitude/Z of goal
    */
-  @MavlinkEnumEntry(81)
+  @MavlinkEntryInfo(81)
   MAV_CMD_NAV_PATHPLANNING,
 
   /**
@@ -230,7 +230,7 @@ public enum MavCmd {
    * param[6]: Longitude/Y of goal
    * param[7]: Altitude/Z of goal
    */
-  @MavlinkEnumEntry(82)
+  @MavlinkEntryInfo(82)
   MAV_CMD_NAV_SPLINE_WAYPOINT,
 
   /**
@@ -243,7 +243,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(84)
+  @MavlinkEntryInfo(84)
   MAV_CMD_NAV_VTOL_TAKEOFF,
 
   /**
@@ -256,7 +256,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude (ground level)
    */
-  @MavlinkEnumEntry(85)
+  @MavlinkEntryInfo(85)
   MAV_CMD_NAV_VTOL_LAND,
 
   /**
@@ -269,7 +269,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(92)
+  @MavlinkEntryInfo(92)
   MAV_CMD_NAV_GUIDED_ENABLE,
 
   /**
@@ -282,7 +282,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(93)
+  @MavlinkEntryInfo(93)
   MAV_CMD_NAV_DELAY,
 
   /**
@@ -295,7 +295,7 @@ public enum MavCmd {
    * param[6]: Longitude (deg * 1E7)
    * param[7]: Altitude (meters)
    */
-  @MavlinkEnumEntry(94)
+  @MavlinkEntryInfo(94)
   MAV_CMD_NAV_PAYLOAD_PLACE,
 
   /**
@@ -308,7 +308,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(95)
+  @MavlinkEntryInfo(95)
   MAV_CMD_NAV_LAST,
 
   /**
@@ -321,7 +321,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(112)
+  @MavlinkEntryInfo(112)
   MAV_CMD_CONDITION_DELAY,
 
   /**
@@ -334,7 +334,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Finish Altitude
    */
-  @MavlinkEnumEntry(113)
+  @MavlinkEntryInfo(113)
   MAV_CMD_CONDITION_CHANGE_ALT,
 
   /**
@@ -347,7 +347,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(114)
+  @MavlinkEntryInfo(114)
   MAV_CMD_CONDITION_DISTANCE,
 
   /**
@@ -360,7 +360,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(115)
+  @MavlinkEntryInfo(115)
   MAV_CMD_CONDITION_YAW,
 
   /**
@@ -373,7 +373,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(159)
+  @MavlinkEntryInfo(159)
   MAV_CMD_CONDITION_LAST,
 
   /**
@@ -386,7 +386,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(176)
+  @MavlinkEntryInfo(176)
   MAV_CMD_DO_SET_MODE,
 
   /**
@@ -399,7 +399,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(177)
+  @MavlinkEntryInfo(177)
   MAV_CMD_DO_JUMP,
 
   /**
@@ -412,7 +412,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(178)
+  @MavlinkEntryInfo(178)
   MAV_CMD_DO_CHANGE_SPEED,
 
   /**
@@ -425,7 +425,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(179)
+  @MavlinkEntryInfo(179)
   MAV_CMD_DO_SET_HOME,
 
   /**
@@ -438,7 +438,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(180)
+  @MavlinkEntryInfo(180)
   MAV_CMD_DO_SET_PARAMETER,
 
   /**
@@ -451,7 +451,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(181)
+  @MavlinkEntryInfo(181)
   MAV_CMD_DO_SET_RELAY,
 
   /**
@@ -464,7 +464,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(182)
+  @MavlinkEntryInfo(182)
   MAV_CMD_DO_REPEAT_RELAY,
 
   /**
@@ -477,7 +477,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(183)
+  @MavlinkEntryInfo(183)
   MAV_CMD_DO_SET_SERVO,
 
   /**
@@ -490,7 +490,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(184)
+  @MavlinkEntryInfo(184)
   MAV_CMD_DO_REPEAT_SERVO,
 
   /**
@@ -503,7 +503,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(185)
+  @MavlinkEntryInfo(185)
   MAV_CMD_DO_FLIGHTTERMINATION,
 
   /**
@@ -516,7 +516,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(186)
+  @MavlinkEntryInfo(186)
   MAV_CMD_DO_CHANGE_ALTITUDE,
 
   /**
@@ -529,7 +529,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(189)
+  @MavlinkEntryInfo(189)
   MAV_CMD_DO_LAND_START,
 
   /**
@@ -542,7 +542,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(190)
+  @MavlinkEntryInfo(190)
   MAV_CMD_DO_RALLY_LAND,
 
   /**
@@ -555,7 +555,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(191)
+  @MavlinkEntryInfo(191)
   MAV_CMD_DO_GO_AROUND,
 
   /**
@@ -568,7 +568,7 @@ public enum MavCmd {
    * param[6]: Longitude (deg * 1E7)
    * param[7]: Altitude (meters)
    */
-  @MavlinkEnumEntry(192)
+  @MavlinkEntryInfo(192)
   MAV_CMD_DO_REPOSITION,
 
   /**
@@ -581,7 +581,7 @@ public enum MavCmd {
    * param[6]: Reserved
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(193)
+  @MavlinkEntryInfo(193)
   MAV_CMD_DO_PAUSE_CONTINUE,
 
   /**
@@ -594,7 +594,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(194)
+  @MavlinkEntryInfo(194)
   MAV_CMD_DO_SET_REVERSE,
 
   /**
@@ -607,7 +607,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(195)
+  @MavlinkEntryInfo(195)
   MAV_CMD_DO_SET_ROI_LOCATION,
 
   /**
@@ -620,7 +620,7 @@ public enum MavCmd {
    * param[6]: roll offset from next waypoint
    * param[7]: yaw offset from next waypoint
    */
-  @MavlinkEnumEntry(196)
+  @MavlinkEntryInfo(196)
   MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET,
 
   /**
@@ -633,7 +633,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(197)
+  @MavlinkEntryInfo(197)
   MAV_CMD_DO_SET_ROI_NONE,
 
   /**
@@ -646,7 +646,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(200)
+  @MavlinkEntryInfo(200)
   MAV_CMD_DO_CONTROL_VIDEO,
 
   /**
@@ -659,7 +659,7 @@ public enum MavCmd {
    * param[6]: MAV_ROI_WPNEXT: roll offset from next waypoint, MAV_ROI_LOCATION: longitude
    * param[7]: MAV_ROI_WPNEXT: yaw offset from next waypoint, MAV_ROI_LOCATION: altitude
    */
-  @MavlinkEnumEntry(201)
+  @MavlinkEntryInfo(201)
   MAV_CMD_DO_SET_ROI,
 
   /**
@@ -672,7 +672,7 @@ public enum MavCmd {
    * param[6]: Command Identity
    * param[7]: Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)
    */
-  @MavlinkEnumEntry(202)
+  @MavlinkEntryInfo(202)
   MAV_CMD_DO_DIGICAM_CONFIGURE,
 
   /**
@@ -685,7 +685,7 @@ public enum MavCmd {
    * param[6]: Command Identity
    * param[7]: Test shot identifier. If set to 1, image will only be captured, but not counted towards internal frame count.
    */
-  @MavlinkEnumEntry(203)
+  @MavlinkEntryInfo(203)
   MAV_CMD_DO_DIGICAM_CONTROL,
 
   /**
@@ -698,7 +698,7 @@ public enum MavCmd {
    * param[6]: pitch input (0 = angle, 1 = angular rate)
    * param[7]: yaw input (0 = angle, 1 = angular rate)
    */
-  @MavlinkEnumEntry(204)
+  @MavlinkEntryInfo(204)
   MAV_CMD_DO_MOUNT_CONFIGURE,
 
   /**
@@ -711,7 +711,7 @@ public enum MavCmd {
    * param[6]: longitude in degrees * 1E7, set if appropriate mount mode.
    * param[7]: MAV_MOUNT_MODE enum value
    */
-  @MavlinkEnumEntry(205)
+  @MavlinkEntryInfo(205)
   MAV_CMD_DO_MOUNT_CONTROL,
 
   /**
@@ -724,7 +724,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(206)
+  @MavlinkEntryInfo(206)
   MAV_CMD_DO_SET_CAM_TRIGG_DIST,
 
   /**
@@ -737,7 +737,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(207)
+  @MavlinkEntryInfo(207)
   MAV_CMD_DO_FENCE_ENABLE,
 
   /**
@@ -750,7 +750,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(208)
+  @MavlinkEntryInfo(208)
   MAV_CMD_DO_PARACHUTE,
 
   /**
@@ -763,7 +763,7 @@ public enum MavCmd {
    * param[6]: motor test order (See MOTOR_TEST_ORDER enum)
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(209)
+  @MavlinkEntryInfo(209)
   MAV_CMD_DO_MOTOR_TEST,
 
   /**
@@ -776,7 +776,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(210)
+  @MavlinkEntryInfo(210)
   MAV_CMD_DO_INVERTED_FLIGHT,
 
   /**
@@ -789,7 +789,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(213)
+  @MavlinkEntryInfo(213)
   MAV_CMD_NAV_SET_YAW_SPEED,
 
   /**
@@ -802,7 +802,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(214)
+  @MavlinkEntryInfo(214)
   MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL,
 
   /**
@@ -815,7 +815,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(220)
+  @MavlinkEntryInfo(220)
   MAV_CMD_DO_MOUNT_CONTROL_QUAT,
 
   /**
@@ -828,7 +828,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(221)
+  @MavlinkEntryInfo(221)
   MAV_CMD_DO_GUIDED_MASTER,
 
   /**
@@ -841,7 +841,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(222)
+  @MavlinkEntryInfo(222)
   MAV_CMD_DO_GUIDED_LIMITS,
 
   /**
@@ -855,7 +855,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(223)
+  @MavlinkEntryInfo(223)
   MAV_CMD_DO_ENGINE_CONTROL,
 
   /**
@@ -868,7 +868,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(240)
+  @MavlinkEntryInfo(240)
   MAV_CMD_DO_LAST,
 
   /**
@@ -881,7 +881,7 @@ public enum MavCmd {
    * param[6]: 1: APM: compass/motor interference calibration (PX4: airspeed calibration, deprecated), 2: airspeed calibration
    * param[7]: 1: ESC calibration, 3: barometer temperature calibration
    */
-  @MavlinkEnumEntry(241)
+  @MavlinkEntryInfo(241)
   MAV_CMD_PREFLIGHT_CALIBRATION,
 
   /**
@@ -894,7 +894,7 @@ public enum MavCmd {
    * param[6]: Generic dimension 5, in the sensor's raw units
    * param[7]: Generic dimension 6, in the sensor's raw units
    */
-  @MavlinkEnumEntry(242)
+  @MavlinkEntryInfo(242)
   MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS,
 
   /**
@@ -907,7 +907,7 @@ public enum MavCmd {
    * param[6]: Reserved
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(243)
+  @MavlinkEntryInfo(243)
   MAV_CMD_PREFLIGHT_UAVCAN,
 
   /**
@@ -920,7 +920,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(245)
+  @MavlinkEntryInfo(245)
   MAV_CMD_PREFLIGHT_STORAGE,
 
   /**
@@ -933,7 +933,7 @@ public enum MavCmd {
    * param[6]: Reserved, send 0
    * param[7]: WIP: ID (e.g. camera ID -1 for all IDs)
    */
-  @MavlinkEnumEntry(246)
+  @MavlinkEntryInfo(246)
   MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN,
 
   /**
@@ -946,7 +946,7 @@ public enum MavCmd {
    * param[6]: Longitude / Y position
    * param[7]: Altitude / Z position
    */
-  @MavlinkEnumEntry(252)
+  @MavlinkEntryInfo(252)
   MAV_CMD_OVERRIDE_GOTO,
 
   /**
@@ -954,14 +954,14 @@ public enum MavCmd {
    * param[1]: first_item: the first mission item to run
    * param[2]: last_item:  the last mission item to run (after this item is run, the mission ends)
    */
-  @MavlinkEnumEntry(300)
+  @MavlinkEntryInfo(300)
   MAV_CMD_MISSION_START,
 
   /**
    * Arms / Disarms a component
    * param[1]: 1 to arm, 0 to disarm
    */
-  @MavlinkEnumEntry(400)
+  @MavlinkEntryInfo(400)
   MAV_CMD_COMPONENT_ARM_DISARM,
 
   /**
@@ -974,7 +974,7 @@ public enum MavCmd {
    * param[6]: Reserved
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(410)
+  @MavlinkEntryInfo(410)
   MAV_CMD_GET_HOME_POSITION,
 
   /**
@@ -982,14 +982,14 @@ public enum MavCmd {
    * param[1]: 0:Spektrum
    * param[2]: RC type (see RC_TYPE enum)
    */
-  @MavlinkEnumEntry(500)
+  @MavlinkEntryInfo(500)
   MAV_CMD_START_RX_PAIR,
 
   /**
    * Request the interval between messages for a particular MAVLink message ID
    * param[1]: The MAVLink message ID
    */
-  @MavlinkEnumEntry(510)
+  @MavlinkEntryInfo(510)
   MAV_CMD_GET_MESSAGE_INTERVAL,
 
   /**
@@ -997,7 +997,7 @@ public enum MavCmd {
    * param[1]: The MAVLink message ID
    * param[2]: The interval between two messages, in microseconds. Set to -1 to disable and 0 to request default rate.
    */
-  @MavlinkEnumEntry(511)
+  @MavlinkEntryInfo(511)
   MAV_CMD_SET_MESSAGE_INTERVAL,
 
   /**
@@ -1005,7 +1005,7 @@ public enum MavCmd {
    * param[1]: 1: Request supported protocol versions by all nodes on the network
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(519)
+  @MavlinkEntryInfo(519)
   MAV_CMD_REQUEST_PROTOCOL_VERSION,
 
   /**
@@ -1013,7 +1013,7 @@ public enum MavCmd {
    * param[1]: 1: Request autopilot version
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(520)
+  @MavlinkEntryInfo(520)
   MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES,
 
   /**
@@ -1021,7 +1021,7 @@ public enum MavCmd {
    * param[1]: 0: No action 1: Request camera capabilities
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(521)
+  @MavlinkEntryInfo(521)
   MAV_CMD_REQUEST_CAMERA_INFORMATION,
 
   /**
@@ -1029,7 +1029,7 @@ public enum MavCmd {
    * param[1]: 0: No Action 1: Request camera settings
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(522)
+  @MavlinkEntryInfo(522)
   MAV_CMD_REQUEST_CAMERA_SETTINGS,
 
   /**
@@ -1038,7 +1038,7 @@ public enum MavCmd {
    * param[2]: 0: No Action 1: Request storage information
    * param[3]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(525)
+  @MavlinkEntryInfo(525)
   MAV_CMD_REQUEST_STORAGE_INFORMATION,
 
   /**
@@ -1047,7 +1047,7 @@ public enum MavCmd {
    * param[2]: 0: No action 1: Format storage
    * param[3]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(526)
+  @MavlinkEntryInfo(526)
   MAV_CMD_STORAGE_FORMAT,
 
   /**
@@ -1055,7 +1055,7 @@ public enum MavCmd {
    * param[1]: 0: No Action 1: Request camera capture status
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(527)
+  @MavlinkEntryInfo(527)
   MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS,
 
   /**
@@ -1063,7 +1063,7 @@ public enum MavCmd {
    * param[1]: 1: Request flight information
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(528)
+  @MavlinkEntryInfo(528)
   MAV_CMD_REQUEST_FLIGHT_INFORMATION,
 
   /**
@@ -1071,7 +1071,7 @@ public enum MavCmd {
    * param[1]: 0: No Action 1: Reset all settings
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(529)
+  @MavlinkEntryInfo(529)
   MAV_CMD_RESET_CAMERA_SETTINGS,
 
   /**
@@ -1080,7 +1080,7 @@ public enum MavCmd {
    * param[2]: Camera mode (see CAMERA_MODE enum)
    * param[3]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(530)
+  @MavlinkEntryInfo(530)
   MAV_CMD_SET_CAMERA_MODE,
 
   /**
@@ -1091,7 +1091,7 @@ public enum MavCmd {
    * param[4]: Capture sequence (ID to prevent double captures when a command is retransmitted, 0: unused, >= 1: used)
    * param[5]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2000)
+  @MavlinkEntryInfo(2000)
   MAV_CMD_IMAGE_START_CAPTURE,
 
   /**
@@ -1099,7 +1099,7 @@ public enum MavCmd {
    * param[1]: Reserved (Set to 0)
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2001)
+  @MavlinkEntryInfo(2001)
   MAV_CMD_IMAGE_STOP_CAPTURE,
 
   /**
@@ -1107,7 +1107,7 @@ public enum MavCmd {
    * param[1]: Sequence number for missing CAMERA_IMAGE_CAPTURE packet
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2002)
+  @MavlinkEntryInfo(2002)
   MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE,
 
   /**
@@ -1116,7 +1116,7 @@ public enum MavCmd {
    * param[2]: 1 to reset the trigger sequence, -1 or 0 to ignore
    * param[3]: 1 to pause triggering, but without switching the camera off or retracting it. -1 to ignore
    */
-  @MavlinkEnumEntry(2003)
+  @MavlinkEntryInfo(2003)
   MAV_CMD_DO_TRIGGER_CONTROL,
 
   /**
@@ -1125,7 +1125,7 @@ public enum MavCmd {
    * param[2]: Frequency CAMERA_CAPTURE_STATUS messages should be sent while recording (0 for no messages, otherwise frequency in Hz)
    * param[3]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2500)
+  @MavlinkEntryInfo(2500)
   MAV_CMD_VIDEO_START_CAPTURE,
 
   /**
@@ -1133,7 +1133,7 @@ public enum MavCmd {
    * param[1]: Reserved (Set to 0)
    * param[2]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2501)
+  @MavlinkEntryInfo(2501)
   MAV_CMD_VIDEO_STOP_CAPTURE,
 
   /**
@@ -1141,7 +1141,7 @@ public enum MavCmd {
    * param[1]: Camera ID (0 for all cameras, 1 for first, 2 for second, etc.)
    * param[2]: Reserved
    */
-  @MavlinkEnumEntry(2502)
+  @MavlinkEntryInfo(2502)
   MAV_CMD_VIDEO_START_STREAMING,
 
   /**
@@ -1149,7 +1149,7 @@ public enum MavCmd {
    * param[1]: Camera ID (0 for all cameras, 1 for first, 2 for second, etc.)
    * param[2]: Reserved
    */
-  @MavlinkEnumEntry(2503)
+  @MavlinkEntryInfo(2503)
   MAV_CMD_VIDEO_STOP_STREAMING,
 
   /**
@@ -1158,7 +1158,7 @@ public enum MavCmd {
    * param[2]: 0: No Action 1: Request video stream information
    * param[3]: Reserved (all remaining params)
    */
-  @MavlinkEnumEntry(2504)
+  @MavlinkEntryInfo(2504)
   MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION,
 
   /**
@@ -1171,7 +1171,7 @@ public enum MavCmd {
    * param[6]: Reserved (set to 0)
    * param[7]: Reserved (set to 0)
    */
-  @MavlinkEnumEntry(2510)
+  @MavlinkEntryInfo(2510)
   MAV_CMD_LOGGING_START,
 
   /**
@@ -1184,7 +1184,7 @@ public enum MavCmd {
    * param[6]: Reserved (set to 0)
    * param[7]: Reserved (set to 0)
    */
-  @MavlinkEnumEntry(2511)
+  @MavlinkEntryInfo(2511)
   MAV_CMD_LOGGING_STOP,
 
   /**
@@ -1197,7 +1197,7 @@ public enum MavCmd {
    * param[6]: Reserved, set to NAN
    * param[7]: Reserved, set to NAN
    */
-  @MavlinkEnumEntry(2520)
+  @MavlinkEntryInfo(2520)
   MAV_CMD_AIRFRAME_CONFIGURATION,
 
   /**
@@ -1210,7 +1210,7 @@ public enum MavCmd {
    * param[6]: Empty
    * param[7]: Empty
    */
-  @MavlinkEnumEntry(2600)
+  @MavlinkEntryInfo(2600)
   MAV_CMD_CONTROL_HIGH_LATENCY,
 
   /**
@@ -1220,20 +1220,20 @@ public enum MavCmd {
    * param[3]: Speed of the horizontal rotation (in degrees per second)
    * param[4]: Speed of the vertical rotation (in degrees per second)
    */
-  @MavlinkEnumEntry(2800)
+  @MavlinkEntryInfo(2800)
   MAV_CMD_PANORAMA_CREATE,
 
   /**
    * Request VTOL transition
    * param[1]: The target VTOL state, as defined by ENUM MAV_VTOL_STATE. Only MAV_VTOL_STATE_MC and MAV_VTOL_STATE_FW can be used.
    */
-  @MavlinkEnumEntry(3000)
+  @MavlinkEntryInfo(3000)
   MAV_CMD_DO_VTOL_TRANSITION,
 
   /**
    * This command sets the submode to standard guided when vehicle is in guided mode. The vehicle holds position and altitude and the user can input the desired velocites along all three axes.
    */
-  @MavlinkEnumEntry(4000)
+  @MavlinkEntryInfo(4000)
   MAV_CMD_SET_GUIDED_SUBMODE_STANDARD,
 
   /**
@@ -1245,7 +1245,7 @@ public enum MavCmd {
    * param[5]: Unscaled target latitude of center of circle in CIRCLE_MODE
    * param[6]: Unscaled target longitude of center of circle in CIRCLE_MODE
    */
-  @MavlinkEnumEntry(4001)
+  @MavlinkEntryInfo(4001)
   MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE,
 
   /**
@@ -1258,14 +1258,14 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(4501)
+  @MavlinkEntryInfo(4501)
   MAV_CMD_CONDITION_GATE,
 
   /**
    * Request authorization to arm the vehicle to a external entity, the arm authorizer is resposible to request all data that is needs from the vehicle before authorize or deny the request. If approved the progress of command_ack message should be set with period of time that this authorization is valid in seconds or in case it was denied it should be set with one of the reasons in ARM_AUTH_DENIED_REASON.
    * param[1]: Vehicle system id, this way ground station can request arm authorization on behalf of any vehicle
    */
-  @MavlinkEnumEntry(3001)
+  @MavlinkEntryInfo(3001)
   MAV_CMD_ARM_AUTHORIZATION_REQUEST,
 
   /**
@@ -1278,7 +1278,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(5000)
+  @MavlinkEntryInfo(5000)
   MAV_CMD_NAV_FENCE_RETURN_POINT,
 
   /**
@@ -1291,7 +1291,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(5001)
+  @MavlinkEntryInfo(5001)
   MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION,
 
   /**
@@ -1304,7 +1304,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(5002)
+  @MavlinkEntryInfo(5002)
   MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION,
 
   /**
@@ -1317,7 +1317,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(5003)
+  @MavlinkEntryInfo(5003)
   MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION,
 
   /**
@@ -1330,7 +1330,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(5004)
+  @MavlinkEntryInfo(5004)
   MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION,
 
   /**
@@ -1343,7 +1343,7 @@ public enum MavCmd {
    * param[6]: Longitude
    * param[7]: Altitude
    */
-  @MavlinkEnumEntry(5100)
+  @MavlinkEntryInfo(5100)
   MAV_CMD_NAV_RALLY_POINT,
 
   /**
@@ -1356,7 +1356,7 @@ public enum MavCmd {
    * param[6]: Reserved (set to 0)
    * param[7]: Reserved (set to 0)
    */
-  @MavlinkEnumEntry(5200)
+  @MavlinkEntryInfo(5200)
   MAV_CMD_UAVCAN_GET_NODE_INFO,
 
   /**
@@ -1369,7 +1369,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled for MISSION_ITEM or in 1e7 degrees for MISSION_ITEM_INT
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(30001)
+  @MavlinkEntryInfo(30001)
   MAV_CMD_PAYLOAD_PREPARE_DEPLOY,
 
   /**
@@ -1382,7 +1382,7 @@ public enum MavCmd {
    * param[6]: Reserved
    * param[7]: Reserved
    */
-  @MavlinkEnumEntry(30002)
+  @MavlinkEntryInfo(30002)
   MAV_CMD_PAYLOAD_CONTROL_DEPLOY,
 
   /**
@@ -1395,7 +1395,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31000)
+  @MavlinkEntryInfo(31000)
   MAV_CMD_WAYPOINT_USER_1,
 
   /**
@@ -1408,7 +1408,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31001)
+  @MavlinkEntryInfo(31001)
   MAV_CMD_WAYPOINT_USER_2,
 
   /**
@@ -1421,7 +1421,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31002)
+  @MavlinkEntryInfo(31002)
   MAV_CMD_WAYPOINT_USER_3,
 
   /**
@@ -1434,7 +1434,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31003)
+  @MavlinkEntryInfo(31003)
   MAV_CMD_WAYPOINT_USER_4,
 
   /**
@@ -1447,7 +1447,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31004)
+  @MavlinkEntryInfo(31004)
   MAV_CMD_WAYPOINT_USER_5,
 
   /**
@@ -1460,7 +1460,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31005)
+  @MavlinkEntryInfo(31005)
   MAV_CMD_SPATIAL_USER_1,
 
   /**
@@ -1473,7 +1473,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31006)
+  @MavlinkEntryInfo(31006)
   MAV_CMD_SPATIAL_USER_2,
 
   /**
@@ -1486,7 +1486,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31007)
+  @MavlinkEntryInfo(31007)
   MAV_CMD_SPATIAL_USER_3,
 
   /**
@@ -1499,7 +1499,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31008)
+  @MavlinkEntryInfo(31008)
   MAV_CMD_SPATIAL_USER_4,
 
   /**
@@ -1512,7 +1512,7 @@ public enum MavCmd {
    * param[6]: Longitude unscaled
    * param[7]: Altitude, in meters AMSL
    */
-  @MavlinkEnumEntry(31009)
+  @MavlinkEntryInfo(31009)
   MAV_CMD_SPATIAL_USER_5,
 
   /**
@@ -1525,7 +1525,7 @@ public enum MavCmd {
    * param[6]: User defined
    * param[7]: User defined
    */
-  @MavlinkEnumEntry(31010)
+  @MavlinkEntryInfo(31010)
   MAV_CMD_USER_1,
 
   /**
@@ -1538,7 +1538,7 @@ public enum MavCmd {
    * param[6]: User defined
    * param[7]: User defined
    */
-  @MavlinkEnumEntry(31011)
+  @MavlinkEntryInfo(31011)
   MAV_CMD_USER_2,
 
   /**
@@ -1551,7 +1551,7 @@ public enum MavCmd {
    * param[6]: User defined
    * param[7]: User defined
    */
-  @MavlinkEnumEntry(31012)
+  @MavlinkEntryInfo(31012)
   MAV_CMD_USER_3,
 
   /**
@@ -1564,7 +1564,7 @@ public enum MavCmd {
    * param[6]: User defined
    * param[7]: User defined
    */
-  @MavlinkEnumEntry(31013)
+  @MavlinkEntryInfo(31013)
   MAV_CMD_USER_4,
 
   /**
@@ -1577,7 +1577,7 @@ public enum MavCmd {
    * param[6]: User defined
    * param[7]: User defined
    */
-  @MavlinkEnumEntry(31014)
+  @MavlinkEntryInfo(31014)
   MAV_CMD_USER_5,
 
   /**
@@ -1591,7 +1591,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(211)
+  @MavlinkEntryInfo(211)
   MAV_CMD_DO_GRIPPER,
 
   /**
@@ -1605,7 +1605,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(212)
+  @MavlinkEntryInfo(212)
   MAV_CMD_DO_AUTOTUNE_ENABLE,
 
   /**
@@ -1619,7 +1619,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(83)
+  @MavlinkEntryInfo(83)
   MAV_CMD_NAV_ALTITUDE_WAIT,
 
   /**
@@ -1633,7 +1633,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42000)
+  @MavlinkEntryInfo(42000)
   MAV_CMD_POWER_OFF_INITIATED,
 
   /**
@@ -1647,7 +1647,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42001)
+  @MavlinkEntryInfo(42001)
   MAV_CMD_SOLO_BTN_FLY_CLICK,
 
   /**
@@ -1661,7 +1661,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42002)
+  @MavlinkEntryInfo(42002)
   MAV_CMD_SOLO_BTN_FLY_HOLD,
 
   /**
@@ -1675,7 +1675,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42003)
+  @MavlinkEntryInfo(42003)
   MAV_CMD_SOLO_BTN_PAUSE_CLICK,
 
   /**
@@ -1690,7 +1690,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42004)
+  @MavlinkEntryInfo(42004)
   MAV_CMD_FIXED_MAG_CAL,
 
   /**
@@ -1704,7 +1704,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42005)
+  @MavlinkEntryInfo(42005)
   MAV_CMD_FIXED_MAG_CAL_FIELD,
 
   /**
@@ -1718,7 +1718,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42424)
+  @MavlinkEntryInfo(42424)
   MAV_CMD_DO_START_MAG_CAL,
 
   /**
@@ -1732,7 +1732,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42425)
+  @MavlinkEntryInfo(42425)
   MAV_CMD_DO_ACCEPT_MAG_CAL,
 
   /**
@@ -1746,7 +1746,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42426)
+  @MavlinkEntryInfo(42426)
   MAV_CMD_DO_CANCEL_MAG_CAL,
 
   /**
@@ -1760,7 +1760,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42429)
+  @MavlinkEntryInfo(42429)
   MAV_CMD_ACCELCAL_VEHICLE_POS,
 
   /**
@@ -1774,7 +1774,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42428)
+  @MavlinkEntryInfo(42428)
   MAV_CMD_DO_SEND_BANNER,
 
   /**
@@ -1788,7 +1788,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42427)
+  @MavlinkEntryInfo(42427)
   MAV_CMD_SET_FACTORY_TEST_MODE,
 
   /**
@@ -1802,7 +1802,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42501)
+  @MavlinkEntryInfo(42501)
   MAV_CMD_GIMBAL_RESET,
 
   /**
@@ -1816,7 +1816,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42502)
+  @MavlinkEntryInfo(42502)
   MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS,
 
   /**
@@ -1830,7 +1830,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42503)
+  @MavlinkEntryInfo(42503)
   MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION,
 
   /**
@@ -1844,7 +1844,7 @@ public enum MavCmd {
    * param[7]: Magic number
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42505)
+  @MavlinkEntryInfo(42505)
   MAV_CMD_GIMBAL_FULL_RESET,
 
   /**
@@ -1858,7 +1858,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.ardupilotmega package</b>
    */
-  @MavlinkEnumEntry(42600)
+  @MavlinkEntryInfo(42600)
   MAV_CMD_DO_WINCH,
 
   /**
@@ -1866,7 +1866,7 @@ public enum MavCmd {
    * param[1]: 1 to arm, 0 to disarm
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10001)
+  @MavlinkEntryInfo(10001)
   MAV_CMD_DO_NOTHING,
 
   /**
@@ -1874,14 +1874,14 @@ public enum MavCmd {
    * param[1]: 0: return to base, 1: track mobile base
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10011)
+  @MavlinkEntryInfo(10011)
   MAV_CMD_RETURN_TO_BASE,
 
   /**
    * Stops the vehicle from returning to base and resumes flight.
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10012)
+  @MavlinkEntryInfo(10012)
   MAV_CMD_STOP_RETURN_TO_BASE,
 
   /**
@@ -1890,14 +1890,14 @@ public enum MavCmd {
    * param[2]: 0: turn on, 1: turn off
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10013)
+  @MavlinkEntryInfo(10013)
   MAV_CMD_TURN_LIGHT,
 
   /**
    * Requests vehicle to send current mid-level commands to ground station.
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10014)
+  @MavlinkEntryInfo(10014)
   MAV_CMD_GET_MID_LEVEL_COMMANDS,
 
   /**
@@ -1905,7 +1905,7 @@ public enum MavCmd {
    * param[1]: Mid-level command storage: 0: read from flash/EEPROM, 1: write to flash/EEPROM
    * <b>added by io.dronefleet.mavlink.slugs package</b>
    */
-  @MavlinkEnumEntry(10015)
+  @MavlinkEntryInfo(10015)
   MAV_CMD_MIDLEVEL_STORAGE,
 
   /**
@@ -1919,7 +1919,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.asluav package</b>
    */
-  @MavlinkEnumEntry(40001)
+  @MavlinkEntryInfo(40001)
   MAV_CMD_RESET_MPPT,
 
   /**
@@ -1933,7 +1933,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.asluav package</b>
    */
-  @MavlinkEnumEntry(40002)
+  @MavlinkEntryInfo(40002)
   MAV_CMD_PAYLOAD_CONTROL,
 
   /**
@@ -1947,7 +1947,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.matrixpilot package</b>
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_CMD_PREFLIGHT_STORAGE_ADVANCED,
 
   /**
@@ -1961,7 +1961,7 @@ public enum MavCmd {
    * param[7]: Altitude
    * <b>added by io.dronefleet.mavlink.autoquad package</b>
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_CMD_AQ_NAV_LEG_ORBIT,
 
   /**
@@ -1975,7 +1975,7 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.autoquad package</b>
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_CMD_AQ_TELEMETRY,
 
   /**
@@ -1989,6 +1989,6 @@ public enum MavCmd {
    * param[7]: Empty
    * <b>added by io.dronefleet.mavlink.autoquad package</b>
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_CMD_AQ_REQUEST_VERSION
 }

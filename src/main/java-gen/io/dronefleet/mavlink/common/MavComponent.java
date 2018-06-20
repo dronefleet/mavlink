@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,240 +11,240 @@ public enum MavComponent {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_COMP_ID_ALL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_COMP_ID_AUTOPILOT1,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(100)
+  @MavlinkEntryInfo(100)
   MAV_COMP_ID_CAMERA,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(101)
+  @MavlinkEntryInfo(101)
   MAV_COMP_ID_CAMERA2,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(102)
+  @MavlinkEntryInfo(102)
   MAV_COMP_ID_CAMERA3,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(103)
+  @MavlinkEntryInfo(103)
   MAV_COMP_ID_CAMERA4,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(104)
+  @MavlinkEntryInfo(104)
   MAV_COMP_ID_CAMERA5,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(105)
+  @MavlinkEntryInfo(105)
   MAV_COMP_ID_CAMERA6,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(140)
+  @MavlinkEntryInfo(140)
   MAV_COMP_ID_SERVO1,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(141)
+  @MavlinkEntryInfo(141)
   MAV_COMP_ID_SERVO2,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(142)
+  @MavlinkEntryInfo(142)
   MAV_COMP_ID_SERVO3,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(143)
+  @MavlinkEntryInfo(143)
   MAV_COMP_ID_SERVO4,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(144)
+  @MavlinkEntryInfo(144)
   MAV_COMP_ID_SERVO5,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(145)
+  @MavlinkEntryInfo(145)
   MAV_COMP_ID_SERVO6,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(146)
+  @MavlinkEntryInfo(146)
   MAV_COMP_ID_SERVO7,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(147)
+  @MavlinkEntryInfo(147)
   MAV_COMP_ID_SERVO8,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(148)
+  @MavlinkEntryInfo(148)
   MAV_COMP_ID_SERVO9,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(149)
+  @MavlinkEntryInfo(149)
   MAV_COMP_ID_SERVO10,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(150)
+  @MavlinkEntryInfo(150)
   MAV_COMP_ID_SERVO11,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(151)
+  @MavlinkEntryInfo(151)
   MAV_COMP_ID_SERVO12,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(152)
+  @MavlinkEntryInfo(152)
   MAV_COMP_ID_SERVO13,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(153)
+  @MavlinkEntryInfo(153)
   MAV_COMP_ID_SERVO14,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(154)
+  @MavlinkEntryInfo(154)
   MAV_COMP_ID_GIMBAL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(155)
+  @MavlinkEntryInfo(155)
   MAV_COMP_ID_LOG,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(156)
+  @MavlinkEntryInfo(156)
   MAV_COMP_ID_ADSB,
 
   /**
    * On Screen Display (OSD) devices for video links
    */
-  @MavlinkEnumEntry(157)
+  @MavlinkEntryInfo(157)
   MAV_COMP_ID_OSD,
 
   /**
    * Generic autopilot peripheral component ID. Meant for devices that do not implement the parameter sub-protocol
    */
-  @MavlinkEnumEntry(158)
+  @MavlinkEntryInfo(158)
   MAV_COMP_ID_PERIPHERAL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(159)
+  @MavlinkEntryInfo(159)
   MAV_COMP_ID_QX1_GIMBAL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(160)
+  @MavlinkEntryInfo(160)
   MAV_COMP_ID_FLARM,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(180)
+  @MavlinkEntryInfo(180)
   MAV_COMP_ID_MAPPER,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(190)
+  @MavlinkEntryInfo(190)
   MAV_COMP_ID_MISSIONPLANNER,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(195)
+  @MavlinkEntryInfo(195)
   MAV_COMP_ID_PATHPLANNER,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(200)
+  @MavlinkEntryInfo(200)
   MAV_COMP_ID_IMU,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(201)
+  @MavlinkEntryInfo(201)
   MAV_COMP_ID_IMU_2,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(202)
+  @MavlinkEntryInfo(202)
   MAV_COMP_ID_IMU_3,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(220)
+  @MavlinkEntryInfo(220)
   MAV_COMP_ID_GPS,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(221)
+  @MavlinkEntryInfo(221)
   MAV_COMP_ID_GPS2,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(240)
+  @MavlinkEntryInfo(240)
   MAV_COMP_ID_UDP_BRIDGE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(241)
+  @MavlinkEntryInfo(241)
   MAV_COMP_ID_UART_BRIDGE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(250)
+  @MavlinkEntryInfo(250)
   MAV_COMP_ID_SYSTEM_CONTROL
 }

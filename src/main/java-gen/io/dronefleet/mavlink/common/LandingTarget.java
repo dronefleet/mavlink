@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * The location of a landing area captured from a downward facing camera 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 149,
     crc = 200
 )
@@ -134,7 +134,7 @@ public final class LandingTarget {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -145,7 +145,7 @@ public final class LandingTarget {
   /**
    * X-axis angular offset (in radians) of the target from the center of the image 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class LandingTarget {
   /**
    * Y-axis angular offset (in radians) of the target from the center of the image 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class LandingTarget {
   /**
    * Distance to the target from the vehicle in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class LandingTarget {
   /**
    * Size in radians of target along x-axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class LandingTarget {
   /**
    * Size in radians of target along y-axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class LandingTarget {
   /**
    * The ID of the target if multiple targets are present 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -212,7 +212,7 @@ public final class LandingTarget {
    * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
    * etc. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -223,7 +223,7 @@ public final class LandingTarget {
   /**
    * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4,
       extension = true
@@ -235,7 +235,7 @@ public final class LandingTarget {
   /**
    * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4,
       extension = true
@@ -247,7 +247,7 @@ public final class LandingTarget {
   /**
    * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4,
       extension = true
@@ -259,7 +259,7 @@ public final class LandingTarget {
   /**
    * Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4,
       arraySize = 4,
@@ -272,7 +272,7 @@ public final class LandingTarget {
   /**
    * {@link io.dronefleet.mavlink.common.LandingTargetType LandingTargetType} enum specifying the type of landing target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1,
       extension = true
@@ -285,7 +285,7 @@ public final class LandingTarget {
    * Boolean indicating known position (1) or default unkown position (0), for validation of 
    * positioning of the landing target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 1,
       extension = true
@@ -329,7 +329,7 @@ public final class LandingTarget {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -341,7 +341,7 @@ public final class LandingTarget {
     /**
      * X-axis angular offset (in radians) of the target from the center of the image 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -353,7 +353,7 @@ public final class LandingTarget {
     /**
      * Y-axis angular offset (in radians) of the target from the center of the image 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -365,7 +365,7 @@ public final class LandingTarget {
     /**
      * Distance to the target from the vehicle in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -377,7 +377,7 @@ public final class LandingTarget {
     /**
      * Size in radians of target along x-axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -389,7 +389,7 @@ public final class LandingTarget {
     /**
      * Size in radians of target along y-axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -401,7 +401,7 @@ public final class LandingTarget {
     /**
      * The ID of the target if multiple targets are present 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -414,7 +414,7 @@ public final class LandingTarget {
      * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
      * etc. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -426,7 +426,7 @@ public final class LandingTarget {
     /**
      * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4,
         extension = true
@@ -439,7 +439,7 @@ public final class LandingTarget {
     /**
      * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4,
         extension = true
@@ -452,7 +452,7 @@ public final class LandingTarget {
     /**
      * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4,
         extension = true
@@ -465,7 +465,7 @@ public final class LandingTarget {
     /**
      * Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4,
         arraySize = 4,
@@ -479,7 +479,7 @@ public final class LandingTarget {
     /**
      * {@link io.dronefleet.mavlink.common.LandingTargetType LandingTargetType} enum specifying the type of landing target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1,
         extension = true
@@ -493,7 +493,7 @@ public final class LandingTarget {
      * Boolean indicating known position (1) or default unkown position (0), for validation of 
      * positioning of the landing target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 1,
         extension = true

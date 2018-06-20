@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Transmits the actual Pan, Tilt and Zoom values of the camera unit 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 192,
     crc = 187
 )
@@ -50,7 +50,7 @@ public final class PtzStatus {
   /**
    * The Pan value in 10ths of degree 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -61,7 +61,7 @@ public final class PtzStatus {
   /**
    * The Tilt value in 10ths of degree 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -72,7 +72,7 @@ public final class PtzStatus {
   /**
    * The actual Zoom Value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class PtzStatus {
     /**
      * The Pan value in 10ths of degree 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -105,7 +105,7 @@ public final class PtzStatus {
     /**
      * The Tilt value in 10ths of degree 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -117,7 +117,7 @@ public final class PtzStatus {
     /**
      * The actual Zoom Value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Message that announces the sequence number of the current active mission item. The MAV will fly 
  * towards this mission item. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 42,
     crc = 28
 )
@@ -37,7 +37,7 @@ public final class MissionCurrent {
   /**
    * Sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -54,7 +54,7 @@ public final class MissionCurrent {
     /**
      * Sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )

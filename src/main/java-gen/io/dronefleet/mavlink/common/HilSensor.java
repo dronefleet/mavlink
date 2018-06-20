@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * The IMU readings in SI units in NED body frame 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 107,
     crc = 108
 )
@@ -138,7 +138,7 @@ public final class HilSensor {
   /**
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -149,7 +149,7 @@ public final class HilSensor {
   /**
    * X acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class HilSensor {
   /**
    * Y acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class HilSensor {
   /**
    * Z acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class HilSensor {
   /**
    * Angular speed around X axis in body frame (rad / sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -193,7 +193,7 @@ public final class HilSensor {
   /**
    * Angular speed around Y axis in body frame (rad / sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -204,7 +204,7 @@ public final class HilSensor {
   /**
    * Angular speed around Z axis in body frame (rad / sec) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -215,7 +215,7 @@ public final class HilSensor {
   /**
    * X Magnetic field (Gauss) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -226,7 +226,7 @@ public final class HilSensor {
   /**
    * Y Magnetic field (Gauss) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -237,7 +237,7 @@ public final class HilSensor {
   /**
    * Z Magnetic field (Gauss) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -248,7 +248,7 @@ public final class HilSensor {
   /**
    * Absolute pressure in millibar 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -259,7 +259,7 @@ public final class HilSensor {
   /**
    * Differential pressure (airspeed) in millibar 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -270,7 +270,7 @@ public final class HilSensor {
   /**
    * Altitude calculated from pressure 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -281,7 +281,7 @@ public final class HilSensor {
   /**
    * Temperature in degrees celsius 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -293,7 +293,7 @@ public final class HilSensor {
    * Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 
    * 31: full reset of attitude/position/velocities/etc was performed in sim. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -338,7 +338,7 @@ public final class HilSensor {
     /**
      * Timestamp (microseconds, synced to UNIX time or since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -350,7 +350,7 @@ public final class HilSensor {
     /**
      * X acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -362,7 +362,7 @@ public final class HilSensor {
     /**
      * Y acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -374,7 +374,7 @@ public final class HilSensor {
     /**
      * Z acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -386,7 +386,7 @@ public final class HilSensor {
     /**
      * Angular speed around X axis in body frame (rad / sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -398,7 +398,7 @@ public final class HilSensor {
     /**
      * Angular speed around Y axis in body frame (rad / sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -410,7 +410,7 @@ public final class HilSensor {
     /**
      * Angular speed around Z axis in body frame (rad / sec) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -422,7 +422,7 @@ public final class HilSensor {
     /**
      * X Magnetic field (Gauss) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -434,7 +434,7 @@ public final class HilSensor {
     /**
      * Y Magnetic field (Gauss) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -446,7 +446,7 @@ public final class HilSensor {
     /**
      * Z Magnetic field (Gauss) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -458,7 +458,7 @@ public final class HilSensor {
     /**
      * Absolute pressure in millibar 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -470,7 +470,7 @@ public final class HilSensor {
     /**
      * Differential pressure (airspeed) in millibar 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -482,7 +482,7 @@ public final class HilSensor {
     /**
      * Altitude calculated from pressure 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -494,7 +494,7 @@ public final class HilSensor {
     /**
      * Temperature in degrees celsius 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -507,7 +507,7 @@ public final class HilSensor {
      * Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 
      * 31: full reset of attitude/position/velocities/etc was performed in sim. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )

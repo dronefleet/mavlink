@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Reports results of completed compass calibration. Sent until MAG_CAL_ACK received. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 192,
     crc = 36
 )
@@ -129,7 +129,7 @@ public final class MagCalReport {
   /**
    * RMS milligauss residuals 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -140,7 +140,7 @@ public final class MagCalReport {
   /**
    * X offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -151,7 +151,7 @@ public final class MagCalReport {
   /**
    * Y offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -162,7 +162,7 @@ public final class MagCalReport {
   /**
    * Z offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -173,7 +173,7 @@ public final class MagCalReport {
   /**
    * X diagonal (matrix 11) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -184,7 +184,7 @@ public final class MagCalReport {
   /**
    * Y diagonal (matrix 22) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -195,7 +195,7 @@ public final class MagCalReport {
   /**
    * Z diagonal (matrix 33) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -206,7 +206,7 @@ public final class MagCalReport {
   /**
    * X off-diagonal (matrix 12 and 21) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -217,7 +217,7 @@ public final class MagCalReport {
   /**
    * Y off-diagonal (matrix 13 and 31) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -228,7 +228,7 @@ public final class MagCalReport {
   /**
    * Z off-diagonal (matrix 32 and 23) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -239,7 +239,7 @@ public final class MagCalReport {
   /**
    * Compass being calibrated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -250,7 +250,7 @@ public final class MagCalReport {
   /**
    * Bitmask of compasses being calibrated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -261,7 +261,7 @@ public final class MagCalReport {
   /**
    * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -272,7 +272,7 @@ public final class MagCalReport {
   /**
    * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -315,7 +315,7 @@ public final class MagCalReport {
     /**
      * RMS milligauss residuals 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -327,7 +327,7 @@ public final class MagCalReport {
     /**
      * X offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -339,7 +339,7 @@ public final class MagCalReport {
     /**
      * Y offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -351,7 +351,7 @@ public final class MagCalReport {
     /**
      * Z offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -363,7 +363,7 @@ public final class MagCalReport {
     /**
      * X diagonal (matrix 11) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -375,7 +375,7 @@ public final class MagCalReport {
     /**
      * Y diagonal (matrix 22) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -387,7 +387,7 @@ public final class MagCalReport {
     /**
      * Z diagonal (matrix 33) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -399,7 +399,7 @@ public final class MagCalReport {
     /**
      * X off-diagonal (matrix 12 and 21) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -411,7 +411,7 @@ public final class MagCalReport {
     /**
      * Y off-diagonal (matrix 13 and 31) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -423,7 +423,7 @@ public final class MagCalReport {
     /**
      * Z off-diagonal (matrix 32 and 23) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -435,7 +435,7 @@ public final class MagCalReport {
     /**
      * Compass being calibrated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -447,7 +447,7 @@ public final class MagCalReport {
     /**
      * Bitmask of compasses being calibrated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -459,7 +459,7 @@ public final class MagCalReport {
     /**
      * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -471,7 +471,7 @@ public final class MagCalReport {
     /**
      * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

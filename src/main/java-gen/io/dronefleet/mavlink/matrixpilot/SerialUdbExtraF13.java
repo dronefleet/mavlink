@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F13: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 177,
     crc = 249
 )
@@ -57,7 +57,7 @@ public final class SerialUdbExtraF13 {
   /**
    * Serial UDB Extra MP Origin Latitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -68,7 +68,7 @@ public final class SerialUdbExtraF13 {
   /**
    * Serial UDB Extra MP Origin Longitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -79,7 +79,7 @@ public final class SerialUdbExtraF13 {
   /**
    * Serial UDB Extra MP Origin Altitude Above Sea Level 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class SerialUdbExtraF13 {
   /**
    * Serial UDB Extra GPS Week Number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -113,7 +113,7 @@ public final class SerialUdbExtraF13 {
     /**
      * Serial UDB Extra MP Origin Latitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -125,7 +125,7 @@ public final class SerialUdbExtraF13 {
     /**
      * Serial UDB Extra MP Origin Longitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -137,7 +137,7 @@ public final class SerialUdbExtraF13 {
     /**
      * Serial UDB Extra MP Origin Altitude Above Sea Level 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -149,7 +149,7 @@ public final class SerialUdbExtraF13 {
     /**
      * Serial UDB Extra GPS Week Number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )

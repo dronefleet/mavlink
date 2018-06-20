@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Integer;
 import java.lang.Override;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Version and capability of autopilot software 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 148,
     crc = 178
 )
@@ -127,7 +127,7 @@ public final class AutopilotVersion {
   /**
    * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MavProtocolCapability} enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -138,7 +138,7 @@ public final class AutopilotVersion {
   /**
    * UID if provided by hardware (see uid2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 8
   )
@@ -149,7 +149,7 @@ public final class AutopilotVersion {
   /**
    * Firmware version number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class AutopilotVersion {
   /**
    * Middleware version number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class AutopilotVersion {
   /**
    * Operating system version number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class AutopilotVersion {
   /**
    * HW / board version (last 8 bytes should be silicon ID, if any) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -193,7 +193,7 @@ public final class AutopilotVersion {
   /**
    * ID of the board vendor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -204,7 +204,7 @@ public final class AutopilotVersion {
   /**
    * ID of the product 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -217,7 +217,7 @@ public final class AutopilotVersion {
    * identifier, but should allow to identify the commit using the main version number even for very 
    * large code bases. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 8
@@ -231,7 +231,7 @@ public final class AutopilotVersion {
    * identifier, but should allow to identify the commit using the main version number even for very 
    * large code bases. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1,
       arraySize = 8
@@ -245,7 +245,7 @@ public final class AutopilotVersion {
    * identifier, but should allow to identify the commit using the main version number even for very 
    * large code bases. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1,
       arraySize = 8
@@ -258,7 +258,7 @@ public final class AutopilotVersion {
    * UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, 
    * otherwise use uid) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1,
       arraySize = 18,
@@ -299,7 +299,7 @@ public final class AutopilotVersion {
     /**
      * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MavProtocolCapability} enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -311,7 +311,7 @@ public final class AutopilotVersion {
     /**
      * UID if provided by hardware (see uid2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 8
     )
@@ -323,7 +323,7 @@ public final class AutopilotVersion {
     /**
      * Firmware version number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -335,7 +335,7 @@ public final class AutopilotVersion {
     /**
      * Middleware version number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -347,7 +347,7 @@ public final class AutopilotVersion {
     /**
      * Operating system version number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -359,7 +359,7 @@ public final class AutopilotVersion {
     /**
      * HW / board version (last 8 bytes should be silicon ID, if any) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -371,7 +371,7 @@ public final class AutopilotVersion {
     /**
      * ID of the board vendor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -383,7 +383,7 @@ public final class AutopilotVersion {
     /**
      * ID of the product 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -397,7 +397,7 @@ public final class AutopilotVersion {
      * identifier, but should allow to identify the commit using the main version number even for very 
      * large code bases. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 8
@@ -412,7 +412,7 @@ public final class AutopilotVersion {
      * identifier, but should allow to identify the commit using the main version number even for very 
      * large code bases. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1,
         arraySize = 8
@@ -427,7 +427,7 @@ public final class AutopilotVersion {
      * identifier, but should allow to identify the commit using the main version number even for very 
      * large code bases. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1,
         arraySize = 8
@@ -441,7 +441,7 @@ public final class AutopilotVersion {
      * UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, 
      * otherwise use uid) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1,
         arraySize = 18,

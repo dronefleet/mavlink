@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * system to this message should be a {@link io.dronefleet.mavlink.common.MissionItem MissionItem} message. 
  * https://mavlink.io/en/protocol/mission.html 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 40,
     crc = 230
 )
@@ -60,7 +60,7 @@ public final class MissionRequest {
   /**
    * Sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -71,7 +71,7 @@ public final class MissionRequest {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -82,7 +82,7 @@ public final class MissionRequest {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class MissionRequest {
   /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       extension = true
@@ -117,7 +117,7 @@ public final class MissionRequest {
     /**
      * Sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -129,7 +129,7 @@ public final class MissionRequest {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -141,7 +141,7 @@ public final class MissionRequest {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -153,7 +153,7 @@ public final class MissionRequest {
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         extension = true

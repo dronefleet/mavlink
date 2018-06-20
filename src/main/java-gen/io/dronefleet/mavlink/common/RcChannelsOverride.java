@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -13,7 +13,7 @@ import java.lang.String;
  * microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might 
  * violate this specification. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 70,
     crc = 124
 )
@@ -176,7 +176,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 1 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -187,7 +187,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 2 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -198,7 +198,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 3 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -209,7 +209,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 4 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -220,7 +220,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 5 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -231,7 +231,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 6 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -242,7 +242,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 7 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -253,7 +253,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 8 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -264,7 +264,7 @@ public final class RcChannelsOverride {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -275,7 +275,7 @@ public final class RcChannelsOverride {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -286,7 +286,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 9 value, in microseconds. A value of 0 means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2,
       extension = true
@@ -298,7 +298,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 10 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2,
       extension = true
@@ -310,7 +310,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 11 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2,
       extension = true
@@ -322,7 +322,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 12 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2,
       extension = true
@@ -334,7 +334,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 13 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2,
       extension = true
@@ -346,7 +346,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 14 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 2,
       extension = true
@@ -358,7 +358,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 15 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 2,
       extension = true
@@ -370,7 +370,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 16 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 2,
       extension = true
@@ -382,7 +382,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 17 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 2,
       extension = true
@@ -394,7 +394,7 @@ public final class RcChannelsOverride {
   /**
    * RC channel 18 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 2,
       extension = true
@@ -450,7 +450,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 1 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -462,7 +462,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 2 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -474,7 +474,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 3 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -486,7 +486,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 4 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -498,7 +498,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 5 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -510,7 +510,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 6 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -522,7 +522,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 7 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -534,7 +534,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 8 value, in microseconds. A value of UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -546,7 +546,7 @@ public final class RcChannelsOverride {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -558,7 +558,7 @@ public final class RcChannelsOverride {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -570,7 +570,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 9 value, in microseconds. A value of 0 means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2,
         extension = true
@@ -583,7 +583,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 10 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2,
         extension = true
@@ -596,7 +596,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 11 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2,
         extension = true
@@ -609,7 +609,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 12 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2,
         extension = true
@@ -622,7 +622,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 13 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2,
         extension = true
@@ -635,7 +635,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 14 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 2,
         extension = true
@@ -648,7 +648,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 15 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 2,
         extension = true
@@ -661,7 +661,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 16 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 2,
         extension = true
@@ -674,7 +674,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 17 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 2,
         extension = true
@@ -687,7 +687,7 @@ public final class RcChannelsOverride {
     /**
      * RC channel 18 value, in microseconds. A value of 0 or UINT16_MAX means to ignore this field. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 2,
         extension = true

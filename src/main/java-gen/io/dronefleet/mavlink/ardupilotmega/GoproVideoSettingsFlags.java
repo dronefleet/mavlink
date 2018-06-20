@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,6 +11,6 @@ public enum GoproVideoSettingsFlags {
   /**
    * 0=NTSC, 1=PAL
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   GOPRO_VIDEO_SETTINGS_TV_MODE
 }

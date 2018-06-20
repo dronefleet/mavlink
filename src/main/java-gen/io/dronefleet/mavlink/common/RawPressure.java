@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * The RAW pressure readings for the typical setup of one absolute pressure and one differential 
  * pressure sensor. The sensor values should be the raw, UNSCALED ADC values. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 28,
     crc = 67
 )
@@ -67,7 +67,7 @@ public final class RawPressure {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -78,7 +78,7 @@ public final class RawPressure {
   /**
    * Absolute pressure (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -89,7 +89,7 @@ public final class RawPressure {
   /**
    * Differential pressure 1 (raw, 0 if nonexistant) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -100,7 +100,7 @@ public final class RawPressure {
   /**
    * Differential pressure 2 (raw, 0 if nonexistant) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -111,7 +111,7 @@ public final class RawPressure {
   /**
    * Raw Temperature measurement (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -136,7 +136,7 @@ public final class RawPressure {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -148,7 +148,7 @@ public final class RawPressure {
     /**
      * Absolute pressure (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -160,7 +160,7 @@ public final class RawPressure {
     /**
      * Differential pressure 1 (raw, 0 if nonexistant) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -172,7 +172,7 @@ public final class RawPressure {
     /**
      * Differential pressure 2 (raw, 0 if nonexistant) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -184,7 +184,7 @@ public final class RawPressure {
     /**
      * Raw Temperature measurement (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )

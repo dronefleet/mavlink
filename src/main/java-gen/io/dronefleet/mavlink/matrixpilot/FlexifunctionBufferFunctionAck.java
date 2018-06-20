@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Flexifunction type and parameters for component at function index from buffer 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 153,
     crc = 109
 )
@@ -58,7 +58,7 @@ public final class FlexifunctionBufferFunctionAck {
   /**
    * Function index 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -69,7 +69,7 @@ public final class FlexifunctionBufferFunctionAck {
   /**
    * result of acknowledge, 0=fail, 1=good 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -80,7 +80,7 @@ public final class FlexifunctionBufferFunctionAck {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -91,7 +91,7 @@ public final class FlexifunctionBufferFunctionAck {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -114,7 +114,7 @@ public final class FlexifunctionBufferFunctionAck {
     /**
      * Function index 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -126,7 +126,7 @@ public final class FlexifunctionBufferFunctionAck {
     /**
      * result of acknowledge, 0=fail, 1=good 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -138,7 +138,7 @@ public final class FlexifunctionBufferFunctionAck {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -150,7 +150,7 @@ public final class FlexifunctionBufferFunctionAck {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

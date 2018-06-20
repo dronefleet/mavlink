@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Second GPS data. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 124,
     crc = 87
 )
@@ -116,7 +116,7 @@ public final class Gps2Raw {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -127,7 +127,7 @@ public final class Gps2Raw {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class Gps2Raw {
   /**
    * Longitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -149,7 +149,7 @@ public final class Gps2Raw {
   /**
    * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class Gps2Raw {
   /**
    * Age of DGPS info 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class Gps2Raw {
   /**
    * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -182,7 +182,7 @@ public final class Gps2Raw {
   /**
    * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -193,7 +193,7 @@ public final class Gps2Raw {
   /**
    * GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -205,7 +205,7 @@ public final class Gps2Raw {
    * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
    * degrees. If unknown, set to: UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -216,7 +216,7 @@ public final class Gps2Raw {
   /**
    * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -227,7 +227,7 @@ public final class Gps2Raw {
   /**
    * Number of satellites visible. If unknown, set to 255 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -238,7 +238,7 @@ public final class Gps2Raw {
   /**
    * Number of DGPS satellites 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -277,7 +277,7 @@ public final class Gps2Raw {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -289,7 +289,7 @@ public final class Gps2Raw {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -301,7 +301,7 @@ public final class Gps2Raw {
     /**
      * Longitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -313,7 +313,7 @@ public final class Gps2Raw {
     /**
      * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -325,7 +325,7 @@ public final class Gps2Raw {
     /**
      * Age of DGPS info 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -337,7 +337,7 @@ public final class Gps2Raw {
     /**
      * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -349,7 +349,7 @@ public final class Gps2Raw {
     /**
      * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -361,7 +361,7 @@ public final class Gps2Raw {
     /**
      * GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -374,7 +374,7 @@ public final class Gps2Raw {
      * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
      * degrees. If unknown, set to: UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -386,7 +386,7 @@ public final class Gps2Raw {
     /**
      * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -398,7 +398,7 @@ public final class Gps2Raw {
     /**
      * Number of satellites visible. If unknown, set to 255 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -410,7 +410,7 @@ public final class Gps2Raw {
     /**
      * Number of DGPS satellites 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Request to control this MAV 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 5,
     crc = 217
 )
@@ -60,7 +60,7 @@ public final class ChangeOperatorControl {
   /**
    * System the GCS requests control for 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -71,7 +71,7 @@ public final class ChangeOperatorControl {
   /**
    * 0: request control of this MAV, 1: Release control of this MAV 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -84,7 +84,7 @@ public final class ChangeOperatorControl {
    * general use the safest mode possible initially and then gradually move down the encryption 
    * level if it gets a NACK message indicating an encryption mismatch. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -96,7 +96,7 @@ public final class ChangeOperatorControl {
    * Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL 
    * terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-" 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 25
@@ -120,7 +120,7 @@ public final class ChangeOperatorControl {
     /**
      * System the GCS requests control for 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -132,7 +132,7 @@ public final class ChangeOperatorControl {
     /**
      * 0: request control of this MAV, 1: Release control of this MAV 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -146,7 +146,7 @@ public final class ChangeOperatorControl {
      * general use the safest mode possible initially and then gradually move down the encryption 
      * level if it gets a NACK message indicating an encryption mismatch. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -159,7 +159,7 @@ public final class ChangeOperatorControl {
      * Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL 
      * terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-" 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 25

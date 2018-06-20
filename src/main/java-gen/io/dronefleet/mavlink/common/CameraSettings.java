@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 260,
     crc = 146
 )
@@ -43,7 +43,7 @@ public final class CameraSettings {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -54,7 +54,7 @@ public final class CameraSettings {
   /**
    * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CameraMode}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class CameraSettings {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -85,7 +85,7 @@ public final class CameraSettings {
     /**
      * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CameraMode}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE MESSAGE_INTERVAL INSTEAD. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 67,
     crc = 21
 )
@@ -50,7 +50,7 @@ public final class DataStream {
   /**
    * The message rate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -61,7 +61,7 @@ public final class DataStream {
   /**
    * The ID of the requested data stream 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -72,7 +72,7 @@ public final class DataStream {
   /**
    * 1 stream is enabled, 0 stream is stopped. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -93,7 +93,7 @@ public final class DataStream {
     /**
      * The message rate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -105,7 +105,7 @@ public final class DataStream {
     /**
      * The ID of the requested data stream 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -117,7 +117,7 @@ public final class DataStream {
     /**
      * 1 stream is enabled, 0 stream is stopped. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

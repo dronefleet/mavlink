@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Battery pack monitoring data for Li-Ion batteries 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 209,
     crc = 155
 )
@@ -138,7 +138,7 @@ public final class SensBatmon {
   /**
    * Time since system start 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -149,7 +149,7 @@ public final class SensBatmon {
   /**
    * Battery pack temperature 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class SensBatmon {
   /**
    * Battery monitor safetystatus report bits in Hex 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class SensBatmon {
   /**
    * Battery monitor operation status report bits in Hex 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class SensBatmon {
   /**
    * Battery pack voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -193,7 +193,7 @@ public final class SensBatmon {
   /**
    * Battery pack current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -204,7 +204,7 @@ public final class SensBatmon {
   /**
    * Battery monitor status report bits in Hex 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -215,7 +215,7 @@ public final class SensBatmon {
   /**
    * Battery monitor serial number in Hex 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -226,7 +226,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 1 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -237,7 +237,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 2 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -248,7 +248,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 3 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -259,7 +259,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 4 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -270,7 +270,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 5 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2
   )
@@ -281,7 +281,7 @@ public final class SensBatmon {
   /**
    * Battery pack cell 6 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2
   )
@@ -292,7 +292,7 @@ public final class SensBatmon {
   /**
    * Battery pack state-of-charge 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -337,7 +337,7 @@ public final class SensBatmon {
     /**
      * Time since system start 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -349,7 +349,7 @@ public final class SensBatmon {
     /**
      * Battery pack temperature 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -361,7 +361,7 @@ public final class SensBatmon {
     /**
      * Battery monitor safetystatus report bits in Hex 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -373,7 +373,7 @@ public final class SensBatmon {
     /**
      * Battery monitor operation status report bits in Hex 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -385,7 +385,7 @@ public final class SensBatmon {
     /**
      * Battery pack voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -397,7 +397,7 @@ public final class SensBatmon {
     /**
      * Battery pack current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -409,7 +409,7 @@ public final class SensBatmon {
     /**
      * Battery monitor status report bits in Hex 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -421,7 +421,7 @@ public final class SensBatmon {
     /**
      * Battery monitor serial number in Hex 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -433,7 +433,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 1 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -445,7 +445,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 2 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -457,7 +457,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 3 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -469,7 +469,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 4 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -481,7 +481,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 5 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2
     )
@@ -493,7 +493,7 @@ public final class SensBatmon {
     /**
      * Battery pack cell 6 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2
     )
@@ -505,7 +505,7 @@ public final class SensBatmon {
     /**
      * Battery pack state-of-charge 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

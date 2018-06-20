@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * https://mavlink.io/en/protocol/mission.html. If start and end index are the same, just 
  * send one waypoint. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 37,
     crc = 212
 )
@@ -67,7 +67,7 @@ public final class MissionRequestPartialList {
   /**
    * Start index, 0 by default 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -78,7 +78,7 @@ public final class MissionRequestPartialList {
   /**
    * End index, -1 by default (-1: send list to end). Else a valid index of the list 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -89,7 +89,7 @@ public final class MissionRequestPartialList {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -100,7 +100,7 @@ public final class MissionRequestPartialList {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -111,7 +111,7 @@ public final class MissionRequestPartialList {
   /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       extension = true
@@ -137,7 +137,7 @@ public final class MissionRequestPartialList {
     /**
      * Start index, 0 by default 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -149,7 +149,7 @@ public final class MissionRequestPartialList {
     /**
      * End index, -1 by default (-1: send list to end). Else a valid index of the list 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -161,7 +161,7 @@ public final class MissionRequestPartialList {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -173,7 +173,7 @@ public final class MissionRequestPartialList {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -185,7 +185,7 @@ public final class MissionRequestPartialList {
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         extension = true

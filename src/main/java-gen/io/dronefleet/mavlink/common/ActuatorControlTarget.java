@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Set the vehicle attitude and body angular rates. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 140,
     crc = 181
 )
@@ -57,7 +57,7 @@ public final class ActuatorControlTarget {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -71,7 +71,7 @@ public final class ActuatorControlTarget {
    * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
    * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4,
       arraySize = 8
@@ -84,7 +84,7 @@ public final class ActuatorControlTarget {
    * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
    * should use this field to difference between instances. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -105,7 +105,7 @@ public final class ActuatorControlTarget {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -120,7 +120,7 @@ public final class ActuatorControlTarget {
      * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
      * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4,
         arraySize = 8
@@ -134,7 +134,7 @@ public final class ActuatorControlTarget {
      * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
      * should use this field to difference between instances. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

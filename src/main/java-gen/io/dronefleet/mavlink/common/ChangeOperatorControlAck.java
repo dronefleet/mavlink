@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Accept / deny control of this MAV 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 6,
     crc = 104
 )
@@ -51,7 +51,7 @@ public final class ChangeOperatorControlAck {
   /**
    * ID of the GCS this message 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -62,7 +62,7 @@ public final class ChangeOperatorControlAck {
   /**
    * 0: request control of this MAV, 1: Release control of this MAV 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -74,7 +74,7 @@ public final class ChangeOperatorControlAck {
    * 0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: 
    * Already under control 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class ChangeOperatorControlAck {
     /**
      * ID of the GCS this message 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -107,7 +107,7 @@ public final class ChangeOperatorControlAck {
     /**
      * 0: request control of this MAV, 1: Release control of this MAV 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -120,7 +120,7 @@ public final class ChangeOperatorControlAck {
      * 0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: 
      * Already under control 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

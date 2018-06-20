@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * The filtered local position (e.g. fused computer vision and accelerometers). Coordinate 
  * frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 64,
     crc = 191
 )
@@ -120,7 +120,7 @@ public final class LocalPositionNedCov {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -131,7 +131,7 @@ public final class LocalPositionNedCov {
   /**
    * X Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -142,7 +142,7 @@ public final class LocalPositionNedCov {
   /**
    * Y Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class LocalPositionNedCov {
   /**
    * Z Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -164,7 +164,7 @@ public final class LocalPositionNedCov {
   /**
    * X Speed (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -175,7 +175,7 @@ public final class LocalPositionNedCov {
   /**
    * Y Speed (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -186,7 +186,7 @@ public final class LocalPositionNedCov {
   /**
    * Z Speed (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -197,7 +197,7 @@ public final class LocalPositionNedCov {
   /**
    * X Acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -208,7 +208,7 @@ public final class LocalPositionNedCov {
   /**
    * Y Acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -219,7 +219,7 @@ public final class LocalPositionNedCov {
   /**
    * Z Acceleration (m/s^2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -231,7 +231,7 @@ public final class LocalPositionNedCov {
    * Covariance matrix upper right triangular (first nine entries are the first ROW, next eight 
    * entries are the second row, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4,
       arraySize = 45
@@ -243,7 +243,7 @@ public final class LocalPositionNedCov {
   /**
    * Class id of the estimator this estimate originated from. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -282,7 +282,7 @@ public final class LocalPositionNedCov {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -294,7 +294,7 @@ public final class LocalPositionNedCov {
     /**
      * X Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -306,7 +306,7 @@ public final class LocalPositionNedCov {
     /**
      * Y Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -318,7 +318,7 @@ public final class LocalPositionNedCov {
     /**
      * Z Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -330,7 +330,7 @@ public final class LocalPositionNedCov {
     /**
      * X Speed (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -342,7 +342,7 @@ public final class LocalPositionNedCov {
     /**
      * Y Speed (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -354,7 +354,7 @@ public final class LocalPositionNedCov {
     /**
      * Z Speed (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -366,7 +366,7 @@ public final class LocalPositionNedCov {
     /**
      * X Acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -378,7 +378,7 @@ public final class LocalPositionNedCov {
     /**
      * Y Acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -390,7 +390,7 @@ public final class LocalPositionNedCov {
     /**
      * Z Acceleration (m/s^2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -403,7 +403,7 @@ public final class LocalPositionNedCov {
      * Covariance matrix upper right triangular (first nine entries are the first ROW, next eight 
      * entries are the second row, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4,
         arraySize = 45
@@ -416,7 +416,7 @@ public final class LocalPositionNedCov {
     /**
      * Class id of the estimator this estimate originated from. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

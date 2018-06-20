@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MavMode}. There is no target component id as the mode is by 
  * definition for the overall aircraft, not only for one component. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11,
     crc = 89
 )
@@ -52,7 +52,7 @@ public final class SetMode {
   /**
    * The new autopilot-specific mode. This field can be ignored by an autopilot. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -63,7 +63,7 @@ public final class SetMode {
   /**
    * The system setting the mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -74,7 +74,7 @@ public final class SetMode {
   /**
    * The new base mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class SetMode {
     /**
      * The new autopilot-specific mode. This field can be ignored by an autopilot. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -107,7 +107,7 @@ public final class SetMode {
     /**
      * The system setting the mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -119,7 +119,7 @@ public final class SetMode {
     /**
      * The new base mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * should match the commands sent in a {@link io.dronefleet.mavlink.common.SetAttitudeTarget SetAttitudeTarget} message if the vehicle is being 
  * controlled this way. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 83,
     crc = 22
 )
@@ -84,7 +84,7 @@ public final class AttitudeTarget {
   /**
    * Timestamp in milliseconds since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -95,7 +95,7 @@ public final class AttitudeTarget {
   /**
    * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4,
       arraySize = 4
@@ -107,7 +107,7 @@ public final class AttitudeTarget {
   /**
    * Body roll rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -118,7 +118,7 @@ public final class AttitudeTarget {
   /**
    * Body pitch rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -129,7 +129,7 @@ public final class AttitudeTarget {
   /**
    * Body yaw rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -140,7 +140,7 @@ public final class AttitudeTarget {
   /**
    * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -152,7 +152,7 @@ public final class AttitudeTarget {
    * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
    * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 7: reserved, bit 8: attitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -181,7 +181,7 @@ public final class AttitudeTarget {
     /**
      * Timestamp in milliseconds since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -193,7 +193,7 @@ public final class AttitudeTarget {
     /**
      * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4,
         arraySize = 4
@@ -206,7 +206,7 @@ public final class AttitudeTarget {
     /**
      * Body roll rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -218,7 +218,7 @@ public final class AttitudeTarget {
     /**
      * Body pitch rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -230,7 +230,7 @@ public final class AttitudeTarget {
     /**
      * Body yaw rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -242,7 +242,7 @@ public final class AttitudeTarget {
     /**
      * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -255,7 +255,7 @@ public final class AttitudeTarget {
      * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
      * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 7: reserved, bit 8: attitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

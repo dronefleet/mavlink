@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Status of simulation environment, if used 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 108,
     crc = 32
 )
@@ -178,7 +178,7 @@ public final class SimState {
   /**
    * True attitude quaternion component 1, w (1 in null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class SimState {
   /**
    * True attitude quaternion component 2, x (0 in null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class SimState {
   /**
    * True attitude quaternion component 3, y (0 in null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -211,7 +211,7 @@ public final class SimState {
   /**
    * True attitude quaternion component 4, z (0 in null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -222,7 +222,7 @@ public final class SimState {
   /**
    * Attitude roll expressed as Euler angles, not recommended except for human-readable outputs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -233,7 +233,7 @@ public final class SimState {
   /**
    * Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -244,7 +244,7 @@ public final class SimState {
   /**
    * Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -255,7 +255,7 @@ public final class SimState {
   /**
    * X acceleration m/s/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -266,7 +266,7 @@ public final class SimState {
   /**
    * Y acceleration m/s/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -277,7 +277,7 @@ public final class SimState {
   /**
    * Z acceleration m/s/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -288,7 +288,7 @@ public final class SimState {
   /**
    * Angular speed around X axis rad/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -299,7 +299,7 @@ public final class SimState {
   /**
    * Angular speed around Y axis rad/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -310,7 +310,7 @@ public final class SimState {
   /**
    * Angular speed around Z axis rad/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -321,7 +321,7 @@ public final class SimState {
   /**
    * Latitude in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -332,7 +332,7 @@ public final class SimState {
   /**
    * Longitude in degrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -343,7 +343,7 @@ public final class SimState {
   /**
    * Altitude in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -354,7 +354,7 @@ public final class SimState {
   /**
    * Horizontal position standard deviation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 4
   )
@@ -365,7 +365,7 @@ public final class SimState {
   /**
    * Vertical position standard deviation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 4
   )
@@ -376,7 +376,7 @@ public final class SimState {
   /**
    * True velocity in m/s in NORTH direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 4
   )
@@ -387,7 +387,7 @@ public final class SimState {
   /**
    * True velocity in m/s in EAST direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 4
   )
@@ -398,7 +398,7 @@ public final class SimState {
   /**
    * True velocity in m/s in DOWN direction in earth-fixed NED frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 4
   )
@@ -455,7 +455,7 @@ public final class SimState {
     /**
      * True attitude quaternion component 1, w (1 in null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -467,7 +467,7 @@ public final class SimState {
     /**
      * True attitude quaternion component 2, x (0 in null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -479,7 +479,7 @@ public final class SimState {
     /**
      * True attitude quaternion component 3, y (0 in null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -491,7 +491,7 @@ public final class SimState {
     /**
      * True attitude quaternion component 4, z (0 in null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -503,7 +503,7 @@ public final class SimState {
     /**
      * Attitude roll expressed as Euler angles, not recommended except for human-readable outputs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -515,7 +515,7 @@ public final class SimState {
     /**
      * Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -527,7 +527,7 @@ public final class SimState {
     /**
      * Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -539,7 +539,7 @@ public final class SimState {
     /**
      * X acceleration m/s/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -551,7 +551,7 @@ public final class SimState {
     /**
      * Y acceleration m/s/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -563,7 +563,7 @@ public final class SimState {
     /**
      * Z acceleration m/s/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -575,7 +575,7 @@ public final class SimState {
     /**
      * Angular speed around X axis rad/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -587,7 +587,7 @@ public final class SimState {
     /**
      * Angular speed around Y axis rad/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -599,7 +599,7 @@ public final class SimState {
     /**
      * Angular speed around Z axis rad/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -611,7 +611,7 @@ public final class SimState {
     /**
      * Latitude in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -623,7 +623,7 @@ public final class SimState {
     /**
      * Longitude in degrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -635,7 +635,7 @@ public final class SimState {
     /**
      * Altitude in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -647,7 +647,7 @@ public final class SimState {
     /**
      * Horizontal position standard deviation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 4
     )
@@ -659,7 +659,7 @@ public final class SimState {
     /**
      * Vertical position standard deviation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 4
     )
@@ -671,7 +671,7 @@ public final class SimState {
     /**
      * True velocity in m/s in NORTH direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 4
     )
@@ -683,7 +683,7 @@ public final class SimState {
     /**
      * True velocity in m/s in EAST direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 4
     )
@@ -695,7 +695,7 @@ public final class SimState {
     /**
      * True velocity in m/s in DOWN direction in earth-fixed NED frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 4
     )

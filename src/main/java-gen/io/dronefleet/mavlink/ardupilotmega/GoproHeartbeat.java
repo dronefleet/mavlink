@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Heartbeat from a HeroBus attached GoPro 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 215,
     crc = 101
 )
@@ -52,7 +52,7 @@ public final class GoproHeartbeat {
   /**
    * Status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -63,7 +63,7 @@ public final class GoproHeartbeat {
   /**
    * Current capture mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -74,7 +74,7 @@ public final class GoproHeartbeat {
   /**
    * additional status bits 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class GoproHeartbeat {
     /**
      * Status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -107,7 +107,7 @@ public final class GoproHeartbeat {
     /**
      * Current capture mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -119,7 +119,7 @@ public final class GoproHeartbeat {
     /**
      * additional status bits 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

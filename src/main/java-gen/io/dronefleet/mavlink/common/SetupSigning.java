@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * Setup a MAVLink2 signing key. If called with secret_key of all zero and zero initial_timestamp 
  * will disable signing 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 256,
     crc = 71
 )
@@ -62,7 +62,7 @@ public final class SetupSigning {
   /**
    * initial timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 8
   )
@@ -73,7 +73,7 @@ public final class SetupSigning {
   /**
    * system id of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -84,7 +84,7 @@ public final class SetupSigning {
   /**
    * component ID of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class SetupSigning {
   /**
    * signing key 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 32
@@ -119,7 +119,7 @@ public final class SetupSigning {
     /**
      * initial timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 8
     )
@@ -131,7 +131,7 @@ public final class SetupSigning {
     /**
      * system id of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -143,7 +143,7 @@ public final class SetupSigning {
     /**
      * component ID of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -155,7 +155,7 @@ public final class SetupSigning {
     /**
      * signing key 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 32

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Configure on-board Camera Control System. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 154,
     crc = 84
 )
@@ -109,7 +109,7 @@ public final class DigicamConfigure {
   /**
    * Correspondent value to given extra_param 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -120,7 +120,7 @@ public final class DigicamConfigure {
   /**
    * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -131,7 +131,7 @@ public final class DigicamConfigure {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -142,7 +142,7 @@ public final class DigicamConfigure {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -153,7 +153,7 @@ public final class DigicamConfigure {
   /**
    * Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -164,7 +164,7 @@ public final class DigicamConfigure {
   /**
    * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -175,7 +175,7 @@ public final class DigicamConfigure {
   /**
    * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -186,7 +186,7 @@ public final class DigicamConfigure {
   /**
    * Exposure type enumeration from 1 to N (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -198,7 +198,7 @@ public final class DigicamConfigure {
    * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
    * or pooled just once 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -209,7 +209,7 @@ public final class DigicamConfigure {
   /**
    * Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -220,7 +220,7 @@ public final class DigicamConfigure {
   /**
    * Extra parameters enumeration (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -257,7 +257,7 @@ public final class DigicamConfigure {
     /**
      * Correspondent value to given extra_param 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -269,7 +269,7 @@ public final class DigicamConfigure {
     /**
      * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -281,7 +281,7 @@ public final class DigicamConfigure {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -293,7 +293,7 @@ public final class DigicamConfigure {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -305,7 +305,7 @@ public final class DigicamConfigure {
     /**
      * Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -317,7 +317,7 @@ public final class DigicamConfigure {
     /**
      * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -329,7 +329,7 @@ public final class DigicamConfigure {
     /**
      * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -341,7 +341,7 @@ public final class DigicamConfigure {
     /**
      * Exposure type enumeration from 1 to N (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -354,7 +354,7 @@ public final class DigicamConfigure {
      * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
      * or pooled just once 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -366,7 +366,7 @@ public final class DigicamConfigure {
     /**
      * Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -378,7 +378,7 @@ public final class DigicamConfigure {
     /**
      * Extra parameters enumeration (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F17 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 183,
     crc = 175
 )
@@ -50,7 +50,7 @@ public final class SerialUdbExtraF17 {
   /**
    * SUE Feed Forward Gain 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -61,7 +61,7 @@ public final class SerialUdbExtraF17 {
   /**
    * SUE Max Turn Rate when Navigating 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -72,7 +72,7 @@ public final class SerialUdbExtraF17 {
   /**
    * SUE Max Turn Rate in Fly By Wire Mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -93,7 +93,7 @@ public final class SerialUdbExtraF17 {
     /**
      * SUE Feed Forward Gain 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -105,7 +105,7 @@ public final class SerialUdbExtraF17 {
     /**
      * SUE Max Turn Rate when Navigating 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -117,7 +117,7 @@ public final class SerialUdbExtraF17 {
     /**
      * SUE Max Turn Rate in Fly By Wire Mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Configurable diagnostic messages. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 173,
     crc = 2
 )
@@ -72,7 +72,7 @@ public final class Diagnostic {
   /**
    * Diagnostic float 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -83,7 +83,7 @@ public final class Diagnostic {
   /**
    * Diagnostic float 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -94,7 +94,7 @@ public final class Diagnostic {
   /**
    * Diagnostic float 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -105,7 +105,7 @@ public final class Diagnostic {
   /**
    * Diagnostic short 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -116,7 +116,7 @@ public final class Diagnostic {
   /**
    * Diagnostic short 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -127,7 +127,7 @@ public final class Diagnostic {
   /**
    * Diagnostic short 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -154,7 +154,7 @@ public final class Diagnostic {
     /**
      * Diagnostic float 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -166,7 +166,7 @@ public final class Diagnostic {
     /**
      * Diagnostic float 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -178,7 +178,7 @@ public final class Diagnostic {
     /**
      * Diagnostic float 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -190,7 +190,7 @@ public final class Diagnostic {
     /**
      * Diagnostic short 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -202,7 +202,7 @@ public final class Diagnostic {
     /**
      * Diagnostic short 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -214,7 +214,7 @@ public final class Diagnostic {
     /**
      * Diagnostic short 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )

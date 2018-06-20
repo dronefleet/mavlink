@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F20 format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 186,
     crc = 144
 )
@@ -124,7 +124,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -135,7 +135,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -146,7 +146,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -157,7 +157,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -168,7 +168,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -179,7 +179,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -190,7 +190,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -201,7 +201,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 8 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -212,7 +212,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 9 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -223,7 +223,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -234,7 +234,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 11 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -245,7 +245,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE UDB PWM Trim Value on Input 12 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -256,7 +256,7 @@ public final class SerialUdbExtraF20 {
   /**
    * SUE Number of Input Channels 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -297,7 +297,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -309,7 +309,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -321,7 +321,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -333,7 +333,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -345,7 +345,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -357,7 +357,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -369,7 +369,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -381,7 +381,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 8 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -393,7 +393,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 9 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -405,7 +405,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -417,7 +417,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 11 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -429,7 +429,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE UDB PWM Trim Value on Input 12 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -441,7 +441,7 @@ public final class SerialUdbExtraF20 {
     /**
      * SUE Number of Input Channels 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

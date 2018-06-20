@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * The interval between messages for a particular MAVLink message ID. This interface replaces 
  * {@link io.dronefleet.mavlink.common.DataStream DataStream} 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 244,
     crc = 95
 )
@@ -46,7 +46,7 @@ public final class MessageInterval {
    * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
    * disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -57,7 +57,7 @@ public final class MessageInterval {
   /**
    * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -77,7 +77,7 @@ public final class MessageInterval {
      * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
      * disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -89,7 +89,7 @@ public final class MessageInterval {
     /**
      * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )

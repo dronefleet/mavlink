@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Orders generated to the SLUGS camera mount. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 184,
     crc = 45
 )
@@ -65,7 +65,7 @@ public final class SlugsCameraOrder {
   /**
    * The system reporting the action 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -76,7 +76,7 @@ public final class SlugsCameraOrder {
   /**
    * Order the mount to pan: -1 left, 0 No pan motion, +1 right 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -87,7 +87,7 @@ public final class SlugsCameraOrder {
   /**
    * Order the mount to tilt: -1 down, 0 No tilt motion, +1 up 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -98,7 +98,7 @@ public final class SlugsCameraOrder {
   /**
    * Order the zoom values 0 to 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -110,7 +110,7 @@ public final class SlugsCameraOrder {
    * Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move 
    * home, 0 ignored 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -135,7 +135,7 @@ public final class SlugsCameraOrder {
     /**
      * The system reporting the action 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -147,7 +147,7 @@ public final class SlugsCameraOrder {
     /**
      * Order the mount to pan: -1 left, 0 No pan motion, +1 right 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -159,7 +159,7 @@ public final class SlugsCameraOrder {
     /**
      * Order the mount to tilt: -1 down, 0 No tilt motion, +1 up 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -171,7 +171,7 @@ public final class SlugsCameraOrder {
     /**
      * Order the zoom values 0 to 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -184,7 +184,7 @@ public final class SlugsCameraOrder {
      * Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move 
      * home, 0 ignored 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

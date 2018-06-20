@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -18,7 +18,7 @@ import java.util.List;
  * unconditionally at a low frequency. The UAVCAN specification is available at 
  * http://uavcan.org. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 311,
     crc = 95
 )
@@ -104,7 +104,7 @@ public final class UavcanNodeInfo {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -115,7 +115,7 @@ public final class UavcanNodeInfo {
   /**
    * The number of seconds since the start-up of the node. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -127,7 +127,7 @@ public final class UavcanNodeInfo {
    * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
    * unknown. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class UavcanNodeInfo {
   /**
    * Node name string. For example, "sapog.px4.io". 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 80
@@ -150,7 +150,7 @@ public final class UavcanNodeInfo {
   /**
    * Hardware major version number. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -161,7 +161,7 @@ public final class UavcanNodeInfo {
   /**
    * Hardware minor version number. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -172,7 +172,7 @@ public final class UavcanNodeInfo {
   /**
    * Hardware unique 128-bit ID. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 16
@@ -184,7 +184,7 @@ public final class UavcanNodeInfo {
   /**
    * Software major version number. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -195,7 +195,7 @@ public final class UavcanNodeInfo {
   /**
    * Software minor version number. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -228,7 +228,7 @@ public final class UavcanNodeInfo {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -240,7 +240,7 @@ public final class UavcanNodeInfo {
     /**
      * The number of seconds since the start-up of the node. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -253,7 +253,7 @@ public final class UavcanNodeInfo {
      * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
      * unknown. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -265,7 +265,7 @@ public final class UavcanNodeInfo {
     /**
      * Node name string. For example, "sapog.px4.io". 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 80
@@ -278,7 +278,7 @@ public final class UavcanNodeInfo {
     /**
      * Hardware major version number. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -290,7 +290,7 @@ public final class UavcanNodeInfo {
     /**
      * Hardware minor version number. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -302,7 +302,7 @@ public final class UavcanNodeInfo {
     /**
      * Hardware unique 128-bit ID. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 16
@@ -315,7 +315,7 @@ public final class UavcanNodeInfo {
     /**
      * Software major version number. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -327,7 +327,7 @@ public final class UavcanNodeInfo {
     /**
      * Software minor version number. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )

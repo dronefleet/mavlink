@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * keep track of onboard soft/firmware revisions. This message allows the sensor and control 
  * MCUs to communicate version numbers on startup. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 197,
     crc = 39
 )
@@ -38,7 +38,7 @@ public final class Boot {
   /**
    * The onboard software version 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -55,7 +55,7 @@ public final class Boot {
     /**
      * The onboard software version 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )

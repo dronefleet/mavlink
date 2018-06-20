@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed 
  * as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 61,
     crc = 167
 )
@@ -76,7 +76,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -87,7 +87,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4,
       arraySize = 4
@@ -99,7 +99,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Roll angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -110,7 +110,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Pitch angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -121,7 +121,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Yaw angular speed (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -132,7 +132,7 @@ public final class AttitudeQuaternionCov {
   /**
    * Attitude covariance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4,
       arraySize = 9
@@ -160,7 +160,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -172,7 +172,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4,
         arraySize = 4
@@ -185,7 +185,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Roll angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -197,7 +197,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Pitch angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -209,7 +209,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Yaw angular speed (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -221,7 +221,7 @@ public final class AttitudeQuaternionCov {
     /**
      * Attitude covariance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4,
         arraySize = 9

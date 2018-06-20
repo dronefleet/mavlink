@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 101,
     crc = 102
 )
@@ -90,7 +90,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 8
   )
@@ -101,7 +101,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Global X position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Global Y position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Global Z position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Roll angle in rad 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Pitch angle in rad 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class GlobalVisionPositionEstimate {
   /**
    * Yaw angle in rad 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -168,7 +168,7 @@ public final class GlobalVisionPositionEstimate {
    * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
    * entries are the second ROW, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       arraySize = 21,
@@ -201,7 +201,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Timestamp (microseconds, synced to UNIX time or since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 8
     )
@@ -213,7 +213,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Global X position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -225,7 +225,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Global Y position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -237,7 +237,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Global Z position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -249,7 +249,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Roll angle in rad 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -261,7 +261,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Pitch angle in rad 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -273,7 +273,7 @@ public final class GlobalVisionPositionEstimate {
     /**
      * Yaw angle in rad 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -286,7 +286,7 @@ public final class GlobalVisionPositionEstimate {
      * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
      * entries are the second ROW, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         arraySize = 21,

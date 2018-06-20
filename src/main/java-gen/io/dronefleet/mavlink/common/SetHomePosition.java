@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -18,7 +18,7 @@ import java.util.List;
  * approach 3D vector describes the point to which the system should fly in normal flight mode and 
  * then perform a landing sequence along the vector. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 243,
     crc = 85
 )
@@ -134,7 +134,7 @@ public final class SetHomePosition {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class SetHomePosition {
   /**
    * Longitude (WGS84, in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class SetHomePosition {
   /**
    * Altitude (AMSL), in meters * 1000 (positive for up) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class SetHomePosition {
   /**
    * Local X position of this position in the local coordinate frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class SetHomePosition {
   /**
    * Local Y position of this position in the local coordinate frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class SetHomePosition {
   /**
    * Local Z position of this position in the local coordinate frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -201,7 +201,7 @@ public final class SetHomePosition {
    * World to surface normal and heading transformation of the takeoff position. Used to indicate 
    * the heading and slope of the ground 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       arraySize = 4
@@ -216,7 +216,7 @@ public final class SetHomePosition {
    * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
    * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -230,7 +230,7 @@ public final class SetHomePosition {
    * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
    * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -244,7 +244,7 @@ public final class SetHomePosition {
    * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
    * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -255,7 +255,7 @@ public final class SetHomePosition {
   /**
    * System ID. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -266,7 +266,7 @@ public final class SetHomePosition {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 8,
       extension = true
@@ -306,7 +306,7 @@ public final class SetHomePosition {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -318,7 +318,7 @@ public final class SetHomePosition {
     /**
      * Longitude (WGS84, in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -330,7 +330,7 @@ public final class SetHomePosition {
     /**
      * Altitude (AMSL), in meters * 1000 (positive for up) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -342,7 +342,7 @@ public final class SetHomePosition {
     /**
      * Local X position of this position in the local coordinate frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -354,7 +354,7 @@ public final class SetHomePosition {
     /**
      * Local Y position of this position in the local coordinate frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -366,7 +366,7 @@ public final class SetHomePosition {
     /**
      * Local Z position of this position in the local coordinate frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -379,7 +379,7 @@ public final class SetHomePosition {
      * World to surface normal and heading transformation of the takeoff position. Used to indicate 
      * the heading and slope of the ground 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         arraySize = 4
@@ -395,7 +395,7 @@ public final class SetHomePosition {
      * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -410,7 +410,7 @@ public final class SetHomePosition {
      * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -425,7 +425,7 @@ public final class SetHomePosition {
      * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -437,7 +437,7 @@ public final class SetHomePosition {
     /**
      * System ID. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -449,7 +449,7 @@ public final class SetHomePosition {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 8,
         extension = true

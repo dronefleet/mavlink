@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.uavionix;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.AdsbEmitterType;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
@@ -12,7 +12,7 @@ import java.lang.String;
  * Static data to configure the ADS-B transponder (send within 10 sec of a POR and every 10 sec 
  * thereafter) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 10001,
     crc = 209
 )
@@ -92,7 +92,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * Vehicle address (24 bit) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -103,7 +103,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * Aircraft stall speed in cm/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -114,7 +114,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * Vehicle identifier (8 characters, null terminated, valid characters are A-Z, 0-9, " " only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 9
@@ -126,7 +126,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -137,7 +137,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * Aircraft length and width encoding (table 2-35 of DO-282B) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -148,7 +148,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * GPS antenna lateral offset (table 2-36 of DO-282B) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -160,7 +160,7 @@ public final class UavionixAdsbOutCfg {
    * GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 
    * and add one] (table 2-37 DO-282B) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -171,7 +171,7 @@ public final class UavionixAdsbOutCfg {
   /**
    * ADS-B transponder reciever and transmit enable flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -202,7 +202,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * Vehicle address (24 bit) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -214,7 +214,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * Aircraft stall speed in cm/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -226,7 +226,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * Vehicle identifier (8 characters, null terminated, valid characters are A-Z, 0-9, " " only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 9
@@ -239,7 +239,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -251,7 +251,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * Aircraft length and width encoding (table 2-35 of DO-282B) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -263,7 +263,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * GPS antenna lateral offset (table 2-36 of DO-282B) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -276,7 +276,7 @@ public final class UavionixAdsbOutCfg {
      * GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 
      * and add one] (table 2-37 DO-282B) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -288,7 +288,7 @@ public final class UavionixAdsbOutCfg {
     /**
      * ADS-B transponder reciever and transmit enable flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )

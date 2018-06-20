@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Power supply status 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 125,
     crc = 203
 )
@@ -51,7 +51,7 @@ public final class PowerStatus {
   /**
    * 5V rail voltage in millivolts 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -62,7 +62,7 @@ public final class PowerStatus {
   /**
    * servo rail voltage in millivolts 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -73,7 +73,7 @@ public final class PowerStatus {
   /**
    * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MavPowerStatus} enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -94,7 +94,7 @@ public final class PowerStatus {
     /**
      * 5V rail voltage in millivolts 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -106,7 +106,7 @@ public final class PowerStatus {
     /**
      * servo rail voltage in millivolts 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -118,7 +118,7 @@ public final class PowerStatus {
     /**
      * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MavPowerStatus} enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Status of key hardware 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 165,
     crc = 21
 )
@@ -43,7 +43,7 @@ public final class Hwstatus {
   /**
    * board voltage (mV) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -54,7 +54,7 @@ public final class Hwstatus {
   /**
    * I2C error count 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class Hwstatus {
     /**
      * board voltage (mV) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -85,7 +85,7 @@ public final class Hwstatus {
     /**
      * I2C error count 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

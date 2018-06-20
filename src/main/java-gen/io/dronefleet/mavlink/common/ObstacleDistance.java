@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * Obstacle distances in front of the sensor, starting from the left in increment degrees to the 
  * right 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 330,
     crc = 23
 )
@@ -79,7 +79,7 @@ public final class ObstacleDistance {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -93,7 +93,7 @@ public final class ObstacleDistance {
    * obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit 
    * corresponds to 1cm. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2,
       arraySize = 72
@@ -105,7 +105,7 @@ public final class ObstacleDistance {
   /**
    * Minimum distance the sensor can measure in centimeters. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -116,7 +116,7 @@ public final class ObstacleDistance {
   /**
    * Maximum distance the sensor can measure in centimeters. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -127,7 +127,7 @@ public final class ObstacleDistance {
   /**
    * Class id of the distance sensor type. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -138,7 +138,7 @@ public final class ObstacleDistance {
   /**
    * Angular width in degrees of each array element. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -165,7 +165,7 @@ public final class ObstacleDistance {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -180,7 +180,7 @@ public final class ObstacleDistance {
      * obstacle is present. A value of UINT16_MAX for unknown/not used. In a array element, one unit 
      * corresponds to 1cm. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2,
         arraySize = 72
@@ -193,7 +193,7 @@ public final class ObstacleDistance {
     /**
      * Minimum distance the sensor can measure in centimeters. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -205,7 +205,7 @@ public final class ObstacleDistance {
     /**
      * Maximum distance the sensor can measure in centimeters. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -217,7 +217,7 @@ public final class ObstacleDistance {
     /**
      * Class id of the distance sensor type. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -229,7 +229,7 @@ public final class ObstacleDistance {
     /**
      * Angular width in degrees of each array element. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

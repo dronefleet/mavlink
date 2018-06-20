@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * ASL-fixed-wing controller data 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 203,
     crc = 172
 )
@@ -209,7 +209,7 @@ public final class AslctrlData {
   /**
    * Timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -220,7 +220,7 @@ public final class AslctrlData {
   /**
    * See sourcecode for a description of these values... 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -231,7 +231,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -242,7 +242,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -253,7 +253,7 @@ public final class AslctrlData {
   /**
    * Pitch angle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -264,7 +264,7 @@ public final class AslctrlData {
   /**
    * Pitch angle reference 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -275,7 +275,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -286,7 +286,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -297,7 +297,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -308,7 +308,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -319,7 +319,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -330,7 +330,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -341,7 +341,7 @@ public final class AslctrlData {
   /**
    * Airspeed reference 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -352,7 +352,7 @@ public final class AslctrlData {
   /**
    * Yaw angle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -363,7 +363,7 @@ public final class AslctrlData {
   /**
    * Yaw angle reference 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 4
   )
@@ -374,7 +374,7 @@ public final class AslctrlData {
   /**
    * Roll angle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 4
   )
@@ -385,7 +385,7 @@ public final class AslctrlData {
   /**
    * Roll angle reference 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 4
   )
@@ -396,7 +396,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 4
   )
@@ -407,7 +407,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 4
   )
@@ -418,7 +418,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 4
   )
@@ -429,7 +429,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 4
   )
@@ -440,7 +440,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 4
   )
@@ -451,7 +451,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 25,
       unitSize = 4
   )
@@ -462,7 +462,7 @@ public final class AslctrlData {
   /**
    * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -473,7 +473,7 @@ public final class AslctrlData {
   /**
    * null
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 1
   )
@@ -538,7 +538,7 @@ public final class AslctrlData {
     /**
      * Timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -550,7 +550,7 @@ public final class AslctrlData {
     /**
      * See sourcecode for a description of these values... 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -562,7 +562,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -574,7 +574,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -586,7 +586,7 @@ public final class AslctrlData {
     /**
      * Pitch angle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -598,7 +598,7 @@ public final class AslctrlData {
     /**
      * Pitch angle reference 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -610,7 +610,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -622,7 +622,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -634,7 +634,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -646,7 +646,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -658,7 +658,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -670,7 +670,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -682,7 +682,7 @@ public final class AslctrlData {
     /**
      * Airspeed reference 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -694,7 +694,7 @@ public final class AslctrlData {
     /**
      * Yaw angle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -706,7 +706,7 @@ public final class AslctrlData {
     /**
      * Yaw angle reference 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 4
     )
@@ -718,7 +718,7 @@ public final class AslctrlData {
     /**
      * Roll angle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 4
     )
@@ -730,7 +730,7 @@ public final class AslctrlData {
     /**
      * Roll angle reference 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 4
     )
@@ -742,7 +742,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 4
     )
@@ -754,7 +754,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 4
     )
@@ -766,7 +766,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 4
     )
@@ -778,7 +778,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 4
     )
@@ -790,7 +790,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 4
     )
@@ -802,7 +802,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 25,
         unitSize = 4
     )
@@ -814,7 +814,7 @@ public final class AslctrlData {
     /**
      * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -826,7 +826,7 @@ public final class AslctrlData {
     /**
      * null
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 1
     )

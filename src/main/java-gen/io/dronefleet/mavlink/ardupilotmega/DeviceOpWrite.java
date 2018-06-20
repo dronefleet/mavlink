@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Write registers for a device 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11002,
     crc = 234
 )
@@ -103,7 +103,7 @@ public final class DeviceOpWrite {
   /**
    * request ID - copied to reply 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -114,7 +114,7 @@ public final class DeviceOpWrite {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -125,7 +125,7 @@ public final class DeviceOpWrite {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -136,7 +136,7 @@ public final class DeviceOpWrite {
   /**
    * The bus type 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -147,7 +147,7 @@ public final class DeviceOpWrite {
   /**
    * Bus number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -158,7 +158,7 @@ public final class DeviceOpWrite {
   /**
    * Bus address 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -169,7 +169,7 @@ public final class DeviceOpWrite {
   /**
    * Name of device on bus (for SPI) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1,
       arraySize = 40
@@ -181,7 +181,7 @@ public final class DeviceOpWrite {
   /**
    * First register to write 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -192,7 +192,7 @@ public final class DeviceOpWrite {
   /**
    * count of registers to write 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -203,7 +203,7 @@ public final class DeviceOpWrite {
   /**
    * write data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1,
       arraySize = 128
@@ -239,7 +239,7 @@ public final class DeviceOpWrite {
     /**
      * request ID - copied to reply 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -251,7 +251,7 @@ public final class DeviceOpWrite {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -263,7 +263,7 @@ public final class DeviceOpWrite {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -275,7 +275,7 @@ public final class DeviceOpWrite {
     /**
      * The bus type 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -287,7 +287,7 @@ public final class DeviceOpWrite {
     /**
      * Bus number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -299,7 +299,7 @@ public final class DeviceOpWrite {
     /**
      * Bus address 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -311,7 +311,7 @@ public final class DeviceOpWrite {
     /**
      * Name of device on bus (for SPI) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1,
         arraySize = 40
@@ -324,7 +324,7 @@ public final class DeviceOpWrite {
     /**
      * First register to write 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -336,7 +336,7 @@ public final class DeviceOpWrite {
     /**
      * count of registers to write 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -348,7 +348,7 @@ public final class DeviceOpWrite {
     /**
      * write data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1,
         arraySize = 128

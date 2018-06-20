@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * The system time is the time of the master clock, typically the computer clock of the main onboard 
  * computer. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 2,
     crc = 137
 )
@@ -45,7 +45,7 @@ public final class SystemTime {
   /**
    * Timestamp of the master clock in microseconds since UNIX epoch. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -56,7 +56,7 @@ public final class SystemTime {
   /**
    * Timestamp of the component clock since boot time in milliseconds. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -75,7 +75,7 @@ public final class SystemTime {
     /**
      * Timestamp of the master clock in microseconds since UNIX epoch. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -87,7 +87,7 @@ public final class SystemTime {
     /**
      * Timestamp of the component clock since boot time in milliseconds. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )

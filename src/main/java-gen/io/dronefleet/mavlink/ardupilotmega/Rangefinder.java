@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Rangefinder reporting 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 173,
     crc = 83
 )
@@ -43,7 +43,7 @@ public final class Rangefinder {
   /**
    * distance in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -54,7 +54,7 @@ public final class Rangefinder {
   /**
    * raw voltage if available, zero otherwise 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -73,7 +73,7 @@ public final class Rangefinder {
     /**
      * distance in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -85,7 +85,7 @@ public final class Rangefinder {
     /**
      * raw voltage if available, zero otherwise 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )

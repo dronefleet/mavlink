@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * will be transmitted / updated. If the start index is NOT 0 and above the current list size, this 
  * request should be REJECTED! 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 38,
     crc = 9
 )
@@ -67,7 +67,7 @@ public final class MissionWritePartialList {
   /**
    * Start index, 0 by default and smaller / equal to the largest index of the current onboard list. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -78,7 +78,7 @@ public final class MissionWritePartialList {
   /**
    * End index, equal or greater than start index. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -89,7 +89,7 @@ public final class MissionWritePartialList {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -100,7 +100,7 @@ public final class MissionWritePartialList {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -111,7 +111,7 @@ public final class MissionWritePartialList {
   /**
    * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       extension = true
@@ -137,7 +137,7 @@ public final class MissionWritePartialList {
     /**
      * Start index, 0 by default and smaller / equal to the largest index of the current onboard list. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -149,7 +149,7 @@ public final class MissionWritePartialList {
     /**
      * End index, equal or greater than start index. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -161,7 +161,7 @@ public final class MissionWritePartialList {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -173,7 +173,7 @@ public final class MissionWritePartialList {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -185,7 +185,7 @@ public final class MissionWritePartialList {
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         extension = true

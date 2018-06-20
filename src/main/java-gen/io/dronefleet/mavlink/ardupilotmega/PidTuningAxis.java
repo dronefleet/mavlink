@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,36 +11,36 @@ public enum PidTuningAxis {
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   PID_TUNING_ROLL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   PID_TUNING_PITCH,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   PID_TUNING_YAW,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   PID_TUNING_ACCZ,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   PID_TUNING_STEER,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   PID_TUNING_LANDING
 }

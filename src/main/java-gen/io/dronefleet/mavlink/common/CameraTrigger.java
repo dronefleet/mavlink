@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Camera-IMU triggering and synchronisation message. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 112,
     crc = 174
 )
@@ -44,7 +44,7 @@ public final class CameraTrigger {
   /**
    * Timestamp for the image frame in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -55,7 +55,7 @@ public final class CameraTrigger {
   /**
    * Image frame sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -74,7 +74,7 @@ public final class CameraTrigger {
     /**
      * Timestamp for the image frame in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -86,7 +86,7 @@ public final class CameraTrigger {
     /**
      * Image frame sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )

@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.icarous;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,18 +11,18 @@ public enum IcarousTrackBandTypes {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   ICAROUS_TRACK_BAND_TYPE_NONE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   ICAROUS_TRACK_BAND_TYPE_NEAR,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   ICAROUS_TRACK_BAND_TYPE_RECOVERY
 }

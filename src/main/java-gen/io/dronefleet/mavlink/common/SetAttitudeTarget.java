@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
  * Sets a desired vehicle attitude. Used by an external controller to command the vehicle (manual 
  * controller or other system). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 82,
     crc = 49
 )
@@ -98,7 +98,7 @@ public final class SetAttitudeTarget {
   /**
    * Timestamp in milliseconds since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -109,7 +109,7 @@ public final class SetAttitudeTarget {
   /**
    * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4,
       arraySize = 4
@@ -121,7 +121,7 @@ public final class SetAttitudeTarget {
   /**
    * Body roll rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -132,7 +132,7 @@ public final class SetAttitudeTarget {
   /**
    * Body pitch rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -143,7 +143,7 @@ public final class SetAttitudeTarget {
   /**
    * Body yaw rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -154,7 +154,7 @@ public final class SetAttitudeTarget {
   /**
    * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -165,7 +165,7 @@ public final class SetAttitudeTarget {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -176,7 +176,7 @@ public final class SetAttitudeTarget {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -189,7 +189,7 @@ public final class SetAttitudeTarget {
    * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
    * bit 8: attitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -222,7 +222,7 @@ public final class SetAttitudeTarget {
     /**
      * Timestamp in milliseconds since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -234,7 +234,7 @@ public final class SetAttitudeTarget {
     /**
      * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4,
         arraySize = 4
@@ -247,7 +247,7 @@ public final class SetAttitudeTarget {
     /**
      * Body roll rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -259,7 +259,7 @@ public final class SetAttitudeTarget {
     /**
      * Body pitch rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -271,7 +271,7 @@ public final class SetAttitudeTarget {
     /**
      * Body yaw rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -283,7 +283,7 @@ public final class SetAttitudeTarget {
     /**
      * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -295,7 +295,7 @@ public final class SetAttitudeTarget {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -307,7 +307,7 @@ public final class SetAttitudeTarget {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -321,7 +321,7 @@ public final class SetAttitudeTarget {
      * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
      * bit 8: attitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

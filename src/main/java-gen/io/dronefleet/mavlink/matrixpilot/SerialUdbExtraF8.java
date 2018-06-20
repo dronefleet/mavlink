@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F8: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 176,
     crc = 142
 )
@@ -80,7 +80,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra HEIGHT_TARGET_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra HEIGHT_TARGET_MIN 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra ALT_HOLD_THROTTLE_MIN 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra ALT_HOLD_THROTTLE_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra ALT_HOLD_PITCH_MIN 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra ALT_HOLD_PITCH_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -146,7 +146,7 @@ public final class SerialUdbExtraF8 {
   /**
    * Serial UDB Extra ALT_HOLD_PITCH_HIGH 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -175,7 +175,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra HEIGHT_TARGET_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -187,7 +187,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra HEIGHT_TARGET_MIN 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -199,7 +199,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra ALT_HOLD_THROTTLE_MIN 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -211,7 +211,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra ALT_HOLD_THROTTLE_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -223,7 +223,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra ALT_HOLD_PITCH_MIN 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -235,7 +235,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra ALT_HOLD_PITCH_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class SerialUdbExtraF8 {
     /**
      * Serial UDB Extra ALT_HOLD_PITCH_HIGH 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )

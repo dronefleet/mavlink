@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F14: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 178,
     crc = 123
 )
@@ -108,7 +108,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Type Program Address of Last Trap 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -119,7 +119,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Reboot Register of DSPIC 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -130,7 +130,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Last dspic Trap Flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -141,7 +141,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Number of Ocillator Failures 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -152,7 +152,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Wind Estimation Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -163,7 +163,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Type of GPS Unit 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Dead Reckoning Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -185,7 +185,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Type of UDB Hardware 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -196,7 +196,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Type of Airframe 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -207,7 +207,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra UDB Internal Clock Configuration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -218,7 +218,7 @@ public final class SerialUdbExtraF14 {
   /**
    * Serial UDB Extra Type of Flight Plan 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -255,7 +255,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Type Program Address of Last Trap 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -267,7 +267,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Reboot Register of DSPIC 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -279,7 +279,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Last dspic Trap Flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -291,7 +291,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Number of Ocillator Failures 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -303,7 +303,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Wind Estimation Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -315,7 +315,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Type of GPS Unit 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -327,7 +327,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Dead Reckoning Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -339,7 +339,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Type of UDB Hardware 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -351,7 +351,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Type of Airframe 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -363,7 +363,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra UDB Internal Clock Configuration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -375,7 +375,7 @@ public final class SerialUdbExtraF14 {
     /**
      * Serial UDB Extra Type of Flight Plan 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Report status of a command. Includes feedback whether the command was executed. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 77,
     crc = 143
 )
@@ -75,7 +75,7 @@ public final class CommandAck {
   /**
    * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -86,7 +86,7 @@ public final class CommandAck {
   /**
    * See {@link io.dronefleet.mavlink.common.MavResult MavResult} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -99,7 +99,7 @@ public final class CommandAck {
    * the command was denied or the progress percentage or 255 if unknown the progress when result is 
    * MAV_RESULT_IN_PROGRESS. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       extension = true
@@ -112,7 +112,7 @@ public final class CommandAck {
    * WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
    * caused it to be denied. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4,
       extension = true
@@ -124,7 +124,7 @@ public final class CommandAck {
   /**
    * WIP: System which requested the command to be executed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       extension = true
@@ -136,7 +136,7 @@ public final class CommandAck {
   /**
    * WIP: Component which requested the command to be executed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1,
       extension = true
@@ -164,7 +164,7 @@ public final class CommandAck {
     /**
      * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -176,7 +176,7 @@ public final class CommandAck {
     /**
      * See {@link io.dronefleet.mavlink.common.MavResult MavResult} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -190,7 +190,7 @@ public final class CommandAck {
      * the command was denied or the progress percentage or 255 if unknown the progress when result is 
      * MAV_RESULT_IN_PROGRESS. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         extension = true
@@ -204,7 +204,7 @@ public final class CommandAck {
      * WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
      * caused it to be denied. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4,
         extension = true
@@ -217,7 +217,7 @@ public final class CommandAck {
     /**
      * WIP: System which requested the command to be executed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         extension = true
@@ -230,7 +230,7 @@ public final class CommandAck {
     /**
      * WIP: Component which requested the command to be executed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1,
         extension = true

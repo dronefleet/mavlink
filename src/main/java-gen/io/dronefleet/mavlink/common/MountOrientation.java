@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Orientation of a mount 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 265,
     crc = 26
 )
@@ -64,7 +64,7 @@ public final class MountOrientation {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -75,7 +75,7 @@ public final class MountOrientation {
   /**
    * Roll in global frame in degrees (set to NaN for invalid). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -86,7 +86,7 @@ public final class MountOrientation {
   /**
    * Pitch in global frame in degrees (set to NaN for invalid). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -97,7 +97,7 @@ public final class MountOrientation {
   /**
    * Yaw relative to vehicle in degrees (set to NaN for invalid). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -108,7 +108,7 @@ public final class MountOrientation {
   /**
    * Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4,
       extension = true
@@ -134,7 +134,7 @@ public final class MountOrientation {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -146,7 +146,7 @@ public final class MountOrientation {
     /**
      * Roll in global frame in degrees (set to NaN for invalid). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -158,7 +158,7 @@ public final class MountOrientation {
     /**
      * Pitch in global frame in degrees (set to NaN for invalid). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -170,7 +170,7 @@ public final class MountOrientation {
     /**
      * Yaw relative to vehicle in degrees (set to NaN for invalid). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -182,7 +182,7 @@ public final class MountOrientation {
     /**
      * Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4,
         extension = true

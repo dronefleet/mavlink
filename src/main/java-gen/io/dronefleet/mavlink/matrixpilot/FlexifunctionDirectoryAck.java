@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 156,
     crc = 218
 )
@@ -72,7 +72,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * result of acknowledge, 0=fail, 1=good 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -83,7 +83,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -94,7 +94,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -105,7 +105,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * 0=inputs, 1=outputs 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -116,7 +116,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * index of first directory entry to write 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -127,7 +127,7 @@ public final class FlexifunctionDirectoryAck {
   /**
    * count of directory entries to write 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -154,7 +154,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * result of acknowledge, 0=fail, 1=good 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -166,7 +166,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -178,7 +178,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -190,7 +190,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * 0=inputs, 1=outputs 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -202,7 +202,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * index of first directory entry to write 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -214,7 +214,7 @@ public final class FlexifunctionDirectoryAck {
     /**
      * count of directory entries to write 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

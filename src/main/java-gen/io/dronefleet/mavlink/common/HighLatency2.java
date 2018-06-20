@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * WIP: Message appropriate for high latency connections like Iridium (version 2) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 235,
     crc = 179
 )
@@ -224,7 +224,7 @@ public final class HighLatency2 {
   /**
    * Timestamp (milliseconds since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -235,7 +235,7 @@ public final class HighLatency2 {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -246,7 +246,7 @@ public final class HighLatency2 {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -257,7 +257,7 @@ public final class HighLatency2 {
   /**
    * A bitfield for use for autopilot-specific flags (2 byte version). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -268,7 +268,7 @@ public final class HighLatency2 {
   /**
    * Altitude above mean sea level 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -279,7 +279,7 @@ public final class HighLatency2 {
   /**
    * Altitude setpoint 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -290,7 +290,7 @@ public final class HighLatency2 {
   /**
    * Distance to target waypoint or position (meters / 10) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -301,7 +301,7 @@ public final class HighLatency2 {
   /**
    * Current waypoint number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 2
   )
@@ -312,7 +312,7 @@ public final class HighLatency2 {
   /**
    * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 2
   )
@@ -323,7 +323,7 @@ public final class HighLatency2 {
   /**
    * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -334,7 +334,7 @@ public final class HighLatency2 {
   /**
    * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -345,7 +345,7 @@ public final class HighLatency2 {
   /**
    * Heading (degrees / 2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -356,7 +356,7 @@ public final class HighLatency2 {
   /**
    * Heading setpoint (degrees / 2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -367,7 +367,7 @@ public final class HighLatency2 {
   /**
    * Throttle (percentage) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 1
   )
@@ -378,7 +378,7 @@ public final class HighLatency2 {
   /**
    * Airspeed (m/s * 5) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1
   )
@@ -389,7 +389,7 @@ public final class HighLatency2 {
   /**
    * Airspeed setpoint (m/s * 5) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1
   )
@@ -400,7 +400,7 @@ public final class HighLatency2 {
   /**
    * Groundspeed (m/s * 5) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 1
   )
@@ -411,7 +411,7 @@ public final class HighLatency2 {
   /**
    * Windspeed (m/s * 5) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 1
   )
@@ -422,7 +422,7 @@ public final class HighLatency2 {
   /**
    * Wind heading (deg / 2) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 1
   )
@@ -433,7 +433,7 @@ public final class HighLatency2 {
   /**
    * Maximum error horizontal position since last message (m * 10) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 1
   )
@@ -444,7 +444,7 @@ public final class HighLatency2 {
   /**
    * Maximum error vertical position since last message (m * 10) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 1
   )
@@ -455,7 +455,7 @@ public final class HighLatency2 {
   /**
    * Air temperature (degrees C) from airspeed sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 1
   )
@@ -466,7 +466,7 @@ public final class HighLatency2 {
   /**
    * Maximum climb rate magnitude since last message (m/s * 10) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 1
   )
@@ -477,7 +477,7 @@ public final class HighLatency2 {
   /**
    * Battery (percentage, -1 for DNU) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 1
   )
@@ -488,7 +488,7 @@ public final class HighLatency2 {
   /**
    * Field for custom payload. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 25,
       unitSize = 1
   )
@@ -499,7 +499,7 @@ public final class HighLatency2 {
   /**
    * Field for custom payload. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 26,
       unitSize = 1
   )
@@ -510,7 +510,7 @@ public final class HighLatency2 {
   /**
    * Field for custom payload. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 27,
       unitSize = 1
   )
@@ -579,7 +579,7 @@ public final class HighLatency2 {
     /**
      * Timestamp (milliseconds since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -591,7 +591,7 @@ public final class HighLatency2 {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -603,7 +603,7 @@ public final class HighLatency2 {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -615,7 +615,7 @@ public final class HighLatency2 {
     /**
      * A bitfield for use for autopilot-specific flags (2 byte version). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -627,7 +627,7 @@ public final class HighLatency2 {
     /**
      * Altitude above mean sea level 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -639,7 +639,7 @@ public final class HighLatency2 {
     /**
      * Altitude setpoint 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -651,7 +651,7 @@ public final class HighLatency2 {
     /**
      * Distance to target waypoint or position (meters / 10) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -663,7 +663,7 @@ public final class HighLatency2 {
     /**
      * Current waypoint number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 2
     )
@@ -675,7 +675,7 @@ public final class HighLatency2 {
     /**
      * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 2
     )
@@ -687,7 +687,7 @@ public final class HighLatency2 {
     /**
      * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -699,7 +699,7 @@ public final class HighLatency2 {
     /**
      * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -711,7 +711,7 @@ public final class HighLatency2 {
     /**
      * Heading (degrees / 2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -723,7 +723,7 @@ public final class HighLatency2 {
     /**
      * Heading setpoint (degrees / 2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -735,7 +735,7 @@ public final class HighLatency2 {
     /**
      * Throttle (percentage) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 1
     )
@@ -747,7 +747,7 @@ public final class HighLatency2 {
     /**
      * Airspeed (m/s * 5) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1
     )
@@ -759,7 +759,7 @@ public final class HighLatency2 {
     /**
      * Airspeed setpoint (m/s * 5) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1
     )
@@ -771,7 +771,7 @@ public final class HighLatency2 {
     /**
      * Groundspeed (m/s * 5) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 1
     )
@@ -783,7 +783,7 @@ public final class HighLatency2 {
     /**
      * Windspeed (m/s * 5) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 1
     )
@@ -795,7 +795,7 @@ public final class HighLatency2 {
     /**
      * Wind heading (deg / 2) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 1
     )
@@ -807,7 +807,7 @@ public final class HighLatency2 {
     /**
      * Maximum error horizontal position since last message (m * 10) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 1
     )
@@ -819,7 +819,7 @@ public final class HighLatency2 {
     /**
      * Maximum error vertical position since last message (m * 10) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 1
     )
@@ -831,7 +831,7 @@ public final class HighLatency2 {
     /**
      * Air temperature (degrees C) from airspeed sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 1
     )
@@ -843,7 +843,7 @@ public final class HighLatency2 {
     /**
      * Maximum climb rate magnitude since last message (m/s * 10) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 1
     )
@@ -855,7 +855,7 @@ public final class HighLatency2 {
     /**
      * Battery (percentage, -1 for DNU) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 1
     )
@@ -867,7 +867,7 @@ public final class HighLatency2 {
     /**
      * Field for custom payload. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 25,
         unitSize = 1
     )
@@ -879,7 +879,7 @@ public final class HighLatency2 {
     /**
      * Field for custom payload. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 26,
         unitSize = 1
     )
@@ -891,7 +891,7 @@ public final class HighLatency2 {
     /**
      * Field for custom payload. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 27,
         unitSize = 1
     )

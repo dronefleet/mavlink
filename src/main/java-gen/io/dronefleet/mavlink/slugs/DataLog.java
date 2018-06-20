@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Configurable data log probes to be used inside Simulink 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 177,
     crc = 167
 )
@@ -71,7 +71,7 @@ public final class DataLog {
   /**
    * Log value 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -82,7 +82,7 @@ public final class DataLog {
   /**
    * Log value 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -93,7 +93,7 @@ public final class DataLog {
   /**
    * Log value 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -104,7 +104,7 @@ public final class DataLog {
   /**
    * Log value 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -115,7 +115,7 @@ public final class DataLog {
   /**
    * Log value 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -126,7 +126,7 @@ public final class DataLog {
   /**
    * Log value 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class DataLog {
     /**
      * Log value 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -165,7 +165,7 @@ public final class DataLog {
     /**
      * Log value 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -177,7 +177,7 @@ public final class DataLog {
     /**
      * Log value 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -189,7 +189,7 @@ public final class DataLog {
     /**
      * Log value 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -201,7 +201,7 @@ public final class DataLog {
     /**
      * Log value 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -213,7 +213,7 @@ public final class DataLog {
     /**
      * Log value 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )

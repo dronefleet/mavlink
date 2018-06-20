@@ -1,10 +1,13 @@
-package io.dronefleet.mavlink.serialization;
+package io.dronefleet.mavlink.serialization.reflection;
 
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
+import io.dronefleet.mavlink.serialization.MavlinkPacketDeserializer;
+import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 
 import java.lang.reflect.Field;
@@ -20,20 +23,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
 
-    public static void main(String args[]) {
-        double d = 123456;
-        long l = Double.doubleToLongBits(d);
-        double d2 = Double.longBitsToDouble(l);
-        System.out.println(d2);
-    }
-
-
     @Override
-    public <T> T deserialize(MavlinkPacket packet, Class<T> messageType) {
-        MavlinkMessage message = messageType.getAnnotation(MavlinkMessage.class);
+    public <T> MavlinkMessage<T> deserialize(MavlinkPacket packet, Class<T> messageType) {
+        MavlinkMessageInfo message = messageType.getAnnotation(MavlinkMessageInfo.class);
         if (message == null) {
             throw new IllegalArgumentException(String.format(
-                    "class %s is not annotated with @MavlinkMessage", messageType.getName()));
+                    "class %s is not annotated with @MavlinkMessageInfo", messageType.getName()));
         }
 
         try {
@@ -46,18 +41,18 @@ public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
 
             AtomicInteger nextOffset = new AtomicInteger();
             Arrays.stream(builder.getClass().getMethods())
-                    .filter(m -> m.isAnnotationPresent(MavlinkMessageField.class))
+                    .filter(m -> m.isAnnotationPresent(MavlinkFieldInfo.class))
                     .sorted((a, b) -> {
-                        MavlinkMessageField fa = a.getAnnotation(MavlinkMessageField.class);
-                        MavlinkMessageField fb = b.getAnnotation(MavlinkMessageField.class);
-                        return MavlinkMessageField.WIRE_COMPARATOR.compare(fa, fb);
+                        MavlinkFieldInfo fa = a.getAnnotation(MavlinkFieldInfo.class);
+                        MavlinkFieldInfo fb = b.getAnnotation(MavlinkFieldInfo.class);
+                        return MavlinkFieldInfo.WIRE_COMPARATOR.compare(fa, fb);
                     })
                     .filter(f -> nextOffset.get() < packet.getPayload().length)
                     .forEach(method -> {
-                        MavlinkMessageField field = method.getAnnotation(MavlinkMessageField.class);
+                        MavlinkFieldInfo field = method.getAnnotation(MavlinkFieldInfo.class);
 
                         int length = field.unitSize() * Math.max(field.arraySize(), 1);
-                        int offset = nextOffset.getAndAccumulate(length, (a,b) -> a+b);
+                        int offset = nextOffset.getAndAccumulate(length, (a, b) -> a + b);
 
                         byte[] data = new byte[length];
                         System.arraycopy(packet.getPayload(), offset, data, 0, length);
@@ -67,14 +62,14 @@ public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
                                 .map(types -> types[0])
                                 .orElseThrow(() -> new MavlinkSerializationException(
                                         "Method " + method.getName() + " of " + builder.getClass().getName()
-                                                + " is annotated with @MavlinkMessageField, however does not " +
+                                                + " is annotated with @MavlinkFieldInfo, however does not " +
                                                 "accept a single parameter."));
 
                         try {
                             if (Enum.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, enumValue(fieldType, data));
                             } else if (EnumFlagSet.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, enumFlagSetValue((Class)((ParameterizedType)(method.getParameters()[0].getParameterizedType())).getActualTypeArguments()[0], data));
+                                method.invoke(builder, enumFlagSetValue((Class) ((ParameterizedType) (method.getParameters()[0].getParameterizedType())).getActualTypeArguments()[0], data));
                             } else if (int.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, (int) integerValue(data));
                             } else if (long.class.isAssignableFrom(fieldType)) {
@@ -92,7 +87,12 @@ public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
                     });
 
             //noinspection unchecked
-            return (T)builder.getClass().getMethod("build").invoke(builder);
+            T payload = (T) builder.getClass().getMethod("build").invoke(builder);
+
+            return new MavlinkMessage<>(
+                    packet.getSystemId(),
+                    packet.getComponentId(),
+                    payload);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -132,8 +132,8 @@ public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
         long value = integerValue(data);
         return Arrays.stream(enumType.getFields())
                 .filter(Field::isEnumConstant)
-                .filter(f -> f.isAnnotationPresent(MavlinkEnumEntry.class))
-                .filter(f -> f.getAnnotation(MavlinkEnumEntry.class).value() == value)
+                .filter(f -> f.isAnnotationPresent(MavlinkEntryInfo.class))
+                .filter(f -> f.getAnnotation(MavlinkEntryInfo.class).value() == value)
                 .map(f -> {
                     try {
                         return f.get(null);
@@ -154,11 +154,11 @@ public class ReflectionPacketDeserializer implements MavlinkPacketDeserializer {
 
         Arrays.stream(enumType.getFields())
                 .filter(Field::isEnumConstant)
-                .filter(f -> f.isAnnotationPresent(MavlinkEnumEntry.class))
-                .filter(f -> (f.getAnnotation(MavlinkEnumEntry.class).value() & bitmask) > 0)
+                .filter(f -> f.isAnnotationPresent(MavlinkEntryInfo.class))
+                .filter(f -> (f.getAnnotation(MavlinkEntryInfo.class).value() & bitmask) > 0)
                 .map(f -> {
                     try {
-                        return (Enum)f.get(null);
+                        return (Enum) f.get(null);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                         return null;

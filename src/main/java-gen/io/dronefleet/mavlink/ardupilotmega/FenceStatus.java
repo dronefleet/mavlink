@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.FenceBreach;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Status of geo-fencing. Sent in extended status stream when fencing enabled 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 162,
     crc = 189
 )
@@ -58,7 +58,7 @@ public final class FenceStatus {
   /**
    * time of last breach in milliseconds since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -69,7 +69,7 @@ public final class FenceStatus {
   /**
    * number of fence breaches 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -80,7 +80,7 @@ public final class FenceStatus {
   /**
    * 0 if currently inside fence, 1 if outside 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -91,7 +91,7 @@ public final class FenceStatus {
   /**
    * last breach type (see FENCE_BREACH_* enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -114,7 +114,7 @@ public final class FenceStatus {
     /**
      * time of last breach in milliseconds since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -126,7 +126,7 @@ public final class FenceStatus {
     /**
      * number of fence breaches 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -138,7 +138,7 @@ public final class FenceStatus {
     /**
      * 0 if currently inside fence, 1 if outside 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -150,7 +150,7 @@ public final class FenceStatus {
     /**
      * last breach type (see FENCE_BREACH_* enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

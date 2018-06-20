@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,48 +11,48 @@ public enum AccelcalVehiclePos {
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   ACCELCAL_VEHICLE_POS_LEVEL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   ACCELCAL_VEHICLE_POS_LEFT,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   ACCELCAL_VEHICLE_POS_RIGHT,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   ACCELCAL_VEHICLE_POS_NOSEDOWN,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   ACCELCAL_VEHICLE_POS_NOSEUP,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   ACCELCAL_VEHICLE_POS_BACK,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16777215)
+  @MavlinkEntryInfo(16777215)
   ACCELCAL_VEHICLE_POS_SUCCESS,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16777216)
+  @MavlinkEntryInfo(16777216)
   ACCELCAL_VEHICLE_POS_FAILED
 }

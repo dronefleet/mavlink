@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Enumeration of battery types 
@@ -11,30 +11,30 @@ public enum MavBatteryType {
   /**
    * Not specified.
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_BATTERY_TYPE_UNKNOWN,
 
   /**
    * Lithium polymer battery
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_BATTERY_TYPE_LIPO,
 
   /**
    * Lithium-iron-phosphate battery
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_BATTERY_TYPE_LIFE,
 
   /**
    * Lithium-ION battery
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   MAV_BATTERY_TYPE_LION,
 
   /**
    * Nickel metal hydride battery
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_BATTERY_TYPE_NIMH
 }

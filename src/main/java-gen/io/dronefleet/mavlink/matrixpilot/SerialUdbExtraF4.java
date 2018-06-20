@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F4: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 172,
     crc = 191
 )
@@ -102,7 +102,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Roll Stabilization with Ailerons Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -113,7 +113,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Roll Stabilization with Rudder Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -124,7 +124,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Pitch Stabilization Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -135,7 +135,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Yaw Stabilization using Rudder Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -146,7 +146,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Yaw Stabilization using Ailerons Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -157,7 +157,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Navigation with Ailerons Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -168,7 +168,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Navigation with Rudder Enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -179,7 +179,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Type of Alitude Hold when in Stabilized Mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -190,7 +190,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Type of Alitude Hold when in Waypoint Mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -201,7 +201,7 @@ public final class SerialUdbExtraF4 {
   /**
    * Serial UDB Extra Firmware racing mode enabled 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -236,7 +236,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Roll Stabilization with Ailerons Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -248,7 +248,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Roll Stabilization with Rudder Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -260,7 +260,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Pitch Stabilization Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -272,7 +272,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Yaw Stabilization using Rudder Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -284,7 +284,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Yaw Stabilization using Ailerons Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -296,7 +296,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Navigation with Ailerons Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -308,7 +308,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Navigation with Rudder Enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -320,7 +320,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Type of Alitude Hold when in Stabilized Mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -332,7 +332,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Type of Alitude Hold when in Waypoint Mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -344,7 +344,7 @@ public final class SerialUdbExtraF4 {
     /**
      * Serial UDB Extra Firmware racing mode enabled 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )

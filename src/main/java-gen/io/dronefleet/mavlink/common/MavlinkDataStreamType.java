@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * null
@@ -11,36 +11,36 @@ public enum MavlinkDataStreamType {
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAVLINK_DATA_STREAM_IMG_JPEG,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAVLINK_DATA_STREAM_IMG_BMP,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   MAVLINK_DATA_STREAM_IMG_RAW8U,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAVLINK_DATA_STREAM_IMG_RAW32U,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   MAVLINK_DATA_STREAM_IMG_PGM,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   MAVLINK_DATA_STREAM_IMG_PNG
 }

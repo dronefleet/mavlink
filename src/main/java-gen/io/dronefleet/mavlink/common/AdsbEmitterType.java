@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * ADSB classification for the type of vehicle emitting the transponder signal 
@@ -11,120 +11,120 @@ public enum AdsbEmitterType {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   ADSB_EMITTER_TYPE_NO_INFO,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   ADSB_EMITTER_TYPE_LIGHT,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   ADSB_EMITTER_TYPE_SMALL,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   ADSB_EMITTER_TYPE_LARGE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   ADSB_EMITTER_TYPE_HIGH_VORTEX_LARGE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   ADSB_EMITTER_TYPE_HEAVY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   ADSB_EMITTER_TYPE_HIGHLY_MANUV,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(7)
+  @MavlinkEntryInfo(7)
   ADSB_EMITTER_TYPE_ROTOCRAFT,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(8)
+  @MavlinkEntryInfo(8)
   ADSB_EMITTER_TYPE_UNASSIGNED,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(9)
+  @MavlinkEntryInfo(9)
   ADSB_EMITTER_TYPE_GLIDER,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(10)
+  @MavlinkEntryInfo(10)
   ADSB_EMITTER_TYPE_LIGHTER_AIR,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(11)
+  @MavlinkEntryInfo(11)
   ADSB_EMITTER_TYPE_PARACHUTE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(12)
+  @MavlinkEntryInfo(12)
   ADSB_EMITTER_TYPE_ULTRA_LIGHT,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(13)
+  @MavlinkEntryInfo(13)
   ADSB_EMITTER_TYPE_UNASSIGNED2,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(14)
+  @MavlinkEntryInfo(14)
   ADSB_EMITTER_TYPE_UAV,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(15)
+  @MavlinkEntryInfo(15)
   ADSB_EMITTER_TYPE_SPACE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   ADSB_EMITTER_TYPE_UNASSGINED3,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(17)
+  @MavlinkEntryInfo(17)
   ADSB_EMITTER_TYPE_EMERGENCY_SURFACE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(18)
+  @MavlinkEntryInfo(18)
   ADSB_EMITTER_TYPE_SERVICE_SURFACE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(19)
+  @MavlinkEntryInfo(19)
   ADSB_EMITTER_TYPE_POINT_OBSTACLE
 }

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.paparazzi;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * This message informs about the currently active SCRIPT. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 184,
     crc = 40
 )
@@ -36,7 +36,7 @@ public final class ScriptCurrent {
   /**
    * Active Sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -53,7 +53,7 @@ public final class ScriptCurrent {
     /**
      * Active Sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )

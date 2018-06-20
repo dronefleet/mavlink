@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Airspeed auto-calibration 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 174,
     crc = 167
 )
@@ -114,7 +114,7 @@ public final class AirspeedAutocal {
   /**
    * GPS velocity north m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -125,7 +125,7 @@ public final class AirspeedAutocal {
   /**
    * GPS velocity east m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -136,7 +136,7 @@ public final class AirspeedAutocal {
   /**
    * GPS velocity down m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -147,7 +147,7 @@ public final class AirspeedAutocal {
   /**
    * Differential pressure pascals 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -158,7 +158,7 @@ public final class AirspeedAutocal {
   /**
    * Estimated to true airspeed ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -169,7 +169,7 @@ public final class AirspeedAutocal {
   /**
    * Airspeed ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -180,7 +180,7 @@ public final class AirspeedAutocal {
   /**
    * EKF state x 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -191,7 +191,7 @@ public final class AirspeedAutocal {
   /**
    * EKF state y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -202,7 +202,7 @@ public final class AirspeedAutocal {
   /**
    * EKF state z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -213,7 +213,7 @@ public final class AirspeedAutocal {
   /**
    * EKF Pax 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -224,7 +224,7 @@ public final class AirspeedAutocal {
   /**
    * EKF Pby 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -235,7 +235,7 @@ public final class AirspeedAutocal {
   /**
    * EKF Pcz 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -274,7 +274,7 @@ public final class AirspeedAutocal {
     /**
      * GPS velocity north m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -286,7 +286,7 @@ public final class AirspeedAutocal {
     /**
      * GPS velocity east m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -298,7 +298,7 @@ public final class AirspeedAutocal {
     /**
      * GPS velocity down m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -310,7 +310,7 @@ public final class AirspeedAutocal {
     /**
      * Differential pressure pascals 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -322,7 +322,7 @@ public final class AirspeedAutocal {
     /**
      * Estimated to true airspeed ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -334,7 +334,7 @@ public final class AirspeedAutocal {
     /**
      * Airspeed ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -346,7 +346,7 @@ public final class AirspeedAutocal {
     /**
      * EKF state x 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -358,7 +358,7 @@ public final class AirspeedAutocal {
     /**
      * EKF state y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -370,7 +370,7 @@ public final class AirspeedAutocal {
     /**
      * EKF state z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -382,7 +382,7 @@ public final class AirspeedAutocal {
     /**
      * EKF Pax 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -394,7 +394,7 @@ public final class AirspeedAutocal {
     /**
      * EKF Pby 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -406,7 +406,7 @@ public final class AirspeedAutocal {
     /**
      * EKF Pcz 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )

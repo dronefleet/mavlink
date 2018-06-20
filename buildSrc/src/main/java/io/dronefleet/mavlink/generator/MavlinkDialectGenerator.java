@@ -24,9 +24,9 @@ public class MavlinkDialectGenerator {
 
     private static final ClassName ENUM_FLAG_SET = ClassName.get("io.dronefleet.mavlink.util", "EnumFlagSet");
     private static final ClassName MAVLINK_ENUM = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkEnum");
-    private static final ClassName MAVLINK_ENUM_ENTRY = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkEnumEntry");
-    private static final ClassName MAVLINK_MESSAGE = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessage");
-    private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageField");
+    private static final ClassName MAVLINK_ENUM_ENTRY = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkEntryInfo");
+    private static final ClassName MAVLINK_MESSAGE = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageInfo");
+    private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkFieldInfo");
     private static final ClassName MAVLINK_MESSAGE_BUILDER = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageBuilder");
 
     private class PackageSources {

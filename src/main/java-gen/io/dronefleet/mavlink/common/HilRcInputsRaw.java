@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual 
  * receivers/transmitters might violate this specification. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 92,
     crc = 54
 )
@@ -132,7 +132,7 @@ public final class HilRcInputsRaw {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -143,7 +143,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 1 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -154,7 +154,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 2 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -165,7 +165,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 3 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -176,7 +176,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 4 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -187,7 +187,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 5 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -198,7 +198,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 6 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -209,7 +209,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 7 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -220,7 +220,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 8 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -231,7 +231,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 9 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -242,7 +242,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 10 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -253,7 +253,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 11 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -264,7 +264,7 @@ public final class HilRcInputsRaw {
   /**
    * RC channel 12 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -275,7 +275,7 @@ public final class HilRcInputsRaw {
   /**
    * Receive signal strength indicator, 0: 0%, 255: 100% 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1
   )
@@ -318,7 +318,7 @@ public final class HilRcInputsRaw {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -330,7 +330,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 1 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -342,7 +342,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 2 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -354,7 +354,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 3 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -366,7 +366,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 4 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -378,7 +378,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 5 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -390,7 +390,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 6 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -402,7 +402,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 7 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -414,7 +414,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 8 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -426,7 +426,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 9 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -438,7 +438,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 10 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -450,7 +450,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 11 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -462,7 +462,7 @@ public final class HilRcInputsRaw {
     /**
      * RC channel 12 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -474,7 +474,7 @@ public final class HilRcInputsRaw {
     /**
      * Receive signal strength indicator, 0: 0%, 255: 100% 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1
     )

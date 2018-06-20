@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE SET_MESSAGE_INTERVAL INSTEAD. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 66,
     crc = 148
 )
@@ -65,7 +65,7 @@ public final class RequestDataStream {
   /**
    * The requested message rate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -76,7 +76,7 @@ public final class RequestDataStream {
   /**
    * The target requested to send the message stream. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -87,7 +87,7 @@ public final class RequestDataStream {
   /**
    * The target requested to send the message stream. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -98,7 +98,7 @@ public final class RequestDataStream {
   /**
    * The ID of the requested data stream 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class RequestDataStream {
   /**
    * 1 to start sending, 0 to stop sending. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class RequestDataStream {
     /**
      * The requested message rate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -146,7 +146,7 @@ public final class RequestDataStream {
     /**
      * The target requested to send the message stream. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -158,7 +158,7 @@ public final class RequestDataStream {
     /**
      * The target requested to send the message stream. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -170,7 +170,7 @@ public final class RequestDataStream {
     /**
      * The ID of the requested data stream 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -182,7 +182,7 @@ public final class RequestDataStream {
     /**
      * 1 to start sending, 0 to stop sending. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

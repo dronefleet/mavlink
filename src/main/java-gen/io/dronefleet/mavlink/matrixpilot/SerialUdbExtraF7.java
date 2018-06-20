@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F7: format 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 175,
     crc = 171
 )
@@ -72,7 +72,7 @@ public final class SerialUdbExtraF7 {
   /**
    * Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -83,7 +83,7 @@ public final class SerialUdbExtraF7 {
   /**
    * Serial UDB YAWKD_RUDDER Gain for Rate control of navigation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -94,7 +94,7 @@ public final class SerialUdbExtraF7 {
   /**
    * Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -105,7 +105,7 @@ public final class SerialUdbExtraF7 {
   /**
    * Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -116,7 +116,7 @@ public final class SerialUdbExtraF7 {
   /**
    * SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -127,7 +127,7 @@ public final class SerialUdbExtraF7 {
   /**
    * Serial UDB Extra Return To Landing - Angle to Pitch Plane Down 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -154,7 +154,7 @@ public final class SerialUdbExtraF7 {
     /**
      * Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -166,7 +166,7 @@ public final class SerialUdbExtraF7 {
     /**
      * Serial UDB YAWKD_RUDDER Gain for Rate control of navigation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -178,7 +178,7 @@ public final class SerialUdbExtraF7 {
     /**
      * Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -190,7 +190,7 @@ public final class SerialUdbExtraF7 {
     /**
      * Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -202,7 +202,7 @@ public final class SerialUdbExtraF7 {
     /**
      * SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -214,7 +214,7 @@ public final class SerialUdbExtraF7 {
     /**
      * Serial UDB Extra Return To Landing - Angle to Pitch Plane Down 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )

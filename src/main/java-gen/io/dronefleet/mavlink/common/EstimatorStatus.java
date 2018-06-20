@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -19,7 +19,7 @@ import java.math.BigInteger;
  * ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 
  * should be optional and controllable by the user. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 230,
     crc = 163
 )
@@ -112,7 +112,7 @@ public final class EstimatorStatus {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -123,7 +123,7 @@ public final class EstimatorStatus {
   /**
    * Velocity innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class EstimatorStatus {
   /**
    * Horizontal position innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class EstimatorStatus {
   /**
    * Vertical position innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class EstimatorStatus {
   /**
    * Magnetometer innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class EstimatorStatus {
   /**
    * Height above terrain innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class EstimatorStatus {
   /**
    * True airspeed innovation test ratio 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class EstimatorStatus {
   /**
    * Horizontal position 1-STD accuracy relative to the EKF local origin (m) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class EstimatorStatus {
   /**
    * Vertical position 1-STD accuracy relative to the EKF local origin (m) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -212,7 +212,7 @@ public final class EstimatorStatus {
    * Integer bitmask indicating which EKF outputs are valid. See definition for 
    * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -247,7 +247,7 @@ public final class EstimatorStatus {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -259,7 +259,7 @@ public final class EstimatorStatus {
     /**
      * Velocity innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -271,7 +271,7 @@ public final class EstimatorStatus {
     /**
      * Horizontal position innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -283,7 +283,7 @@ public final class EstimatorStatus {
     /**
      * Vertical position innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -295,7 +295,7 @@ public final class EstimatorStatus {
     /**
      * Magnetometer innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -307,7 +307,7 @@ public final class EstimatorStatus {
     /**
      * Height above terrain innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -319,7 +319,7 @@ public final class EstimatorStatus {
     /**
      * True airspeed innovation test ratio 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -331,7 +331,7 @@ public final class EstimatorStatus {
     /**
      * Horizontal position 1-STD accuracy relative to the EKF local origin (m) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -343,7 +343,7 @@ public final class EstimatorStatus {
     /**
      * Vertical position 1-STD accuracy relative to the EKF local origin (m) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -356,7 +356,7 @@ public final class EstimatorStatus {
      * Integer bitmask indicating which EKF outputs are valid. See definition for 
      * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags EstimatorStatusFlags}. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )

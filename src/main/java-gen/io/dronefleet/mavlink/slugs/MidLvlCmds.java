@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Mid Level commands sent from the GS to the autopilot. These are only sent when being operated in 
  * mid-level commands mode from the ground. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 180,
     crc = 146
 )
@@ -58,7 +58,7 @@ public final class MidLvlCmds {
   /**
    * Commanded Altitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -69,7 +69,7 @@ public final class MidLvlCmds {
   /**
    * Commanded Airspeed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -80,7 +80,7 @@ public final class MidLvlCmds {
   /**
    * Commanded Turnrate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class MidLvlCmds {
   /**
    * The system setting the commands 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -114,7 +114,7 @@ public final class MidLvlCmds {
     /**
      * Commanded Altitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -126,7 +126,7 @@ public final class MidLvlCmds {
     /**
      * Commanded Airspeed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -138,7 +138,7 @@ public final class MidLvlCmds {
     /**
      * Commanded Turnrate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -150,7 +150,7 @@ public final class MidLvlCmds {
     /**
      * The system setting the commands 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

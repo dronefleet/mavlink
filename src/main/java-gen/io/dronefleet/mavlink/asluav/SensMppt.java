@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Maximum Power Point Tracker (MPPT) sensor data for solar module power performance tracking 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 202,
     crc = 231
 )
@@ -123,7 +123,7 @@ public final class SensMppt {
   /**
    * MPPT last timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -134,7 +134,7 @@ public final class SensMppt {
   /**
    * MPPT1 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class SensMppt {
   /**
    * MPPT1 current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class SensMppt {
   /**
    * MPPT2 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class SensMppt {
   /**
    * MPPT2 current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class SensMppt {
   /**
    * MPPT3 voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class SensMppt {
   /**
    * MPPT3 current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class SensMppt {
   /**
    * MPPT1 pwm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -211,7 +211,7 @@ public final class SensMppt {
   /**
    * MPPT2 pwm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -222,7 +222,7 @@ public final class SensMppt {
   /**
    * MPPT3 pwm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -233,7 +233,7 @@ public final class SensMppt {
   /**
    * MPPT1 status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -244,7 +244,7 @@ public final class SensMppt {
   /**
    * MPPT2 status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -255,7 +255,7 @@ public final class SensMppt {
   /**
    * MPPT3 status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1
   )
@@ -296,7 +296,7 @@ public final class SensMppt {
     /**
      * MPPT last timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -308,7 +308,7 @@ public final class SensMppt {
     /**
      * MPPT1 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -320,7 +320,7 @@ public final class SensMppt {
     /**
      * MPPT1 current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -332,7 +332,7 @@ public final class SensMppt {
     /**
      * MPPT2 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -344,7 +344,7 @@ public final class SensMppt {
     /**
      * MPPT2 current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -356,7 +356,7 @@ public final class SensMppt {
     /**
      * MPPT3 voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -368,7 +368,7 @@ public final class SensMppt {
     /**
      * MPPT3 current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -380,7 +380,7 @@ public final class SensMppt {
     /**
      * MPPT1 pwm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -392,7 +392,7 @@ public final class SensMppt {
     /**
      * MPPT2 pwm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -404,7 +404,7 @@ public final class SensMppt {
     /**
      * MPPT3 pwm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -416,7 +416,7 @@ public final class SensMppt {
     /**
      * MPPT1 status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -428,7 +428,7 @@ public final class SensMppt {
     /**
      * MPPT2 status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -440,7 +440,7 @@ public final class SensMppt {
     /**
      * MPPT3 status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1
     )

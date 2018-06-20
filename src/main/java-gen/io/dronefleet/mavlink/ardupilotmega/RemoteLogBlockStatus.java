@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Send Status of each log block that autopilot board might have sent 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 185,
     crc = 186
 )
@@ -58,7 +58,7 @@ public final class RemoteLogBlockStatus {
   /**
    * log data block sequence number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -69,7 +69,7 @@ public final class RemoteLogBlockStatus {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -80,7 +80,7 @@ public final class RemoteLogBlockStatus {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -91,7 +91,7 @@ public final class RemoteLogBlockStatus {
   /**
    * log data block status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -114,7 +114,7 @@ public final class RemoteLogBlockStatus {
     /**
      * log data block sequence number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -126,7 +126,7 @@ public final class RemoteLogBlockStatus {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -138,7 +138,7 @@ public final class RemoteLogBlockStatus {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -150,7 +150,7 @@ public final class RemoteLogBlockStatus {
     /**
      * log data block status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

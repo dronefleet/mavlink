@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Monitoring of power board status 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 212,
     crc = 222
 )
@@ -117,7 +117,7 @@ public final class SensPowerBoard {
   /**
    * Timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -128,7 +128,7 @@ public final class SensPowerBoard {
   /**
    * Power board system voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -139,7 +139,7 @@ public final class SensPowerBoard {
   /**
    * Power board servo voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -150,7 +150,7 @@ public final class SensPowerBoard {
   /**
    * Power board digital voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -161,7 +161,7 @@ public final class SensPowerBoard {
   /**
    * Power board left motor current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -172,7 +172,7 @@ public final class SensPowerBoard {
   /**
    * Power board right motor current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -183,7 +183,7 @@ public final class SensPowerBoard {
   /**
    * Power board analog current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -194,7 +194,7 @@ public final class SensPowerBoard {
   /**
    * Power board digital current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -205,7 +205,7 @@ public final class SensPowerBoard {
   /**
    * Power board extension current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -216,7 +216,7 @@ public final class SensPowerBoard {
   /**
    * Power board aux current sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -227,7 +227,7 @@ public final class SensPowerBoard {
   /**
    * Power board status register 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -238,7 +238,7 @@ public final class SensPowerBoard {
   /**
    * Power board leds status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -277,7 +277,7 @@ public final class SensPowerBoard {
     /**
      * Timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -289,7 +289,7 @@ public final class SensPowerBoard {
     /**
      * Power board system voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -301,7 +301,7 @@ public final class SensPowerBoard {
     /**
      * Power board servo voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -313,7 +313,7 @@ public final class SensPowerBoard {
     /**
      * Power board digital voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -325,7 +325,7 @@ public final class SensPowerBoard {
     /**
      * Power board left motor current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -337,7 +337,7 @@ public final class SensPowerBoard {
     /**
      * Power board right motor current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -349,7 +349,7 @@ public final class SensPowerBoard {
     /**
      * Power board analog current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -361,7 +361,7 @@ public final class SensPowerBoard {
     /**
      * Power board digital current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -373,7 +373,7 @@ public final class SensPowerBoard {
     /**
      * Power board extension current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -385,7 +385,7 @@ public final class SensPowerBoard {
     /**
      * Power board aux current sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -397,7 +397,7 @@ public final class SensPowerBoard {
     /**
      * Power board status register 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -409,7 +409,7 @@ public final class SensPowerBoard {
     /**
      * Power board leds status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

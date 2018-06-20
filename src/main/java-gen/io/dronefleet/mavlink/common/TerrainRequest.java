@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Request for terrain data and terrain status 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 133,
     crc = 6
 )
@@ -58,7 +58,7 @@ public final class TerrainRequest {
   /**
    * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 8
   )
@@ -69,7 +69,7 @@ public final class TerrainRequest {
   /**
    * Latitude of SW corner of first grid (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -80,7 +80,7 @@ public final class TerrainRequest {
   /**
    * Longitude of SW corner of first grid (in degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class TerrainRequest {
   /**
    * Grid spacing in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -114,7 +114,7 @@ public final class TerrainRequest {
     /**
      * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 8
     )
@@ -126,7 +126,7 @@ public final class TerrainRequest {
     /**
      * Latitude of SW corner of first grid (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -138,7 +138,7 @@ public final class TerrainRequest {
     /**
      * Longitude of SW corner of first grid (in degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -150,7 +150,7 @@ public final class TerrainRequest {
     /**
      * Grid spacing in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )

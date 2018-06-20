@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * The RAW IMU readings for the usual 9DOF sensor setup. This message should always contain the 
  * true raw values without any scaling to allow data capture and system debugging. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 27,
     crc = 144
 )
@@ -102,7 +102,7 @@ public final class RawImu {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -113,7 +113,7 @@ public final class RawImu {
   /**
    * X acceleration (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -124,7 +124,7 @@ public final class RawImu {
   /**
    * Y acceleration (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -135,7 +135,7 @@ public final class RawImu {
   /**
    * Z acceleration (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -146,7 +146,7 @@ public final class RawImu {
   /**
    * Angular speed around X axis (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -157,7 +157,7 @@ public final class RawImu {
   /**
    * Angular speed around Y axis (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -168,7 +168,7 @@ public final class RawImu {
   /**
    * Angular speed around Z axis (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -179,7 +179,7 @@ public final class RawImu {
   /**
    * X Magnetic field (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -190,7 +190,7 @@ public final class RawImu {
   /**
    * Y Magnetic field (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -201,7 +201,7 @@ public final class RawImu {
   /**
    * Z Magnetic field (raw) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -236,7 +236,7 @@ public final class RawImu {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -248,7 +248,7 @@ public final class RawImu {
     /**
      * X acceleration (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -260,7 +260,7 @@ public final class RawImu {
     /**
      * Y acceleration (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -272,7 +272,7 @@ public final class RawImu {
     /**
      * Z acceleration (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -284,7 +284,7 @@ public final class RawImu {
     /**
      * Angular speed around X axis (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -296,7 +296,7 @@ public final class RawImu {
     /**
      * Angular speed around Y axis (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -308,7 +308,7 @@ public final class RawImu {
     /**
      * Angular speed around Z axis (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -320,7 +320,7 @@ public final class RawImu {
     /**
      * X Magnetic field (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -332,7 +332,7 @@ public final class RawImu {
     /**
      * Y Magnetic field (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -344,7 +344,7 @@ public final class RawImu {
     /**
      * Z Magnetic field (raw) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )

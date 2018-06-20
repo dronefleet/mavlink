@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Message appropriate for high latency connections like Iridium 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 234,
     crc = 150
 )
@@ -203,7 +203,7 @@ public final class HighLatency {
   /**
    * A bitfield for use for autopilot-specific flags. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -214,7 +214,7 @@ public final class HighLatency {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -225,7 +225,7 @@ public final class HighLatency {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -236,7 +236,7 @@ public final class HighLatency {
   /**
    * roll (centidegrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -247,7 +247,7 @@ public final class HighLatency {
   /**
    * pitch (centidegrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -258,7 +258,7 @@ public final class HighLatency {
   /**
    * heading (centidegrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -269,7 +269,7 @@ public final class HighLatency {
   /**
    * heading setpoint (centidegrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -280,7 +280,7 @@ public final class HighLatency {
   /**
    * Altitude above mean sea level (meters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -291,7 +291,7 @@ public final class HighLatency {
   /**
    * Altitude setpoint relative to the home position (meters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -302,7 +302,7 @@ public final class HighLatency {
   /**
    * distance to target (meters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 2
   )
@@ -313,7 +313,7 @@ public final class HighLatency {
   /**
    * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -324,7 +324,7 @@ public final class HighLatency {
   /**
    * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -335,7 +335,7 @@ public final class HighLatency {
   /**
    * throttle (percentage) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -346,7 +346,7 @@ public final class HighLatency {
   /**
    * airspeed (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1
   )
@@ -357,7 +357,7 @@ public final class HighLatency {
   /**
    * airspeed setpoint (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1
   )
@@ -368,7 +368,7 @@ public final class HighLatency {
   /**
    * groundspeed (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 1
   )
@@ -379,7 +379,7 @@ public final class HighLatency {
   /**
    * climb rate (m/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 1
   )
@@ -390,7 +390,7 @@ public final class HighLatency {
   /**
    * Number of satellites visible. If unknown, set to 255 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 1
   )
@@ -401,7 +401,7 @@ public final class HighLatency {
   /**
    * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 1
   )
@@ -412,7 +412,7 @@ public final class HighLatency {
   /**
    * Remaining battery (percentage) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 1
   )
@@ -423,7 +423,7 @@ public final class HighLatency {
   /**
    * Autopilot temperature (degrees C) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 1
   )
@@ -434,7 +434,7 @@ public final class HighLatency {
   /**
    * Air temperature (degrees C) from airspeed sensor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 1
   )
@@ -446,7 +446,7 @@ public final class HighLatency {
    * failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, 
    * bit2:GPS, bit3:GCS, bit4:fence) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 1
   )
@@ -457,7 +457,7 @@ public final class HighLatency {
   /**
    * current waypoint number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 1
   )
@@ -520,7 +520,7 @@ public final class HighLatency {
     /**
      * A bitfield for use for autopilot-specific flags. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -532,7 +532,7 @@ public final class HighLatency {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -544,7 +544,7 @@ public final class HighLatency {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -556,7 +556,7 @@ public final class HighLatency {
     /**
      * roll (centidegrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -568,7 +568,7 @@ public final class HighLatency {
     /**
      * pitch (centidegrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -580,7 +580,7 @@ public final class HighLatency {
     /**
      * heading (centidegrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -592,7 +592,7 @@ public final class HighLatency {
     /**
      * heading setpoint (centidegrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -604,7 +604,7 @@ public final class HighLatency {
     /**
      * Altitude above mean sea level (meters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -616,7 +616,7 @@ public final class HighLatency {
     /**
      * Altitude setpoint relative to the home position (meters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -628,7 +628,7 @@ public final class HighLatency {
     /**
      * distance to target (meters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 2
     )
@@ -640,7 +640,7 @@ public final class HighLatency {
     /**
      * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -652,7 +652,7 @@ public final class HighLatency {
     /**
      * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -664,7 +664,7 @@ public final class HighLatency {
     /**
      * throttle (percentage) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -676,7 +676,7 @@ public final class HighLatency {
     /**
      * airspeed (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1
     )
@@ -688,7 +688,7 @@ public final class HighLatency {
     /**
      * airspeed setpoint (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1
     )
@@ -700,7 +700,7 @@ public final class HighLatency {
     /**
      * groundspeed (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 1
     )
@@ -712,7 +712,7 @@ public final class HighLatency {
     /**
      * climb rate (m/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 1
     )
@@ -724,7 +724,7 @@ public final class HighLatency {
     /**
      * Number of satellites visible. If unknown, set to 255 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 1
     )
@@ -736,7 +736,7 @@ public final class HighLatency {
     /**
      * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 1
     )
@@ -748,7 +748,7 @@ public final class HighLatency {
     /**
      * Remaining battery (percentage) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 1
     )
@@ -760,7 +760,7 @@ public final class HighLatency {
     /**
      * Autopilot temperature (degrees C) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 1
     )
@@ -772,7 +772,7 @@ public final class HighLatency {
     /**
      * Air temperature (degrees C) from airspeed sensor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 1
     )
@@ -785,7 +785,7 @@ public final class HighLatency {
      * failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, 
      * bit2:GPS, bit3:GCS, bit4:fence) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 1
     )
@@ -797,7 +797,7 @@ public final class HighLatency {
     /**
      * current waypoint number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Message implementing parts of the V2 payload specs in V1 frames for transitional support. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 248,
     crc = 8
 )
@@ -82,7 +82,7 @@ public final class V2Extension {
    * Message_types greater than 32767 are considered local experiments and should not be checked 
    * in to any widely distributed codebase. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -93,7 +93,7 @@ public final class V2Extension {
   /**
    * Network ID (0 for broadcast) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -104,7 +104,7 @@ public final class V2Extension {
   /**
    * System ID (0 for broadcast) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -115,7 +115,7 @@ public final class V2Extension {
   /**
    * Component ID (0 for broadcast) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -129,7 +129,7 @@ public final class V2Extension {
    * understand any the encoding message_type. The particular encoding used can be extension 
    * specific and might not always be documented as part of the mavlink specification. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 249
@@ -161,7 +161,7 @@ public final class V2Extension {
      * Message_types greater than 32767 are considered local experiments and should not be checked 
      * in to any widely distributed codebase. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -173,7 +173,7 @@ public final class V2Extension {
     /**
      * Network ID (0 for broadcast) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -185,7 +185,7 @@ public final class V2Extension {
     /**
      * System ID (0 for broadcast) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -197,7 +197,7 @@ public final class V2Extension {
     /**
      * Component ID (0 for broadcast) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -212,7 +212,7 @@ public final class V2Extension {
      * understand any the encoding message_type. The particular encoding used can be extension 
      * specific and might not always be documented as part of the mavlink specification. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 249

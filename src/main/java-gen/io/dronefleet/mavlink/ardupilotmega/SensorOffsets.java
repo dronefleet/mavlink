@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Offsets and calibrations values for hardware sensors. This makes it easier to debug the 
  * calibration process. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 150,
     crc = 134
 )
@@ -116,7 +116,7 @@ public final class SensorOffsets {
   /**
    * magnetic declination (radians) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -127,7 +127,7 @@ public final class SensorOffsets {
   /**
    * raw pressure from barometer 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class SensorOffsets {
   /**
    * raw temperature from barometer 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -149,7 +149,7 @@ public final class SensorOffsets {
   /**
    * gyro X calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class SensorOffsets {
   /**
    * gyro Y calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class SensorOffsets {
   /**
    * gyro Z calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class SensorOffsets {
   /**
    * accel X calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -193,7 +193,7 @@ public final class SensorOffsets {
   /**
    * accel Y calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -204,7 +204,7 @@ public final class SensorOffsets {
   /**
    * accel Z calibration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -215,7 +215,7 @@ public final class SensorOffsets {
   /**
    * magnetometer X offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -226,7 +226,7 @@ public final class SensorOffsets {
   /**
    * magnetometer Y offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -237,7 +237,7 @@ public final class SensorOffsets {
   /**
    * magnetometer Z offset 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -276,7 +276,7 @@ public final class SensorOffsets {
     /**
      * magnetic declination (radians) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -288,7 +288,7 @@ public final class SensorOffsets {
     /**
      * raw pressure from barometer 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -300,7 +300,7 @@ public final class SensorOffsets {
     /**
      * raw temperature from barometer 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -312,7 +312,7 @@ public final class SensorOffsets {
     /**
      * gyro X calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -324,7 +324,7 @@ public final class SensorOffsets {
     /**
      * gyro Y calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -336,7 +336,7 @@ public final class SensorOffsets {
     /**
      * gyro Z calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -348,7 +348,7 @@ public final class SensorOffsets {
     /**
      * accel X calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -360,7 +360,7 @@ public final class SensorOffsets {
     /**
      * accel Y calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -372,7 +372,7 @@ public final class SensorOffsets {
     /**
      * accel Z calibration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -384,7 +384,7 @@ public final class SensorOffsets {
     /**
      * magnetometer X offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -396,7 +396,7 @@ public final class SensorOffsets {
     /**
      * magnetometer Y offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -408,7 +408,7 @@ public final class SensorOffsets {
     /**
      * magnetometer Z offset 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )

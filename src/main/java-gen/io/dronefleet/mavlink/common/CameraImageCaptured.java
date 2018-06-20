@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Information about a captured image 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 263,
     crc = 133
 )
@@ -112,7 +112,7 @@ public final class CameraImageCaptured {
   /**
    * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 8
   )
@@ -123,7 +123,7 @@ public final class CameraImageCaptured {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class CameraImageCaptured {
   /**
    * Latitude, expressed as degrees * 1E7 where image was taken 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class CameraImageCaptured {
   /**
    * Longitude, expressed as degrees * 1E7 where capture was taken 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class CameraImageCaptured {
   /**
    * Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class CameraImageCaptured {
   /**
    * Altitude above ground in meters, expressed as * 1E3 where image was taken 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class CameraImageCaptured {
   /**
    * Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       arraySize = 4
@@ -190,7 +190,7 @@ public final class CameraImageCaptured {
   /**
    * Zero based index of this image (image count since armed -1) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -201,7 +201,7 @@ public final class CameraImageCaptured {
   /**
    * Camera ID (1 for first, 2 for second, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -212,7 +212,7 @@ public final class CameraImageCaptured {
   /**
    * Boolean indicating success (1) or failure (0) while capturing this image. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -224,7 +224,7 @@ public final class CameraImageCaptured {
    * URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP 
    * interface. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1,
       arraySize = 205
@@ -262,7 +262,7 @@ public final class CameraImageCaptured {
     /**
      * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 8
     )
@@ -274,7 +274,7 @@ public final class CameraImageCaptured {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -286,7 +286,7 @@ public final class CameraImageCaptured {
     /**
      * Latitude, expressed as degrees * 1E7 where image was taken 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -298,7 +298,7 @@ public final class CameraImageCaptured {
     /**
      * Longitude, expressed as degrees * 1E7 where capture was taken 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -310,7 +310,7 @@ public final class CameraImageCaptured {
     /**
      * Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -322,7 +322,7 @@ public final class CameraImageCaptured {
     /**
      * Altitude above ground in meters, expressed as * 1E3 where image was taken 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -334,7 +334,7 @@ public final class CameraImageCaptured {
     /**
      * Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         arraySize = 4
@@ -347,7 +347,7 @@ public final class CameraImageCaptured {
     /**
      * Zero based index of this image (image count since armed -1) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -359,7 +359,7 @@ public final class CameraImageCaptured {
     /**
      * Camera ID (1 for first, 2 for second, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -371,7 +371,7 @@ public final class CameraImageCaptured {
     /**
      * Boolean indicating success (1) or failure (0) while capturing this image. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -384,7 +384,7 @@ public final class CameraImageCaptured {
      * URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP 
      * interface. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1,
         arraySize = 205

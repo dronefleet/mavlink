@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Read out the safety zone the MAV currently assumes. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 55,
     crc = 3
 )
@@ -80,7 +80,7 @@ public final class SafetyAllowedArea {
   /**
    * x position 1 / Latitude 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class SafetyAllowedArea {
   /**
    * y position 1 / Longitude 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class SafetyAllowedArea {
   /**
    * z position 1 / Altitude 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class SafetyAllowedArea {
   /**
    * x position 2 / Latitude 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class SafetyAllowedArea {
   /**
    * y position 2 / Longitude 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class SafetyAllowedArea {
   /**
    * z position 2 / Altitude 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -147,7 +147,7 @@ public final class SafetyAllowedArea {
    * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. Can be either global, GPS, right-handed with Z 
    * axis up or local, right handed, Z axis down. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -176,7 +176,7 @@ public final class SafetyAllowedArea {
     /**
      * x position 1 / Latitude 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -188,7 +188,7 @@ public final class SafetyAllowedArea {
     /**
      * y position 1 / Longitude 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -200,7 +200,7 @@ public final class SafetyAllowedArea {
     /**
      * z position 1 / Altitude 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -212,7 +212,7 @@ public final class SafetyAllowedArea {
     /**
      * x position 2 / Latitude 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -224,7 +224,7 @@ public final class SafetyAllowedArea {
     /**
      * y position 2 / Longitude 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -236,7 +236,7 @@ public final class SafetyAllowedArea {
     /**
      * z position 2 / Altitude 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -249,7 +249,7 @@ public final class SafetyAllowedArea {
      * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. Can be either global, GPS, right-handed with Z 
      * axis up or local, right handed, Z axis down. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

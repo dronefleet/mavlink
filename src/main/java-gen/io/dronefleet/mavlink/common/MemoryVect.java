@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
  * Send raw controller memory. The use of this message is discouraged for normal packets, but a 
  * quite efficient way for testing new messages and getting experimental debug output. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 249,
     crc = 204
 )
@@ -61,7 +61,7 @@ public final class MemoryVect {
   /**
    * Starting address of the debug variables 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -72,7 +72,7 @@ public final class MemoryVect {
   /**
    * Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -84,7 +84,7 @@ public final class MemoryVect {
    * Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 
    * 1Q14 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class MemoryVect {
   /**
    * Memory contents at specified address 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 32
@@ -119,7 +119,7 @@ public final class MemoryVect {
     /**
      * Starting address of the debug variables 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -131,7 +131,7 @@ public final class MemoryVect {
     /**
      * Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -144,7 +144,7 @@ public final class MemoryVect {
      * Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 
      * 1Q14 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -156,7 +156,7 @@ public final class MemoryVect {
     /**
      * Memory contents at specified address 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 32

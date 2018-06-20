@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GoproCommand} set request 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 219,
     crc = 162
 )
@@ -43,7 +43,7 @@ public final class GoproSetResponse {
   /**
    * Command ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -54,7 +54,7 @@ public final class GoproSetResponse {
   /**
    * Status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class GoproSetResponse {
     /**
      * Command ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -85,7 +85,7 @@ public final class GoproSetResponse {
     /**
      * Status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.icarous;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Kinematic multi bands (track) output from Daidalus 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 42001,
     crc = 239
 )
@@ -144,7 +144,7 @@ public final class IcarousKinematicBands {
   /**
    * min angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class IcarousKinematicBands {
   /**
    * max angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class IcarousKinematicBands {
   /**
    * min angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class IcarousKinematicBands {
   /**
    * max angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -188,7 +188,7 @@ public final class IcarousKinematicBands {
   /**
    * min angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -199,7 +199,7 @@ public final class IcarousKinematicBands {
   /**
    * max angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -210,7 +210,7 @@ public final class IcarousKinematicBands {
   /**
    * min angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -221,7 +221,7 @@ public final class IcarousKinematicBands {
   /**
    * max angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -232,7 +232,7 @@ public final class IcarousKinematicBands {
   /**
    * min angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -243,7 +243,7 @@ public final class IcarousKinematicBands {
   /**
    * max angle (degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -254,7 +254,7 @@ public final class IcarousKinematicBands {
   /**
    * Number of track bands 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -265,7 +265,7 @@ public final class IcarousKinematicBands {
   /**
    * See the TRACK_BAND_TYPES enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -276,7 +276,7 @@ public final class IcarousKinematicBands {
   /**
    * See the TRACK_BAND_TYPES enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -287,7 +287,7 @@ public final class IcarousKinematicBands {
   /**
    * See the TRACK_BAND_TYPES enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -298,7 +298,7 @@ public final class IcarousKinematicBands {
   /**
    * See the TRACK_BAND_TYPES enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -309,7 +309,7 @@ public final class IcarousKinematicBands {
   /**
    * See the TRACK_BAND_TYPES enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 1
   )
@@ -356,7 +356,7 @@ public final class IcarousKinematicBands {
     /**
      * min angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -368,7 +368,7 @@ public final class IcarousKinematicBands {
     /**
      * max angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -380,7 +380,7 @@ public final class IcarousKinematicBands {
     /**
      * min angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -392,7 +392,7 @@ public final class IcarousKinematicBands {
     /**
      * max angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -404,7 +404,7 @@ public final class IcarousKinematicBands {
     /**
      * min angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -416,7 +416,7 @@ public final class IcarousKinematicBands {
     /**
      * max angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -428,7 +428,7 @@ public final class IcarousKinematicBands {
     /**
      * min angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -440,7 +440,7 @@ public final class IcarousKinematicBands {
     /**
      * max angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -452,7 +452,7 @@ public final class IcarousKinematicBands {
     /**
      * min angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -464,7 +464,7 @@ public final class IcarousKinematicBands {
     /**
      * max angle (degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -476,7 +476,7 @@ public final class IcarousKinematicBands {
     /**
      * Number of track bands 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -488,7 +488,7 @@ public final class IcarousKinematicBands {
     /**
      * See the TRACK_BAND_TYPES enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -500,7 +500,7 @@ public final class IcarousKinematicBands {
     /**
      * See the TRACK_BAND_TYPES enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -512,7 +512,7 @@ public final class IcarousKinematicBands {
     /**
      * See the TRACK_BAND_TYPES enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -524,7 +524,7 @@ public final class IcarousKinematicBands {
     /**
      * See the TRACK_BAND_TYPES enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )
@@ -536,7 +536,7 @@ public final class IcarousKinematicBands {
     /**
      * See the TRACK_BAND_TYPES enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 1
     )

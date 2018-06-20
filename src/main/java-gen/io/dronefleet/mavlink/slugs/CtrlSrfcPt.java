@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * This message sets the control surfaces for selective passthrough mode. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 181,
     crc = 104
 )
@@ -44,7 +44,7 @@ public final class CtrlSrfcPt {
   /**
    * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag ControlSurfaceFlag} ENUM. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -55,7 +55,7 @@ public final class CtrlSrfcPt {
   /**
    * The system setting the commands 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -74,7 +74,7 @@ public final class CtrlSrfcPt {
     /**
      * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag ControlSurfaceFlag} ENUM. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -86,7 +86,7 @@ public final class CtrlSrfcPt {
     /**
      * The system setting the commands 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

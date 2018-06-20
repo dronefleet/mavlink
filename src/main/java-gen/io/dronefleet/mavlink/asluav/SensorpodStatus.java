@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Monitoring of sensorpod status 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 211,
     crc = 54
 )
@@ -87,7 +87,7 @@ public final class SensorpodStatus {
   /**
    * Timestamp in linuxtime (since 1.1.1970) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -98,7 +98,7 @@ public final class SensorpodStatus {
   /**
    * Free space available in recordings directory in [Gb] * 1e2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -109,7 +109,7 @@ public final class SensorpodStatus {
   /**
    * Rate of ROS topic 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -120,7 +120,7 @@ public final class SensorpodStatus {
   /**
    * Rate of ROS topic 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -131,7 +131,7 @@ public final class SensorpodStatus {
   /**
    * Rate of ROS topic 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -142,7 +142,7 @@ public final class SensorpodStatus {
   /**
    * Rate of ROS topic 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -153,7 +153,7 @@ public final class SensorpodStatus {
   /**
    * Number of recording nodes 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -164,7 +164,7 @@ public final class SensorpodStatus {
   /**
    * Temperature of sensorpod CPU in 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -195,7 +195,7 @@ public final class SensorpodStatus {
     /**
      * Timestamp in linuxtime (since 1.1.1970) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -207,7 +207,7 @@ public final class SensorpodStatus {
     /**
      * Free space available in recordings directory in [Gb] * 1e2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -219,7 +219,7 @@ public final class SensorpodStatus {
     /**
      * Rate of ROS topic 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -231,7 +231,7 @@ public final class SensorpodStatus {
     /**
      * Rate of ROS topic 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -243,7 +243,7 @@ public final class SensorpodStatus {
     /**
      * Rate of ROS topic 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -255,7 +255,7 @@ public final class SensorpodStatus {
     /**
      * Rate of ROS topic 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -267,7 +267,7 @@ public final class SensorpodStatus {
     /**
      * Number of recording nodes 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -279,7 +279,7 @@ public final class SensorpodStatus {
     /**
      * Temperature of sensorpod CPU in 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

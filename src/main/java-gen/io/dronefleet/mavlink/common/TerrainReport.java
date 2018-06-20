@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.common.TerrainCheck TerrainCheck} request 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 136,
     crc = 1
 )
@@ -79,7 +79,7 @@ public final class TerrainReport {
   /**
    * Latitude (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class TerrainReport {
   /**
    * Longitude (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class TerrainReport {
   /**
    * Terrain height in meters AMSL 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class TerrainReport {
   /**
    * Current vehicle height above lat/lon terrain height (meters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class TerrainReport {
   /**
    * grid spacing (zero if terrain at this location unavailable) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -134,7 +134,7 @@ public final class TerrainReport {
   /**
    * Number of 4x4 terrain blocks waiting to be received or read from disk 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -145,7 +145,7 @@ public final class TerrainReport {
   /**
    * Number of 4x4 terrain blocks in memory 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -174,7 +174,7 @@ public final class TerrainReport {
     /**
      * Latitude (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class TerrainReport {
     /**
      * Longitude (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -198,7 +198,7 @@ public final class TerrainReport {
     /**
      * Terrain height in meters AMSL 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -210,7 +210,7 @@ public final class TerrainReport {
     /**
      * Current vehicle height above lat/lon terrain height (meters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -222,7 +222,7 @@ public final class TerrainReport {
     /**
      * grid spacing (zero if terrain at this location unavailable) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -234,7 +234,7 @@ public final class TerrainReport {
     /**
      * Number of 4x4 terrain blocks waiting to be received or read from disk 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -246,7 +246,7 @@ public final class TerrainReport {
     /**
      * Number of 4x4 terrain blocks in memory 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )

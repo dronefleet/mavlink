@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * WIP: Message that sets video stream settings 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 270,
     crc = 232
 )
@@ -93,7 +93,7 @@ public final class SetVideoStreamSettings {
   /**
    * Frames per second (set to -1 for highest framerate possible) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -104,7 +104,7 @@ public final class SetVideoStreamSettings {
   /**
    * Bit rate in bits per second (set to -1 for auto) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -115,7 +115,7 @@ public final class SetVideoStreamSettings {
   /**
    * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -126,7 +126,7 @@ public final class SetVideoStreamSettings {
   /**
    * Resolution vertical in pixels (set to -1 for highest resolution possible) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -137,7 +137,7 @@ public final class SetVideoStreamSettings {
   /**
    * Video image rotation clockwise (0-359 degrees) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -148,7 +148,7 @@ public final class SetVideoStreamSettings {
   /**
    * system ID of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -159,7 +159,7 @@ public final class SetVideoStreamSettings {
   /**
    * component ID of the target 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -170,7 +170,7 @@ public final class SetVideoStreamSettings {
   /**
    * Camera ID (1 for first, 2 for second, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -181,7 +181,7 @@ public final class SetVideoStreamSettings {
   /**
    * Video stream URI 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1,
       arraySize = 230
@@ -215,7 +215,7 @@ public final class SetVideoStreamSettings {
     /**
      * Frames per second (set to -1 for highest framerate possible) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -227,7 +227,7 @@ public final class SetVideoStreamSettings {
     /**
      * Bit rate in bits per second (set to -1 for auto) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -239,7 +239,7 @@ public final class SetVideoStreamSettings {
     /**
      * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -251,7 +251,7 @@ public final class SetVideoStreamSettings {
     /**
      * Resolution vertical in pixels (set to -1 for highest resolution possible) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -263,7 +263,7 @@ public final class SetVideoStreamSettings {
     /**
      * Video image rotation clockwise (0-359 degrees) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -275,7 +275,7 @@ public final class SetVideoStreamSettings {
     /**
      * system ID of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -287,7 +287,7 @@ public final class SetVideoStreamSettings {
     /**
      * component ID of the target 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -299,7 +299,7 @@ public final class SetVideoStreamSettings {
     /**
      * Camera ID (1 for first, 2 for second, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -311,7 +311,7 @@ public final class SetVideoStreamSettings {
     /**
      * Video stream URI 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1,
         arraySize = 230

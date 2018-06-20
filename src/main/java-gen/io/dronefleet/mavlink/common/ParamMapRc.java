@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Bind a RC channel to a parameter. The parameter should change accoding to the RC channel value. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 50,
     crc = 78
 )
@@ -100,7 +100,7 @@ public final class ParamMapRc {
   /**
    * Initial parameter value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -111,7 +111,7 @@ public final class ParamMapRc {
   /**
    * Scale, maps the RC range [-1, 1] to a parameter value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class ParamMapRc {
    * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
    * (Depends on implementation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class ParamMapRc {
    * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
    * (Depends on implementation) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -147,7 +147,7 @@ public final class ParamMapRc {
    * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
    * ignored), send -2 to disable any existing map for this rc_channel_index. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -158,7 +158,7 @@ public final class ParamMapRc {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -169,7 +169,7 @@ public final class ParamMapRc {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -182,7 +182,7 @@ public final class ParamMapRc {
    * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
    * provide 16+1 bytes storage if the ID is stored as string 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 16
@@ -195,7 +195,7 @@ public final class ParamMapRc {
    * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
    * potentiometer-knob on the RC. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -228,7 +228,7 @@ public final class ParamMapRc {
     /**
      * Initial parameter value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -240,7 +240,7 @@ public final class ParamMapRc {
     /**
      * Scale, maps the RC range [-1, 1] to a parameter value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -253,7 +253,7 @@ public final class ParamMapRc {
      * Minimum param value. The protocol does not define if this overwrites an onboard minimum value. 
      * (Depends on implementation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -266,7 +266,7 @@ public final class ParamMapRc {
      * Maximum param value. The protocol does not define if this overwrites an onboard maximum value. 
      * (Depends on implementation) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -279,7 +279,7 @@ public final class ParamMapRc {
      * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
      * ignored), send -2 to disable any existing map for this rc_channel_index. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -291,7 +291,7 @@ public final class ParamMapRc {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -303,7 +303,7 @@ public final class ParamMapRc {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -317,7 +317,7 @@ public final class ParamMapRc {
      * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
      * provide 16+1 bytes storage if the ID is stored as string 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 16
@@ -331,7 +331,7 @@ public final class ParamMapRc {
      * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
      * potentiometer-knob on the RC. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

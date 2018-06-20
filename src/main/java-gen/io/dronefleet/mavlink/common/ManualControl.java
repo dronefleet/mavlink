@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * axes nomenclature, along with a joystick-like input device. Unused axes can be disabled an 
  * buttons are also transmit as boolean values of their 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 69,
     crc = 243
 )
@@ -85,7 +85,7 @@ public final class ManualControl {
    * invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick 
    * and the pitch of a vehicle. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -98,7 +98,7 @@ public final class ManualControl {
    * invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the 
    * roll of a vehicle. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -112,7 +112,7 @@ public final class ManualControl {
    * minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive 
    * thrust, negative values are negative thrust. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -125,7 +125,7 @@ public final class ManualControl {
    * invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 
    * 1000 and clockwise being -1000, and the yaw of a vehicle. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -137,7 +137,7 @@ public final class ManualControl {
    * A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for 
    * released. The lowest bit corresponds to Button 1. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -148,7 +148,7 @@ public final class ManualControl {
   /**
    * The system to be controlled. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -177,7 +177,7 @@ public final class ManualControl {
      * invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick 
      * and the pitch of a vehicle. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -191,7 +191,7 @@ public final class ManualControl {
      * invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the 
      * roll of a vehicle. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -206,7 +206,7 @@ public final class ManualControl {
      * minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive 
      * thrust, negative values are negative thrust. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -220,7 +220,7 @@ public final class ManualControl {
      * invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 
      * 1000 and clockwise being -1000, and the yaw of a vehicle. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -233,7 +233,7 @@ public final class ManualControl {
      * A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for 
      * released. The lowest bit corresponds to Button 1. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -245,7 +245,7 @@ public final class ManualControl {
     /**
      * The system to be controlled. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

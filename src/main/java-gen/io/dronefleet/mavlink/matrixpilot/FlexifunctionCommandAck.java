@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 158,
     crc = 208
 )
@@ -43,7 +43,7 @@ public final class FlexifunctionCommandAck {
   /**
    * Command acknowledged 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -54,7 +54,7 @@ public final class FlexifunctionCommandAck {
   /**
    * result of acknowledge 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -73,7 +73,7 @@ public final class FlexifunctionCommandAck {
     /**
      * Command acknowledged 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -85,7 +85,7 @@ public final class FlexifunctionCommandAck {
     /**
      * result of acknowledge 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )

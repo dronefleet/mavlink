@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 131,
     crc = 223
 )
@@ -45,7 +45,7 @@ public final class EncapsulatedData {
   /**
    * sequence number (starting with 0 on every transmission) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 2
   )
@@ -56,7 +56,7 @@ public final class EncapsulatedData {
   /**
    * image data bytes 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1,
       arraySize = 253
@@ -76,7 +76,7 @@ public final class EncapsulatedData {
     /**
      * sequence number (starting with 0 on every transmission) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 2
     )
@@ -88,7 +88,7 @@ public final class EncapsulatedData {
     /**
      * image data bytes 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1,
         arraySize = 253

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.MavMountMode;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Message to configure a camera mount, directional antenna, etc. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 156,
     crc = 19
 )
@@ -73,7 +73,7 @@ public final class MountConfigure {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -84,7 +84,7 @@ public final class MountConfigure {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class MountConfigure {
   /**
    * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MavMountMode} enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -106,7 +106,7 @@ public final class MountConfigure {
   /**
    * (1 = yes, 0 = no) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -117,7 +117,7 @@ public final class MountConfigure {
   /**
    * (1 = yes, 0 = no) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -128,7 +128,7 @@ public final class MountConfigure {
   /**
    * (1 = yes, 0 = no) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -155,7 +155,7 @@ public final class MountConfigure {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -167,7 +167,7 @@ public final class MountConfigure {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -179,7 +179,7 @@ public final class MountConfigure {
     /**
      * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MavMountMode} enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -191,7 +191,7 @@ public final class MountConfigure {
     /**
      * (1 = yes, 0 = no) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -203,7 +203,7 @@ public final class MountConfigure {
     /**
      * (1 = yes, 0 = no) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -215,7 +215,7 @@ public final class MountConfigure {
     /**
      * (1 = yes, 0 = no) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * messages). The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 
  * microseconds: 100%. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 36,
     crc = 222
 )
@@ -161,7 +161,7 @@ public final class ServoOutputRaw {
   /**
    * Timestamp (microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -172,7 +172,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 1 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -183,7 +183,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 2 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -194,7 +194,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 3 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -205,7 +205,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 4 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -216,7 +216,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 5 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -227,7 +227,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 6 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -238,7 +238,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 7 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -249,7 +249,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 8 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -261,7 +261,7 @@ public final class ServoOutputRaw {
    * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
    * encode more than 8 servos. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -272,7 +272,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 9 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2,
       extension = true
@@ -284,7 +284,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 10 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2,
       extension = true
@@ -296,7 +296,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 11 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2,
       extension = true
@@ -308,7 +308,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 12 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2,
       extension = true
@@ -320,7 +320,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 13 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2,
       extension = true
@@ -332,7 +332,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 14 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 2,
       extension = true
@@ -344,7 +344,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 15 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 2,
       extension = true
@@ -356,7 +356,7 @@ public final class ServoOutputRaw {
   /**
    * Servo output 16 value, in microseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 2,
       extension = true
@@ -408,7 +408,7 @@ public final class ServoOutputRaw {
     /**
      * Timestamp (microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -420,7 +420,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 1 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -432,7 +432,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 2 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -444,7 +444,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 3 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -456,7 +456,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 4 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -468,7 +468,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 5 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -480,7 +480,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 6 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -492,7 +492,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 7 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -504,7 +504,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 8 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -517,7 +517,7 @@ public final class ServoOutputRaw {
      * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to 
      * encode more than 8 servos. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -529,7 +529,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 9 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2,
         extension = true
@@ -542,7 +542,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 10 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2,
         extension = true
@@ -555,7 +555,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 11 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2,
         extension = true
@@ -568,7 +568,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 12 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2,
         extension = true
@@ -581,7 +581,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 13 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2,
         extension = true
@@ -594,7 +594,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 14 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 2,
         extension = true
@@ -607,7 +607,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 15 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 2,
         extension = true
@@ -620,7 +620,7 @@ public final class ServoOutputRaw {
     /**
      * Servo output 16 value, in microseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 2,
         extension = true

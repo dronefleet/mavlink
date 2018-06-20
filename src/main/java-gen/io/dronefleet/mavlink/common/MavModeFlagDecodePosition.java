@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * These values encode the bit positions of the decode position. These values can be used to read 
@@ -13,48 +13,48 @@ public enum MavModeFlagDecodePosition {
   /**
    * First bit:  10000000
    */
-  @MavlinkEnumEntry(128)
+  @MavlinkEntryInfo(128)
   MAV_MODE_FLAG_DECODE_POSITION_SAFETY,
 
   /**
    * Second bit: 01000000
    */
-  @MavlinkEnumEntry(64)
+  @MavlinkEntryInfo(64)
   MAV_MODE_FLAG_DECODE_POSITION_MANUAL,
 
   /**
    * Third bit:  00100000
    */
-  @MavlinkEnumEntry(32)
+  @MavlinkEntryInfo(32)
   MAV_MODE_FLAG_DECODE_POSITION_HIL,
 
   /**
    * Fourth bit: 00010000
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   MAV_MODE_FLAG_DECODE_POSITION_STABILIZE,
 
   /**
    * Fifth bit:  00001000
    */
-  @MavlinkEnumEntry(8)
+  @MavlinkEntryInfo(8)
   MAV_MODE_FLAG_DECODE_POSITION_GUIDED,
 
   /**
    * Sixt bit:   00000100
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_MODE_FLAG_DECODE_POSITION_AUTO,
 
   /**
    * Seventh bit: 00000010
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_MODE_FLAG_DECODE_POSITION_TEST,
 
   /**
    * Eighth bit: 00000001
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_MODE_FLAG_DECODE_POSITION_CUSTOM_MODE
 }

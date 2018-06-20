@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Camera Capture Feedback 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 180,
     crc = 52
 )
@@ -132,7 +132,7 @@ public final class CameraFeedback {
    * Image timestamp (microseconds since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CameraStatus} message (or 
    * autopilot if no CCB) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -143,7 +143,7 @@ public final class CameraFeedback {
   /**
    * Latitude in (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -154,7 +154,7 @@ public final class CameraFeedback {
   /**
    * Longitude in (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -165,7 +165,7 @@ public final class CameraFeedback {
   /**
    * Altitude Absolute (meters AMSL) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -176,7 +176,7 @@ public final class CameraFeedback {
   /**
    * Altitude Relative (meters above HOME location) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -187,7 +187,7 @@ public final class CameraFeedback {
   /**
    * Camera Roll angle (earth frame, degrees, +-180) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -198,7 +198,7 @@ public final class CameraFeedback {
   /**
    * Camera Pitch angle (earth frame, degrees, +-180) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -209,7 +209,7 @@ public final class CameraFeedback {
   /**
    * Camera Yaw (earth frame, degrees, 0-360, true) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -220,7 +220,7 @@ public final class CameraFeedback {
   /**
    * Focal Length (mm) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -231,7 +231,7 @@ public final class CameraFeedback {
   /**
    * Image index 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -242,7 +242,7 @@ public final class CameraFeedback {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -253,7 +253,7 @@ public final class CameraFeedback {
   /**
    * Camera ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -264,7 +264,7 @@ public final class CameraFeedback {
   /**
    * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CameraFeedbackFlags} enum for definition of the bitmask 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1
   )
@@ -275,7 +275,7 @@ public final class CameraFeedback {
   /**
    * Completed image captures 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2,
       extension = true
@@ -320,7 +320,7 @@ public final class CameraFeedback {
      * Image timestamp (microseconds since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CameraStatus} message (or 
      * autopilot if no CCB) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -332,7 +332,7 @@ public final class CameraFeedback {
     /**
      * Latitude in (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -344,7 +344,7 @@ public final class CameraFeedback {
     /**
      * Longitude in (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -356,7 +356,7 @@ public final class CameraFeedback {
     /**
      * Altitude Absolute (meters AMSL) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -368,7 +368,7 @@ public final class CameraFeedback {
     /**
      * Altitude Relative (meters above HOME location) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -380,7 +380,7 @@ public final class CameraFeedback {
     /**
      * Camera Roll angle (earth frame, degrees, +-180) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -392,7 +392,7 @@ public final class CameraFeedback {
     /**
      * Camera Pitch angle (earth frame, degrees, +-180) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -404,7 +404,7 @@ public final class CameraFeedback {
     /**
      * Camera Yaw (earth frame, degrees, 0-360, true) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -416,7 +416,7 @@ public final class CameraFeedback {
     /**
      * Focal Length (mm) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -428,7 +428,7 @@ public final class CameraFeedback {
     /**
      * Image index 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -440,7 +440,7 @@ public final class CameraFeedback {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -452,7 +452,7 @@ public final class CameraFeedback {
     /**
      * Camera ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -464,7 +464,7 @@ public final class CameraFeedback {
     /**
      * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CameraFeedbackFlags} enum for definition of the bitmask 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1
     )
@@ -476,7 +476,7 @@ public final class CameraFeedback {
     /**
      * Completed image captures 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2,
         extension = true

@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.uavionix;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Emergency status encoding 
@@ -11,48 +11,48 @@ public enum UavionixAdsbEmergencyStatus {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   UAVIONIX_ADSB_OUT_NO_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   UAVIONIX_ADSB_OUT_GENERAL_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   UAVIONIX_ADSB_OUT_LIFEGUARD_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   UAVIONIX_ADSB_OUT_MINIMUM_FUEL_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   UAVIONIX_ADSB_OUT_NO_COMM_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   UAVIONIX_ADSB_OUT_UNLAWFUL_INTERFERANCE_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   UAVIONIX_ADSB_OUT_DOWNED_AIRCRAFT_EMERGENCY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(7)
+  @MavlinkEntryInfo(7)
   UAVIONIX_ADSB_OUT_RESERVED
 }

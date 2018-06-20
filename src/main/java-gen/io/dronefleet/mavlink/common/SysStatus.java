@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -20,7 +20,7 @@ import java.lang.String;
  * should first move from active to critical to allow manual intervention and then move to 
  * emergency after a certain timeout. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 1,
     crc = 124
 )
@@ -142,7 +142,7 @@ public final class SysStatus {
    * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
    * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -154,7 +154,7 @@ public final class SysStatus {
    * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
    * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class SysStatus {
    * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
    * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class SysStatus {
   /**
    * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -188,7 +188,7 @@ public final class SysStatus {
   /**
    * Battery voltage, in millivolts (1 = 1 millivolt) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -200,7 +200,7 @@ public final class SysStatus {
    * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
    * current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -212,7 +212,7 @@ public final class SysStatus {
    * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
    * on all links (packets that were corrupted on reception on the MAV) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -224,7 +224,7 @@ public final class SysStatus {
    * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
    * corrupted on reception on the MAV) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -235,7 +235,7 @@ public final class SysStatus {
   /**
    * Autopilot-specific errors 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -246,7 +246,7 @@ public final class SysStatus {
   /**
    * Autopilot-specific errors 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -257,7 +257,7 @@ public final class SysStatus {
   /**
    * Autopilot-specific errors 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -268,7 +268,7 @@ public final class SysStatus {
   /**
    * Autopilot-specific errors 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -279,7 +279,7 @@ public final class SysStatus {
   /**
    * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -321,7 +321,7 @@ public final class SysStatus {
      * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
      * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -335,7 +335,7 @@ public final class SysStatus {
      * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
      * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -349,7 +349,7 @@ public final class SysStatus {
      * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
      * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -362,7 +362,7 @@ public final class SysStatus {
     /**
      * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -374,7 +374,7 @@ public final class SysStatus {
     /**
      * Battery voltage, in millivolts (1 = 1 millivolt) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -387,7 +387,7 @@ public final class SysStatus {
      * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
      * current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -400,7 +400,7 @@ public final class SysStatus {
      * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
      * on all links (packets that were corrupted on reception on the MAV) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -413,7 +413,7 @@ public final class SysStatus {
      * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
      * corrupted on reception on the MAV) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -425,7 +425,7 @@ public final class SysStatus {
     /**
      * Autopilot-specific errors 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -437,7 +437,7 @@ public final class SysStatus {
     /**
      * Autopilot-specific errors 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -449,7 +449,7 @@ public final class SysStatus {
     /**
      * Autopilot-specific errors 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -461,7 +461,7 @@ public final class SysStatus {
     /**
      * Autopilot-specific errors 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -473,7 +473,7 @@ public final class SysStatus {
     /**
      * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

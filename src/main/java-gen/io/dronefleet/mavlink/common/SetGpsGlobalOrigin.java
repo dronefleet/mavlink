@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * coordinate frame and the global (GPS) coordinate frame. This can be necessary when e.g. in- and 
  * outdoor settings are connected and the MAV should move from in- to outdoor. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 48,
     crc = 41
 )
@@ -68,7 +68,7 @@ public final class SetGpsGlobalOrigin {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -79,7 +79,7 @@ public final class SetGpsGlobalOrigin {
   /**
    * Longitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class SetGpsGlobalOrigin {
   /**
    * Altitude (AMSL), in meters * 1000 (positive for up) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class SetGpsGlobalOrigin {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -112,7 +112,7 @@ public final class SetGpsGlobalOrigin {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 8,
       extension = true
@@ -138,7 +138,7 @@ public final class SetGpsGlobalOrigin {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -150,7 +150,7 @@ public final class SetGpsGlobalOrigin {
     /**
      * Longitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -162,7 +162,7 @@ public final class SetGpsGlobalOrigin {
     /**
      * Altitude (AMSL), in meters * 1000 (positive for up) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -174,7 +174,7 @@ public final class SetGpsGlobalOrigin {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -186,7 +186,7 @@ public final class SetGpsGlobalOrigin {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 8,
         extension = true

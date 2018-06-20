@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Reqest reading of flexifunction data 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 151,
     crc = 26
 )
@@ -58,7 +58,7 @@ public final class FlexifunctionReadReq {
   /**
    * Type of flexifunction data requested 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -69,7 +69,7 @@ public final class FlexifunctionReadReq {
   /**
    * index into data where needed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -80,7 +80,7 @@ public final class FlexifunctionReadReq {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -91,7 +91,7 @@ public final class FlexifunctionReadReq {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -114,7 +114,7 @@ public final class FlexifunctionReadReq {
     /**
      * Type of flexifunction data requested 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -126,7 +126,7 @@ public final class FlexifunctionReadReq {
     /**
      * index into data where needed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -138,7 +138,7 @@ public final class FlexifunctionReadReq {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -150,7 +150,7 @@ public final class FlexifunctionReadReq {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

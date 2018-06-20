@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -12,7 +12,7 @@ import java.lang.String;
  * value, you will immediately get a PARAM_ACK_ACCEPTED response. If the current state is 
  * PARAM_ACK_IN_PROGRESS, you will accordingly receive a PARAM_ACK_IN_PROGRESS in response. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 323,
     crc = 78
 )
@@ -70,7 +70,7 @@ public final class ParamExtSet {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -81,7 +81,7 @@ public final class ParamExtSet {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -94,7 +94,7 @@ public final class ParamExtSet {
    * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
    * 16+1 bytes storage if the ID is stored as string 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 16
@@ -106,7 +106,7 @@ public final class ParamExtSet {
   /**
    * Parameter value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 128
@@ -118,7 +118,7 @@ public final class ParamExtSet {
   /**
    * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -143,7 +143,7 @@ public final class ParamExtSet {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -155,7 +155,7 @@ public final class ParamExtSet {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -169,7 +169,7 @@ public final class ParamExtSet {
      * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
      * 16+1 bytes storage if the ID is stored as string 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 16
@@ -182,7 +182,7 @@ public final class ParamExtSet {
     /**
      * Parameter value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 128
@@ -195,7 +195,7 @@ public final class ParamExtSet {
     /**
      * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )

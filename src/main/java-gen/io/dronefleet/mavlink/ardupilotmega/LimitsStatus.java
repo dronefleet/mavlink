@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * Status of AP_Limits. Sent in extended status stream when AP_Limits is enabled 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 167,
     crc = 144
 )
@@ -95,7 +95,7 @@ public final class LimitsStatus {
   /**
    * time of last breach in milliseconds since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -106,7 +106,7 @@ public final class LimitsStatus {
   /**
    * time of last recovery action in milliseconds since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -117,7 +117,7 @@ public final class LimitsStatus {
   /**
    * time of last successful recovery in milliseconds since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -128,7 +128,7 @@ public final class LimitsStatus {
   /**
    * time of last all-clear in milliseconds since boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -139,7 +139,7 @@ public final class LimitsStatus {
   /**
    * number of fence breaches 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -150,7 +150,7 @@ public final class LimitsStatus {
   /**
    * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -161,7 +161,7 @@ public final class LimitsStatus {
   /**
    * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -172,7 +172,7 @@ public final class LimitsStatus {
   /**
    * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -183,7 +183,7 @@ public final class LimitsStatus {
   /**
    * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -216,7 +216,7 @@ public final class LimitsStatus {
     /**
      * time of last breach in milliseconds since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -228,7 +228,7 @@ public final class LimitsStatus {
     /**
      * time of last recovery action in milliseconds since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -240,7 +240,7 @@ public final class LimitsStatus {
     /**
      * time of last successful recovery in milliseconds since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -252,7 +252,7 @@ public final class LimitsStatus {
     /**
      * time of last all-clear in milliseconds since boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -264,7 +264,7 @@ public final class LimitsStatus {
     /**
      * number of fence breaches 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -276,7 +276,7 @@ public final class LimitsStatus {
     /**
      * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LimitsState}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -288,7 +288,7 @@ public final class LimitsStatus {
     /**
      * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -300,7 +300,7 @@ public final class LimitsStatus {
     /**
      * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -312,7 +312,7 @@ public final class LimitsStatus {
     /**
      * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LimitModule}) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )

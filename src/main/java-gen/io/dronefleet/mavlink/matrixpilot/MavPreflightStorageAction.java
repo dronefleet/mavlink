@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.matrixpilot;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Action required when performing CMD_PREFLIGHT_STORAGE 
@@ -11,42 +11,42 @@ public enum MavPreflightStorageAction {
   /**
    * Read all parameters from storage
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_PFS_CMD_READ_ALL,
 
   /**
    * Write all parameters to storage
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_PFS_CMD_WRITE_ALL,
 
   /**
    * Clear all  parameters in storage
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_PFS_CMD_CLEAR_ALL,
 
   /**
    * Read specific parameters from storage
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   MAV_PFS_CMD_READ_SPECIFIC,
 
   /**
    * Write specific parameters to storage
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_PFS_CMD_WRITE_SPECIFIC,
 
   /**
    * Clear specific parameters in storage
    */
-  @MavlinkEnumEntry(5)
+  @MavlinkEntryInfo(5)
   MAV_PFS_CMD_CLEAR_SPECIFIC,
 
   /**
    * do nothing
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   MAV_PFS_CMD_DO_NOTHING
 }

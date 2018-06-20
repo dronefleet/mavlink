@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * The smoothed, monotonic system state used to feed the control loops of the system. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 146,
     crc = 103
 )
@@ -154,7 +154,7 @@ public final class ControlSystemState {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -165,7 +165,7 @@ public final class ControlSystemState {
   /**
    * X acceleration in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -176,7 +176,7 @@ public final class ControlSystemState {
   /**
    * Y acceleration in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -187,7 +187,7 @@ public final class ControlSystemState {
   /**
    * Z acceleration in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -198,7 +198,7 @@ public final class ControlSystemState {
   /**
    * X velocity in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -209,7 +209,7 @@ public final class ControlSystemState {
   /**
    * Y velocity in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -220,7 +220,7 @@ public final class ControlSystemState {
   /**
    * Z velocity in body frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -231,7 +231,7 @@ public final class ControlSystemState {
   /**
    * X position in local frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -242,7 +242,7 @@ public final class ControlSystemState {
   /**
    * Y position in local frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -253,7 +253,7 @@ public final class ControlSystemState {
   /**
    * Z position in local frame 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -264,7 +264,7 @@ public final class ControlSystemState {
   /**
    * Airspeed, set to -1 if unknown 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -275,7 +275,7 @@ public final class ControlSystemState {
   /**
    * Variance of body velocity estimate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4,
       arraySize = 3
@@ -287,7 +287,7 @@ public final class ControlSystemState {
   /**
    * Variance in local position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4,
       arraySize = 3
@@ -299,7 +299,7 @@ public final class ControlSystemState {
   /**
    * The attitude, represented as Quaternion 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4,
       arraySize = 4
@@ -311,7 +311,7 @@ public final class ControlSystemState {
   /**
    * Angular rate in roll axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -322,7 +322,7 @@ public final class ControlSystemState {
   /**
    * Angular rate in pitch axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -333,7 +333,7 @@ public final class ControlSystemState {
   /**
    * Angular rate in yaw axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 4
   )
@@ -382,7 +382,7 @@ public final class ControlSystemState {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -394,7 +394,7 @@ public final class ControlSystemState {
     /**
      * X acceleration in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -406,7 +406,7 @@ public final class ControlSystemState {
     /**
      * Y acceleration in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -418,7 +418,7 @@ public final class ControlSystemState {
     /**
      * Z acceleration in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -430,7 +430,7 @@ public final class ControlSystemState {
     /**
      * X velocity in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -442,7 +442,7 @@ public final class ControlSystemState {
     /**
      * Y velocity in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -454,7 +454,7 @@ public final class ControlSystemState {
     /**
      * Z velocity in body frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -466,7 +466,7 @@ public final class ControlSystemState {
     /**
      * X position in local frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -478,7 +478,7 @@ public final class ControlSystemState {
     /**
      * Y position in local frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -490,7 +490,7 @@ public final class ControlSystemState {
     /**
      * Z position in local frame 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -502,7 +502,7 @@ public final class ControlSystemState {
     /**
      * Airspeed, set to -1 if unknown 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -514,7 +514,7 @@ public final class ControlSystemState {
     /**
      * Variance of body velocity estimate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4,
         arraySize = 3
@@ -527,7 +527,7 @@ public final class ControlSystemState {
     /**
      * Variance in local position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4,
         arraySize = 3
@@ -540,7 +540,7 @@ public final class ControlSystemState {
     /**
      * The attitude, represented as Quaternion 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4,
         arraySize = 4
@@ -553,7 +553,7 @@ public final class ControlSystemState {
     /**
      * Angular rate in roll axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -565,7 +565,7 @@ public final class ControlSystemState {
     /**
      * Angular rate in pitch axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -577,7 +577,7 @@ public final class ControlSystemState {
     /**
      * Angular rate in yaw axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 4
     )

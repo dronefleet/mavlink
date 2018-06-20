@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * SERIAL_CONTROL flags (bitmask) 
@@ -11,30 +11,30 @@ public enum SerialControlFlag {
   /**
    * Set if this is a reply
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   SERIAL_CONTROL_FLAG_REPLY,
 
   /**
    * Set if the sender wants the receiver to send a response as another SERIAL_CONTROL message
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   SERIAL_CONTROL_FLAG_RESPOND,
 
   /**
    * Set if access to the serial port should be removed from whatever driver is currently using it, giving exclusive access to the SERIAL_CONTROL protocol. The port can be handed back by sending a request without this flag set
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   SERIAL_CONTROL_FLAG_EXCLUSIVE,
 
   /**
    * Block on writes to the serial port
    */
-  @MavlinkEnumEntry(8)
+  @MavlinkEntryInfo(8)
   SERIAL_CONTROL_FLAG_BLOCKING,
 
   /**
    * Send multiple replies until port is drained
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   SERIAL_CONTROL_FLAG_MULTI
 }

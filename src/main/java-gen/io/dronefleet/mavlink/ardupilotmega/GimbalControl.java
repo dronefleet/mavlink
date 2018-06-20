@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Control message for rate gimbal 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 201,
     crc = 205
 )
@@ -65,7 +65,7 @@ public final class GimbalControl {
   /**
    * Demanded angular rate X (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -76,7 +76,7 @@ public final class GimbalControl {
   /**
    * Demanded angular rate Y (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -87,7 +87,7 @@ public final class GimbalControl {
   /**
    * Demanded angular rate Z (rad/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -98,7 +98,7 @@ public final class GimbalControl {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -109,7 +109,7 @@ public final class GimbalControl {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class GimbalControl {
     /**
      * Demanded angular rate X (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -146,7 +146,7 @@ public final class GimbalControl {
     /**
      * Demanded angular rate Y (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -158,7 +158,7 @@ public final class GimbalControl {
     /**
      * Demanded angular rate Z (rad/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -170,7 +170,7 @@ public final class GimbalControl {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -182,7 +182,7 @@ public final class GimbalControl {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -12,7 +12,7 @@ import java.lang.String;
  * and error messages. If implemented wisely, these messages are buffered on the MCU and sent only 
  * at a limited rate (e.g. 10 Hz). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 253,
     crc = 83
 )
@@ -46,7 +46,7 @@ public final class Statustext {
   /**
    * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MavSeverity}. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -57,7 +57,7 @@ public final class Statustext {
   /**
    * Status text message, without null termination character 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 50
@@ -77,7 +77,7 @@ public final class Statustext {
     /**
      * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MavSeverity}. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -89,7 +89,7 @@ public final class Statustext {
     /**
      * Status text message, without null termination character 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 50

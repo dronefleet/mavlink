@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Fixed-wing soaring (i.e. thermal seeking) data 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 210,
     crc = 20
 )
@@ -210,7 +210,7 @@ public final class FwSoaringData {
   /**
    * Timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -221,7 +221,7 @@ public final class FwSoaringData {
   /**
    * Timestamp since last mode change 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 8
   )
@@ -232,7 +232,7 @@ public final class FwSoaringData {
   /**
    * Thermal core updraft strength 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -243,7 +243,7 @@ public final class FwSoaringData {
   /**
    * Thermal radius 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -254,7 +254,7 @@ public final class FwSoaringData {
   /**
    * Thermal center latitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -265,7 +265,7 @@ public final class FwSoaringData {
   /**
    * Thermal center longitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -276,7 +276,7 @@ public final class FwSoaringData {
   /**
    * Variance W 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -287,7 +287,7 @@ public final class FwSoaringData {
   /**
    * Variance R 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -298,7 +298,7 @@ public final class FwSoaringData {
   /**
    * Variance Lat 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -309,7 +309,7 @@ public final class FwSoaringData {
   /**
    * Variance Lon 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -320,7 +320,7 @@ public final class FwSoaringData {
   /**
    * Suggested loiter radius 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -331,7 +331,7 @@ public final class FwSoaringData {
   /**
    * Suggested loiter direction 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -342,7 +342,7 @@ public final class FwSoaringData {
   /**
    * Distance to soar point 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -353,7 +353,7 @@ public final class FwSoaringData {
   /**
    * Expected sink rate at current airspeed, roll and throttle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -364,7 +364,7 @@ public final class FwSoaringData {
   /**
    * Measurement / updraft speed at current/local airplane position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -375,7 +375,7 @@ public final class FwSoaringData {
   /**
    * Measurement / roll angle tracking error 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -386,7 +386,7 @@ public final class FwSoaringData {
   /**
    * Expected measurement 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 4
   )
@@ -397,7 +397,7 @@ public final class FwSoaringData {
   /**
    * Expected measurement 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 4
   )
@@ -408,7 +408,7 @@ public final class FwSoaringData {
   /**
    * Thermal drift (from estimator prediction step only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 4
   )
@@ -419,7 +419,7 @@ public final class FwSoaringData {
   /**
    * Thermal drift (from estimator prediction step only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 4
   )
@@ -430,7 +430,7 @@ public final class FwSoaringData {
   /**
    * Total specific energy change (filtered) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 4
   )
@@ -441,7 +441,7 @@ public final class FwSoaringData {
   /**
    * Debug variable 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 4
   )
@@ -452,7 +452,7 @@ public final class FwSoaringData {
   /**
    * Debug variable 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 4
   )
@@ -463,7 +463,7 @@ public final class FwSoaringData {
   /**
    * Control Mode [-] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 1
   )
@@ -474,7 +474,7 @@ public final class FwSoaringData {
   /**
    * Data valid [-] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 25,
       unitSize = 1
   )
@@ -539,7 +539,7 @@ public final class FwSoaringData {
     /**
      * Timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -551,7 +551,7 @@ public final class FwSoaringData {
     /**
      * Timestamp since last mode change 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 8
     )
@@ -563,7 +563,7 @@ public final class FwSoaringData {
     /**
      * Thermal core updraft strength 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -575,7 +575,7 @@ public final class FwSoaringData {
     /**
      * Thermal radius 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -587,7 +587,7 @@ public final class FwSoaringData {
     /**
      * Thermal center latitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -599,7 +599,7 @@ public final class FwSoaringData {
     /**
      * Thermal center longitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -611,7 +611,7 @@ public final class FwSoaringData {
     /**
      * Variance W 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -623,7 +623,7 @@ public final class FwSoaringData {
     /**
      * Variance R 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -635,7 +635,7 @@ public final class FwSoaringData {
     /**
      * Variance Lat 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -647,7 +647,7 @@ public final class FwSoaringData {
     /**
      * Variance Lon 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -659,7 +659,7 @@ public final class FwSoaringData {
     /**
      * Suggested loiter radius 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -671,7 +671,7 @@ public final class FwSoaringData {
     /**
      * Suggested loiter direction 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -683,7 +683,7 @@ public final class FwSoaringData {
     /**
      * Distance to soar point 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -695,7 +695,7 @@ public final class FwSoaringData {
     /**
      * Expected sink rate at current airspeed, roll and throttle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -707,7 +707,7 @@ public final class FwSoaringData {
     /**
      * Measurement / updraft speed at current/local airplane position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -719,7 +719,7 @@ public final class FwSoaringData {
     /**
      * Measurement / roll angle tracking error 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -731,7 +731,7 @@ public final class FwSoaringData {
     /**
      * Expected measurement 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 4
     )
@@ -743,7 +743,7 @@ public final class FwSoaringData {
     /**
      * Expected measurement 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 4
     )
@@ -755,7 +755,7 @@ public final class FwSoaringData {
     /**
      * Thermal drift (from estimator prediction step only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 4
     )
@@ -767,7 +767,7 @@ public final class FwSoaringData {
     /**
      * Thermal drift (from estimator prediction step only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 4
     )
@@ -779,7 +779,7 @@ public final class FwSoaringData {
     /**
      * Total specific energy change (filtered) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 4
     )
@@ -791,7 +791,7 @@ public final class FwSoaringData {
     /**
      * Debug variable 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 4
     )
@@ -803,7 +803,7 @@ public final class FwSoaringData {
     /**
      * Debug variable 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 4
     )
@@ -815,7 +815,7 @@ public final class FwSoaringData {
     /**
      * Control Mode [-] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 1
     )
@@ -827,7 +827,7 @@ public final class FwSoaringData {
     /**
      * Data valid [-] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 25,
         unitSize = 1
     )

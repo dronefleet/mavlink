@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * Once the MAV sets a new GPS-Local correspondence, this message announces the origin (0,0,0) 
  * position 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 49,
     crc = 39
 )
@@ -59,7 +59,7 @@ public final class GpsGlobalOrigin {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -70,7 +70,7 @@ public final class GpsGlobalOrigin {
   /**
    * Longitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -81,7 +81,7 @@ public final class GpsGlobalOrigin {
   /**
    * Altitude (AMSL), in meters * 1000 (positive for up) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -92,7 +92,7 @@ public final class GpsGlobalOrigin {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 8,
       extension = true
@@ -116,7 +116,7 @@ public final class GpsGlobalOrigin {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -128,7 +128,7 @@ public final class GpsGlobalOrigin {
     /**
      * Longitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -140,7 +140,7 @@ public final class GpsGlobalOrigin {
     /**
      * Altitude (AMSL), in meters * 1000 (positive for up) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -152,7 +152,7 @@ public final class GpsGlobalOrigin {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 8,
         extension = true

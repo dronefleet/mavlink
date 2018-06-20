@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Read registers reply 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11001,
     crc = 15
 )
@@ -67,7 +67,7 @@ public final class DeviceOpReadReply {
   /**
    * request ID - copied from request 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -78,7 +78,7 @@ public final class DeviceOpReadReply {
   /**
    * 0 for success, anything else is failure code 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -89,7 +89,7 @@ public final class DeviceOpReadReply {
   /**
    * starting register 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -100,7 +100,7 @@ public final class DeviceOpReadReply {
   /**
    * count of bytes read 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -111,7 +111,7 @@ public final class DeviceOpReadReply {
   /**
    * reply data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 128
@@ -137,7 +137,7 @@ public final class DeviceOpReadReply {
     /**
      * request ID - copied from request 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -149,7 +149,7 @@ public final class DeviceOpReadReply {
     /**
      * 0 for success, anything else is failure code 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -161,7 +161,7 @@ public final class DeviceOpReadReply {
     /**
      * starting register 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -173,7 +173,7 @@ public final class DeviceOpReadReply {
     /**
      * count of bytes read 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -185,7 +185,7 @@ public final class DeviceOpReadReply {
     /**
      * reply data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 128

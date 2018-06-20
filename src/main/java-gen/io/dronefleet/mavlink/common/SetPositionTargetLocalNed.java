@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Sets a desired vehicle position in a local north-east-down coordinate frame. Used by an 
  * external controller to command the vehicle (manual controller or other system). 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 84,
     crc = 143
 )
@@ -149,7 +149,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Timestamp in milliseconds since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * X Position in NED frame in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Y Position in NED frame in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Z Position in NED frame in meters (note, altitude is negative in NED) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -193,7 +193,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * X velocity in NED frame in meter / s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -204,7 +204,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Y velocity in NED frame in meter / s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -215,7 +215,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Z velocity in NED frame in meter / s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -226,7 +226,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -237,7 +237,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -248,7 +248,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 4
   )
@@ -259,7 +259,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * yaw setpoint in rad 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 4
   )
@@ -270,7 +270,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * yaw rate setpoint in rad/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 4
   )
@@ -285,7 +285,7 @@ public final class SetPositionTargetLocalNed {
    * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
    * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -296,7 +296,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -307,7 +307,7 @@ public final class SetPositionTargetLocalNed {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -319,7 +319,7 @@ public final class SetPositionTargetLocalNed {
    * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
    * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -366,7 +366,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Timestamp in milliseconds since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -378,7 +378,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * X Position in NED frame in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -390,7 +390,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Y Position in NED frame in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -402,7 +402,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Z Position in NED frame in meters (note, altitude is negative in NED) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -414,7 +414,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * X velocity in NED frame in meter / s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -426,7 +426,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Y velocity in NED frame in meter / s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -438,7 +438,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Z velocity in NED frame in meter / s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -450,7 +450,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -462,7 +462,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -474,7 +474,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 4
     )
@@ -486,7 +486,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * yaw setpoint in rad 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 4
     )
@@ -498,7 +498,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * yaw rate setpoint in rad/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 4
     )
@@ -514,7 +514,7 @@ public final class SetPositionTargetLocalNed {
      * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
      * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -526,7 +526,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -538,7 +538,7 @@ public final class SetPositionTargetLocalNed {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -551,7 +551,7 @@ public final class SetPositionTargetLocalNed {
      * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
      * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

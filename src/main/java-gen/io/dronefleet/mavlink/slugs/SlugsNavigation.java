@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Data used in the navigation algorithm. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 176,
     crc = 228
 )
@@ -100,7 +100,7 @@ public final class SlugsNavigation {
   /**
    * Measured Airspeed prior to the nav filter 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -111,7 +111,7 @@ public final class SlugsNavigation {
   /**
    * Commanded Roll 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -122,7 +122,7 @@ public final class SlugsNavigation {
   /**
    * Commanded Pitch 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class SlugsNavigation {
   /**
    * Commanded Turn rate 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class SlugsNavigation {
   /**
    * Y component of the body acceleration 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class SlugsNavigation {
   /**
    * Total Distance to Run on this leg of Navigation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class SlugsNavigation {
   /**
    * Remaining distance to Run on this leg of Navigation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class SlugsNavigation {
   /**
    * Commanded altitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -188,7 +188,7 @@ public final class SlugsNavigation {
   /**
    * Origin WP 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -199,7 +199,7 @@ public final class SlugsNavigation {
   /**
    * Destination WP 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -234,7 +234,7 @@ public final class SlugsNavigation {
     /**
      * Measured Airspeed prior to the nav filter 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -246,7 +246,7 @@ public final class SlugsNavigation {
     /**
      * Commanded Roll 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -258,7 +258,7 @@ public final class SlugsNavigation {
     /**
      * Commanded Pitch 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -270,7 +270,7 @@ public final class SlugsNavigation {
     /**
      * Commanded Turn rate 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -282,7 +282,7 @@ public final class SlugsNavigation {
     /**
      * Y component of the body acceleration 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -294,7 +294,7 @@ public final class SlugsNavigation {
     /**
      * Total Distance to Run on this leg of Navigation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -306,7 +306,7 @@ public final class SlugsNavigation {
     /**
      * Remaining distance to Run on this leg of Navigation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -318,7 +318,7 @@ public final class SlugsNavigation {
     /**
      * Commanded altitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -330,7 +330,7 @@ public final class SlugsNavigation {
     /**
      * Origin WP 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -342,7 +342,7 @@ public final class SlugsNavigation {
     /**
      * Destination WP 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )

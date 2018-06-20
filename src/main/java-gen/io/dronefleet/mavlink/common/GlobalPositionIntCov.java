@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -16,7 +16,7 @@ import java.util.List;
  * companion computers and higher-bandwidth links and optimized for accuracy and 
  * completeness. Please use the {@link io.dronefleet.mavlink.common.GlobalPositionInt GlobalPositionInt} message for a minimal subset. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 63,
     crc = 119
 )
@@ -108,7 +108,7 @@ public final class GlobalPositionIntCov {
   /**
    * Timestamp (microseconds since system boot or since UNIX epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -119,7 +119,7 @@ public final class GlobalPositionIntCov {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -130,7 +130,7 @@ public final class GlobalPositionIntCov {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -141,7 +141,7 @@ public final class GlobalPositionIntCov {
   /**
    * Altitude in meters, expressed as * 1000 (millimeters), above MSL 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -152,7 +152,7 @@ public final class GlobalPositionIntCov {
   /**
    * Altitude above ground in meters, expressed as * 1000 (millimeters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -163,7 +163,7 @@ public final class GlobalPositionIntCov {
   /**
    * Ground X Speed (Latitude), expressed as m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -174,7 +174,7 @@ public final class GlobalPositionIntCov {
   /**
    * Ground Y Speed (Longitude), expressed as m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -185,7 +185,7 @@ public final class GlobalPositionIntCov {
   /**
    * Ground Z Speed (Altitude), expressed as m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -197,7 +197,7 @@ public final class GlobalPositionIntCov {
    * Covariance matrix (first six entries are the first ROW, next six entries are the second row, 
    * etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4,
       arraySize = 36
@@ -209,7 +209,7 @@ public final class GlobalPositionIntCov {
   /**
    * Class id of the estimator this estimate originated from. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -244,7 +244,7 @@ public final class GlobalPositionIntCov {
     /**
      * Timestamp (microseconds since system boot or since UNIX epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -256,7 +256,7 @@ public final class GlobalPositionIntCov {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -268,7 +268,7 @@ public final class GlobalPositionIntCov {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -280,7 +280,7 @@ public final class GlobalPositionIntCov {
     /**
      * Altitude in meters, expressed as * 1000 (millimeters), above MSL 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -292,7 +292,7 @@ public final class GlobalPositionIntCov {
     /**
      * Altitude above ground in meters, expressed as * 1000 (millimeters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -304,7 +304,7 @@ public final class GlobalPositionIntCov {
     /**
      * Ground X Speed (Latitude), expressed as m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -316,7 +316,7 @@ public final class GlobalPositionIntCov {
     /**
      * Ground Y Speed (Longitude), expressed as m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -328,7 +328,7 @@ public final class GlobalPositionIntCov {
     /**
      * Ground Z Speed (Altitude), expressed as m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -341,7 +341,7 @@ public final class GlobalPositionIntCov {
      * Covariance matrix (first six entries are the first ROW, next six entries are the second row, 
      * etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4,
         arraySize = 36
@@ -354,7 +354,7 @@ public final class GlobalPositionIntCov {
     /**
      * Class id of the estimator this estimate originated from. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

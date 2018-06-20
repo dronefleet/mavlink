@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Integer;
 import java.lang.Override;
@@ -15,7 +15,7 @@ import java.util.List;
  * MAVLink messages or change the devices settings. A message with zero bytes can be used to change 
  * just the baudrate. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 126,
     crc = 220
 )
@@ -78,7 +78,7 @@ public final class SerialControl {
   /**
    * Baudrate of transfer. Zero means no change. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -89,7 +89,7 @@ public final class SerialControl {
   /**
    * Timeout for reply data in milliseconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -100,7 +100,7 @@ public final class SerialControl {
   /**
    * See {@link io.dronefleet.mavlink.common.SerialControlDev SerialControlDev} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -111,7 +111,7 @@ public final class SerialControl {
   /**
    * See {@link io.dronefleet.mavlink.common.SerialControlFlag SerialControlFlag} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -122,7 +122,7 @@ public final class SerialControl {
   /**
    * how many bytes in this transfer 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -133,7 +133,7 @@ public final class SerialControl {
   /**
    * serial data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 70
@@ -161,7 +161,7 @@ public final class SerialControl {
     /**
      * Baudrate of transfer. Zero means no change. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -173,7 +173,7 @@ public final class SerialControl {
     /**
      * Timeout for reply data in milliseconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -185,7 +185,7 @@ public final class SerialControl {
     /**
      * See {@link io.dronefleet.mavlink.common.SerialControlDev SerialControlDev} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -197,7 +197,7 @@ public final class SerialControl {
     /**
      * See {@link io.dronefleet.mavlink.common.SerialControlFlag SerialControlFlag} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -209,7 +209,7 @@ public final class SerialControl {
     /**
      * how many bytes in this transfer 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -221,7 +221,7 @@ public final class SerialControl {
     /**
      * serial data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 70

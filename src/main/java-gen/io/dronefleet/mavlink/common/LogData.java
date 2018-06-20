@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Reply to {@link io.dronefleet.mavlink.common.LogRequestData LogRequestData} 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 120,
     crc = 134
 )
@@ -59,7 +59,7 @@ public final class LogData {
   /**
    * Offset into the log 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -70,7 +70,7 @@ public final class LogData {
   /**
    * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -81,7 +81,7 @@ public final class LogData {
   /**
    * Number of bytes (zero for end of log) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -92,7 +92,7 @@ public final class LogData {
   /**
    * log data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 90
@@ -116,7 +116,7 @@ public final class LogData {
     /**
      * Offset into the log 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -128,7 +128,7 @@ public final class LogData {
     /**
      * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -140,7 +140,7 @@ public final class LogData {
     /**
      * Number of bytes (zero for end of log) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -152,7 +152,7 @@ public final class LogData {
     /**
      * log data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 90

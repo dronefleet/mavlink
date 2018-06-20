@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Deepstall path planning 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 195,
     crc = 120
 )
@@ -101,7 +101,7 @@ public final class Deepstall {
   /**
    * Landing latitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class Deepstall {
   /**
    * Landing longitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class Deepstall {
   /**
    * Final heading start point, latitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class Deepstall {
   /**
    * Final heading start point, longitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class Deepstall {
   /**
    * Arc entry point, latitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class Deepstall {
   /**
    * Arc entry point, longitude (deg * 1E7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class Deepstall {
   /**
    * Altitude (meters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class Deepstall {
   /**
    * Distance the aircraft expects to travel during the deepstall 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class Deepstall {
   /**
    * Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class Deepstall {
   /**
    * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -235,7 +235,7 @@ public final class Deepstall {
     /**
      * Landing latitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class Deepstall {
     /**
      * Landing longitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -259,7 +259,7 @@ public final class Deepstall {
     /**
      * Final heading start point, latitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -271,7 +271,7 @@ public final class Deepstall {
     /**
      * Final heading start point, longitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -283,7 +283,7 @@ public final class Deepstall {
     /**
      * Arc entry point, latitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -295,7 +295,7 @@ public final class Deepstall {
     /**
      * Arc entry point, longitude (deg * 1E7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -307,7 +307,7 @@ public final class Deepstall {
     /**
      * Altitude (meters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -319,7 +319,7 @@ public final class Deepstall {
     /**
      * Distance the aircraft expects to travel during the deepstall 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -331,7 +331,7 @@ public final class Deepstall {
     /**
      * Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -343,7 +343,7 @@ public final class Deepstall {
     /**
      * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )

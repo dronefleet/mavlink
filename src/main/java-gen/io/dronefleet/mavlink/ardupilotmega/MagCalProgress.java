@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Reports progress of compass calibration. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 191,
     crc = 92
 )
@@ -96,7 +96,7 @@ public final class MagCalProgress {
   /**
    * Body frame direction vector for display 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -107,7 +107,7 @@ public final class MagCalProgress {
   /**
    * Body frame direction vector for display 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -118,7 +118,7 @@ public final class MagCalProgress {
   /**
    * Body frame direction vector for display 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -129,7 +129,7 @@ public final class MagCalProgress {
   /**
    * Compass being calibrated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -140,7 +140,7 @@ public final class MagCalProgress {
   /**
    * Bitmask of compasses being calibrated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -151,7 +151,7 @@ public final class MagCalProgress {
   /**
    * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -162,7 +162,7 @@ public final class MagCalProgress {
   /**
    * Attempt number 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -173,7 +173,7 @@ public final class MagCalProgress {
   /**
    * Completion percentage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -184,7 +184,7 @@ public final class MagCalProgress {
   /**
    * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1,
       arraySize = 10
@@ -218,7 +218,7 @@ public final class MagCalProgress {
     /**
      * Body frame direction vector for display 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -230,7 +230,7 @@ public final class MagCalProgress {
     /**
      * Body frame direction vector for display 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -242,7 +242,7 @@ public final class MagCalProgress {
     /**
      * Body frame direction vector for display 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -254,7 +254,7 @@ public final class MagCalProgress {
     /**
      * Compass being calibrated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -266,7 +266,7 @@ public final class MagCalProgress {
     /**
      * Bitmask of compasses being calibrated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -278,7 +278,7 @@ public final class MagCalProgress {
     /**
      * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -290,7 +290,7 @@ public final class MagCalProgress {
     /**
      * Attempt number 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -302,7 +302,7 @@ public final class MagCalProgress {
     /**
      * Completion percentage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -314,7 +314,7 @@ public final class MagCalProgress {
     /**
      * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1,
         arraySize = 10

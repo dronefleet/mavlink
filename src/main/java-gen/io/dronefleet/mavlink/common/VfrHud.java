@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Metrics typically displayed on a HUD for fixed wing aircraft 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 74,
     crc = 20
 )
@@ -72,7 +72,7 @@ public final class VfrHud {
   /**
    * Current airspeed in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -83,7 +83,7 @@ public final class VfrHud {
   /**
    * Current ground speed in m/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -94,7 +94,7 @@ public final class VfrHud {
   /**
    * Current altitude (MSL), in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -105,7 +105,7 @@ public final class VfrHud {
   /**
    * Current climb rate in meters/second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -116,7 +116,7 @@ public final class VfrHud {
   /**
    * Current heading in degrees, in compass units (0..360, 0=north) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -127,7 +127,7 @@ public final class VfrHud {
   /**
    * Current throttle setting in integer percent, 0 to 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -154,7 +154,7 @@ public final class VfrHud {
     /**
      * Current airspeed in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -166,7 +166,7 @@ public final class VfrHud {
     /**
      * Current ground speed in m/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -178,7 +178,7 @@ public final class VfrHud {
     /**
      * Current altitude (MSL), in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -190,7 +190,7 @@ public final class VfrHud {
     /**
      * Current climb rate in meters/second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -202,7 +202,7 @@ public final class VfrHud {
     /**
      * Current heading in degrees, in compass units (0..360, 0=north) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -214,7 +214,7 @@ public final class VfrHud {
     /**
      * Current throttle setting in integer percent, 0 to 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )

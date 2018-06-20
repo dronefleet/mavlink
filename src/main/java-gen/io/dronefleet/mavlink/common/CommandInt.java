@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Message encoding a command with parameters as scaled integers. Scaling depends on the actual 
  * command value. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 75,
     crc = 158
 )
@@ -123,7 +123,7 @@ public final class CommandInt {
   /**
    * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class CommandInt {
   /**
    * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class CommandInt {
   /**
    * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class CommandInt {
   /**
    * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class CommandInt {
   /**
    * PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class CommandInt {
   /**
    * PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class CommandInt {
   /**
    * PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class CommandInt {
   /**
    * The scheduled action for the mission item, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -211,7 +211,7 @@ public final class CommandInt {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -222,7 +222,7 @@ public final class CommandInt {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -233,7 +233,7 @@ public final class CommandInt {
   /**
    * The coordinate system of the COMMAND, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -244,7 +244,7 @@ public final class CommandInt {
   /**
    * false:0, true:1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -255,7 +255,7 @@ public final class CommandInt {
   /**
    * autocontinue to next wp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -296,7 +296,7 @@ public final class CommandInt {
     /**
      * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -308,7 +308,7 @@ public final class CommandInt {
     /**
      * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -320,7 +320,7 @@ public final class CommandInt {
     /**
      * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -332,7 +332,7 @@ public final class CommandInt {
     /**
      * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -344,7 +344,7 @@ public final class CommandInt {
     /**
      * PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -356,7 +356,7 @@ public final class CommandInt {
     /**
      * PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -368,7 +368,7 @@ public final class CommandInt {
     /**
      * PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -380,7 +380,7 @@ public final class CommandInt {
     /**
      * The scheduled action for the mission item, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -392,7 +392,7 @@ public final class CommandInt {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -404,7 +404,7 @@ public final class CommandInt {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -416,7 +416,7 @@ public final class CommandInt {
     /**
      * The coordinate system of the COMMAND, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -428,7 +428,7 @@ public final class CommandInt {
     /**
      * false:0, true:1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -440,7 +440,7 @@ public final class CommandInt {
     /**
      * autocontinue to next wp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )

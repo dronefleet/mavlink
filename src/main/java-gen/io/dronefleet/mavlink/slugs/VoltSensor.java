@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Transmits the readings from the voltage and current sensors 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 191,
     crc = 17
 )
@@ -51,7 +51,7 @@ public final class VoltSensor {
   /**
    * Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -63,7 +63,7 @@ public final class VoltSensor {
    * Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in 
    * cm (2) Distance in cm (3) Absolute value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -74,7 +74,7 @@ public final class VoltSensor {
   /**
    * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -95,7 +95,7 @@ public final class VoltSensor {
     /**
      * Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -108,7 +108,7 @@ public final class VoltSensor {
      * Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in 
      * cm (2) Distance in cm (3) Absolute value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -120,7 +120,7 @@ public final class VoltSensor {
     /**
      * It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

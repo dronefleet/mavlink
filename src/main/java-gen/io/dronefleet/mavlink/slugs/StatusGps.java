@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * This contains the status of the GPS readings 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 194,
     crc = 51
 )
@@ -82,7 +82,7 @@ public final class StatusGps {
   /**
    * Magnetic variation 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -93,7 +93,7 @@ public final class StatusGps {
   /**
    * Number of times checksum has failed 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -105,7 +105,7 @@ public final class StatusGps {
    * The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 
    * 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -116,7 +116,7 @@ public final class StatusGps {
   /**
    * Indicates if GN, GL or GP messages are being received 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -127,7 +127,7 @@ public final class StatusGps {
   /**
    * A = data valid, V = data invalid 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -139,7 +139,7 @@ public final class StatusGps {
    * Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and 
    * Westerly variation (W) adds to True course 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -151,7 +151,7 @@ public final class StatusGps {
    * Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead 
    * reckoning) mode;M-Manual input; N-Data not valid 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -180,7 +180,7 @@ public final class StatusGps {
     /**
      * Magnetic variation 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -192,7 +192,7 @@ public final class StatusGps {
     /**
      * Number of times checksum has failed 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -205,7 +205,7 @@ public final class StatusGps {
      * The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 
      * 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -217,7 +217,7 @@ public final class StatusGps {
     /**
      * Indicates if GN, GL or GP messages are being received 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -229,7 +229,7 @@ public final class StatusGps {
     /**
      * A = data valid, V = data invalid 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -242,7 +242,7 @@ public final class StatusGps {
      * Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and 
      * Westerly variation (W) adds to True course 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -255,7 +255,7 @@ public final class StatusGps {
      * Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead 
      * reckoning) mode;M-Manual input; N-Data not valid 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

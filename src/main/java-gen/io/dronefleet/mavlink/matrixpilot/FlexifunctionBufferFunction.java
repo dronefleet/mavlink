@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Flexifunction type and parameters for component at function index from buffer 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 152,
     crc = 101
 )
@@ -81,7 +81,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Function index 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -92,7 +92,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Total count of functions 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -103,7 +103,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Address in the flexifunction data, Set to 0xFFFF to use address in target memory 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -114,7 +114,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Size of the 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -125,7 +125,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -136,7 +136,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -147,7 +147,7 @@ public final class FlexifunctionBufferFunction {
   /**
    * Settings data 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1,
       arraySize = 48
@@ -177,7 +177,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Function index 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -189,7 +189,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Total count of functions 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -201,7 +201,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Address in the flexifunction data, Set to 0xFFFF to use address in target memory 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -213,7 +213,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Size of the 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -225,7 +225,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -237,7 +237,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -249,7 +249,7 @@ public final class FlexifunctionBufferFunction {
     /**
      * Settings data 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1,
         arraySize = 48

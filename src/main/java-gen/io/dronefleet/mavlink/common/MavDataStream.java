@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * THIS INTERFACE IS DEPRECATED AS OF JULY 2015. Please use MESSAGE_INTERVAL instead. A data 
@@ -13,61 +13,61 @@ public enum MavDataStream {
   /**
    * Enable all data streams
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   MAV_DATA_STREAM_ALL,
 
   /**
    * Enable IMU_RAW, GPS_RAW, GPS_STATUS packets.
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   MAV_DATA_STREAM_RAW_SENSORS,
 
   /**
    * Enable GPS_STATUS, CONTROL_STATUS, AUX_STATUS
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   MAV_DATA_STREAM_EXTENDED_STATUS,
 
   /**
    * Enable RC_CHANNELS_SCALED, RC_CHANNELS_RAW, SERVO_OUTPUT_RAW
    */
-  @MavlinkEnumEntry(3)
+  @MavlinkEntryInfo(3)
   MAV_DATA_STREAM_RC_CHANNELS,
 
   /**
    * Enable ATTITUDE_CONTROLLER_OUTPUT, POSITION_CONTROLLER_OUTPUT, NAV_CONTROLLER_OUTPUT.
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   MAV_DATA_STREAM_RAW_CONTROLLER,
 
   /**
    * Enable LOCAL_POSITION, GLOBAL_POSITION/GLOBAL_POSITION_INT messages.
    */
-  @MavlinkEnumEntry(6)
+  @MavlinkEntryInfo(6)
   MAV_DATA_STREAM_POSITION,
 
   /**
    * Dependent on the autopilot
    */
-  @MavlinkEnumEntry(10)
+  @MavlinkEntryInfo(10)
   MAV_DATA_STREAM_EXTRA1,
 
   /**
    * Dependent on the autopilot
    */
-  @MavlinkEnumEntry(11)
+  @MavlinkEntryInfo(11)
   MAV_DATA_STREAM_EXTRA2,
 
   /**
    * Dependent on the autopilot
    */
-  @MavlinkEnumEntry(12)
+  @MavlinkEntryInfo(12)
   MAV_DATA_STREAM_EXTRA3,
 
   /**
    * Motor/ESC telemetry data.
    * <b>added by io.dronefleet.mavlink.autoquad package</b>
    */
-  @MavlinkEnumEntry(13)
+  @MavlinkEntryInfo(13)
   MAV_DATA_STREAM_PROPULSION
 }

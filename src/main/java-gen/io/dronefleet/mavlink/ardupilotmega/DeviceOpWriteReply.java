@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Write registers reply 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11003,
     crc = 64
 )
@@ -43,7 +43,7 @@ public final class DeviceOpWriteReply {
   /**
    * request ID - copied from request 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -54,7 +54,7 @@ public final class DeviceOpWriteReply {
   /**
    * 0 for success, anything else is failure code 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -73,7 +73,7 @@ public final class DeviceOpWriteReply {
     /**
      * request ID - copied from request 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -85,7 +85,7 @@ public final class DeviceOpWriteReply {
     /**
      * 0 for success, anything else is failure code 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

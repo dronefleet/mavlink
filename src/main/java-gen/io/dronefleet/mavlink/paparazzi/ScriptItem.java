@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.paparazzi;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Message encoding a mission script item. This message is emitted upon a request for the next 
  * script item. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 180,
     crc = 231
 )
@@ -58,7 +58,7 @@ public final class ScriptItem {
   /**
    * Sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -69,7 +69,7 @@ public final class ScriptItem {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -80,7 +80,7 @@ public final class ScriptItem {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -91,7 +91,7 @@ public final class ScriptItem {
   /**
    * The name of the mission script, NULL terminated. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1,
       arraySize = 50
@@ -115,7 +115,7 @@ public final class ScriptItem {
     /**
      * Sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -127,7 +127,7 @@ public final class ScriptItem {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -139,7 +139,7 @@ public final class ScriptItem {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -151,7 +151,7 @@ public final class ScriptItem {
     /**
      * The name of the mission script, NULL terminated. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1,
         arraySize = 50

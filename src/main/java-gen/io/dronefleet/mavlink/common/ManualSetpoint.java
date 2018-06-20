@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Setpoint in roll, pitch, yaw and thrust from the operator 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 81,
     crc = 106
 )
@@ -79,7 +79,7 @@ public final class ManualSetpoint {
   /**
    * Timestamp in milliseconds since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class ManualSetpoint {
   /**
    * Desired roll rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -101,7 +101,7 @@ public final class ManualSetpoint {
   /**
    * Desired pitch rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class ManualSetpoint {
   /**
    * Desired yaw rate in radians per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class ManualSetpoint {
   /**
    * Collective thrust, normalized to 0 .. 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class ManualSetpoint {
   /**
    * Flight mode switch position, 0.. 255 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -145,7 +145,7 @@ public final class ManualSetpoint {
   /**
    * Override mode switch position, 0.. 255 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -174,7 +174,7 @@ public final class ManualSetpoint {
     /**
      * Timestamp in milliseconds since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class ManualSetpoint {
     /**
      * Desired roll rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -198,7 +198,7 @@ public final class ManualSetpoint {
     /**
      * Desired pitch rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -210,7 +210,7 @@ public final class ManualSetpoint {
     /**
      * Desired yaw rate in radians per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -222,7 +222,7 @@ public final class ManualSetpoint {
     /**
      * Collective thrust, normalized to 0 .. 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -234,7 +234,7 @@ public final class ManualSetpoint {
     /**
      * Flight mode switch position, 0.. 255 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -246,7 +246,7 @@ public final class ManualSetpoint {
     /**
      * Override mode switch position, 0.. 255 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )

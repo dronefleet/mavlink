@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * current motion information from a designated system 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 144,
     crc = 127
 )
@@ -111,7 +111,7 @@ public final class FollowTarget {
   /**
    * Timestamp in milliseconds since system boot 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -122,7 +122,7 @@ public final class FollowTarget {
   /**
    * button states or switches of a tracker device 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 8
   )
@@ -133,7 +133,7 @@ public final class FollowTarget {
   /**
    * Latitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class FollowTarget {
   /**
    * Longitude (WGS84), in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class FollowTarget {
   /**
    * AMSL, in meters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class FollowTarget {
   /**
    * target velocity (0,0,0) for unknown 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4,
       arraySize = 3
@@ -178,7 +178,7 @@ public final class FollowTarget {
   /**
    * linear target acceleration (0,0,0) for unknown 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4,
       arraySize = 3
@@ -190,7 +190,7 @@ public final class FollowTarget {
   /**
    * (1 0 0 0 for unknown) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4,
       arraySize = 4
@@ -202,7 +202,7 @@ public final class FollowTarget {
   /**
    * (0 0 0 for unknown) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4,
       arraySize = 3
@@ -214,7 +214,7 @@ public final class FollowTarget {
   /**
    * eph epv 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4,
       arraySize = 3
@@ -226,7 +226,7 @@ public final class FollowTarget {
   /**
    * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -263,7 +263,7 @@ public final class FollowTarget {
     /**
      * Timestamp in milliseconds since system boot 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -275,7 +275,7 @@ public final class FollowTarget {
     /**
      * button states or switches of a tracker device 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 8
     )
@@ -287,7 +287,7 @@ public final class FollowTarget {
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -299,7 +299,7 @@ public final class FollowTarget {
     /**
      * Longitude (WGS84), in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -311,7 +311,7 @@ public final class FollowTarget {
     /**
      * AMSL, in meters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -323,7 +323,7 @@ public final class FollowTarget {
     /**
      * target velocity (0,0,0) for unknown 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4,
         arraySize = 3
@@ -336,7 +336,7 @@ public final class FollowTarget {
     /**
      * linear target acceleration (0,0,0) for unknown 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4,
         arraySize = 3
@@ -349,7 +349,7 @@ public final class FollowTarget {
     /**
      * (1 0 0 0 for unknown) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4,
         arraySize = 4
@@ -362,7 +362,7 @@ public final class FollowTarget {
     /**
      * (0 0 0 for unknown) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4,
         arraySize = 3
@@ -375,7 +375,7 @@ public final class FollowTarget {
     /**
      * eph epv 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4,
         arraySize = 3
@@ -388,7 +388,7 @@ public final class FollowTarget {
     /**
      * bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

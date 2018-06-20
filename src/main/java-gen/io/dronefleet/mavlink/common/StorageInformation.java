@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * WIP: Information about a storage medium. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 261,
     crc = 179
 )
@@ -94,7 +94,7 @@ public final class StorageInformation {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -105,7 +105,7 @@ public final class StorageInformation {
   /**
    * Total capacity in MiB 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -116,7 +116,7 @@ public final class StorageInformation {
   /**
    * Used capacity in MiB 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -127,7 +127,7 @@ public final class StorageInformation {
   /**
    * Available capacity in MiB 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class StorageInformation {
   /**
    * Read speed in MiB/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -149,7 +149,7 @@ public final class StorageInformation {
   /**
    * Write speed in MiB/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class StorageInformation {
   /**
    * Storage ID (1 for first, 2 for second, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -171,7 +171,7 @@ public final class StorageInformation {
   /**
    * Number of storage devices 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -182,7 +182,7 @@ public final class StorageInformation {
   /**
    * Status of storage (0 not available, 1 unformatted, 2 formatted) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -215,7 +215,7 @@ public final class StorageInformation {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -227,7 +227,7 @@ public final class StorageInformation {
     /**
      * Total capacity in MiB 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -239,7 +239,7 @@ public final class StorageInformation {
     /**
      * Used capacity in MiB 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -251,7 +251,7 @@ public final class StorageInformation {
     /**
      * Available capacity in MiB 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -263,7 +263,7 @@ public final class StorageInformation {
     /**
      * Read speed in MiB/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -275,7 +275,7 @@ public final class StorageInformation {
     /**
      * Write speed in MiB/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -287,7 +287,7 @@ public final class StorageInformation {
     /**
      * Storage ID (1 for first, 2 for second, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -299,7 +299,7 @@ public final class StorageInformation {
     /**
      * Number of storage devices 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -311,7 +311,7 @@ public final class StorageInformation {
     /**
      * Status of storage (0 not available, 1 unformatted, 2 formatted) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

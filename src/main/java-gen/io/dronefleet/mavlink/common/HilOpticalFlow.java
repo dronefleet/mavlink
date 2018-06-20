@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 114,
     crc = 237
 )
@@ -120,7 +120,7 @@ public final class HilOpticalFlow {
   /**
    * Timestamp (microseconds, synced to UNIX time or since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -132,7 +132,7 @@ public final class HilOpticalFlow {
    * Integration time in microseconds. Divide integrated_x and integrated_y by the integration 
    * time to obtain average flow. The integration time also indicates the. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class HilOpticalFlow {
    * Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. 
    * Sensor linear motion along the positive Y axis induces a negative flow.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class HilOpticalFlow {
    * Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. 
    * Sensor linear motion along the positive X axis induces a positive flow.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class HilOpticalFlow {
   /**
    * RH rotation around X axis (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -178,7 +178,7 @@ public final class HilOpticalFlow {
   /**
    * RH rotation around Y axis (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -189,7 +189,7 @@ public final class HilOpticalFlow {
   /**
    * RH rotation around Z axis (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -200,7 +200,7 @@ public final class HilOpticalFlow {
   /**
    * Time in microseconds since the distance was sampled. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -212,7 +212,7 @@ public final class HilOpticalFlow {
    * Distance to the center of the flow field in meters. Positive value (including zero): distance 
    * known. Negative value: Unknown distance. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -223,7 +223,7 @@ public final class HilOpticalFlow {
   /**
    * Temperature * 100 in centi-degrees Celsius 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -234,7 +234,7 @@ public final class HilOpticalFlow {
   /**
    * Sensor ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -245,7 +245,7 @@ public final class HilOpticalFlow {
   /**
    * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -284,7 +284,7 @@ public final class HilOpticalFlow {
     /**
      * Timestamp (microseconds, synced to UNIX time or since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -297,7 +297,7 @@ public final class HilOpticalFlow {
      * Integration time in microseconds. Divide integrated_x and integrated_y by the integration 
      * time to obtain average flow. The integration time also indicates the. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -310,7 +310,7 @@ public final class HilOpticalFlow {
      * Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. 
      * Sensor linear motion along the positive Y axis induces a negative flow.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -323,7 +323,7 @@ public final class HilOpticalFlow {
      * Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. 
      * Sensor linear motion along the positive X axis induces a positive flow.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -335,7 +335,7 @@ public final class HilOpticalFlow {
     /**
      * RH rotation around X axis (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -347,7 +347,7 @@ public final class HilOpticalFlow {
     /**
      * RH rotation around Y axis (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -359,7 +359,7 @@ public final class HilOpticalFlow {
     /**
      * RH rotation around Z axis (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -371,7 +371,7 @@ public final class HilOpticalFlow {
     /**
      * Time in microseconds since the distance was sampled. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -384,7 +384,7 @@ public final class HilOpticalFlow {
      * Distance to the center of the flow field in meters. Positive value (including zero): distance 
      * known. Negative value: Unknown distance. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -396,7 +396,7 @@ public final class HilOpticalFlow {
     /**
      * Temperature * 100 in centi-degrees Celsius 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -408,7 +408,7 @@ public final class HilOpticalFlow {
     /**
      * Sensor ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -420,7 +420,7 @@ public final class HilOpticalFlow {
     /**
      * Optical flow quality / confidence. 0: no valid flow, 255: maximum quality 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )

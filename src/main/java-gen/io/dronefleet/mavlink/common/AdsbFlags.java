@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.common;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * These flags indicate status such as data validity of each data source. Set = data valid 
@@ -11,42 +11,42 @@ public enum AdsbFlags {
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   ADSB_FLAGS_VALID_COORDS,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   ADSB_FLAGS_VALID_ALTITUDE,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(4)
+  @MavlinkEntryInfo(4)
   ADSB_FLAGS_VALID_HEADING,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(8)
+  @MavlinkEntryInfo(8)
   ADSB_FLAGS_VALID_VELOCITY,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   ADSB_FLAGS_VALID_CALLSIGN,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(32)
+  @MavlinkEntryInfo(32)
   ADSB_FLAGS_VALID_SQUAWK,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(64)
+  @MavlinkEntryInfo(64)
   ADSB_FLAGS_SIMULATED
 }

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.slugs;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Pilot console PWM messges. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 179,
     crc = 132
 )
@@ -114,7 +114,7 @@ public final class GpsDateTime {
   /**
    * Year reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -125,7 +125,7 @@ public final class GpsDateTime {
   /**
    * Month reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -136,7 +136,7 @@ public final class GpsDateTime {
   /**
    * Day reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -147,7 +147,7 @@ public final class GpsDateTime {
   /**
    * Hour reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -158,7 +158,7 @@ public final class GpsDateTime {
   /**
    * Min reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -169,7 +169,7 @@ public final class GpsDateTime {
   /**
    * Sec reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -180,7 +180,7 @@ public final class GpsDateTime {
   /**
    * Clock Status. See table 47 page 211 OEMStar Manual 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -191,7 +191,7 @@ public final class GpsDateTime {
   /**
    * Visible satellites reported by Gps 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -202,7 +202,7 @@ public final class GpsDateTime {
   /**
    * Used satellites in Solution 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -213,7 +213,7 @@ public final class GpsDateTime {
   /**
    * GPS+GLONASS satellites in Solution 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -224,7 +224,7 @@ public final class GpsDateTime {
   /**
    * GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -235,7 +235,7 @@ public final class GpsDateTime {
   /**
    * Percent used GPS 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 1
   )
@@ -274,7 +274,7 @@ public final class GpsDateTime {
     /**
      * Year reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -286,7 +286,7 @@ public final class GpsDateTime {
     /**
      * Month reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -298,7 +298,7 @@ public final class GpsDateTime {
     /**
      * Day reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -310,7 +310,7 @@ public final class GpsDateTime {
     /**
      * Hour reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -322,7 +322,7 @@ public final class GpsDateTime {
     /**
      * Min reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -334,7 +334,7 @@ public final class GpsDateTime {
     /**
      * Sec reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -346,7 +346,7 @@ public final class GpsDateTime {
     /**
      * Clock Status. See table 47 page 211 OEMStar Manual 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -358,7 +358,7 @@ public final class GpsDateTime {
     /**
      * Visible satellites reported by Gps 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -370,7 +370,7 @@ public final class GpsDateTime {
     /**
      * Used satellites in Solution 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )
@@ -382,7 +382,7 @@ public final class GpsDateTime {
     /**
      * GPS+GLONASS satellites in Solution 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -394,7 +394,7 @@ public final class GpsDateTime {
     /**
      * GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )
@@ -406,7 +406,7 @@ public final class GpsDateTime {
     /**
      * Percent used GPS 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 1
     )

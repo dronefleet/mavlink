@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Deprecated. Use {@link io.dronefleet.mavlink.common.BatteryStatus BatteryStatus} instead. 2nd Battery status 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 181,
     crc = 174
 )
@@ -44,7 +44,7 @@ public final class Battery2 {
   /**
    * voltage in millivolts 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -56,7 +56,7 @@ public final class Battery2 {
    * Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the 
    * current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -75,7 +75,7 @@ public final class Battery2 {
     /**
      * voltage in millivolts 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -88,7 +88,7 @@ public final class Battery2 {
      * Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the 
      * current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )

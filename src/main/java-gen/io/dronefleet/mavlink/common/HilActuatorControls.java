@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
@@ -13,7 +13,7 @@ import java.util.List;
  * Sent from autopilot to simulation. Hardware in the loop control outputs (replacement for 
  * {@link io.dronefleet.mavlink.common.HilControls HilControls}) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 93,
     crc = 47
 )
@@ -62,7 +62,7 @@ public final class HilActuatorControls {
   /**
    * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -73,7 +73,7 @@ public final class HilActuatorControls {
   /**
    * Flags as bitfield, reserved for future use. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 8
   )
@@ -84,7 +84,7 @@ public final class HilActuatorControls {
   /**
    * Control outputs -1 .. 1. Channel assignment depends on the simulated hardware. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4,
       arraySize = 16
@@ -96,7 +96,7 @@ public final class HilActuatorControls {
   /**
    * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}), includes arming state. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -119,7 +119,7 @@ public final class HilActuatorControls {
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -131,7 +131,7 @@ public final class HilActuatorControls {
     /**
      * Flags as bitfield, reserved for future use. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 8
     )
@@ -143,7 +143,7 @@ public final class HilActuatorControls {
     /**
      * Control outputs -1 .. 1. Channel assignment depends on the simulated hardware. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4,
         arraySize = 16
@@ -156,7 +156,7 @@ public final class HilActuatorControls {
     /**
      * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}), includes arming state. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )

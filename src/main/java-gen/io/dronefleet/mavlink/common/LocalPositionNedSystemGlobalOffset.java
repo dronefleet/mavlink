@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * coordinate frame in NED coordinates. Coordinate frame is right-handed, Z-axis down 
  * (aeronautical frame, NED / north-east-down convention) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 89,
     crc = 231
 )
@@ -81,7 +81,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -92,7 +92,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * X Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -103,7 +103,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Y Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -114,7 +114,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Z Position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -125,7 +125,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Roll 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -136,7 +136,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Pitch 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -147,7 +147,7 @@ public final class LocalPositionNedSystemGlobalOffset {
   /**
    * Yaw 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -176,7 +176,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -188,7 +188,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * X Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -200,7 +200,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Y Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -212,7 +212,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Z Position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -224,7 +224,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Roll 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -236,7 +236,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Pitch 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -248,7 +248,7 @@ public final class LocalPositionNedSystemGlobalOffset {
     /**
      * Yaw 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )

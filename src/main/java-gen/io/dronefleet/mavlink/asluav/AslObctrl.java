@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Off-board controls/commands for ASLUAVs 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 207,
     crc = 234
 )
@@ -87,7 +87,7 @@ public final class AslObctrl {
   /**
    * Time since system start 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -98,7 +98,7 @@ public final class AslObctrl {
   /**
    * Elevator command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -109,7 +109,7 @@ public final class AslObctrl {
   /**
    * Throttle command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -120,7 +120,7 @@ public final class AslObctrl {
   /**
    * Throttle 2 command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -131,7 +131,7 @@ public final class AslObctrl {
   /**
    * Left aileron command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -142,7 +142,7 @@ public final class AslObctrl {
   /**
    * Right aileron command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class AslObctrl {
   /**
    * Rudder command [~] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -164,7 +164,7 @@ public final class AslObctrl {
   /**
    * Off-board computer status 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -195,7 +195,7 @@ public final class AslObctrl {
     /**
      * Time since system start 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -207,7 +207,7 @@ public final class AslObctrl {
     /**
      * Elevator command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -219,7 +219,7 @@ public final class AslObctrl {
     /**
      * Throttle command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -231,7 +231,7 @@ public final class AslObctrl {
     /**
      * Throttle 2 command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -243,7 +243,7 @@ public final class AslObctrl {
     /**
      * Left aileron command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -255,7 +255,7 @@ public final class AslObctrl {
     /**
      * Right aileron command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -267,7 +267,7 @@ public final class AslObctrl {
     /**
      * Rudder command [~] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -279,7 +279,7 @@ public final class AslObctrl {
     /**
      * Off-board computer status 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )

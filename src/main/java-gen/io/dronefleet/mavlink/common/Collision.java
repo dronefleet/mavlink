@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Information about a potential collision 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 247,
     crc = 81
 )
@@ -80,7 +80,7 @@ public final class Collision {
   /**
    * Unique identifier, domain based on src field 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -91,7 +91,7 @@ public final class Collision {
   /**
    * Estimated time until collision occurs (seconds) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class Collision {
   /**
    * Closest vertical distance in meters between vehicle and object 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class Collision {
   /**
    * Closest horizontal distance in meteres between vehicle and object 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class Collision {
   /**
    * Collision data source 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -135,7 +135,7 @@ public final class Collision {
   /**
    * Action that is being taken to avoid this collision 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -146,7 +146,7 @@ public final class Collision {
   /**
    * How concerned the aircraft is about this collision 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -175,7 +175,7 @@ public final class Collision {
     /**
      * Unique identifier, domain based on src field 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -187,7 +187,7 @@ public final class Collision {
     /**
      * Estimated time until collision occurs (seconds) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -199,7 +199,7 @@ public final class Collision {
     /**
      * Closest vertical distance in meters between vehicle and object 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -211,7 +211,7 @@ public final class Collision {
     /**
      * Closest horizontal distance in meteres between vehicle and object 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -223,7 +223,7 @@ public final class Collision {
     /**
      * Collision data source 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -235,7 +235,7 @@ public final class Collision {
     /**
      * Action that is being taken to avoid this collision 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -247,7 +247,7 @@ public final class Collision {
     /**
      * How concerned the aircraft is about this collision 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

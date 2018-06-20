@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Information about a camera 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 259,
     crc = 92
 )
@@ -126,7 +126,7 @@ public final class CameraInformation {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -138,7 +138,7 @@ public final class CameraInformation {
    * Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 
    * 0xff = Major) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -149,7 +149,7 @@ public final class CameraInformation {
   /**
    * Focal length in mm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -160,7 +160,7 @@ public final class CameraInformation {
   /**
    * Image sensor size horizontal in mm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -171,7 +171,7 @@ public final class CameraInformation {
   /**
    * Image sensor size vertical in mm 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -182,7 +182,7 @@ public final class CameraInformation {
   /**
    * {@link io.dronefleet.mavlink.common.CameraCapFlags CameraCapFlags} enum flags (bitmap) describing camera capabilities. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -193,7 +193,7 @@ public final class CameraInformation {
   /**
    * Image resolution in pixels horizontal 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -204,7 +204,7 @@ public final class CameraInformation {
   /**
    * Image resolution in pixels vertical 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -215,7 +215,7 @@ public final class CameraInformation {
   /**
    * Camera definition version (iteration) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -226,7 +226,7 @@ public final class CameraInformation {
   /**
    * Name of the camera vendor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 32
@@ -238,7 +238,7 @@ public final class CameraInformation {
   /**
    * Name of the camera model 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 32
@@ -250,7 +250,7 @@ public final class CameraInformation {
   /**
    * Reserved for a lens ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -261,7 +261,7 @@ public final class CameraInformation {
   /**
    * Camera definition URI (if any, otherwise only basic functions will be available). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 1,
       arraySize = 140
@@ -303,7 +303,7 @@ public final class CameraInformation {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -316,7 +316,7 @@ public final class CameraInformation {
      * Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 
      * 0xff = Major) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -328,7 +328,7 @@ public final class CameraInformation {
     /**
      * Focal length in mm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -340,7 +340,7 @@ public final class CameraInformation {
     /**
      * Image sensor size horizontal in mm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -352,7 +352,7 @@ public final class CameraInformation {
     /**
      * Image sensor size vertical in mm 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -364,7 +364,7 @@ public final class CameraInformation {
     /**
      * {@link io.dronefleet.mavlink.common.CameraCapFlags CameraCapFlags} enum flags (bitmap) describing camera capabilities. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -376,7 +376,7 @@ public final class CameraInformation {
     /**
      * Image resolution in pixels horizontal 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -388,7 +388,7 @@ public final class CameraInformation {
     /**
      * Image resolution in pixels vertical 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -400,7 +400,7 @@ public final class CameraInformation {
     /**
      * Camera definition version (iteration) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -412,7 +412,7 @@ public final class CameraInformation {
     /**
      * Name of the camera vendor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 32
@@ -425,7 +425,7 @@ public final class CameraInformation {
     /**
      * Name of the camera model 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 32
@@ -438,7 +438,7 @@ public final class CameraInformation {
     /**
      * Reserved for a lens ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -450,7 +450,7 @@ public final class CameraInformation {
     /**
      * Camera definition URI (if any, otherwise only basic functions will be available). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 1,
         arraySize = 140

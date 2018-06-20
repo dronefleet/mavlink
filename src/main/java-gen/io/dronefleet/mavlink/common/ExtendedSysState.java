@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Provides state for additional features 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 245,
     crc = 130
 )
@@ -45,7 +45,7 @@ public final class ExtendedSysState {
    * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
    * configuration. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -56,7 +56,7 @@ public final class ExtendedSysState {
   /**
    * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -76,7 +76,7 @@ public final class ExtendedSysState {
      * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
      * configuration. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -88,7 +88,7 @@ public final class ExtendedSysState {
     /**
      * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )

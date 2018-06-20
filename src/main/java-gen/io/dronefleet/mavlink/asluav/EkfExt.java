@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.asluav;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Extended EKF state estimates for ASLUAVs 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 206,
     crc = 64
 )
@@ -80,7 +80,7 @@ public final class EkfExt {
   /**
    * Time since system start 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -91,7 +91,7 @@ public final class EkfExt {
   /**
    * Magnitude of wind velocity (in lateral inertial plane) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -102,7 +102,7 @@ public final class EkfExt {
   /**
    * Wind heading angle from North 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -113,7 +113,7 @@ public final class EkfExt {
   /**
    * Z (Down) component of inertial wind velocity 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -124,7 +124,7 @@ public final class EkfExt {
   /**
    * Magnitude of air velocity 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -135,7 +135,7 @@ public final class EkfExt {
   /**
    * Sideslip angle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -146,7 +146,7 @@ public final class EkfExt {
   /**
    * Angle of attack 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -175,7 +175,7 @@ public final class EkfExt {
     /**
      * Time since system start 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -187,7 +187,7 @@ public final class EkfExt {
     /**
      * Magnitude of wind velocity (in lateral inertial plane) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -199,7 +199,7 @@ public final class EkfExt {
     /**
      * Wind heading angle from North 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -211,7 +211,7 @@ public final class EkfExt {
     /**
      * Z (Down) component of inertial wind velocity 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -223,7 +223,7 @@ public final class EkfExt {
     /**
      * Magnitude of air velocity 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -235,7 +235,7 @@ public final class EkfExt {
     /**
      * Sideslip angle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -247,7 +247,7 @@ public final class EkfExt {
     /**
      * Angle of attack 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * The autopilot is requesting a resource (file, binary, other type of data) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 142,
     crc = 72
 )
@@ -69,7 +69,7 @@ public final class ResourceRequest {
   /**
    * Request ID. This ID should be re-used when sending back URI contents 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -80,7 +80,7 @@ public final class ResourceRequest {
   /**
    * The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -92,7 +92,7 @@ public final class ResourceRequest {
    * The requested unique resource identifier (URI). It is not necessarily a straight domain name 
    * (depends on the URI type enum) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1,
       arraySize = 120
@@ -104,7 +104,7 @@ public final class ResourceRequest {
   /**
    * The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -116,7 +116,7 @@ public final class ResourceRequest {
    * The storage path the autopilot wants the URI to be stored in. Will only be valid if the 
    * transfer_type has a storage associated (e.g. MAVLink FTP). 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1,
       arraySize = 120
@@ -142,7 +142,7 @@ public final class ResourceRequest {
     /**
      * Request ID. This ID should be re-used when sending back URI contents 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -154,7 +154,7 @@ public final class ResourceRequest {
     /**
      * The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -167,7 +167,7 @@ public final class ResourceRequest {
      * The requested unique resource identifier (URI). It is not necessarily a straight domain name 
      * (depends on the URI type enum) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1,
         arraySize = 120
@@ -180,7 +180,7 @@ public final class ResourceRequest {
     /**
      * The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -193,7 +193,7 @@ public final class ResourceRequest {
      * The storage path the autopilot wants the URI to be stored in. Will only be valid if the 
      * transfer_type has a storage associated (e.g. MAVLink FTP). 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1,
         arraySize = 120

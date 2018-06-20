@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 130,
     crc = 29
 )
@@ -81,7 +81,7 @@ public final class DataTransmissionHandshake {
   /**
    * total data size in bytes (set on ACK only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -92,7 +92,7 @@ public final class DataTransmissionHandshake {
   /**
    * Width of a matrix or image 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -103,7 +103,7 @@ public final class DataTransmissionHandshake {
   /**
    * Height of a matrix or image 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -114,7 +114,7 @@ public final class DataTransmissionHandshake {
   /**
    * number of packets beeing sent (set on ACK only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -126,7 +126,7 @@ public final class DataTransmissionHandshake {
    * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
    * mavlink/include/mavlink_types.h) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 1
   )
@@ -138,7 +138,7 @@ public final class DataTransmissionHandshake {
    * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
    * (set on ACK only) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -149,7 +149,7 @@ public final class DataTransmissionHandshake {
   /**
    * JPEG quality out of [1,100] 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -178,7 +178,7 @@ public final class DataTransmissionHandshake {
     /**
      * total data size in bytes (set on ACK only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -190,7 +190,7 @@ public final class DataTransmissionHandshake {
     /**
      * Width of a matrix or image 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -202,7 +202,7 @@ public final class DataTransmissionHandshake {
     /**
      * Height of a matrix or image 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -214,7 +214,7 @@ public final class DataTransmissionHandshake {
     /**
      * number of packets beeing sent (set on ACK only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -227,7 +227,7 @@ public final class DataTransmissionHandshake {
      * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
      * mavlink/include/mavlink_types.h) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 1
     )
@@ -240,7 +240,7 @@ public final class DataTransmissionHandshake {
      * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
      * (set on ACK only) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -252,7 +252,7 @@ public final class DataTransmissionHandshake {
     /**
      * JPEG quality out of [1,100] 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )

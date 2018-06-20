@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.common.ParamExtSet ParamExtSet} message. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 324,
     crc = 132
 )
@@ -62,7 +62,7 @@ public final class ParamExtAck {
    * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
    * 16+1 bytes storage if the ID is stored as string 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1,
       arraySize = 16
@@ -74,7 +74,7 @@ public final class ParamExtAck {
   /**
    * Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1,
       arraySize = 128
@@ -86,7 +86,7 @@ public final class ParamExtAck {
   /**
    * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -97,7 +97,7 @@ public final class ParamExtAck {
   /**
    * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck ParamAck} enum for possible codes. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -122,7 +122,7 @@ public final class ParamExtAck {
      * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
      * 16+1 bytes storage if the ID is stored as string 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1,
         arraySize = 16
@@ -135,7 +135,7 @@ public final class ParamExtAck {
     /**
      * Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1,
         arraySize = 128
@@ -148,7 +148,7 @@ public final class ParamExtAck {
     /**
      * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -160,7 +160,7 @@ public final class ParamExtAck {
     /**
      * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck ParamAck} enum for possible codes. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

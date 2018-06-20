@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 import java.lang.Override;
 import java.lang.String;
@@ -10,7 +10,7 @@ import java.lang.String;
 /**
  * The location and information of an ADSB vehicle 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 246,
     crc = 184
 )
@@ -123,7 +123,7 @@ public final class AdsbVehicle {
   /**
    * ICAO address 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class AdsbVehicle {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class AdsbVehicle {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -156,7 +156,7 @@ public final class AdsbVehicle {
   /**
    * Altitude(ASL) in millimeters 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -167,7 +167,7 @@ public final class AdsbVehicle {
   /**
    * Course over ground in centidegrees 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -178,7 +178,7 @@ public final class AdsbVehicle {
   /**
    * The horizontal velocity in centimeters/second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -189,7 +189,7 @@ public final class AdsbVehicle {
   /**
    * The vertical velocity in centimeters/second, positive is up 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -200,7 +200,7 @@ public final class AdsbVehicle {
   /**
    * Flags to indicate various statuses including valid data fields 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -211,7 +211,7 @@ public final class AdsbVehicle {
   /**
    * Squawk code 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -222,7 +222,7 @@ public final class AdsbVehicle {
   /**
    * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType AdsbAltitudeType} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -233,7 +233,7 @@ public final class AdsbVehicle {
   /**
    * The callsign, 8+null 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1,
       arraySize = 9
@@ -245,7 +245,7 @@ public final class AdsbVehicle {
   /**
    * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 1
   )
@@ -256,7 +256,7 @@ public final class AdsbVehicle {
   /**
    * Time since last communication in seconds 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 1
   )
@@ -297,7 +297,7 @@ public final class AdsbVehicle {
     /**
      * ICAO address 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -309,7 +309,7 @@ public final class AdsbVehicle {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -321,7 +321,7 @@ public final class AdsbVehicle {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -333,7 +333,7 @@ public final class AdsbVehicle {
     /**
      * Altitude(ASL) in millimeters 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -345,7 +345,7 @@ public final class AdsbVehicle {
     /**
      * Course over ground in centidegrees 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -357,7 +357,7 @@ public final class AdsbVehicle {
     /**
      * The horizontal velocity in centimeters/second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -369,7 +369,7 @@ public final class AdsbVehicle {
     /**
      * The vertical velocity in centimeters/second, positive is up 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -381,7 +381,7 @@ public final class AdsbVehicle {
     /**
      * Flags to indicate various statuses including valid data fields 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -393,7 +393,7 @@ public final class AdsbVehicle {
     /**
      * Squawk code 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -405,7 +405,7 @@ public final class AdsbVehicle {
     /**
      * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType AdsbAltitudeType} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -417,7 +417,7 @@ public final class AdsbVehicle {
     /**
      * The callsign, 8+null 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1,
         arraySize = 9
@@ -430,7 +430,7 @@ public final class AdsbVehicle {
     /**
      * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 1
     )
@@ -442,7 +442,7 @@ public final class AdsbVehicle {
     /**
      * Time since last communication in seconds 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 1
     )

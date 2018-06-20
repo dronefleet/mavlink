@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Control on-board Camera Control System to take shots. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 155,
     crc = 22
 )
@@ -101,7 +101,7 @@ public final class DigicamControl {
   /**
    * Correspondent value to given extra_param 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -112,7 +112,7 @@ public final class DigicamControl {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -123,7 +123,7 @@ public final class DigicamControl {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -134,7 +134,7 @@ public final class DigicamControl {
   /**
    * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -145,7 +145,7 @@ public final class DigicamControl {
   /**
    * 1 to N //Zoom's absolute position (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -156,7 +156,7 @@ public final class DigicamControl {
   /**
    * -100 to 100 //Zooming step value to offset zoom from the current position 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 1
   )
@@ -167,7 +167,7 @@ public final class DigicamControl {
   /**
    * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -178,7 +178,7 @@ public final class DigicamControl {
   /**
    * 0: ignore, 1: shot or start filming 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -190,7 +190,7 @@ public final class DigicamControl {
    * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
    * or pooled just once 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1
   )
@@ -201,7 +201,7 @@ public final class DigicamControl {
   /**
    * Extra parameters enumeration (0 means ignore) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 1
   )
@@ -236,7 +236,7 @@ public final class DigicamControl {
     /**
      * Correspondent value to given extra_param 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -248,7 +248,7 @@ public final class DigicamControl {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -260,7 +260,7 @@ public final class DigicamControl {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -272,7 +272,7 @@ public final class DigicamControl {
     /**
      * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -284,7 +284,7 @@ public final class DigicamControl {
     /**
      * 1 to N //Zoom's absolute position (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )
@@ -296,7 +296,7 @@ public final class DigicamControl {
     /**
      * -100 to 100 //Zooming step value to offset zoom from the current position 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 1
     )
@@ -308,7 +308,7 @@ public final class DigicamControl {
     /**
      * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )
@@ -320,7 +320,7 @@ public final class DigicamControl {
     /**
      * 0: ignore, 1: shot or start filming 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -333,7 +333,7 @@ public final class DigicamControl {
      * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
      * or pooled just once 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1
     )
@@ -345,7 +345,7 @@ public final class DigicamControl {
     /**
      * Extra parameters enumeration (0 means ignore) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 1
     )

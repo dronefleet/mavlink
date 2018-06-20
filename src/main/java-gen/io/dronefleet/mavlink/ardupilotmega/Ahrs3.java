@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs Ahrs} filter if available. This is for ANU research group (Ali and Sean) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 182,
     crc = 229
 )
@@ -100,7 +100,7 @@ public final class Ahrs3 {
   /**
    * Roll angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -111,7 +111,7 @@ public final class Ahrs3 {
   /**
    * Pitch angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -122,7 +122,7 @@ public final class Ahrs3 {
   /**
    * Yaw angle (rad) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class Ahrs3 {
   /**
    * Altitude (MSL) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class Ahrs3 {
   /**
    * Latitude in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class Ahrs3 {
   /**
    * Longitude in degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class Ahrs3 {
   /**
    * test variable1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class Ahrs3 {
   /**
    * test variable2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -188,7 +188,7 @@ public final class Ahrs3 {
   /**
    * test variable3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -199,7 +199,7 @@ public final class Ahrs3 {
   /**
    * test variable4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -234,7 +234,7 @@ public final class Ahrs3 {
     /**
      * Roll angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -246,7 +246,7 @@ public final class Ahrs3 {
     /**
      * Pitch angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -258,7 +258,7 @@ public final class Ahrs3 {
     /**
      * Yaw angle (rad) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -270,7 +270,7 @@ public final class Ahrs3 {
     /**
      * Altitude (MSL) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -282,7 +282,7 @@ public final class Ahrs3 {
     /**
      * Latitude in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -294,7 +294,7 @@ public final class Ahrs3 {
     /**
      * Longitude in degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -306,7 +306,7 @@ public final class Ahrs3 {
     /**
      * test variable1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -318,7 +318,7 @@ public final class Ahrs3 {
     /**
      * test variable2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -330,7 +330,7 @@ public final class Ahrs3 {
     /**
      * test variable3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -342,7 +342,7 @@ public final class Ahrs3 {
     /**
      * test variable4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )

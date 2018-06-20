@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.icarous;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * ICAROUS heartbeat 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 42000,
     crc = 227
 )
@@ -36,7 +36,7 @@ public final class IcarousHeartbeat {
   /**
    * See the FMS_STATE enum. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -53,7 +53,7 @@ public final class IcarousHeartbeat {
     /**
      * See the FMS_STATE enum. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * raw ADC output 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 153,
     crc = 188
 )
@@ -71,7 +71,7 @@ public final class ApAdc {
   /**
    * ADC output 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 2
   )
@@ -82,7 +82,7 @@ public final class ApAdc {
   /**
    * ADC output 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -93,7 +93,7 @@ public final class ApAdc {
   /**
    * ADC output 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -104,7 +104,7 @@ public final class ApAdc {
   /**
    * ADC output 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -115,7 +115,7 @@ public final class ApAdc {
   /**
    * ADC output 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -126,7 +126,7 @@ public final class ApAdc {
   /**
    * ADC output 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -153,7 +153,7 @@ public final class ApAdc {
     /**
      * ADC output 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 2
     )
@@ -165,7 +165,7 @@ public final class ApAdc {
     /**
      * ADC output 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -177,7 +177,7 @@ public final class ApAdc {
     /**
      * ADC output 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -189,7 +189,7 @@ public final class ApAdc {
     /**
      * ADC output 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -201,7 +201,7 @@ public final class ApAdc {
     /**
      * ADC output 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -213,7 +213,7 @@ public final class ApAdc {
     /**
      * ADC output 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )

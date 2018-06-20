@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Message to control a camera mount, directional antenna, etc. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 157,
     crc = 21
 )
@@ -72,7 +72,7 @@ public final class MountControl {
   /**
    * pitch(deg*100) or lat, depending on mount mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -83,7 +83,7 @@ public final class MountControl {
   /**
    * roll(deg*100) or lon depending on mount mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -94,7 +94,7 @@ public final class MountControl {
   /**
    * yaw(deg*100) or alt (in cm) depending on mount mode 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -105,7 +105,7 @@ public final class MountControl {
   /**
    * System ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -116,7 +116,7 @@ public final class MountControl {
   /**
    * Component ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -127,7 +127,7 @@ public final class MountControl {
   /**
    * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 1
   )
@@ -154,7 +154,7 @@ public final class MountControl {
     /**
      * pitch(deg*100) or lat, depending on mount mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -166,7 +166,7 @@ public final class MountControl {
     /**
      * roll(deg*100) or lon depending on mount mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -178,7 +178,7 @@ public final class MountControl {
     /**
      * yaw(deg*100) or alt (in cm) depending on mount mode 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -190,7 +190,7 @@ public final class MountControl {
     /**
      * System ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -202,7 +202,7 @@ public final class MountControl {
     /**
      * Component ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -214,7 +214,7 @@ public final class MountControl {
     /**
      * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 1
     )

@@ -1,7 +1,7 @@
 package io.dronefleet.mavlink.uavionix;
 
+import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import io.dronefleet.mavlink.annotations.MavlinkEnumEntry;
 
 /**
  * Status flags for ADS-B transponder dynamic output 
@@ -11,24 +11,24 @@ public enum UavionixAdsbRfHealth {
   /**
    * null
    */
-  @MavlinkEnumEntry(0)
+  @MavlinkEntryInfo(0)
   UAVIONIX_ADSB_RF_HEALTH_INITIALIZING,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(1)
+  @MavlinkEntryInfo(1)
   UAVIONIX_ADSB_RF_HEALTH_OK,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(2)
+  @MavlinkEntryInfo(2)
   UAVIONIX_ADSB_RF_HEALTH_FAIL_TX,
 
   /**
    * null
    */
-  @MavlinkEnumEntry(16)
+  @MavlinkEntryInfo(16)
   UAVIONIX_ADSB_RF_HEALTH_FAIL_RX
 }

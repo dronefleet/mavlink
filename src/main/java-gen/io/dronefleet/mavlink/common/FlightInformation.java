@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * WIP: Information about flight since last arming 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 264,
     crc = 49
 )
@@ -59,7 +59,7 @@ public final class FlightInformation {
   /**
    * Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 8
   )
@@ -70,7 +70,7 @@ public final class FlightInformation {
   /**
    * Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 8
   )
@@ -81,7 +81,7 @@ public final class FlightInformation {
   /**
    * Universally unique identifier (UUID) of flight, should correspond to name of logfiles 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 8
   )
@@ -92,7 +92,7 @@ public final class FlightInformation {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -115,7 +115,7 @@ public final class FlightInformation {
     /**
      * Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 8
     )
@@ -127,7 +127,7 @@ public final class FlightInformation {
     /**
      * Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 8
     )
@@ -139,7 +139,7 @@ public final class FlightInformation {
     /**
      * Universally unique identifier (UUID) of flight, should correspond to name of logfiles 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 8
     )
@@ -151,7 +151,7 @@ public final class FlightInformation {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )

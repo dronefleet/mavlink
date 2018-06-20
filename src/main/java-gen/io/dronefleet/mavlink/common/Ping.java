@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * A ping message either requesting or responding to a ping. This allows to measure the system 
  * latencies, including serial port, radio modem and UDP connections. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 4,
     crc = 237
 )
@@ -61,7 +61,7 @@ public final class Ping {
   /**
    * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -72,7 +72,7 @@ public final class Ping {
   /**
    * PING sequence 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -84,7 +84,7 @@ public final class Ping {
    * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
    * number is the system id of the requesting system 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 1
   )
@@ -96,7 +96,7 @@ public final class Ping {
    * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
    * number is the system id of the requesting system 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 1
   )
@@ -119,7 +119,7 @@ public final class Ping {
     /**
      * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -131,7 +131,7 @@ public final class Ping {
     /**
      * PING sequence 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -144,7 +144,7 @@ public final class Ping {
      * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
      * number is the system id of the requesting system 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 1
     )
@@ -157,7 +157,7 @@ public final class Ping {
      * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
      * number is the system id of the requesting system 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 1
     )

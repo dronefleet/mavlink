@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA - F2: Part B 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 171,
     crc = 245
 )
@@ -390,7 +390,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Time 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -401,7 +401,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Status Flags 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 32,
       unitSize = 4
   )
@@ -412,7 +412,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE barometer pressure 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 44,
       unitSize = 4
   )
@@ -423,7 +423,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE barometer altitude 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 45,
       unitSize = 4
   )
@@ -434,7 +434,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -445,7 +445,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -456,7 +456,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -467,7 +467,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -478,7 +478,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -489,7 +489,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -500,7 +500,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -511,7 +511,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 8 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -522,7 +522,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 9 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 2
   )
@@ -533,7 +533,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 2
   )
@@ -544,7 +544,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 11 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 2
   )
@@ -555,7 +555,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Input Channel 12 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 2
   )
@@ -566,7 +566,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 1 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 14,
       unitSize = 2
   )
@@ -577,7 +577,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 2 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 15,
       unitSize = 2
   )
@@ -588,7 +588,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 3 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 16,
       unitSize = 2
   )
@@ -599,7 +599,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 4 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 17,
       unitSize = 2
   )
@@ -610,7 +610,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 5 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 18,
       unitSize = 2
   )
@@ -621,7 +621,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 6 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 19,
       unitSize = 2
   )
@@ -632,7 +632,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 20,
       unitSize = 2
   )
@@ -643,7 +643,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 8 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 21,
       unitSize = 2
   )
@@ -654,7 +654,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 9 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 22,
       unitSize = 2
   )
@@ -665,7 +665,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 23,
       unitSize = 2
   )
@@ -676,7 +676,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 11 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 24,
       unitSize = 2
   )
@@ -687,7 +687,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra PWM Output Channel 12 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 25,
       unitSize = 2
   )
@@ -698,7 +698,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Location X 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 26,
       unitSize = 2
   )
@@ -709,7 +709,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Location Y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 27,
       unitSize = 2
   )
@@ -720,7 +720,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Location Z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 28,
       unitSize = 2
   )
@@ -731,7 +731,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Location Error Earth X 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 29,
       unitSize = 2
   )
@@ -742,7 +742,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Location Error Earth Y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 30,
       unitSize = 2
   )
@@ -753,7 +753,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Location Error Earth Z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 31,
       unitSize = 2
   )
@@ -764,7 +764,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Oscillator Failure Count 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 33,
       unitSize = 2
   )
@@ -775,7 +775,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Velocity X 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 34,
       unitSize = 2
   )
@@ -786,7 +786,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Velocity Y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 35,
       unitSize = 2
   )
@@ -797,7 +797,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra IMU Velocity Z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 36,
       unitSize = 2
   )
@@ -808,7 +808,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Current Waypoint Goal X 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 37,
       unitSize = 2
   )
@@ -819,7 +819,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Current Waypoint Goal Y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 38,
       unitSize = 2
   )
@@ -830,7 +830,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Current Waypoint Goal Z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 39,
       unitSize = 2
   )
@@ -841,7 +841,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Aeroforce in UDB X Axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 40,
       unitSize = 2
   )
@@ -852,7 +852,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Aeroforce in UDB Y Axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 41,
       unitSize = 2
   )
@@ -863,7 +863,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Aeroforce in UDB Z axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 42,
       unitSize = 2
   )
@@ -874,7 +874,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE barometer temperature 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 43,
       unitSize = 2
   )
@@ -885,7 +885,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE battery voltage 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 46,
       unitSize = 2
   )
@@ -896,7 +896,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE battery current 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 47,
       unitSize = 2
   )
@@ -907,7 +907,7 @@ public final class SerialUdbExtraF2B {
   /**
    * SUE battery milli amp hours used 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 48,
       unitSize = 2
   )
@@ -918,7 +918,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Sue autopilot desired height 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 49,
       unitSize = 2
   )
@@ -929,7 +929,7 @@ public final class SerialUdbExtraF2B {
   /**
    * Serial UDB Extra Stack Memory Free 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 50,
       unitSize = 2
   )
@@ -1044,7 +1044,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Time 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -1056,7 +1056,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Status Flags 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 32,
         unitSize = 4
     )
@@ -1068,7 +1068,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE barometer pressure 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 44,
         unitSize = 4
     )
@@ -1080,7 +1080,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE barometer altitude 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 45,
         unitSize = 4
     )
@@ -1092,7 +1092,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -1104,7 +1104,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -1116,7 +1116,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -1128,7 +1128,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -1140,7 +1140,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -1152,7 +1152,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -1164,7 +1164,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -1176,7 +1176,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 8 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
@@ -1188,7 +1188,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 9 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 2
     )
@@ -1200,7 +1200,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 2
     )
@@ -1212,7 +1212,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 11 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 2
     )
@@ -1224,7 +1224,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Input Channel 12 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 2
     )
@@ -1236,7 +1236,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 1 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 14,
         unitSize = 2
     )
@@ -1248,7 +1248,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 2 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 15,
         unitSize = 2
     )
@@ -1260,7 +1260,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 3 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 16,
         unitSize = 2
     )
@@ -1272,7 +1272,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 4 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 17,
         unitSize = 2
     )
@@ -1284,7 +1284,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 5 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 18,
         unitSize = 2
     )
@@ -1296,7 +1296,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 6 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 19,
         unitSize = 2
     )
@@ -1308,7 +1308,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 20,
         unitSize = 2
     )
@@ -1320,7 +1320,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 8 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 21,
         unitSize = 2
     )
@@ -1332,7 +1332,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 9 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 22,
         unitSize = 2
     )
@@ -1344,7 +1344,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 23,
         unitSize = 2
     )
@@ -1356,7 +1356,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 11 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 24,
         unitSize = 2
     )
@@ -1368,7 +1368,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra PWM Output Channel 12 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 25,
         unitSize = 2
     )
@@ -1380,7 +1380,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Location X 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 26,
         unitSize = 2
     )
@@ -1392,7 +1392,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Location Y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 27,
         unitSize = 2
     )
@@ -1404,7 +1404,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Location Z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 28,
         unitSize = 2
     )
@@ -1416,7 +1416,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Location Error Earth X 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 29,
         unitSize = 2
     )
@@ -1428,7 +1428,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Location Error Earth Y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 30,
         unitSize = 2
     )
@@ -1440,7 +1440,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Location Error Earth Z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 31,
         unitSize = 2
     )
@@ -1452,7 +1452,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Oscillator Failure Count 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 33,
         unitSize = 2
     )
@@ -1464,7 +1464,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Velocity X 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 34,
         unitSize = 2
     )
@@ -1476,7 +1476,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Velocity Y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 35,
         unitSize = 2
     )
@@ -1488,7 +1488,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra IMU Velocity Z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 36,
         unitSize = 2
     )
@@ -1500,7 +1500,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Current Waypoint Goal X 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 37,
         unitSize = 2
     )
@@ -1512,7 +1512,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Current Waypoint Goal Y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 38,
         unitSize = 2
     )
@@ -1524,7 +1524,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Current Waypoint Goal Z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 39,
         unitSize = 2
     )
@@ -1536,7 +1536,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Aeroforce in UDB X Axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 40,
         unitSize = 2
     )
@@ -1548,7 +1548,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Aeroforce in UDB Y Axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 41,
         unitSize = 2
     )
@@ -1560,7 +1560,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Aeroforce in UDB Z axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 42,
         unitSize = 2
     )
@@ -1572,7 +1572,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE barometer temperature 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 43,
         unitSize = 2
     )
@@ -1584,7 +1584,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE battery voltage 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 46,
         unitSize = 2
     )
@@ -1596,7 +1596,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE battery current 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 47,
         unitSize = 2
     )
@@ -1608,7 +1608,7 @@ public final class SerialUdbExtraF2B {
     /**
      * SUE battery milli amp hours used 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 48,
         unitSize = 2
     )
@@ -1620,7 +1620,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Sue autopilot desired height 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 49,
         unitSize = 2
     )
@@ -1632,7 +1632,7 @@ public final class SerialUdbExtraF2B {
     /**
      * Serial UDB Extra Stack Memory Free 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 50,
         unitSize = 2
     )

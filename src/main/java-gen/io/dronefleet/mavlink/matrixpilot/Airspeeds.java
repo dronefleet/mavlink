@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.matrixpilot;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * The airspeed measured by sensors and IMU 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 182,
     crc = 154
 )
@@ -79,7 +79,7 @@ public final class Airspeeds {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -90,7 +90,7 @@ public final class Airspeeds {
   /**
    * Airspeed estimate from IMU, cm/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 2
   )
@@ -101,7 +101,7 @@ public final class Airspeeds {
   /**
    * Pitot measured forward airpseed, cm/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -112,7 +112,7 @@ public final class Airspeeds {
   /**
    * Hot wire anenometer measured airspeed, cm/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -123,7 +123,7 @@ public final class Airspeeds {
   /**
    * Ultrasonic measured airspeed, cm/s 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -134,7 +134,7 @@ public final class Airspeeds {
   /**
    * Angle of attack sensor, degrees * 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -145,7 +145,7 @@ public final class Airspeeds {
   /**
    * Yaw angle sensor, degrees * 10 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -174,7 +174,7 @@ public final class Airspeeds {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -186,7 +186,7 @@ public final class Airspeeds {
     /**
      * Airspeed estimate from IMU, cm/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 2
     )
@@ -198,7 +198,7 @@ public final class Airspeeds {
     /**
      * Pitot measured forward airpseed, cm/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -210,7 +210,7 @@ public final class Airspeeds {
     /**
      * Hot wire anenometer measured airspeed, cm/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -222,7 +222,7 @@ public final class Airspeeds {
     /**
      * Ultrasonic measured airspeed, cm/s 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -234,7 +234,7 @@ public final class Airspeeds {
     /**
      * Angle of attack sensor, degrees * 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -246,7 +246,7 @@ public final class Airspeeds {
     /**
      * Yaw angle sensor, degrees * 10 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )

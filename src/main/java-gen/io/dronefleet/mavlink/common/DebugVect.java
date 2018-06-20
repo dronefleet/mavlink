@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * null
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 250,
     crc = 49
 )
@@ -65,7 +65,7 @@ public final class DebugVect {
   /**
    * Timestamp 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -76,7 +76,7 @@ public final class DebugVect {
   /**
    * x 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -87,7 +87,7 @@ public final class DebugVect {
   /**
    * y 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -98,7 +98,7 @@ public final class DebugVect {
   /**
    * z 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -109,7 +109,7 @@ public final class DebugVect {
   /**
    * Name 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 0,
       unitSize = 1,
       arraySize = 10
@@ -135,7 +135,7 @@ public final class DebugVect {
     /**
      * Timestamp 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -147,7 +147,7 @@ public final class DebugVect {
     /**
      * x 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -159,7 +159,7 @@ public final class DebugVect {
     /**
      * y 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -171,7 +171,7 @@ public final class DebugVect {
     /**
      * z 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -183,7 +183,7 @@ public final class DebugVect {
     /**
      * Name 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 0,
         unitSize = 1,
         arraySize = 10

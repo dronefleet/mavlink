@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * The current system altitude. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 141,
     crc = 47
 )
@@ -92,7 +92,7 @@ public final class Altitude {
   /**
    * Timestamp (micros since boot or Unix epoch) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -107,7 +107,7 @@ public final class Altitude {
    * uncorrected barometric altitude at boot time. This altitude will also drift and vary between 
    * flights. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -121,7 +121,7 @@ public final class Altitude {
    * global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, 
    * most GPS modules already output AMSL by default and not the WGS84 altitude. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class Altitude {
    * This is the local altitude in the local coordinate frame. It is not the altitude above home, but 
    * in reference to the coordinate origin (0, 0, 0). It is up-positive. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class Altitude {
    * This is the altitude above the home position. It resets on each change of the current home 
    * position. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -157,7 +157,7 @@ public final class Altitude {
    * This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values 
    * smaller than -1000 should be interpreted as unknown. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -170,7 +170,7 @@ public final class Altitude {
    * estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is 
    * generally a moving target. A negative value indicates no measurement available. 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -199,7 +199,7 @@ public final class Altitude {
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -215,7 +215,7 @@ public final class Altitude {
      * uncorrected barometric altitude at boot time. This altitude will also drift and vary between 
      * flights. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -230,7 +230,7 @@ public final class Altitude {
      * global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, 
      * most GPS modules already output AMSL by default and not the WGS84 altitude. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -243,7 +243,7 @@ public final class Altitude {
      * This is the local altitude in the local coordinate frame. It is not the altitude above home, but 
      * in reference to the coordinate origin (0, 0, 0). It is up-positive. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -256,7 +256,7 @@ public final class Altitude {
      * This is the altitude above the home position. It resets on each change of the current home 
      * position. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -269,7 +269,7 @@ public final class Altitude {
      * This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values 
      * smaller than -1000 should be interpreted as unknown. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -283,7 +283,7 @@ public final class Altitude {
      * estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is 
      * generally a moving target. A negative value indicates no measurement available. 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )

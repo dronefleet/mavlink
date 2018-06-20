@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * WIP: Information about video stream 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 269,
     crc = 58
 )
@@ -86,7 +86,7 @@ public final class VideoStreamInformation {
   /**
    * Frames per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -97,7 +97,7 @@ public final class VideoStreamInformation {
   /**
    * Bit rate in bits per second 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -108,7 +108,7 @@ public final class VideoStreamInformation {
   /**
    * Resolution horizontal in pixels 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -119,7 +119,7 @@ public final class VideoStreamInformation {
   /**
    * Resolution vertical in pixels 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 2
   )
@@ -130,7 +130,7 @@ public final class VideoStreamInformation {
   /**
    * Video image rotation clockwise 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -141,7 +141,7 @@ public final class VideoStreamInformation {
   /**
    * Camera ID (1 for first, 2 for second, etc.) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -152,7 +152,7 @@ public final class VideoStreamInformation {
   /**
    * Current status of video streaming (0: not running, 1: in progress) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -163,7 +163,7 @@ public final class VideoStreamInformation {
   /**
    * Video stream URI 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 1,
       arraySize = 230
@@ -195,7 +195,7 @@ public final class VideoStreamInformation {
     /**
      * Frames per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -207,7 +207,7 @@ public final class VideoStreamInformation {
     /**
      * Bit rate in bits per second 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -219,7 +219,7 @@ public final class VideoStreamInformation {
     /**
      * Resolution horizontal in pixels 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -231,7 +231,7 @@ public final class VideoStreamInformation {
     /**
      * Resolution vertical in pixels 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 2
     )
@@ -243,7 +243,7 @@ public final class VideoStreamInformation {
     /**
      * Video image rotation clockwise 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -255,7 +255,7 @@ public final class VideoStreamInformation {
     /**
      * Camera ID (1 for first, 2 for second, etc.) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )
@@ -267,7 +267,7 @@ public final class VideoStreamInformation {
     /**
      * Current status of video streaming (0: not running, 1: in progress) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -279,7 +279,7 @@ public final class VideoStreamInformation {
     /**
      * Video stream URI 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 1,
         arraySize = 230

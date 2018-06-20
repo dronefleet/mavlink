@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -10,7 +10,7 @@ import java.math.BigInteger;
 /**
  * Optical flow from a flow sensor (e.g. optical mouse sensor) 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 100,
     crc = 175
 )
@@ -101,7 +101,7 @@ public final class OpticalFlow {
   /**
    * Timestamp (UNIX) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 8
   )
@@ -112,7 +112,7 @@ public final class OpticalFlow {
   /**
    * Flow in meters in x-sensor direction, angular-speed compensated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -123,7 +123,7 @@ public final class OpticalFlow {
   /**
    * Flow in meters in y-sensor direction, angular-speed compensated 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -134,7 +134,7 @@ public final class OpticalFlow {
   /**
    * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -145,7 +145,7 @@ public final class OpticalFlow {
   /**
    * Flow in pixels * 10 in x-sensor direction (dezi-pixels) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 2
   )
@@ -156,7 +156,7 @@ public final class OpticalFlow {
   /**
    * Flow in pixels * 10 in y-sensor direction (dezi-pixels) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 2
   )
@@ -167,7 +167,7 @@ public final class OpticalFlow {
   /**
    * Sensor ID 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 1
   )
@@ -178,7 +178,7 @@ public final class OpticalFlow {
   /**
    * Optical flow quality / confidence. 0: bad, 255: maximum quality 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 1
   )
@@ -189,7 +189,7 @@ public final class OpticalFlow {
   /**
    * Flow rate in radians/second about X axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4,
       extension = true
@@ -201,7 +201,7 @@ public final class OpticalFlow {
   /**
    * Flow rate in radians/second about Y axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4,
       extension = true
@@ -237,7 +237,7 @@ public final class OpticalFlow {
     /**
      * Timestamp (UNIX) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 8
     )
@@ -249,7 +249,7 @@ public final class OpticalFlow {
     /**
      * Flow in meters in x-sensor direction, angular-speed compensated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -261,7 +261,7 @@ public final class OpticalFlow {
     /**
      * Flow in meters in y-sensor direction, angular-speed compensated 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -273,7 +273,7 @@ public final class OpticalFlow {
     /**
      * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -285,7 +285,7 @@ public final class OpticalFlow {
     /**
      * Flow in pixels * 10 in x-sensor direction (dezi-pixels) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 2
     )
@@ -297,7 +297,7 @@ public final class OpticalFlow {
     /**
      * Flow in pixels * 10 in y-sensor direction (dezi-pixels) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 2
     )
@@ -309,7 +309,7 @@ public final class OpticalFlow {
     /**
      * Sensor ID 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 1
     )
@@ -321,7 +321,7 @@ public final class OpticalFlow {
     /**
      * Optical flow quality / confidence. 0: bad, 255: maximum quality 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 1
     )
@@ -333,7 +333,7 @@ public final class OpticalFlow {
     /**
      * Flow rate in radians/second about X axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4,
         extension = true
@@ -346,7 +346,7 @@ public final class OpticalFlow {
     /**
      * Flow rate in radians/second about Y axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4,
         extension = true

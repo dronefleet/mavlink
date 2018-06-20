@@ -1,15 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * Adaptive Controller tuning information 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 11010,
     crc = 46
 )
@@ -122,7 +122,7 @@ public final class AdapTuning {
   /**
    * desired rate (degrees/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -133,7 +133,7 @@ public final class AdapTuning {
   /**
    * achieved rate (degrees/s) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -144,7 +144,7 @@ public final class AdapTuning {
   /**
    * error between model and vehicle 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -155,7 +155,7 @@ public final class AdapTuning {
   /**
    * theta estimated state predictor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -166,7 +166,7 @@ public final class AdapTuning {
   /**
    * omega estimated state predictor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 4
   )
@@ -177,7 +177,7 @@ public final class AdapTuning {
   /**
    * sigma estimated state predictor 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 4
   )
@@ -188,7 +188,7 @@ public final class AdapTuning {
   /**
    * theta derivative 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 4
   )
@@ -199,7 +199,7 @@ public final class AdapTuning {
   /**
    * omega derivative 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 4
   )
@@ -210,7 +210,7 @@ public final class AdapTuning {
   /**
    * sigma derivative 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 10,
       unitSize = 4
   )
@@ -221,7 +221,7 @@ public final class AdapTuning {
   /**
    * projection operator value 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 11,
       unitSize = 4
   )
@@ -232,7 +232,7 @@ public final class AdapTuning {
   /**
    * projection operator derivative 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 12,
       unitSize = 4
   )
@@ -243,7 +243,7 @@ public final class AdapTuning {
   /**
    * u adaptive controlled output command 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 13,
       unitSize = 4
   )
@@ -254,7 +254,7 @@ public final class AdapTuning {
   /**
    * axis 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 1
   )
@@ -295,7 +295,7 @@ public final class AdapTuning {
     /**
      * desired rate (degrees/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -307,7 +307,7 @@ public final class AdapTuning {
     /**
      * achieved rate (degrees/s) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -319,7 +319,7 @@ public final class AdapTuning {
     /**
      * error between model and vehicle 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -331,7 +331,7 @@ public final class AdapTuning {
     /**
      * theta estimated state predictor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -343,7 +343,7 @@ public final class AdapTuning {
     /**
      * omega estimated state predictor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 4
     )
@@ -355,7 +355,7 @@ public final class AdapTuning {
     /**
      * sigma estimated state predictor 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 4
     )
@@ -367,7 +367,7 @@ public final class AdapTuning {
     /**
      * theta derivative 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 4
     )
@@ -379,7 +379,7 @@ public final class AdapTuning {
     /**
      * omega derivative 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 4
     )
@@ -391,7 +391,7 @@ public final class AdapTuning {
     /**
      * sigma derivative 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 10,
         unitSize = 4
     )
@@ -403,7 +403,7 @@ public final class AdapTuning {
     /**
      * projection operator value 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 11,
         unitSize = 4
     )
@@ -415,7 +415,7 @@ public final class AdapTuning {
     /**
      * projection operator derivative 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 12,
         unitSize = 4
     )
@@ -427,7 +427,7 @@ public final class AdapTuning {
     /**
      * u adaptive controlled output command 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 13,
         unitSize = 4
     )
@@ -439,7 +439,7 @@ public final class AdapTuning {
     /**
      * axis 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 1
     )

@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -10,7 +10,7 @@ import java.lang.String;
  * Request that the vehicle report terrain height at the given location. Used by GCS to check if 
  * vehicle has all terrain data needed for a mission. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 135,
     crc = 203
 )
@@ -44,7 +44,7 @@ public final class TerrainCheck {
   /**
    * Latitude (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -55,7 +55,7 @@ public final class TerrainCheck {
   /**
    * Longitude (degrees *10^7) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -74,7 +74,7 @@ public final class TerrainCheck {
     /**
      * Latitude (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -86,7 +86,7 @@ public final class TerrainCheck {
     /**
      * Longitude (degrees *10^7) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )

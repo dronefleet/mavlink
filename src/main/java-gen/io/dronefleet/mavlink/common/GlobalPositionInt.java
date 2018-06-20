@@ -1,8 +1,8 @@
 package io.dronefleet.mavlink.common;
 
-import io.dronefleet.mavlink.annotations.MavlinkMessage;
+import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.annotations.MavlinkMessageField;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Override;
 import java.lang.String;
 
@@ -11,7 +11,7 @@ import java.lang.String;
  * GPS-frame (right-handed, Z-up). It is designed as scaled integer message since the 
  * resolution of float is not sufficient. 
  */
-@MavlinkMessage(
+@MavlinkMessageInfo(
     id = 33,
     crc = 104
 )
@@ -97,7 +97,7 @@ public final class GlobalPositionInt {
   /**
    * Timestamp (milliseconds since system boot) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 1,
       unitSize = 4
   )
@@ -108,7 +108,7 @@ public final class GlobalPositionInt {
   /**
    * Latitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 2,
       unitSize = 4
   )
@@ -119,7 +119,7 @@ public final class GlobalPositionInt {
   /**
    * Longitude, expressed as degrees * 1E7 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 3,
       unitSize = 4
   )
@@ -131,7 +131,7 @@ public final class GlobalPositionInt {
    * Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually 
    * all GPS modules provide the AMSL as well) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 4,
       unitSize = 4
   )
@@ -142,7 +142,7 @@ public final class GlobalPositionInt {
   /**
    * Altitude above ground in meters, expressed as * 1000 (millimeters) 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 5,
       unitSize = 4
   )
@@ -153,7 +153,7 @@ public final class GlobalPositionInt {
   /**
    * Ground X Speed (Latitude, positive north), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 6,
       unitSize = 2
   )
@@ -164,7 +164,7 @@ public final class GlobalPositionInt {
   /**
    * Ground Y Speed (Longitude, positive east), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 7,
       unitSize = 2
   )
@@ -175,7 +175,7 @@ public final class GlobalPositionInt {
   /**
    * Ground Z Speed (Altitude, positive down), expressed as m/s * 100 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 8,
       unitSize = 2
   )
@@ -187,7 +187,7 @@ public final class GlobalPositionInt {
    * Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 
    * UINT16_MAX 
    */
-  @MavlinkMessageField(
+  @MavlinkFieldInfo(
       position = 9,
       unitSize = 2
   )
@@ -220,7 +220,7 @@ public final class GlobalPositionInt {
     /**
      * Timestamp (milliseconds since system boot) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 1,
         unitSize = 4
     )
@@ -232,7 +232,7 @@ public final class GlobalPositionInt {
     /**
      * Latitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 2,
         unitSize = 4
     )
@@ -244,7 +244,7 @@ public final class GlobalPositionInt {
     /**
      * Longitude, expressed as degrees * 1E7 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 3,
         unitSize = 4
     )
@@ -257,7 +257,7 @@ public final class GlobalPositionInt {
      * Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually 
      * all GPS modules provide the AMSL as well) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 4,
         unitSize = 4
     )
@@ -269,7 +269,7 @@ public final class GlobalPositionInt {
     /**
      * Altitude above ground in meters, expressed as * 1000 (millimeters) 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 5,
         unitSize = 4
     )
@@ -281,7 +281,7 @@ public final class GlobalPositionInt {
     /**
      * Ground X Speed (Latitude, positive north), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 6,
         unitSize = 2
     )
@@ -293,7 +293,7 @@ public final class GlobalPositionInt {
     /**
      * Ground Y Speed (Longitude, positive east), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 7,
         unitSize = 2
     )
@@ -305,7 +305,7 @@ public final class GlobalPositionInt {
     /**
      * Ground Z Speed (Altitude, positive down), expressed as m/s * 100 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 8,
         unitSize = 2
     )
@@ -318,7 +318,7 @@ public final class GlobalPositionInt {
      * Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 
      * UINT16_MAX 
      */
-    @MavlinkMessageField(
+    @MavlinkFieldInfo(
         position = 9,
         unitSize = 2
     )
