@@ -11,60 +11,60 @@ import java.lang.String;
  * towards this mission item. 
  */
 @MavlinkMessageInfo(
-    id = 42,
-    crc = 28
+        id = 42,
+        crc = 28
 )
 public final class MissionCurrent {
-  /**
-   * Sequence 
-   */
-  private final int seq;
+    /**
+     * Sequence 
+     */
+    private final int seq;
 
-  private MissionCurrent(int seq) {
-    this.seq = seq;
-  }
+    private MissionCurrent(int seq) {
+        this.seq = seq;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "MissionCurrent{seq=" + seq + "}";
-  }
-
-  /**
-   * Sequence 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 2
-  )
-  public final int seq() {
-    return seq;
-  }
-
-  public static class Builder {
-    private int seq;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "MissionCurrent{seq=" + seq + "}";
     }
 
     /**
      * Sequence 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 2
+            position = 1,
+            unitSize = 2
     )
-    public final Builder seq(int seq) {
-      this.seq = seq;
-      return this;
+    public final int seq() {
+        return seq;
     }
 
-    public final MissionCurrent build() {
-      return new MissionCurrent(seq);
+    public static class Builder {
+        private int seq;
+
+        private Builder() {
+        }
+
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        public final MissionCurrent build() {
+            return new MissionCurrent(seq);
+        }
     }
-  }
 }

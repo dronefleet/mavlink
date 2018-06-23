@@ -13,155 +13,80 @@ import java.lang.String;
  * PARAM_ACK_IN_PROGRESS, you will accordingly receive a PARAM_ACK_IN_PROGRESS in response. 
  */
 @MavlinkMessageInfo(
-    id = 323,
-    crc = 78
+        id = 323,
+        crc = 78
 )
 public final class ParamExtSet {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  /**
-   * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
-   * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
-   * 16+1 bytes storage if the ID is stored as string 
-   */
-  private final String paramId;
+    /**
+     * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
+     * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
+     * 16+1 bytes storage if the ID is stored as string 
+     */
+    private final String paramId;
 
-  /**
-   * Parameter value 
-   */
-  private final String paramValue;
+    /**
+     * Parameter value 
+     */
+    private final String paramValue;
 
-  /**
-   * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
-   */
-  private final MavParamExtType paramType;
+    /**
+     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+     */
+    private final MavParamExtType paramType;
 
-  private ParamExtSet(int targetSystem, int targetComponent, String paramId, String paramValue,
-      MavParamExtType paramType) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.paramId = paramId;
-    this.paramValue = paramValue;
-    this.paramType = paramType;
-  }
+    private ParamExtSet(int targetSystem, int targetComponent, String paramId, String paramValue,
+            MavParamExtType paramType) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.paramId = paramId;
+        this.paramValue = paramValue;
+        this.paramType = paramType;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "ParamExtSet{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", paramId=" + paramId
-         + ", paramValue=" + paramValue
-         + ", paramType=" + paramType + "}";
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
-   * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
-   * 16+1 bytes storage if the ID is stored as string 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 1,
-      arraySize = 16
-  )
-  public final String paramId() {
-    return paramId;
-  }
-
-  /**
-   * Parameter value 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 1,
-      arraySize = 128
-  )
-  public final String paramValue() {
-    return paramValue;
-  }
-
-  /**
-   * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 1
-  )
-  public final MavParamExtType paramType() {
-    return paramType;
-  }
-
-  public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private String paramId;
-
-    private String paramValue;
-
-    private MavParamExtType paramType;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "ParamExtSet{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", paramId=" + paramId
+                 + ", paramValue=" + paramValue
+                 + ", paramType=" + paramType + "}";
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
     /**
@@ -170,42 +95,117 @@ public final class ParamExtSet {
      * 16+1 bytes storage if the ID is stored as string 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 1,
-        arraySize = 16
+            position = 3,
+            unitSize = 1,
+            arraySize = 16
     )
-    public final Builder paramId(String paramId) {
-      this.paramId = paramId;
-      return this;
+    public final String paramId() {
+        return paramId;
     }
 
     /**
      * Parameter value 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 1,
-        arraySize = 128
+            position = 4,
+            unitSize = 1,
+            arraySize = 128
     )
-    public final Builder paramValue(String paramValue) {
-      this.paramValue = paramValue;
-      return this;
+    public final String paramValue() {
+        return paramValue;
     }
 
     /**
      * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 1
+            position = 5,
+            unitSize = 1
     )
-    public final Builder paramType(MavParamExtType paramType) {
-      this.paramType = paramType;
-      return this;
+    public final MavParamExtType paramType() {
+        return paramType;
     }
 
-    public final ParamExtSet build() {
-      return new ParamExtSet(targetSystem, targetComponent, paramId, paramValue, paramType);
+    public static class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private String paramId;
+
+        private String paramValue;
+
+        private MavParamExtType paramType;
+
+        private Builder() {
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
+         * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
+         * 16+1 bytes storage if the ID is stored as string 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1,
+                arraySize = 16
+        )
+        public final Builder paramId(String paramId) {
+            this.paramId = paramId;
+            return this;
+        }
+
+        /**
+         * Parameter value 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1,
+                arraySize = 128
+        )
+        public final Builder paramValue(String paramValue) {
+            this.paramValue = paramValue;
+            return this;
+        }
+
+        /**
+         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 1
+        )
+        public final Builder paramType(MavParamExtType paramType) {
+            this.paramType = paramType;
+            return this;
+        }
+
+        public final ParamExtSet build() {
+            return new ParamExtSet(targetSystem, targetComponent, paramId, paramValue, paramType);
+        }
     }
-  }
 }

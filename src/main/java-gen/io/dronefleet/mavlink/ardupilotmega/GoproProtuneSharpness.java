@@ -8,21 +8,27 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GoproProtuneSharpness {
-  /**
-   * Low Sharpness
-   */
-  @MavlinkEntryInfo(0)
-  GOPRO_PROTUNE_SHARPNESS_LOW,
+    /**
+     * Low Sharpness<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    GOPRO_PROTUNE_SHARPNESS_LOW,
 
-  /**
-   * Medium Sharpness
-   */
-  @MavlinkEntryInfo(1)
-  GOPRO_PROTUNE_SHARPNESS_MEDIUM,
+    /**
+     * Medium Sharpness<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GOPRO_PROTUNE_SHARPNESS_MEDIUM,
 
-  /**
-   * High Sharpness
-   */
-  @MavlinkEntryInfo(2)
-  GOPRO_PROTUNE_SHARPNESS_HIGH
+    /**
+     * High Sharpness<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    GOPRO_PROTUNE_SHARPNESS_HIGH
 }

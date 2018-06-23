@@ -11,124 +11,124 @@ import java.math.BigInteger;
  * Angle of Attack and Side Slip Angle 
  */
 @MavlinkMessageInfo(
-    id = 11020,
-    crc = 205
+        id = 11020,
+        crc = 205
 )
 public final class AoaSsa {
-  /**
-   * Timestamp (micros since boot or Unix epoch) 
-   */
-  private final BigInteger timeUsec;
+    /**
+     * Timestamp (micros since boot or Unix epoch) 
+     */
+    private final BigInteger timeUsec;
 
-  /**
-   * Angle of Attack (degrees) 
-   */
-  private final float aoa;
+    /**
+     * Angle of Attack (degrees) 
+     */
+    private final float aoa;
 
-  /**
-   * Side Slip Angle (degrees) 
-   */
-  private final float ssa;
+    /**
+     * Side Slip Angle (degrees) 
+     */
+    private final float ssa;
 
-  private AoaSsa(BigInteger timeUsec, float aoa, float ssa) {
-    this.timeUsec = timeUsec;
-    this.aoa = aoa;
-    this.ssa = ssa;
-  }
+    private AoaSsa(BigInteger timeUsec, float aoa, float ssa) {
+        this.timeUsec = timeUsec;
+        this.aoa = aoa;
+        this.ssa = ssa;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "AoaSsa{timeUsec=" + timeUsec
-         + ", aoa=" + aoa
-         + ", ssa=" + ssa + "}";
-  }
-
-  /**
-   * Timestamp (micros since boot or Unix epoch) 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 8
-  )
-  public final BigInteger timeUsec() {
-    return timeUsec;
-  }
-
-  /**
-   * Angle of Attack (degrees) 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final float aoa() {
-    return aoa;
-  }
-
-  /**
-   * Side Slip Angle (degrees) 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final float ssa() {
-    return ssa;
-  }
-
-  public static class Builder {
-    private BigInteger timeUsec;
-
-    private float aoa;
-
-    private float ssa;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "AoaSsa{timeUsec=" + timeUsec
+                 + ", aoa=" + aoa
+                 + ", ssa=" + ssa + "}";
     }
 
     /**
      * Timestamp (micros since boot or Unix epoch) 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 8
+            position = 1,
+            unitSize = 8
     )
-    public final Builder timeUsec(BigInteger timeUsec) {
-      this.timeUsec = timeUsec;
-      return this;
+    public final BigInteger timeUsec() {
+        return timeUsec;
     }
 
     /**
      * Angle of Attack (degrees) 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder aoa(float aoa) {
-      this.aoa = aoa;
-      return this;
+    public final float aoa() {
+        return aoa;
     }
 
     /**
      * Side Slip Angle (degrees) 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4
     )
-    public final Builder ssa(float ssa) {
-      this.ssa = ssa;
-      return this;
+    public final float ssa() {
+        return ssa;
     }
 
-    public final AoaSsa build() {
-      return new AoaSsa(timeUsec, aoa, ssa);
+    public static class Builder {
+        private BigInteger timeUsec;
+
+        private float aoa;
+
+        private float ssa;
+
+        private Builder() {
+        }
+
+        /**
+         * Timestamp (micros since boot or Unix epoch) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 8
+        )
+        public final Builder timeUsec(BigInteger timeUsec) {
+            this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * Angle of Attack (degrees) 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder aoa(float aoa) {
+            this.aoa = aoa;
+            return this;
+        }
+
+        /**
+         * Side Slip Angle (degrees) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder ssa(float ssa) {
+            this.ssa = ssa;
+            return this;
+        }
+
+        public final AoaSsa build() {
+            return new AoaSsa(timeUsec, aoa, ssa);
+        }
     }
-  }
 }

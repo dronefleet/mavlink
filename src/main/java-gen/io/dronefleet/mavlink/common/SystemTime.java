@@ -12,92 +12,92 @@ import java.math.BigInteger;
  * computer. 
  */
 @MavlinkMessageInfo(
-    id = 2,
-    crc = 137
+        id = 2,
+        crc = 137
 )
 public final class SystemTime {
-  /**
-   * Timestamp of the master clock in microseconds since UNIX epoch. 
-   */
-  private final BigInteger timeUnixUsec;
+    /**
+     * Timestamp of the master clock in microseconds since UNIX epoch. 
+     */
+    private final BigInteger timeUnixUsec;
 
-  /**
-   * Timestamp of the component clock since boot time in milliseconds. 
-   */
-  private final long timeBootMs;
+    /**
+     * Timestamp of the component clock since boot time in milliseconds. 
+     */
+    private final long timeBootMs;
 
-  private SystemTime(BigInteger timeUnixUsec, long timeBootMs) {
-    this.timeUnixUsec = timeUnixUsec;
-    this.timeBootMs = timeBootMs;
-  }
+    private SystemTime(BigInteger timeUnixUsec, long timeBootMs) {
+        this.timeUnixUsec = timeUnixUsec;
+        this.timeBootMs = timeBootMs;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "SystemTime{timeUnixUsec=" + timeUnixUsec
-         + ", timeBootMs=" + timeBootMs + "}";
-  }
-
-  /**
-   * Timestamp of the master clock in microseconds since UNIX epoch. 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 8
-  )
-  public final BigInteger timeUnixUsec() {
-    return timeUnixUsec;
-  }
-
-  /**
-   * Timestamp of the component clock since boot time in milliseconds. 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final long timeBootMs() {
-    return timeBootMs;
-  }
-
-  public static class Builder {
-    private BigInteger timeUnixUsec;
-
-    private long timeBootMs;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "SystemTime{timeUnixUsec=" + timeUnixUsec
+                 + ", timeBootMs=" + timeBootMs + "}";
     }
 
     /**
      * Timestamp of the master clock in microseconds since UNIX epoch. 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 8
+            position = 1,
+            unitSize = 8
     )
-    public final Builder timeUnixUsec(BigInteger timeUnixUsec) {
-      this.timeUnixUsec = timeUnixUsec;
-      return this;
+    public final BigInteger timeUnixUsec() {
+        return timeUnixUsec;
     }
 
     /**
      * Timestamp of the component clock since boot time in milliseconds. 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder timeBootMs(long timeBootMs) {
-      this.timeBootMs = timeBootMs;
-      return this;
+    public final long timeBootMs() {
+        return timeBootMs;
     }
 
-    public final SystemTime build() {
-      return new SystemTime(timeUnixUsec, timeBootMs);
+    public static class Builder {
+        private BigInteger timeUnixUsec;
+
+        private long timeBootMs;
+
+        private Builder() {
+        }
+
+        /**
+         * Timestamp of the master clock in microseconds since UNIX epoch. 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 8
+        )
+        public final Builder timeUnixUsec(BigInteger timeUnixUsec) {
+            this.timeUnixUsec = timeUnixUsec;
+            return this;
+        }
+
+        /**
+         * Timestamp of the component clock since boot time in milliseconds. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder timeBootMs(long timeBootMs) {
+            this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        public final SystemTime build() {
+            return new SystemTime(timeUnixUsec, timeBootMs);
+        }
     }
-  }
 }

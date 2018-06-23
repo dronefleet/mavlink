@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavCollisionSrc {
-  /**
-   * ID field references ADSB_VEHICLE packets
-   */
-  @MavlinkEntryInfo(0)
-  MAV_COLLISION_SRC_ADSB,
+    /**
+     * ID field references ADSB_VEHICLE packets<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    MAV_COLLISION_SRC_ADSB,
 
-  /**
-   * ID field references MAVLink SRC ID
-   */
-  @MavlinkEntryInfo(1)
-  MAV_COLLISION_SRC_MAVLINK_GPS_GLOBAL_INT
+    /**
+     * ID field references MAVLink SRC ID<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    MAV_COLLISION_SRC_MAVLINK_GPS_GLOBAL_INT
 }

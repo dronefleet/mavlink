@@ -8,21 +8,27 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum ParachuteAction {
-  /**
-   * Disable parachute release
-   */
-  @MavlinkEntryInfo(0)
-  PARACHUTE_DISABLE,
+    /**
+     * Disable parachute release<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    PARACHUTE_DISABLE,
 
-  /**
-   * Enable parachute release
-   */
-  @MavlinkEntryInfo(1)
-  PARACHUTE_ENABLE,
+    /**
+     * Enable parachute release<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    PARACHUTE_ENABLE,
 
-  /**
-   * Release parachute
-   */
-  @MavlinkEntryInfo(2)
-  PARACHUTE_RELEASE
+    /**
+     * Release parachute<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    PARACHUTE_RELEASE
 }

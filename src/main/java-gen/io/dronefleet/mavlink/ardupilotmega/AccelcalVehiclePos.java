@@ -8,51 +8,67 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum AccelcalVehiclePos {
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(1)
-  ACCELCAL_VEHICLE_POS_LEVEL,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    ACCELCAL_VEHICLE_POS_LEVEL,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(2)
-  ACCELCAL_VEHICLE_POS_LEFT,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    ACCELCAL_VEHICLE_POS_LEFT,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(3)
-  ACCELCAL_VEHICLE_POS_RIGHT,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    ACCELCAL_VEHICLE_POS_RIGHT,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(4)
-  ACCELCAL_VEHICLE_POS_NOSEDOWN,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    ACCELCAL_VEHICLE_POS_NOSEDOWN,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(5)
-  ACCELCAL_VEHICLE_POS_NOSEUP,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    ACCELCAL_VEHICLE_POS_NOSEUP,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(6)
-  ACCELCAL_VEHICLE_POS_BACK,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    ACCELCAL_VEHICLE_POS_BACK,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(16777215)
-  ACCELCAL_VEHICLE_POS_SUCCESS,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(16777215)
+    ACCELCAL_VEHICLE_POS_SUCCESS,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(16777216)
-  ACCELCAL_VEHICLE_POS_FAILED
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(16777216)
+    ACCELCAL_VEHICLE_POS_FAILED
 }

@@ -10,189 +10,189 @@ import java.lang.String;
  * Control message for rate gimbal 
  */
 @MavlinkMessageInfo(
-    id = 201,
-    crc = 205
+        id = 201,
+        crc = 205
 )
 public final class GimbalControl {
-  /**
-   * Demanded angular rate X (rad/s) 
-   */
-  private final float demandedRateX;
+    /**
+     * Demanded angular rate X (rad/s) 
+     */
+    private final float demandedRateX;
 
-  /**
-   * Demanded angular rate Y (rad/s) 
-   */
-  private final float demandedRateY;
+    /**
+     * Demanded angular rate Y (rad/s) 
+     */
+    private final float demandedRateY;
 
-  /**
-   * Demanded angular rate Z (rad/s) 
-   */
-  private final float demandedRateZ;
+    /**
+     * Demanded angular rate Z (rad/s) 
+     */
+    private final float demandedRateZ;
 
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  private GimbalControl(float demandedRateX, float demandedRateY, float demandedRateZ,
-      int targetSystem, int targetComponent) {
-    this.demandedRateX = demandedRateX;
-    this.demandedRateY = demandedRateY;
-    this.demandedRateZ = demandedRateZ;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-  }
+    private GimbalControl(float demandedRateX, float demandedRateY, float demandedRateZ,
+            int targetSystem, int targetComponent) {
+        this.demandedRateX = demandedRateX;
+        this.demandedRateY = demandedRateY;
+        this.demandedRateZ = demandedRateZ;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "GimbalControl{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", demandedRateX=" + demandedRateX
-         + ", demandedRateY=" + demandedRateY
-         + ", demandedRateZ=" + demandedRateZ + "}";
-  }
-
-  /**
-   * Demanded angular rate X (rad/s) 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final float demandedRateX() {
-    return demandedRateX;
-  }
-
-  /**
-   * Demanded angular rate Y (rad/s) 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 4
-  )
-  public final float demandedRateY() {
-    return demandedRateY;
-  }
-
-  /**
-   * Demanded angular rate Z (rad/s) 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 4
-  )
-  public final float demandedRateZ() {
-    return demandedRateZ;
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  public static class Builder {
-    private float demandedRateX;
-
-    private float demandedRateY;
-
-    private float demandedRateZ;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "GimbalControl{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", demandedRateX=" + demandedRateX
+                 + ", demandedRateY=" + demandedRateY
+                 + ", demandedRateZ=" + demandedRateZ + "}";
     }
 
     /**
      * Demanded angular rate X (rad/s) 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4
     )
-    public final Builder demandedRateX(float demandedRateX) {
-      this.demandedRateX = demandedRateX;
-      return this;
+    public final float demandedRateX() {
+        return demandedRateX;
     }
 
     /**
      * Demanded angular rate Y (rad/s) 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 4
+            position = 4,
+            unitSize = 4
     )
-    public final Builder demandedRateY(float demandedRateY) {
-      this.demandedRateY = demandedRateY;
-      return this;
+    public final float demandedRateY() {
+        return demandedRateY;
     }
 
     /**
      * Demanded angular rate Z (rad/s) 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 4
+            position = 5,
+            unitSize = 4
     )
-    public final Builder demandedRateZ(float demandedRateZ) {
-      this.demandedRateZ = demandedRateZ;
-      return this;
+    public final float demandedRateZ() {
+        return demandedRateZ;
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
-    public final GimbalControl build() {
-      return new GimbalControl(demandedRateX, demandedRateY, demandedRateZ, targetSystem, targetComponent);
+    public static class Builder {
+        private float demandedRateX;
+
+        private float demandedRateY;
+
+        private float demandedRateZ;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private Builder() {
+        }
+
+        /**
+         * Demanded angular rate X (rad/s) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder demandedRateX(float demandedRateX) {
+            this.demandedRateX = demandedRateX;
+            return this;
+        }
+
+        /**
+         * Demanded angular rate Y (rad/s) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 4
+        )
+        public final Builder demandedRateY(float demandedRateY) {
+            this.demandedRateY = demandedRateY;
+            return this;
+        }
+
+        /**
+         * Demanded angular rate Z (rad/s) 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4
+        )
+        public final Builder demandedRateZ(float demandedRateZ) {
+            this.demandedRateZ = demandedRateZ;
+            return this;
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        public final GimbalControl build() {
+            return new GimbalControl(demandedRateX, demandedRateY, demandedRateZ, targetSystem, targetComponent);
+        }
     }
-  }
 }

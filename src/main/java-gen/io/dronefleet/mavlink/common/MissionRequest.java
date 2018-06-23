@@ -12,159 +12,159 @@ import java.lang.String;
  * https://mavlink.io/en/protocol/mission.html 
  */
 @MavlinkMessageInfo(
-    id = 40,
-    crc = 230
+        id = 40,
+        crc = 230
 )
 public final class MissionRequest {
-  /**
-   * Sequence 
-   */
-  private final int seq;
+    /**
+     * Sequence 
+     */
+    private final int seq;
 
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  /**
-   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-   */
-  private final MavMissionType missionType;
+    /**
+     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+     */
+    private final MavMissionType missionType;
 
-  private MissionRequest(int seq, int targetSystem, int targetComponent,
-      MavMissionType missionType) {
-    this.seq = seq;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.missionType = missionType;
-  }
+    private MissionRequest(int seq, int targetSystem, int targetComponent,
+            MavMissionType missionType) {
+        this.seq = seq;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.missionType = missionType;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "MissionRequest{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", seq=" + seq
-         + ", missionType=" + missionType + "}";
-  }
-
-  /**
-   * Sequence 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 2
-  )
-  public final int seq() {
-    return seq;
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 1,
-      extension = true
-  )
-  public final MavMissionType missionType() {
-    return missionType;
-  }
-
-  public static class Builder {
-    private int seq;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private MavMissionType missionType;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "MissionRequest{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", seq=" + seq
+                 + ", missionType=" + missionType + "}";
     }
 
     /**
      * Sequence 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 2
+            position = 3,
+            unitSize = 2
     )
-    public final Builder seq(int seq) {
-      this.seq = seq;
-      return this;
+    public final int seq() {
+        return seq;
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 1,
-        extension = true
+            position = 5,
+            unitSize = 1,
+            extension = true
     )
-    public final Builder missionType(MavMissionType missionType) {
-      this.missionType = missionType;
-      return this;
+    public final MavMissionType missionType() {
+        return missionType;
     }
 
-    public final MissionRequest build() {
-      return new MissionRequest(seq, targetSystem, targetComponent, missionType);
+    public static class Builder {
+        private int seq;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private MavMissionType missionType;
+
+        private Builder() {
+        }
+
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 1,
+                extension = true
+        )
+        public final Builder missionType(MavMissionType missionType) {
+            this.missionType = missionType;
+            return this;
+        }
+
+        public final MissionRequest build() {
+            return new MissionRequest(seq, targetSystem, targetComponent, missionType);
+        }
     }
-  }
 }

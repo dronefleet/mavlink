@@ -10,126 +10,126 @@ import java.lang.String;
  * Delete all mission items at once. 
  */
 @MavlinkMessageInfo(
-    id = 45,
-    crc = 232
+        id = 45,
+        crc = 232
 )
 public final class MissionClearAll {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  /**
-   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-   */
-  private final MavMissionType missionType;
+    /**
+     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+     */
+    private final MavMissionType missionType;
 
-  private MissionClearAll(int targetSystem, int targetComponent, MavMissionType missionType) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.missionType = missionType;
-  }
+    private MissionClearAll(int targetSystem, int targetComponent, MavMissionType missionType) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.missionType = missionType;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "MissionClearAll{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", missionType=" + missionType + "}";
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 1,
-      extension = true
-  )
-  public final MavMissionType missionType() {
-    return missionType;
-  }
-
-  public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private MavMissionType missionType;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "MissionClearAll{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", missionType=" + missionType + "}";
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
     /**
      * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 1,
-        extension = true
+            position = 4,
+            unitSize = 1,
+            extension = true
     )
-    public final Builder missionType(MavMissionType missionType) {
-      this.missionType = missionType;
-      return this;
+    public final MavMissionType missionType() {
+        return missionType;
     }
 
-    public final MissionClearAll build() {
-      return new MissionClearAll(targetSystem, targetComponent, missionType);
+    public static class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private MavMissionType missionType;
+
+        private Builder() {
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1,
+                extension = true
+        )
+        public final Builder missionType(MavMissionType missionType) {
+            this.missionType = missionType;
+            return this;
+        }
+
+        public final MissionClearAll build() {
+            return new MissionClearAll(targetSystem, targetComponent, missionType);
+        }
     }
-  }
 }

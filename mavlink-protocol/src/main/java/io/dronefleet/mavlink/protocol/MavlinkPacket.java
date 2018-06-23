@@ -1,11 +1,51 @@
 package io.dronefleet.mavlink.protocol;
 
+import io.dronefleet.mavlink.protocol.validation.CrcX25;
+
 import java.util.Arrays;
 
 public class MavlinkPacket {
 
     public static final int MAGIC_V1 = 0xFE;
     public static final int MAGIC_V2 = 0xFD;
+
+    public static MavlinkPacket create(
+            int sequence,
+            int systemId,
+            int componentId,
+            int messageId,
+            int crcExtra,
+            byte[] payload) {
+        byte[] rawBytes = new byte[8 + payload.length];
+        ByteArray bytes = new ByteArray(rawBytes);
+        bytes.putInt8(MAGIC_V1, 0);
+        bytes.putInt8(payload.length, 1);
+        bytes.putInt8(sequence, 2);
+        bytes.putInt8(systemId, 3);
+        bytes.putInt8(componentId, 4);
+        bytes.putInt8(messageId, 5);
+        System.arraycopy(payload, 0, rawBytes, 6, payload.length);
+
+        CrcX25 crc = new CrcX25();
+        crc.accumulate(rawBytes, 1, 6 + payload.length);
+        crc.accumulate(crcExtra);
+        bytes.putInt16(crc.checksum(), 6 + payload.length);
+
+        return new MavlinkPacket(
+                MAGIC_V1,
+                -1,
+                -1,
+                sequence,
+                systemId,
+                componentId,
+                messageId,
+                -1,
+                -1,
+                payload,
+                crc.checksum(),
+                null,
+                rawBytes);
+    }
 
     public static MavlinkPacket fromV1Bytes(byte[] rawBytes) {
         ByteArray bytes = new ByteArray(rawBytes);
@@ -80,7 +120,7 @@ public class MavlinkPacket {
     private final byte[] signature;
     private final byte[] rawBytes;
 
-    public MavlinkPacket(
+    private MavlinkPacket(
             int versionMarker,
             int incompatibleFlags,
             int compatibleFlags,
@@ -158,6 +198,25 @@ public class MavlinkPacket {
 
     public byte[] getRawBytes() {
         return rawBytes;
+    }
+
+    public boolean validate(int crcExtra) {
+        CrcX25 crcX25 = new CrcX25();
+        switch (versionMarker) {
+            case MAGIC_V1:
+                crcX25.accumulate(getRawBytes(), 1, 6 + payload.length);
+                break;
+
+            case MAGIC_V2:
+                crcX25.accumulate(getRawBytes(), 1, 12 + payload.length);
+                break;
+
+            default:
+                throw new IllegalStateException(
+                        "Unknown version marker: 0x" + Integer.toHexString(versionMarker));
+        }
+        crcX25.accumulate(crcExtra);
+        return crcX25.checksum() == checksum;
     }
 
     @Override

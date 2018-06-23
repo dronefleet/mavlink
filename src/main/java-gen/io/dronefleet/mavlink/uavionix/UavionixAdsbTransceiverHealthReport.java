@@ -11,60 +11,60 @@ import java.lang.String;
  * Transceiver heartbeat with health report (updated every 10s) 
  */
 @MavlinkMessageInfo(
-    id = 10003,
-    crc = 4
+        id = 10003,
+        crc = 4
 )
 public final class UavionixAdsbTransceiverHealthReport {
-  /**
-   * ADS-B transponder messages 
-   */
-  private final EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
+    /**
+     * ADS-B transponder messages 
+     */
+    private final EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
 
-  private UavionixAdsbTransceiverHealthReport(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
-    this.rfhealth = rfhealth;
-  }
+    private UavionixAdsbTransceiverHealthReport(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
+        this.rfhealth = rfhealth;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "UavionixAdsbTransceiverHealthReport{rfhealth=" + rfhealth + "}";
-  }
-
-  /**
-   * ADS-B transponder messages 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final EnumFlagSet<UavionixAdsbRfHealth> rfhealth() {
-    return rfhealth;
-  }
-
-  public static class Builder {
-    private EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "UavionixAdsbTransceiverHealthReport{rfhealth=" + rfhealth + "}";
     }
 
     /**
      * ADS-B transponder messages 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder rfhealth(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
-      this.rfhealth = rfhealth;
-      return this;
+    public final EnumFlagSet<UavionixAdsbRfHealth> rfhealth() {
+        return rfhealth;
     }
 
-    public final UavionixAdsbTransceiverHealthReport build() {
-      return new UavionixAdsbTransceiverHealthReport(rfhealth);
+    public static class Builder {
+        private EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
+
+        private Builder() {
+        }
+
+        /**
+         * ADS-B transponder messages 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder rfhealth(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
+            this.rfhealth = rfhealth;
+            return this;
+        }
+
+        public final UavionixAdsbTransceiverHealthReport build() {
+            return new UavionixAdsbTransceiverHealthReport(rfhealth);
+        }
     }
-  }
 }

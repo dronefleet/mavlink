@@ -8,123 +8,163 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum PlaneMode {
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(0)
-  PLANE_MODE_MANUAL,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    PLANE_MODE_MANUAL,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(1)
-  PLANE_MODE_CIRCLE,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    PLANE_MODE_CIRCLE,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(2)
-  PLANE_MODE_STABILIZE,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    PLANE_MODE_STABILIZE,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(3)
-  PLANE_MODE_TRAINING,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    PLANE_MODE_TRAINING,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(4)
-  PLANE_MODE_ACRO,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    PLANE_MODE_ACRO,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(5)
-  PLANE_MODE_FLY_BY_WIRE_A,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    PLANE_MODE_FLY_BY_WIRE_A,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(6)
-  PLANE_MODE_FLY_BY_WIRE_B,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    PLANE_MODE_FLY_BY_WIRE_B,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(7)
-  PLANE_MODE_CRUISE,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(7)
+    PLANE_MODE_CRUISE,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(8)
-  PLANE_MODE_AUTOTUNE,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(8)
+    PLANE_MODE_AUTOTUNE,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(10)
-  PLANE_MODE_AUTO,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(10)
+    PLANE_MODE_AUTO,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(11)
-  PLANE_MODE_RTL,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(11)
+    PLANE_MODE_RTL,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(12)
-  PLANE_MODE_LOITER,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(12)
+    PLANE_MODE_LOITER,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(14)
-  PLANE_MODE_AVOID_ADSB,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(14)
+    PLANE_MODE_AVOID_ADSB,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(15)
-  PLANE_MODE_GUIDED,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(15)
+    PLANE_MODE_GUIDED,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(16)
-  PLANE_MODE_INITIALIZING,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(16)
+    PLANE_MODE_INITIALIZING,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(17)
-  PLANE_MODE_QSTABILIZE,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(17)
+    PLANE_MODE_QSTABILIZE,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(18)
-  PLANE_MODE_QHOVER,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(18)
+    PLANE_MODE_QHOVER,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(19)
-  PLANE_MODE_QLOITER,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(19)
+    PLANE_MODE_QLOITER,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(20)
-  PLANE_MODE_QLAND,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(20)
+    PLANE_MODE_QLAND,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(21)
-  PLANE_MODE_QRTL
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(21)
+    PLANE_MODE_QRTL
 }

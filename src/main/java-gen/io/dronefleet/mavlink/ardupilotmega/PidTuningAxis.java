@@ -8,39 +8,51 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum PidTuningAxis {
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(1)
-  PID_TUNING_ROLL,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    PID_TUNING_ROLL,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(2)
-  PID_TUNING_PITCH,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    PID_TUNING_PITCH,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(3)
-  PID_TUNING_YAW,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    PID_TUNING_YAW,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(4)
-  PID_TUNING_ACCZ,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    PID_TUNING_ACCZ,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(5)
-  PID_TUNING_STEER,
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    PID_TUNING_STEER,
 
-  /**
-   * null
-   */
-  @MavlinkEntryInfo(6)
-  PID_TUNING_LANDING
+    /**
+     * null<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    PID_TUNING_LANDING
 }

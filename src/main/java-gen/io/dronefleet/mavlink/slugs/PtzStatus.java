@@ -10,124 +10,128 @@ import java.lang.String;
  * Transmits the actual Pan, Tilt and Zoom values of the camera unit 
  */
 @MavlinkMessageInfo(
-    id = 192,
-    crc = 187
+        id = 192,
+        crc = 187
 )
 public final class PtzStatus {
-  /**
-   * The Pan value in 10ths of degree 
-   */
-  private final int pan;
+    /**
+     * The Pan value in 10ths of degree 
+     */
+    private final int pan;
 
-  /**
-   * The Tilt value in 10ths of degree 
-   */
-  private final int tilt;
+    /**
+     * The Tilt value in 10ths of degree 
+     */
+    private final int tilt;
 
-  /**
-   * The actual Zoom Value 
-   */
-  private final int zoom;
+    /**
+     * The actual Zoom Value 
+     */
+    private final int zoom;
 
-  private PtzStatus(int pan, int tilt, int zoom) {
-    this.pan = pan;
-    this.tilt = tilt;
-    this.zoom = zoom;
-  }
+    private PtzStatus(int pan, int tilt, int zoom) {
+        this.pan = pan;
+        this.tilt = tilt;
+        this.zoom = zoom;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "PtzStatus{zoom=" + zoom
-         + ", pan=" + pan
-         + ", tilt=" + tilt + "}";
-  }
-
-  /**
-   * The Pan value in 10ths of degree 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 2
-  )
-  public final int pan() {
-    return pan;
-  }
-
-  /**
-   * The Tilt value in 10ths of degree 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 2
-  )
-  public final int tilt() {
-    return tilt;
-  }
-
-  /**
-   * The actual Zoom Value 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int zoom() {
-    return zoom;
-  }
-
-  public static class Builder {
-    private int pan;
-
-    private int tilt;
-
-    private int zoom;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "PtzStatus{zoom=" + zoom
+                 + ", pan=" + pan
+                 + ", tilt=" + tilt + "}";
     }
 
     /**
      * The Pan value in 10ths of degree 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 2
+            position = 2,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder pan(int pan) {
-      this.pan = pan;
-      return this;
+    public final int pan() {
+        return pan;
     }
 
     /**
      * The Tilt value in 10ths of degree 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 2
+            position = 3,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder tilt(int tilt) {
-      this.tilt = tilt;
-      return this;
+    public final int tilt() {
+        return tilt;
     }
 
     /**
      * The actual Zoom Value 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder zoom(int zoom) {
-      this.zoom = zoom;
-      return this;
+    public final int zoom() {
+        return zoom;
     }
 
-    public final PtzStatus build() {
-      return new PtzStatus(pan, tilt, zoom);
+    public static class Builder {
+        private int pan;
+
+        private int tilt;
+
+        private int zoom;
+
+        private Builder() {
+        }
+
+        /**
+         * The Pan value in 10ths of degree 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder pan(int pan) {
+            this.pan = pan;
+            return this;
+        }
+
+        /**
+         * The Tilt value in 10ths of degree 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder tilt(int tilt) {
+            this.tilt = tilt;
+            return this;
+        }
+
+        /**
+         * The actual Zoom Value 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder zoom(int zoom) {
+            this.zoom = zoom;
+            return this;
+        }
+
+        public final PtzStatus build() {
+            return new PtzStatus(pan, tilt, zoom);
+        }
     }
-  }
 }

@@ -26,6 +26,7 @@ public @interface MavlinkFieldInfo {
 
     int position();
     int unitSize();
+    boolean signed() default false;
     int arraySize() default 0;
     boolean extension() default false;
 }

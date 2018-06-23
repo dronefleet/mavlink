@@ -10,92 +10,92 @@ import java.lang.String;
  * Atmospheric sensors (temperature, humidity, ...) 
  */
 @MavlinkMessageInfo(
-    id = 208,
-    crc = 175
+        id = 208,
+        crc = 175
 )
 public final class SensAtmos {
-  /**
-   * Ambient temperature 
-   */
-  private final float tempambient;
+    /**
+     * Ambient temperature 
+     */
+    private final float tempambient;
 
-  /**
-   * Relative humidity 
-   */
-  private final float humidity;
+    /**
+     * Relative humidity 
+     */
+    private final float humidity;
 
-  private SensAtmos(float tempambient, float humidity) {
-    this.tempambient = tempambient;
-    this.humidity = humidity;
-  }
+    private SensAtmos(float tempambient, float humidity) {
+        this.tempambient = tempambient;
+        this.humidity = humidity;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "SensAtmos{tempambient=" + tempambient
-         + ", humidity=" + humidity + "}";
-  }
-
-  /**
-   * Ambient temperature 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final float tempambient() {
-    return tempambient;
-  }
-
-  /**
-   * Relative humidity 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final float humidity() {
-    return humidity;
-  }
-
-  public static class Builder {
-    private float tempambient;
-
-    private float humidity;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "SensAtmos{tempambient=" + tempambient
+                 + ", humidity=" + humidity + "}";
     }
 
     /**
      * Ambient temperature 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder tempambient(float tempambient) {
-      this.tempambient = tempambient;
-      return this;
+    public final float tempambient() {
+        return tempambient;
     }
 
     /**
      * Relative humidity 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder humidity(float humidity) {
-      this.humidity = humidity;
-      return this;
+    public final float humidity() {
+        return humidity;
     }
 
-    public final SensAtmos build() {
-      return new SensAtmos(tempambient, humidity);
+    public static class Builder {
+        private float tempambient;
+
+        private float humidity;
+
+        private Builder() {
+        }
+
+        /**
+         * Ambient temperature 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder tempambient(float tempambient) {
+            this.tempambient = tempambient;
+            return this;
+        }
+
+        /**
+         * Relative humidity 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder humidity(float humidity) {
+            this.humidity = humidity;
+            return this;
+        }
+
+        public final SensAtmos build() {
+            return new SensAtmos(tempambient, humidity);
+        }
     }
-  }
 }

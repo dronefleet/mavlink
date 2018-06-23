@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GoproProtuneColour {
-  /**
-   * Auto
-   */
-  @MavlinkEntryInfo(0)
-  GOPRO_PROTUNE_COLOUR_STANDARD,
+    /**
+     * Auto<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    GOPRO_PROTUNE_COLOUR_STANDARD,
 
-  /**
-   * Neutral
-   */
-  @MavlinkEntryInfo(1)
-  GOPRO_PROTUNE_COLOUR_NEUTRAL
+    /**
+     * Neutral<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GOPRO_PROTUNE_COLOUR_NEUTRAL
 }

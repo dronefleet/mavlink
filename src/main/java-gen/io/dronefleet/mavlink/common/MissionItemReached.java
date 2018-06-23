@@ -11,60 +11,60 @@ import java.lang.String;
  * the orbit) or (if the autocontinue on the WP was set) continue to the next waypoint. 
  */
 @MavlinkMessageInfo(
-    id = 46,
-    crc = 11
+        id = 46,
+        crc = 11
 )
 public final class MissionItemReached {
-  /**
-   * Sequence 
-   */
-  private final int seq;
+    /**
+     * Sequence 
+     */
+    private final int seq;
 
-  private MissionItemReached(int seq) {
-    this.seq = seq;
-  }
+    private MissionItemReached(int seq) {
+        this.seq = seq;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "MissionItemReached{seq=" + seq + "}";
-  }
-
-  /**
-   * Sequence 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 2
-  )
-  public final int seq() {
-    return seq;
-  }
-
-  public static class Builder {
-    private int seq;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "MissionItemReached{seq=" + seq + "}";
     }
 
     /**
      * Sequence 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 2
+            position = 1,
+            unitSize = 2
     )
-    public final Builder seq(int seq) {
-      this.seq = seq;
-      return this;
+    public final int seq() {
+        return seq;
     }
 
-    public final MissionItemReached build() {
-      return new MissionItemReached(seq);
+    public static class Builder {
+        private int seq;
+
+        private Builder() {
+        }
+
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        public final MissionItemReached build() {
+            return new MissionItemReached(seq);
+        }
     }
-  }
 }

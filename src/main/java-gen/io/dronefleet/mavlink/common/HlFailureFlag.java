@@ -8,87 +8,115 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum HlFailureFlag {
-  /**
-   * GPS failure.
-   */
-  @MavlinkEntryInfo(1)
-  HL_FAILURE_FLAG_GPS,
+    /**
+     * GPS failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    HL_FAILURE_FLAG_GPS,
 
-  /**
-   * Differential pressure sensor failure.
-   */
-  @MavlinkEntryInfo(2)
-  HL_FAILURE_FLAG_DIFFERENTIAL_PRESSURE,
+    /**
+     * Differential pressure sensor failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    HL_FAILURE_FLAG_DIFFERENTIAL_PRESSURE,
 
-  /**
-   * Absolute pressure sensor failure.
-   */
-  @MavlinkEntryInfo(4)
-  HL_FAILURE_FLAG_ABSOLUTE_PRESSURE,
+    /**
+     * Absolute pressure sensor failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    HL_FAILURE_FLAG_ABSOLUTE_PRESSURE,
 
-  /**
-   * Accelerometer sensor failure.
-   */
-  @MavlinkEntryInfo(8)
-  HL_FAILURE_FLAG_3D_ACCEL,
+    /**
+     * Accelerometer sensor failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(8)
+    HL_FAILURE_FLAG_3D_ACCEL,
 
-  /**
-   * Gyroscope sensor failure.
-   */
-  @MavlinkEntryInfo(16)
-  HL_FAILURE_FLAG_3D_GYRO,
+    /**
+     * Gyroscope sensor failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(16)
+    HL_FAILURE_FLAG_3D_GYRO,
 
-  /**
-   * Magnetometer sensor failure.
-   */
-  @MavlinkEntryInfo(32)
-  HL_FAILURE_FLAG_3D_MAG,
+    /**
+     * Magnetometer sensor failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(32)
+    HL_FAILURE_FLAG_3D_MAG,
 
-  /**
-   * Terrain subsystem failure.
-   */
-  @MavlinkEntryInfo(64)
-  HL_FAILURE_FLAG_TERRAIN,
+    /**
+     * Terrain subsystem failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(64)
+    HL_FAILURE_FLAG_TERRAIN,
 
-  /**
-   * Battery failure/critical low battery.
-   */
-  @MavlinkEntryInfo(128)
-  HL_FAILURE_FLAG_BATTERY,
+    /**
+     * Battery failure/critical low battery.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(128)
+    HL_FAILURE_FLAG_BATTERY,
 
-  /**
-   * RC receiver failure/no rc connection.
-   */
-  @MavlinkEntryInfo(256)
-  HL_FAILURE_FLAG_RC_RECEIVER,
+    /**
+     * RC receiver failure/no rc connection.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(256)
+    HL_FAILURE_FLAG_RC_RECEIVER,
 
-  /**
-   * Offboard link failure.
-   */
-  @MavlinkEntryInfo(512)
-  HL_FAILURE_FLAG_OFFBOARD_LINK,
+    /**
+     * Offboard link failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(512)
+    HL_FAILURE_FLAG_OFFBOARD_LINK,
 
-  /**
-   * Engine failure.
-   */
-  @MavlinkEntryInfo(1024)
-  HL_FAILURE_FLAG_ENGINE,
+    /**
+     * Engine failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1024)
+    HL_FAILURE_FLAG_ENGINE,
 
-  /**
-   * Geofence violation.
-   */
-  @MavlinkEntryInfo(2048)
-  HL_FAILURE_FLAG_GEOFENCE,
+    /**
+     * Geofence violation.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2048)
+    HL_FAILURE_FLAG_GEOFENCE,
 
-  /**
-   * Estimator failure, for example measurement rejection or large variances.
-   */
-  @MavlinkEntryInfo(4096)
-  HL_FAILURE_FLAG_ESTIMATOR,
+    /**
+     * Estimator failure, for example measurement rejection or large variances.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4096)
+    HL_FAILURE_FLAG_ESTIMATOR,
 
-  /**
-   * Mission failure.
-   */
-  @MavlinkEntryInfo(8192)
-  HL_FAILURE_FLAG_MISSION
+    /**
+     * Mission failure.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(8192)
+    HL_FAILURE_FLAG_MISSION
 }

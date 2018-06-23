@@ -11,126 +11,126 @@ import java.lang.String;
  * quite efficient way for testing new messages and getting experimental debug output. 
  */
 @MavlinkMessageInfo(
-    id = 251,
-    crc = 170
+        id = 251,
+        crc = 170
 )
 public final class NamedValueFloat {
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  private final long timeBootMs;
+    /**
+     * Timestamp (milliseconds since system boot) 
+     */
+    private final long timeBootMs;
 
-  /**
-   * Floating point value 
-   */
-  private final float value;
+    /**
+     * Floating point value 
+     */
+    private final float value;
 
-  /**
-   * Name of the debug variable 
-   */
-  private final String name;
+    /**
+     * Name of the debug variable 
+     */
+    private final String name;
 
-  private NamedValueFloat(long timeBootMs, float value, String name) {
-    this.timeBootMs = timeBootMs;
-    this.value = value;
-    this.name = name;
-  }
+    private NamedValueFloat(long timeBootMs, float value, String name) {
+        this.timeBootMs = timeBootMs;
+        this.value = value;
+        this.name = name;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "NamedValueFloat{timeBootMs=" + timeBootMs
-         + ", name=" + name
-         + ", value=" + value + "}";
-  }
-
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final long timeBootMs() {
-    return timeBootMs;
-  }
-
-  /**
-   * Floating point value 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final float value() {
-    return value;
-  }
-
-  /**
-   * Name of the debug variable 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1,
-      arraySize = 10
-  )
-  public final String name() {
-    return name;
-  }
-
-  public static class Builder {
-    private long timeBootMs;
-
-    private float value;
-
-    private String name;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "NamedValueFloat{timeBootMs=" + timeBootMs
+                 + ", name=" + name
+                 + ", value=" + value + "}";
     }
 
     /**
      * Timestamp (milliseconds since system boot) 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder timeBootMs(long timeBootMs) {
-      this.timeBootMs = timeBootMs;
-      return this;
+    public final long timeBootMs() {
+        return timeBootMs;
     }
 
     /**
      * Floating point value 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4
     )
-    public final Builder value(float value) {
-      this.value = value;
-      return this;
+    public final float value() {
+        return value;
     }
 
     /**
      * Name of the debug variable 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1,
-        arraySize = 10
+            position = 2,
+            unitSize = 1,
+            arraySize = 10
     )
-    public final Builder name(String name) {
-      this.name = name;
-      return this;
+    public final String name() {
+        return name;
     }
 
-    public final NamedValueFloat build() {
-      return new NamedValueFloat(timeBootMs, value, name);
+    public static class Builder {
+        private long timeBootMs;
+
+        private float value;
+
+        private String name;
+
+        private Builder() {
+        }
+
+        /**
+         * Timestamp (milliseconds since system boot) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder timeBootMs(long timeBootMs) {
+            this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * Floating point value 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder value(float value) {
+            this.value = value;
+            return this;
+        }
+
+        /**
+         * Name of the debug variable 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1,
+                arraySize = 10
+        )
+        public final Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public final NamedValueFloat build() {
+            return new NamedValueFloat(timeBootMs, value, name);
+        }
     }
-  }
 }

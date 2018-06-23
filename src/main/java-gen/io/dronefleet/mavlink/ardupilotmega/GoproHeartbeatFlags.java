@@ -8,9 +8,11 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GoproHeartbeatFlags {
-  /**
-   * GoPro is currently recording
-   */
-  @MavlinkEntryInfo(1)
-  GOPRO_FLAG_RECORDING
+    /**
+     * GoPro is currently recording<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GOPRO_FLAG_RECORDING
 }

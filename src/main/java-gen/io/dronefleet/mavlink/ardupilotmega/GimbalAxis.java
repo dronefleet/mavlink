@@ -8,21 +8,27 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GimbalAxis {
-  /**
-   * Gimbal yaw axis
-   */
-  @MavlinkEntryInfo(0)
-  GIMBAL_AXIS_YAW,
+    /**
+     * Gimbal yaw axis<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    GIMBAL_AXIS_YAW,
 
-  /**
-   * Gimbal pitch axis
-   */
-  @MavlinkEntryInfo(1)
-  GIMBAL_AXIS_PITCH,
+    /**
+     * Gimbal pitch axis<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GIMBAL_AXIS_PITCH,
 
-  /**
-   * Gimbal roll axis
-   */
-  @MavlinkEntryInfo(2)
-  GIMBAL_AXIS_ROLL
+    /**
+     * Gimbal roll axis<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    GIMBAL_AXIS_ROLL
 }

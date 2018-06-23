@@ -10,92 +10,92 @@ import java.lang.String;
  * Acknowldge sucess or failure of a flexifunction command 
  */
 @MavlinkMessageInfo(
-    id = 158,
-    crc = 208
+        id = 158,
+        crc = 208
 )
 public final class FlexifunctionCommandAck {
-  /**
-   * Command acknowledged 
-   */
-  private final int commandType;
+    /**
+     * Command acknowledged 
+     */
+    private final int commandType;
 
-  /**
-   * result of acknowledge 
-   */
-  private final int result;
+    /**
+     * result of acknowledge 
+     */
+    private final int result;
 
-  private FlexifunctionCommandAck(int commandType, int result) {
-    this.commandType = commandType;
-    this.result = result;
-  }
+    private FlexifunctionCommandAck(int commandType, int result) {
+        this.commandType = commandType;
+        this.result = result;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "FlexifunctionCommandAck{commandType=" + commandType
-         + ", result=" + result + "}";
-  }
-
-  /**
-   * Command acknowledged 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 2
-  )
-  public final int commandType() {
-    return commandType;
-  }
-
-  /**
-   * result of acknowledge 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 2
-  )
-  public final int result() {
-    return result;
-  }
-
-  public static class Builder {
-    private int commandType;
-
-    private int result;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "FlexifunctionCommandAck{commandType=" + commandType
+                 + ", result=" + result + "}";
     }
 
     /**
      * Command acknowledged 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 2
+            position = 1,
+            unitSize = 2
     )
-    public final Builder commandType(int commandType) {
-      this.commandType = commandType;
-      return this;
+    public final int commandType() {
+        return commandType;
     }
 
     /**
      * result of acknowledge 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 2
+            position = 2,
+            unitSize = 2
     )
-    public final Builder result(int result) {
-      this.result = result;
-      return this;
+    public final int result() {
+        return result;
     }
 
-    public final FlexifunctionCommandAck build() {
-      return new FlexifunctionCommandAck(commandType, result);
+    public static class Builder {
+        private int commandType;
+
+        private int result;
+
+        private Builder() {
+        }
+
+        /**
+         * Command acknowledged 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder commandType(int commandType) {
+            this.commandType = commandType;
+            return this;
+        }
+
+        /**
+         * result of acknowledge 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 2
+        )
+        public final Builder result(int result) {
+            this.result = result;
+            return this;
+        }
+
+        public final FlexifunctionCommandAck build() {
+            return new FlexifunctionCommandAck(commandType, result);
+        }
     }
-  }
 }

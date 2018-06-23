@@ -11,62 +11,62 @@ import java.lang.String;
  * kept simple, so transmitting the key requires an encrypted channel for true safety. 
  */
 @MavlinkMessageInfo(
-    id = 7,
-    crc = 119
+        id = 7,
+        crc = 119
 )
 public final class AuthKey {
-  /**
-   * key 
-   */
-  private final String key;
+    /**
+     * key 
+     */
+    private final String key;
 
-  private AuthKey(String key) {
-    this.key = key;
-  }
+    private AuthKey(String key) {
+        this.key = key;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "AuthKey{key=" + key + "}";
-  }
-
-  /**
-   * key 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1,
-      arraySize = 32
-  )
-  public final String key() {
-    return key;
-  }
-
-  public static class Builder {
-    private String key;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "AuthKey{key=" + key + "}";
     }
 
     /**
      * key 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1,
-        arraySize = 32
+            position = 1,
+            unitSize = 1,
+            arraySize = 32
     )
-    public final Builder key(String key) {
-      this.key = key;
-      return this;
+    public final String key() {
+        return key;
     }
 
-    public final AuthKey build() {
-      return new AuthKey(key);
+    public static class Builder {
+        private String key;
+
+        private Builder() {
+        }
+
+        /**
+         * key 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1,
+                arraySize = 32
+        )
+        public final Builder key(String key) {
+            this.key = key;
+            return this;
+        }
+
+        public final AuthKey build() {
+            return new AuthKey(key);
+        }
     }
-  }
 }

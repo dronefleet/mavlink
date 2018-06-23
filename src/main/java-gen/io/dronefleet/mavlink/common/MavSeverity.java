@@ -10,51 +10,67 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavSeverity {
-  /**
-   * System is unusable. This is a "panic" condition.
-   */
-  @MavlinkEntryInfo(0)
-  MAV_SEVERITY_EMERGENCY,
+    /**
+     * System is unusable. This is a "panic" condition.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    MAV_SEVERITY_EMERGENCY,
 
-  /**
-   * Action should be taken immediately. Indicates error in non-critical systems.
-   */
-  @MavlinkEntryInfo(1)
-  MAV_SEVERITY_ALERT,
+    /**
+     * Action should be taken immediately. Indicates error in non-critical systems.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    MAV_SEVERITY_ALERT,
 
-  /**
-   * Action must be taken immediately. Indicates failure in a primary system.
-   */
-  @MavlinkEntryInfo(2)
-  MAV_SEVERITY_CRITICAL,
+    /**
+     * Action must be taken immediately. Indicates failure in a primary system.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    MAV_SEVERITY_CRITICAL,
 
-  /**
-   * Indicates an error in secondary/redundant systems.
-   */
-  @MavlinkEntryInfo(3)
-  MAV_SEVERITY_ERROR,
+    /**
+     * Indicates an error in secondary/redundant systems.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    MAV_SEVERITY_ERROR,
 
-  /**
-   * Indicates about a possible future error if this is not resolved within a given timeframe. Example would be a low battery warning.
-   */
-  @MavlinkEntryInfo(4)
-  MAV_SEVERITY_WARNING,
+    /**
+     * Indicates about a possible future error if this is not resolved within a given timeframe. Example would be a low battery warning.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    MAV_SEVERITY_WARNING,
 
-  /**
-   * An unusual event has occured, though not an error condition. This should be investigated for the root cause.
-   */
-  @MavlinkEntryInfo(5)
-  MAV_SEVERITY_NOTICE,
+    /**
+     * An unusual event has occured, though not an error condition. This should be investigated for the root cause.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    MAV_SEVERITY_NOTICE,
 
-  /**
-   * Normal operational messages. Useful for logging. No action is required for these messages.
-   */
-  @MavlinkEntryInfo(6)
-  MAV_SEVERITY_INFO,
+    /**
+     * Normal operational messages. Useful for logging. No action is required for these messages.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    MAV_SEVERITY_INFO,
 
-  /**
-   * Useful non-operational messages that can assist in debugging. These should not occur during normal operation.
-   */
-  @MavlinkEntryInfo(7)
-  MAV_SEVERITY_DEBUG
+    /**
+     * Useful non-operational messages that can assist in debugging. These should not occur during normal operation.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(7)
+    MAV_SEVERITY_DEBUG
 }

@@ -12,60 +12,60 @@ import java.lang.String;
  * MCUs to communicate version numbers on startup. 
  */
 @MavlinkMessageInfo(
-    id = 197,
-    crc = 39
+        id = 197,
+        crc = 39
 )
 public final class Boot {
-  /**
-   * The onboard software version 
-   */
-  private final long version;
+    /**
+     * The onboard software version 
+     */
+    private final long version;
 
-  private Boot(long version) {
-    this.version = version;
-  }
+    private Boot(long version) {
+        this.version = version;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "Boot{version=" + version + "}";
-  }
-
-  /**
-   * The onboard software version 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final long version() {
-    return version;
-  }
-
-  public static class Builder {
-    private long version;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "Boot{version=" + version + "}";
     }
 
     /**
      * The onboard software version 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder version(long version) {
-      this.version = version;
-      return this;
+    public final long version() {
+        return version;
     }
 
-    public final Boot build() {
-      return new Boot(version);
+    public static class Builder {
+        private long version;
+
+        private Builder() {
+        }
+
+        /**
+         * The onboard software version 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder version(long version) {
+            this.version = version;
+            return this;
+        }
+
+        public final Boot build() {
+            return new Boot(version);
+        }
     }
-  }
 }

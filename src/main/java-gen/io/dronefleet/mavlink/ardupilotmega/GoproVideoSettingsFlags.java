@@ -8,9 +8,11 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GoproVideoSettingsFlags {
-  /**
-   * 0=NTSC, 1=PAL
-   */
-  @MavlinkEntryInfo(1)
-  GOPRO_VIDEO_SETTINGS_TV_MODE
+    /**
+     * 0=NTSC, 1=PAL<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GOPRO_VIDEO_SETTINGS_TV_MODE
 }

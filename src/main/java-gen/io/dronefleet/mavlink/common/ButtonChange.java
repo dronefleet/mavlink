@@ -10,124 +10,124 @@ import java.lang.String;
  * Report button state change 
  */
 @MavlinkMessageInfo(
-    id = 257,
-    crc = 131
+        id = 257,
+        crc = 131
 )
 public final class ButtonChange {
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  private final long timeBootMs;
+    /**
+     * Timestamp (milliseconds since system boot) 
+     */
+    private final long timeBootMs;
 
-  /**
-   * Time of last change of button state 
-   */
-  private final long lastChangeMs;
+    /**
+     * Time of last change of button state 
+     */
+    private final long lastChangeMs;
 
-  /**
-   * Bitmap state of buttons 
-   */
-  private final int state;
+    /**
+     * Bitmap state of buttons 
+     */
+    private final int state;
 
-  private ButtonChange(long timeBootMs, long lastChangeMs, int state) {
-    this.timeBootMs = timeBootMs;
-    this.lastChangeMs = lastChangeMs;
-    this.state = state;
-  }
+    private ButtonChange(long timeBootMs, long lastChangeMs, int state) {
+        this.timeBootMs = timeBootMs;
+        this.lastChangeMs = lastChangeMs;
+        this.state = state;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "ButtonChange{timeBootMs=" + timeBootMs
-         + ", lastChangeMs=" + lastChangeMs
-         + ", state=" + state + "}";
-  }
-
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final long timeBootMs() {
-    return timeBootMs;
-  }
-
-  /**
-   * Time of last change of button state 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final long lastChangeMs() {
-    return lastChangeMs;
-  }
-
-  /**
-   * Bitmap state of buttons 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 1
-  )
-  public final int state() {
-    return state;
-  }
-
-  public static class Builder {
-    private long timeBootMs;
-
-    private long lastChangeMs;
-
-    private int state;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "ButtonChange{timeBootMs=" + timeBootMs
+                 + ", lastChangeMs=" + lastChangeMs
+                 + ", state=" + state + "}";
     }
 
     /**
      * Timestamp (milliseconds since system boot) 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder timeBootMs(long timeBootMs) {
-      this.timeBootMs = timeBootMs;
-      return this;
+    public final long timeBootMs() {
+        return timeBootMs;
     }
 
     /**
      * Time of last change of button state 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder lastChangeMs(long lastChangeMs) {
-      this.lastChangeMs = lastChangeMs;
-      return this;
+    public final long lastChangeMs() {
+        return lastChangeMs;
     }
 
     /**
      * Bitmap state of buttons 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 1
+            position = 3,
+            unitSize = 1
     )
-    public final Builder state(int state) {
-      this.state = state;
-      return this;
+    public final int state() {
+        return state;
     }
 
-    public final ButtonChange build() {
-      return new ButtonChange(timeBootMs, lastChangeMs, state);
+    public static class Builder {
+        private long timeBootMs;
+
+        private long lastChangeMs;
+
+        private int state;
+
+        private Builder() {
+        }
+
+        /**
+         * Timestamp (milliseconds since system boot) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder timeBootMs(long timeBootMs) {
+            this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * Time of last change of button state 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder lastChangeMs(long lastChangeMs) {
+            this.lastChangeMs = lastChangeMs;
+            return this;
+        }
+
+        /**
+         * Bitmap state of buttons 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder state(int state) {
+            this.state = state;
+            return this;
+        }
+
+        public final ButtonChange build() {
+            return new ButtonChange(timeBootMs, lastChangeMs, state);
+        }
     }
-  }
 }

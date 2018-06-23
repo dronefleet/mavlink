@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavRemoteLogDataBlockCommands {
-  /**
-   * UAV to stop sending DataFlash blocks
-   */
-  @MavlinkEntryInfo(2147483645)
-  MAV_REMOTE_LOG_DATA_BLOCK_STOP,
+    /**
+     * UAV to stop sending DataFlash blocks<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2147483645)
+    MAV_REMOTE_LOG_DATA_BLOCK_STOP,
 
-  /**
-   * UAV to start sending DataFlash blocks
-   */
-  @MavlinkEntryInfo(2147483646)
-  MAV_REMOTE_LOG_DATA_BLOCK_START
+    /**
+     * UAV to start sending DataFlash blocks<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2147483646)
+    MAV_REMOTE_LOG_DATA_BLOCK_START
 }

@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum RcType {
-  /**
-   * Spektrum DSM2
-   */
-  @MavlinkEntryInfo(0)
-  RC_TYPE_SPEKTRUM_DSM2,
+    /**
+     * Spektrum DSM2<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    RC_TYPE_SPEKTRUM_DSM2,
 
-  /**
-   * Spektrum DSMX
-   */
-  @MavlinkEntryInfo(1)
-  RC_TYPE_SPEKTRUM_DSMX
+    /**
+     * Spektrum DSMX<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    RC_TYPE_SPEKTRUM_DSMX
 }

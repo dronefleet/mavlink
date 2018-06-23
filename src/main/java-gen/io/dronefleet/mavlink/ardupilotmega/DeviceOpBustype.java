@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum DeviceOpBustype {
-  /**
-   * I2C Device operation
-   */
-  @MavlinkEntryInfo(0)
-  DEVICE_OP_BUSTYPE_I2C,
+    /**
+     * I2C Device operation<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    DEVICE_OP_BUSTYPE_I2C,
 
-  /**
-   * SPI Device operation
-   */
-  @MavlinkEntryInfo(1)
-  DEVICE_OP_BUSTYPE_SPI
+    /**
+     * SPI Device operation<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    DEVICE_OP_BUSTYPE_SPI
 }

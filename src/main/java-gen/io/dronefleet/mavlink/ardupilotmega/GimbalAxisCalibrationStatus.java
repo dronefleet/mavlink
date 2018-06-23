@@ -8,21 +8,27 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GimbalAxisCalibrationStatus {
-  /**
-   * Axis calibration is in progress
-   */
-  @MavlinkEntryInfo(0)
-  GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS,
+    /**
+     * Axis calibration is in progress<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS,
 
-  /**
-   * Axis calibration succeeded
-   */
-  @MavlinkEntryInfo(1)
-  GIMBAL_AXIS_CALIBRATION_STATUS_SUCCEEDED,
+    /**
+     * Axis calibration succeeded<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GIMBAL_AXIS_CALIBRATION_STATUS_SUCCEEDED,
 
-  /**
-   * Axis calibration failed
-   */
-  @MavlinkEntryInfo(2)
-  GIMBAL_AXIS_CALIBRATION_STATUS_FAILED
+    /**
+     * Axis calibration failed<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    GIMBAL_AXIS_CALIBRATION_STATUS_FAILED
 }

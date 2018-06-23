@@ -8,201 +8,267 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavType {
-  /**
-   * Generic micro air vehicle.
-   */
-  @MavlinkEntryInfo(0)
-  MAV_TYPE_GENERIC,
+    /**
+     * Generic micro air vehicle.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    MAV_TYPE_GENERIC,
 
-  /**
-   * Fixed wing aircraft.
-   */
-  @MavlinkEntryInfo(1)
-  MAV_TYPE_FIXED_WING,
+    /**
+     * Fixed wing aircraft.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    MAV_TYPE_FIXED_WING,
 
-  /**
-   * Quadrotor
-   */
-  @MavlinkEntryInfo(2)
-  MAV_TYPE_QUADROTOR,
+    /**
+     * Quadrotor<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    MAV_TYPE_QUADROTOR,
 
-  /**
-   * Coaxial helicopter
-   */
-  @MavlinkEntryInfo(3)
-  MAV_TYPE_COAXIAL,
+    /**
+     * Coaxial helicopter<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    MAV_TYPE_COAXIAL,
 
-  /**
-   * Normal helicopter with tail rotor.
-   */
-  @MavlinkEntryInfo(4)
-  MAV_TYPE_HELICOPTER,
+    /**
+     * Normal helicopter with tail rotor.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    MAV_TYPE_HELICOPTER,
 
-  /**
-   * Ground installation
-   */
-  @MavlinkEntryInfo(5)
-  MAV_TYPE_ANTENNA_TRACKER,
+    /**
+     * Ground installation<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    MAV_TYPE_ANTENNA_TRACKER,
 
-  /**
-   * Operator control unit / ground control station
-   */
-  @MavlinkEntryInfo(6)
-  MAV_TYPE_GCS,
+    /**
+     * Operator control unit / ground control station<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    MAV_TYPE_GCS,
 
-  /**
-   * Airship, controlled
-   */
-  @MavlinkEntryInfo(7)
-  MAV_TYPE_AIRSHIP,
+    /**
+     * Airship, controlled<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(7)
+    MAV_TYPE_AIRSHIP,
 
-  /**
-   * Free balloon, uncontrolled
-   */
-  @MavlinkEntryInfo(8)
-  MAV_TYPE_FREE_BALLOON,
+    /**
+     * Free balloon, uncontrolled<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(8)
+    MAV_TYPE_FREE_BALLOON,
 
-  /**
-   * Rocket
-   */
-  @MavlinkEntryInfo(9)
-  MAV_TYPE_ROCKET,
+    /**
+     * Rocket<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(9)
+    MAV_TYPE_ROCKET,
 
-  /**
-   * Ground rover
-   */
-  @MavlinkEntryInfo(10)
-  MAV_TYPE_GROUND_ROVER,
+    /**
+     * Ground rover<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(10)
+    MAV_TYPE_GROUND_ROVER,
 
-  /**
-   * Surface vessel, boat, ship
-   */
-  @MavlinkEntryInfo(11)
-  MAV_TYPE_SURFACE_BOAT,
+    /**
+     * Surface vessel, boat, ship<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(11)
+    MAV_TYPE_SURFACE_BOAT,
 
-  /**
-   * Submarine
-   */
-  @MavlinkEntryInfo(12)
-  MAV_TYPE_SUBMARINE,
+    /**
+     * Submarine<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(12)
+    MAV_TYPE_SUBMARINE,
 
-  /**
-   * Hexarotor
-   */
-  @MavlinkEntryInfo(13)
-  MAV_TYPE_HEXAROTOR,
+    /**
+     * Hexarotor<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(13)
+    MAV_TYPE_HEXAROTOR,
 
-  /**
-   * Octorotor
-   */
-  @MavlinkEntryInfo(14)
-  MAV_TYPE_OCTOROTOR,
+    /**
+     * Octorotor<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(14)
+    MAV_TYPE_OCTOROTOR,
 
-  /**
-   * Tricopter
-   */
-  @MavlinkEntryInfo(15)
-  MAV_TYPE_TRICOPTER,
+    /**
+     * Tricopter<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(15)
+    MAV_TYPE_TRICOPTER,
 
-  /**
-   * Flapping wing
-   */
-  @MavlinkEntryInfo(16)
-  MAV_TYPE_FLAPPING_WING,
+    /**
+     * Flapping wing<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(16)
+    MAV_TYPE_FLAPPING_WING,
 
-  /**
-   * Kite
-   */
-  @MavlinkEntryInfo(17)
-  MAV_TYPE_KITE,
+    /**
+     * Kite<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(17)
+    MAV_TYPE_KITE,
 
-  /**
-   * Onboard companion controller
-   */
-  @MavlinkEntryInfo(18)
-  MAV_TYPE_ONBOARD_CONTROLLER,
+    /**
+     * Onboard companion controller<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(18)
+    MAV_TYPE_ONBOARD_CONTROLLER,
 
-  /**
-   * Two-rotor VTOL using control surfaces in vertical operation in addition. Tailsitter.
-   */
-  @MavlinkEntryInfo(19)
-  MAV_TYPE_VTOL_DUOROTOR,
+    /**
+     * Two-rotor VTOL using control surfaces in vertical operation in addition. Tailsitter.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(19)
+    MAV_TYPE_VTOL_DUOROTOR,
 
-  /**
-   * Quad-rotor VTOL using a V-shaped quad config in vertical operation. Tailsitter.
-   */
-  @MavlinkEntryInfo(20)
-  MAV_TYPE_VTOL_QUADROTOR,
+    /**
+     * Quad-rotor VTOL using a V-shaped quad config in vertical operation. Tailsitter.<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(20)
+    MAV_TYPE_VTOL_QUADROTOR,
 
-  /**
-   * Tiltrotor VTOL
-   */
-  @MavlinkEntryInfo(21)
-  MAV_TYPE_VTOL_TILTROTOR,
+    /**
+     * Tiltrotor VTOL<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(21)
+    MAV_TYPE_VTOL_TILTROTOR,
 
-  /**
-   * VTOL reserved 2
-   */
-  @MavlinkEntryInfo(22)
-  MAV_TYPE_VTOL_RESERVED2,
+    /**
+     * VTOL reserved 2<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(22)
+    MAV_TYPE_VTOL_RESERVED2,
 
-  /**
-   * VTOL reserved 3
-   */
-  @MavlinkEntryInfo(23)
-  MAV_TYPE_VTOL_RESERVED3,
+    /**
+     * VTOL reserved 3<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(23)
+    MAV_TYPE_VTOL_RESERVED3,
 
-  /**
-   * VTOL reserved 4
-   */
-  @MavlinkEntryInfo(24)
-  MAV_TYPE_VTOL_RESERVED4,
+    /**
+     * VTOL reserved 4<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(24)
+    MAV_TYPE_VTOL_RESERVED4,
 
-  /**
-   * VTOL reserved 5
-   */
-  @MavlinkEntryInfo(25)
-  MAV_TYPE_VTOL_RESERVED5,
+    /**
+     * VTOL reserved 5<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(25)
+    MAV_TYPE_VTOL_RESERVED5,
 
-  /**
-   * Onboard gimbal
-   */
-  @MavlinkEntryInfo(26)
-  MAV_TYPE_GIMBAL,
+    /**
+     * Onboard gimbal<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(26)
+    MAV_TYPE_GIMBAL,
 
-  /**
-   * Onboard ADSB peripheral
-   */
-  @MavlinkEntryInfo(27)
-  MAV_TYPE_ADSB,
+    /**
+     * Onboard ADSB peripheral<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(27)
+    MAV_TYPE_ADSB,
 
-  /**
-   * Steerable, nonrigid airfoil
-   */
-  @MavlinkEntryInfo(28)
-  MAV_TYPE_PARAFOIL,
+    /**
+     * Steerable, nonrigid airfoil<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(28)
+    MAV_TYPE_PARAFOIL,
 
-  /**
-   * Dodecarotor
-   */
-  @MavlinkEntryInfo(29)
-  MAV_TYPE_DODECAROTOR,
+    /**
+     * Dodecarotor<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(29)
+    MAV_TYPE_DODECAROTOR,
 
-  /**
-   * Camera
-   */
-  @MavlinkEntryInfo(30)
-  MAV_TYPE_CAMERA,
+    /**
+     * Camera<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(30)
+    MAV_TYPE_CAMERA,
 
-  /**
-   * Charging station
-   */
-  @MavlinkEntryInfo(31)
-  MAV_TYPE_CHARGING_STATION,
+    /**
+     * Charging station<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(31)
+    MAV_TYPE_CHARGING_STATION,
 
-  /**
-   * Onboard FLARM collision avoidance system
-   */
-  @MavlinkEntryInfo(32)
-  MAV_TYPE_FLARM
+    /**
+     * Onboard FLARM collision avoidance system<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(32)
+    MAV_TYPE_FLARM
 }

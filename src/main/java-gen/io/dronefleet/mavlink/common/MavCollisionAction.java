@@ -8,45 +8,59 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavCollisionAction {
-  /**
-   * Ignore any potential collisions
-   */
-  @MavlinkEntryInfo(0)
-  MAV_COLLISION_ACTION_NONE,
+    /**
+     * Ignore any potential collisions<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    MAV_COLLISION_ACTION_NONE,
 
-  /**
-   * Report potential collision
-   */
-  @MavlinkEntryInfo(1)
-  MAV_COLLISION_ACTION_REPORT,
+    /**
+     * Report potential collision<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    MAV_COLLISION_ACTION_REPORT,
 
-  /**
-   * Ascend or Descend to avoid threat
-   */
-  @MavlinkEntryInfo(2)
-  MAV_COLLISION_ACTION_ASCEND_OR_DESCEND,
+    /**
+     * Ascend or Descend to avoid threat<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(2)
+    MAV_COLLISION_ACTION_ASCEND_OR_DESCEND,
 
-  /**
-   * Move horizontally to avoid threat
-   */
-  @MavlinkEntryInfo(3)
-  MAV_COLLISION_ACTION_MOVE_HORIZONTALLY,
+    /**
+     * Move horizontally to avoid threat<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(3)
+    MAV_COLLISION_ACTION_MOVE_HORIZONTALLY,
 
-  /**
-   * Aircraft to move perpendicular to the collision's velocity vector
-   */
-  @MavlinkEntryInfo(4)
-  MAV_COLLISION_ACTION_MOVE_PERPENDICULAR,
+    /**
+     * Aircraft to move perpendicular to the collision's velocity vector<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(4)
+    MAV_COLLISION_ACTION_MOVE_PERPENDICULAR,
 
-  /**
-   * Aircraft to fly directly back to its launch point
-   */
-  @MavlinkEntryInfo(5)
-  MAV_COLLISION_ACTION_RTL,
+    /**
+     * Aircraft to fly directly back to its launch point<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(5)
+    MAV_COLLISION_ACTION_RTL,
 
-  /**
-   * Aircraft to stop in place
-   */
-  @MavlinkEntryInfo(6)
-  MAV_COLLISION_ACTION_HOVER
+    /**
+     * Aircraft to stop in place<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(6)
+    MAV_COLLISION_ACTION_HOVER
 }

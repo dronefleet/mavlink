@@ -21,339 +21,177 @@ import java.util.List;
  * vector. 
  */
 @MavlinkMessageInfo(
-    id = 242,
-    crc = 104
+        id = 242,
+        crc = 104
 )
 public final class HomePosition {
-  /**
-   * Latitude (WGS84), in degrees * 1E7 
-   */
-  private final int latitude;
+    /**
+     * Latitude (WGS84), in degrees * 1E7 
+     */
+    private final int latitude;
 
-  /**
-   * Longitude (WGS84, in degrees * 1E7 
-   */
-  private final int longitude;
+    /**
+     * Longitude (WGS84, in degrees * 1E7 
+     */
+    private final int longitude;
 
-  /**
-   * Altitude (AMSL), in meters * 1000 (positive for up) 
-   */
-  private final int altitude;
+    /**
+     * Altitude (AMSL), in meters * 1000 (positive for up) 
+     */
+    private final int altitude;
 
-  /**
-   * Local X position of this position in the local coordinate frame 
-   */
-  private final float x;
+    /**
+     * Local X position of this position in the local coordinate frame 
+     */
+    private final float x;
 
-  /**
-   * Local Y position of this position in the local coordinate frame 
-   */
-  private final float y;
+    /**
+     * Local Y position of this position in the local coordinate frame 
+     */
+    private final float y;
 
-  /**
-   * Local Z position of this position in the local coordinate frame 
-   */
-  private final float z;
+    /**
+     * Local Z position of this position in the local coordinate frame 
+     */
+    private final float z;
 
-  /**
-   * World to surface normal and heading transformation of the takeoff position. Used to indicate 
-   * the heading and slope of the ground 
-   */
-  private final List<Float> q;
+    /**
+     * World to surface normal and heading transformation of the takeoff position. Used to indicate 
+     * the heading and slope of the ground 
+     */
+    private final List<Float> q;
 
-  /**
-   * Local X position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  private final float approachX;
+    /**
+     * Local X position of the end of the approach vector. Multicopters should set this position based 
+     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+     */
+    private final float approachX;
 
-  /**
-   * Local Y position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  private final float approachY;
+    /**
+     * Local Y position of the end of the approach vector. Multicopters should set this position based 
+     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+     */
+    private final float approachY;
 
-  /**
-   * Local Z position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  private final float approachZ;
+    /**
+     * Local Z position of the end of the approach vector. Multicopters should set this position based 
+     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+     */
+    private final float approachZ;
 
-  /**
-   * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-   */
-  private final BigInteger timeUsec;
+    /**
+     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     */
+    private final BigInteger timeUsec;
 
-  private HomePosition(int latitude, int longitude, int altitude, float x, float y, float z,
-      List<Float> q, float approachX, float approachY, float approachZ, BigInteger timeUsec) {
-    this.latitude = latitude;
-    this.longitude = longitude;
-    this.altitude = altitude;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.q = q;
-    this.approachX = approachX;
-    this.approachY = approachY;
-    this.approachZ = approachZ;
-    this.timeUsec = timeUsec;
-  }
+    private HomePosition(int latitude, int longitude, int altitude, float x, float y, float z,
+            List<Float> q, float approachX, float approachY, float approachZ, BigInteger timeUsec) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitude = altitude;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.q = q;
+        this.approachX = approachX;
+        this.approachY = approachY;
+        this.approachZ = approachZ;
+        this.timeUsec = timeUsec;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "HomePosition{latitude=" + latitude
-         + ", longitude=" + longitude
-         + ", altitude=" + altitude
-         + ", x=" + x
-         + ", y=" + y
-         + ", z=" + z
-         + ", q=" + q
-         + ", approachX=" + approachX
-         + ", approachY=" + approachY
-         + ", approachZ=" + approachZ
-         + ", timeUsec=" + timeUsec + "}";
-  }
-
-  /**
-   * Latitude (WGS84), in degrees * 1E7 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final int latitude() {
-    return latitude;
-  }
-
-  /**
-   * Longitude (WGS84, in degrees * 1E7 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final int longitude() {
-    return longitude;
-  }
-
-  /**
-   * Altitude (AMSL), in meters * 1000 (positive for up) 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final int altitude() {
-    return altitude;
-  }
-
-  /**
-   * Local X position of this position in the local coordinate frame 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 4
-  )
-  public final float x() {
-    return x;
-  }
-
-  /**
-   * Local Y position of this position in the local coordinate frame 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 4
-  )
-  public final float y() {
-    return y;
-  }
-
-  /**
-   * Local Z position of this position in the local coordinate frame 
-   */
-  @MavlinkFieldInfo(
-      position = 6,
-      unitSize = 4
-  )
-  public final float z() {
-    return z;
-  }
-
-  /**
-   * World to surface normal and heading transformation of the takeoff position. Used to indicate 
-   * the heading and slope of the ground 
-   */
-  @MavlinkFieldInfo(
-      position = 7,
-      unitSize = 4,
-      arraySize = 4
-  )
-  public final List<Float> q() {
-    return q;
-  }
-
-  /**
-   * Local X position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  @MavlinkFieldInfo(
-      position = 8,
-      unitSize = 4
-  )
-  public final float approachX() {
-    return approachX;
-  }
-
-  /**
-   * Local Y position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  @MavlinkFieldInfo(
-      position = 9,
-      unitSize = 4
-  )
-  public final float approachY() {
-    return approachY;
-  }
-
-  /**
-   * Local Z position of the end of the approach vector. Multicopters should set this position based 
-   * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-   * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-   * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-   */
-  @MavlinkFieldInfo(
-      position = 10,
-      unitSize = 4
-  )
-  public final float approachZ() {
-    return approachZ;
-  }
-
-  /**
-   * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-   */
-  @MavlinkFieldInfo(
-      position = 12,
-      unitSize = 8,
-      extension = true
-  )
-  public final BigInteger timeUsec() {
-    return timeUsec;
-  }
-
-  public static class Builder {
-    private int latitude;
-
-    private int longitude;
-
-    private int altitude;
-
-    private float x;
-
-    private float y;
-
-    private float z;
-
-    private List<Float> q;
-
-    private float approachX;
-
-    private float approachY;
-
-    private float approachZ;
-
-    private BigInteger timeUsec;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "HomePosition{latitude=" + latitude
+                 + ", longitude=" + longitude
+                 + ", altitude=" + altitude
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", q=" + q
+                 + ", approachX=" + approachX
+                 + ", approachY=" + approachY
+                 + ", approachZ=" + approachZ
+                 + ", timeUsec=" + timeUsec + "}";
     }
 
     /**
      * Latitude (WGS84), in degrees * 1E7 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4,
+            signed = true
     )
-    public final Builder latitude(int latitude) {
-      this.latitude = latitude;
-      return this;
+    public final int latitude() {
+        return latitude;
     }
 
     /**
      * Longitude (WGS84, in degrees * 1E7 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4,
+            signed = true
     )
-    public final Builder longitude(int longitude) {
-      this.longitude = longitude;
-      return this;
+    public final int longitude() {
+        return longitude;
     }
 
     /**
      * Altitude (AMSL), in meters * 1000 (positive for up) 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4,
+            signed = true
     )
-    public final Builder altitude(int altitude) {
-      this.altitude = altitude;
-      return this;
+    public final int altitude() {
+        return altitude;
     }
 
     /**
      * Local X position of this position in the local coordinate frame 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 4
+            position = 4,
+            unitSize = 4
     )
-    public final Builder x(float x) {
-      this.x = x;
-      return this;
+    public final float x() {
+        return x;
     }
 
     /**
      * Local Y position of this position in the local coordinate frame 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 4
+            position = 5,
+            unitSize = 4
     )
-    public final Builder y(float y) {
-      this.y = y;
-      return this;
+    public final float y() {
+        return y;
     }
 
     /**
      * Local Z position of this position in the local coordinate frame 
      */
     @MavlinkFieldInfo(
-        position = 6,
-        unitSize = 4
+            position = 6,
+            unitSize = 4
     )
-    public final Builder z(float z) {
-      this.z = z;
-      return this;
+    public final float z() {
+        return z;
     }
 
     /**
@@ -361,13 +199,12 @@ public final class HomePosition {
      * the heading and slope of the ground 
      */
     @MavlinkFieldInfo(
-        position = 7,
-        unitSize = 4,
-        arraySize = 4
+            position = 7,
+            unitSize = 4,
+            arraySize = 4
     )
-    public final Builder q(List<Float> q) {
-      this.q = q;
-      return this;
+    public final List<Float> q() {
+        return q;
     }
 
     /**
@@ -377,12 +214,11 @@ public final class HomePosition {
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
     @MavlinkFieldInfo(
-        position = 8,
-        unitSize = 4
+            position = 8,
+            unitSize = 4
     )
-    public final Builder approachX(float approachX) {
-      this.approachX = approachX;
-      return this;
+    public final float approachX() {
+        return approachX;
     }
 
     /**
@@ -392,12 +228,11 @@ public final class HomePosition {
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
     @MavlinkFieldInfo(
-        position = 9,
-        unitSize = 4
+            position = 9,
+            unitSize = 4
     )
-    public final Builder approachY(float approachY) {
-      this.approachY = approachY;
-      return this;
+    public final float approachY() {
+        return approachY;
     }
 
     /**
@@ -407,29 +242,200 @@ public final class HomePosition {
      * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
      */
     @MavlinkFieldInfo(
-        position = 10,
-        unitSize = 4
+            position = 10,
+            unitSize = 4
     )
-    public final Builder approachZ(float approachZ) {
-      this.approachZ = approachZ;
-      return this;
+    public final float approachZ() {
+        return approachZ;
     }
 
     /**
      * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
      */
     @MavlinkFieldInfo(
-        position = 12,
-        unitSize = 8,
-        extension = true
+            position = 12,
+            unitSize = 8,
+            extension = true
     )
-    public final Builder timeUsec(BigInteger timeUsec) {
-      this.timeUsec = timeUsec;
-      return this;
+    public final BigInteger timeUsec() {
+        return timeUsec;
     }
 
-    public final HomePosition build() {
-      return new HomePosition(latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, timeUsec);
+    public static class Builder {
+        private int latitude;
+
+        private int longitude;
+
+        private int altitude;
+
+        private float x;
+
+        private float y;
+
+        private float z;
+
+        private List<Float> q;
+
+        private float approachX;
+
+        private float approachY;
+
+        private float approachZ;
+
+        private BigInteger timeUsec;
+
+        private Builder() {
+        }
+
+        /**
+         * Latitude (WGS84), in degrees * 1E7 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder latitude(int latitude) {
+            this.latitude = latitude;
+            return this;
+        }
+
+        /**
+         * Longitude (WGS84, in degrees * 1E7 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder longitude(int longitude) {
+            this.longitude = longitude;
+            return this;
+        }
+
+        /**
+         * Altitude (AMSL), in meters * 1000 (positive for up) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder altitude(int altitude) {
+            this.altitude = altitude;
+            return this;
+        }
+
+        /**
+         * Local X position of this position in the local coordinate frame 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 4
+        )
+        public final Builder x(float x) {
+            this.x = x;
+            return this;
+        }
+
+        /**
+         * Local Y position of this position in the local coordinate frame 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4
+        )
+        public final Builder y(float y) {
+            this.y = y;
+            return this;
+        }
+
+        /**
+         * Local Z position of this position in the local coordinate frame 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 4
+        )
+        public final Builder z(float z) {
+            this.z = z;
+            return this;
+        }
+
+        /**
+         * World to surface normal and heading transformation of the takeoff position. Used to indicate 
+         * the heading and slope of the ground 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 4,
+                arraySize = 4
+        )
+        public final Builder q(List<Float> q) {
+            this.q = q;
+            return this;
+        }
+
+        /**
+         * Local X position of the end of the approach vector. Multicopters should set this position based 
+         * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+         * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+         * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 4
+        )
+        public final Builder approachX(float approachX) {
+            this.approachX = approachX;
+            return this;
+        }
+
+        /**
+         * Local Y position of the end of the approach vector. Multicopters should set this position based 
+         * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+         * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+         * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 4
+        )
+        public final Builder approachY(float approachY) {
+            this.approachY = approachY;
+            return this;
+        }
+
+        /**
+         * Local Z position of the end of the approach vector. Multicopters should set this position based 
+         * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
+         * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
+         * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 4
+        )
+        public final Builder approachZ(float approachZ) {
+            this.approachZ = approachZ;
+            return this;
+        }
+
+        /**
+         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 8,
+                extension = true
+        )
+        public final Builder timeUsec(BigInteger timeUsec) {
+            this.timeUsec = timeUsec;
+            return this;
+        }
+
+        public final HomePosition build() {
+            return new HomePosition(latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, timeUsec);
+        }
     }
-  }
 }

@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum MavRemoteLogDataBlockStatuses {
-  /**
-   * This block has NOT been received
-   */
-  @MavlinkEntryInfo(0)
-  MAV_REMOTE_LOG_DATA_BLOCK_NACK,
+    /**
+     * This block has NOT been received<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    MAV_REMOTE_LOG_DATA_BLOCK_NACK,
 
-  /**
-   * This block has been received
-   */
-  @MavlinkEntryInfo(1)
-  MAV_REMOTE_LOG_DATA_BLOCK_ACK
+    /**
+     * This block has been received<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    MAV_REMOTE_LOG_DATA_BLOCK_ACK
 }

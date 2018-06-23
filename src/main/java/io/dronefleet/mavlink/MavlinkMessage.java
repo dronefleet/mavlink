@@ -1,6 +1,11 @@
 package io.dronefleet.mavlink;
 
 public class MavlinkMessage<T> {
+
+    public static <T> Class<MavlinkMessage<T>> ofGenericType(Class<T> type) {
+        return (Class<MavlinkMessage<T>>)(Class<?>)MavlinkMessage.class;
+    }
+
     private final int originSystemId;
     private final int originComponentId;
     private final T payload;
@@ -9,6 +14,12 @@ public class MavlinkMessage<T> {
         this.originSystemId = originSystemId;
         this.originComponentId = originComponentId;
         this.payload = payload;
+    }
+
+    private MavlinkMessage(Class<T> type) {
+        this.originSystemId = -1;
+        this.originComponentId = -1;
+        this.payload = null;
     }
 
     public int getOriginSystemId() {

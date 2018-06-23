@@ -11,124 +11,124 @@ import java.lang.String;
  * should be a {@link io.dronefleet.mavlink.paparazzi.ScriptItem ScriptItem} message. 
  */
 @MavlinkMessageInfo(
-    id = 181,
-    crc = 129
+        id = 181,
+        crc = 129
 )
 public final class ScriptRequest {
-  /**
-   * Sequence 
-   */
-  private final int seq;
+    /**
+     * Sequence 
+     */
+    private final int seq;
 
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  private ScriptRequest(int seq, int targetSystem, int targetComponent) {
-    this.seq = seq;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-  }
+    private ScriptRequest(int seq, int targetSystem, int targetComponent) {
+        this.seq = seq;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "ScriptRequest{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", seq=" + seq + "}";
-  }
-
-  /**
-   * Sequence 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 2
-  )
-  public final int seq() {
-    return seq;
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  public static class Builder {
-    private int seq;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "ScriptRequest{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", seq=" + seq + "}";
     }
 
     /**
      * Sequence 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 2
+            position = 3,
+            unitSize = 2
     )
-    public final Builder seq(int seq) {
-      this.seq = seq;
-      return this;
+    public final int seq() {
+        return seq;
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
-    public final ScriptRequest build() {
-      return new ScriptRequest(seq, targetSystem, targetComponent);
+    public static class Builder {
+        private int seq;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private Builder() {
+        }
+
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        public final ScriptRequest build() {
+            return new ScriptRequest(seq, targetSystem, targetComponent);
+        }
     }
-  }
 }

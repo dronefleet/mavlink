@@ -8,15 +8,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  */
 @MavlinkEnum
 public enum GoproCharging {
-  /**
-   * Charging disabled
-   */
-  @MavlinkEntryInfo(0)
-  GOPRO_CHARGING_DISABLED,
+    /**
+     * Charging disabled<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(0)
+    GOPRO_CHARGING_DISABLED,
 
-  /**
-   * Charging enabled
-   */
-  @MavlinkEntryInfo(1)
-  GOPRO_CHARGING_ENABLED
+    /**
+     * Charging enabled<dl>
+     *
+     * </dl>
+     */
+    @MavlinkEntryInfo(1)
+    GOPRO_CHARGING_ENABLED
 }

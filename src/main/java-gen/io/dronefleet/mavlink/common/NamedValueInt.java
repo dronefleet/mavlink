@@ -11,126 +11,128 @@ import java.lang.String;
  * a quite efficient way for testing new messages and getting experimental debug output. 
  */
 @MavlinkMessageInfo(
-    id = 252,
-    crc = 44
+        id = 252,
+        crc = 44
 )
 public final class NamedValueInt {
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  private final long timeBootMs;
+    /**
+     * Timestamp (milliseconds since system boot) 
+     */
+    private final long timeBootMs;
 
-  /**
-   * Signed integer value 
-   */
-  private final int value;
+    /**
+     * Signed integer value 
+     */
+    private final int value;
 
-  /**
-   * Name of the debug variable 
-   */
-  private final String name;
+    /**
+     * Name of the debug variable 
+     */
+    private final String name;
 
-  private NamedValueInt(long timeBootMs, int value, String name) {
-    this.timeBootMs = timeBootMs;
-    this.value = value;
-    this.name = name;
-  }
+    private NamedValueInt(long timeBootMs, int value, String name) {
+        this.timeBootMs = timeBootMs;
+        this.value = value;
+        this.name = name;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "NamedValueInt{timeBootMs=" + timeBootMs
-         + ", name=" + name
-         + ", value=" + value + "}";
-  }
-
-  /**
-   * Timestamp (milliseconds since system boot) 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final long timeBootMs() {
-    return timeBootMs;
-  }
-
-  /**
-   * Signed integer value 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final int value() {
-    return value;
-  }
-
-  /**
-   * Name of the debug variable 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1,
-      arraySize = 10
-  )
-  public final String name() {
-    return name;
-  }
-
-  public static class Builder {
-    private long timeBootMs;
-
-    private int value;
-
-    private String name;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "NamedValueInt{timeBootMs=" + timeBootMs
+                 + ", name=" + name
+                 + ", value=" + value + "}";
     }
 
     /**
      * Timestamp (milliseconds since system boot) 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder timeBootMs(long timeBootMs) {
-      this.timeBootMs = timeBootMs;
-      return this;
+    public final long timeBootMs() {
+        return timeBootMs;
     }
 
     /**
      * Signed integer value 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4,
+            signed = true
     )
-    public final Builder value(int value) {
-      this.value = value;
-      return this;
+    public final int value() {
+        return value;
     }
 
     /**
      * Name of the debug variable 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1,
-        arraySize = 10
+            position = 2,
+            unitSize = 1,
+            arraySize = 10
     )
-    public final Builder name(String name) {
-      this.name = name;
-      return this;
+    public final String name() {
+        return name;
     }
 
-    public final NamedValueInt build() {
-      return new NamedValueInt(timeBootMs, value, name);
+    public static class Builder {
+        private long timeBootMs;
+
+        private int value;
+
+        private String name;
+
+        private Builder() {
+        }
+
+        /**
+         * Timestamp (milliseconds since system boot) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder timeBootMs(long timeBootMs) {
+            this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * Signed integer value 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder value(int value) {
+            this.value = value;
+            return this;
+        }
+
+        /**
+         * Name of the debug variable 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1,
+                arraySize = 10
+        )
+        public final Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public final NamedValueInt build() {
+            return new NamedValueInt(timeBootMs, value, name);
+        }
     }
-  }
 }

@@ -11,189 +11,195 @@ import java.lang.String;
  * offsets 
  */
 @MavlinkMessageInfo(
-    id = 151,
-    crc = 219
+        id = 151,
+        crc = 219
 )
 public final class SetMagOffsets {
-  /**
-   * magnetometer X offset 
-   */
-  private final int magOfsX;
+    /**
+     * magnetometer X offset 
+     */
+    private final int magOfsX;
 
-  /**
-   * magnetometer Y offset 
-   */
-  private final int magOfsY;
+    /**
+     * magnetometer Y offset 
+     */
+    private final int magOfsY;
 
-  /**
-   * magnetometer Z offset 
-   */
-  private final int magOfsZ;
+    /**
+     * magnetometer Z offset 
+     */
+    private final int magOfsZ;
 
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  private SetMagOffsets(int magOfsX, int magOfsY, int magOfsZ, int targetSystem,
-      int targetComponent) {
-    this.magOfsX = magOfsX;
-    this.magOfsY = magOfsY;
-    this.magOfsZ = magOfsZ;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-  }
+    private SetMagOffsets(int magOfsX, int magOfsY, int magOfsZ, int targetSystem,
+            int targetComponent) {
+        this.magOfsX = magOfsX;
+        this.magOfsY = magOfsY;
+        this.magOfsZ = magOfsZ;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "SetMagOffsets{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", magOfsX=" + magOfsX
-         + ", magOfsY=" + magOfsY
-         + ", magOfsZ=" + magOfsZ + "}";
-  }
-
-  /**
-   * magnetometer X offset 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 2
-  )
-  public final int magOfsX() {
-    return magOfsX;
-  }
-
-  /**
-   * magnetometer Y offset 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 2
-  )
-  public final int magOfsY() {
-    return magOfsY;
-  }
-
-  /**
-   * magnetometer Z offset 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 2
-  )
-  public final int magOfsZ() {
-    return magOfsZ;
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  public static class Builder {
-    private int magOfsX;
-
-    private int magOfsY;
-
-    private int magOfsZ;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "SetMagOffsets{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", magOfsX=" + magOfsX
+                 + ", magOfsY=" + magOfsY
+                 + ", magOfsZ=" + magOfsZ + "}";
     }
 
     /**
      * magnetometer X offset 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 2
+            position = 3,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder magOfsX(int magOfsX) {
-      this.magOfsX = magOfsX;
-      return this;
+    public final int magOfsX() {
+        return magOfsX;
     }
 
     /**
      * magnetometer Y offset 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 2
+            position = 4,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder magOfsY(int magOfsY) {
-      this.magOfsY = magOfsY;
-      return this;
+    public final int magOfsY() {
+        return magOfsY;
     }
 
     /**
      * magnetometer Z offset 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 2
+            position = 5,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder magOfsZ(int magOfsZ) {
-      this.magOfsZ = magOfsZ;
-      return this;
+    public final int magOfsZ() {
+        return magOfsZ;
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
-    public final SetMagOffsets build() {
-      return new SetMagOffsets(magOfsX, magOfsY, magOfsZ, targetSystem, targetComponent);
+    public static class Builder {
+        private int magOfsX;
+
+        private int magOfsY;
+
+        private int magOfsZ;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private Builder() {
+        }
+
+        /**
+         * magnetometer X offset 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder magOfsX(int magOfsX) {
+            this.magOfsX = magOfsX;
+            return this;
+        }
+
+        /**
+         * magnetometer Y offset 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder magOfsY(int magOfsY) {
+            this.magOfsY = magOfsY;
+            return this;
+        }
+
+        /**
+         * magnetometer Z offset 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder magOfsZ(int magOfsZ) {
+            this.magOfsZ = magOfsZ;
+            return this;
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        public final SetMagOffsets build() {
+            return new SetMagOffsets(magOfsX, magOfsY, magOfsZ, targetSystem, targetComponent);
+        }
     }
-  }
 }

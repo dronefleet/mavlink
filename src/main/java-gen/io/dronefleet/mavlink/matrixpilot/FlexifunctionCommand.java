@@ -10,124 +10,124 @@ import java.lang.String;
  * Acknowldge sucess or failure of a flexifunction command 
  */
 @MavlinkMessageInfo(
-    id = 157,
-    crc = 133
+        id = 157,
+        crc = 133
 )
 public final class FlexifunctionCommand {
-  /**
-   * System ID 
-   */
-  private final int targetSystem;
+    /**
+     * System ID 
+     */
+    private final int targetSystem;
 
-  /**
-   * Component ID 
-   */
-  private final int targetComponent;
+    /**
+     * Component ID 
+     */
+    private final int targetComponent;
 
-  /**
-   * Flexifunction command type 
-   */
-  private final int commandType;
+    /**
+     * Flexifunction command type 
+     */
+    private final int commandType;
 
-  private FlexifunctionCommand(int targetSystem, int targetComponent, int commandType) {
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-    this.commandType = commandType;
-  }
+    private FlexifunctionCommand(int targetSystem, int targetComponent, int commandType) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.commandType = commandType;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "FlexifunctionCommand{targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent
-         + ", commandType=" + commandType + "}";
-  }
-
-  /**
-   * System ID 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * Component ID 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  /**
-   * Flexifunction command type 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 1
-  )
-  public final int commandType() {
-    return commandType;
-  }
-
-  public static class Builder {
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private int commandType;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "FlexifunctionCommand{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", commandType=" + commandType + "}";
     }
 
     /**
      * System ID 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 1
+            position = 1,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
      * Component ID 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 1
+            position = 2,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
     /**
      * Flexifunction command type 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 1
+            position = 3,
+            unitSize = 1
     )
-    public final Builder commandType(int commandType) {
-      this.commandType = commandType;
-      return this;
+    public final int commandType() {
+        return commandType;
     }
 
-    public final FlexifunctionCommand build() {
-      return new FlexifunctionCommand(targetSystem, targetComponent, commandType);
+    public static class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private int commandType;
+
+        private Builder() {
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Flexifunction command type 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder commandType(int commandType) {
+            this.commandType = commandType;
+            return this;
+        }
+
+        public final FlexifunctionCommand build() {
+            return new FlexifunctionCommand(targetSystem, targetComponent, commandType);
+        }
     }
-  }
 }

@@ -12,132 +12,72 @@ import java.math.BigInteger;
  * latencies, including serial port, radio modem and UDP connections. 
  */
 @MavlinkMessageInfo(
-    id = 4,
-    crc = 237
+        id = 4,
+        crc = 237
 )
 public final class Ping {
-  /**
-   * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
-   */
-  private final BigInteger timeUsec;
+    /**
+     * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
+     */
+    private final BigInteger timeUsec;
 
-  /**
-   * PING sequence 
-   */
-  private final long seq;
+    /**
+     * PING sequence 
+     */
+    private final long seq;
 
-  /**
-   * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
-   * number is the system id of the requesting system 
-   */
-  private final int targetSystem;
+    /**
+     * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
+     * number is the system id of the requesting system 
+     */
+    private final int targetSystem;
 
-  /**
-   * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
-   * number is the system id of the requesting system 
-   */
-  private final int targetComponent;
+    /**
+     * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
+     * number is the system id of the requesting system 
+     */
+    private final int targetComponent;
 
-  private Ping(BigInteger timeUsec, long seq, int targetSystem, int targetComponent) {
-    this.timeUsec = timeUsec;
-    this.seq = seq;
-    this.targetSystem = targetSystem;
-    this.targetComponent = targetComponent;
-  }
+    private Ping(BigInteger timeUsec, long seq, int targetSystem, int targetComponent) {
+        this.timeUsec = timeUsec;
+        this.seq = seq;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "Ping{timeUsec=" + timeUsec
-         + ", seq=" + seq
-         + ", targetSystem=" + targetSystem
-         + ", targetComponent=" + targetComponent + "}";
-  }
-
-  /**
-   * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 8
-  )
-  public final BigInteger timeUsec() {
-    return timeUsec;
-  }
-
-  /**
-   * PING sequence 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final long seq() {
-    return seq;
-  }
-
-  /**
-   * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
-   * number is the system id of the requesting system 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 1
-  )
-  public final int targetSystem() {
-    return targetSystem;
-  }
-
-  /**
-   * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
-   * number is the system id of the requesting system 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 1
-  )
-  public final int targetComponent() {
-    return targetComponent;
-  }
-
-  public static class Builder {
-    private BigInteger timeUsec;
-
-    private long seq;
-
-    private int targetSystem;
-
-    private int targetComponent;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "Ping{timeUsec=" + timeUsec
+                 + ", seq=" + seq
+                 + ", targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent + "}";
     }
 
     /**
      * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 8
+            position = 1,
+            unitSize = 8
     )
-    public final Builder timeUsec(BigInteger timeUsec) {
-      this.timeUsec = timeUsec;
-      return this;
+    public final BigInteger timeUsec() {
+        return timeUsec;
     }
 
     /**
      * PING sequence 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder seq(long seq) {
-      this.seq = seq;
-      return this;
+    public final long seq() {
+        return seq;
     }
 
     /**
@@ -145,12 +85,11 @@ public final class Ping {
      * number is the system id of the requesting system 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 1
+            position = 3,
+            unitSize = 1
     )
-    public final Builder targetSystem(int targetSystem) {
-      this.targetSystem = targetSystem;
-      return this;
+    public final int targetSystem() {
+        return targetSystem;
     }
 
     /**
@@ -158,16 +97,77 @@ public final class Ping {
      * number is the system id of the requesting system 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 1
+            position = 4,
+            unitSize = 1
     )
-    public final Builder targetComponent(int targetComponent) {
-      this.targetComponent = targetComponent;
-      return this;
+    public final int targetComponent() {
+        return targetComponent;
     }
 
-    public final Ping build() {
-      return new Ping(timeUsec, seq, targetSystem, targetComponent);
+    public static class Builder {
+        private BigInteger timeUsec;
+
+        private long seq;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private Builder() {
+        }
+
+        /**
+         * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 8
+        )
+        public final Builder timeUsec(BigInteger timeUsec) {
+            this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * PING sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder seq(long seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        /**
+         * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
+         * number is the system id of the requesting system 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
+         * number is the system id of the requesting system 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        public final Ping build() {
+            return new Ping(timeUsec, seq, targetSystem, targetComponent);
+        }
     }
-  }
 }

@@ -21,300 +21,122 @@ import java.lang.String;
  * emergency after a certain timeout. 
  */
 @MavlinkMessageInfo(
-    id = 1,
-    crc = 124
+        id = 1,
+        crc = 124
 )
 public final class SysStatus {
-  /**
-   * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
-   * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
+    /**
+     * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
+     * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+     */
+    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
 
-  /**
-   * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
-   * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
+    /**
+     * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+     * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+     */
+    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
 
-  /**
-   * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
-   * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
+    /**
+     * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
+     * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+     */
+    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
 
-  /**
-   * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
-   */
-  private final int load;
+    /**
+     * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
+     */
+    private final int load;
 
-  /**
-   * Battery voltage, in millivolts (1 = 1 millivolt) 
-   */
-  private final int voltageBattery;
+    /**
+     * Battery voltage, in millivolts (1 = 1 millivolt) 
+     */
+    private final int voltageBattery;
 
-  /**
-   * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
-   * current 
-   */
-  private final int currentBattery;
+    /**
+     * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
+     * current 
+     */
+    private final int currentBattery;
 
-  /**
-   * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
-   * on all links (packets that were corrupted on reception on the MAV) 
-   */
-  private final int dropRateComm;
+    /**
+     * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
+     * on all links (packets that were corrupted on reception on the MAV) 
+     */
+    private final int dropRateComm;
 
-  /**
-   * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
-   * corrupted on reception on the MAV) 
-   */
-  private final int errorsComm;
+    /**
+     * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
+     * corrupted on reception on the MAV) 
+     */
+    private final int errorsComm;
 
-  /**
-   * Autopilot-specific errors 
-   */
-  private final int errorsCount1;
+    /**
+     * Autopilot-specific errors 
+     */
+    private final int errorsCount1;
 
-  /**
-   * Autopilot-specific errors 
-   */
-  private final int errorsCount2;
+    /**
+     * Autopilot-specific errors 
+     */
+    private final int errorsCount2;
 
-  /**
-   * Autopilot-specific errors 
-   */
-  private final int errorsCount3;
+    /**
+     * Autopilot-specific errors 
+     */
+    private final int errorsCount3;
 
-  /**
-   * Autopilot-specific errors 
-   */
-  private final int errorsCount4;
+    /**
+     * Autopilot-specific errors 
+     */
+    private final int errorsCount4;
 
-  /**
-   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
-   */
-  private final int batteryRemaining;
+    /**
+     * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
+     */
+    private final int batteryRemaining;
 
-  private SysStatus(EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent,
-      EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled,
-      EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth, int load, int voltageBattery,
-      int currentBattery, int dropRateComm, int errorsComm, int errorsCount1, int errorsCount2,
-      int errorsCount3, int errorsCount4, int batteryRemaining) {
-    this.onboardControlSensorsPresent = onboardControlSensorsPresent;
-    this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
-    this.onboardControlSensorsHealth = onboardControlSensorsHealth;
-    this.load = load;
-    this.voltageBattery = voltageBattery;
-    this.currentBattery = currentBattery;
-    this.dropRateComm = dropRateComm;
-    this.errorsComm = errorsComm;
-    this.errorsCount1 = errorsCount1;
-    this.errorsCount2 = errorsCount2;
-    this.errorsCount3 = errorsCount3;
-    this.errorsCount4 = errorsCount4;
-    this.batteryRemaining = batteryRemaining;
-  }
+    private SysStatus(EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent,
+            EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled,
+            EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth, int load,
+            int voltageBattery, int currentBattery, int dropRateComm, int errorsComm,
+            int errorsCount1, int errorsCount2, int errorsCount3, int errorsCount4,
+            int batteryRemaining) {
+        this.onboardControlSensorsPresent = onboardControlSensorsPresent;
+        this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
+        this.onboardControlSensorsHealth = onboardControlSensorsHealth;
+        this.load = load;
+        this.voltageBattery = voltageBattery;
+        this.currentBattery = currentBattery;
+        this.dropRateComm = dropRateComm;
+        this.errorsComm = errorsComm;
+        this.errorsCount1 = errorsCount1;
+        this.errorsCount2 = errorsCount2;
+        this.errorsCount3 = errorsCount3;
+        this.errorsCount4 = errorsCount4;
+        this.batteryRemaining = batteryRemaining;
+    }
 
-  @MavlinkMessageBuilder
-  public static Builder builder() {
-    return new Builder();
-  }
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  @Override
-  public String toString() {
-    return "SysStatus{onboardControlSensorsPresent=" + onboardControlSensorsPresent
-         + ", onboardControlSensorsEnabled=" + onboardControlSensorsEnabled
-         + ", onboardControlSensorsHealth=" + onboardControlSensorsHealth
-         + ", load=" + load
-         + ", voltageBattery=" + voltageBattery
-         + ", currentBattery=" + currentBattery
-         + ", batteryRemaining=" + batteryRemaining
-         + ", dropRateComm=" + dropRateComm
-         + ", errorsComm=" + errorsComm
-         + ", errorsCount1=" + errorsCount1
-         + ", errorsCount2=" + errorsCount2
-         + ", errorsCount3=" + errorsCount3
-         + ", errorsCount4=" + errorsCount4 + "}";
-  }
-
-  /**
-   * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
-   * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  @MavlinkFieldInfo(
-      position = 1,
-      unitSize = 4
-  )
-  public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent() {
-    return onboardControlSensorsPresent;
-  }
-
-  /**
-   * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
-   * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  @MavlinkFieldInfo(
-      position = 2,
-      unitSize = 4
-  )
-  public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled() {
-    return onboardControlSensorsEnabled;
-  }
-
-  /**
-   * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
-   * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
-   */
-  @MavlinkFieldInfo(
-      position = 3,
-      unitSize = 4
-  )
-  public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth() {
-    return onboardControlSensorsHealth;
-  }
-
-  /**
-   * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
-   */
-  @MavlinkFieldInfo(
-      position = 4,
-      unitSize = 2
-  )
-  public final int load() {
-    return load;
-  }
-
-  /**
-   * Battery voltage, in millivolts (1 = 1 millivolt) 
-   */
-  @MavlinkFieldInfo(
-      position = 5,
-      unitSize = 2
-  )
-  public final int voltageBattery() {
-    return voltageBattery;
-  }
-
-  /**
-   * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
-   * current 
-   */
-  @MavlinkFieldInfo(
-      position = 6,
-      unitSize = 2
-  )
-  public final int currentBattery() {
-    return currentBattery;
-  }
-
-  /**
-   * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
-   * on all links (packets that were corrupted on reception on the MAV) 
-   */
-  @MavlinkFieldInfo(
-      position = 8,
-      unitSize = 2
-  )
-  public final int dropRateComm() {
-    return dropRateComm;
-  }
-
-  /**
-   * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
-   * corrupted on reception on the MAV) 
-   */
-  @MavlinkFieldInfo(
-      position = 9,
-      unitSize = 2
-  )
-  public final int errorsComm() {
-    return errorsComm;
-  }
-
-  /**
-   * Autopilot-specific errors 
-   */
-  @MavlinkFieldInfo(
-      position = 10,
-      unitSize = 2
-  )
-  public final int errorsCount1() {
-    return errorsCount1;
-  }
-
-  /**
-   * Autopilot-specific errors 
-   */
-  @MavlinkFieldInfo(
-      position = 11,
-      unitSize = 2
-  )
-  public final int errorsCount2() {
-    return errorsCount2;
-  }
-
-  /**
-   * Autopilot-specific errors 
-   */
-  @MavlinkFieldInfo(
-      position = 12,
-      unitSize = 2
-  )
-  public final int errorsCount3() {
-    return errorsCount3;
-  }
-
-  /**
-   * Autopilot-specific errors 
-   */
-  @MavlinkFieldInfo(
-      position = 13,
-      unitSize = 2
-  )
-  public final int errorsCount4() {
-    return errorsCount4;
-  }
-
-  /**
-   * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
-   */
-  @MavlinkFieldInfo(
-      position = 7,
-      unitSize = 1
-  )
-  public final int batteryRemaining() {
-    return batteryRemaining;
-  }
-
-  public static class Builder {
-    private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
-
-    private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
-
-    private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
-
-    private int load;
-
-    private int voltageBattery;
-
-    private int currentBattery;
-
-    private int dropRateComm;
-
-    private int errorsComm;
-
-    private int errorsCount1;
-
-    private int errorsCount2;
-
-    private int errorsCount3;
-
-    private int errorsCount4;
-
-    private int batteryRemaining;
-
-    private Builder() {
+    @Override
+    public String toString() {
+        return "SysStatus{onboardControlSensorsPresent=" + onboardControlSensorsPresent
+                 + ", onboardControlSensorsEnabled=" + onboardControlSensorsEnabled
+                 + ", onboardControlSensorsHealth=" + onboardControlSensorsHealth
+                 + ", load=" + load
+                 + ", voltageBattery=" + voltageBattery
+                 + ", currentBattery=" + currentBattery
+                 + ", batteryRemaining=" + batteryRemaining
+                 + ", dropRateComm=" + dropRateComm
+                 + ", errorsComm=" + errorsComm
+                 + ", errorsCount1=" + errorsCount1
+                 + ", errorsCount2=" + errorsCount2
+                 + ", errorsCount3=" + errorsCount3
+                 + ", errorsCount4=" + errorsCount4 + "}";
     }
 
     /**
@@ -322,13 +144,11 @@ public final class SysStatus {
      * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
     @MavlinkFieldInfo(
-        position = 1,
-        unitSize = 4
+            position = 1,
+            unitSize = 4
     )
-    public final Builder onboardControlSensorsPresent(
-        EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent) {
-      this.onboardControlSensorsPresent = onboardControlSensorsPresent;
-      return this;
+    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent() {
+        return onboardControlSensorsPresent;
     }
 
     /**
@@ -336,13 +156,11 @@ public final class SysStatus {
      * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
     @MavlinkFieldInfo(
-        position = 2,
-        unitSize = 4
+            position = 2,
+            unitSize = 4
     )
-    public final Builder onboardControlSensorsEnabled(
-        EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled) {
-      this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
-      return this;
+    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled() {
+        return onboardControlSensorsEnabled;
     }
 
     /**
@@ -350,37 +168,33 @@ public final class SysStatus {
      * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
      */
     @MavlinkFieldInfo(
-        position = 3,
-        unitSize = 4
+            position = 3,
+            unitSize = 4
     )
-    public final Builder onboardControlSensorsHealth(
-        EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth) {
-      this.onboardControlSensorsHealth = onboardControlSensorsHealth;
-      return this;
+    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth() {
+        return onboardControlSensorsHealth;
     }
 
     /**
      * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
      */
     @MavlinkFieldInfo(
-        position = 4,
-        unitSize = 2
+            position = 4,
+            unitSize = 2
     )
-    public final Builder load(int load) {
-      this.load = load;
-      return this;
+    public final int load() {
+        return load;
     }
 
     /**
      * Battery voltage, in millivolts (1 = 1 millivolt) 
      */
     @MavlinkFieldInfo(
-        position = 5,
-        unitSize = 2
+            position = 5,
+            unitSize = 2
     )
-    public final Builder voltageBattery(int voltageBattery) {
-      this.voltageBattery = voltageBattery;
-      return this;
+    public final int voltageBattery() {
+        return voltageBattery;
     }
 
     /**
@@ -388,12 +202,12 @@ public final class SysStatus {
      * current 
      */
     @MavlinkFieldInfo(
-        position = 6,
-        unitSize = 2
+            position = 6,
+            unitSize = 2,
+            signed = true
     )
-    public final Builder currentBattery(int currentBattery) {
-      this.currentBattery = currentBattery;
-      return this;
+    public final int currentBattery() {
+        return currentBattery;
     }
 
     /**
@@ -401,12 +215,11 @@ public final class SysStatus {
      * on all links (packets that were corrupted on reception on the MAV) 
      */
     @MavlinkFieldInfo(
-        position = 8,
-        unitSize = 2
+            position = 8,
+            unitSize = 2
     )
-    public final Builder dropRateComm(int dropRateComm) {
-      this.dropRateComm = dropRateComm;
-      return this;
+    public final int dropRateComm() {
+        return dropRateComm;
     }
 
     /**
@@ -414,76 +227,268 @@ public final class SysStatus {
      * corrupted on reception on the MAV) 
      */
     @MavlinkFieldInfo(
-        position = 9,
-        unitSize = 2
+            position = 9,
+            unitSize = 2
     )
-    public final Builder errorsComm(int errorsComm) {
-      this.errorsComm = errorsComm;
-      return this;
+    public final int errorsComm() {
+        return errorsComm;
     }
 
     /**
      * Autopilot-specific errors 
      */
     @MavlinkFieldInfo(
-        position = 10,
-        unitSize = 2
+            position = 10,
+            unitSize = 2
     )
-    public final Builder errorsCount1(int errorsCount1) {
-      this.errorsCount1 = errorsCount1;
-      return this;
+    public final int errorsCount1() {
+        return errorsCount1;
     }
 
     /**
      * Autopilot-specific errors 
      */
     @MavlinkFieldInfo(
-        position = 11,
-        unitSize = 2
+            position = 11,
+            unitSize = 2
     )
-    public final Builder errorsCount2(int errorsCount2) {
-      this.errorsCount2 = errorsCount2;
-      return this;
+    public final int errorsCount2() {
+        return errorsCount2;
     }
 
     /**
      * Autopilot-specific errors 
      */
     @MavlinkFieldInfo(
-        position = 12,
-        unitSize = 2
+            position = 12,
+            unitSize = 2
     )
-    public final Builder errorsCount3(int errorsCount3) {
-      this.errorsCount3 = errorsCount3;
-      return this;
+    public final int errorsCount3() {
+        return errorsCount3;
     }
 
     /**
      * Autopilot-specific errors 
      */
     @MavlinkFieldInfo(
-        position = 13,
-        unitSize = 2
+            position = 13,
+            unitSize = 2
     )
-    public final Builder errorsCount4(int errorsCount4) {
-      this.errorsCount4 = errorsCount4;
-      return this;
+    public final int errorsCount4() {
+        return errorsCount4;
     }
 
     /**
      * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
      */
     @MavlinkFieldInfo(
-        position = 7,
-        unitSize = 1
+            position = 7,
+            unitSize = 1,
+            signed = true
     )
-    public final Builder batteryRemaining(int batteryRemaining) {
-      this.batteryRemaining = batteryRemaining;
-      return this;
+    public final int batteryRemaining() {
+        return batteryRemaining;
     }
 
-    public final SysStatus build() {
-      return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4, batteryRemaining);
+    public static class Builder {
+        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
+
+        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
+
+        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
+
+        private int load;
+
+        private int voltageBattery;
+
+        private int currentBattery;
+
+        private int dropRateComm;
+
+        private int errorsComm;
+
+        private int errorsCount1;
+
+        private int errorsCount2;
+
+        private int errorsCount3;
+
+        private int errorsCount4;
+
+        private int batteryRemaining;
+
+        private Builder() {
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder onboardControlSensorsPresent(
+                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent) {
+            this.onboardControlSensorsPresent = onboardControlSensorsPresent;
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 4
+        )
+        public final Builder onboardControlSensorsEnabled(
+                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled) {
+            this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
+         * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MavSysStatusSensor} 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder onboardControlSensorsHealth(
+                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth) {
+            this.onboardControlSensorsHealth = onboardControlSensorsHealth;
+            return this;
+        }
+
+        /**
+         * Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2
+        )
+        public final Builder load(int load) {
+            this.load = load;
+            return this;
+        }
+
+        /**
+         * Battery voltage, in millivolts (1 = 1 millivolt) 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2
+        )
+        public final Builder voltageBattery(int voltageBattery) {
+            this.voltageBattery = voltageBattery;
+            return this;
+        }
+
+        /**
+         * Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the 
+         * current 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder currentBattery(int currentBattery) {
+            this.currentBattery = currentBattery;
+            return this;
+        }
+
+        /**
+         * Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets 
+         * on all links (packets that were corrupted on reception on the MAV) 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 2
+        )
+        public final Builder dropRateComm(int dropRateComm) {
+            this.dropRateComm = dropRateComm;
+            return this;
+        }
+
+        /**
+         * Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were 
+         * corrupted on reception on the MAV) 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 2
+        )
+        public final Builder errorsComm(int errorsComm) {
+            this.errorsComm = errorsComm;
+            return this;
+        }
+
+        /**
+         * Autopilot-specific errors 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 2
+        )
+        public final Builder errorsCount1(int errorsCount1) {
+            this.errorsCount1 = errorsCount1;
+            return this;
+        }
+
+        /**
+         * Autopilot-specific errors 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 2
+        )
+        public final Builder errorsCount2(int errorsCount2) {
+            this.errorsCount2 = errorsCount2;
+            return this;
+        }
+
+        /**
+         * Autopilot-specific errors 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 2
+        )
+        public final Builder errorsCount3(int errorsCount3) {
+            this.errorsCount3 = errorsCount3;
+            return this;
+        }
+
+        /**
+         * Autopilot-specific errors 
+         */
+        @MavlinkFieldInfo(
+                position = 13,
+                unitSize = 2
+        )
+        public final Builder errorsCount4(int errorsCount4) {
+            this.errorsCount4 = errorsCount4;
+            return this;
+        }
+
+        /**
+         * Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 1,
+                signed = true
+        )
+        public final Builder batteryRemaining(int batteryRemaining) {
+            this.batteryRemaining = batteryRemaining;
+            return this;
+        }
+
+        public final SysStatus build() {
+            return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4, batteryRemaining);
+        }
     }
-  }
 }
