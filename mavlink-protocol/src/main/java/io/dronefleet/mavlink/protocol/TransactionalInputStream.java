@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 
-public class TransactionalInputStream extends PushbackInputStream {
+class TransactionalInputStream extends PushbackInputStream {
 
     private final byte[] buffer;
     private int cbuffer;
 
-    public TransactionalInputStream(InputStream in, int bufferSize) {
+    TransactionalInputStream(InputStream in, int bufferSize) {
         super(in, bufferSize);
         buffer = new byte[bufferSize];
         cbuffer = 0;
@@ -24,18 +24,18 @@ public class TransactionalInputStream extends PushbackInputStream {
         return c;
     }
 
-    public void rollback() throws IOException {
+    void rollback() throws IOException {
         super.unread(buffer, 0, cbuffer);
     }
 
-    public boolean advance(int bytes) throws IOException {
+    boolean advance(int bytes) throws IOException {
         for (int i = 0; i < bytes; i++) {
             if (read() == -1) return false;
         }
         return true;
     }
 
-    public void commit() {
+    void commit() {
         cbuffer = 0;
     }
 

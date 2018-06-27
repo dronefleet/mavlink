@@ -1,18 +1,15 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialects;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
-import java.lang.Object;
 import java.lang.Override;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class ArdupilotmegaDialect implements MavlinkDialect<ArdupilotmegaVehicle> {
+public final class ArdupilotmegaDialect implements MavlinkDialect {
     private static final Set<MavlinkDialect> dependencies;
 
     static {
@@ -21,12 +18,6 @@ public final class ArdupilotmegaDialect implements MavlinkDialect<ArdupilotmegaV
                 MavlinkDialects.UAVIONIX,
                 MavlinkDialects.ICAROUS)
                 .collect(Collectors.toSet());
-    }
-
-    @Override
-    public final ArdupilotmegaVehicle newVehicle(int systemId, EventSource<Object> incoming,
-            EventEmitter<Object> outgoing) {
-        return new ArdupilotmegaVehicle.Impl(systemId, incoming, outgoing);
     }
 
     @Override

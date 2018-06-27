@@ -31,23 +31,23 @@ class ByteArray {
         putLong(value, offset, 3);
     }
 
-    public byte[] slice(int offset, int length) {
-        byte[] value = new byte[length];
-        System.arraycopy(bytes, offset, value, 0, length);
+    public byte[] slice(int offset, int size) {
+        byte[] value = new byte[size];
+        System.arraycopy(bytes, offset, value, 0, size);
         return value;
     }
 
-    public long getLong(int offset, int length) {
+    public long getLong(int offset, int size) {
         long value = 0;
-        for (int i = offset; i < offset + length; i++) {
-            value = (value << 8) | (bytes[i] & 0xff);
+        for (int i = 0; i < size; i++) {
+            value |= (bytes[offset+i] & 0xff) << (i * Byte.SIZE);
         }
         return value;
     }
 
-    public void putLong(long value, int offset, int length) {
-        for (int i = offset; i < offset + length; i++) {
-            bytes[i] = (byte)((value >> (8 * ((length+offset) - 1 - i))) & 0xff);
+    public void putLong(long value, int offset, int size) {
+        for (int i = 0; i < size; i++) {
+            bytes[offset+i] = (byte)((value >> (i * Byte.SIZE)) & 0xFF);
         }
     }
 

@@ -31,12 +31,6 @@ public class CrcX25 {
     }
 
     public int get() {
-        return crc;
-    }
-
-    public int checksum() {
-        int a = crc & 0xff00;
-        int b = crc & 0x00ff;
-        return (a >> 8) | (b << 8);
+        return crc & 0xffff;
     }
 }

@@ -1,30 +1,21 @@
 package io.dronefleet.mavlink.slugs;
 
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialects;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
-import java.lang.Object;
 import java.lang.Override;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class SlugsDialect implements MavlinkDialect<SlugsVehicle> {
+public final class SlugsDialect implements MavlinkDialect {
     private static final Set<MavlinkDialect> dependencies;
 
     static {
         dependencies = Stream.of(
                 MavlinkDialects.COMMON)
                 .collect(Collectors.toSet());
-    }
-
-    @Override
-    public final SlugsVehicle newVehicle(int systemId, EventSource<Object> incoming,
-            EventEmitter<Object> outgoing) {
-        return new SlugsVehicle.Impl(systemId, incoming, outgoing);
     }
 
     @Override

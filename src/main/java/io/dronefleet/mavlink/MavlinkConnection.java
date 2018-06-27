@@ -1,8 +1,5 @@
 package io.dronefleet.mavlink;
 
-import com.benbarkay.events.EventBus;
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.Heartbeat;
 import io.dronefleet.mavlink.common.MavAutopilot;
@@ -13,33 +10,13 @@ import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
-public class MavlinkConnection implements Runnable {
-
-    private static final int HEARTBEAT_MESSAGE_ID;
-    private static final int HEARTBEAT_CRC;
-
-    static {
-        if (Heartbeat.class.isAnnotationPresent(MavlinkMessageInfo.class)) {
-            MavlinkMessageInfo info = Heartbeat.class.getAnnotation(MavlinkMessageInfo.class);
-            HEARTBEAT_MESSAGE_ID = info.id();
-            HEARTBEAT_CRC = info.crc();
-        } else {
-            throw new IllegalStateException(Heartbeat.class.getName() + " is not annotated with @MavlinkMessageInfo");
-        }
-    }
-
-    private final Lock runLock;
-    private final EventBus<MavlinkMessage> recvQueue;
-    private final EventBus<MavlinkMessage> sendQueue;
-    private final EventBus<Void> disconnected;
+public class MavlinkConnection {
 
     private final Map<Integer, MavlinkDialect> systemDialects;
     private int sequence;
@@ -55,86 +32,67 @@ public class MavlinkConnection implements Runnable {
             OutputStream out,
             Map<MavAutopilot, MavlinkDialect> dialects,
             MavlinkPayloadDeserializer deserializer,
-            MavlinkPayloadSerializer serializer,
-            Executor executor) {
+            MavlinkPayloadSerializer serializer) {
         this.reader = reader;
         this.out = out;
         this.dialects = dialects;
         this.deserializer = deserializer;
         this.serializer = serializer;
-        runLock = new ReentrantLock();
-        recvQueue = EventBus.create(executor);
-        sendQueue = EventBus.create(executor);
-        disconnected = EventBus.create(recvQueue.executor());
         systemDialects = new HashMap<>();
-
-        sendQueue.map(this::createPacket)
-                .error(Throwable::printStackTrace)
-                .consume(this::send);
     }
 
-    @Override
-    public void run() {
-        if (!runLock.tryLock()) {
-            throw new IllegalStateException(getClass().getSimpleName() + " instances may only be run once");
-        }
-        try {
-            while (reader.next()) {
-                MavlinkPacket packet = reader.packet();
+    public MavlinkMessage next() throws IOException {
+        while (reader.next()) {
+            MavlinkPacket packet = reader.packet();
 
-                Object payload;
+            // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
+            // or we don't support the dialect of its autopilot, then we use the common dialect.
+            MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), MavlinkDialects.COMMON);
 
-                if (packet.getMessageId() == HEARTBEAT_MESSAGE_ID) {
-                    if (!packet.validate(HEARTBEAT_CRC)) {
-                        reader.drop();
-                        continue;
-                    }
-
-                    Heartbeat heartbeat = deserializer.deserialize(packet.getPayload(), Heartbeat.class);
-                    systemDialects.put(
-                            packet.getSystemId(),
-                            dialects.get(heartbeat.autopilot()));
-
-                    payload = heartbeat;
-
-                } else {
-                    if (!systemDialects.containsKey(packet.getSystemId())) {
-                        System.err.println("No dialect for system ID " + packet.getSystemId() + ", skipping packet with message ID " + packet.getMessageId());
-                        continue;
-                    }
-                    MavlinkDialect dialect = systemDialects.get(packet.getSystemId());
-
-                    if (!dialect.supports(packet.getMessageId())) {
-                        System.err.println("Dialect " + dialect.getClass().getSimpleName() + " does not support a message with ID " + packet.getMessageId() + ".");
-                        continue;
-                    }
-
-                    Class<?> messageType = dialect.resolve(packet.getMessageId());
-                    MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
-
-                    if (!packet.validate(messageInfo.crc())) {
-                        reader.drop();
-                        System.err.println("Packet dropped");
-                        continue;
-                    }
-
-                    payload = deserializer.deserialize(packet.getPayload(), messageType);
-                }
-
-                //noinspection unchecked
-                recvQueue.emit(new MavlinkMessage(
-                        packet.getSystemId(),
-                        packet.getComponentId(),
-                        payload));
+            // If the packet is not supported by the dialect, then we drop the packet and continue.
+            // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates
+            // information from underlying implementations that use the message protocol, we are unable to
+            // check if the packet is actually a valid one, despite not understanding it.
+            // So we have to assume that we might have received a corrupted packet, and instead, try again
+            // the at next byte rather than skipping the entire message. This means that if the message was
+            // actually valid, but simply not understood, we are going to spend N iterations for nothing for
+            // each packet, where N is the amount of bytes per packet.
+            // In other words, for the best performance, don't talk to MAVs who's dialects you do not support.
+            if (!dialect.supports(packet.getMessageId())) {
+                reader.drop();
+                continue;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            disconnected.emit(null);
+
+            Class<?> messageType = dialect.resolve(packet.getMessageId());
+            MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
+
+            if (!packet.validate(messageInfo.crc())) {
+                reader.drop();
+                continue;
+            }
+
+            Object payload = deserializer.deserialize(packet.getPayload(), messageType);
+
+            // If we received a Heartbeat message, then we can use that in order to update the dialect
+            // for this system.
+            if (payload instanceof Heartbeat) {
+                Heartbeat heartbeat = (Heartbeat) payload;
+                if (dialects.containsKey(heartbeat.autopilot())) {
+                    systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot()));
+                }
+            }
+
+            //noinspection unchecked
+            return new MavlinkMessage(
+                    packet.getSystemId(),
+                    packet.getComponentId(),
+                    payload);
         }
+
+        throw new EOFException("End of stream");
     }
 
-    private MavlinkPacket createPacket(MavlinkMessage message) {
+    public void send(MavlinkMessage message) {
         Object payload = message.getPayload();
         Class<?> payloadType = payload.getClass();
 
@@ -143,32 +101,45 @@ public class MavlinkConnection implements Runnable {
         }
 
         MavlinkMessageInfo messageInfo = payloadType.getAnnotation(MavlinkMessageInfo.class);
-        return MavlinkPacket.create(
-                sequence++,
-                message.getOriginSystemId(),
-                message.getOriginComponentId(),
-                messageInfo.id(),
-                messageInfo.crc(),
-                serializer.serialize(message.getPayload()));
+        byte[] serializedPayload = serializer.serialize(message.getPayload());
+
+        MavlinkPacket packet;
+        if (message instanceof Mavlink2Message) {
+            Mavlink2Message message2 = (Mavlink2Message) message;
+            packet = MavlinkPacket.create(
+                    message2.getIncompatibleFlags(),
+                    message2.getCompatibleFlags(),
+                    sequence++,
+                    message2.getOriginSystemId(),
+                    message2.getOriginComponentId(),
+                    messageInfo.id(),
+                    message2.getTargetSystemId(),
+                    message2.getTargetComponentId(),
+                    messageInfo.crc(),
+                    serializedPayload,
+                    message2.getSignature());
+        } else {
+            packet = MavlinkPacket.create(
+                    sequence++,
+                    message.getOriginSystemId(),
+                    message.getOriginComponentId(),
+                    messageInfo.id(),
+                    messageInfo.crc(),
+                    serializedPayload);
+        }
+
+        send(packet);
     }
 
-    private void send(MavlinkPacket packet) {
+    public MavlinkDialect getDialect(int systemId) {
+        return systemDialects.get(systemId);
+    }
+
+    private synchronized void send(MavlinkPacket packet) {
         try {
             out.write(packet.getRawBytes());
         } catch (IOException e) {
             throw new MavlinkException(e);
         }
-    }
-
-    public EventEmitter<MavlinkMessage> outgoing() {
-        return sendQueue;
-    }
-
-    public EventSource<MavlinkMessage> incoming() {
-        return recvQueue;
-    }
-
-    public EventSource<Void> disconnected() {
-        return disconnected;
     }
 }

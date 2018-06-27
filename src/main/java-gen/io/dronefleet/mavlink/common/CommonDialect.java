@@ -1,26 +1,17 @@
 package io.dronefleet.mavlink.common;
 
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.MavlinkDialect;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
-import java.lang.Object;
 import java.lang.Override;
 import java.util.Collections;
 import java.util.Set;
 
-public final class CommonDialect implements MavlinkDialect<CommonVehicle> {
+public final class CommonDialect implements MavlinkDialect {
     private static final Set<MavlinkDialect> dependencies;
 
     static {
         dependencies = Collections.emptySet();
-    }
-
-    @Override
-    public final CommonVehicle newVehicle(int systemId, EventSource<Object> incoming,
-            EventEmitter<Object> outgoing) {
-        return new CommonVehicle.Impl(systemId, incoming, outgoing);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package io.dronefleet.mavlink;
 
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.ardupilotmega.ArdupilotmegaDialect;
 import io.dronefleet.mavlink.asluav.AsluavDialect;
 import io.dronefleet.mavlink.autoquad.AutoquadDialect;
@@ -12,12 +10,10 @@ import io.dronefleet.mavlink.paparazzi.PaparazziDialect;
 import io.dronefleet.mavlink.slugs.SlugsDialect;
 import io.dronefleet.mavlink.standard.StandardDialect;
 import io.dronefleet.mavlink.uavionix.UavionixDialect;
-import io.dronefleet.mavlink.vehicle.MavlinkVehicle;
 import java.lang.Class;
-import java.lang.Object;
 import java.lang.Override;
 
-public enum MavlinkDialects implements MavlinkDialect<MavlinkVehicle> {
+public enum MavlinkDialects implements MavlinkDialect {
     COMMON(new CommonDialect()),
 
     UAVIONIX(new UavionixDialect()),
@@ -40,14 +36,8 @@ public enum MavlinkDialects implements MavlinkDialect<MavlinkVehicle> {
 
     private final MavlinkDialect delegate;
 
-    MavlinkDialects(MavlinkDialect<? extends MavlinkVehicle> delegate) {
+    MavlinkDialects(MavlinkDialect delegate) {
         this.delegate = delegate;
-    }
-
-    @Override
-    public final MavlinkVehicle newVehicle(int systemId, EventSource<Object> incoming,
-            EventEmitter<Object> outgoing) {
-        return delegate.newVehicle(systemId, incoming, outgoing);
     }
 
     @Override

@@ -32,11 +32,6 @@ public class MavlinkDialectGenerator {
     private static final ClassName MAVLINK_MESSAGE_BUILDER = ClassName.get("io.dronefleet.mavlink.annotations", "MavlinkMessageBuilder");
     private static final ClassName MAVLINK_DIALECT = ClassName.get("io.dronefleet.mavlink", "MavlinkDialect");
     private static final ClassName MAVLINK_DIALECTS = ClassName.get("io.dronefleet.mavlink", "MavlinkDialects");
-    private static final ClassName MAVLINK_VEHICLE = ClassName.get("io.dronefleet.mavlink.vehicle", "MavlinkVehicle");
-    private static final ClassName ABSTRACT_MAVLINK_VEHICLE = ClassName.get("io.dronefleet.mavlink.vehicle", "AbstractMavlinkVehicle");
-
-    private static final ClassName EVENT_SOURCE = ClassName.get("com.benbarkay.events", "EventSource");
-    private static final ClassName EVENT_EMITTER = ClassName.get("com.benbarkay.events", "EventEmitter");
 
     private class PackageSources {
         private final List<PackageSources> dependencies;
@@ -79,77 +74,11 @@ public class MavlinkDialectGenerator {
             return ClassName.get(packageName, toUpperCamelCase(dialectName.toLowerCase()) + "Dialect");
         }
 
-        public ClassName getVehicleClassName() {
-            return ClassName.get(packageName, toUpperCamelCase(dialectName.toLowerCase()) + "Vehicle");
-        }
-
-        public TypeSpec generateVehicle() {
-            TypeSpec.Builder vehicleType = TypeSpec.interfaceBuilder(
-                    getVehicleClassName())
-                    .addModifiers(Modifier.PUBLIC)
-                    .addType(TypeSpec.classBuilder("Impl")
-                            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                            .addSuperinterface(getVehicleClassName())
-                            .superclass(ABSTRACT_MAVLINK_VEHICLE)
-                            .addMethod(MethodSpec.constructorBuilder()
-                                    .addParameter(int.class, "systemId")
-                                    .addParameter(ParameterizedTypeName.get(EVENT_SOURCE, TypeName.OBJECT), "incoming")
-                                    .addParameter(ParameterizedTypeName.get(EVENT_EMITTER, TypeName.OBJECT), "outgoing")
-                                    .addStatement("super($L, $L, $L)",
-                                            "systemId",
-                                            "incoming",
-                                            "outgoing")
-                                    .build())
-                            .build());
-
-            if (dependencies.size() > 0) {
-                dependencies.stream()
-                        .map(PackageSources::getVehicleClassName)
-                        .forEach(vehicleType::addSuperinterface);
-            } else {
-                vehicleType.addSuperinterface(MAVLINK_VEHICLE);
-            }
-
-            messageSources.values()
-                    .forEach(message -> {
-                        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder("send" + toUpperCamelCase(message.def.getName()))
-                                .addModifiers(Modifier.PUBLIC, Modifier.DEFAULT)
-                                .returns(TypeName.VOID)
-                                .addJavadoc(message.javadoc);
-
-                        methodBuilder.addCode("outgoing().emit($T.builder()\n$>$>", message.className);
-                        message.fieldSources.forEach(field -> {
-                            methodBuilder.addJavadoc("@param $L $L", field.name, field.javadoc);
-                            methodBuilder.addParameter(field.typeName, field.name);
-                            methodBuilder.addCode(".$1L($1L)\n", field.name);
-                        });
-                        methodBuilder.addCode(".build());$<$<\n");
-
-                        vehicleType.addMethod(methodBuilder.build());
-                    });
-
-            return vehicleType.build();
-        }
-
         public TypeSpec generateDialect() {
             TypeSpec.Builder dialectType = TypeSpec.classBuilder(
                     getDialectClassName())
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                    .addSuperinterface(ParameterizedTypeName.get(MAVLINK_DIALECT, getVehicleClassName()));
-
-            dialectType.addMethod(MethodSpec.methodBuilder("newVehicle")
-                    .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                    .addAnnotation(Override.class)
-                    .addParameter(int.class, "systemId")
-                    .addParameter(ParameterizedTypeName.get(EVENT_SOURCE, TypeName.OBJECT), "incoming")
-                    .addParameter(ParameterizedTypeName.get(EVENT_EMITTER, TypeName.OBJECT), "outgoing")
-                    .addStatement("return new $T.Impl($L, $L, $L)",
-                            getVehicleClassName(),
-                            "systemId",
-                            "incoming",
-                            "outgoing")
-                    .returns(getVehicleClassName())
-                    .build());
+                    .addSuperinterface(MAVLINK_DIALECT);
 
             MethodSpec.Builder supportsMethod = MethodSpec.methodBuilder("supports")
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -230,13 +159,11 @@ public class MavlinkDialectGenerator {
 
         public List<JavaFile> generate() {
             return concat(
-                    concat(
-                            concat(enumSources.values().stream()
-                                            .map(EnumSource::getBuilder)
-                                            .map(TypeSpec.Builder::build),
-                                    messageSources.values().stream()
-                                            .map(MessageSource::getTypeSpec)),
-                            Stream.of(generateVehicle())),
+                    concat(enumSources.values().stream()
+                                    .map(EnumSource::getBuilder)
+                                    .map(TypeSpec.Builder::build),
+                            messageSources.values().stream()
+                                    .map(MessageSource::getTypeSpec)),
                     Stream.of(generateDialect()))
                     .map(ts -> JavaFile.builder(packageName, ts)
                             .indent("    ")
@@ -264,7 +191,7 @@ public class MavlinkDialectGenerator {
             builder.addEnumConstant(
                     entry.getName(),
                     TypeSpec.anonymousClassBuilder("")
-                            .addJavadoc(describeEntry(entry)
+                            .addJavadoc(entryJavadoc(entry)
                                     + (dependentPackage != null
                                     ? "<b>added by " + dependentPackage + " package</b>\n" : ""))
                             .addAnnotation(AnnotationSpec.builder(MAVLINK_ENUM_ENTRY)
@@ -352,23 +279,11 @@ public class MavlinkDialectGenerator {
 
         TypeSpec.Builder mavlinkDialects = TypeSpec.enumBuilder(MAVLINK_DIALECTS)
                 .addModifiers(Modifier.PUBLIC)
-                .addSuperinterface(ParameterizedTypeName.get(MAVLINK_DIALECT, MAVLINK_VEHICLE))
+                .addSuperinterface(MAVLINK_DIALECT)
                 .addField(MAVLINK_DIALECT, "delegate", Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()
-                        .addParameter(ParameterizedTypeName.get(MAVLINK_DIALECT,WildcardTypeName.subtypeOf(MAVLINK_VEHICLE)), "delegate")
+                        .addParameter(MAVLINK_DIALECT, "delegate")
                         .addStatement("this.delegate = delegate")
-                        .build())
-                .addMethod(MethodSpec.methodBuilder("newVehicle")
-                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                        .addAnnotation(Override.class)
-                        .addParameter(int.class, "systemId")
-                        .addParameter(ParameterizedTypeName.get(EVENT_SOURCE, TypeName.OBJECT), "incoming")
-                        .addParameter(ParameterizedTypeName.get(EVENT_EMITTER, TypeName.OBJECT), "outgoing")
-                        .addStatement("return delegate.newVehicle($L, $L, $L)",
-                                "systemId",
-                                "incoming",
-                                "outgoing")
-                        .returns(MAVLINK_VEHICLE)
                         .build())
                 .addMethod(MethodSpec.methodBuilder("supports")
                         .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -499,10 +414,10 @@ public class MavlinkDialectGenerator {
                     }
                 })
                 .forEach(fd -> {
-                    TypeName fieldType = getFieldType(fd, sources);
+                    TypeName fieldType = fieldType(fd, sources);
                     String fieldName = toCamelCase(fd.getName());
                     String fieldDescription = processJavadoc(wordWrap(fd.getDescription()), sources) + "\n";
-                    AnnotationSpec fieldAnnotation = generateFieldAnnotation(fd);
+                    AnnotationSpec fieldAnnotation = fieldAnnotation(fd);
 
                     fieldSources.add(new FieldSource(
                             fd,
@@ -553,30 +468,9 @@ public class MavlinkDialectGenerator {
         TypeSpec.Builder message = TypeSpec.classBuilder(messageClassName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addJavadoc(messageJavadoc)
-                .addAnnotation(AnnotationSpec.builder(MAVLINK_MESSAGE)
-                        .addMember("id", "$L", messageDef.getId())
-                        .addMember("crc", "$L", crc.get() & 0xff)
-                        .build())
-                .addMethod(MethodSpec.methodBuilder("builder")
-                        .addModifiers(Modifier.STATIC, Modifier.PUBLIC)
-                        .addAnnotation(MAVLINK_MESSAGE_BUILDER)
-                        .addStatement("return new $T()", builderClassName)
-                        .returns(builderClassName)
-                        .build())
-                .addMethod(MethodSpec.methodBuilder("toString")
-                        .addModifiers(Modifier.PUBLIC)
-                        .addAnnotation(Override.class)
-                        .addStatement("return $L", messageDef.getFields().stream()
-                                .map(MavlinkFieldDef::getName)
-                                .map(this::toCamelCase)
-                                .map(f -> f + "=\" + " + f)
-                                .collect(Collectors.joining(
-                                        "\n + \", ",
-                                        "\"" + messageClassName.simpleName() + "{",
-                                        " + \"}\""
-                                )))
-                        .returns(String.class)
-                        .build())
+                .addAnnotation(messageAnnotation(messageDef.getId(), crc.get() & 0xff))
+                .addMethod(builderStaticConstructor(builderClassName))
+                .addMethod(messageToString(messageClassName.simpleName(), messageDef.getFields()))
                 .addType(builder.build());
 
         messageFields.forEach(message::addField);
@@ -591,7 +485,40 @@ public class MavlinkDialectGenerator {
                 fieldSources));
     }
 
-    private AnnotationSpec generateFieldAnnotation(MavlinkFieldDef fieldDef) {
+    private MethodSpec builderStaticConstructor(ClassName builderClassName) {
+        return MethodSpec.methodBuilder("builder")
+                .addModifiers(Modifier.STATIC, Modifier.PUBLIC)
+                .addAnnotation(MAVLINK_MESSAGE_BUILDER)
+                .addStatement("return new $T()", builderClassName)
+                .returns(builderClassName)
+                .build();
+    }
+
+    private MethodSpec messageToString(String className, List<MavlinkFieldDef> fields) {
+        return MethodSpec.methodBuilder("toString")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override.class)
+                .addStatement("return $L", fields.stream()
+                        .map(MavlinkFieldDef::getName)
+                        .map(this::toCamelCase)
+                        .map(f -> f + "=\" + " + f)
+                        .collect(Collectors.joining(
+                                "\n + \", ",
+                                "\"" + className + "{",
+                                " + \"}\""
+                        )))
+                .returns(String.class)
+                .build();
+    }
+
+    private AnnotationSpec messageAnnotation(int messageId, int crc) {
+        return AnnotationSpec.builder(MAVLINK_MESSAGE)
+                .addMember("id", "$L", messageId)
+                .addMember("crc", "$L", crc)
+                .build();
+    }
+
+    private AnnotationSpec fieldAnnotation(MavlinkFieldDef fieldDef) {
         AnnotationSpec.Builder builder = AnnotationSpec.builder(MAVLINK_MESSAGE_FIELD)
                 .addMember("position", "$L", fieldDef.getIndex())
                 .addMember("unitSize", "$L", fieldDef.getType().getTypeLength());
@@ -612,7 +539,7 @@ public class MavlinkDialectGenerator {
         return builder.build();
     }
 
-    private TypeName getFieldType(MavlinkFieldDef fieldDef, PackageSources sources) {
+    private TypeName fieldType(MavlinkFieldDef fieldDef, PackageSources sources) {
         if (fieldDef.getEnumName() != null) {
             ClassName enumType = Optional.ofNullable(sources.resolveEnum(fieldDef.getEnumName()))
                     .map(e -> e.className)
@@ -636,13 +563,13 @@ public class MavlinkDialectGenerator {
             if ("uint8_t".equals(typeDef.getConvertedType())) {
                 return TypeName.get(byte[].class);
             }
-            return ParameterizedTypeName.get(ClassName.get(List.class), getPrimitiveType(typeDef.getConvertedType()).box());
+            return ParameterizedTypeName.get(ClassName.get(List.class), javaPrimitive(typeDef.getConvertedType()).box());
         }
-        return getPrimitiveType(typeDef.getConvertedType());
+        return javaPrimitive(typeDef.getConvertedType());
     }
 
-    private TypeName getPrimitiveType(String type) {
-        switch (type) {
+    private TypeName javaPrimitive(String mavlinkType) {
+        switch (mavlinkType) {
             case "uint8_t":
             case "int8_t":
             case "uint16_t":
@@ -667,7 +594,7 @@ public class MavlinkDialectGenerator {
         return TypeName.INT;
     }
 
-    public String describeEntry(MavlinkEntryDef entryDef) {
+    private String entryJavadoc(MavlinkEntryDef entryDef) {
         return entryDef.getDescription()
                 + (entryDef.getParams().size() > 0 ? "\n" : "")
                 + entryDef.getParams().stream()

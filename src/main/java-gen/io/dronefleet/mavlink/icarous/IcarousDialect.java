@@ -1,26 +1,17 @@
 package io.dronefleet.mavlink.icarous;
 
-import com.benbarkay.events.EventEmitter;
-import com.benbarkay.events.EventSource;
 import io.dronefleet.mavlink.MavlinkDialect;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
-import java.lang.Object;
 import java.lang.Override;
 import java.util.Collections;
 import java.util.Set;
 
-public final class IcarousDialect implements MavlinkDialect<IcarousVehicle> {
+public final class IcarousDialect implements MavlinkDialect {
     private static final Set<MavlinkDialect> dependencies;
 
     static {
         dependencies = Collections.emptySet();
-    }
-
-    @Override
-    public final IcarousVehicle newVehicle(int systemId, EventSource<Object> incoming,
-            EventEmitter<Object> outgoing) {
-        return new IcarousVehicle.Impl(systemId, incoming, outgoing);
     }
 
     @Override

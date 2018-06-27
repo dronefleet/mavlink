@@ -1,21 +1,9 @@
 package io.dronefleet.mavlink.protocol;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Socket;
 
 public class MavlinkPacketReader {
-
-    public static void main(String args[]) throws IOException {
-        Socket socket = new Socket("127.0.0.1", 5762);
-        MavlinkPacketReader reader = new MavlinkPacketReader(socket.getInputStream());
-
-        while (reader.next()) {
-            System.out.println(reader.packet());
-        }
-    }
-
     private final MavlinkFrameReader in;
 
     public MavlinkPacketReader(InputStream in) {
@@ -39,9 +27,5 @@ public class MavlinkPacketReader {
 
     public void drop() throws IOException {
         in.drop();
-    }
-
-    private EOFException eof() throws EOFException {
-        throw new EOFException("Reached end of stream");
     }
 }

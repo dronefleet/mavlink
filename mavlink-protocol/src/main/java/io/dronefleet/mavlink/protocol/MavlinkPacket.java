@@ -10,6 +10,62 @@ public class MavlinkPacket {
     public static final int MAGIC_V2 = 0xFD;
 
     public static MavlinkPacket create(
+            int compatibleFlags,
+            int incompatibleFlags,
+            int sequence,
+            int systemId,
+            int componentId,
+            int messageId,
+            int targetSystemId,
+            int targetComponentId,
+            int crcExtra,
+            byte[] payload,
+            byte[] signature) {
+
+        if (signature == null) {
+            signature = new byte[0];
+        } else if (signature.length != 13) {
+            throw new IllegalArgumentException("signature must be 13 bytes in length");
+        }
+
+        byte[] rawBytes = new byte[14 + signature.length + payload.length];
+        ByteArray bytes = new ByteArray(rawBytes);
+        bytes.putInt8(MAGIC_V2, 0);
+        bytes.putInt8(payload.length, 1);
+        bytes.putInt8(incompatibleFlags, 2);
+        bytes.putInt8(compatibleFlags, 3);
+        bytes.putInt8(sequence, 4);
+        bytes.putInt8(systemId, 5);
+        bytes.putInt8(componentId, 6);
+        bytes.putInt24(messageId, 7);
+        bytes.putInt8(targetSystemId, 10);
+        bytes.putInt8(targetComponentId, 11);
+        System.arraycopy(payload, 0, rawBytes, 12, payload.length);
+        System.arraycopy(signature, 0, rawBytes, 14 + payload.length, signature.length);
+
+        CrcX25 crc = new CrcX25();
+        crc.accumulate(rawBytes, 1, 8);
+        crc.accumulate(payload);
+        crc.accumulate(crcExtra);
+        bytes.putInt16(crc.get(), 12 + payload.length);
+
+        return new MavlinkPacket(
+                MAGIC_V2,
+                incompatibleFlags,
+                compatibleFlags,
+                sequence,
+                systemId,
+                componentId,
+                messageId,
+                targetSystemId,
+                targetComponentId,
+                payload,
+                crc.get(),
+                signature,
+                rawBytes);
+    }
+
+    public static MavlinkPacket create(
             int sequence,
             int systemId,
             int componentId,
@@ -29,7 +85,7 @@ public class MavlinkPacket {
         CrcX25 crc = new CrcX25();
         crc.accumulate(rawBytes, 1, 6 + payload.length);
         crc.accumulate(crcExtra);
-        bytes.putInt16(crc.checksum(), 6 + payload.length);
+        bytes.putInt16(crc.get(), 6 + payload.length);
 
         return new MavlinkPacket(
                 MAGIC_V1,
@@ -42,7 +98,7 @@ public class MavlinkPacket {
                 -1,
                 -1,
                 payload,
-                crc.checksum(),
+                crc.get(),
                 null,
                 rawBytes);
     }
@@ -132,7 +188,8 @@ public class MavlinkPacket {
             int targetComponentId,
             byte[] payload,
             int checksum,
-            byte[] signature, byte[] rawBytes) {
+            byte[] signature,
+            byte[] rawBytes) {
         this.versionMarker = versionMarker;
         this.incompatibleFlags = incompatibleFlags;
         this.compatibleFlags = compatibleFlags;
@@ -216,7 +273,7 @@ public class MavlinkPacket {
                         "Unknown version marker: 0x" + Integer.toHexString(versionMarker));
         }
         crcX25.accumulate(crcExtra);
-        return crcX25.checksum() == checksum;
+        return crcX25.get() == checksum;
     }
 
     @Override
