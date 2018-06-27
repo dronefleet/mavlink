@@ -253,7 +253,7 @@ public class MavlinkConnection {
                     message2.getTargetComponentId(),
                     messageInfo.crc(),
                     serializedPayload,
-                    message2.getSignature());
+                    null);
         } else {
             packet = MavlinkPacket.create(
                     sequence++,
