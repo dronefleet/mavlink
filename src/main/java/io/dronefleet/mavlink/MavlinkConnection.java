@@ -11,6 +11,8 @@ import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadSerializer;
+import io.dronefleet.mavlink.signing.SigningConfiguration;
+import io.dronefleet.mavlink.util.TimeProvider;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -41,6 +43,8 @@ public class MavlinkConnection {
         private final InputStream in;
         private final OutputStream out;
         private final Map<MavAutopilot, MavlinkDialect> dialects;
+        private SigningConfiguration signingConfiguration;
+        private TimeProvider timeProvider;
 
         private Builder(InputStream in, OutputStream out) {
             this.in = in;
@@ -50,6 +54,7 @@ public class MavlinkConnection {
             dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, MavlinkDialects.ASLUAV);
             dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, MavlinkDialects.AUTOQUAD);
             dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, MavlinkDialects.ARDUPILOTMEGA);
+            this.timeProvider = TimeProvider.SYSTEM_CLOCK;
         }
 
         /**
@@ -65,6 +70,31 @@ public class MavlinkConnection {
         }
 
         /**
+         * Sets the signing configuration for this builder. The built connection will then use
+         * the specified configuration in order to sign Mavlink2 messages. Using this feature require
+         * requires implementations using the produced MavlinkConnection to send
+         * {@link io.dronefleet.mavlink.common.SetupSigning} requests prior to sending Mavlink2 messages.
+         * @param configuration The signing configuration to use when signing Mavlink2 messages.
+         * @return  This builder.
+         */
+        public Builder signing(SigningConfiguration configuration) {
+            signingConfiguration = configuration;
+            return this;
+        }
+
+        /**
+         * The time provider to use when querying for the current time. The default value is
+         * {@link TimeProvider#SYSTEM_CLOCK} which uses the {@code java.time} package in order to
+         * get the actual current time.
+         * @param timeProvider  The time provider to use.
+         * @return  This builder.
+         */
+        public Builder timeProvider(TimeProvider timeProvider) {
+            this.timeProvider = timeProvider;
+            return this;
+        }
+
+        /**
          * Builds a ready to use connection instance.
          */
         public MavlinkConnection build() {
@@ -73,7 +103,7 @@ public class MavlinkConnection {
                     out,
                     dialects,
                     new ReflectionPayloadDeserializer(),
-                    new ReflectionPayloadSerializer());
+                    new ReflectionPayloadSerializer(), signingConfiguration, timeProvider);
         }
     }
 
@@ -137,18 +167,41 @@ public class MavlinkConnection {
      */
     private final MavlinkPayloadSerializer serializer;
 
+    /**
+     * The signing configuration to use when sending Mavlink2 packets, or {@code null}
+     * if packets should not be signed.
+     */
+    private final SigningConfiguration signingConfiguration;
+
+    /**
+     * A time provider to use for signing.
+     */
+    private final TimeProvider timeProvider;
+
+    /**
+     * The last timestamp used when signing.
+     */
+    private long lastSignatureTimestamp;
+
     MavlinkConnection(
             MavlinkPacketReader reader,
             OutputStream out,
             Map<MavAutopilot, MavlinkDialect> dialects,
             MavlinkPayloadDeserializer deserializer,
-            MavlinkPayloadSerializer serializer) {
+            MavlinkPayloadSerializer serializer,
+            SigningConfiguration signingConfiguration,
+            TimeProvider timeProvider) {
         this.reader = reader;
         this.out = out;
         this.dialects = dialects;
         this.deserializer = deserializer;
         this.serializer = serializer;
+        this.signingConfiguration = signingConfiguration;
+        this.timeProvider = timeProvider;
         systemDialects = new HashMap<>();
+        if (isSigningEnabled()) {
+            lastSignatureTimestamp = signingConfiguration.getTimestamp();
+        }
     }
 
     /**
@@ -197,7 +250,7 @@ public class MavlinkConnection {
             Class<?> messageType = dialect.resolve(packet.getMessageId());
             MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
 
-            if (!packet.validate(messageInfo.crc())) {
+            if (!packet.validateCrc(messageInfo.crc())) {
                 reader.drop();
                 continue;
             }
@@ -228,7 +281,7 @@ public class MavlinkConnection {
      * @param message   The message to send. The specified message could be either a {@link MavlinkMessage mavlink1 message}
      *                  or a {@link Mavlink2Message mavlink2 message}.
      */
-    public void send(MavlinkMessage message) {
+    public synchronized void send(MavlinkMessage message) {
         Object payload = message.getPayload();
         Class<?> payloadType = payload.getClass();
 
@@ -252,8 +305,17 @@ public class MavlinkConnection {
                     message2.getTargetSystemId(),
                     message2.getTargetComponentId(),
                     messageInfo.crc(),
-                    serializedPayload,
-                    null);
+                    serializedPayload);
+
+            if (isSigningEnabled()) {
+                lastSignatureTimestamp = Math.max(
+                        timeProvider.microsSince1stJan2015GMT() / 10,
+                        lastSignatureTimestamp + 1);
+                packet = packet.sign(
+                        signingConfiguration.getLinkId(),
+                        lastSignatureTimestamp,
+                        signingConfiguration.getSecretKey());
+            }
         } else {
             packet = MavlinkPacket.create(
                     sequence++,
@@ -265,6 +327,30 @@ public class MavlinkConnection {
         }
 
         send(packet);
+    }
+
+    /**
+     * Whether or not signing is enabled for this connection.
+     * @see #getSigningConfiguration()
+     */
+    public boolean isSigningEnabled() {
+        return signingConfiguration != null;
+    }
+
+    /**
+     * Returns this connection's signing configuration. The returned configuration includes the last timestamp
+     * which has been used for signing by this connection.
+     * @throws IllegalStateException if signing is not enabled for this connection.
+     * @see #isSigningEnabled()
+     */
+    public SigningConfiguration getSigningConfiguration() {
+        if (signingConfiguration == null) {
+            throw new IllegalStateException("Signing is not enabled for this connection");
+        }
+        return new SigningConfiguration(
+                Math.max(lastSignatureTimestamp, signingConfiguration.getTimestamp()),
+                signingConfiguration.getLinkId(),
+                signingConfiguration.getSecretKey());
     }
 
     /**
@@ -284,7 +370,7 @@ public class MavlinkConnection {
      * Sends the specified packet directly to the stream.
      * @param packet    The packet to send.
      */
-    private synchronized void send(MavlinkPacket packet) {
+    private void send(MavlinkPacket packet) {
         try {
             out.write(packet.getRawBytes());
         } catch (IOException e) {

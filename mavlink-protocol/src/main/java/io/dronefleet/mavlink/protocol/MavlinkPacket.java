@@ -2,6 +2,9 @@ package io.dronefleet.mavlink.protocol;
 
 import io.dronefleet.mavlink.protocol.validation.CrcX25;
 
+import java.security.DigestException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class MavlinkPacket {
@@ -10,8 +13,33 @@ public class MavlinkPacket {
     public static final int MAGIC_V2 = 0xFD;
 
     public static MavlinkPacket create(
-            int compatibleFlags,
             int incompatibleFlags,
+            int compatibleFlags,
+            int sequence,
+            int systemId,
+            int componentId,
+            int messageId,
+            int targetSystemId,
+            int targetComponentId,
+            int crcExtra,
+            byte[] payload) {
+        return create(
+                incompatibleFlags,
+                compatibleFlags,
+                sequence,
+                systemId,
+                componentId,
+                messageId,
+                targetSystemId,
+                targetComponentId,
+                crcExtra,
+                payload,
+                null);
+    }
+
+    public static MavlinkPacket create(
+            int incompatibleFlags,
+            int compatibleFlags,
             int sequence,
             int systemId,
             int componentId,
@@ -257,7 +285,7 @@ public class MavlinkPacket {
         return rawBytes;
     }
 
-    public boolean validate(int crcExtra) {
+    public boolean validateCrc(int crcExtra) {
         CrcX25 crcX25 = new CrcX25();
         switch (versionMarker) {
             case MAGIC_V1:
@@ -274,6 +302,53 @@ public class MavlinkPacket {
         }
         crcX25.accumulate(crcExtra);
         return crcX25.get() == checksum;
+    }
+
+    public MavlinkPacket sign(int linkId, long timestamp, byte[] secretKey) {
+        byte[] signature = new byte[13];
+        ByteArray bytes = new ByteArray(signature);
+        bytes.putInt8(linkId, 0);
+        bytes.putInt48(timestamp, 1);
+
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.digest(secretKey);
+            digest.digest(rawBytes, 1, 7);
+            digest.digest(payload);
+            digest.digest(rawBytes, 12 + payload.length, 2);
+            digest.digest(signature, 0, 7);
+            System.arraycopy(digest.digest(), 0, signature, 7, 6);
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
+        } catch (DigestException e) {
+            throw new IllegalStateException("Failed generate signature for packet", e);
+        }
+
+        byte[] rawBytes;
+        if (this.signature.length == 0) {
+            rawBytes = new byte[this.rawBytes.length + signature.length];
+            System.arraycopy(this.rawBytes, 0, rawBytes, 0, this.rawBytes.length);
+            System.arraycopy(signature, 0, rawBytes, this.rawBytes.length, signature.length);
+        } else {
+            rawBytes = new byte[this.rawBytes.length];
+            System.arraycopy(this.rawBytes, 0, rawBytes, 0, this.rawBytes.length - signature.length);
+            System.arraycopy(signature, 0, rawBytes, this.rawBytes.length - signature.length, signature.length);
+        }
+
+        return new MavlinkPacket(
+                versionMarker,
+                incompatibleFlags,
+                compatibleFlags,
+                sequence,
+                systemId,
+                componentId,
+                messageId,
+                targetSystemId,
+                targetComponentId,
+                payload,
+                checksum,
+                signature,
+                rawBytes);
     }
 
     @Override

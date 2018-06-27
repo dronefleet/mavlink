@@ -31,6 +31,10 @@ class ByteArray {
         putLong(value, offset, 3);
     }
 
+    public void putInt48(long value, int offset) {
+        putLong(value, offset, 6);
+    }
+
     public byte[] slice(int offset, int size) {
         byte[] value = new byte[size];
         System.arraycopy(bytes, offset, value, 0, size);
