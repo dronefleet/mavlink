@@ -9,14 +9,55 @@ import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
 import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
+import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadDeserializer;
+import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadSerializer;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MavlinkConnection {
+
+    public static final class Builder {
+        private final InputStream in;
+        private final OutputStream out;
+        private final Map<MavAutopilot, MavlinkDialect> dialects;
+
+        private Builder(InputStream in, OutputStream out) {
+            this.in = in;
+            this.out = out;
+            dialects = new HashMap<>();
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_SLUGS, MavlinkDialects.SLUGS);
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, MavlinkDialects.ASLUAV);
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, MavlinkDialects.AUTOQUAD);
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, MavlinkDialects.ARDUPILOTMEGA);
+        }
+
+        public Builder dialect(MavAutopilot autopilot, MavlinkDialect dialect) {
+            dialects.put(autopilot, dialect);
+            return this;
+        }
+
+        public MavlinkConnection build() {
+            return new MavlinkConnection(
+                    new MavlinkPacketReader(in),
+                    out,
+                    dialects,
+                    new ReflectionPayloadDeserializer(),
+                    new ReflectionPayloadSerializer());
+        }
+    }
+
+    public static Builder builder(InputStream in, OutputStream out) {
+        return new Builder(in, out);
+    }
+
+    public static MavlinkConnection create(InputStream in, OutputStream out) {
+        return builder(in,out).build();
+    }
 
     private final Map<Integer, MavlinkDialect> systemDialects;
     private int sequence;
