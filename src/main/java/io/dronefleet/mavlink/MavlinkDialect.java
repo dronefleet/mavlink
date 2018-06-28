@@ -6,6 +6,12 @@ package io.dronefleet.mavlink;
 public interface MavlinkDialect {
 
     /**
+     * Returns the name of this dialect. The returned name is a lower-case version of the
+     * XML filename without the {@code .xml} extension.
+     */
+    String name();
+
+    /**
      * Resolves the class of a message by its ID.
      * @param messageId The ID of the message to resolve.
      * @return  The class of the message of the specified ID.

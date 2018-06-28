@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Voltage and current sensor data 
@@ -14,24 +12,12 @@ import java.lang.String;
         crc = 218
 )
 public final class SensPower {
-    /**
-     * Power board voltage sensor reading 
-     */
     private final float adc121VspbVolt;
 
-    /**
-     * Power board current sensor reading 
-     */
     private final float adc121CspbAmp;
 
-    /**
-     * Board current sensor 1 reading 
-     */
     private final float adc121Cs1Amp;
 
-    /**
-     * Board current sensor 2 reading 
-     */
     private final float adc121Cs2Amp;
 
     private SensPower(float adc121VspbVolt, float adc121CspbAmp, float adc121Cs1Amp,
@@ -42,17 +28,12 @@ public final class SensPower {
         this.adc121Cs2Amp = adc121Cs2Amp;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SensPower{adc121VspbVolt=" + adc121VspbVolt
-                 + ", adc121CspbAmp=" + adc121CspbAmp
-                 + ", adc121Cs1Amp=" + adc121Cs1Amp
-                 + ", adc121Cs2Amp=" + adc121Cs2Amp + "}";
     }
 
     /**
@@ -63,7 +44,7 @@ public final class SensPower {
             unitSize = 4
     )
     public final float adc121VspbVolt() {
-        return adc121VspbVolt;
+        return this.adc121VspbVolt;
     }
 
     /**
@@ -74,7 +55,7 @@ public final class SensPower {
             unitSize = 4
     )
     public final float adc121CspbAmp() {
-        return adc121CspbAmp;
+        return this.adc121CspbAmp;
     }
 
     /**
@@ -85,7 +66,7 @@ public final class SensPower {
             unitSize = 4
     )
     public final float adc121Cs1Amp() {
-        return adc121Cs1Amp;
+        return this.adc121Cs1Amp;
     }
 
     /**
@@ -96,10 +77,10 @@ public final class SensPower {
             unitSize = 4
     )
     public final float adc121Cs2Amp() {
-        return adc121Cs2Amp;
+        return this.adc121Cs2Amp;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float adc121VspbVolt;
 
         private float adc121CspbAmp;
@@ -107,9 +88,6 @@ public final class SensPower {
         private float adc121Cs1Amp;
 
         private float adc121Cs2Amp;
-
-        private Builder() {
-        }
 
         /**
          * Power board voltage sensor reading 

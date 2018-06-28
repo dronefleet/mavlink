@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Status of simulation environment, if used 
@@ -14,59 +12,26 @@ import java.lang.String;
         crc = 154
 )
 public final class Simstate {
-    /**
-     * Roll angle (rad) 
-     */
     private final float roll;
 
-    /**
-     * Pitch angle (rad) 
-     */
     private final float pitch;
 
-    /**
-     * Yaw angle (rad) 
-     */
     private final float yaw;
 
-    /**
-     * X acceleration m/s/s 
-     */
     private final float xacc;
 
-    /**
-     * Y acceleration m/s/s 
-     */
     private final float yacc;
 
-    /**
-     * Z acceleration m/s/s 
-     */
     private final float zacc;
 
-    /**
-     * Angular speed around X axis rad/s 
-     */
     private final float xgyro;
 
-    /**
-     * Angular speed around Y axis rad/s 
-     */
     private final float ygyro;
 
-    /**
-     * Angular speed around Z axis rad/s 
-     */
     private final float zgyro;
 
-    /**
-     * Latitude in degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude in degrees * 1E7 
-     */
     private final int lng;
 
     private Simstate(float roll, float pitch, float yaw, float xacc, float yacc, float zacc,
@@ -84,24 +49,12 @@ public final class Simstate {
         this.lng = lng;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Simstate{roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc
-                 + ", xgyro=" + xgyro
-                 + ", ygyro=" + ygyro
-                 + ", zgyro=" + zgyro
-                 + ", lat=" + lat
-                 + ", lng=" + lng + "}";
     }
 
     /**
@@ -112,7 +65,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -123,7 +76,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -134,7 +87,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -145,7 +98,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -156,7 +109,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -167,7 +120,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float zacc() {
-        return zacc;
+        return this.zacc;
     }
 
     /**
@@ -178,7 +131,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float xgyro() {
-        return xgyro;
+        return this.xgyro;
     }
 
     /**
@@ -189,7 +142,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float ygyro() {
-        return ygyro;
+        return this.ygyro;
     }
 
     /**
@@ -200,7 +153,7 @@ public final class Simstate {
             unitSize = 4
     )
     public final float zgyro() {
-        return zgyro;
+        return this.zgyro;
     }
 
     /**
@@ -212,7 +165,7 @@ public final class Simstate {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -224,10 +177,10 @@ public final class Simstate {
             signed = true
     )
     public final int lng() {
-        return lng;
+        return this.lng;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float roll;
 
         private float pitch;
@@ -249,9 +202,6 @@ public final class Simstate {
         private int lat;
 
         private int lng;
-
-        private Builder() {
-        }
 
         /**
          * Roll angle (rad) 

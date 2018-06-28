@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The autopilot is requesting a resource (file, binary, other type of data) 
@@ -14,31 +12,14 @@ import java.lang.String;
         crc = 72
 )
 public final class ResourceRequest {
-    /**
-     * Request ID. This ID should be re-used when sending back URI contents 
-     */
     private final int requestId;
 
-    /**
-     * The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary 
-     */
     private final int uriType;
 
-    /**
-     * The requested unique resource identifier (URI). It is not necessarily a straight domain name 
-     * (depends on the URI type enum) 
-     */
     private final byte[] uri;
 
-    /**
-     * The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream. 
-     */
     private final int transferType;
 
-    /**
-     * The storage path the autopilot wants the URI to be stored in. Will only be valid if the 
-     * transfer_type has a storage associated (e.g. MAVLink FTP). 
-     */
     private final byte[] storage;
 
     private ResourceRequest(int requestId, int uriType, byte[] uri, int transferType,
@@ -50,18 +31,12 @@ public final class ResourceRequest {
         this.storage = storage;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ResourceRequest{requestId=" + requestId
-                 + ", uriType=" + uriType
-                 + ", uri=" + uri
-                 + ", transferType=" + transferType
-                 + ", storage=" + storage + "}";
     }
 
     /**
@@ -72,7 +47,7 @@ public final class ResourceRequest {
             unitSize = 1
     )
     public final int requestId() {
-        return requestId;
+        return this.requestId;
     }
 
     /**
@@ -83,7 +58,7 @@ public final class ResourceRequest {
             unitSize = 1
     )
     public final int uriType() {
-        return uriType;
+        return this.uriType;
     }
 
     /**
@@ -96,7 +71,7 @@ public final class ResourceRequest {
             arraySize = 120
     )
     public final byte[] uri() {
-        return uri;
+        return this.uri;
     }
 
     /**
@@ -107,7 +82,7 @@ public final class ResourceRequest {
             unitSize = 1
     )
     public final int transferType() {
-        return transferType;
+        return this.transferType;
     }
 
     /**
@@ -120,10 +95,10 @@ public final class ResourceRequest {
             arraySize = 120
     )
     public final byte[] storage() {
-        return storage;
+        return this.storage;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int requestId;
 
         private int uriType;
@@ -133,9 +108,6 @@ public final class ResourceRequest {
         private int transferType;
 
         private byte[] storage;
-
-        private Builder() {
-        }
 
         /**
          * Request ID. This ID should be re-used when sending back URI contents 

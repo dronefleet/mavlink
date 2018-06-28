@@ -9,17 +9,13 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum AdsbAltitudeType {
     /**
-     * Altitude reported from a Baro source using QNH reference<dl>
-     *
-     * </dl>
+     * Altitude reported from a Baro source using QNH reference 
      */
     @MavlinkEntryInfo(0)
     ADSB_ALTITUDE_TYPE_PRESSURE_QNH,
 
     /**
-     * Altitude reported from a GNSS source<dl>
-     *
-     * </dl>
+     * Altitude reported from a GNSS source 
      */
     @MavlinkEntryInfo(1)
     ADSB_ALTITUDE_TYPE_GEOMETRIC

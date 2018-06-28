@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Adaptive Controller tuning information 
@@ -14,74 +12,36 @@ import java.lang.String;
         crc = 46
 )
 public final class AdapTuning {
-    /**
-     * desired rate (degrees/s) 
-     */
-    private final float desired;
-
-    /**
-     * achieved rate (degrees/s) 
-     */
-    private final float achieved;
-
-    /**
-     * error between model and vehicle 
-     */
-    private final float error;
-
-    /**
-     * theta estimated state predictor 
-     */
-    private final float theta;
-
-    /**
-     * omega estimated state predictor 
-     */
-    private final float omega;
-
-    /**
-     * sigma estimated state predictor 
-     */
-    private final float sigma;
-
-    /**
-     * theta derivative 
-     */
-    private final float thetaDot;
-
-    /**
-     * omega derivative 
-     */
-    private final float omegaDot;
-
-    /**
-     * sigma derivative 
-     */
-    private final float sigmaDot;
-
-    /**
-     * projection operator value 
-     */
-    private final float f;
-
-    /**
-     * projection operator derivative 
-     */
-    private final float fDot;
-
-    /**
-     * u adaptive controlled output command 
-     */
-    private final float u;
-
-    /**
-     * axis 
-     */
     private final PidTuningAxis axis;
 
-    private AdapTuning(float desired, float achieved, float error, float theta, float omega,
-            float sigma, float thetaDot, float omegaDot, float sigmaDot, float f, float fDot,
-            float u, PidTuningAxis axis) {
+    private final float desired;
+
+    private final float achieved;
+
+    private final float error;
+
+    private final float theta;
+
+    private final float omega;
+
+    private final float sigma;
+
+    private final float thetaDot;
+
+    private final float omegaDot;
+
+    private final float sigmaDot;
+
+    private final float f;
+
+    private final float fDot;
+
+    private final float u;
+
+    private AdapTuning(PidTuningAxis axis, float desired, float achieved, float error, float theta,
+            float omega, float sigma, float thetaDot, float omegaDot, float sigmaDot, float f,
+            float fDot, float u) {
+        this.axis = axis;
         this.desired = desired;
         this.achieved = achieved;
         this.error = error;
@@ -94,161 +54,14 @@ public final class AdapTuning {
         this.f = f;
         this.fDot = fDot;
         this.u = u;
-        this.axis = axis;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AdapTuning{axis=" + axis
-                 + ", desired=" + desired
-                 + ", achieved=" + achieved
-                 + ", error=" + error
-                 + ", theta=" + theta
-                 + ", omega=" + omega
-                 + ", sigma=" + sigma
-                 + ", thetaDot=" + thetaDot
-                 + ", omegaDot=" + omegaDot
-                 + ", sigmaDot=" + sigmaDot
-                 + ", f=" + f
-                 + ", fDot=" + fDot
-                 + ", u=" + u + "}";
-    }
-
-    /**
-     * desired rate (degrees/s) 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float desired() {
-        return desired;
-    }
-
-    /**
-     * achieved rate (degrees/s) 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float achieved() {
-        return achieved;
-    }
-
-    /**
-     * error between model and vehicle 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float error() {
-        return error;
-    }
-
-    /**
-     * theta estimated state predictor 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float theta() {
-        return theta;
-    }
-
-    /**
-     * omega estimated state predictor 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float omega() {
-        return omega;
-    }
-
-    /**
-     * sigma estimated state predictor 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float sigma() {
-        return sigma;
-    }
-
-    /**
-     * theta derivative 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float thetaDot() {
-        return thetaDot;
-    }
-
-    /**
-     * omega derivative 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float omegaDot() {
-        return omegaDot;
-    }
-
-    /**
-     * sigma derivative 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 4
-    )
-    public final float sigmaDot() {
-        return sigmaDot;
-    }
-
-    /**
-     * projection operator value 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 4
-    )
-    public final float f() {
-        return f;
-    }
-
-    /**
-     * projection operator derivative 
-     */
-    @MavlinkFieldInfo(
-            position = 12,
-            unitSize = 4
-    )
-    public final float fDot() {
-        return fDot;
-    }
-
-    /**
-     * u adaptive controlled output command 
-     */
-    @MavlinkFieldInfo(
-            position = 13,
-            unitSize = 4
-    )
-    public final float u() {
-        return u;
     }
 
     /**
@@ -259,10 +72,144 @@ public final class AdapTuning {
             unitSize = 1
     )
     public final PidTuningAxis axis() {
-        return axis;
+        return this.axis;
     }
 
-    public static class Builder {
+    /**
+     * desired rate (degrees/s) 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float desired() {
+        return this.desired;
+    }
+
+    /**
+     * achieved rate (degrees/s) 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float achieved() {
+        return this.achieved;
+    }
+
+    /**
+     * error between model and vehicle 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float error() {
+        return this.error;
+    }
+
+    /**
+     * theta estimated state predictor 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float theta() {
+        return this.theta;
+    }
+
+    /**
+     * omega estimated state predictor 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float omega() {
+        return this.omega;
+    }
+
+    /**
+     * sigma estimated state predictor 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float sigma() {
+        return this.sigma;
+    }
+
+    /**
+     * theta derivative 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float thetaDot() {
+        return this.thetaDot;
+    }
+
+    /**
+     * omega derivative 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float omegaDot() {
+        return this.omegaDot;
+    }
+
+    /**
+     * sigma derivative 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4
+    )
+    public final float sigmaDot() {
+        return this.sigmaDot;
+    }
+
+    /**
+     * projection operator value 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4
+    )
+    public final float f() {
+        return this.f;
+    }
+
+    /**
+     * projection operator derivative 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 4
+    )
+    public final float fDot() {
+        return this.fDot;
+    }
+
+    /**
+     * u adaptive controlled output command 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 4
+    )
+    public final float u() {
+        return this.u;
+    }
+
+    public static final class Builder {
+        private PidTuningAxis axis;
+
         private float desired;
 
         private float achieved;
@@ -287,9 +234,16 @@ public final class AdapTuning {
 
         private float u;
 
-        private PidTuningAxis axis;
-
-        private Builder() {
+        /**
+         * axis 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder axis(PidTuningAxis axis) {
+            this.axis = axis;
+            return this;
         }
 
         /**
@@ -436,20 +390,8 @@ public final class AdapTuning {
             return this;
         }
 
-        /**
-         * axis 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder axis(PidTuningAxis axis) {
-            this.axis = axis;
-            return this;
-        }
-
         public final AdapTuning build() {
-            return new AdapTuning(desired, achieved, error, theta, omega, sigma, thetaDot, omegaDot, sigmaDot, f, fDot, u, axis);
+            return new AdapTuning(axis, desired, achieved, error, theta, omega, sigma, thetaDot, omegaDot, sigmaDot, f, fDot, u);
         }
     }
 }

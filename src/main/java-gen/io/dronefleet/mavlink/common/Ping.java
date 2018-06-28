@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,26 +14,12 @@ import java.math.BigInteger;
         crc = 237
 )
 public final class Ping {
-    /**
-     * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * PING sequence 
-     */
     private final long seq;
 
-    /**
-     * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
-     * number is the system id of the requesting system 
-     */
     private final int targetSystem;
 
-    /**
-     * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
-     * number is the system id of the requesting system 
-     */
     private final int targetComponent;
 
     private Ping(BigInteger timeUsec, long seq, int targetSystem, int targetComponent) {
@@ -45,17 +29,12 @@ public final class Ping {
         this.targetComponent = targetComponent;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Ping{timeUsec=" + timeUsec
-                 + ", seq=" + seq
-                 + ", targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent + "}";
     }
 
     /**
@@ -66,18 +45,18 @@ public final class Ping {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
-     * PING sequence 
+     * {@link io.dronefleet.mavlink.common.Ping PING} sequence 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4
     )
     public final long seq() {
-        return seq;
+        return this.seq;
     }
 
     /**
@@ -89,7 +68,7 @@ public final class Ping {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -101,10 +80,10 @@ public final class Ping {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private long seq;
@@ -112,9 +91,6 @@ public final class Ping {
         private int targetSystem;
 
         private int targetComponent;
-
-        private Builder() {
-        }
 
         /**
          * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
@@ -129,7 +105,7 @@ public final class Ping {
         }
 
         /**
-         * PING sequence 
+         * {@link io.dronefleet.mavlink.common.Ping PING} sequence 
          */
         @MavlinkFieldInfo(
                 position = 2,

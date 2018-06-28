@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F4: format 
@@ -14,54 +12,24 @@ import java.lang.String;
         crc = 191
 )
 public final class SerialUdbExtraF4 {
-    /**
-     * Serial UDB Extra Roll Stabilization with Ailerons Enabled 
-     */
     private final int sueRollStabilizationAilerons;
 
-    /**
-     * Serial UDB Extra Roll Stabilization with Rudder Enabled 
-     */
     private final int sueRollStabilizationRudder;
 
-    /**
-     * Serial UDB Extra Pitch Stabilization Enabled 
-     */
     private final int suePitchStabilization;
 
-    /**
-     * Serial UDB Extra Yaw Stabilization using Rudder Enabled 
-     */
     private final int sueYawStabilizationRudder;
 
-    /**
-     * Serial UDB Extra Yaw Stabilization using Ailerons Enabled 
-     */
     private final int sueYawStabilizationAileron;
 
-    /**
-     * Serial UDB Extra Navigation with Ailerons Enabled 
-     */
     private final int sueAileronNavigation;
 
-    /**
-     * Serial UDB Extra Navigation with Rudder Enabled 
-     */
     private final int sueRudderNavigation;
 
-    /**
-     * Serial UDB Extra Type of Alitude Hold when in Stabilized Mode 
-     */
     private final int sueAltitudeholdStabilized;
 
-    /**
-     * Serial UDB Extra Type of Alitude Hold when in Waypoint Mode 
-     */
     private final int sueAltitudeholdWaypoint;
 
-    /**
-     * Serial UDB Extra Firmware racing mode enabled 
-     */
     private final int sueRacingMode;
 
     private SerialUdbExtraF4(int sueRollStabilizationAilerons, int sueRollStabilizationRudder,
@@ -80,23 +48,12 @@ public final class SerialUdbExtraF4 {
         this.sueRacingMode = sueRacingMode;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF4{sueRollStabilizationAilerons=" + sueRollStabilizationAilerons
-                 + ", sueRollStabilizationRudder=" + sueRollStabilizationRudder
-                 + ", suePitchStabilization=" + suePitchStabilization
-                 + ", sueYawStabilizationRudder=" + sueYawStabilizationRudder
-                 + ", sueYawStabilizationAileron=" + sueYawStabilizationAileron
-                 + ", sueAileronNavigation=" + sueAileronNavigation
-                 + ", sueRudderNavigation=" + sueRudderNavigation
-                 + ", sueAltitudeholdStabilized=" + sueAltitudeholdStabilized
-                 + ", sueAltitudeholdWaypoint=" + sueAltitudeholdWaypoint
-                 + ", sueRacingMode=" + sueRacingMode + "}";
     }
 
     /**
@@ -107,7 +64,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueRollStabilizationAilerons() {
-        return sueRollStabilizationAilerons;
+        return this.sueRollStabilizationAilerons;
     }
 
     /**
@@ -118,7 +75,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueRollStabilizationRudder() {
-        return sueRollStabilizationRudder;
+        return this.sueRollStabilizationRudder;
     }
 
     /**
@@ -129,7 +86,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int suePitchStabilization() {
-        return suePitchStabilization;
+        return this.suePitchStabilization;
     }
 
     /**
@@ -140,7 +97,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueYawStabilizationRudder() {
-        return sueYawStabilizationRudder;
+        return this.sueYawStabilizationRudder;
     }
 
     /**
@@ -151,7 +108,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueYawStabilizationAileron() {
-        return sueYawStabilizationAileron;
+        return this.sueYawStabilizationAileron;
     }
 
     /**
@@ -162,7 +119,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueAileronNavigation() {
-        return sueAileronNavigation;
+        return this.sueAileronNavigation;
     }
 
     /**
@@ -173,7 +130,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueRudderNavigation() {
-        return sueRudderNavigation;
+        return this.sueRudderNavigation;
     }
 
     /**
@@ -184,7 +141,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueAltitudeholdStabilized() {
-        return sueAltitudeholdStabilized;
+        return this.sueAltitudeholdStabilized;
     }
 
     /**
@@ -195,7 +152,7 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueAltitudeholdWaypoint() {
-        return sueAltitudeholdWaypoint;
+        return this.sueAltitudeholdWaypoint;
     }
 
     /**
@@ -206,10 +163,10 @@ public final class SerialUdbExtraF4 {
             unitSize = 1
     )
     public final int sueRacingMode() {
-        return sueRacingMode;
+        return this.sueRacingMode;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int sueRollStabilizationAilerons;
 
         private int sueRollStabilizationRudder;
@@ -229,9 +186,6 @@ public final class SerialUdbExtraF4 {
         private int sueAltitudeholdWaypoint;
 
         private int sueRacingMode;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB Extra Roll Stabilization with Ailerons Enabled 

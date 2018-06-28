@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Request the autopilot version from the system/component. 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 85
 )
 public final class AutopilotVersionRequest {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
     private AutopilotVersionRequest(int targetSystem, int targetComponent) {
@@ -29,15 +21,12 @@ public final class AutopilotVersionRequest {
         this.targetComponent = targetComponent;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AutopilotVersionRequest{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class AutopilotVersionRequest {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class AutopilotVersionRequest {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

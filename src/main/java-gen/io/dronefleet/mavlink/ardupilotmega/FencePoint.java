@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
@@ -14,81 +12,34 @@ import java.lang.String;
         crc = 78
 )
 public final class FencePoint {
-    /**
-     * Latitude of point 
-     */
-    private final float lat;
-
-    /**
-     * Longitude of point 
-     */
-    private final float lng;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * point index (first point is 1, 0 is for return point) 
-     */
     private final int idx;
 
-    /**
-     * total number of points (for sanity checking) 
-     */
     private final int count;
 
-    private FencePoint(float lat, float lng, int targetSystem, int targetComponent, int idx,
-            int count) {
-        this.lat = lat;
-        this.lng = lng;
+    private final float lat;
+
+    private final float lng;
+
+    private FencePoint(int targetSystem, int targetComponent, int idx, int count, float lat,
+            float lng) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.idx = idx;
         this.count = count;
+        this.lat = lat;
+        this.lng = lng;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FencePoint{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", idx=" + idx
-                 + ", count=" + count
-                 + ", lat=" + lat
-                 + ", lng=" + lng + "}";
-    }
-
-    /**
-     * Latitude of point 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float lat() {
-        return lat;
-    }
-
-    /**
-     * Longitude of point 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float lng() {
-        return lng;
     }
 
     /**
@@ -99,7 +50,7 @@ public final class FencePoint {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -110,7 +61,7 @@ public final class FencePoint {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -121,7 +72,7 @@ public final class FencePoint {
             unitSize = 1
     )
     public final int idx() {
-        return idx;
+        return this.idx;
     }
 
     /**
@@ -132,14 +83,32 @@ public final class FencePoint {
             unitSize = 1
     )
     public final int count() {
-        return count;
+        return this.count;
     }
 
-    public static class Builder {
-        private float lat;
+    /**
+     * Latitude of point 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float lat() {
+        return this.lat;
+    }
 
-        private float lng;
+    /**
+     * Longitude of point 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float lng() {
+        return this.lng;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -148,32 +117,9 @@ public final class FencePoint {
 
         private int count;
 
-        private Builder() {
-        }
+        private float lat;
 
-        /**
-         * Latitude of point 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 4
-        )
-        public final Builder lat(float lat) {
-            this.lat = lat;
-            return this;
-        }
-
-        /**
-         * Longitude of point 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 4
-        )
-        public final Builder lng(float lng) {
-            this.lng = lng;
-            return this;
-        }
+        private float lng;
 
         /**
          * System ID 
@@ -223,8 +169,32 @@ public final class FencePoint {
             return this;
         }
 
+        /**
+         * Latitude of point 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4
+        )
+        public final Builder lat(float lat) {
+            this.lat = lat;
+            return this;
+        }
+
+        /**
+         * Longitude of point 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 4
+        )
+        public final Builder lng(float lng) {
+            this.lng = lng;
+            return this;
+        }
+
         public final FencePoint build() {
-            return new FencePoint(lat, lng, targetSystem, targetComponent, idx, count);
+            return new FencePoint(targetSystem, targetComponent, idx, count, lat, lng);
         }
     }
 }

@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -17,41 +15,24 @@ import java.util.List;
         crc = 181
 )
 public final class ActuatorControlTarget {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation 
-     * direction motors is 0..1, negative range for reverse direction. Standard mapping for 
-     * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
-     * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
-     */
-    private final List<Float> controls;
-
-    /**
-     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
-     * should use this field to difference between instances. 
-     */
     private final int groupMlx;
 
-    private ActuatorControlTarget(BigInteger timeUsec, List<Float> controls, int groupMlx) {
+    private final List<Float> controls;
+
+    private ActuatorControlTarget(BigInteger timeUsec, int groupMlx, List<Float> controls) {
         this.timeUsec = timeUsec;
-        this.controls = controls;
         this.groupMlx = groupMlx;
+        this.controls = controls;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ActuatorControlTarget{timeUsec=" + timeUsec
-                 + ", groupMlx=" + groupMlx
-                 + ", controls=" + controls + "}";
     }
 
     /**
@@ -62,7 +43,19 @@ public final class ActuatorControlTarget {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
+    }
+
+    /**
+     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
+     * should use this field to difference between instances. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int groupMlx() {
+        return this.groupMlx;
     }
 
     /**
@@ -77,30 +70,15 @@ public final class ActuatorControlTarget {
             arraySize = 8
     )
     public final List<Float> controls() {
-        return controls;
+        return this.controls;
     }
 
-    /**
-     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
-     * should use this field to difference between instances. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int groupMlx() {
-        return groupMlx;
-    }
-
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
-
-        private List<Float> controls;
 
         private int groupMlx;
 
-        private Builder() {
-        }
+        private List<Float> controls;
 
         /**
          * Timestamp (micros since boot or Unix epoch) 
@@ -111,6 +89,19 @@ public final class ActuatorControlTarget {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
+         * should use this field to difference between instances. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder groupMlx(int groupMlx) {
+            this.groupMlx = groupMlx;
             return this;
         }
 
@@ -130,21 +121,8 @@ public final class ActuatorControlTarget {
             return this;
         }
 
-        /**
-         * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
-         * should use this field to difference between instances. 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder groupMlx(int groupMlx) {
-            this.groupMlx = groupMlx;
-            return this;
-        }
-
         public final ActuatorControlTarget build() {
-            return new ActuatorControlTarget(timeUsec, controls, groupMlx);
+            return new ActuatorControlTarget(timeUsec, groupMlx, controls);
         }
     }
 }

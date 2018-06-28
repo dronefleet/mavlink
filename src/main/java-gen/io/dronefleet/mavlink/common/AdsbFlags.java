@@ -9,57 +9,43 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum AdsbFlags {
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(1)
     ADSB_FLAGS_VALID_COORDS,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(2)
     ADSB_FLAGS_VALID_ALTITUDE,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(4)
     ADSB_FLAGS_VALID_HEADING,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(8)
     ADSB_FLAGS_VALID_VELOCITY,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(16)
     ADSB_FLAGS_VALID_CALLSIGN,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(32)
     ADSB_FLAGS_VALID_SQUAWK,
 
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(64)
     ADSB_FLAGS_SIMULATED

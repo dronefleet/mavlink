@@ -4,88 +4,53 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
 /**
  * WORK IN PROGRESS! DO NOT DEPLOY! Message to describe a trajectory in the local frame. Supported 
- * trajectory types are enumerated in {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
+ * trajectory types are enumerated in {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
  */
 @MavlinkMessageInfo(
         id = 332,
         crc = 131
 )
 public final class Trajectory {
-    /**
-     * Timestamp (microseconds since system boot or since UNIX epoch). 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
-     */
-    private final List<Float> point1;
-
-    /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
-     */
-    private final List<Float> point2;
-
-    /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
-     */
-    private final List<Float> point3;
-
-    /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
-     */
-    private final List<Float> point4;
-
-    /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
-     */
-    private final List<Float> point5;
-
-    /**
-     * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-     */
     private final MavTrajectoryRepresentation type;
 
-    /**
-     * States if respective point is valid (boolean) 
-     */
+    private final List<Float> point1;
+
+    private final List<Float> point2;
+
+    private final List<Float> point3;
+
+    private final List<Float> point4;
+
+    private final List<Float> point5;
+
     private final byte[] pointValid;
 
-    private Trajectory(BigInteger timeUsec, List<Float> point1, List<Float> point2,
-            List<Float> point3, List<Float> point4, List<Float> point5,
-            MavTrajectoryRepresentation type, byte[] pointValid) {
+    private Trajectory(BigInteger timeUsec, MavTrajectoryRepresentation type, List<Float> point1,
+            List<Float> point2, List<Float> point3, List<Float> point4, List<Float> point5,
+            byte[] pointValid) {
         this.timeUsec = timeUsec;
+        this.type = type;
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
         this.point4 = point4;
         this.point5 = point5;
-        this.type = type;
         this.pointValid = pointValid;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Trajectory{timeUsec=" + timeUsec
-                 + ", type=" + type
-                 + ", point1=" + point1
-                 + ", point2=" + point2
-                 + ", point3=" + point3
-                 + ", point4=" + point4
-                 + ", point5=" + point5
-                 + ", pointValid=" + pointValid + "}";
     }
 
     /**
@@ -96,11 +61,22 @@ public final class Trajectory {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+     * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final MavTrajectoryRepresentation type() {
+        return this.type;
+    }
+
+    /**
+     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
      */
     @MavlinkFieldInfo(
             position = 3,
@@ -108,11 +84,11 @@ public final class Trajectory {
             arraySize = 11
     )
     public final List<Float> point1() {
-        return point1;
+        return this.point1;
     }
 
     /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
      */
     @MavlinkFieldInfo(
             position = 4,
@@ -120,11 +96,11 @@ public final class Trajectory {
             arraySize = 11
     )
     public final List<Float> point2() {
-        return point2;
+        return this.point2;
     }
 
     /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
      */
     @MavlinkFieldInfo(
             position = 5,
@@ -132,11 +108,11 @@ public final class Trajectory {
             arraySize = 11
     )
     public final List<Float> point3() {
-        return point3;
+        return this.point3;
     }
 
     /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
      */
     @MavlinkFieldInfo(
             position = 6,
@@ -144,11 +120,11 @@ public final class Trajectory {
             arraySize = 11
     )
     public final List<Float> point4() {
-        return point4;
+        return this.point4;
     }
 
     /**
-     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+     * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
      */
     @MavlinkFieldInfo(
             position = 7,
@@ -156,18 +132,7 @@ public final class Trajectory {
             arraySize = 11
     )
     public final List<Float> point5() {
-        return point5;
-    }
-
-    /**
-     * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final MavTrajectoryRepresentation type() {
-        return type;
+        return this.point5;
     }
 
     /**
@@ -179,11 +144,13 @@ public final class Trajectory {
             arraySize = 5
     )
     public final byte[] pointValid() {
-        return pointValid;
+        return this.pointValid;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
+
+        private MavTrajectoryRepresentation type;
 
         private List<Float> point1;
 
@@ -195,12 +162,7 @@ public final class Trajectory {
 
         private List<Float> point5;
 
-        private MavTrajectoryRepresentation type;
-
         private byte[] pointValid;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since system boot or since UNIX epoch). 
@@ -215,7 +177,19 @@ public final class Trajectory {
         }
 
         /**
-         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+         * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder type(MavTrajectoryRepresentation type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -228,7 +202,7 @@ public final class Trajectory {
         }
 
         /**
-         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
          */
         @MavlinkFieldInfo(
                 position = 4,
@@ -241,7 +215,7 @@ public final class Trajectory {
         }
 
         /**
-         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
          */
         @MavlinkFieldInfo(
                 position = 5,
@@ -254,7 +228,7 @@ public final class Trajectory {
         }
 
         /**
-         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
          */
         @MavlinkFieldInfo(
                 position = 6,
@@ -267,7 +241,7 @@ public final class Trajectory {
         }
 
         /**
-         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation}) 
+         * Depending on the type (see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION}) 
          */
         @MavlinkFieldInfo(
                 position = 7,
@@ -276,18 +250,6 @@ public final class Trajectory {
         )
         public final Builder point5(List<Float> point5) {
             this.point5 = point5;
-            return this;
-        }
-
-        /**
-         * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MavTrajectoryRepresentation} 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder type(MavTrajectoryRepresentation type) {
-            this.type = type;
             return this;
         }
 
@@ -305,7 +267,7 @@ public final class Trajectory {
         }
 
         public final Trajectory build() {
-            return new Trajectory(timeUsec, point1, point2, point3, point4, point5, type, pointValid);
+            return new Trajectory(timeUsec, type, point1, point2, point3, point4, point5, pointValid);
         }
     }
 }

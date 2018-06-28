@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -22,72 +20,29 @@ import java.util.List;
  */
 @MavlinkMessageInfo(
         id = 242,
-        crc = 104
+        crc = 205
 )
 public final class HomePosition {
-    /**
-     * Latitude (WGS84), in degrees * 1E7 
-     */
     private final int latitude;
 
-    /**
-     * Longitude (WGS84, in degrees * 1E7 
-     */
     private final int longitude;
 
-    /**
-     * Altitude (AMSL), in meters * 1000 (positive for up) 
-     */
     private final int altitude;
 
-    /**
-     * Local X position of this position in the local coordinate frame 
-     */
     private final float x;
 
-    /**
-     * Local Y position of this position in the local coordinate frame 
-     */
     private final float y;
 
-    /**
-     * Local Z position of this position in the local coordinate frame 
-     */
     private final float z;
 
-    /**
-     * World to surface normal and heading transformation of the takeoff position. Used to indicate 
-     * the heading and slope of the ground 
-     */
     private final List<Float> q;
 
-    /**
-     * Local X position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
     private final float approachX;
 
-    /**
-     * Local Y position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
     private final float approachY;
 
-    /**
-     * Local Z position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
     private final float approachZ;
 
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
     private HomePosition(int latitude, int longitude, int altitude, float x, float y, float z,
@@ -105,24 +60,12 @@ public final class HomePosition {
         this.timeUsec = timeUsec;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HomePosition{latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", q=" + q
-                 + ", approachX=" + approachX
-                 + ", approachY=" + approachY
-                 + ", approachZ=" + approachZ
-                 + ", timeUsec=" + timeUsec + "}";
     }
 
     /**
@@ -134,7 +77,7 @@ public final class HomePosition {
             signed = true
     )
     public final int latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -146,7 +89,7 @@ public final class HomePosition {
             signed = true
     )
     public final int longitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -158,7 +101,7 @@ public final class HomePosition {
             signed = true
     )
     public final int altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -169,7 +112,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -180,7 +123,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -191,7 +134,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -204,7 +147,7 @@ public final class HomePosition {
             arraySize = 4
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
@@ -218,7 +161,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float approachX() {
-        return approachX;
+        return this.approachX;
     }
 
     /**
@@ -232,7 +175,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float approachY() {
-        return approachY;
+        return this.approachY;
     }
 
     /**
@@ -246,7 +189,7 @@ public final class HomePosition {
             unitSize = 4
     )
     public final float approachZ() {
-        return approachZ;
+        return this.approachZ;
     }
 
     /**
@@ -258,10 +201,10 @@ public final class HomePosition {
             extension = true
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int latitude;
 
         private int longitude;
@@ -283,9 +226,6 @@ public final class HomePosition {
         private float approachZ;
 
         private BigInteger timeUsec;
-
-        private Builder() {
-        }
 
         /**
          * Latitude (WGS84), in degrees * 1E7 

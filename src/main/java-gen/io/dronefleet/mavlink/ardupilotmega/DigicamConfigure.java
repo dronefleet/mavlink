@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Configure on-board Camera Control System. 
@@ -14,118 +12,50 @@ import java.lang.String;
         crc = 84
 )
 public final class DigicamConfigure {
-    /**
-     * Correspondent value to given extra_param 
-     */
-    private final float extraValue;
-
-    /**
-     * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
-     */
-    private final int shutterSpeed;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore) 
-     */
     private final int mode;
 
-    /**
-     * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore) 
-     */
+    private final int shutterSpeed;
+
     private final int aperture;
 
-    /**
-     * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore) 
-     */
     private final int iso;
 
-    /**
-     * Exposure type enumeration from 1 to N (0 means ignore) 
-     */
     private final int exposureType;
 
-    /**
-     * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-     * or pooled just once 
-     */
     private final int commandId;
 
-    /**
-     * Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off) 
-     */
     private final int engineCutOff;
 
-    /**
-     * Extra parameters enumeration (0 means ignore) 
-     */
     private final int extraParam;
 
-    private DigicamConfigure(float extraValue, int shutterSpeed, int targetSystem,
-            int targetComponent, int mode, int aperture, int iso, int exposureType, int commandId,
-            int engineCutOff, int extraParam) {
-        this.extraValue = extraValue;
-        this.shutterSpeed = shutterSpeed;
+    private final float extraValue;
+
+    private DigicamConfigure(int targetSystem, int targetComponent, int mode, int shutterSpeed,
+            int aperture, int iso, int exposureType, int commandId, int engineCutOff,
+            int extraParam, float extraValue) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.mode = mode;
+        this.shutterSpeed = shutterSpeed;
         this.aperture = aperture;
         this.iso = iso;
         this.exposureType = exposureType;
         this.commandId = commandId;
         this.engineCutOff = engineCutOff;
         this.extraParam = extraParam;
+        this.extraValue = extraValue;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DigicamConfigure{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", mode=" + mode
-                 + ", shutterSpeed=" + shutterSpeed
-                 + ", aperture=" + aperture
-                 + ", iso=" + iso
-                 + ", exposureType=" + exposureType
-                 + ", commandId=" + commandId
-                 + ", engineCutOff=" + engineCutOff
-                 + ", extraParam=" + extraParam
-                 + ", extraValue=" + extraValue + "}";
-    }
-
-    /**
-     * Correspondent value to given extra_param 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 4
-    )
-    public final float extraValue() {
-        return extraValue;
-    }
-
-    /**
-     * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2
-    )
-    public final int shutterSpeed() {
-        return shutterSpeed;
     }
 
     /**
@@ -136,7 +66,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -147,7 +77,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -158,7 +88,18 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int mode() {
-        return mode;
+        return this.mode;
+    }
+
+    /**
+     * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2
+    )
+    public final int shutterSpeed() {
+        return this.shutterSpeed;
     }
 
     /**
@@ -169,7 +110,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int aperture() {
-        return aperture;
+        return this.aperture;
     }
 
     /**
@@ -180,7 +121,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int iso() {
-        return iso;
+        return this.iso;
     }
 
     /**
@@ -191,7 +132,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int exposureType() {
-        return exposureType;
+        return this.exposureType;
     }
 
     /**
@@ -203,7 +144,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int commandId() {
-        return commandId;
+        return this.commandId;
     }
 
     /**
@@ -214,7 +155,7 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int engineCutOff() {
-        return engineCutOff;
+        return this.engineCutOff;
     }
 
     /**
@@ -225,19 +166,28 @@ public final class DigicamConfigure {
             unitSize = 1
     )
     public final int extraParam() {
-        return extraParam;
+        return this.extraParam;
     }
 
-    public static class Builder {
-        private float extraValue;
+    /**
+     * Correspondent value to given extra_param 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4
+    )
+    public final float extraValue() {
+        return this.extraValue;
+    }
 
-        private int shutterSpeed;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private int mode;
+
+        private int shutterSpeed;
 
         private int aperture;
 
@@ -251,32 +201,7 @@ public final class DigicamConfigure {
 
         private int extraParam;
 
-        private Builder() {
-        }
-
-        /**
-         * Correspondent value to given extra_param 
-         */
-        @MavlinkFieldInfo(
-                position = 11,
-                unitSize = 4
-        )
-        public final Builder extraValue(float extraValue) {
-            this.extraValue = extraValue;
-            return this;
-        }
-
-        /**
-         * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 2
-        )
-        public final Builder shutterSpeed(int shutterSpeed) {
-            this.shutterSpeed = shutterSpeed;
-            return this;
-        }
+        private float extraValue;
 
         /**
          * System ID 
@@ -311,6 +236,18 @@ public final class DigicamConfigure {
         )
         public final Builder mode(int mode) {
             this.mode = mode;
+            return this;
+        }
+
+        /**
+         * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2
+        )
+        public final Builder shutterSpeed(int shutterSpeed) {
+            this.shutterSpeed = shutterSpeed;
             return this;
         }
 
@@ -387,8 +324,20 @@ public final class DigicamConfigure {
             return this;
         }
 
+        /**
+         * Correspondent value to given extra_param 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 4
+        )
+        public final Builder extraValue(float extraValue) {
+            this.extraValue = extraValue;
+            return this;
+        }
+
         public final DigicamConfigure build() {
-            return new DigicamConfigure(extraValue, shutterSpeed, targetSystem, targetComponent, mode, aperture, iso, exposureType, commandId, engineCutOff, extraParam);
+            return new DigicamConfigure(targetSystem, targetComponent, mode, shutterSpeed, aperture, iso, exposureType, commandId, engineCutOff, extraParam, extraValue);
         }
     }
 }

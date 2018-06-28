@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Read registers reply 
@@ -14,29 +12,14 @@ import java.lang.String;
         crc = 15
 )
 public final class DeviceOpReadReply {
-    /**
-     * request ID - copied from request 
-     */
     private final long requestId;
 
-    /**
-     * 0 for success, anything else is failure code 
-     */
     private final int result;
 
-    /**
-     * starting register 
-     */
     private final int regstart;
 
-    /**
-     * count of bytes read 
-     */
     private final int count;
 
-    /**
-     * reply data 
-     */
     private final byte[] data;
 
     private DeviceOpReadReply(long requestId, int result, int regstart, int count, byte[] data) {
@@ -47,18 +30,12 @@ public final class DeviceOpReadReply {
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DeviceOpReadReply{requestId=" + requestId
-                 + ", result=" + result
-                 + ", regstart=" + regstart
-                 + ", count=" + count
-                 + ", data=" + data + "}";
     }
 
     /**
@@ -69,7 +46,7 @@ public final class DeviceOpReadReply {
             unitSize = 4
     )
     public final long requestId() {
-        return requestId;
+        return this.requestId;
     }
 
     /**
@@ -80,7 +57,7 @@ public final class DeviceOpReadReply {
             unitSize = 1
     )
     public final int result() {
-        return result;
+        return this.result;
     }
 
     /**
@@ -91,7 +68,7 @@ public final class DeviceOpReadReply {
             unitSize = 1
     )
     public final int regstart() {
-        return regstart;
+        return this.regstart;
     }
 
     /**
@@ -102,7 +79,7 @@ public final class DeviceOpReadReply {
             unitSize = 1
     )
     public final int count() {
-        return count;
+        return this.count;
     }
 
     /**
@@ -114,10 +91,10 @@ public final class DeviceOpReadReply {
             arraySize = 128
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long requestId;
 
         private int result;
@@ -127,9 +104,6 @@ public final class DeviceOpReadReply {
         private int count;
 
         private byte[] data;
-
-        private Builder() {
-        }
 
         /**
          * request ID - copied from request 

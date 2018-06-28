@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible MAVLink version of SERIAL_UDB_EXTRA - F2: Format Part A 
@@ -14,148 +12,68 @@ import java.lang.String;
         crc = 103
 )
 public final class SerialUdbExtraF2A {
-    /**
-     * Serial UDB Extra Time 
-     */
     private final long sueTime;
 
-    /**
-     * Serial UDB Extra Latitude 
-     */
-    private final int sueLatitude;
-
-    /**
-     * Serial UDB Extra Longitude 
-     */
-    private final int sueLongitude;
-
-    /**
-     * Serial UDB Extra Altitude 
-     */
-    private final int sueAltitude;
-
-    /**
-     * Serial UDB Extra Waypoint Index 
-     */
-    private final int sueWaypointIndex;
-
-    /**
-     * Serial UDB Extra Rmat 0 
-     */
-    private final int sueRmat0;
-
-    /**
-     * Serial UDB Extra Rmat 1 
-     */
-    private final int sueRmat1;
-
-    /**
-     * Serial UDB Extra Rmat 2 
-     */
-    private final int sueRmat2;
-
-    /**
-     * Serial UDB Extra Rmat 3 
-     */
-    private final int sueRmat3;
-
-    /**
-     * Serial UDB Extra Rmat 4 
-     */
-    private final int sueRmat4;
-
-    /**
-     * Serial UDB Extra Rmat 5 
-     */
-    private final int sueRmat5;
-
-    /**
-     * Serial UDB Extra Rmat 6 
-     */
-    private final int sueRmat6;
-
-    /**
-     * Serial UDB Extra Rmat 7 
-     */
-    private final int sueRmat7;
-
-    /**
-     * Serial UDB Extra Rmat 8 
-     */
-    private final int sueRmat8;
-
-    /**
-     * Serial UDB Extra GPS Course Over Ground 
-     */
-    private final int sueCog;
-
-    /**
-     * Serial UDB Extra Speed Over Ground 
-     */
-    private final int sueSog;
-
-    /**
-     * Serial UDB Extra CPU Load 
-     */
-    private final int sueCpuLoad;
-
-    /**
-     * Serial UDB Extra 3D IMU Air Speed 
-     */
-    private final int sueAirSpeed3dimu;
-
-    /**
-     * Serial UDB Extra Estimated Wind 0 
-     */
-    private final int sueEstimatedWind0;
-
-    /**
-     * Serial UDB Extra Estimated Wind 1 
-     */
-    private final int sueEstimatedWind1;
-
-    /**
-     * Serial UDB Extra Estimated Wind 2 
-     */
-    private final int sueEstimatedWind2;
-
-    /**
-     * Serial UDB Extra Magnetic Field Earth 0 
-     */
-    private final int sueMagfieldearth0;
-
-    /**
-     * Serial UDB Extra Magnetic Field Earth 1 
-     */
-    private final int sueMagfieldearth1;
-
-    /**
-     * Serial UDB Extra Magnetic Field Earth 2 
-     */
-    private final int sueMagfieldearth2;
-
-    /**
-     * Serial UDB Extra Number of Sattelites in View 
-     */
-    private final int sueSvs;
-
-    /**
-     * Serial UDB Extra GPS Horizontal Dilution of Precision 
-     */
-    private final int sueHdop;
-
-    /**
-     * Serial UDB Extra Status 
-     */
     private final int sueStatus;
 
-    private SerialUdbExtraF2A(long sueTime, int sueLatitude, int sueLongitude, int sueAltitude,
-            int sueWaypointIndex, int sueRmat0, int sueRmat1, int sueRmat2, int sueRmat3,
-            int sueRmat4, int sueRmat5, int sueRmat6, int sueRmat7, int sueRmat8, int sueCog,
-            int sueSog, int sueCpuLoad, int sueAirSpeed3dimu, int sueEstimatedWind0,
+    private final int sueLatitude;
+
+    private final int sueLongitude;
+
+    private final int sueAltitude;
+
+    private final int sueWaypointIndex;
+
+    private final int sueRmat0;
+
+    private final int sueRmat1;
+
+    private final int sueRmat2;
+
+    private final int sueRmat3;
+
+    private final int sueRmat4;
+
+    private final int sueRmat5;
+
+    private final int sueRmat6;
+
+    private final int sueRmat7;
+
+    private final int sueRmat8;
+
+    private final int sueCog;
+
+    private final int sueSog;
+
+    private final int sueCpuLoad;
+
+    private final int sueAirSpeed3dimu;
+
+    private final int sueEstimatedWind0;
+
+    private final int sueEstimatedWind1;
+
+    private final int sueEstimatedWind2;
+
+    private final int sueMagfieldearth0;
+
+    private final int sueMagfieldearth1;
+
+    private final int sueMagfieldearth2;
+
+    private final int sueSvs;
+
+    private final int sueHdop;
+
+    private SerialUdbExtraF2A(long sueTime, int sueStatus, int sueLatitude, int sueLongitude,
+            int sueAltitude, int sueWaypointIndex, int sueRmat0, int sueRmat1, int sueRmat2,
+            int sueRmat3, int sueRmat4, int sueRmat5, int sueRmat6, int sueRmat7, int sueRmat8,
+            int sueCog, int sueSog, int sueCpuLoad, int sueAirSpeed3dimu, int sueEstimatedWind0,
             int sueEstimatedWind1, int sueEstimatedWind2, int sueMagfieldearth0,
-            int sueMagfieldearth1, int sueMagfieldearth2, int sueSvs, int sueHdop, int sueStatus) {
+            int sueMagfieldearth1, int sueMagfieldearth2, int sueSvs, int sueHdop) {
         this.sueTime = sueTime;
+        this.sueStatus = sueStatus;
         this.sueLatitude = sueLatitude;
         this.sueLongitude = sueLongitude;
         this.sueAltitude = sueAltitude;
@@ -181,43 +99,14 @@ public final class SerialUdbExtraF2A {
         this.sueMagfieldearth2 = sueMagfieldearth2;
         this.sueSvs = sueSvs;
         this.sueHdop = sueHdop;
-        this.sueStatus = sueStatus;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF2A{sueTime=" + sueTime
-                 + ", sueStatus=" + sueStatus
-                 + ", sueLatitude=" + sueLatitude
-                 + ", sueLongitude=" + sueLongitude
-                 + ", sueAltitude=" + sueAltitude
-                 + ", sueWaypointIndex=" + sueWaypointIndex
-                 + ", sueRmat0=" + sueRmat0
-                 + ", sueRmat1=" + sueRmat1
-                 + ", sueRmat2=" + sueRmat2
-                 + ", sueRmat3=" + sueRmat3
-                 + ", sueRmat4=" + sueRmat4
-                 + ", sueRmat5=" + sueRmat5
-                 + ", sueRmat6=" + sueRmat6
-                 + ", sueRmat7=" + sueRmat7
-                 + ", sueRmat8=" + sueRmat8
-                 + ", sueCog=" + sueCog
-                 + ", sueSog=" + sueSog
-                 + ", sueCpuLoad=" + sueCpuLoad
-                 + ", sueAirSpeed3dimu=" + sueAirSpeed3dimu
-                 + ", sueEstimatedWind0=" + sueEstimatedWind0
-                 + ", sueEstimatedWind1=" + sueEstimatedWind1
-                 + ", sueEstimatedWind2=" + sueEstimatedWind2
-                 + ", sueMagfieldearth0=" + sueMagfieldearth0
-                 + ", sueMagfieldearth1=" + sueMagfieldearth1
-                 + ", sueMagfieldearth2=" + sueMagfieldearth2
-                 + ", sueSvs=" + sueSvs
-                 + ", sueHdop=" + sueHdop + "}";
     }
 
     /**
@@ -228,7 +117,18 @@ public final class SerialUdbExtraF2A {
             unitSize = 4
     )
     public final long sueTime() {
-        return sueTime;
+        return this.sueTime;
+    }
+
+    /**
+     * Serial UDB Extra Status 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int sueStatus() {
+        return this.sueStatus;
     }
 
     /**
@@ -240,7 +140,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueLatitude() {
-        return sueLatitude;
+        return this.sueLatitude;
     }
 
     /**
@@ -252,7 +152,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueLongitude() {
-        return sueLongitude;
+        return this.sueLongitude;
     }
 
     /**
@@ -264,7 +164,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueAltitude() {
-        return sueAltitude;
+        return this.sueAltitude;
     }
 
     /**
@@ -275,7 +175,7 @@ public final class SerialUdbExtraF2A {
             unitSize = 2
     )
     public final int sueWaypointIndex() {
-        return sueWaypointIndex;
+        return this.sueWaypointIndex;
     }
 
     /**
@@ -287,7 +187,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat0() {
-        return sueRmat0;
+        return this.sueRmat0;
     }
 
     /**
@@ -299,7 +199,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat1() {
-        return sueRmat1;
+        return this.sueRmat1;
     }
 
     /**
@@ -311,7 +211,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat2() {
-        return sueRmat2;
+        return this.sueRmat2;
     }
 
     /**
@@ -323,7 +223,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat3() {
-        return sueRmat3;
+        return this.sueRmat3;
     }
 
     /**
@@ -335,7 +235,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat4() {
-        return sueRmat4;
+        return this.sueRmat4;
     }
 
     /**
@@ -347,7 +247,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat5() {
-        return sueRmat5;
+        return this.sueRmat5;
     }
 
     /**
@@ -359,7 +259,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat6() {
-        return sueRmat6;
+        return this.sueRmat6;
     }
 
     /**
@@ -371,7 +271,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat7() {
-        return sueRmat7;
+        return this.sueRmat7;
     }
 
     /**
@@ -383,7 +283,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueRmat8() {
-        return sueRmat8;
+        return this.sueRmat8;
     }
 
     /**
@@ -394,7 +294,7 @@ public final class SerialUdbExtraF2A {
             unitSize = 2
     )
     public final int sueCog() {
-        return sueCog;
+        return this.sueCog;
     }
 
     /**
@@ -406,7 +306,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueSog() {
-        return sueSog;
+        return this.sueSog;
     }
 
     /**
@@ -417,7 +317,7 @@ public final class SerialUdbExtraF2A {
             unitSize = 2
     )
     public final int sueCpuLoad() {
-        return sueCpuLoad;
+        return this.sueCpuLoad;
     }
 
     /**
@@ -428,7 +328,7 @@ public final class SerialUdbExtraF2A {
             unitSize = 2
     )
     public final int sueAirSpeed3dimu() {
-        return sueAirSpeed3dimu;
+        return this.sueAirSpeed3dimu;
     }
 
     /**
@@ -440,7 +340,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueEstimatedWind0() {
-        return sueEstimatedWind0;
+        return this.sueEstimatedWind0;
     }
 
     /**
@@ -452,7 +352,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueEstimatedWind1() {
-        return sueEstimatedWind1;
+        return this.sueEstimatedWind1;
     }
 
     /**
@@ -464,7 +364,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueEstimatedWind2() {
-        return sueEstimatedWind2;
+        return this.sueEstimatedWind2;
     }
 
     /**
@@ -476,7 +376,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueMagfieldearth0() {
-        return sueMagfieldearth0;
+        return this.sueMagfieldearth0;
     }
 
     /**
@@ -488,7 +388,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueMagfieldearth1() {
-        return sueMagfieldearth1;
+        return this.sueMagfieldearth1;
     }
 
     /**
@@ -500,7 +400,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueMagfieldearth2() {
-        return sueMagfieldearth2;
+        return this.sueMagfieldearth2;
     }
 
     /**
@@ -512,7 +412,7 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueSvs() {
-        return sueSvs;
+        return this.sueSvs;
     }
 
     /**
@@ -524,22 +424,13 @@ public final class SerialUdbExtraF2A {
             signed = true
     )
     public final int sueHdop() {
-        return sueHdop;
+        return this.sueHdop;
     }
 
-    /**
-     * Serial UDB Extra Status 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int sueStatus() {
-        return sueStatus;
-    }
-
-    public static class Builder {
+    public static final class Builder {
         private long sueTime;
+
+        private int sueStatus;
 
         private int sueLatitude;
 
@@ -591,11 +482,6 @@ public final class SerialUdbExtraF2A {
 
         private int sueHdop;
 
-        private int sueStatus;
-
-        private Builder() {
-        }
-
         /**
          * Serial UDB Extra Time 
          */
@@ -605,6 +491,18 @@ public final class SerialUdbExtraF2A {
         )
         public final Builder sueTime(long sueTime) {
             this.sueTime = sueTime;
+            return this;
+        }
+
+        /**
+         * Serial UDB Extra Status 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder sueStatus(int sueStatus) {
+            this.sueStatus = sueStatus;
             return this;
         }
 
@@ -929,20 +827,8 @@ public final class SerialUdbExtraF2A {
             return this;
         }
 
-        /**
-         * Serial UDB Extra Status 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder sueStatus(int sueStatus) {
-            this.sueStatus = sueStatus;
-            return this;
-        }
-
         public final SerialUdbExtraF2A build() {
-            return new SerialUdbExtraF2A(sueTime, sueLatitude, sueLongitude, sueAltitude, sueWaypointIndex, sueRmat0, sueRmat1, sueRmat2, sueRmat3, sueRmat4, sueRmat5, sueRmat6, sueRmat7, sueRmat8, sueCog, sueSog, sueCpuLoad, sueAirSpeed3dimu, sueEstimatedWind0, sueEstimatedWind1, sueEstimatedWind2, sueMagfieldearth0, sueMagfieldearth1, sueMagfieldearth2, sueSvs, sueHdop, sueStatus);
+            return new SerialUdbExtraF2A(sueTime, sueStatus, sueLatitude, sueLongitude, sueAltitude, sueWaypointIndex, sueRmat0, sueRmat1, sueRmat2, sueRmat3, sueRmat4, sueRmat5, sueRmat6, sueRmat7, sueRmat8, sueCog, sueSog, sueCpuLoad, sueAirSpeed3dimu, sueEstimatedWind0, sueEstimatedWind1, sueEstimatedWind2, sueMagfieldearth0, sueMagfieldearth1, sueMagfieldearth2, sueSvs, sueHdop);
         }
     }
 }

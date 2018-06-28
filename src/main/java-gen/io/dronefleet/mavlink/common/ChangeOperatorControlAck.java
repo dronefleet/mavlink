@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Accept / deny control of this MAV 
@@ -14,20 +12,10 @@ import java.lang.String;
         crc = 104
 )
 public final class ChangeOperatorControlAck {
-    /**
-     * ID of the GCS this message 
-     */
     private final int gcsSystemId;
 
-    /**
-     * 0: request control of this MAV, 1: Release control of this MAV 
-     */
     private final int controlRequest;
 
-    /**
-     * 0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: 
-     * Already under control 
-     */
     private final int ack;
 
     private ChangeOperatorControlAck(int gcsSystemId, int controlRequest, int ack) {
@@ -36,16 +24,12 @@ public final class ChangeOperatorControlAck {
         this.ack = ack;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ChangeOperatorControlAck{gcsSystemId=" + gcsSystemId
-                 + ", controlRequest=" + controlRequest
-                 + ", ack=" + ack + "}";
     }
 
     /**
@@ -56,7 +40,7 @@ public final class ChangeOperatorControlAck {
             unitSize = 1
     )
     public final int gcsSystemId() {
-        return gcsSystemId;
+        return this.gcsSystemId;
     }
 
     /**
@@ -67,7 +51,7 @@ public final class ChangeOperatorControlAck {
             unitSize = 1
     )
     public final int controlRequest() {
-        return controlRequest;
+        return this.controlRequest;
     }
 
     /**
@@ -79,18 +63,15 @@ public final class ChangeOperatorControlAck {
             unitSize = 1
     )
     public final int ack() {
-        return ack;
+        return this.ack;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int gcsSystemId;
 
         private int controlRequest;
 
         private int ack;
-
-        private Builder() {
-        }
 
         /**
          * ID of the GCS this message 

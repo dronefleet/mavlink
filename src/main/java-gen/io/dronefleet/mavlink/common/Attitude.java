@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right). 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 39
 )
 public final class Attitude {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Roll angle (rad, -pi..+pi) 
-     */
     private final float roll;
 
-    /**
-     * Pitch angle (rad, -pi..+pi) 
-     */
     private final float pitch;
 
-    /**
-     * Yaw angle (rad, -pi..+pi) 
-     */
     private final float yaw;
 
-    /**
-     * Roll angular speed (rad/s) 
-     */
     private final float rollspeed;
 
-    /**
-     * Pitch angular speed (rad/s) 
-     */
     private final float pitchspeed;
 
-    /**
-     * Yaw angular speed (rad/s) 
-     */
     private final float yawspeed;
 
     private Attitude(long timeBootMs, float roll, float pitch, float yaw, float rollspeed,
@@ -60,20 +37,12 @@ public final class Attitude {
         this.yawspeed = yawspeed;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Attitude{timeBootMs=" + timeBootMs
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", rollspeed=" + rollspeed
-                 + ", pitchspeed=" + pitchspeed
-                 + ", yawspeed=" + yawspeed + "}";
     }
 
     /**
@@ -84,7 +53,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -95,7 +64,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -106,7 +75,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -117,7 +86,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -128,7 +97,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final float rollspeed() {
-        return rollspeed;
+        return this.rollspeed;
     }
 
     /**
@@ -139,7 +108,7 @@ public final class Attitude {
             unitSize = 4
     )
     public final float pitchspeed() {
-        return pitchspeed;
+        return this.pitchspeed;
     }
 
     /**
@@ -150,10 +119,10 @@ public final class Attitude {
             unitSize = 4
     )
     public final float yawspeed() {
-        return yawspeed;
+        return this.yawspeed;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float roll;
@@ -167,9 +136,6 @@ public final class Attitude {
         private float pitchspeed;
 
         private float yawspeed;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

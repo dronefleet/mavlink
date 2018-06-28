@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The filtered local position (e.g. fused computer vision and accelerometers). Coordinate 
@@ -15,39 +13,18 @@ import java.lang.String;
         crc = 185
 )
 public final class LocalPositionNed {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * X Position 
-     */
     private final float x;
 
-    /**
-     * Y Position 
-     */
     private final float y;
 
-    /**
-     * Z Position 
-     */
     private final float z;
 
-    /**
-     * X Speed 
-     */
     private final float vx;
 
-    /**
-     * Y Speed 
-     */
     private final float vy;
 
-    /**
-     * Z Speed 
-     */
     private final float vz;
 
     private LocalPositionNed(long timeBootMs, float x, float y, float z, float vx, float vy,
@@ -61,20 +38,12 @@ public final class LocalPositionNed {
         this.vz = vz;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LocalPositionNed{timeBootMs=" + timeBootMs
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", vx=" + vx
-                 + ", vy=" + vy
-                 + ", vz=" + vz + "}";
     }
 
     /**
@@ -85,7 +54,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -107,7 +76,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -118,7 +87,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -129,7 +98,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float vx() {
-        return vx;
+        return this.vx;
     }
 
     /**
@@ -140,7 +109,7 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float vy() {
-        return vy;
+        return this.vy;
     }
 
     /**
@@ -151,10 +120,10 @@ public final class LocalPositionNed {
             unitSize = 4
     )
     public final float vz() {
-        return vz;
+        return this.vz;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float x;
@@ -168,9 +137,6 @@ public final class LocalPositionNed {
         private float vy;
 
         private float vz;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

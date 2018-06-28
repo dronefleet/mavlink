@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * This message provides an API for manually controlling the vehicle using standard joystick 
@@ -16,68 +14,44 @@ import java.lang.String;
         crc = 243
 )
 public final class ManualControl {
-    /**
-     * X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is 
-     * invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick 
-     * and the pitch of a vehicle. 
-     */
-    private final int x;
-
-    /**
-     * Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is 
-     * invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the 
-     * roll of a vehicle. 
-     */
-    private final int y;
-
-    /**
-     * Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is 
-     * invalid. Generally corresponds to a separate slider movement with maximum being 1000 and 
-     * minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive 
-     * thrust, negative values are negative thrust. 
-     */
-    private final int z;
-
-    /**
-     * R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is 
-     * invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 
-     * 1000 and clockwise being -1000, and the yaw of a vehicle. 
-     */
-    private final int r;
-
-    /**
-     * A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for 
-     * released. The lowest bit corresponds to Button 1. 
-     */
-    private final int buttons;
-
-    /**
-     * The system to be controlled. 
-     */
     private final int target;
 
-    private ManualControl(int x, int y, int z, int r, int buttons, int target) {
+    private final int x;
+
+    private final int y;
+
+    private final int z;
+
+    private final int r;
+
+    private final int buttons;
+
+    private ManualControl(int target, int x, int y, int z, int r, int buttons) {
+        this.target = target;
         this.x = x;
         this.y = y;
         this.z = z;
         this.r = r;
         this.buttons = buttons;
-        this.target = target;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "ManualControl{target=" + target
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", r=" + r
-                 + ", buttons=" + buttons + "}";
+    /**
+     * The system to be controlled. 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int target() {
+        return this.target;
     }
 
     /**
@@ -91,7 +65,7 @@ public final class ManualControl {
             signed = true
     )
     public final int x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -105,7 +79,7 @@ public final class ManualControl {
             signed = true
     )
     public final int y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -120,7 +94,7 @@ public final class ManualControl {
             signed = true
     )
     public final int z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -134,7 +108,7 @@ public final class ManualControl {
             signed = true
     )
     public final int r() {
-        return r;
+        return this.r;
     }
 
     /**
@@ -146,21 +120,12 @@ public final class ManualControl {
             unitSize = 2
     )
     public final int buttons() {
-        return buttons;
+        return this.buttons;
     }
 
-    /**
-     * The system to be controlled. 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int target() {
-        return target;
-    }
+    public static final class Builder {
+        private int target;
 
-    public static class Builder {
         private int x;
 
         private int y;
@@ -171,9 +136,16 @@ public final class ManualControl {
 
         private int buttons;
 
-        private int target;
-
-        private Builder() {
+        /**
+         * The system to be controlled. 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder target(int target) {
+            this.target = target;
+            return this;
         }
 
         /**
@@ -250,20 +222,8 @@ public final class ManualControl {
             return this;
         }
 
-        /**
-         * The system to be controlled. 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder target(int target) {
-            this.target = target;
-            return this;
-        }
-
         public final ManualControl build() {
-            return new ManualControl(x, y, z, r, buttons, target);
+            return new ManualControl(target, x, y, z, r, buttons);
         }
     }
 }

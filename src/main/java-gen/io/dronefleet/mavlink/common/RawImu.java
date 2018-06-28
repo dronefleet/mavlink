@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,54 +14,24 @@ import java.math.BigInteger;
         crc = 144
 )
 public final class RawImu {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * X acceleration (raw) 
-     */
     private final int xacc;
 
-    /**
-     * Y acceleration (raw) 
-     */
     private final int yacc;
 
-    /**
-     * Z acceleration (raw) 
-     */
     private final int zacc;
 
-    /**
-     * Angular speed around X axis (raw) 
-     */
     private final int xgyro;
 
-    /**
-     * Angular speed around Y axis (raw) 
-     */
     private final int ygyro;
 
-    /**
-     * Angular speed around Z axis (raw) 
-     */
     private final int zgyro;
 
-    /**
-     * X Magnetic field (raw) 
-     */
     private final int xmag;
 
-    /**
-     * Y Magnetic field (raw) 
-     */
     private final int ymag;
 
-    /**
-     * Z Magnetic field (raw) 
-     */
     private final int zmag;
 
     private RawImu(BigInteger timeUsec, int xacc, int yacc, int zacc, int xgyro, int ygyro,
@@ -80,23 +48,12 @@ public final class RawImu {
         this.zmag = zmag;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "RawImu{timeUsec=" + timeUsec
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc
-                 + ", xgyro=" + xgyro
-                 + ", ygyro=" + ygyro
-                 + ", zgyro=" + zgyro
-                 + ", xmag=" + xmag
-                 + ", ymag=" + ymag
-                 + ", zmag=" + zmag + "}";
     }
 
     /**
@@ -107,7 +64,7 @@ public final class RawImu {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -119,7 +76,7 @@ public final class RawImu {
             signed = true
     )
     public final int xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -131,7 +88,7 @@ public final class RawImu {
             signed = true
     )
     public final int yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -143,7 +100,7 @@ public final class RawImu {
             signed = true
     )
     public final int zacc() {
-        return zacc;
+        return this.zacc;
     }
 
     /**
@@ -155,7 +112,7 @@ public final class RawImu {
             signed = true
     )
     public final int xgyro() {
-        return xgyro;
+        return this.xgyro;
     }
 
     /**
@@ -167,7 +124,7 @@ public final class RawImu {
             signed = true
     )
     public final int ygyro() {
-        return ygyro;
+        return this.ygyro;
     }
 
     /**
@@ -179,7 +136,7 @@ public final class RawImu {
             signed = true
     )
     public final int zgyro() {
-        return zgyro;
+        return this.zgyro;
     }
 
     /**
@@ -191,7 +148,7 @@ public final class RawImu {
             signed = true
     )
     public final int xmag() {
-        return xmag;
+        return this.xmag;
     }
 
     /**
@@ -203,7 +160,7 @@ public final class RawImu {
             signed = true
     )
     public final int ymag() {
-        return ymag;
+        return this.ymag;
     }
 
     /**
@@ -215,10 +172,10 @@ public final class RawImu {
             signed = true
     )
     public final int zmag() {
-        return zmag;
+        return this.zmag;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private int xacc;
@@ -238,9 +195,6 @@ public final class RawImu {
         private int ymag;
 
         private int zmag;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 

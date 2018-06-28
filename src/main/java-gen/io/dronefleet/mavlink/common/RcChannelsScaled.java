@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The scaled values of the RC channels received. (-100%) -10000, (0%) 0, (100%) 10000. Channels 
@@ -15,66 +13,33 @@ import java.lang.String;
         crc = 237
 )
 public final class RcChannelsScaled {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan1Scaled;
-
-    /**
-     * RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan2Scaled;
-
-    /**
-     * RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan3Scaled;
-
-    /**
-     * RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan4Scaled;
-
-    /**
-     * RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan5Scaled;
-
-    /**
-     * RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan6Scaled;
-
-    /**
-     * RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan7Scaled;
-
-    /**
-     * RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    private final int chan8Scaled;
-
-    /**
-     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-     * than 8 servos. 
-     */
     private final int port;
 
-    /**
-     * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
-     */
+    private final int chan1Scaled;
+
+    private final int chan2Scaled;
+
+    private final int chan3Scaled;
+
+    private final int chan4Scaled;
+
+    private final int chan5Scaled;
+
+    private final int chan6Scaled;
+
+    private final int chan7Scaled;
+
+    private final int chan8Scaled;
+
     private final int rssi;
 
-    private RcChannelsScaled(long timeBootMs, int chan1Scaled, int chan2Scaled, int chan3Scaled,
-            int chan4Scaled, int chan5Scaled, int chan6Scaled, int chan7Scaled, int chan8Scaled,
-            int port, int rssi) {
+    private RcChannelsScaled(long timeBootMs, int port, int chan1Scaled, int chan2Scaled,
+            int chan3Scaled, int chan4Scaled, int chan5Scaled, int chan6Scaled, int chan7Scaled,
+            int chan8Scaled, int rssi) {
         this.timeBootMs = timeBootMs;
+        this.port = port;
         this.chan1Scaled = chan1Scaled;
         this.chan2Scaled = chan2Scaled;
         this.chan3Scaled = chan3Scaled;
@@ -83,28 +48,15 @@ public final class RcChannelsScaled {
         this.chan6Scaled = chan6Scaled;
         this.chan7Scaled = chan7Scaled;
         this.chan8Scaled = chan8Scaled;
-        this.port = port;
         this.rssi = rssi;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "RcChannelsScaled{timeBootMs=" + timeBootMs
-                 + ", port=" + port
-                 + ", chan1Scaled=" + chan1Scaled
-                 + ", chan2Scaled=" + chan2Scaled
-                 + ", chan3Scaled=" + chan3Scaled
-                 + ", chan4Scaled=" + chan4Scaled
-                 + ", chan5Scaled=" + chan5Scaled
-                 + ", chan6Scaled=" + chan6Scaled
-                 + ", chan7Scaled=" + chan7Scaled
-                 + ", chan8Scaled=" + chan8Scaled
-                 + ", rssi=" + rssi + "}";
     }
 
     /**
@@ -115,103 +67,7 @@ public final class RcChannelsScaled {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
-    }
-
-    /**
-     * RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan1Scaled() {
-        return chan1Scaled;
-    }
-
-    /**
-     * RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan2Scaled() {
-        return chan2Scaled;
-    }
-
-    /**
-     * RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan3Scaled() {
-        return chan3Scaled;
-    }
-
-    /**
-     * RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan4Scaled() {
-        return chan4Scaled;
-    }
-
-    /**
-     * RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan5Scaled() {
-        return chan5Scaled;
-    }
-
-    /**
-     * RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan6Scaled() {
-        return chan6Scaled;
-    }
-
-    /**
-     * RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan7Scaled() {
-        return chan7Scaled;
-    }
-
-    /**
-     * RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 2,
-            signed = true
-    )
-    public final int chan8Scaled() {
-        return chan8Scaled;
+        return this.timeBootMs;
     }
 
     /**
@@ -223,7 +79,103 @@ public final class RcChannelsScaled {
             unitSize = 1
     )
     public final int port() {
-        return port;
+        return this.port;
+    }
+
+    /**
+     * RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan1Scaled() {
+        return this.chan1Scaled;
+    }
+
+    /**
+     * RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan2Scaled() {
+        return this.chan2Scaled;
+    }
+
+    /**
+     * RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan3Scaled() {
+        return this.chan3Scaled;
+    }
+
+    /**
+     * RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan4Scaled() {
+        return this.chan4Scaled;
+    }
+
+    /**
+     * RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan5Scaled() {
+        return this.chan5Scaled;
+    }
+
+    /**
+     * RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan6Scaled() {
+        return this.chan6Scaled;
+    }
+
+    /**
+     * RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan7Scaled() {
+        return this.chan7Scaled;
+    }
+
+    /**
+     * RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 2,
+            signed = true
+    )
+    public final int chan8Scaled() {
+        return this.chan8Scaled;
     }
 
     /**
@@ -234,11 +186,13 @@ public final class RcChannelsScaled {
             unitSize = 1
     )
     public final int rssi() {
-        return rssi;
+        return this.rssi;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
+
+        private int port;
 
         private int chan1Scaled;
 
@@ -256,12 +210,7 @@ public final class RcChannelsScaled {
 
         private int chan8Scaled;
 
-        private int port;
-
         private int rssi;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 
@@ -272,6 +221,19 @@ public final class RcChannelsScaled {
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
+         * than 8 servos. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder port(int port) {
+            this.port = port;
             return this;
         }
 
@@ -380,19 +342,6 @@ public final class RcChannelsScaled {
         }
 
         /**
-         * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-         * than 8 servos. 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder port(int port) {
-            this.port = port;
-            return this;
-        }
-
-        /**
          * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
@@ -405,7 +354,7 @@ public final class RcChannelsScaled {
         }
 
         public final RcChannelsScaled build() {
-            return new RcChannelsScaled(timeBootMs, chan1Scaled, chan2Scaled, chan3Scaled, chan4Scaled, chan5Scaled, chan6Scaled, chan7Scaled, chan8Scaled, port, rssi);
+            return new RcChannelsScaled(timeBootMs, port, chan1Scaled, chan2Scaled, chan3Scaled, chan4Scaled, chan5Scaled, chan6Scaled, chan7Scaled, chan8Scaled, rssi);
         }
     }
 }

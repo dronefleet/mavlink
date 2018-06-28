@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Reports progress of compass calibration. 
@@ -14,114 +12,44 @@ import java.lang.String;
         crc = 92
 )
 public final class MagCalProgress {
-    /**
-     * Body frame direction vector for display 
-     */
-    private final float directionX;
-
-    /**
-     * Body frame direction vector for display 
-     */
-    private final float directionY;
-
-    /**
-     * Body frame direction vector for display 
-     */
-    private final float directionZ;
-
-    /**
-     * Compass being calibrated 
-     */
     private final int compassId;
 
-    /**
-     * Bitmask of compasses being calibrated 
-     */
     private final int calMask;
 
-    /**
-     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
-     */
     private final MagCalStatus calStatus;
 
-    /**
-     * Attempt number 
-     */
     private final int attempt;
 
-    /**
-     * Completion percentage 
-     */
     private final int completionPct;
 
-    /**
-     * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid) 
-     */
     private final byte[] completionMask;
 
-    private MagCalProgress(float directionX, float directionY, float directionZ, int compassId,
-            int calMask, MagCalStatus calStatus, int attempt, int completionPct,
-            byte[] completionMask) {
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.directionZ = directionZ;
+    private final float directionX;
+
+    private final float directionY;
+
+    private final float directionZ;
+
+    private MagCalProgress(int compassId, int calMask, MagCalStatus calStatus, int attempt,
+            int completionPct, byte[] completionMask, float directionX, float directionY,
+            float directionZ) {
         this.compassId = compassId;
         this.calMask = calMask;
         this.calStatus = calStatus;
         this.attempt = attempt;
         this.completionPct = completionPct;
         this.completionMask = completionMask;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.directionZ = directionZ;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MagCalProgress{compassId=" + compassId
-                 + ", calMask=" + calMask
-                 + ", calStatus=" + calStatus
-                 + ", attempt=" + attempt
-                 + ", completionPct=" + completionPct
-                 + ", completionMask=" + completionMask
-                 + ", directionX=" + directionX
-                 + ", directionY=" + directionY
-                 + ", directionZ=" + directionZ + "}";
-    }
-
-    /**
-     * Body frame direction vector for display 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float directionX() {
-        return directionX;
-    }
-
-    /**
-     * Body frame direction vector for display 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float directionY() {
-        return directionY;
-    }
-
-    /**
-     * Body frame direction vector for display 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float directionZ() {
-        return directionZ;
     }
 
     /**
@@ -132,7 +60,7 @@ public final class MagCalProgress {
             unitSize = 1
     )
     public final int compassId() {
-        return compassId;
+        return this.compassId;
     }
 
     /**
@@ -143,18 +71,18 @@ public final class MagCalProgress {
             unitSize = 1
     )
     public final int calMask() {
-        return calMask;
+        return this.calMask;
     }
 
     /**
-     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
+     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MagCalStatus calStatus() {
-        return calStatus;
+        return this.calStatus;
     }
 
     /**
@@ -165,7 +93,7 @@ public final class MagCalProgress {
             unitSize = 1
     )
     public final int attempt() {
-        return attempt;
+        return this.attempt;
     }
 
     /**
@@ -176,7 +104,7 @@ public final class MagCalProgress {
             unitSize = 1
     )
     public final int completionPct() {
-        return completionPct;
+        return this.completionPct;
     }
 
     /**
@@ -188,16 +116,43 @@ public final class MagCalProgress {
             arraySize = 10
     )
     public final byte[] completionMask() {
-        return completionMask;
+        return this.completionMask;
     }
 
-    public static class Builder {
-        private float directionX;
+    /**
+     * Body frame direction vector for display 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float directionX() {
+        return this.directionX;
+    }
 
-        private float directionY;
+    /**
+     * Body frame direction vector for display 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float directionY() {
+        return this.directionY;
+    }
 
-        private float directionZ;
+    /**
+     * Body frame direction vector for display 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float directionZ() {
+        return this.directionZ;
+    }
 
+    public static final class Builder {
         private int compassId;
 
         private int calMask;
@@ -210,44 +165,11 @@ public final class MagCalProgress {
 
         private byte[] completionMask;
 
-        private Builder() {
-        }
+        private float directionX;
 
-        /**
-         * Body frame direction vector for display 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 4
-        )
-        public final Builder directionX(float directionX) {
-            this.directionX = directionX;
-            return this;
-        }
+        private float directionY;
 
-        /**
-         * Body frame direction vector for display 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 4
-        )
-        public final Builder directionY(float directionY) {
-            this.directionY = directionY;
-            return this;
-        }
-
-        /**
-         * Body frame direction vector for display 
-         */
-        @MavlinkFieldInfo(
-                position = 9,
-                unitSize = 4
-        )
-        public final Builder directionZ(float directionZ) {
-            this.directionZ = directionZ;
-            return this;
-        }
+        private float directionZ;
 
         /**
          * Compass being calibrated 
@@ -274,7 +196,7 @@ public final class MagCalProgress {
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MagCalStatus} enum) 
+         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -322,8 +244,44 @@ public final class MagCalProgress {
             return this;
         }
 
+        /**
+         * Body frame direction vector for display 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 4
+        )
+        public final Builder directionX(float directionX) {
+            this.directionX = directionX;
+            return this;
+        }
+
+        /**
+         * Body frame direction vector for display 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 4
+        )
+        public final Builder directionY(float directionY) {
+            this.directionY = directionY;
+            return this;
+        }
+
+        /**
+         * Body frame direction vector for display 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 4
+        )
+        public final Builder directionZ(float directionZ) {
+            this.directionZ = directionZ;
+            return this;
+        }
+
         public final MagCalProgress build() {
-            return new MagCalProgress(directionX, directionY, directionZ, compassId, calMask, calStatus, attempt, completionPct, completionMask);
+            return new MagCalProgress(compassId, calMask, calStatus, attempt, completionPct, completionMask, directionX, directionY, directionZ);
         }
     }
 }

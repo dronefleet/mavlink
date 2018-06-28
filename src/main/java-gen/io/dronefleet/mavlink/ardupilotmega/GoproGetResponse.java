@@ -3,30 +3,19 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GoproCommand} get request 
+ * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} get request 
  */
 @MavlinkMessageInfo(
         id = 217,
         crc = 202
 )
 public final class GoproGetResponse {
-    /**
-     * Command ID 
-     */
     private final GoproCommand cmdId;
 
-    /**
-     * Status 
-     */
     private final GoproRequestStatus status;
 
-    /**
-     * Value 
-     */
     private final byte[] value;
 
     private GoproGetResponse(GoproCommand cmdId, GoproRequestStatus status, byte[] value) {
@@ -35,16 +24,12 @@ public final class GoproGetResponse {
         this.value = value;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GoproGetResponse{cmdId=" + cmdId
-                 + ", status=" + status
-                 + ", value=" + value + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class GoproGetResponse {
             unitSize = 1
     )
     public final GoproCommand cmdId() {
-        return cmdId;
+        return this.cmdId;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class GoproGetResponse {
             unitSize = 1
     )
     public final GoproRequestStatus status() {
-        return status;
+        return this.status;
     }
 
     /**
@@ -78,18 +63,15 @@ public final class GoproGetResponse {
             arraySize = 4
     )
     public final byte[] value() {
-        return value;
+        return this.value;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private GoproCommand cmdId;
 
         private GoproRequestStatus status;
 
         private byte[] value;
-
-        private Builder() {
-        }
 
         /**
          * Command ID 

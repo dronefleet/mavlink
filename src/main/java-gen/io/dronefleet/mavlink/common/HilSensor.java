@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,80 +13,34 @@ import java.math.BigInteger;
         crc = 108
 )
 public final class HilSensor {
-    /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * X acceleration (m/s^2) 
-     */
     private final float xacc;
 
-    /**
-     * Y acceleration (m/s^2) 
-     */
     private final float yacc;
 
-    /**
-     * Z acceleration (m/s^2) 
-     */
     private final float zacc;
 
-    /**
-     * Angular speed around X axis in body frame (rad / sec) 
-     */
     private final float xgyro;
 
-    /**
-     * Angular speed around Y axis in body frame (rad / sec) 
-     */
     private final float ygyro;
 
-    /**
-     * Angular speed around Z axis in body frame (rad / sec) 
-     */
     private final float zgyro;
 
-    /**
-     * X Magnetic field (Gauss) 
-     */
     private final float xmag;
 
-    /**
-     * Y Magnetic field (Gauss) 
-     */
     private final float ymag;
 
-    /**
-     * Z Magnetic field (Gauss) 
-     */
     private final float zmag;
 
-    /**
-     * Absolute pressure in millibar 
-     */
     private final float absPressure;
 
-    /**
-     * Differential pressure (airspeed) in millibar 
-     */
     private final float diffPressure;
 
-    /**
-     * Altitude calculated from pressure 
-     */
     private final float pressureAlt;
 
-    /**
-     * Temperature in degrees celsius 
-     */
     private final float temperature;
 
-    /**
-     * Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 
-     * 31: full reset of attitude/position/velocities/etc was performed in sim. 
-     */
     private final long fieldsUpdated;
 
     private HilSensor(BigInteger timeUsec, float xacc, float yacc, float zacc, float xgyro,
@@ -111,28 +63,12 @@ public final class HilSensor {
         this.fieldsUpdated = fieldsUpdated;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HilSensor{timeUsec=" + timeUsec
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc
-                 + ", xgyro=" + xgyro
-                 + ", ygyro=" + ygyro
-                 + ", zgyro=" + zgyro
-                 + ", xmag=" + xmag
-                 + ", ymag=" + ymag
-                 + ", zmag=" + zmag
-                 + ", absPressure=" + absPressure
-                 + ", diffPressure=" + diffPressure
-                 + ", pressureAlt=" + pressureAlt
-                 + ", temperature=" + temperature
-                 + ", fieldsUpdated=" + fieldsUpdated + "}";
     }
 
     /**
@@ -143,7 +79,7 @@ public final class HilSensor {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -154,7 +90,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -165,7 +101,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -176,7 +112,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float zacc() {
-        return zacc;
+        return this.zacc;
     }
 
     /**
@@ -187,7 +123,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float xgyro() {
-        return xgyro;
+        return this.xgyro;
     }
 
     /**
@@ -198,7 +134,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float ygyro() {
-        return ygyro;
+        return this.ygyro;
     }
 
     /**
@@ -209,7 +145,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float zgyro() {
-        return zgyro;
+        return this.zgyro;
     }
 
     /**
@@ -220,7 +156,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float xmag() {
-        return xmag;
+        return this.xmag;
     }
 
     /**
@@ -231,7 +167,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float ymag() {
-        return ymag;
+        return this.ymag;
     }
 
     /**
@@ -242,7 +178,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float zmag() {
-        return zmag;
+        return this.zmag;
     }
 
     /**
@@ -253,7 +189,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float absPressure() {
-        return absPressure;
+        return this.absPressure;
     }
 
     /**
@@ -264,7 +200,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float diffPressure() {
-        return diffPressure;
+        return this.diffPressure;
     }
 
     /**
@@ -275,7 +211,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float pressureAlt() {
-        return pressureAlt;
+        return this.pressureAlt;
     }
 
     /**
@@ -286,7 +222,7 @@ public final class HilSensor {
             unitSize = 4
     )
     public final float temperature() {
-        return temperature;
+        return this.temperature;
     }
 
     /**
@@ -298,10 +234,10 @@ public final class HilSensor {
             unitSize = 4
     )
     public final long fieldsUpdated() {
-        return fieldsUpdated;
+        return this.fieldsUpdated;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float xacc;
@@ -331,9 +267,6 @@ public final class HilSensor {
         private float temperature;
 
         private long fieldsUpdated;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds, synced to UNIX time or since system boot) 

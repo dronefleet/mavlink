@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Data used in the navigation algorithm. 
@@ -14,58 +12,28 @@ import java.lang.String;
         crc = 228
 )
 public final class SlugsNavigation {
-    /**
-     * Measured Airspeed prior to the nav filter 
-     */
     private final float uM;
 
-    /**
-     * Commanded Roll 
-     */
     private final float phiC;
 
-    /**
-     * Commanded Pitch 
-     */
     private final float thetaC;
 
-    /**
-     * Commanded Turn rate 
-     */
     private final float psidotC;
 
-    /**
-     * Y component of the body acceleration 
-     */
     private final float ayBody;
 
-    /**
-     * Total Distance to Run on this leg of Navigation 
-     */
     private final float totaldist;
 
-    /**
-     * Remaining distance to Run on this leg of Navigation 
-     */
     private final float dist2go;
 
-    /**
-     * Commanded altitude 
-     */
-    private final int hC;
-
-    /**
-     * Origin WP 
-     */
     private final int fromwp;
 
-    /**
-     * Destination WP 
-     */
     private final int towp;
 
+    private final int hC;
+
     private SlugsNavigation(float uM, float phiC, float thetaC, float psidotC, float ayBody,
-            float totaldist, float dist2go, int hC, int fromwp, int towp) {
+            float totaldist, float dist2go, int fromwp, int towp, int hC) {
         this.uM = uM;
         this.phiC = phiC;
         this.thetaC = thetaC;
@@ -73,28 +41,17 @@ public final class SlugsNavigation {
         this.ayBody = ayBody;
         this.totaldist = totaldist;
         this.dist2go = dist2go;
-        this.hC = hC;
         this.fromwp = fromwp;
         this.towp = towp;
+        this.hC = hC;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SlugsNavigation{uM=" + uM
-                 + ", phiC=" + phiC
-                 + ", thetaC=" + thetaC
-                 + ", psidotC=" + psidotC
-                 + ", ayBody=" + ayBody
-                 + ", totaldist=" + totaldist
-                 + ", dist2go=" + dist2go
-                 + ", fromwp=" + fromwp
-                 + ", towp=" + towp
-                 + ", hC=" + hC + "}";
     }
 
     /**
@@ -105,7 +62,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float uM() {
-        return uM;
+        return this.uM;
     }
 
     /**
@@ -116,7 +73,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float phiC() {
-        return phiC;
+        return this.phiC;
     }
 
     /**
@@ -127,7 +84,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float thetaC() {
-        return thetaC;
+        return this.thetaC;
     }
 
     /**
@@ -138,7 +95,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float psidotC() {
-        return psidotC;
+        return this.psidotC;
     }
 
     /**
@@ -149,7 +106,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float ayBody() {
-        return ayBody;
+        return this.ayBody;
     }
 
     /**
@@ -160,7 +117,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float totaldist() {
-        return totaldist;
+        return this.totaldist;
     }
 
     /**
@@ -171,18 +128,7 @@ public final class SlugsNavigation {
             unitSize = 4
     )
     public final float dist2go() {
-        return dist2go;
-    }
-
-    /**
-     * Commanded altitude 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 2
-    )
-    public final int hC() {
-        return hC;
+        return this.dist2go;
     }
 
     /**
@@ -193,7 +139,7 @@ public final class SlugsNavigation {
             unitSize = 1
     )
     public final int fromwp() {
-        return fromwp;
+        return this.fromwp;
     }
 
     /**
@@ -204,10 +150,21 @@ public final class SlugsNavigation {
             unitSize = 1
     )
     public final int towp() {
-        return towp;
+        return this.towp;
     }
 
-    public static class Builder {
+    /**
+     * Commanded altitude 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 2
+    )
+    public final int hC() {
+        return this.hC;
+    }
+
+    public static final class Builder {
         private float uM;
 
         private float phiC;
@@ -222,14 +179,11 @@ public final class SlugsNavigation {
 
         private float dist2go;
 
-        private int hC;
-
         private int fromwp;
 
         private int towp;
 
-        private Builder() {
-        }
+        private int hC;
 
         /**
          * Measured Airspeed prior to the nav filter 
@@ -316,18 +270,6 @@ public final class SlugsNavigation {
         }
 
         /**
-         * Commanded altitude 
-         */
-        @MavlinkFieldInfo(
-                position = 10,
-                unitSize = 2
-        )
-        public final Builder hC(int hC) {
-            this.hC = hC;
-            return this;
-        }
-
-        /**
          * Origin WP 
          */
         @MavlinkFieldInfo(
@@ -351,8 +293,20 @@ public final class SlugsNavigation {
             return this;
         }
 
+        /**
+         * Commanded altitude 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 2
+        )
+        public final Builder hC(int hC) {
+            this.hC = hC;
+            return this;
+        }
+
         public final SlugsNavigation build() {
-            return new SlugsNavigation(uM, phiC, thetaC, psidotC, ayBody, totaldist, dist2go, hC, fromwp, towp);
+            return new SlugsNavigation(uM, phiC, thetaC, psidotC, ayBody, totaldist, dist2go, fromwp, towp, hC);
         }
     }
 }

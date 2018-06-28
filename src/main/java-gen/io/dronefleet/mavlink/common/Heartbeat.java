@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The heartbeat message shows that a system is present and responding. The type of the MAV and 
@@ -17,60 +15,67 @@ import java.lang.String;
         crc = 50
 )
 public final class Heartbeat {
-    /**
-     * A bitfield for use for autopilot-specific flags 
-     */
-    private final long customMode;
-
-    /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-     */
     private final MavType type;
 
-    /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-     */
     private final MavAutopilot autopilot;
 
-    /**
-     * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum 
-     */
     private final EnumFlagSet<MavModeFlag> baseMode;
 
-    /**
-     * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
-     */
+    private final long customMode;
+
     private final MavState systemStatus;
 
-    /**
-     * MAVLink version, not writable by user, gets added by protocol because of magic data type: 
-     * uint8_t_mavlink_version 
-     */
     private final int mavlinkVersion;
 
-    private Heartbeat(long customMode, MavType type, MavAutopilot autopilot,
-            EnumFlagSet<MavModeFlag> baseMode, MavState systemStatus, int mavlinkVersion) {
-        this.customMode = customMode;
+    private Heartbeat(MavType type, MavAutopilot autopilot, EnumFlagSet<MavModeFlag> baseMode,
+            long customMode, MavState systemStatus, int mavlinkVersion) {
         this.type = type;
         this.autopilot = autopilot;
         this.baseMode = baseMode;
+        this.customMode = customMode;
         this.systemStatus = systemStatus;
         this.mavlinkVersion = mavlinkVersion;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "Heartbeat{type=" + type
-                 + ", autopilot=" + autopilot
-                 + ", baseMode=" + baseMode
-                 + ", customMode=" + customMode
-                 + ", systemStatus=" + systemStatus
-                 + ", mavlinkVersion=" + mavlinkVersion + "}";
+    /**
+     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final MavType type() {
+        return this.type;
+    }
+
+    /**
+     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final MavAutopilot autopilot() {
+        return this.autopilot;
+    }
+
+    /**
+     * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1
+    )
+    public final EnumFlagSet<MavModeFlag> baseMode() {
+        return this.baseMode;
     }
 
     /**
@@ -81,51 +86,18 @@ public final class Heartbeat {
             unitSize = 4
     )
     public final long customMode() {
-        return customMode;
+        return this.customMode;
     }
 
     /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final MavType type() {
-        return type;
-    }
-
-    /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final MavAutopilot autopilot() {
-        return autopilot;
-    }
-
-    /**
-     * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 1
-    )
-    public final EnumFlagSet<MavModeFlag> baseMode() {
-        return baseMode;
-    }
-
-    /**
-     * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
+     * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1
     )
     public final MavState systemStatus() {
-        return systemStatus;
+        return this.systemStatus;
     }
 
     /**
@@ -137,23 +109,56 @@ public final class Heartbeat {
             unitSize = 1
     )
     public final int mavlinkVersion() {
-        return mavlinkVersion;
+        return this.mavlinkVersion;
     }
 
-    public static class Builder {
-        private long customMode;
-
+    public static final class Builder {
         private MavType type;
 
         private MavAutopilot autopilot;
 
         private EnumFlagSet<MavModeFlag> baseMode;
 
+        private long customMode;
+
         private MavState systemStatus;
 
         private int mavlinkVersion;
 
-        private Builder() {
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder type(MavType type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder autopilot(MavAutopilot autopilot) {
+            this.autopilot = autopilot;
+            return this;
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder baseMode(EnumFlagSet<MavModeFlag> baseMode) {
+            this.baseMode = baseMode;
+            return this;
         }
 
         /**
@@ -169,43 +174,7 @@ public final class Heartbeat {
         }
 
         /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder type(MavType type) {
-            this.type = type;
-            return this;
-        }
-
-        /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder autopilot(MavAutopilot autopilot) {
-            this.autopilot = autopilot;
-            return this;
-        }
-
-        /**
-         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MavModeFlag} enum 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder baseMode(EnumFlagSet<MavModeFlag> baseMode) {
-            this.baseMode = baseMode;
-            return this;
-        }
-
-        /**
-         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MavState} enum 
+         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
          */
         @MavlinkFieldInfo(
                 position = 5,
@@ -230,7 +199,7 @@ public final class Heartbeat {
         }
 
         public final Heartbeat build() {
-            return new Heartbeat(customMode, type, autopilot, baseMode, systemStatus, mavlinkVersion);
+            return new Heartbeat(type, autopilot, baseMode, customMode, systemStatus, mavlinkVersion);
         }
     }
 }

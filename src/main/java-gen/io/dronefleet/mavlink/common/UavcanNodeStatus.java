@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -17,59 +15,34 @@ import java.math.BigInteger;
         crc = 28
 )
 public final class UavcanNodeStatus {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * The number of seconds since the start-up of the node. 
-     */
     private final long uptimeSec;
 
-    /**
-     * Vendor-specific status information. 
-     */
-    private final int vendorSpecificStatusCode;
-
-    /**
-     * Generalized node health status. 
-     */
     private final UavcanNodeHealth health;
 
-    /**
-     * Generalized operating mode. 
-     */
     private final UavcanNodeMode mode;
 
-    /**
-     * Not used currently. 
-     */
     private final int subMode;
 
-    private UavcanNodeStatus(BigInteger timeUsec, long uptimeSec, int vendorSpecificStatusCode,
-            UavcanNodeHealth health, UavcanNodeMode mode, int subMode) {
+    private final int vendorSpecificStatusCode;
+
+    private UavcanNodeStatus(BigInteger timeUsec, long uptimeSec, UavcanNodeHealth health,
+            UavcanNodeMode mode, int subMode, int vendorSpecificStatusCode) {
         this.timeUsec = timeUsec;
         this.uptimeSec = uptimeSec;
-        this.vendorSpecificStatusCode = vendorSpecificStatusCode;
         this.health = health;
         this.mode = mode;
         this.subMode = subMode;
+        this.vendorSpecificStatusCode = vendorSpecificStatusCode;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "UavcanNodeStatus{timeUsec=" + timeUsec
-                 + ", uptimeSec=" + uptimeSec
-                 + ", health=" + health
-                 + ", mode=" + mode
-                 + ", subMode=" + subMode
-                 + ", vendorSpecificStatusCode=" + vendorSpecificStatusCode + "}";
     }
 
     /**
@@ -80,7 +53,7 @@ public final class UavcanNodeStatus {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -91,18 +64,7 @@ public final class UavcanNodeStatus {
             unitSize = 4
     )
     public final long uptimeSec() {
-        return uptimeSec;
-    }
-
-    /**
-     * Vendor-specific status information. 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 2
-    )
-    public final int vendorSpecificStatusCode() {
-        return vendorSpecificStatusCode;
+        return this.uptimeSec;
     }
 
     /**
@@ -113,7 +75,7 @@ public final class UavcanNodeStatus {
             unitSize = 1
     )
     public final UavcanNodeHealth health() {
-        return health;
+        return this.health;
     }
 
     /**
@@ -124,7 +86,7 @@ public final class UavcanNodeStatus {
             unitSize = 1
     )
     public final UavcanNodeMode mode() {
-        return mode;
+        return this.mode;
     }
 
     /**
@@ -135,15 +97,24 @@ public final class UavcanNodeStatus {
             unitSize = 1
     )
     public final int subMode() {
-        return subMode;
+        return this.subMode;
     }
 
-    public static class Builder {
+    /**
+     * Vendor-specific status information. 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 2
+    )
+    public final int vendorSpecificStatusCode() {
+        return this.vendorSpecificStatusCode;
+    }
+
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private long uptimeSec;
-
-        private int vendorSpecificStatusCode;
 
         private UavcanNodeHealth health;
 
@@ -151,8 +122,7 @@ public final class UavcanNodeStatus {
 
         private int subMode;
 
-        private Builder() {
-        }
+        private int vendorSpecificStatusCode;
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
@@ -175,18 +145,6 @@ public final class UavcanNodeStatus {
         )
         public final Builder uptimeSec(long uptimeSec) {
             this.uptimeSec = uptimeSec;
-            return this;
-        }
-
-        /**
-         * Vendor-specific status information. 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 2
-        )
-        public final Builder vendorSpecificStatusCode(int vendorSpecificStatusCode) {
-            this.vendorSpecificStatusCode = vendorSpecificStatusCode;
             return this;
         }
 
@@ -226,8 +184,20 @@ public final class UavcanNodeStatus {
             return this;
         }
 
+        /**
+         * Vendor-specific status information. 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 2
+        )
+        public final Builder vendorSpecificStatusCode(int vendorSpecificStatusCode) {
+            this.vendorSpecificStatusCode = vendorSpecificStatusCode;
+            return this;
+        }
+
         public final UavcanNodeStatus build() {
-            return new UavcanNodeStatus(timeUsec, uptimeSec, vendorSpecificStatusCode, health, mode, subMode);
+            return new UavcanNodeStatus(timeUsec, uptimeSec, health, mode, subMode, vendorSpecificStatusCode);
         }
     }
 }

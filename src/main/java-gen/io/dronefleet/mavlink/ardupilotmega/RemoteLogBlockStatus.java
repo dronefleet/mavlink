@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Send Status of each log block that autopilot board might have sent 
@@ -14,56 +12,28 @@ import java.lang.String;
         crc = 186
 )
 public final class RemoteLogBlockStatus {
-    /**
-     * log data block sequence number 
-     */
-    private final long seqno;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * log data block status 
-     */
+    private final long seqno;
+
     private final MavRemoteLogDataBlockStatuses status;
 
-    private RemoteLogBlockStatus(long seqno, int targetSystem, int targetComponent,
+    private RemoteLogBlockStatus(int targetSystem, int targetComponent, long seqno,
             MavRemoteLogDataBlockStatuses status) {
-        this.seqno = seqno;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.seqno = seqno;
         this.status = status;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "RemoteLogBlockStatus{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", seqno=" + seqno
-                 + ", status=" + status + "}";
-    }
-
-    /**
-     * log data block sequence number 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final long seqno() {
-        return seqno;
     }
 
     /**
@@ -74,7 +44,7 @@ public final class RemoteLogBlockStatus {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -85,7 +55,18 @@ public final class RemoteLogBlockStatus {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
+    }
+
+    /**
+     * log data block sequence number 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final long seqno() {
+        return this.seqno;
     }
 
     /**
@@ -96,32 +77,17 @@ public final class RemoteLogBlockStatus {
             unitSize = 1
     )
     public final MavRemoteLogDataBlockStatuses status() {
-        return status;
+        return this.status;
     }
 
-    public static class Builder {
-        private long seqno;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
+        private long seqno;
+
         private MavRemoteLogDataBlockStatuses status;
-
-        private Builder() {
-        }
-
-        /**
-         * log data block sequence number 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 4
-        )
-        public final Builder seqno(long seqno) {
-            this.seqno = seqno;
-            return this;
-        }
 
         /**
          * System ID 
@@ -148,6 +114,18 @@ public final class RemoteLogBlockStatus {
         }
 
         /**
+         * log data block sequence number 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder seqno(long seqno) {
+            this.seqno = seqno;
+            return this;
+        }
+
+        /**
          * log data block status 
          */
         @MavlinkFieldInfo(
@@ -160,7 +138,7 @@ public final class RemoteLogBlockStatus {
         }
 
         public final RemoteLogBlockStatus build() {
-            return new RemoteLogBlockStatus(seqno, targetSystem, targetComponent, status);
+            return new RemoteLogBlockStatus(targetSystem, targetComponent, seqno, status);
         }
     }
 }

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Set a safety zone (volume), which is defined by two corners of a cube. This message can be used to 
@@ -16,147 +14,43 @@ import java.lang.String;
         crc = 15
 )
 public final class SafetySetAllowedArea {
-    /**
-     * x position 1 / Latitude 1 
-     */
-    private final float p1x;
-
-    /**
-     * y position 1 / Longitude 1 
-     */
-    private final float p1y;
-
-    /**
-     * z position 1 / Altitude 1 
-     */
-    private final float p1z;
-
-    /**
-     * x position 2 / Latitude 2 
-     */
-    private final float p2x;
-
-    /**
-     * y position 2 / Longitude 2 
-     */
-    private final float p2y;
-
-    /**
-     * z position 2 / Altitude 2 
-     */
-    private final float p2z;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. Can be either global, GPS, right-handed with Z 
-     * axis up or local, right handed, Z axis down. 
-     */
     private final MavFrame frame;
 
-    private SafetySetAllowedArea(float p1x, float p1y, float p1z, float p2x, float p2y, float p2z,
-            int targetSystem, int targetComponent, MavFrame frame) {
+    private final float p1x;
+
+    private final float p1y;
+
+    private final float p1z;
+
+    private final float p2x;
+
+    private final float p2y;
+
+    private final float p2z;
+
+    private SafetySetAllowedArea(int targetSystem, int targetComponent, MavFrame frame, float p1x,
+            float p1y, float p1z, float p2x, float p2y, float p2z) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.frame = frame;
         this.p1x = p1x;
         this.p1y = p1y;
         this.p1z = p1z;
         this.p2x = p2x;
         this.p2y = p2y;
         this.p2z = p2z;
-        this.targetSystem = targetSystem;
-        this.targetComponent = targetComponent;
-        this.frame = frame;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SafetySetAllowedArea{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", frame=" + frame
-                 + ", p1x=" + p1x
-                 + ", p1y=" + p1y
-                 + ", p1z=" + p1z
-                 + ", p2x=" + p2x
-                 + ", p2y=" + p2y
-                 + ", p2z=" + p2z + "}";
-    }
-
-    /**
-     * x position 1 / Latitude 1 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float p1x() {
-        return p1x;
-    }
-
-    /**
-     * y position 1 / Longitude 1 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float p1y() {
-        return p1y;
-    }
-
-    /**
-     * z position 1 / Altitude 1 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float p1z() {
-        return p1z;
-    }
-
-    /**
-     * x position 2 / Latitude 2 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float p2x() {
-        return p2x;
-    }
-
-    /**
-     * y position 2 / Longitude 2 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float p2y() {
-        return p2y;
-    }
-
-    /**
-     * z position 2 / Altitude 2 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float p2z() {
-        return p2z;
     }
 
     /**
@@ -167,7 +61,7 @@ public final class SafetySetAllowedArea {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -178,11 +72,11 @@ public final class SafetySetAllowedArea {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
-     * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. Can be either global, GPS, right-handed with Z 
+     * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
      * axis up or local, right handed, Z axis down. 
      */
     @MavlinkFieldInfo(
@@ -190,10 +84,82 @@ public final class SafetySetAllowedArea {
             unitSize = 1
     )
     public final MavFrame frame() {
-        return frame;
+        return this.frame;
     }
 
-    public static class Builder {
+    /**
+     * x position 1 / Latitude 1 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float p1x() {
+        return this.p1x;
+    }
+
+    /**
+     * y position 1 / Longitude 1 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float p1y() {
+        return this.p1y;
+    }
+
+    /**
+     * z position 1 / Altitude 1 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float p1z() {
+        return this.p1z;
+    }
+
+    /**
+     * x position 2 / Latitude 2 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float p2x() {
+        return this.p2x;
+    }
+
+    /**
+     * y position 2 / Longitude 2 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float p2y() {
+        return this.p2y;
+    }
+
+    /**
+     * z position 2 / Altitude 2 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float p2z() {
+        return this.p2z;
+    }
+
+    public static final class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private MavFrame frame;
+
         private float p1x;
 
         private float p1y;
@@ -206,13 +172,41 @@ public final class SafetySetAllowedArea {
 
         private float p2z;
 
-        private int targetSystem;
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
 
-        private int targetComponent;
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
 
-        private MavFrame frame;
-
-        private Builder() {
+        /**
+         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
+         * axis up or local, right handed, Z axis down. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder frame(MavFrame frame) {
+            this.frame = frame;
+            return this;
         }
 
         /**
@@ -287,45 +281,8 @@ public final class SafetySetAllowedArea {
             return this;
         }
 
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
-        /**
-         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum. Can be either global, GPS, right-handed with Z 
-         * axis up or local, right handed, Z axis down. 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder frame(MavFrame frame) {
-            this.frame = frame;
-            return this;
-        }
-
         public final SafetySetAllowedArea build() {
-            return new SafetySetAllowedArea(p1x, p1y, p1z, p2x, p2y, p2z, targetSystem, targetComponent, frame);
+            return new SafetySetAllowedArea(targetSystem, targetComponent, frame, p1x, p1y, p1z, p2x, p2y, p2z);
         }
     }
 }

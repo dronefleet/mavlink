@@ -3,60 +3,34 @@ package io.dronefleet.mavlink.paparazzi;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Request script item with the sequence number seq. The response of the system to this message 
- * should be a {@link io.dronefleet.mavlink.paparazzi.ScriptItem ScriptItem} message. 
+ * should be a {@link io.dronefleet.mavlink.paparazzi.ScriptItem SCRIPT_ITEM} message. 
  */
 @MavlinkMessageInfo(
         id = 181,
         crc = 129
 )
 public final class ScriptRequest {
-    /**
-     * Sequence 
-     */
-    private final int seq;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private ScriptRequest(int seq, int targetSystem, int targetComponent) {
-        this.seq = seq;
+    private final int seq;
+
+    private ScriptRequest(int targetSystem, int targetComponent, int seq) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.seq = seq;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ScriptRequest{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", seq=" + seq + "}";
-    }
-
-    /**
-     * Sequence 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int seq() {
-        return seq;
     }
 
     /**
@@ -67,7 +41,7 @@ public final class ScriptRequest {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -78,30 +52,26 @@ public final class ScriptRequest {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
-        private int seq;
+    /**
+     * Sequence 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int seq() {
+        return this.seq;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
-        private Builder() {
-        }
-
-        /**
-         * Sequence 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder seq(int seq) {
-            this.seq = seq;
-            return this;
-        }
+        private int seq;
 
         /**
          * System ID 
@@ -127,8 +97,20 @@ public final class ScriptRequest {
             return this;
         }
 
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
         public final ScriptRequest build() {
-            return new ScriptRequest(seq, targetSystem, targetComponent);
+            return new ScriptRequest(targetSystem, targetComponent, seq);
         }
     }
 }

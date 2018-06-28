@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,74 +13,41 @@ import java.math.BigInteger;
         crc = 54
 )
 public final class SensorpodStatus {
-    /**
-     * Timestamp in linuxtime (since 1.1.1970) 
-     */
     private final BigInteger timestamp;
 
-    /**
-     * Free space available in recordings directory in [Gb] * 1e2 
-     */
-    private final int freeSpace;
-
-    /**
-     * Rate of ROS topic 1 
-     */
     private final int visensorRate1;
 
-    /**
-     * Rate of ROS topic 2 
-     */
     private final int visensorRate2;
 
-    /**
-     * Rate of ROS topic 3 
-     */
     private final int visensorRate3;
 
-    /**
-     * Rate of ROS topic 4 
-     */
     private final int visensorRate4;
 
-    /**
-     * Number of recording nodes 
-     */
     private final int recordingNodesCount;
 
-    /**
-     * Temperature of sensorpod CPU in 
-     */
     private final int cpuTemp;
 
-    private SensorpodStatus(BigInteger timestamp, int freeSpace, int visensorRate1,
-            int visensorRate2, int visensorRate3, int visensorRate4, int recordingNodesCount,
-            int cpuTemp) {
+    private final int freeSpace;
+
+    private SensorpodStatus(BigInteger timestamp, int visensorRate1, int visensorRate2,
+            int visensorRate3, int visensorRate4, int recordingNodesCount, int cpuTemp,
+            int freeSpace) {
         this.timestamp = timestamp;
-        this.freeSpace = freeSpace;
         this.visensorRate1 = visensorRate1;
         this.visensorRate2 = visensorRate2;
         this.visensorRate3 = visensorRate3;
         this.visensorRate4 = visensorRate4;
         this.recordingNodesCount = recordingNodesCount;
         this.cpuTemp = cpuTemp;
+        this.freeSpace = freeSpace;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SensorpodStatus{timestamp=" + timestamp
-                 + ", visensorRate1=" + visensorRate1
-                 + ", visensorRate2=" + visensorRate2
-                 + ", visensorRate3=" + visensorRate3
-                 + ", visensorRate4=" + visensorRate4
-                 + ", recordingNodesCount=" + recordingNodesCount
-                 + ", cpuTemp=" + cpuTemp
-                 + ", freeSpace=" + freeSpace + "}";
     }
 
     /**
@@ -93,18 +58,7 @@ public final class SensorpodStatus {
             unitSize = 8
     )
     public final BigInteger timestamp() {
-        return timestamp;
-    }
-
-    /**
-     * Free space available in recordings directory in [Gb] * 1e2 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 2
-    )
-    public final int freeSpace() {
-        return freeSpace;
+        return this.timestamp;
     }
 
     /**
@@ -115,7 +69,7 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int visensorRate1() {
-        return visensorRate1;
+        return this.visensorRate1;
     }
 
     /**
@@ -126,7 +80,7 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int visensorRate2() {
-        return visensorRate2;
+        return this.visensorRate2;
     }
 
     /**
@@ -137,7 +91,7 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int visensorRate3() {
-        return visensorRate3;
+        return this.visensorRate3;
     }
 
     /**
@@ -148,7 +102,7 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int visensorRate4() {
-        return visensorRate4;
+        return this.visensorRate4;
     }
 
     /**
@@ -159,7 +113,7 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int recordingNodesCount() {
-        return recordingNodesCount;
+        return this.recordingNodesCount;
     }
 
     /**
@@ -170,13 +124,22 @@ public final class SensorpodStatus {
             unitSize = 1
     )
     public final int cpuTemp() {
-        return cpuTemp;
+        return this.cpuTemp;
     }
 
-    public static class Builder {
-        private BigInteger timestamp;
+    /**
+     * Free space available in recordings directory in [Gb] * 1e2 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 2
+    )
+    public final int freeSpace() {
+        return this.freeSpace;
+    }
 
-        private int freeSpace;
+    public static final class Builder {
+        private BigInteger timestamp;
 
         private int visensorRate1;
 
@@ -190,8 +153,7 @@ public final class SensorpodStatus {
 
         private int cpuTemp;
 
-        private Builder() {
-        }
+        private int freeSpace;
 
         /**
          * Timestamp in linuxtime (since 1.1.1970) 
@@ -202,18 +164,6 @@ public final class SensorpodStatus {
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
-            return this;
-        }
-
-        /**
-         * Free space available in recordings directory in [Gb] * 1e2 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 2
-        )
-        public final Builder freeSpace(int freeSpace) {
-            this.freeSpace = freeSpace;
             return this;
         }
 
@@ -289,8 +239,20 @@ public final class SensorpodStatus {
             return this;
         }
 
+        /**
+         * Free space available in recordings directory in [Gb] * 1e2 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 2
+        )
+        public final Builder freeSpace(int freeSpace) {
+            this.freeSpace = freeSpace;
+            return this;
+        }
+
         public final SensorpodStatus build() {
-            return new SensorpodStatus(timestamp, freeSpace, visensorRate1, visensorRate2, visensorRate3, visensorRate4, recordingNodesCount, cpuTemp);
+            return new SensorpodStatus(timestamp, visensorRate1, visensorRate2, visensorRate3, visensorRate4, recordingNodesCount, cpuTemp, freeSpace);
         }
     }
 }

@@ -3,25 +3,17 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 131,
         crc = 223
 )
 public final class EncapsulatedData {
-    /**
-     * sequence number (starting with 0 on every transmission) 
-     */
     private final int seqnr;
 
-    /**
-     * image data bytes 
-     */
     private final byte[] data;
 
     private EncapsulatedData(int seqnr, byte[] data) {
@@ -29,15 +21,12 @@ public final class EncapsulatedData {
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "EncapsulatedData{seqnr=" + seqnr
-                 + ", data=" + data + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class EncapsulatedData {
             unitSize = 2
     )
     public final int seqnr() {
-        return seqnr;
+        return this.seqnr;
     }
 
     /**
@@ -60,16 +49,13 @@ public final class EncapsulatedData {
             arraySize = 253
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int seqnr;
 
         private byte[] data;
-
-        private Builder() {
-        }
 
         /**
          * sequence number (starting with 0 on every transmission) 

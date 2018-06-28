@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * This message sets the control surfaces for selective passthrough mode. 
@@ -15,41 +13,21 @@ import java.lang.String;
         crc = 104
 )
 public final class CtrlSrfcPt {
-    /**
-     * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag ControlSurfaceFlag} ENUM. 
-     */
-    private final EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
-
-    /**
-     * The system setting the commands 
-     */
     private final int target;
 
-    private CtrlSrfcPt(EnumFlagSet<ControlSurfaceFlag> bitfieldpt, int target) {
-        this.bitfieldpt = bitfieldpt;
+    private final EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
+
+    private CtrlSrfcPt(int target, EnumFlagSet<ControlSurfaceFlag> bitfieldpt) {
         this.target = target;
+        this.bitfieldpt = bitfieldpt;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CtrlSrfcPt{target=" + target
-                 + ", bitfieldpt=" + bitfieldpt + "}";
-    }
-
-    /**
-     * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag ControlSurfaceFlag} ENUM. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 2
-    )
-    public final EnumFlagSet<ControlSurfaceFlag> bitfieldpt() {
-        return bitfieldpt;
     }
 
     /**
@@ -60,28 +38,24 @@ public final class CtrlSrfcPt {
             unitSize = 1
     )
     public final int target() {
-        return target;
+        return this.target;
     }
 
-    public static class Builder {
-        private EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
+    /**
+     * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 2
+    )
+    public final EnumFlagSet<ControlSurfaceFlag> bitfieldpt() {
+        return this.bitfieldpt;
+    }
 
+    public static final class Builder {
         private int target;
 
-        private Builder() {
-        }
-
-        /**
-         * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag ControlSurfaceFlag} ENUM. 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 2
-        )
-        public final Builder bitfieldpt(EnumFlagSet<ControlSurfaceFlag> bitfieldpt) {
-            this.bitfieldpt = bitfieldpt;
-            return this;
-        }
+        private EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
 
         /**
          * The system setting the commands 
@@ -95,8 +69,20 @@ public final class CtrlSrfcPt {
             return this;
         }
 
+        /**
+         * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 2
+        )
+        public final Builder bitfieldpt(EnumFlagSet<ControlSurfaceFlag> bitfieldpt) {
+            this.bitfieldpt = bitfieldpt;
+            return this;
+        }
+
         public final CtrlSrfcPt build() {
-            return new CtrlSrfcPt(bitfieldpt, target);
+            return new CtrlSrfcPt(target, bitfieldpt);
         }
     }
 }

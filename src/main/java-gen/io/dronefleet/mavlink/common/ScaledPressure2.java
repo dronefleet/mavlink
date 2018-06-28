@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Barometer readings for 2nd barometer 
@@ -14,24 +12,12 @@ import java.lang.String;
         crc = 195
 )
 public final class ScaledPressure2 {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Absolute pressure (hectopascal) 
-     */
     private final float pressAbs;
 
-    /**
-     * Differential pressure 1 (hectopascal) 
-     */
     private final float pressDiff;
 
-    /**
-     * Temperature measurement (0.01 degrees celsius) 
-     */
     private final int temperature;
 
     private ScaledPressure2(long timeBootMs, float pressAbs, float pressDiff, int temperature) {
@@ -41,17 +27,12 @@ public final class ScaledPressure2 {
         this.temperature = temperature;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ScaledPressure2{timeBootMs=" + timeBootMs
-                 + ", pressAbs=" + pressAbs
-                 + ", pressDiff=" + pressDiff
-                 + ", temperature=" + temperature + "}";
     }
 
     /**
@@ -62,7 +43,7 @@ public final class ScaledPressure2 {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -73,7 +54,7 @@ public final class ScaledPressure2 {
             unitSize = 4
     )
     public final float pressAbs() {
-        return pressAbs;
+        return this.pressAbs;
     }
 
     /**
@@ -84,7 +65,7 @@ public final class ScaledPressure2 {
             unitSize = 4
     )
     public final float pressDiff() {
-        return pressDiff;
+        return this.pressDiff;
     }
 
     /**
@@ -96,10 +77,10 @@ public final class ScaledPressure2 {
             signed = true
     )
     public final int temperature() {
-        return temperature;
+        return this.temperature;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float pressAbs;
@@ -107,9 +88,6 @@ public final class ScaledPressure2 {
         private float pressDiff;
 
         private int temperature;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

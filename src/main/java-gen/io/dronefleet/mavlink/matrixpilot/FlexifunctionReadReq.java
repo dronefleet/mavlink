@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Reqest reading of flexifunction data 
@@ -14,45 +12,50 @@ import java.lang.String;
         crc = 26
 )
 public final class FlexifunctionReadReq {
-    /**
-     * Type of flexifunction data requested 
-     */
-    private final int readReqType;
-
-    /**
-     * index into data where needed 
-     */
-    private final int dataIndex;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private FlexifunctionReadReq(int readReqType, int dataIndex, int targetSystem,
-            int targetComponent) {
-        this.readReqType = readReqType;
-        this.dataIndex = dataIndex;
+    private final int readReqType;
+
+    private final int dataIndex;
+
+    private FlexifunctionReadReq(int targetSystem, int targetComponent, int readReqType,
+            int dataIndex) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.readReqType = readReqType;
+        this.dataIndex = dataIndex;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "FlexifunctionReadReq{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", readReqType=" + readReqType
-                 + ", dataIndex=" + dataIndex + "}";
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
     }
 
     /**
@@ -64,7 +67,7 @@ public final class FlexifunctionReadReq {
             signed = true
     )
     public final int readReqType() {
-        return readReqType;
+        return this.readReqType;
     }
 
     /**
@@ -76,41 +79,40 @@ public final class FlexifunctionReadReq {
             signed = true
     )
     public final int dataIndex() {
-        return dataIndex;
+        return this.dataIndex;
     }
 
-    /**
-     * System ID 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int targetComponent() {
-        return targetComponent;
-    }
-
-    public static class Builder {
-        private int readReqType;
-
-        private int dataIndex;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
-        private Builder() {
+        private int readReqType;
+
+        private int dataIndex;
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
         }
 
         /**
@@ -139,32 +141,8 @@ public final class FlexifunctionReadReq {
             return this;
         }
 
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
         public final FlexifunctionReadReq build() {
-            return new FlexifunctionReadReq(readReqType, dataIndex, targetSystem, targetComponent);
+            return new FlexifunctionReadReq(targetSystem, targetComponent, readReqType, dataIndex);
         }
     }
 }

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed 
@@ -15,44 +13,20 @@ import java.lang.String;
         crc = 246
 )
 public final class AttitudeQuaternion {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Quaternion component 1, w (1 in null-rotation) 
-     */
     private final float q1;
 
-    /**
-     * Quaternion component 2, x (0 in null-rotation) 
-     */
     private final float q2;
 
-    /**
-     * Quaternion component 3, y (0 in null-rotation) 
-     */
     private final float q3;
 
-    /**
-     * Quaternion component 4, z (0 in null-rotation) 
-     */
     private final float q4;
 
-    /**
-     * Roll angular speed (rad/s) 
-     */
     private final float rollspeed;
 
-    /**
-     * Pitch angular speed (rad/s) 
-     */
     private final float pitchspeed;
 
-    /**
-     * Yaw angular speed (rad/s) 
-     */
     private final float yawspeed;
 
     private AttitudeQuaternion(long timeBootMs, float q1, float q2, float q3, float q4,
@@ -67,21 +41,12 @@ public final class AttitudeQuaternion {
         this.yawspeed = yawspeed;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AttitudeQuaternion{timeBootMs=" + timeBootMs
-                 + ", q1=" + q1
-                 + ", q2=" + q2
-                 + ", q3=" + q3
-                 + ", q4=" + q4
-                 + ", rollspeed=" + rollspeed
-                 + ", pitchspeed=" + pitchspeed
-                 + ", yawspeed=" + yawspeed + "}";
     }
 
     /**
@@ -92,7 +57,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -103,7 +68,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float q1() {
-        return q1;
+        return this.q1;
     }
 
     /**
@@ -114,7 +79,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float q2() {
-        return q2;
+        return this.q2;
     }
 
     /**
@@ -125,7 +90,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float q3() {
-        return q3;
+        return this.q3;
     }
 
     /**
@@ -136,7 +101,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float q4() {
-        return q4;
+        return this.q4;
     }
 
     /**
@@ -147,7 +112,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float rollspeed() {
-        return rollspeed;
+        return this.rollspeed;
     }
 
     /**
@@ -158,7 +123,7 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float pitchspeed() {
-        return pitchspeed;
+        return this.pitchspeed;
     }
 
     /**
@@ -169,10 +134,10 @@ public final class AttitudeQuaternion {
             unitSize = 4
     )
     public final float yawspeed() {
-        return yawspeed;
+        return this.yawspeed;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float q1;
@@ -188,9 +153,6 @@ public final class AttitudeQuaternion {
         private float pitchspeed;
 
         private float yawspeed;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -18,34 +16,16 @@ import java.util.List;
         crc = 167
 )
 public final class AttitudeQuaternionCov {
-    /**
-     * Timestamp (microseconds since system boot or since UNIX epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation) 
-     */
     private final List<Float> q;
 
-    /**
-     * Roll angular speed (rad/s) 
-     */
     private final float rollspeed;
 
-    /**
-     * Pitch angular speed (rad/s) 
-     */
     private final float pitchspeed;
 
-    /**
-     * Yaw angular speed (rad/s) 
-     */
     private final float yawspeed;
 
-    /**
-     * Attitude covariance 
-     */
     private final List<Float> covariance;
 
     private AttitudeQuaternionCov(BigInteger timeUsec, List<Float> q, float rollspeed,
@@ -58,19 +38,12 @@ public final class AttitudeQuaternionCov {
         this.covariance = covariance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AttitudeQuaternionCov{timeUsec=" + timeUsec
-                 + ", q=" + q
-                 + ", rollspeed=" + rollspeed
-                 + ", pitchspeed=" + pitchspeed
-                 + ", yawspeed=" + yawspeed
-                 + ", covariance=" + covariance + "}";
     }
 
     /**
@@ -81,7 +54,7 @@ public final class AttitudeQuaternionCov {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -93,7 +66,7 @@ public final class AttitudeQuaternionCov {
             arraySize = 4
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
@@ -104,7 +77,7 @@ public final class AttitudeQuaternionCov {
             unitSize = 4
     )
     public final float rollspeed() {
-        return rollspeed;
+        return this.rollspeed;
     }
 
     /**
@@ -115,7 +88,7 @@ public final class AttitudeQuaternionCov {
             unitSize = 4
     )
     public final float pitchspeed() {
-        return pitchspeed;
+        return this.pitchspeed;
     }
 
     /**
@@ -126,7 +99,7 @@ public final class AttitudeQuaternionCov {
             unitSize = 4
     )
     public final float yawspeed() {
-        return yawspeed;
+        return this.yawspeed;
     }
 
     /**
@@ -138,10 +111,10 @@ public final class AttitudeQuaternionCov {
             arraySize = 9
     )
     public final List<Float> covariance() {
-        return covariance;
+        return this.covariance;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private List<Float> q;
@@ -153,9 +126,6 @@ public final class AttitudeQuaternionCov {
         private float yawspeed;
 
         private List<Float> covariance;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since system boot or since UNIX epoch) 

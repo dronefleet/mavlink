@@ -3,43 +3,42 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The interval between messages for a particular MAVLink message ID. This interface replaces 
- * {@link io.dronefleet.mavlink.common.DataStream DataStream} 
+ * {@link io.dronefleet.mavlink.common.DataStream DATA_STREAM} 
  */
 @MavlinkMessageInfo(
         id = 244,
         crc = 95
 )
 public final class MessageInterval {
-    /**
-     * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
-     * disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent. 
-     */
-    private final int intervalUs;
-
-    /**
-     * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
-     */
     private final int messageId;
 
-    private MessageInterval(int intervalUs, int messageId) {
-        this.intervalUs = intervalUs;
+    private final int intervalUs;
+
+    private MessageInterval(int messageId, int intervalUs) {
         this.messageId = messageId;
+        this.intervalUs = intervalUs;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "MessageInterval{messageId=" + messageId
-                 + ", intervalUs=" + intervalUs + "}";
+    /**
+     * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 2
+    )
+    public final int messageId() {
+        return this.messageId;
     }
 
     /**
@@ -52,26 +51,24 @@ public final class MessageInterval {
             signed = true
     )
     public final int intervalUs() {
-        return intervalUs;
+        return this.intervalUs;
     }
 
-    /**
-     * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 2
-    )
-    public final int messageId() {
-        return messageId;
-    }
-
-    public static class Builder {
-        private int intervalUs;
-
+    public static final class Builder {
         private int messageId;
 
-        private Builder() {
+        private int intervalUs;
+
+        /**
+         * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder messageId(int messageId) {
+            this.messageId = messageId;
+            return this;
         }
 
         /**
@@ -88,20 +85,8 @@ public final class MessageInterval {
             return this;
         }
 
-        /**
-         * The ID of the requested MAVLink message. v1.0 is limited to 254 messages. 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 2
-        )
-        public final Builder messageId(int messageId) {
-            this.messageId = messageId;
-            return this;
-        }
-
         public final MessageInterval build() {
-            return new MessageInterval(intervalUs, messageId);
+            return new MessageInterval(messageId, intervalUs);
         }
     }
 }

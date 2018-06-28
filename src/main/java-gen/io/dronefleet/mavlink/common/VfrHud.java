@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Metrics typically displayed on a HUD for fixed wing aircraft 
@@ -14,59 +12,34 @@ import java.lang.String;
         crc = 20
 )
 public final class VfrHud {
-    /**
-     * Current airspeed in m/s 
-     */
     private final float airspeed;
 
-    /**
-     * Current ground speed in m/s 
-     */
     private final float groundspeed;
 
-    /**
-     * Current altitude (MSL), in meters 
-     */
-    private final float alt;
-
-    /**
-     * Current climb rate in meters/second 
-     */
-    private final float climb;
-
-    /**
-     * Current heading in degrees, in compass units (0..360, 0=north) 
-     */
     private final int heading;
 
-    /**
-     * Current throttle setting in integer percent, 0 to 100 
-     */
     private final int throttle;
 
-    private VfrHud(float airspeed, float groundspeed, float alt, float climb, int heading,
-            int throttle) {
+    private final float alt;
+
+    private final float climb;
+
+    private VfrHud(float airspeed, float groundspeed, int heading, int throttle, float alt,
+            float climb) {
         this.airspeed = airspeed;
         this.groundspeed = groundspeed;
-        this.alt = alt;
-        this.climb = climb;
         this.heading = heading;
         this.throttle = throttle;
+        this.alt = alt;
+        this.climb = climb;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "VfrHud{airspeed=" + airspeed
-                 + ", groundspeed=" + groundspeed
-                 + ", heading=" + heading
-                 + ", throttle=" + throttle
-                 + ", alt=" + alt
-                 + ", climb=" + climb + "}";
     }
 
     /**
@@ -77,7 +50,7 @@ public final class VfrHud {
             unitSize = 4
     )
     public final float airspeed() {
-        return airspeed;
+        return this.airspeed;
     }
 
     /**
@@ -88,29 +61,7 @@ public final class VfrHud {
             unitSize = 4
     )
     public final float groundspeed() {
-        return groundspeed;
-    }
-
-    /**
-     * Current altitude (MSL), in meters 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float alt() {
-        return alt;
-    }
-
-    /**
-     * Current climb rate in meters/second 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float climb() {
-        return climb;
+        return this.groundspeed;
     }
 
     /**
@@ -122,7 +73,7 @@ public final class VfrHud {
             signed = true
     )
     public final int heading() {
-        return heading;
+        return this.heading;
     }
 
     /**
@@ -133,24 +84,43 @@ public final class VfrHud {
             unitSize = 2
     )
     public final int throttle() {
-        return throttle;
+        return this.throttle;
     }
 
-    public static class Builder {
+    /**
+     * Current altitude (MSL), in meters 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float alt() {
+        return this.alt;
+    }
+
+    /**
+     * Current climb rate in meters/second 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float climb() {
+        return this.climb;
+    }
+
+    public static final class Builder {
         private float airspeed;
 
         private float groundspeed;
-
-        private float alt;
-
-        private float climb;
 
         private int heading;
 
         private int throttle;
 
-        private Builder() {
-        }
+        private float alt;
+
+        private float climb;
 
         /**
          * Current airspeed in m/s 
@@ -173,30 +143,6 @@ public final class VfrHud {
         )
         public final Builder groundspeed(float groundspeed) {
             this.groundspeed = groundspeed;
-            return this;
-        }
-
-        /**
-         * Current altitude (MSL), in meters 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 4
-        )
-        public final Builder alt(float alt) {
-            this.alt = alt;
-            return this;
-        }
-
-        /**
-         * Current climb rate in meters/second 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 4
-        )
-        public final Builder climb(float climb) {
-            this.climb = climb;
             return this;
         }
 
@@ -225,8 +171,32 @@ public final class VfrHud {
             return this;
         }
 
+        /**
+         * Current altitude (MSL), in meters 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4
+        )
+        public final Builder alt(float alt) {
+            this.alt = alt;
+            return this;
+        }
+
+        /**
+         * Current climb rate in meters/second 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 4
+        )
+        public final Builder climb(float climb) {
+            this.climb = climb;
+            return this;
+        }
+
         public final VfrHud build() {
-            return new VfrHud(airspeed, groundspeed, alt, climb, heading, throttle);
+            return new VfrHud(airspeed, groundspeed, heading, throttle, alt, climb);
         }
     }
 }

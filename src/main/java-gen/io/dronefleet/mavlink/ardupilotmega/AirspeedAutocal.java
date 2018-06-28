@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Airspeed auto-calibration 
@@ -14,64 +12,28 @@ import java.lang.String;
         crc = 167
 )
 public final class AirspeedAutocal {
-    /**
-     * GPS velocity north m/s 
-     */
     private final float vx;
 
-    /**
-     * GPS velocity east m/s 
-     */
     private final float vy;
 
-    /**
-     * GPS velocity down m/s 
-     */
     private final float vz;
 
-    /**
-     * Differential pressure pascals 
-     */
     private final float diffPressure;
 
-    /**
-     * Estimated to true airspeed ratio 
-     */
     private final float eas2tas;
 
-    /**
-     * Airspeed ratio 
-     */
     private final float ratio;
 
-    /**
-     * EKF state x 
-     */
     private final float stateX;
 
-    /**
-     * EKF state y 
-     */
     private final float stateY;
 
-    /**
-     * EKF state z 
-     */
     private final float stateZ;
 
-    /**
-     * EKF Pax 
-     */
     private final float pax;
 
-    /**
-     * EKF Pby 
-     */
     private final float pby;
 
-    /**
-     * EKF Pcz 
-     */
     private final float pcz;
 
     private AirspeedAutocal(float vx, float vy, float vz, float diffPressure, float eas2tas,
@@ -91,25 +53,12 @@ public final class AirspeedAutocal {
         this.pcz = pcz;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AirspeedAutocal{vx=" + vx
-                 + ", vy=" + vy
-                 + ", vz=" + vz
-                 + ", diffPressure=" + diffPressure
-                 + ", eas2tas=" + eas2tas
-                 + ", ratio=" + ratio
-                 + ", stateX=" + stateX
-                 + ", stateY=" + stateY
-                 + ", stateZ=" + stateZ
-                 + ", pax=" + pax
-                 + ", pby=" + pby
-                 + ", pcz=" + pcz + "}";
     }
 
     /**
@@ -120,7 +69,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float vx() {
-        return vx;
+        return this.vx;
     }
 
     /**
@@ -131,7 +80,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float vy() {
-        return vy;
+        return this.vy;
     }
 
     /**
@@ -142,7 +91,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float vz() {
-        return vz;
+        return this.vz;
     }
 
     /**
@@ -153,7 +102,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float diffPressure() {
-        return diffPressure;
+        return this.diffPressure;
     }
 
     /**
@@ -164,7 +113,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float eas2tas() {
-        return eas2tas;
+        return this.eas2tas;
     }
 
     /**
@@ -175,7 +124,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float ratio() {
-        return ratio;
+        return this.ratio;
     }
 
     /**
@@ -186,7 +135,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float stateX() {
-        return stateX;
+        return this.stateX;
     }
 
     /**
@@ -197,7 +146,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float stateY() {
-        return stateY;
+        return this.stateY;
     }
 
     /**
@@ -208,7 +157,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float stateZ() {
-        return stateZ;
+        return this.stateZ;
     }
 
     /**
@@ -219,7 +168,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float pax() {
-        return pax;
+        return this.pax;
     }
 
     /**
@@ -230,7 +179,7 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float pby() {
-        return pby;
+        return this.pby;
     }
 
     /**
@@ -241,10 +190,10 @@ public final class AirspeedAutocal {
             unitSize = 4
     )
     public final float pcz() {
-        return pcz;
+        return this.pcz;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float vx;
 
         private float vy;
@@ -268,9 +217,6 @@ public final class AirspeedAutocal {
         private float pby;
 
         private float pcz;
-
-        private Builder() {
-        }
 
         /**
          * GPS velocity north m/s 

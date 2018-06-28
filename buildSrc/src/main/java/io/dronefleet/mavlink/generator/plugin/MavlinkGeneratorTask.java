@@ -1,9 +1,9 @@
 package io.dronefleet.mavlink.generator.plugin;
 
-import io.dronefleet.mavlink.generator.MavlinkDialectGenerator;
+import io.dronefleet.mavlink.generator.MavlinkGenerator;
+import io.dronefleet.mavlink.generator.MavlinkGeneratorFactory;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.InputDirectory;
-import org.gradle.api.tasks.InputFile;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
 
@@ -57,10 +57,11 @@ public class MavlinkGeneratorTask extends DefaultTask {
             throw new IllegalStateException("unable to create 'generatedSources' directory at " + generatedSources.getAbsolutePath());
         }
 
-        MavlinkDialectGenerator generator = new MavlinkDialectGenerator(
+        //noinspection ConstantConditions
+        MavlinkGeneratorFactory generatorFactory = new MavlinkGeneratorFactory(
                 "io.dronefleet.mavlink",
                 Arrays.asList(definitions.listFiles()));
-
+        MavlinkGenerator generator = generatorFactory.newGenerator();
         generator.generate().forEach(f -> {
             try {
                 f.writeTo(generatedSources);
@@ -72,6 +73,7 @@ public class MavlinkGeneratorTask extends DefaultTask {
 
     private boolean deleteAll(File f) {
         if (f.isDirectory()) {
+            //noinspection ConstantConditions
             Arrays.stream(f.listFiles()).forEach(this::deleteAll);
         }
         return f.delete();

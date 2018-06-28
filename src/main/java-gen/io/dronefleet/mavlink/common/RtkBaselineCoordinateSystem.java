@@ -9,17 +9,13 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum RtkBaselineCoordinateSystem {
     /**
-     * Earth-centered, Earth-fixed<dl>
-     *
-     * </dl>
+     * Earth-centered, Earth-fixed 
      */
     @MavlinkEntryInfo(0)
     RTK_BASELINE_COORDINATE_SYSTEM_ECEF,
 
     /**
-     * North, East, Down<dl>
-     *
-     * </dl>
+     * North, East, Down 
      */
     @MavlinkEntryInfo(1)
     RTK_BASELINE_COORDINATE_SYSTEM_NED

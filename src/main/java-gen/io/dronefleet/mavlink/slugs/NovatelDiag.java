@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Transmits the diagnostics data from the Novatel OEMStar GPS 
@@ -14,99 +12,37 @@ import java.lang.String;
         crc = 59
 )
 public final class NovatelDiag {
-    /**
-     * Status Bitfield. See table 69 page 350 Novatel OEMstar Manual 
-     */
-    private final long receiverstatus;
-
-    /**
-     * Age of the position solution 
-     */
-    private final float possolage;
-
-    /**
-     * Times the CRC has failed since boot 
-     */
-    private final int csfails;
-
-    /**
-     * The Time Status. See Table 8 page 27 Novatel OEMStar Manual 
-     */
     private final int timestatus;
 
-    /**
-     * solution Status. See table 44 page 197 
-     */
+    private final long receiverstatus;
+
     private final int solstatus;
 
-    /**
-     * position type. See table 43 page 196 
-     */
     private final int postype;
 
-    /**
-     * velocity type. See table 43 page 196 
-     */
     private final int veltype;
 
-    private NovatelDiag(long receiverstatus, float possolage, int csfails, int timestatus,
-            int solstatus, int postype, int veltype) {
-        this.receiverstatus = receiverstatus;
-        this.possolage = possolage;
-        this.csfails = csfails;
+    private final float possolage;
+
+    private final int csfails;
+
+    private NovatelDiag(int timestatus, long receiverstatus, int solstatus, int postype,
+            int veltype, float possolage, int csfails) {
         this.timestatus = timestatus;
+        this.receiverstatus = receiverstatus;
         this.solstatus = solstatus;
         this.postype = postype;
         this.veltype = veltype;
+        this.possolage = possolage;
+        this.csfails = csfails;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "NovatelDiag{timestatus=" + timestatus
-                 + ", receiverstatus=" + receiverstatus
-                 + ", solstatus=" + solstatus
-                 + ", postype=" + postype
-                 + ", veltype=" + veltype
-                 + ", possolage=" + possolage
-                 + ", csfails=" + csfails + "}";
-    }
-
-    /**
-     * Status Bitfield. See table 69 page 350 Novatel OEMstar Manual 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final long receiverstatus() {
-        return receiverstatus;
-    }
-
-    /**
-     * Age of the position solution 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float possolage() {
-        return possolage;
-    }
-
-    /**
-     * Times the CRC has failed since boot 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 2
-    )
-    public final int csfails() {
-        return csfails;
     }
 
     /**
@@ -117,7 +53,18 @@ public final class NovatelDiag {
             unitSize = 1
     )
     public final int timestatus() {
-        return timestatus;
+        return this.timestatus;
+    }
+
+    /**
+     * Status Bitfield. See table 69 page 350 Novatel OEMstar Manual 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final long receiverstatus() {
+        return this.receiverstatus;
     }
 
     /**
@@ -128,7 +75,7 @@ public final class NovatelDiag {
             unitSize = 1
     )
     public final int solstatus() {
-        return solstatus;
+        return this.solstatus;
     }
 
     /**
@@ -139,7 +86,7 @@ public final class NovatelDiag {
             unitSize = 1
     )
     public final int postype() {
-        return postype;
+        return this.postype;
     }
 
     /**
@@ -150,17 +97,35 @@ public final class NovatelDiag {
             unitSize = 1
     )
     public final int veltype() {
-        return veltype;
+        return this.veltype;
     }
 
-    public static class Builder {
-        private long receiverstatus;
+    /**
+     * Age of the position solution 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float possolage() {
+        return this.possolage;
+    }
 
-        private float possolage;
+    /**
+     * Times the CRC has failed since boot 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 2
+    )
+    public final int csfails() {
+        return this.csfails;
+    }
 
-        private int csfails;
-
+    public static final class Builder {
         private int timestatus;
+
+        private long receiverstatus;
 
         private int solstatus;
 
@@ -168,7 +133,20 @@ public final class NovatelDiag {
 
         private int veltype;
 
-        private Builder() {
+        private float possolage;
+
+        private int csfails;
+
+        /**
+         * The Time Status. See Table 8 page 27 Novatel OEMStar Manual 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder timestatus(int timestatus) {
+            this.timestatus = timestatus;
+            return this;
         }
 
         /**
@@ -180,42 +158,6 @@ public final class NovatelDiag {
         )
         public final Builder receiverstatus(long receiverstatus) {
             this.receiverstatus = receiverstatus;
-            return this;
-        }
-
-        /**
-         * Age of the position solution 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 4
-        )
-        public final Builder possolage(float possolage) {
-            this.possolage = possolage;
-            return this;
-        }
-
-        /**
-         * Times the CRC has failed since boot 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 2
-        )
-        public final Builder csfails(int csfails) {
-            this.csfails = csfails;
-            return this;
-        }
-
-        /**
-         * The Time Status. See Table 8 page 27 Novatel OEMStar Manual 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder timestatus(int timestatus) {
-            this.timestatus = timestatus;
             return this;
         }
 
@@ -255,8 +197,32 @@ public final class NovatelDiag {
             return this;
         }
 
+        /**
+         * Age of the position solution 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 4
+        )
+        public final Builder possolage(float possolage) {
+            this.possolage = possolage;
+            return this;
+        }
+
+        /**
+         * Times the CRC has failed since boot 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 2
+        )
+        public final Builder csfails(int csfails) {
+            this.csfails = csfails;
+            return this;
+        }
+
         public final NovatelDiag build() {
-            return new NovatelDiag(receiverstatus, possolage, csfails, timestatus, solstatus, postype, veltype);
+            return new NovatelDiag(timestatus, receiverstatus, solstatus, postype, veltype, possolage, csfails);
         }
     }
 }

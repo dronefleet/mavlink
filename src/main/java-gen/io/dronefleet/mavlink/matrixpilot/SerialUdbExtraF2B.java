@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA - F2: Part B 
@@ -14,273 +12,120 @@ import java.lang.String;
         crc = 245
 )
 public final class SerialUdbExtraF2B {
-    /**
-     * Serial UDB Extra Time 
-     */
     private final long sueTime;
 
-    /**
-     * Serial UDB Extra Status Flags 
-     */
-    private final long sueFlags;
-
-    /**
-     * SUE barometer pressure 
-     */
-    private final int sueBaromPress;
-
-    /**
-     * SUE barometer altitude 
-     */
-    private final int sueBaromAlt;
-
-    /**
-     * Serial UDB Extra PWM Input Channel 1 
-     */
     private final int suePwmInput1;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 2 
-     */
     private final int suePwmInput2;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 3 
-     */
     private final int suePwmInput3;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 4 
-     */
     private final int suePwmInput4;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 5 
-     */
     private final int suePwmInput5;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 6 
-     */
     private final int suePwmInput6;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 7 
-     */
     private final int suePwmInput7;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 8 
-     */
     private final int suePwmInput8;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 9 
-     */
     private final int suePwmInput9;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 10 
-     */
     private final int suePwmInput10;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 11 
-     */
     private final int suePwmInput11;
 
-    /**
-     * Serial UDB Extra PWM Input Channel 12 
-     */
     private final int suePwmInput12;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 1 
-     */
     private final int suePwmOutput1;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 2 
-     */
     private final int suePwmOutput2;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 3 
-     */
     private final int suePwmOutput3;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 4 
-     */
     private final int suePwmOutput4;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 5 
-     */
     private final int suePwmOutput5;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 6 
-     */
     private final int suePwmOutput6;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 7 
-     */
     private final int suePwmOutput7;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 8 
-     */
     private final int suePwmOutput8;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 9 
-     */
     private final int suePwmOutput9;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 10 
-     */
     private final int suePwmOutput10;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 11 
-     */
     private final int suePwmOutput11;
 
-    /**
-     * Serial UDB Extra PWM Output Channel 12 
-     */
     private final int suePwmOutput12;
 
-    /**
-     * Serial UDB Extra IMU Location X 
-     */
     private final int sueImuLocationX;
 
-    /**
-     * Serial UDB Extra IMU Location Y 
-     */
     private final int sueImuLocationY;
 
-    /**
-     * Serial UDB Extra IMU Location Z 
-     */
     private final int sueImuLocationZ;
 
-    /**
-     * Serial UDB Location Error Earth X 
-     */
     private final int sueLocationErrorEarthX;
 
-    /**
-     * Serial UDB Location Error Earth Y 
-     */
     private final int sueLocationErrorEarthY;
 
-    /**
-     * Serial UDB Location Error Earth Z 
-     */
     private final int sueLocationErrorEarthZ;
 
-    /**
-     * Serial UDB Extra Oscillator Failure Count 
-     */
+    private final long sueFlags;
+
     private final int sueOscFails;
 
-    /**
-     * Serial UDB Extra IMU Velocity X 
-     */
     private final int sueImuVelocityX;
 
-    /**
-     * Serial UDB Extra IMU Velocity Y 
-     */
     private final int sueImuVelocityY;
 
-    /**
-     * Serial UDB Extra IMU Velocity Z 
-     */
     private final int sueImuVelocityZ;
 
-    /**
-     * Serial UDB Extra Current Waypoint Goal X 
-     */
     private final int sueWaypointGoalX;
 
-    /**
-     * Serial UDB Extra Current Waypoint Goal Y 
-     */
     private final int sueWaypointGoalY;
 
-    /**
-     * Serial UDB Extra Current Waypoint Goal Z 
-     */
     private final int sueWaypointGoalZ;
 
-    /**
-     * Aeroforce in UDB X Axis 
-     */
     private final int sueAeroX;
 
-    /**
-     * Aeroforce in UDB Y Axis 
-     */
     private final int sueAeroY;
 
-    /**
-     * Aeroforce in UDB Z axis 
-     */
     private final int sueAeroZ;
 
-    /**
-     * SUE barometer temperature 
-     */
     private final int sueBaromTemp;
 
-    /**
-     * SUE battery voltage 
-     */
+    private final int sueBaromPress;
+
+    private final int sueBaromAlt;
+
     private final int sueBatVolt;
 
-    /**
-     * SUE battery current 
-     */
     private final int sueBatAmp;
 
-    /**
-     * SUE battery milli amp hours used 
-     */
     private final int sueBatAmpHours;
 
-    /**
-     * Sue autopilot desired height 
-     */
     private final int sueDesiredHeight;
 
-    /**
-     * Serial UDB Extra Stack Memory Free 
-     */
     private final int sueMemoryStackFree;
 
-    private SerialUdbExtraF2B(long sueTime, long sueFlags, int sueBaromPress, int sueBaromAlt,
-            int suePwmInput1, int suePwmInput2, int suePwmInput3, int suePwmInput4,
-            int suePwmInput5, int suePwmInput6, int suePwmInput7, int suePwmInput8,
-            int suePwmInput9, int suePwmInput10, int suePwmInput11, int suePwmInput12,
-            int suePwmOutput1, int suePwmOutput2, int suePwmOutput3, int suePwmOutput4,
-            int suePwmOutput5, int suePwmOutput6, int suePwmOutput7, int suePwmOutput8,
-            int suePwmOutput9, int suePwmOutput10, int suePwmOutput11, int suePwmOutput12,
-            int sueImuLocationX, int sueImuLocationY, int sueImuLocationZ,
+    private SerialUdbExtraF2B(long sueTime, int suePwmInput1, int suePwmInput2, int suePwmInput3,
+            int suePwmInput4, int suePwmInput5, int suePwmInput6, int suePwmInput7,
+            int suePwmInput8, int suePwmInput9, int suePwmInput10, int suePwmInput11,
+            int suePwmInput12, int suePwmOutput1, int suePwmOutput2, int suePwmOutput3,
+            int suePwmOutput4, int suePwmOutput5, int suePwmOutput6, int suePwmOutput7,
+            int suePwmOutput8, int suePwmOutput9, int suePwmOutput10, int suePwmOutput11,
+            int suePwmOutput12, int sueImuLocationX, int sueImuLocationY, int sueImuLocationZ,
             int sueLocationErrorEarthX, int sueLocationErrorEarthY, int sueLocationErrorEarthZ,
-            int sueOscFails, int sueImuVelocityX, int sueImuVelocityY, int sueImuVelocityZ,
-            int sueWaypointGoalX, int sueWaypointGoalY, int sueWaypointGoalZ, int sueAeroX,
-            int sueAeroY, int sueAeroZ, int sueBaromTemp, int sueBatVolt, int sueBatAmp,
-            int sueBatAmpHours, int sueDesiredHeight, int sueMemoryStackFree) {
+            long sueFlags, int sueOscFails, int sueImuVelocityX, int sueImuVelocityY,
+            int sueImuVelocityZ, int sueWaypointGoalX, int sueWaypointGoalY, int sueWaypointGoalZ,
+            int sueAeroX, int sueAeroY, int sueAeroZ, int sueBaromTemp, int sueBaromPress,
+            int sueBaromAlt, int sueBatVolt, int sueBatAmp, int sueBatAmpHours,
+            int sueDesiredHeight, int sueMemoryStackFree) {
         this.sueTime = sueTime;
-        this.sueFlags = sueFlags;
-        this.sueBaromPress = sueBaromPress;
-        this.sueBaromAlt = sueBaromAlt;
         this.suePwmInput1 = suePwmInput1;
         this.suePwmInput2 = suePwmInput2;
         this.suePwmInput3 = suePwmInput3;
@@ -311,6 +156,7 @@ public final class SerialUdbExtraF2B {
         this.sueLocationErrorEarthX = sueLocationErrorEarthX;
         this.sueLocationErrorEarthY = sueLocationErrorEarthY;
         this.sueLocationErrorEarthZ = sueLocationErrorEarthZ;
+        this.sueFlags = sueFlags;
         this.sueOscFails = sueOscFails;
         this.sueImuVelocityX = sueImuVelocityX;
         this.sueImuVelocityY = sueImuVelocityY;
@@ -322,6 +168,8 @@ public final class SerialUdbExtraF2B {
         this.sueAeroY = sueAeroY;
         this.sueAeroZ = sueAeroZ;
         this.sueBaromTemp = sueBaromTemp;
+        this.sueBaromPress = sueBaromPress;
+        this.sueBaromAlt = sueBaromAlt;
         this.sueBatVolt = sueBatVolt;
         this.sueBatAmp = sueBatAmp;
         this.sueBatAmpHours = sueBatAmpHours;
@@ -329,63 +177,12 @@ public final class SerialUdbExtraF2B {
         this.sueMemoryStackFree = sueMemoryStackFree;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF2B{sueTime=" + sueTime
-                 + ", suePwmInput1=" + suePwmInput1
-                 + ", suePwmInput2=" + suePwmInput2
-                 + ", suePwmInput3=" + suePwmInput3
-                 + ", suePwmInput4=" + suePwmInput4
-                 + ", suePwmInput5=" + suePwmInput5
-                 + ", suePwmInput6=" + suePwmInput6
-                 + ", suePwmInput7=" + suePwmInput7
-                 + ", suePwmInput8=" + suePwmInput8
-                 + ", suePwmInput9=" + suePwmInput9
-                 + ", suePwmInput10=" + suePwmInput10
-                 + ", suePwmInput11=" + suePwmInput11
-                 + ", suePwmInput12=" + suePwmInput12
-                 + ", suePwmOutput1=" + suePwmOutput1
-                 + ", suePwmOutput2=" + suePwmOutput2
-                 + ", suePwmOutput3=" + suePwmOutput3
-                 + ", suePwmOutput4=" + suePwmOutput4
-                 + ", suePwmOutput5=" + suePwmOutput5
-                 + ", suePwmOutput6=" + suePwmOutput6
-                 + ", suePwmOutput7=" + suePwmOutput7
-                 + ", suePwmOutput8=" + suePwmOutput8
-                 + ", suePwmOutput9=" + suePwmOutput9
-                 + ", suePwmOutput10=" + suePwmOutput10
-                 + ", suePwmOutput11=" + suePwmOutput11
-                 + ", suePwmOutput12=" + suePwmOutput12
-                 + ", sueImuLocationX=" + sueImuLocationX
-                 + ", sueImuLocationY=" + sueImuLocationY
-                 + ", sueImuLocationZ=" + sueImuLocationZ
-                 + ", sueLocationErrorEarthX=" + sueLocationErrorEarthX
-                 + ", sueLocationErrorEarthY=" + sueLocationErrorEarthY
-                 + ", sueLocationErrorEarthZ=" + sueLocationErrorEarthZ
-                 + ", sueFlags=" + sueFlags
-                 + ", sueOscFails=" + sueOscFails
-                 + ", sueImuVelocityX=" + sueImuVelocityX
-                 + ", sueImuVelocityY=" + sueImuVelocityY
-                 + ", sueImuVelocityZ=" + sueImuVelocityZ
-                 + ", sueWaypointGoalX=" + sueWaypointGoalX
-                 + ", sueWaypointGoalY=" + sueWaypointGoalY
-                 + ", sueWaypointGoalZ=" + sueWaypointGoalZ
-                 + ", sueAeroX=" + sueAeroX
-                 + ", sueAeroY=" + sueAeroY
-                 + ", sueAeroZ=" + sueAeroZ
-                 + ", sueBaromTemp=" + sueBaromTemp
-                 + ", sueBaromPress=" + sueBaromPress
-                 + ", sueBaromAlt=" + sueBaromAlt
-                 + ", sueBatVolt=" + sueBatVolt
-                 + ", sueBatAmp=" + sueBatAmp
-                 + ", sueBatAmpHours=" + sueBatAmpHours
-                 + ", sueDesiredHeight=" + sueDesiredHeight
-                 + ", sueMemoryStackFree=" + sueMemoryStackFree + "}";
     }
 
     /**
@@ -396,42 +193,7 @@ public final class SerialUdbExtraF2B {
             unitSize = 4
     )
     public final long sueTime() {
-        return sueTime;
-    }
-
-    /**
-     * Serial UDB Extra Status Flags 
-     */
-    @MavlinkFieldInfo(
-            position = 32,
-            unitSize = 4
-    )
-    public final long sueFlags() {
-        return sueFlags;
-    }
-
-    /**
-     * SUE barometer pressure 
-     */
-    @MavlinkFieldInfo(
-            position = 44,
-            unitSize = 4,
-            signed = true
-    )
-    public final int sueBaromPress() {
-        return sueBaromPress;
-    }
-
-    /**
-     * SUE barometer altitude 
-     */
-    @MavlinkFieldInfo(
-            position = 45,
-            unitSize = 4,
-            signed = true
-    )
-    public final int sueBaromAlt() {
-        return sueBaromAlt;
+        return this.sueTime;
     }
 
     /**
@@ -443,7 +205,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput1() {
-        return suePwmInput1;
+        return this.suePwmInput1;
     }
 
     /**
@@ -455,7 +217,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput2() {
-        return suePwmInput2;
+        return this.suePwmInput2;
     }
 
     /**
@@ -467,7 +229,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput3() {
-        return suePwmInput3;
+        return this.suePwmInput3;
     }
 
     /**
@@ -479,7 +241,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput4() {
-        return suePwmInput4;
+        return this.suePwmInput4;
     }
 
     /**
@@ -491,7 +253,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput5() {
-        return suePwmInput5;
+        return this.suePwmInput5;
     }
 
     /**
@@ -503,7 +265,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput6() {
-        return suePwmInput6;
+        return this.suePwmInput6;
     }
 
     /**
@@ -515,7 +277,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput7() {
-        return suePwmInput7;
+        return this.suePwmInput7;
     }
 
     /**
@@ -527,7 +289,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput8() {
-        return suePwmInput8;
+        return this.suePwmInput8;
     }
 
     /**
@@ -539,7 +301,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput9() {
-        return suePwmInput9;
+        return this.suePwmInput9;
     }
 
     /**
@@ -551,7 +313,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput10() {
-        return suePwmInput10;
+        return this.suePwmInput10;
     }
 
     /**
@@ -563,7 +325,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput11() {
-        return suePwmInput11;
+        return this.suePwmInput11;
     }
 
     /**
@@ -575,7 +337,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmInput12() {
-        return suePwmInput12;
+        return this.suePwmInput12;
     }
 
     /**
@@ -587,7 +349,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput1() {
-        return suePwmOutput1;
+        return this.suePwmOutput1;
     }
 
     /**
@@ -599,7 +361,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput2() {
-        return suePwmOutput2;
+        return this.suePwmOutput2;
     }
 
     /**
@@ -611,7 +373,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput3() {
-        return suePwmOutput3;
+        return this.suePwmOutput3;
     }
 
     /**
@@ -623,7 +385,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput4() {
-        return suePwmOutput4;
+        return this.suePwmOutput4;
     }
 
     /**
@@ -635,7 +397,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput5() {
-        return suePwmOutput5;
+        return this.suePwmOutput5;
     }
 
     /**
@@ -647,7 +409,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput6() {
-        return suePwmOutput6;
+        return this.suePwmOutput6;
     }
 
     /**
@@ -659,7 +421,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput7() {
-        return suePwmOutput7;
+        return this.suePwmOutput7;
     }
 
     /**
@@ -671,7 +433,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput8() {
-        return suePwmOutput8;
+        return this.suePwmOutput8;
     }
 
     /**
@@ -683,7 +445,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput9() {
-        return suePwmOutput9;
+        return this.suePwmOutput9;
     }
 
     /**
@@ -695,7 +457,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput10() {
-        return suePwmOutput10;
+        return this.suePwmOutput10;
     }
 
     /**
@@ -707,7 +469,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput11() {
-        return suePwmOutput11;
+        return this.suePwmOutput11;
     }
 
     /**
@@ -719,7 +481,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int suePwmOutput12() {
-        return suePwmOutput12;
+        return this.suePwmOutput12;
     }
 
     /**
@@ -731,7 +493,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuLocationX() {
-        return sueImuLocationX;
+        return this.sueImuLocationX;
     }
 
     /**
@@ -743,7 +505,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuLocationY() {
-        return sueImuLocationY;
+        return this.sueImuLocationY;
     }
 
     /**
@@ -755,7 +517,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuLocationZ() {
-        return sueImuLocationZ;
+        return this.sueImuLocationZ;
     }
 
     /**
@@ -767,7 +529,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueLocationErrorEarthX() {
-        return sueLocationErrorEarthX;
+        return this.sueLocationErrorEarthX;
     }
 
     /**
@@ -779,7 +541,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueLocationErrorEarthY() {
-        return sueLocationErrorEarthY;
+        return this.sueLocationErrorEarthY;
     }
 
     /**
@@ -791,7 +553,18 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueLocationErrorEarthZ() {
-        return sueLocationErrorEarthZ;
+        return this.sueLocationErrorEarthZ;
+    }
+
+    /**
+     * Serial UDB Extra Status Flags 
+     */
+    @MavlinkFieldInfo(
+            position = 32,
+            unitSize = 4
+    )
+    public final long sueFlags() {
+        return this.sueFlags;
     }
 
     /**
@@ -803,7 +576,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueOscFails() {
-        return sueOscFails;
+        return this.sueOscFails;
     }
 
     /**
@@ -815,7 +588,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuVelocityX() {
-        return sueImuVelocityX;
+        return this.sueImuVelocityX;
     }
 
     /**
@@ -827,7 +600,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuVelocityY() {
-        return sueImuVelocityY;
+        return this.sueImuVelocityY;
     }
 
     /**
@@ -839,7 +612,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueImuVelocityZ() {
-        return sueImuVelocityZ;
+        return this.sueImuVelocityZ;
     }
 
     /**
@@ -851,7 +624,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueWaypointGoalX() {
-        return sueWaypointGoalX;
+        return this.sueWaypointGoalX;
     }
 
     /**
@@ -863,7 +636,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueWaypointGoalY() {
-        return sueWaypointGoalY;
+        return this.sueWaypointGoalY;
     }
 
     /**
@@ -875,7 +648,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueWaypointGoalZ() {
-        return sueWaypointGoalZ;
+        return this.sueWaypointGoalZ;
     }
 
     /**
@@ -887,7 +660,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueAeroX() {
-        return sueAeroX;
+        return this.sueAeroX;
     }
 
     /**
@@ -899,7 +672,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueAeroY() {
-        return sueAeroY;
+        return this.sueAeroY;
     }
 
     /**
@@ -911,7 +684,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueAeroZ() {
-        return sueAeroZ;
+        return this.sueAeroZ;
     }
 
     /**
@@ -923,7 +696,31 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueBaromTemp() {
-        return sueBaromTemp;
+        return this.sueBaromTemp;
+    }
+
+    /**
+     * SUE barometer pressure 
+     */
+    @MavlinkFieldInfo(
+            position = 44,
+            unitSize = 4,
+            signed = true
+    )
+    public final int sueBaromPress() {
+        return this.sueBaromPress;
+    }
+
+    /**
+     * SUE barometer altitude 
+     */
+    @MavlinkFieldInfo(
+            position = 45,
+            unitSize = 4,
+            signed = true
+    )
+    public final int sueBaromAlt() {
+        return this.sueBaromAlt;
     }
 
     /**
@@ -935,7 +732,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueBatVolt() {
-        return sueBatVolt;
+        return this.sueBatVolt;
     }
 
     /**
@@ -947,7 +744,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueBatAmp() {
-        return sueBatAmp;
+        return this.sueBatAmp;
     }
 
     /**
@@ -959,7 +756,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueBatAmpHours() {
-        return sueBatAmpHours;
+        return this.sueBatAmpHours;
     }
 
     /**
@@ -971,7 +768,7 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueDesiredHeight() {
-        return sueDesiredHeight;
+        return this.sueDesiredHeight;
     }
 
     /**
@@ -983,17 +780,11 @@ public final class SerialUdbExtraF2B {
             signed = true
     )
     public final int sueMemoryStackFree() {
-        return sueMemoryStackFree;
+        return this.sueMemoryStackFree;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long sueTime;
-
-        private long sueFlags;
-
-        private int sueBaromPress;
-
-        private int sueBaromAlt;
 
         private int suePwmInput1;
 
@@ -1055,6 +846,8 @@ public final class SerialUdbExtraF2B {
 
         private int sueLocationErrorEarthZ;
 
+        private long sueFlags;
+
         private int sueOscFails;
 
         private int sueImuVelocityX;
@@ -1077,6 +870,10 @@ public final class SerialUdbExtraF2B {
 
         private int sueBaromTemp;
 
+        private int sueBaromPress;
+
+        private int sueBaromAlt;
+
         private int sueBatVolt;
 
         private int sueBatAmp;
@@ -1087,9 +884,6 @@ public final class SerialUdbExtraF2B {
 
         private int sueMemoryStackFree;
 
-        private Builder() {
-        }
-
         /**
          * Serial UDB Extra Time 
          */
@@ -1099,44 +893,6 @@ public final class SerialUdbExtraF2B {
         )
         public final Builder sueTime(long sueTime) {
             this.sueTime = sueTime;
-            return this;
-        }
-
-        /**
-         * Serial UDB Extra Status Flags 
-         */
-        @MavlinkFieldInfo(
-                position = 32,
-                unitSize = 4
-        )
-        public final Builder sueFlags(long sueFlags) {
-            this.sueFlags = sueFlags;
-            return this;
-        }
-
-        /**
-         * SUE barometer pressure 
-         */
-        @MavlinkFieldInfo(
-                position = 44,
-                unitSize = 4,
-                signed = true
-        )
-        public final Builder sueBaromPress(int sueBaromPress) {
-            this.sueBaromPress = sueBaromPress;
-            return this;
-        }
-
-        /**
-         * SUE barometer altitude 
-         */
-        @MavlinkFieldInfo(
-                position = 45,
-                unitSize = 4,
-                signed = true
-        )
-        public final Builder sueBaromAlt(int sueBaromAlt) {
-            this.sueBaromAlt = sueBaromAlt;
             return this;
         }
 
@@ -1531,6 +1287,18 @@ public final class SerialUdbExtraF2B {
         }
 
         /**
+         * Serial UDB Extra Status Flags 
+         */
+        @MavlinkFieldInfo(
+                position = 32,
+                unitSize = 4
+        )
+        public final Builder sueFlags(long sueFlags) {
+            this.sueFlags = sueFlags;
+            return this;
+        }
+
+        /**
          * Serial UDB Extra Oscillator Failure Count 
          */
         @MavlinkFieldInfo(
@@ -1674,6 +1442,32 @@ public final class SerialUdbExtraF2B {
         }
 
         /**
+         * SUE barometer pressure 
+         */
+        @MavlinkFieldInfo(
+                position = 44,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder sueBaromPress(int sueBaromPress) {
+            this.sueBaromPress = sueBaromPress;
+            return this;
+        }
+
+        /**
+         * SUE barometer altitude 
+         */
+        @MavlinkFieldInfo(
+                position = 45,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder sueBaromAlt(int sueBaromAlt) {
+            this.sueBaromAlt = sueBaromAlt;
+            return this;
+        }
+
+        /**
          * SUE battery voltage 
          */
         @MavlinkFieldInfo(
@@ -1739,7 +1533,7 @@ public final class SerialUdbExtraF2B {
         }
 
         public final SerialUdbExtraF2B build() {
-            return new SerialUdbExtraF2B(sueTime, sueFlags, sueBaromPress, sueBaromAlt, suePwmInput1, suePwmInput2, suePwmInput3, suePwmInput4, suePwmInput5, suePwmInput6, suePwmInput7, suePwmInput8, suePwmInput9, suePwmInput10, suePwmInput11, suePwmInput12, suePwmOutput1, suePwmOutput2, suePwmOutput3, suePwmOutput4, suePwmOutput5, suePwmOutput6, suePwmOutput7, suePwmOutput8, suePwmOutput9, suePwmOutput10, suePwmOutput11, suePwmOutput12, sueImuLocationX, sueImuLocationY, sueImuLocationZ, sueLocationErrorEarthX, sueLocationErrorEarthY, sueLocationErrorEarthZ, sueOscFails, sueImuVelocityX, sueImuVelocityY, sueImuVelocityZ, sueWaypointGoalX, sueWaypointGoalY, sueWaypointGoalZ, sueAeroX, sueAeroY, sueAeroZ, sueBaromTemp, sueBatVolt, sueBatAmp, sueBatAmpHours, sueDesiredHeight, sueMemoryStackFree);
+            return new SerialUdbExtraF2B(sueTime, suePwmInput1, suePwmInput2, suePwmInput3, suePwmInput4, suePwmInput5, suePwmInput6, suePwmInput7, suePwmInput8, suePwmInput9, suePwmInput10, suePwmInput11, suePwmInput12, suePwmOutput1, suePwmOutput2, suePwmOutput3, suePwmOutput4, suePwmOutput5, suePwmOutput6, suePwmOutput7, suePwmOutput8, suePwmOutput9, suePwmOutput10, suePwmOutput11, suePwmOutput12, sueImuLocationX, sueImuLocationY, sueImuLocationZ, sueLocationErrorEarthX, sueLocationErrorEarthY, sueLocationErrorEarthZ, sueFlags, sueOscFails, sueImuVelocityX, sueImuVelocityY, sueImuVelocityZ, sueWaypointGoalX, sueWaypointGoalY, sueWaypointGoalZ, sueAeroX, sueAeroY, sueAeroZ, sueBaromTemp, sueBaromPress, sueBaromAlt, sueBatVolt, sueBatAmp, sueBatAmpHours, sueDesiredHeight, sueMemoryStackFree);
         }
     }
 }

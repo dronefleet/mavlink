@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Transmits the position of watch 
@@ -14,99 +12,37 @@ import java.lang.String;
         crc = 246
 )
 public final class IsrLocation {
-    /**
-     * ISR Latitude 
-     */
-    private final float latitude;
-
-    /**
-     * ISR Longitude 
-     */
-    private final float longitude;
-
-    /**
-     * ISR Height 
-     */
-    private final float height;
-
-    /**
-     * The system reporting the action 
-     */
     private final int target;
 
-    /**
-     * Option 1 
-     */
+    private final float latitude;
+
+    private final float longitude;
+
+    private final float height;
+
     private final int option1;
 
-    /**
-     * Option 2 
-     */
     private final int option2;
 
-    /**
-     * Option 3 
-     */
     private final int option3;
 
-    private IsrLocation(float latitude, float longitude, float height, int target, int option1,
+    private IsrLocation(int target, float latitude, float longitude, float height, int option1,
             int option2, int option3) {
+        this.target = target;
         this.latitude = latitude;
         this.longitude = longitude;
         this.height = height;
-        this.target = target;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "IsrLocation{target=" + target
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", height=" + height
-                 + ", option1=" + option1
-                 + ", option2=" + option2
-                 + ", option3=" + option3 + "}";
-    }
-
-    /**
-     * ISR Latitude 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float latitude() {
-        return latitude;
-    }
-
-    /**
-     * ISR Longitude 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float longitude() {
-        return longitude;
-    }
-
-    /**
-     * ISR Height 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float height() {
-        return height;
     }
 
     /**
@@ -117,7 +53,40 @@ public final class IsrLocation {
             unitSize = 1
     )
     public final int target() {
-        return target;
+        return this.target;
+    }
+
+    /**
+     * ISR Latitude 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float latitude() {
+        return this.latitude;
+    }
+
+    /**
+     * ISR Longitude 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float longitude() {
+        return this.longitude;
+    }
+
+    /**
+     * ISR Height 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float height() {
+        return this.height;
     }
 
     /**
@@ -128,7 +97,7 @@ public final class IsrLocation {
             unitSize = 1
     )
     public final int option1() {
-        return option1;
+        return this.option1;
     }
 
     /**
@@ -139,7 +108,7 @@ public final class IsrLocation {
             unitSize = 1
     )
     public final int option2() {
-        return option2;
+        return this.option2;
     }
 
     /**
@@ -150,17 +119,17 @@ public final class IsrLocation {
             unitSize = 1
     )
     public final int option3() {
-        return option3;
+        return this.option3;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private int target;
+
         private float latitude;
 
         private float longitude;
 
         private float height;
-
-        private int target;
 
         private int option1;
 
@@ -168,7 +137,16 @@ public final class IsrLocation {
 
         private int option3;
 
-        private Builder() {
+        /**
+         * The system reporting the action 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder target(int target) {
+            this.target = target;
+            return this;
         }
 
         /**
@@ -204,18 +182,6 @@ public final class IsrLocation {
         )
         public final Builder height(float height) {
             this.height = height;
-            return this;
-        }
-
-        /**
-         * The system reporting the action 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder target(int target) {
-            this.target = target;
             return this;
         }
 
@@ -256,7 +222,7 @@ public final class IsrLocation {
         }
 
         public final IsrLocation build() {
-            return new IsrLocation(latitude, longitude, height, target, option1, option2, option3);
+            return new IsrLocation(target, latitude, longitude, height, option1, option2, option3);
         }
     }
 }

@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Power supply status 
@@ -15,19 +13,10 @@ import java.lang.String;
         crc = 203
 )
 public final class PowerStatus {
-    /**
-     * 5V rail voltage in millivolts 
-     */
     private final int vcc;
 
-    /**
-     * servo rail voltage in millivolts 
-     */
     private final int vservo;
 
-    /**
-     * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MavPowerStatus} enum) 
-     */
     private final EnumFlagSet<MavPowerStatus> flags;
 
     private PowerStatus(int vcc, int vservo, EnumFlagSet<MavPowerStatus> flags) {
@@ -36,16 +25,12 @@ public final class PowerStatus {
         this.flags = flags;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "PowerStatus{vcc=" + vcc
-                 + ", vservo=" + vservo
-                 + ", flags=" + flags + "}";
     }
 
     /**
@@ -56,7 +41,7 @@ public final class PowerStatus {
             unitSize = 2
     )
     public final int vcc() {
-        return vcc;
+        return this.vcc;
     }
 
     /**
@@ -67,29 +52,26 @@ public final class PowerStatus {
             unitSize = 2
     )
     public final int vservo() {
-        return vservo;
+        return this.vservo;
     }
 
     /**
-     * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MavPowerStatus} enum) 
+     * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2
     )
     public final EnumFlagSet<MavPowerStatus> flags() {
-        return flags;
+        return this.flags;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int vcc;
 
         private int vservo;
 
         private EnumFlagSet<MavPowerStatus> flags;
-
-        private Builder() {
-        }
 
         /**
          * 5V rail voltage in millivolts 
@@ -116,7 +98,7 @@ public final class PowerStatus {
         }
 
         /**
-         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MavPowerStatus} enum) 
+         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
          */
         @MavlinkFieldInfo(
                 position = 3,

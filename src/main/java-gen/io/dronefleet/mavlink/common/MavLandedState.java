@@ -9,41 +9,31 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavLandedState {
     /**
-     * MAV landed state is unknown<dl>
-     *
-     * </dl>
+     * MAV landed state is unknown 
      */
     @MavlinkEntryInfo(0)
     MAV_LANDED_STATE_UNDEFINED,
 
     /**
-     * MAV is landed (on ground)<dl>
-     *
-     * </dl>
+     * MAV is landed (on ground) 
      */
     @MavlinkEntryInfo(1)
     MAV_LANDED_STATE_ON_GROUND,
 
     /**
-     * MAV is in air<dl>
-     *
-     * </dl>
+     * MAV is in air 
      */
     @MavlinkEntryInfo(2)
     MAV_LANDED_STATE_IN_AIR,
 
     /**
-     * MAV currently taking off<dl>
-     *
-     * </dl>
+     * MAV currently taking off 
      */
     @MavlinkEntryInfo(3)
     MAV_LANDED_STATE_TAKEOFF,
 
     /**
-     * MAV currently landing<dl>
-     *
-     * </dl>
+     * MAV currently landing 
      */
     @MavlinkEntryInfo(4)
     MAV_LANDED_STATE_LANDING

@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -19,61 +18,28 @@ import java.lang.String;
         crc = 214
 )
 public final class ParamRequestRead {
-    /**
-     * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-     * ignored) 
-     */
-    private final int paramIndex;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
-     * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
-     * provide 16+1 bytes storage if the ID is stored as string 
-     */
     private final String paramId;
 
-    private ParamRequestRead(int paramIndex, int targetSystem, int targetComponent,
-            String paramId) {
-        this.paramIndex = paramIndex;
+    private final int paramIndex;
+
+    private ParamRequestRead(int targetSystem, int targetComponent, String paramId,
+            int paramIndex) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.paramId = paramId;
-    }
-
-    @MavlinkMessageBuilder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ParamRequestRead{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", paramId=" + paramId
-                 + ", paramIndex=" + paramIndex + "}";
+        this.paramIndex = paramIndex;
     }
 
     /**
-     * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-     * ignored) 
+     * Returns a builder instance for this message.
      */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2,
-            signed = true
-    )
-    public final int paramIndex() {
-        return paramIndex;
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**
@@ -84,7 +50,7 @@ public final class ParamRequestRead {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -95,7 +61,7 @@ public final class ParamRequestRead {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -109,34 +75,30 @@ public final class ParamRequestRead {
             arraySize = 16
     )
     public final String paramId() {
-        return paramId;
+        return this.paramId;
     }
 
-    public static class Builder {
-        private int paramIndex;
+    /**
+     * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
+     * ignored) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2,
+            signed = true
+    )
+    public final int paramIndex() {
+        return this.paramIndex;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private String paramId;
 
-        private Builder() {
-        }
-
-        /**
-         * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
-         * ignored) 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 2,
-                signed = true
-        )
-        public final Builder paramIndex(int paramIndex) {
-            this.paramIndex = paramIndex;
-            return this;
-        }
+        private int paramIndex;
 
         /**
          * System ID 
@@ -177,8 +139,22 @@ public final class ParamRequestRead {
             return this;
         }
 
+        /**
+         * Parameter index. Send -1 to use the param ID field as identifier (else the param id will be 
+         * ignored) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder paramIndex(int paramIndex) {
+            this.paramIndex = paramIndex;
+            return this;
+        }
+
         public final ParamRequestRead build() {
-            return new ParamRequestRead(paramIndex, targetSystem, targetComponent, paramId);
+            return new ParamRequestRead(targetSystem, targetComponent, paramId, paramIndex);
         }
     }
 }

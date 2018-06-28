@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -13,27 +11,15 @@ import java.math.BigInteger;
  */
 @MavlinkMessageInfo(
         id = 49,
-        crc = 39
+        crc = 23
 )
 public final class GpsGlobalOrigin {
-    /**
-     * Latitude (WGS84), in degrees * 1E7 
-     */
     private final int latitude;
 
-    /**
-     * Longitude (WGS84), in degrees * 1E7 
-     */
     private final int longitude;
 
-    /**
-     * Altitude (AMSL), in meters * 1000 (positive for up) 
-     */
     private final int altitude;
 
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
     private GpsGlobalOrigin(int latitude, int longitude, int altitude, BigInteger timeUsec) {
@@ -43,17 +29,12 @@ public final class GpsGlobalOrigin {
         this.timeUsec = timeUsec;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsGlobalOrigin{latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", timeUsec=" + timeUsec + "}";
     }
 
     /**
@@ -65,7 +46,7 @@ public final class GpsGlobalOrigin {
             signed = true
     )
     public final int latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -77,7 +58,7 @@ public final class GpsGlobalOrigin {
             signed = true
     )
     public final int longitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -89,7 +70,7 @@ public final class GpsGlobalOrigin {
             signed = true
     )
     public final int altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -101,10 +82,10 @@ public final class GpsGlobalOrigin {
             extension = true
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int latitude;
 
         private int longitude;
@@ -112,9 +93,6 @@ public final class GpsGlobalOrigin {
         private int altitude;
 
         private BigInteger timeUsec;
-
-        private Builder() {
-        }
 
         /**
          * Latitude (WGS84), in degrees * 1E7 

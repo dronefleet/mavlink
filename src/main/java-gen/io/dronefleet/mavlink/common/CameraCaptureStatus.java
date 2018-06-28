@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Information about the status of a capture 
@@ -14,60 +12,34 @@ import java.lang.String;
         crc = 12
 )
 public final class CameraCaptureStatus {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Image capture interval in seconds 
-     */
-    private final float imageInterval;
-
-    /**
-     * Time in milliseconds since recording started 
-     */
-    private final long recordingTimeMs;
-
-    /**
-     * Available storage capacity in MiB 
-     */
-    private final float availableCapacity;
-
-    /**
-     * Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: 
-     * interval set and capture in progress) 
-     */
     private final int imageStatus;
 
-    /**
-     * Current status of video capturing (0: idle, 1: capture in progress) 
-     */
     private final int videoStatus;
 
-    private CameraCaptureStatus(long timeBootMs, float imageInterval, long recordingTimeMs,
-            float availableCapacity, int imageStatus, int videoStatus) {
+    private final float imageInterval;
+
+    private final long recordingTimeMs;
+
+    private final float availableCapacity;
+
+    private CameraCaptureStatus(long timeBootMs, int imageStatus, int videoStatus,
+            float imageInterval, long recordingTimeMs, float availableCapacity) {
         this.timeBootMs = timeBootMs;
+        this.imageStatus = imageStatus;
+        this.videoStatus = videoStatus;
         this.imageInterval = imageInterval;
         this.recordingTimeMs = recordingTimeMs;
         this.availableCapacity = availableCapacity;
-        this.imageStatus = imageStatus;
-        this.videoStatus = videoStatus;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CameraCaptureStatus{timeBootMs=" + timeBootMs
-                 + ", imageStatus=" + imageStatus
-                 + ", videoStatus=" + videoStatus
-                 + ", imageInterval=" + imageInterval
-                 + ", recordingTimeMs=" + recordingTimeMs
-                 + ", availableCapacity=" + availableCapacity + "}";
     }
 
     /**
@@ -78,40 +50,7 @@ public final class CameraCaptureStatus {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
-    }
-
-    /**
-     * Image capture interval in seconds 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float imageInterval() {
-        return imageInterval;
-    }
-
-    /**
-     * Time in milliseconds since recording started 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final long recordingTimeMs() {
-        return recordingTimeMs;
-    }
-
-    /**
-     * Available storage capacity in MiB 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float availableCapacity() {
-        return availableCapacity;
+        return this.timeBootMs;
     }
 
     /**
@@ -123,7 +62,7 @@ public final class CameraCaptureStatus {
             unitSize = 1
     )
     public final int imageStatus() {
-        return imageStatus;
+        return this.imageStatus;
     }
 
     /**
@@ -134,24 +73,54 @@ public final class CameraCaptureStatus {
             unitSize = 1
     )
     public final int videoStatus() {
-        return videoStatus;
+        return this.videoStatus;
     }
 
-    public static class Builder {
+    /**
+     * Image capture interval in seconds 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float imageInterval() {
+        return this.imageInterval;
+    }
+
+    /**
+     * Time in milliseconds since recording started 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final long recordingTimeMs() {
+        return this.recordingTimeMs;
+    }
+
+    /**
+     * Available storage capacity in MiB 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float availableCapacity() {
+        return this.availableCapacity;
+    }
+
+    public static final class Builder {
         private long timeBootMs;
+
+        private int imageStatus;
+
+        private int videoStatus;
 
         private float imageInterval;
 
         private long recordingTimeMs;
 
         private float availableCapacity;
-
-        private int imageStatus;
-
-        private int videoStatus;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 
@@ -162,6 +131,31 @@ public final class CameraCaptureStatus {
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: 
+         * interval set and capture in progress) 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder imageStatus(int imageStatus) {
+            this.imageStatus = imageStatus;
+            return this;
+        }
+
+        /**
+         * Current status of video capturing (0: idle, 1: capture in progress) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder videoStatus(int videoStatus) {
+            this.videoStatus = videoStatus;
             return this;
         }
 
@@ -201,33 +195,8 @@ public final class CameraCaptureStatus {
             return this;
         }
 
-        /**
-         * Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: 
-         * interval set and capture in progress) 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder imageStatus(int imageStatus) {
-            this.imageStatus = imageStatus;
-            return this;
-        }
-
-        /**
-         * Current status of video capturing (0: idle, 1: capture in progress) 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder videoStatus(int videoStatus) {
-            this.videoStatus = videoStatus;
-            return this;
-        }
-
         public final CameraCaptureStatus build() {
-            return new CameraCaptureStatus(timeBootMs, imageInterval, recordingTimeMs, availableCapacity, imageStatus, videoStatus);
+            return new CameraCaptureStatus(timeBootMs, imageStatus, videoStatus, imageInterval, recordingTimeMs, availableCapacity);
         }
     }
 }

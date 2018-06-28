@@ -4,59 +4,40 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
 /**
  * Sent from autopilot to simulation. Hardware in the loop control outputs (replacement for 
- * {@link io.dronefleet.mavlink.common.HilControls HilControls}) 
+ * {@link io.dronefleet.mavlink.common.HilControls HIL_CONTROLS}) 
  */
 @MavlinkMessageInfo(
         id = 93,
         crc = 47
 )
 public final class HilActuatorControls {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Flags as bitfield, reserved for future use. 
-     */
-    private final BigInteger flags;
-
-    /**
-     * Control outputs -1 .. 1. Channel assignment depends on the simulated hardware. 
-     */
     private final List<Float> controls;
 
-    /**
-     * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}), includes arming state. 
-     */
     private final MavMode mode;
 
-    private HilActuatorControls(BigInteger timeUsec, BigInteger flags, List<Float> controls,
-            MavMode mode) {
+    private final BigInteger flags;
+
+    private HilActuatorControls(BigInteger timeUsec, List<Float> controls, MavMode mode,
+            BigInteger flags) {
         this.timeUsec = timeUsec;
-        this.flags = flags;
         this.controls = controls;
         this.mode = mode;
+        this.flags = flags;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HilActuatorControls{timeUsec=" + timeUsec
-                 + ", controls=" + controls
-                 + ", mode=" + mode
-                 + ", flags=" + flags + "}";
     }
 
     /**
@@ -67,18 +48,7 @@ public final class HilActuatorControls {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
-    }
-
-    /**
-     * Flags as bitfield, reserved for future use. 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 8
-    )
-    public final BigInteger flags() {
-        return flags;
+        return this.timeUsec;
     }
 
     /**
@@ -90,31 +60,39 @@ public final class HilActuatorControls {
             arraySize = 16
     )
     public final List<Float> controls() {
-        return controls;
+        return this.controls;
     }
 
     /**
-     * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}), includes arming state. 
+     * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavMode mode() {
-        return mode;
+        return this.mode;
     }
 
-    public static class Builder {
-        private BigInteger timeUsec;
+    /**
+     * Flags as bitfield, reserved for future use. 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 8
+    )
+    public final BigInteger flags() {
+        return this.flags;
+    }
 
-        private BigInteger flags;
+    public static final class Builder {
+        private BigInteger timeUsec;
 
         private List<Float> controls;
 
         private MavMode mode;
 
-        private Builder() {
-        }
+        private BigInteger flags;
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
@@ -125,18 +103,6 @@ public final class HilActuatorControls {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
-            return this;
-        }
-
-        /**
-         * Flags as bitfield, reserved for future use. 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 8
-        )
-        public final Builder flags(BigInteger flags) {
-            this.flags = flags;
             return this;
         }
 
@@ -154,7 +120,7 @@ public final class HilActuatorControls {
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}), includes arming state. 
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -165,8 +131,20 @@ public final class HilActuatorControls {
             return this;
         }
 
+        /**
+         * Flags as bitfield, reserved for future use. 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 8
+        )
+        public final Builder flags(BigInteger flags) {
+            this.flags = flags;
+            return this;
+        }
+
         public final HilActuatorControls build() {
-            return new HilActuatorControls(timeUsec, flags, controls, mode);
+            return new HilActuatorControls(timeUsec, controls, mode, flags);
         }
     }
 }

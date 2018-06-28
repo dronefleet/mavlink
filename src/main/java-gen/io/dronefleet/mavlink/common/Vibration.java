@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,39 +13,18 @@ import java.math.BigInteger;
         crc = 90
 )
 public final class Vibration {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Vibration levels on X-axis 
-     */
     private final float vibrationX;
 
-    /**
-     * Vibration levels on Y-axis 
-     */
     private final float vibrationY;
 
-    /**
-     * Vibration levels on Z-axis 
-     */
     private final float vibrationZ;
 
-    /**
-     * first accelerometer clipping count 
-     */
     private final long clipping0;
 
-    /**
-     * second accelerometer clipping count 
-     */
     private final long clipping1;
 
-    /**
-     * third accelerometer clipping count 
-     */
     private final long clipping2;
 
     private Vibration(BigInteger timeUsec, float vibrationX, float vibrationY, float vibrationZ,
@@ -61,20 +38,12 @@ public final class Vibration {
         this.clipping2 = clipping2;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Vibration{timeUsec=" + timeUsec
-                 + ", vibrationX=" + vibrationX
-                 + ", vibrationY=" + vibrationY
-                 + ", vibrationZ=" + vibrationZ
-                 + ", clipping0=" + clipping0
-                 + ", clipping1=" + clipping1
-                 + ", clipping2=" + clipping2 + "}";
     }
 
     /**
@@ -85,7 +54,7 @@ public final class Vibration {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class Vibration {
             unitSize = 4
     )
     public final float vibrationX() {
-        return vibrationX;
+        return this.vibrationX;
     }
 
     /**
@@ -107,7 +76,7 @@ public final class Vibration {
             unitSize = 4
     )
     public final float vibrationY() {
-        return vibrationY;
+        return this.vibrationY;
     }
 
     /**
@@ -118,7 +87,7 @@ public final class Vibration {
             unitSize = 4
     )
     public final float vibrationZ() {
-        return vibrationZ;
+        return this.vibrationZ;
     }
 
     /**
@@ -129,7 +98,7 @@ public final class Vibration {
             unitSize = 4
     )
     public final long clipping0() {
-        return clipping0;
+        return this.clipping0;
     }
 
     /**
@@ -140,7 +109,7 @@ public final class Vibration {
             unitSize = 4
     )
     public final long clipping1() {
-        return clipping1;
+        return this.clipping1;
     }
 
     /**
@@ -151,10 +120,10 @@ public final class Vibration {
             unitSize = 4
     )
     public final long clipping2() {
-        return clipping2;
+        return this.clipping2;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float vibrationX;
@@ -168,9 +137,6 @@ public final class Vibration {
         private long clipping1;
 
         private long clipping2;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS. 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 146
 )
 public final class CameraSettings {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CameraMode}) 
-     */
     private final CameraMode modeId;
 
     private CameraSettings(long timeBootMs, CameraMode modeId) {
@@ -29,15 +21,12 @@ public final class CameraSettings {
         this.modeId = modeId;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CameraSettings{timeBootMs=" + timeBootMs
-                 + ", modeId=" + modeId + "}";
     }
 
     /**
@@ -48,27 +37,24 @@ public final class CameraSettings {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
-     * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CameraMode}) 
+     * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1
     )
     public final CameraMode modeId() {
-        return modeId;
+        return this.modeId;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private CameraMode modeId;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 
@@ -83,7 +69,7 @@ public final class CameraSettings {
         }
 
         /**
-         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CameraMode}) 
+         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
          */
         @MavlinkFieldInfo(
                 position = 2,

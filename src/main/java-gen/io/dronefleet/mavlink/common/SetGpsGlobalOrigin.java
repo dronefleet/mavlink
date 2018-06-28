@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -14,55 +12,45 @@ import java.math.BigInteger;
  */
 @MavlinkMessageInfo(
         id = 48,
-        crc = 41
+        crc = 25
 )
 public final class SetGpsGlobalOrigin {
-    /**
-     * Latitude (WGS84), in degrees * 1E7 
-     */
-    private final int latitude;
-
-    /**
-     * Longitude (WGS84), in degrees * 1E7 
-     */
-    private final int longitude;
-
-    /**
-     * Altitude (AMSL), in meters * 1000 (positive for up) 
-     */
-    private final int altitude;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
+    private final int latitude;
+
+    private final int longitude;
+
+    private final int altitude;
+
     private final BigInteger timeUsec;
 
-    private SetGpsGlobalOrigin(int latitude, int longitude, int altitude, int targetSystem,
+    private SetGpsGlobalOrigin(int targetSystem, int latitude, int longitude, int altitude,
             BigInteger timeUsec) {
+        this.targetSystem = targetSystem;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
-        this.targetSystem = targetSystem;
         this.timeUsec = timeUsec;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "SetGpsGlobalOrigin{targetSystem=" + targetSystem
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", timeUsec=" + timeUsec + "}";
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
     }
 
     /**
@@ -74,7 +62,7 @@ public final class SetGpsGlobalOrigin {
             signed = true
     )
     public final int latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -86,7 +74,7 @@ public final class SetGpsGlobalOrigin {
             signed = true
     )
     public final int longitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -98,18 +86,7 @@ public final class SetGpsGlobalOrigin {
             signed = true
     )
     public final int altitude() {
-        return altitude;
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
+        return this.altitude;
     }
 
     /**
@@ -121,21 +98,30 @@ public final class SetGpsGlobalOrigin {
             extension = true
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private int targetSystem;
+
         private int latitude;
 
         private int longitude;
 
         private int altitude;
 
-        private int targetSystem;
-
         private BigInteger timeUsec;
 
-        private Builder() {
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
         }
 
         /**
@@ -178,18 +164,6 @@ public final class SetGpsGlobalOrigin {
         }
 
         /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
          */
         @MavlinkFieldInfo(
@@ -203,7 +177,7 @@ public final class SetGpsGlobalOrigin {
         }
 
         public final SetGpsGlobalOrigin build() {
-            return new SetGpsGlobalOrigin(latitude, longitude, altitude, targetSystem, timeUsec);
+            return new SetGpsGlobalOrigin(targetSystem, latitude, longitude, altitude, timeUsec);
         }
     }
 }

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Orders generated to the SLUGS camera mount. 
@@ -14,30 +12,14 @@ import java.lang.String;
         crc = 45
 )
 public final class SlugsCameraOrder {
-    /**
-     * The system reporting the action 
-     */
     private final int target;
 
-    /**
-     * Order the mount to pan: -1 left, 0 No pan motion, +1 right 
-     */
     private final int pan;
 
-    /**
-     * Order the mount to tilt: -1 down, 0 No tilt motion, +1 up 
-     */
     private final int tilt;
 
-    /**
-     * Order the zoom values 0 to 10 
-     */
     private final int zoom;
 
-    /**
-     * Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move 
-     * home, 0 ignored 
-     */
     private final int movehome;
 
     private SlugsCameraOrder(int target, int pan, int tilt, int zoom, int movehome) {
@@ -48,18 +30,12 @@ public final class SlugsCameraOrder {
         this.movehome = movehome;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SlugsCameraOrder{target=" + target
-                 + ", pan=" + pan
-                 + ", tilt=" + tilt
-                 + ", zoom=" + zoom
-                 + ", movehome=" + movehome + "}";
     }
 
     /**
@@ -70,7 +46,7 @@ public final class SlugsCameraOrder {
             unitSize = 1
     )
     public final int target() {
-        return target;
+        return this.target;
     }
 
     /**
@@ -82,7 +58,7 @@ public final class SlugsCameraOrder {
             signed = true
     )
     public final int pan() {
-        return pan;
+        return this.pan;
     }
 
     /**
@@ -94,7 +70,7 @@ public final class SlugsCameraOrder {
             signed = true
     )
     public final int tilt() {
-        return tilt;
+        return this.tilt;
     }
 
     /**
@@ -106,7 +82,7 @@ public final class SlugsCameraOrder {
             signed = true
     )
     public final int zoom() {
-        return zoom;
+        return this.zoom;
     }
 
     /**
@@ -119,10 +95,10 @@ public final class SlugsCameraOrder {
             signed = true
     )
     public final int movehome() {
-        return movehome;
+        return this.movehome;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int target;
 
         private int pan;
@@ -132,9 +108,6 @@ public final class SlugsCameraOrder {
         private int zoom;
 
         private int movehome;
-
-        private Builder() {
-        }
 
         /**
          * The system reporting the action 

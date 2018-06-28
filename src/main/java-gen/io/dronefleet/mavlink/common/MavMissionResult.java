@@ -9,121 +9,91 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavMissionResult {
     /**
-     * mission accepted OK<dl>
-     *
-     * </dl>
+     * mission accepted OK 
      */
     @MavlinkEntryInfo(0)
     MAV_MISSION_ACCEPTED,
 
     /**
-     * generic error / not accepting mission commands at all right now<dl>
-     *
-     * </dl>
+     * generic error / not accepting mission commands at all right now 
      */
     @MavlinkEntryInfo(1)
     MAV_MISSION_ERROR,
 
     /**
-     * coordinate frame is not supported<dl>
-     *
-     * </dl>
+     * coordinate frame is not supported 
      */
     @MavlinkEntryInfo(2)
     MAV_MISSION_UNSUPPORTED_FRAME,
 
     /**
-     * command is not supported<dl>
-     *
-     * </dl>
+     * command is not supported 
      */
     @MavlinkEntryInfo(3)
     MAV_MISSION_UNSUPPORTED,
 
     /**
-     * mission item exceeds storage space<dl>
-     *
-     * </dl>
+     * mission item exceeds storage space 
      */
     @MavlinkEntryInfo(4)
     MAV_MISSION_NO_SPACE,
 
     /**
-     * one of the parameters has an invalid value<dl>
-     *
-     * </dl>
+     * one of the parameters has an invalid value 
      */
     @MavlinkEntryInfo(5)
     MAV_MISSION_INVALID,
 
     /**
-     * param1 has an invalid value<dl>
-     *
-     * </dl>
+     * param1 has an invalid value 
      */
     @MavlinkEntryInfo(6)
     MAV_MISSION_INVALID_PARAM1,
 
     /**
-     * param2 has an invalid value<dl>
-     *
-     * </dl>
+     * param2 has an invalid value 
      */
     @MavlinkEntryInfo(7)
     MAV_MISSION_INVALID_PARAM2,
 
     /**
-     * param3 has an invalid value<dl>
-     *
-     * </dl>
+     * param3 has an invalid value 
      */
     @MavlinkEntryInfo(8)
     MAV_MISSION_INVALID_PARAM3,
 
     /**
-     * param4 has an invalid value<dl>
-     *
-     * </dl>
+     * param4 has an invalid value 
      */
     @MavlinkEntryInfo(9)
     MAV_MISSION_INVALID_PARAM4,
 
     /**
-     * x/param5 has an invalid value<dl>
-     *
-     * </dl>
+     * x/param5 has an invalid value 
      */
     @MavlinkEntryInfo(10)
     MAV_MISSION_INVALID_PARAM5_X,
 
     /**
-     * y/param6 has an invalid value<dl>
-     *
-     * </dl>
+     * y/param6 has an invalid value 
      */
     @MavlinkEntryInfo(11)
     MAV_MISSION_INVALID_PARAM6_Y,
 
     /**
-     * param7 has an invalid value<dl>
-     *
-     * </dl>
+     * param7 has an invalid value 
      */
     @MavlinkEntryInfo(12)
     MAV_MISSION_INVALID_PARAM7,
 
     /**
-     * received waypoint out of sequence<dl>
-     *
-     * </dl>
+     * received waypoint out of sequence 
      */
     @MavlinkEntryInfo(13)
     MAV_MISSION_INVALID_SEQUENCE,
 
     /**
-     * not accepting any mission commands from this communication partner<dl>
-     *
-     * </dl>
+     * not accepting any mission commands from this communication partner 
      */
     @MavlinkEntryInfo(14)
     MAV_MISSION_DENIED

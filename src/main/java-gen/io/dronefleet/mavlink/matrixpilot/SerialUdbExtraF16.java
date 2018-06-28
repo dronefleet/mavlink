@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F16 format 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 222
 )
 public final class SerialUdbExtraF16 {
-    /**
-     * Serial UDB Extra Name of Expected Lead Pilot 
-     */
     private final byte[] sueIdLeadPilot;
 
-    /**
-     * Serial UDB Extra URL of Lead Pilot or Team 
-     */
     private final byte[] sueIdDiyDronesUrl;
 
     private SerialUdbExtraF16(byte[] sueIdLeadPilot, byte[] sueIdDiyDronesUrl) {
@@ -29,15 +21,12 @@ public final class SerialUdbExtraF16 {
         this.sueIdDiyDronesUrl = sueIdDiyDronesUrl;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF16{sueIdLeadPilot=" + sueIdLeadPilot
-                 + ", sueIdDiyDronesUrl=" + sueIdDiyDronesUrl + "}";
     }
 
     /**
@@ -49,7 +38,7 @@ public final class SerialUdbExtraF16 {
             arraySize = 40
     )
     public final byte[] sueIdLeadPilot() {
-        return sueIdLeadPilot;
+        return this.sueIdLeadPilot;
     }
 
     /**
@@ -61,16 +50,13 @@ public final class SerialUdbExtraF16 {
             arraySize = 70
     )
     public final byte[] sueIdDiyDronesUrl() {
-        return sueIdDiyDronesUrl;
+        return this.sueIdDiyDronesUrl;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private byte[] sueIdLeadPilot;
 
         private byte[] sueIdDiyDronesUrl;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB Extra Name of Expected Lead Pilot 

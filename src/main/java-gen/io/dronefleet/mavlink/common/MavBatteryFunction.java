@@ -9,41 +9,31 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavBatteryFunction {
     /**
-     * Battery function is unknown<dl>
-     *
-     * </dl>
+     * Battery function is unknown 
      */
     @MavlinkEntryInfo(0)
     MAV_BATTERY_FUNCTION_UNKNOWN,
 
     /**
-     * Battery supports all flight systems<dl>
-     *
-     * </dl>
+     * Battery supports all flight systems 
      */
     @MavlinkEntryInfo(1)
     MAV_BATTERY_FUNCTION_ALL,
 
     /**
-     * Battery for the propulsion system<dl>
-     *
-     * </dl>
+     * Battery for the propulsion system 
      */
     @MavlinkEntryInfo(2)
     MAV_BATTERY_FUNCTION_PROPULSION,
 
     /**
-     * Avionics battery<dl>
-     *
-     * </dl>
+     * Avionics battery 
      */
     @MavlinkEntryInfo(3)
     MAV_BATTERY_FUNCTION_AVIONICS,
 
     /**
-     * Payload battery<dl>
-     *
-     * </dl>
+     * Payload battery 
      */
     @MavlinkEntryInfo(4)
     MAV_BATTERY_TYPE_PAYLOAD

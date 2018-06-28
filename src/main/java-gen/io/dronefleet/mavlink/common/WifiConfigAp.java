@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -14,14 +13,8 @@ import java.lang.String;
         crc = 19
 )
 public final class WifiConfigAp {
-    /**
-     * Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged. 
-     */
     private final String ssid;
 
-    /**
-     * Password. Leave it blank for an open AP. 
-     */
     private final String password;
 
     private WifiConfigAp(String ssid, String password) {
@@ -29,15 +22,12 @@ public final class WifiConfigAp {
         this.password = password;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "WifiConfigAp{ssid=" + ssid
-                 + ", password=" + password + "}";
     }
 
     /**
@@ -49,7 +39,7 @@ public final class WifiConfigAp {
             arraySize = 32
     )
     public final String ssid() {
-        return ssid;
+        return this.ssid;
     }
 
     /**
@@ -61,16 +51,13 @@ public final class WifiConfigAp {
             arraySize = 64
     )
     public final String password() {
-        return password;
+        return this.password;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private String ssid;
 
         private String password;
-
-        private Builder() {
-        }
 
         /**
          * Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged. 

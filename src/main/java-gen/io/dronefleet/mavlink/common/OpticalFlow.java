@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -12,91 +10,49 @@ import java.math.BigInteger;
  */
 @MavlinkMessageInfo(
         id = 100,
-        crc = 175
+        crc = 97
 )
 public final class OpticalFlow {
-    /**
-     * Timestamp (UNIX) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Flow in meters in x-sensor direction, angular-speed compensated 
-     */
-    private final float flowCompMX;
-
-    /**
-     * Flow in meters in y-sensor direction, angular-speed compensated 
-     */
-    private final float flowCompMY;
-
-    /**
-     * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
-     */
-    private final float groundDistance;
-
-    /**
-     * Flow in pixels * 10 in x-sensor direction (dezi-pixels) 
-     */
-    private final int flowX;
-
-    /**
-     * Flow in pixels * 10 in y-sensor direction (dezi-pixels) 
-     */
-    private final int flowY;
-
-    /**
-     * Sensor ID 
-     */
     private final int sensorId;
 
-    /**
-     * Optical flow quality / confidence. 0: bad, 255: maximum quality 
-     */
+    private final int flowX;
+
+    private final int flowY;
+
+    private final float flowCompMX;
+
+    private final float flowCompMY;
+
     private final int quality;
 
-    /**
-     * Flow rate in radians/second about X axis 
-     */
+    private final float groundDistance;
+
     private final float flowRateX;
 
-    /**
-     * Flow rate in radians/second about Y axis 
-     */
     private final float flowRateY;
 
-    private OpticalFlow(BigInteger timeUsec, float flowCompMX, float flowCompMY,
-            float groundDistance, int flowX, int flowY, int sensorId, int quality, float flowRateX,
-            float flowRateY) {
+    private OpticalFlow(BigInteger timeUsec, int sensorId, int flowX, int flowY, float flowCompMX,
+            float flowCompMY, int quality, float groundDistance, float flowRateX, float flowRateY) {
         this.timeUsec = timeUsec;
-        this.flowCompMX = flowCompMX;
-        this.flowCompMY = flowCompMY;
-        this.groundDistance = groundDistance;
+        this.sensorId = sensorId;
         this.flowX = flowX;
         this.flowY = flowY;
-        this.sensorId = sensorId;
+        this.flowCompMX = flowCompMX;
+        this.flowCompMY = flowCompMY;
         this.quality = quality;
+        this.groundDistance = groundDistance;
         this.flowRateX = flowRateX;
         this.flowRateY = flowRateY;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "OpticalFlow{timeUsec=" + timeUsec
-                 + ", sensorId=" + sensorId
-                 + ", flowX=" + flowX
-                 + ", flowY=" + flowY
-                 + ", flowCompMX=" + flowCompMX
-                 + ", flowCompMY=" + flowCompMY
-                 + ", quality=" + quality
-                 + ", groundDistance=" + groundDistance
-                 + ", flowRateX=" + flowRateX
-                 + ", flowRateY=" + flowRateY + "}";
     }
 
     /**
@@ -107,40 +63,18 @@ public final class OpticalFlow {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
-     * Flow in meters in x-sensor direction, angular-speed compensated 
+     * Sensor ID 
      */
     @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
+            position = 2,
+            unitSize = 1
     )
-    public final float flowCompMX() {
-        return flowCompMX;
-    }
-
-    /**
-     * Flow in meters in y-sensor direction, angular-speed compensated 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float flowCompMY() {
-        return flowCompMY;
-    }
-
-    /**
-     * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float groundDistance() {
-        return groundDistance;
+    public final int sensorId() {
+        return this.sensorId;
     }
 
     /**
@@ -152,7 +86,7 @@ public final class OpticalFlow {
             signed = true
     )
     public final int flowX() {
-        return flowX;
+        return this.flowX;
     }
 
     /**
@@ -164,18 +98,29 @@ public final class OpticalFlow {
             signed = true
     )
     public final int flowY() {
-        return flowY;
+        return this.flowY;
     }
 
     /**
-     * Sensor ID 
+     * Flow in meters in x-sensor direction, angular-speed compensated 
      */
     @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
+            position = 5,
+            unitSize = 4
     )
-    public final int sensorId() {
-        return sensorId;
+    public final float flowCompMX() {
+        return this.flowCompMX;
+    }
+
+    /**
+     * Flow in meters in y-sensor direction, angular-speed compensated 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float flowCompMY() {
+        return this.flowCompMY;
     }
 
     /**
@@ -186,7 +131,18 @@ public final class OpticalFlow {
             unitSize = 1
     )
     public final int quality() {
-        return quality;
+        return this.quality;
+    }
+
+    /**
+     * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float groundDistance() {
+        return this.groundDistance;
     }
 
     /**
@@ -198,7 +154,7 @@ public final class OpticalFlow {
             extension = true
     )
     public final float flowRateX() {
-        return flowRateX;
+        return this.flowRateX;
     }
 
     /**
@@ -210,32 +166,29 @@ public final class OpticalFlow {
             extension = true
     )
     public final float flowRateY() {
-        return flowRateY;
+        return this.flowRateY;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
-        private float flowCompMX;
-
-        private float flowCompMY;
-
-        private float groundDistance;
+        private int sensorId;
 
         private int flowX;
 
         private int flowY;
 
-        private int sensorId;
+        private float flowCompMX;
+
+        private float flowCompMY;
 
         private int quality;
+
+        private float groundDistance;
 
         private float flowRateX;
 
         private float flowRateY;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (UNIX) 
@@ -250,38 +203,14 @@ public final class OpticalFlow {
         }
 
         /**
-         * Flow in meters in x-sensor direction, angular-speed compensated 
+         * Sensor ID 
          */
         @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 4
+                position = 2,
+                unitSize = 1
         )
-        public final Builder flowCompMX(float flowCompMX) {
-            this.flowCompMX = flowCompMX;
-            return this;
-        }
-
-        /**
-         * Flow in meters in y-sensor direction, angular-speed compensated 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 4
-        )
-        public final Builder flowCompMY(float flowCompMY) {
-            this.flowCompMY = flowCompMY;
-            return this;
-        }
-
-        /**
-         * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 4
-        )
-        public final Builder groundDistance(float groundDistance) {
-            this.groundDistance = groundDistance;
+        public final Builder sensorId(int sensorId) {
+            this.sensorId = sensorId;
             return this;
         }
 
@@ -312,14 +241,26 @@ public final class OpticalFlow {
         }
 
         /**
-         * Sensor ID 
+         * Flow in meters in x-sensor direction, angular-speed compensated 
          */
         @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
+                position = 5,
+                unitSize = 4
         )
-        public final Builder sensorId(int sensorId) {
-            this.sensorId = sensorId;
+        public final Builder flowCompMX(float flowCompMX) {
+            this.flowCompMX = flowCompMX;
+            return this;
+        }
+
+        /**
+         * Flow in meters in y-sensor direction, angular-speed compensated 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 4
+        )
+        public final Builder flowCompMY(float flowCompMY) {
+            this.flowCompMY = flowCompMY;
             return this;
         }
 
@@ -332,6 +273,18 @@ public final class OpticalFlow {
         )
         public final Builder quality(int quality) {
             this.quality = quality;
+            return this;
+        }
+
+        /**
+         * Ground distance in meters. Positive value: distance known. Negative value: Unknown distance 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 4
+        )
+        public final Builder groundDistance(float groundDistance) {
+            this.groundDistance = groundDistance;
             return this;
         }
 
@@ -362,7 +315,7 @@ public final class OpticalFlow {
         }
 
         public final OpticalFlow build() {
-            return new OpticalFlow(timeUsec, flowCompMX, flowCompMY, groundDistance, flowX, flowY, sensorId, quality, flowRateX, flowRateY);
+            return new OpticalFlow(timeUsec, sensorId, flowX, flowY, flowCompMX, flowCompMY, quality, groundDistance, flowRateX, flowRateY);
         }
     }
 }

@@ -4,58 +4,31 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 102,
-        crc = 158
+        crc = 185
 )
 public final class VisionPositionEstimate {
-    /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
-     */
     private final BigInteger usec;
 
-    /**
-     * Global X position 
-     */
     private final float x;
 
-    /**
-     * Global Y position 
-     */
     private final float y;
 
-    /**
-     * Global Z position 
-     */
     private final float z;
 
-    /**
-     * Roll angle in rad 
-     */
     private final float roll;
 
-    /**
-     * Pitch angle in rad 
-     */
     private final float pitch;
 
-    /**
-     * Yaw angle in rad 
-     */
     private final float yaw;
 
-    /**
-     * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-     * entries are the second ROW, etc.) 
-     */
     private final List<Float> covariance;
 
     private VisionPositionEstimate(BigInteger usec, float x, float y, float z, float roll,
@@ -70,21 +43,12 @@ public final class VisionPositionEstimate {
         this.covariance = covariance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "VisionPositionEstimate{usec=" + usec
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", covariance=" + covariance + "}";
     }
 
     /**
@@ -95,7 +59,7 @@ public final class VisionPositionEstimate {
             unitSize = 8
     )
     public final BigInteger usec() {
-        return usec;
+        return this.usec;
     }
 
     /**
@@ -106,7 +70,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -117,7 +81,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -128,7 +92,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -139,7 +103,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -150,7 +114,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -161,7 +125,7 @@ public final class VisionPositionEstimate {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -175,10 +139,10 @@ public final class VisionPositionEstimate {
             extension = true
     )
     public final List<Float> covariance() {
-        return covariance;
+        return this.covariance;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger usec;
 
         private float x;
@@ -194,9 +158,6 @@ public final class VisionPositionEstimate {
         private float yaw;
 
         private List<Float> covariance;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds, synced to UNIX time or since system boot) 

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Status of DCM attitude estimator 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 127
 )
 public final class Ahrs {
-    /**
-     * X gyro drift estimate rad/s 
-     */
     private final float omegaix;
 
-    /**
-     * Y gyro drift estimate rad/s 
-     */
     private final float omegaiy;
 
-    /**
-     * Z gyro drift estimate rad/s 
-     */
     private final float omegaiz;
 
-    /**
-     * average accel_weight 
-     */
     private final float accelWeight;
 
-    /**
-     * average renormalisation value 
-     */
     private final float renormVal;
 
-    /**
-     * average error_roll_pitch value 
-     */
     private final float errorRp;
 
-    /**
-     * average error_yaw value 
-     */
     private final float errorYaw;
 
     private Ahrs(float omegaix, float omegaiy, float omegaiz, float accelWeight, float renormVal,
@@ -60,20 +37,12 @@ public final class Ahrs {
         this.errorYaw = errorYaw;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Ahrs{omegaix=" + omegaix
-                 + ", omegaiy=" + omegaiy
-                 + ", omegaiz=" + omegaiz
-                 + ", accelWeight=" + accelWeight
-                 + ", renormVal=" + renormVal
-                 + ", errorRp=" + errorRp
-                 + ", errorYaw=" + errorYaw + "}";
     }
 
     /**
@@ -84,7 +53,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float omegaix() {
-        return omegaix;
+        return this.omegaix;
     }
 
     /**
@@ -95,7 +64,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float omegaiy() {
-        return omegaiy;
+        return this.omegaiy;
     }
 
     /**
@@ -106,7 +75,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float omegaiz() {
-        return omegaiz;
+        return this.omegaiz;
     }
 
     /**
@@ -117,7 +86,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float accelWeight() {
-        return accelWeight;
+        return this.accelWeight;
     }
 
     /**
@@ -128,7 +97,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float renormVal() {
-        return renormVal;
+        return this.renormVal;
     }
 
     /**
@@ -139,7 +108,7 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float errorRp() {
-        return errorRp;
+        return this.errorRp;
     }
 
     /**
@@ -150,10 +119,10 @@ public final class Ahrs {
             unitSize = 4
     )
     public final float errorYaw() {
-        return errorYaw;
+        return this.errorYaw;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float omegaix;
 
         private float omegaiy;
@@ -167,9 +136,6 @@ public final class Ahrs {
         private float errorRp;
 
         private float errorYaw;
-
-        private Builder() {
-        }
 
         /**
          * X gyro drift estimate rad/s 

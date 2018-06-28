@@ -4,70 +4,54 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * null
+ *  
  */
 @MavlinkEnum
 public enum GpsInputIgnoreFlags {
     /**
-     * ignore altitude field<dl>
-     *
-     * </dl>
+     * ignore altitude field 
      */
     @MavlinkEntryInfo(1)
     GPS_INPUT_IGNORE_FLAG_ALT,
 
     /**
-     * ignore hdop field<dl>
-     *
-     * </dl>
+     * ignore hdop field 
      */
     @MavlinkEntryInfo(2)
     GPS_INPUT_IGNORE_FLAG_HDOP,
 
     /**
-     * ignore vdop field<dl>
-     *
-     * </dl>
+     * ignore vdop field 
      */
     @MavlinkEntryInfo(4)
     GPS_INPUT_IGNORE_FLAG_VDOP,
 
     /**
-     * ignore horizontal velocity field (vn and ve)<dl>
-     *
-     * </dl>
+     * ignore horizontal velocity field (vn and ve) 
      */
     @MavlinkEntryInfo(8)
     GPS_INPUT_IGNORE_FLAG_VEL_HORIZ,
 
     /**
-     * ignore vertical velocity field (vd)<dl>
-     *
-     * </dl>
+     * ignore vertical velocity field (vd) 
      */
     @MavlinkEntryInfo(16)
     GPS_INPUT_IGNORE_FLAG_VEL_VERT,
 
     /**
-     * ignore speed accuracy field<dl>
-     *
-     * </dl>
+     * ignore speed accuracy field 
      */
     @MavlinkEntryInfo(32)
     GPS_INPUT_IGNORE_FLAG_SPEED_ACCURACY,
 
     /**
-     * ignore horizontal accuracy field<dl>
-     *
-     * </dl>
+     * ignore horizontal accuracy field 
      */
     @MavlinkEntryInfo(64)
     GPS_INPUT_IGNORE_FLAG_HORIZONTAL_ACCURACY,
 
     /**
-     * ignore vertical accuracy field<dl>
-     *
-     * </dl>
+     * ignore vertical accuracy field 
      */
     @MavlinkEntryInfo(128)
     GPS_INPUT_IGNORE_FLAG_VERTICAL_ACCURACY

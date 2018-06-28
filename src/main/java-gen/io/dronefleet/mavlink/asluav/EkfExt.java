@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,39 +13,18 @@ import java.math.BigInteger;
         crc = 64
 )
 public final class EkfExt {
-    /**
-     * Time since system start 
-     */
     private final BigInteger timestamp;
 
-    /**
-     * Magnitude of wind velocity (in lateral inertial plane) 
-     */
     private final float windspeed;
 
-    /**
-     * Wind heading angle from North 
-     */
     private final float winddir;
 
-    /**
-     * Z (Down) component of inertial wind velocity 
-     */
     private final float windz;
 
-    /**
-     * Magnitude of air velocity 
-     */
     private final float airspeed;
 
-    /**
-     * Sideslip angle 
-     */
     private final float beta;
 
-    /**
-     * Angle of attack 
-     */
     private final float alpha;
 
     private EkfExt(BigInteger timestamp, float windspeed, float winddir, float windz,
@@ -61,20 +38,12 @@ public final class EkfExt {
         this.alpha = alpha;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "EkfExt{timestamp=" + timestamp
-                 + ", windspeed=" + windspeed
-                 + ", winddir=" + winddir
-                 + ", windz=" + windz
-                 + ", airspeed=" + airspeed
-                 + ", beta=" + beta
-                 + ", alpha=" + alpha + "}";
     }
 
     /**
@@ -85,7 +54,7 @@ public final class EkfExt {
             unitSize = 8
     )
     public final BigInteger timestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float windspeed() {
-        return windspeed;
+        return this.windspeed;
     }
 
     /**
@@ -107,7 +76,7 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float winddir() {
-        return winddir;
+        return this.winddir;
     }
 
     /**
@@ -118,7 +87,7 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float windz() {
-        return windz;
+        return this.windz;
     }
 
     /**
@@ -129,7 +98,7 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float airspeed() {
-        return airspeed;
+        return this.airspeed;
     }
 
     /**
@@ -140,7 +109,7 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float beta() {
-        return beta;
+        return this.beta;
     }
 
     /**
@@ -151,10 +120,10 @@ public final class EkfExt {
             unitSize = 4
     )
     public final float alpha() {
-        return alpha;
+        return this.alpha;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timestamp;
 
         private float windspeed;
@@ -168,9 +137,6 @@ public final class EkfExt {
         private float beta;
 
         private float alpha;
-
-        private Builder() {
-        }
 
         /**
          * Time since system start 

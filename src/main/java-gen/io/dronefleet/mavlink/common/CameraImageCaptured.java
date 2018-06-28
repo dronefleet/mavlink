@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
@@ -17,107 +16,50 @@ import java.util.List;
         crc = 133
 )
 public final class CameraImageCaptured {
-    /**
-     * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
-     */
-    private final BigInteger timeUtc;
-
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 where image was taken 
-     */
-    private final int lat;
+    private final BigInteger timeUtc;
 
-    /**
-     * Longitude, expressed as degrees * 1E7 where capture was taken 
-     */
-    private final int lon;
-
-    /**
-     * Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken 
-     */
-    private final int alt;
-
-    /**
-     * Altitude above ground in meters, expressed as * 1E3 where image was taken 
-     */
-    private final int relativeAlt;
-
-    /**
-     * Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0) 
-     */
-    private final List<Float> q;
-
-    /**
-     * Zero based index of this image (image count since armed -1) 
-     */
-    private final int imageIndex;
-
-    /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
     private final int cameraId;
 
-    /**
-     * Boolean indicating success (1) or failure (0) while capturing this image. 
-     */
+    private final int lat;
+
+    private final int lon;
+
+    private final int alt;
+
+    private final int relativeAlt;
+
+    private final List<Float> q;
+
+    private final int imageIndex;
+
     private final int captureResult;
 
-    /**
-     * URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP 
-     * interface. 
-     */
     private final String fileUrl;
 
-    private CameraImageCaptured(BigInteger timeUtc, long timeBootMs, int lat, int lon, int alt,
-            int relativeAlt, List<Float> q, int imageIndex, int cameraId, int captureResult,
+    private CameraImageCaptured(long timeBootMs, BigInteger timeUtc, int cameraId, int lat, int lon,
+            int alt, int relativeAlt, List<Float> q, int imageIndex, int captureResult,
             String fileUrl) {
-        this.timeUtc = timeUtc;
         this.timeBootMs = timeBootMs;
+        this.timeUtc = timeUtc;
+        this.cameraId = cameraId;
         this.lat = lat;
         this.lon = lon;
         this.alt = alt;
         this.relativeAlt = relativeAlt;
         this.q = q;
         this.imageIndex = imageIndex;
-        this.cameraId = cameraId;
         this.captureResult = captureResult;
         this.fileUrl = fileUrl;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CameraImageCaptured{timeBootMs=" + timeBootMs
-                 + ", timeUtc=" + timeUtc
-                 + ", cameraId=" + cameraId
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", relativeAlt=" + relativeAlt
-                 + ", q=" + q
-                 + ", imageIndex=" + imageIndex
-                 + ", captureResult=" + captureResult
-                 + ", fileUrl=" + fileUrl + "}";
-    }
-
-    /**
-     * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 8
-    )
-    public final BigInteger timeUtc() {
-        return timeUtc;
     }
 
     /**
@@ -128,7 +70,29 @@ public final class CameraImageCaptured {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
+    }
+
+    /**
+     * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 8
+    )
+    public final BigInteger timeUtc() {
+        return this.timeUtc;
+    }
+
+    /**
+     * Camera ID (1 for first, 2 for second, etc.) 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1
+    )
+    public final int cameraId() {
+        return this.cameraId;
     }
 
     /**
@@ -140,7 +104,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -152,7 +116,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -164,7 +128,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -176,7 +140,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int relativeAlt() {
-        return relativeAlt;
+        return this.relativeAlt;
     }
 
     /**
@@ -188,7 +152,7 @@ public final class CameraImageCaptured {
             arraySize = 4
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
@@ -200,18 +164,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int imageIndex() {
-        return imageIndex;
-    }
-
-    /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 1
-    )
-    public final int cameraId() {
-        return cameraId;
+        return this.imageIndex;
     }
 
     /**
@@ -223,7 +176,7 @@ public final class CameraImageCaptured {
             signed = true
     )
     public final int captureResult() {
-        return captureResult;
+        return this.captureResult;
     }
 
     /**
@@ -236,13 +189,15 @@ public final class CameraImageCaptured {
             arraySize = 205
     )
     public final String fileUrl() {
-        return fileUrl;
+        return this.fileUrl;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private long timeBootMs;
+
         private BigInteger timeUtc;
 
-        private long timeBootMs;
+        private int cameraId;
 
         private int lat;
 
@@ -256,13 +211,20 @@ public final class CameraImageCaptured {
 
         private int imageIndex;
 
-        private int cameraId;
-
         private int captureResult;
 
         private String fileUrl;
 
-        private Builder() {
+        /**
+         * Timestamp (milliseconds since system boot) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 4
+        )
+        public final Builder timeBootMs(long timeBootMs) {
+            this.timeBootMs = timeBootMs;
+            return this;
         }
 
         /**
@@ -278,14 +240,14 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Camera ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 4
+                position = 3,
+                unitSize = 1
         )
-        public final Builder timeBootMs(long timeBootMs) {
-            this.timeBootMs = timeBootMs;
+        public final Builder cameraId(int cameraId) {
+            this.cameraId = cameraId;
             return this;
         }
 
@@ -368,18 +330,6 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Camera ID (1 for first, 2 for second, etc.) 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder cameraId(int cameraId) {
-            this.cameraId = cameraId;
-            return this;
-        }
-
-        /**
          * Boolean indicating success (1) or failure (0) while capturing this image. 
          */
         @MavlinkFieldInfo(
@@ -407,7 +357,7 @@ public final class CameraImageCaptured {
         }
 
         public final CameraImageCaptured build() {
-            return new CameraImageCaptured(timeUtc, timeBootMs, lat, lon, alt, relativeAlt, q, imageIndex, cameraId, captureResult, fileUrl);
+            return new CameraImageCaptured(timeBootMs, timeUtc, cameraId, lat, lon, alt, relativeAlt, q, imageIndex, captureResult, fileUrl);
         }
     }
 }

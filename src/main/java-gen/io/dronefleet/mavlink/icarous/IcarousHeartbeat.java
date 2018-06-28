@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.icarous;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * ICAROUS heartbeat 
@@ -14,23 +12,18 @@ import java.lang.String;
         crc = 227
 )
 public final class IcarousHeartbeat {
-    /**
-     * See the FMS_STATE enum. 
-     */
     private final IcarousFmsState status;
 
     private IcarousHeartbeat(IcarousFmsState status) {
         this.status = status;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "IcarousHeartbeat{status=" + status + "}";
     }
 
     /**
@@ -41,14 +34,11 @@ public final class IcarousHeartbeat {
             unitSize = 1
     )
     public final IcarousFmsState status() {
-        return status;
+        return this.status;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private IcarousFmsState status;
-
-        private Builder() {
-        }
 
         /**
          * See the FMS_STATE enum. 

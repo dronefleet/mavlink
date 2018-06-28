@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Configurable diagnostic messages. 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 2
 )
 public final class Diagnostic {
-    /**
-     * Diagnostic float 1 
-     */
     private final float diagfl1;
 
-    /**
-     * Diagnostic float 2 
-     */
     private final float diagfl2;
 
-    /**
-     * Diagnostic float 3 
-     */
     private final float diagfl3;
 
-    /**
-     * Diagnostic short 1 
-     */
     private final int diagsh1;
 
-    /**
-     * Diagnostic short 2 
-     */
     private final int diagsh2;
 
-    /**
-     * Diagnostic short 3 
-     */
     private final int diagsh3;
 
     private Diagnostic(float diagfl1, float diagfl2, float diagfl3, int diagsh1, int diagsh2,
@@ -54,19 +34,12 @@ public final class Diagnostic {
         this.diagsh3 = diagsh3;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Diagnostic{diagfl1=" + diagfl1
-                 + ", diagfl2=" + diagfl2
-                 + ", diagfl3=" + diagfl3
-                 + ", diagsh1=" + diagsh1
-                 + ", diagsh2=" + diagsh2
-                 + ", diagsh3=" + diagsh3 + "}";
     }
 
     /**
@@ -77,7 +50,7 @@ public final class Diagnostic {
             unitSize = 4
     )
     public final float diagfl1() {
-        return diagfl1;
+        return this.diagfl1;
     }
 
     /**
@@ -88,7 +61,7 @@ public final class Diagnostic {
             unitSize = 4
     )
     public final float diagfl2() {
-        return diagfl2;
+        return this.diagfl2;
     }
 
     /**
@@ -99,7 +72,7 @@ public final class Diagnostic {
             unitSize = 4
     )
     public final float diagfl3() {
-        return diagfl3;
+        return this.diagfl3;
     }
 
     /**
@@ -111,7 +84,7 @@ public final class Diagnostic {
             signed = true
     )
     public final int diagsh1() {
-        return diagsh1;
+        return this.diagsh1;
     }
 
     /**
@@ -123,7 +96,7 @@ public final class Diagnostic {
             signed = true
     )
     public final int diagsh2() {
-        return diagsh2;
+        return this.diagsh2;
     }
 
     /**
@@ -135,10 +108,10 @@ public final class Diagnostic {
             signed = true
     )
     public final int diagsh3() {
-        return diagsh3;
+        return this.diagsh3;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float diagfl1;
 
         private float diagfl2;
@@ -150,9 +123,6 @@ public final class Diagnostic {
         private int diagsh2;
 
         private int diagsh3;
-
-        private Builder() {
-        }
 
         /**
          * Diagnostic float 1 

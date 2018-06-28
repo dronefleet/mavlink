@@ -3,55 +3,47 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Reply to {@link io.dronefleet.mavlink.common.LogRequestData LogRequestData} 
+ * Reply to {@link io.dronefleet.mavlink.common.LogRequestData LOG_REQUEST_DATA} 
  */
 @MavlinkMessageInfo(
         id = 120,
         crc = 134
 )
 public final class LogData {
-    /**
-     * Offset into the log 
-     */
-    private final long ofs;
-
-    /**
-     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-     */
     private final int id;
 
-    /**
-     * Number of bytes (zero for end of log) 
-     */
+    private final long ofs;
+
     private final int count;
 
-    /**
-     * log data 
-     */
     private final byte[] data;
 
-    private LogData(long ofs, int id, int count, byte[] data) {
-        this.ofs = ofs;
+    private LogData(int id, long ofs, int count, byte[] data) {
         this.id = id;
+        this.ofs = ofs;
         this.count = count;
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "LogData{id=" + id
-                 + ", ofs=" + ofs
-                 + ", count=" + count
-                 + ", data=" + data + "}";
+    /**
+     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LOG_ENTRY} reply) 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 2
+    )
+    public final int id() {
+        return this.id;
     }
 
     /**
@@ -62,18 +54,7 @@ public final class LogData {
             unitSize = 4
     )
     public final long ofs() {
-        return ofs;
-    }
-
-    /**
-     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 2
-    )
-    public final int id() {
-        return id;
+        return this.ofs;
     }
 
     /**
@@ -84,7 +65,7 @@ public final class LogData {
             unitSize = 1
     )
     public final int count() {
-        return count;
+        return this.count;
     }
 
     /**
@@ -96,19 +77,28 @@ public final class LogData {
             arraySize = 90
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
-        private long ofs;
-
+    public static final class Builder {
         private int id;
+
+        private long ofs;
 
         private int count;
 
         private byte[] data;
 
-        private Builder() {
+        /**
+         * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LOG_ENTRY} reply) 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder id(int id) {
+            this.id = id;
+            return this;
         }
 
         /**
@@ -120,18 +110,6 @@ public final class LogData {
         )
         public final Builder ofs(long ofs) {
             this.ofs = ofs;
-            return this;
-        }
-
-        /**
-         * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 2
-        )
-        public final Builder id(int id) {
-            this.id = id;
             return this;
         }
 
@@ -161,7 +139,7 @@ public final class LogData {
         }
 
         public final LogData build() {
-            return new LogData(ofs, id, count, data);
+            return new LogData(id, ofs, count, data);
         }
     }
 }

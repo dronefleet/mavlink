@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Transmits the actual status values UAV in flight 
@@ -14,114 +12,34 @@ import java.lang.String;
         crc = 160
 )
 public final class UavStatus {
-    /**
-     * Latitude UAV 
-     */
-    private final float latitude;
-
-    /**
-     * Longitude UAV 
-     */
-    private final float longitude;
-
-    /**
-     * Altitude UAV 
-     */
-    private final float altitude;
-
-    /**
-     * Speed UAV 
-     */
-    private final float speed;
-
-    /**
-     * Course UAV 
-     */
-    private final float course;
-
-    /**
-     * The ID system reporting the action 
-     */
     private final int target;
 
-    private UavStatus(float latitude, float longitude, float altitude, float speed, float course,
-            int target) {
+    private final float latitude;
+
+    private final float longitude;
+
+    private final float altitude;
+
+    private final float speed;
+
+    private final float course;
+
+    private UavStatus(int target, float latitude, float longitude, float altitude, float speed,
+            float course) {
+        this.target = target;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
         this.speed = speed;
         this.course = course;
-        this.target = target;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "UavStatus{target=" + target
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", speed=" + speed
-                 + ", course=" + course + "}";
-    }
-
-    /**
-     * Latitude UAV 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float latitude() {
-        return latitude;
-    }
-
-    /**
-     * Longitude UAV 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float longitude() {
-        return longitude;
-    }
-
-    /**
-     * Altitude UAV 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float altitude() {
-        return altitude;
-    }
-
-    /**
-     * Speed UAV 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float speed() {
-        return speed;
-    }
-
-    /**
-     * Course UAV 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float course() {
-        return course;
     }
 
     /**
@@ -132,10 +50,67 @@ public final class UavStatus {
             unitSize = 1
     )
     public final int target() {
-        return target;
+        return this.target;
     }
 
-    public static class Builder {
+    /**
+     * Latitude UAV 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float latitude() {
+        return this.latitude;
+    }
+
+    /**
+     * Longitude UAV 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float longitude() {
+        return this.longitude;
+    }
+
+    /**
+     * Altitude UAV 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float altitude() {
+        return this.altitude;
+    }
+
+    /**
+     * Speed UAV 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float speed() {
+        return this.speed;
+    }
+
+    /**
+     * Course UAV 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float course() {
+        return this.course;
+    }
+
+    public static final class Builder {
+        private int target;
+
         private float latitude;
 
         private float longitude;
@@ -146,9 +121,16 @@ public final class UavStatus {
 
         private float course;
 
-        private int target;
-
-        private Builder() {
+        /**
+         * The ID system reporting the action 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder target(int target) {
+            this.target = target;
+            return this;
         }
 
         /**
@@ -211,20 +193,8 @@ public final class UavStatus {
             return this;
         }
 
-        /**
-         * The ID system reporting the action 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder target(int target) {
-            this.target = target;
-            return this;
-        }
-
         public final UavStatus build() {
-            return new UavStatus(latitude, longitude, altitude, speed, course, target);
+            return new UavStatus(target, latitude, longitude, altitude, speed, course);
         }
     }
 }

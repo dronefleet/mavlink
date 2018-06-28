@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Accelerometer and gyro biases. 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 168
 )
 public final class SensorBias {
-    /**
-     * Accelerometer X bias 
-     */
     private final float axbias;
 
-    /**
-     * Accelerometer Y bias 
-     */
     private final float aybias;
 
-    /**
-     * Accelerometer Z bias 
-     */
     private final float azbias;
 
-    /**
-     * Gyro X bias 
-     */
     private final float gxbias;
 
-    /**
-     * Gyro Y bias 
-     */
     private final float gybias;
 
-    /**
-     * Gyro Z bias 
-     */
     private final float gzbias;
 
     private SensorBias(float axbias, float aybias, float azbias, float gxbias, float gybias,
@@ -54,19 +34,12 @@ public final class SensorBias {
         this.gzbias = gzbias;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SensorBias{axbias=" + axbias
-                 + ", aybias=" + aybias
-                 + ", azbias=" + azbias
-                 + ", gxbias=" + gxbias
-                 + ", gybias=" + gybias
-                 + ", gzbias=" + gzbias + "}";
     }
 
     /**
@@ -77,7 +50,7 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float axbias() {
-        return axbias;
+        return this.axbias;
     }
 
     /**
@@ -88,7 +61,7 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float aybias() {
-        return aybias;
+        return this.aybias;
     }
 
     /**
@@ -99,7 +72,7 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float azbias() {
-        return azbias;
+        return this.azbias;
     }
 
     /**
@@ -110,7 +83,7 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float gxbias() {
-        return gxbias;
+        return this.gxbias;
     }
 
     /**
@@ -121,7 +94,7 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float gybias() {
-        return gybias;
+        return this.gybias;
     }
 
     /**
@@ -132,10 +105,10 @@ public final class SensorBias {
             unitSize = 4
     )
     public final float gzbias() {
-        return gzbias;
+        return this.gzbias;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float axbias;
 
         private float aybias;
@@ -147,9 +120,6 @@ public final class SensorBias {
         private float gybias;
 
         private float gzbias;
-
-        private Builder() {
-        }
 
         /**
          * Accelerometer X bias 

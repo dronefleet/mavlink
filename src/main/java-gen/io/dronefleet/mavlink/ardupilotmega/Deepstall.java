@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Deepstall path planning 
@@ -14,54 +12,24 @@ import java.lang.String;
         crc = 120
 )
 public final class Deepstall {
-    /**
-     * Landing latitude (deg * 1E7) 
-     */
     private final int landingLat;
 
-    /**
-     * Landing longitude (deg * 1E7) 
-     */
     private final int landingLon;
 
-    /**
-     * Final heading start point, latitude (deg * 1E7) 
-     */
     private final int pathLat;
 
-    /**
-     * Final heading start point, longitude (deg * 1E7) 
-     */
     private final int pathLon;
 
-    /**
-     * Arc entry point, latitude (deg * 1E7) 
-     */
     private final int arcEntryLat;
 
-    /**
-     * Arc entry point, longitude (deg * 1E7) 
-     */
     private final int arcEntryLon;
 
-    /**
-     * Altitude (meters) 
-     */
     private final float altitude;
 
-    /**
-     * Distance the aircraft expects to travel during the deepstall 
-     */
     private final float expectedTravelDistance;
 
-    /**
-     * Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND) 
-     */
     private final float crossTrackError;
 
-    /**
-     * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
-     */
     private final DeepstallStage stage;
 
     private Deepstall(int landingLat, int landingLon, int pathLat, int pathLon, int arcEntryLat,
@@ -79,23 +47,12 @@ public final class Deepstall {
         this.stage = stage;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Deepstall{landingLat=" + landingLat
-                 + ", landingLon=" + landingLon
-                 + ", pathLat=" + pathLat
-                 + ", pathLon=" + pathLon
-                 + ", arcEntryLat=" + arcEntryLat
-                 + ", arcEntryLon=" + arcEntryLon
-                 + ", altitude=" + altitude
-                 + ", expectedTravelDistance=" + expectedTravelDistance
-                 + ", crossTrackError=" + crossTrackError
-                 + ", stage=" + stage + "}";
     }
 
     /**
@@ -107,7 +64,7 @@ public final class Deepstall {
             signed = true
     )
     public final int landingLat() {
-        return landingLat;
+        return this.landingLat;
     }
 
     /**
@@ -119,7 +76,7 @@ public final class Deepstall {
             signed = true
     )
     public final int landingLon() {
-        return landingLon;
+        return this.landingLon;
     }
 
     /**
@@ -131,7 +88,7 @@ public final class Deepstall {
             signed = true
     )
     public final int pathLat() {
-        return pathLat;
+        return this.pathLat;
     }
 
     /**
@@ -143,7 +100,7 @@ public final class Deepstall {
             signed = true
     )
     public final int pathLon() {
-        return pathLon;
+        return this.pathLon;
     }
 
     /**
@@ -155,7 +112,7 @@ public final class Deepstall {
             signed = true
     )
     public final int arcEntryLat() {
-        return arcEntryLat;
+        return this.arcEntryLat;
     }
 
     /**
@@ -167,7 +124,7 @@ public final class Deepstall {
             signed = true
     )
     public final int arcEntryLon() {
-        return arcEntryLon;
+        return this.arcEntryLon;
     }
 
     /**
@@ -178,7 +135,7 @@ public final class Deepstall {
             unitSize = 4
     )
     public final float altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -189,7 +146,7 @@ public final class Deepstall {
             unitSize = 4
     )
     public final float expectedTravelDistance() {
-        return expectedTravelDistance;
+        return this.expectedTravelDistance;
     }
 
     /**
@@ -200,7 +157,7 @@ public final class Deepstall {
             unitSize = 4
     )
     public final float crossTrackError() {
-        return crossTrackError;
+        return this.crossTrackError;
     }
 
     /**
@@ -211,10 +168,10 @@ public final class Deepstall {
             unitSize = 1
     )
     public final DeepstallStage stage() {
-        return stage;
+        return this.stage;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int landingLat;
 
         private int landingLon;
@@ -234,9 +191,6 @@ public final class Deepstall {
         private float crossTrackError;
 
         private DeepstallStage stage;
-
-        private Builder() {
-        }
 
         /**
          * Landing latitude (deg * 1E7) 

@@ -3,48 +3,25 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Report status of a command. Includes feedback whether the command was executed. 
  */
 @MavlinkMessageInfo(
         id = 77,
-        crc = 143
+        crc = 4
 )
 public final class CommandAck {
-    /**
-     * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
-     */
     private final MavCmd command;
 
-    /**
-     * See {@link io.dronefleet.mavlink.common.MavResult MavResult} enum 
-     */
     private final MavResult result;
 
-    /**
-     * WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why 
-     * the command was denied or the progress percentage or 255 if unknown the progress when result is 
-     * MAV_RESULT_IN_PROGRESS. 
-     */
     private final int progress;
 
-    /**
-     * WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
-     * caused it to be denied. 
-     */
     private final int resultParam2;
 
-    /**
-     * WIP: System which requested the command to be executed 
-     */
     private final int targetSystem;
 
-    /**
-     * WIP: Component which requested the command to be executed 
-     */
     private final int targetComponent;
 
     private CommandAck(MavCmd command, MavResult result, int progress, int resultParam2,
@@ -57,41 +34,34 @@ public final class CommandAck {
         this.targetComponent = targetComponent;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "CommandAck{command=" + command
-                 + ", result=" + result
-                 + ", progress=" + progress
-                 + ", resultParam2=" + resultParam2
-                 + ", targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent + "}";
-    }
-
     /**
-     * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
+     * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2
     )
     public final MavCmd command() {
-        return command;
+        return this.command;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.MavResult MavResult} enum 
+     * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1
     )
     public final MavResult result() {
-        return result;
+        return this.result;
     }
 
     /**
@@ -105,7 +75,7 @@ public final class CommandAck {
             extension = true
     )
     public final int progress() {
-        return progress;
+        return this.progress;
     }
 
     /**
@@ -119,7 +89,7 @@ public final class CommandAck {
             extension = true
     )
     public final int resultParam2() {
-        return resultParam2;
+        return this.resultParam2;
     }
 
     /**
@@ -131,7 +101,7 @@ public final class CommandAck {
             extension = true
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -143,10 +113,10 @@ public final class CommandAck {
             extension = true
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private MavCmd command;
 
         private MavResult result;
@@ -159,11 +129,8 @@ public final class CommandAck {
 
         private int targetComponent;
 
-        private Builder() {
-        }
-
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum. 
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
          */
         @MavlinkFieldInfo(
                 position = 1,
@@ -175,7 +142,7 @@ public final class CommandAck {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavResult MavResult} enum 
+         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
          */
         @MavlinkFieldInfo(
                 position = 2,

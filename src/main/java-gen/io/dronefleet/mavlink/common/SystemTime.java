@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,14 +14,8 @@ import java.math.BigInteger;
         crc = 137
 )
 public final class SystemTime {
-    /**
-     * Timestamp of the master clock in microseconds since UNIX epoch. 
-     */
     private final BigInteger timeUnixUsec;
 
-    /**
-     * Timestamp of the component clock since boot time in milliseconds. 
-     */
     private final long timeBootMs;
 
     private SystemTime(BigInteger timeUnixUsec, long timeBootMs) {
@@ -31,15 +23,12 @@ public final class SystemTime {
         this.timeBootMs = timeBootMs;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SystemTime{timeUnixUsec=" + timeUnixUsec
-                 + ", timeBootMs=" + timeBootMs + "}";
     }
 
     /**
@@ -50,7 +39,7 @@ public final class SystemTime {
             unitSize = 8
     )
     public final BigInteger timeUnixUsec() {
-        return timeUnixUsec;
+        return this.timeUnixUsec;
     }
 
     /**
@@ -61,16 +50,13 @@ public final class SystemTime {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUnixUsec;
 
         private long timeBootMs;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp of the master clock in microseconds since UNIX epoch. 

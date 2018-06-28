@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * RTCM message for injecting into the onboard GPS (used for DGPS) 
@@ -14,26 +12,10 @@ import java.lang.String;
         crc = 35
 )
 public final class GpsRtcmData {
-    /**
-     * LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used 
-     * for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been 
-     * reconstructed on the autopilot. The fragment ID specifies which order the fragments should be 
-     * assembled into a buffer, while the sequence ID is used to detect a mismatch between different 
-     * buffers. The buffer is considered fully reconstructed when either all 4 fragments are 
-     * present, or all the fragments before the first fragment with a non full payload is received. 
-     * This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to 
-     * recover from a unreliable transport delivery order. 
-     */
     private final int flags;
 
-    /**
-     * data length 
-     */
     private final int len;
 
-    /**
-     * RTCM message (may be fragmented) 
-     */
     private final byte[] data;
 
     private GpsRtcmData(int flags, int len, byte[] data) {
@@ -42,16 +24,12 @@ public final class GpsRtcmData {
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsRtcmData{flags=" + flags
-                 + ", len=" + len
-                 + ", data=" + data + "}";
     }
 
     /**
@@ -69,7 +47,7 @@ public final class GpsRtcmData {
             unitSize = 1
     )
     public final int flags() {
-        return flags;
+        return this.flags;
     }
 
     /**
@@ -80,7 +58,7 @@ public final class GpsRtcmData {
             unitSize = 1
     )
     public final int len() {
-        return len;
+        return this.len;
     }
 
     /**
@@ -92,18 +70,15 @@ public final class GpsRtcmData {
             arraySize = 180
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int flags;
 
         private int len;
 
         private byte[] data;
-
-        private Builder() {
-        }
 
         /**
          * LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used 

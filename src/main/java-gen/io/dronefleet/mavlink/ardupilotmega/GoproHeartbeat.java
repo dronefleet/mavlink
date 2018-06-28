@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Heartbeat from a HeroBus attached GoPro 
@@ -15,19 +13,10 @@ import java.lang.String;
         crc = 101
 )
 public final class GoproHeartbeat {
-    /**
-     * Status 
-     */
     private final GoproHeartbeatStatus status;
 
-    /**
-     * Current capture mode 
-     */
     private final GoproCaptureMode captureMode;
 
-    /**
-     * additional status bits 
-     */
     private final EnumFlagSet<GoproHeartbeatFlags> flags;
 
     private GoproHeartbeat(GoproHeartbeatStatus status, GoproCaptureMode captureMode,
@@ -37,16 +26,12 @@ public final class GoproHeartbeat {
         this.flags = flags;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GoproHeartbeat{status=" + status
-                 + ", captureMode=" + captureMode
-                 + ", flags=" + flags + "}";
     }
 
     /**
@@ -57,7 +42,7 @@ public final class GoproHeartbeat {
             unitSize = 1
     )
     public final GoproHeartbeatStatus status() {
-        return status;
+        return this.status;
     }
 
     /**
@@ -68,7 +53,7 @@ public final class GoproHeartbeat {
             unitSize = 1
     )
     public final GoproCaptureMode captureMode() {
-        return captureMode;
+        return this.captureMode;
     }
 
     /**
@@ -79,18 +64,15 @@ public final class GoproHeartbeat {
             unitSize = 1
     )
     public final EnumFlagSet<GoproHeartbeatFlags> flags() {
-        return flags;
+        return this.flags;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private GoproHeartbeatStatus status;
 
         private GoproCaptureMode captureMode;
 
         private EnumFlagSet<GoproHeartbeatFlags> flags;
-
-        private Builder() {
-        }
 
         /**
          * Status 

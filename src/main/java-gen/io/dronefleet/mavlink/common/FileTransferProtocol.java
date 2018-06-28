@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * File transfer message 
@@ -14,27 +12,12 @@ import java.lang.String;
         crc = 84
 )
 public final class FileTransferProtocol {
-    /**
-     * Network ID (0 for broadcast) 
-     */
     private final int targetNetwork;
 
-    /**
-     * System ID (0 for broadcast) 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID (0 for broadcast) 
-     */
     private final int targetComponent;
 
-    /**
-     * Variable length payload. The length is defined by the remaining message length when 
-     * subtracting the header and other fields. The entire content of this block is opaque unless you 
-     * understand any the encoding message_type. The particular encoding used can be extension 
-     * specific and might not always be documented as part of the mavlink specification. 
-     */
     private final byte[] payload;
 
     private FileTransferProtocol(int targetNetwork, int targetSystem, int targetComponent,
@@ -45,17 +28,12 @@ public final class FileTransferProtocol {
         this.payload = payload;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FileTransferProtocol{targetNetwork=" + targetNetwork
-                 + ", targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", payload=" + payload + "}";
     }
 
     /**
@@ -66,7 +44,7 @@ public final class FileTransferProtocol {
             unitSize = 1
     )
     public final int targetNetwork() {
-        return targetNetwork;
+        return this.targetNetwork;
     }
 
     /**
@@ -77,7 +55,7 @@ public final class FileTransferProtocol {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -88,7 +66,7 @@ public final class FileTransferProtocol {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -103,10 +81,10 @@ public final class FileTransferProtocol {
             arraySize = 251
     )
     public final byte[] payload() {
-        return payload;
+        return this.payload;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetNetwork;
 
         private int targetSystem;
@@ -114,9 +92,6 @@ public final class FileTransferProtocol {
         private int targetComponent;
 
         private byte[] payload;
-
-        private Builder() {
-        }
 
         /**
          * Network ID (0 for broadcast) 

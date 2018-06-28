@@ -3,123 +3,46 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 130,
         crc = 29
 )
 public final class DataTransmissionHandshake {
-    /**
-     * total data size in bytes (set on ACK only) 
-     */
-    private final long size;
-
-    /**
-     * Width of a matrix or image 
-     */
-    private final int width;
-
-    /**
-     * Height of a matrix or image 
-     */
-    private final int height;
-
-    /**
-     * number of packets beeing sent (set on ACK only) 
-     */
-    private final int packets;
-
-    /**
-     * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-     * mavlink/include/mavlink_types.h) 
-     */
     private final int type;
 
-    /**
-     * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
-     * (set on ACK only) 
-     */
+    private final long size;
+
+    private final int width;
+
+    private final int height;
+
+    private final int packets;
+
     private final int payload;
 
-    /**
-     * JPEG quality out of [1,100] 
-     */
     private final int jpgQuality;
 
-    private DataTransmissionHandshake(long size, int width, int height, int packets, int type,
+    private DataTransmissionHandshake(int type, long size, int width, int height, int packets,
             int payload, int jpgQuality) {
+        this.type = type;
         this.size = size;
         this.width = width;
         this.height = height;
         this.packets = packets;
-        this.type = type;
         this.payload = payload;
         this.jpgQuality = jpgQuality;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DataTransmissionHandshake{type=" + type
-                 + ", size=" + size
-                 + ", width=" + width
-                 + ", height=" + height
-                 + ", packets=" + packets
-                 + ", payload=" + payload
-                 + ", jpgQuality=" + jpgQuality + "}";
-    }
-
-    /**
-     * total data size in bytes (set on ACK only) 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 4
-    )
-    public final long size() {
-        return size;
-    }
-
-    /**
-     * Width of a matrix or image 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 2
-    )
-    public final int width() {
-        return width;
-    }
-
-    /**
-     * Height of a matrix or image 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int height() {
-        return height;
-    }
-
-    /**
-     * number of packets beeing sent (set on ACK only) 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2
-    )
-    public final int packets() {
-        return packets;
     }
 
     /**
@@ -131,11 +54,55 @@ public final class DataTransmissionHandshake {
             unitSize = 1
     )
     public final int type() {
-        return type;
+        return this.type;
     }
 
     /**
-     * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
+     * total data size in bytes (set on ACK only) 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 4
+    )
+    public final long size() {
+        return this.size;
+    }
+
+    /**
+     * Width of a matrix or image 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 2
+    )
+    public final int width() {
+        return this.width;
+    }
+
+    /**
+     * Height of a matrix or image 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int height() {
+        return this.height;
+    }
+
+    /**
+     * number of packets beeing sent (set on ACK only) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2
+    )
+    public final int packets() {
+        return this.packets;
+    }
+
+    /**
+     * payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
      * (set on ACK only) 
      */
     @MavlinkFieldInfo(
@@ -143,7 +110,7 @@ public final class DataTransmissionHandshake {
             unitSize = 1
     )
     public final int payload() {
-        return payload;
+        return this.payload;
     }
 
     /**
@@ -154,10 +121,12 @@ public final class DataTransmissionHandshake {
             unitSize = 1
     )
     public final int jpgQuality() {
-        return jpgQuality;
+        return this.jpgQuality;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private int type;
+
         private long size;
 
         private int width;
@@ -166,13 +135,21 @@ public final class DataTransmissionHandshake {
 
         private int packets;
 
-        private int type;
-
         private int payload;
 
         private int jpgQuality;
 
-        private Builder() {
+        /**
+         * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
+         * mavlink/include/mavlink_types.h) 
+         */
+        @MavlinkFieldInfo(
+                position = 0,
+                unitSize = 1
+        )
+        public final Builder type(int type) {
+            this.type = type;
+            return this;
         }
 
         /**
@@ -224,20 +201,7 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-         * mavlink/include/mavlink_types.h) 
-         */
-        @MavlinkFieldInfo(
-                position = 0,
-                unitSize = 1
-        )
-        public final Builder type(int type) {
-            this.type = type;
-            return this;
-        }
-
-        /**
-         * payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) 
+         * payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
          * (set on ACK only) 
          */
         @MavlinkFieldInfo(
@@ -262,7 +226,7 @@ public final class DataTransmissionHandshake {
         }
 
         public final DataTransmissionHandshake build() {
-            return new DataTransmissionHandshake(size, width, height, packets, type, payload, jpgQuality);
+            return new DataTransmissionHandshake(type, size, width, height, packets, payload, jpgQuality);
         }
     }
 }

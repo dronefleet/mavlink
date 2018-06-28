@@ -3,35 +3,21 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Request to set a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GoproCommand} with a desired 
+ * Request to set a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} with a desired 
  */
 @MavlinkMessageInfo(
         id = 218,
         crc = 17
 )
 public final class GoproSetRequest {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Command ID 
-     */
     private final GoproCommand cmdId;
 
-    /**
-     * Value 
-     */
     private final byte[] value;
 
     private GoproSetRequest(int targetSystem, int targetComponent, GoproCommand cmdId,
@@ -42,17 +28,12 @@ public final class GoproSetRequest {
         this.value = value;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GoproSetRequest{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", cmdId=" + cmdId
-                 + ", value=" + value + "}";
     }
 
     /**
@@ -63,7 +44,7 @@ public final class GoproSetRequest {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -74,7 +55,7 @@ public final class GoproSetRequest {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -85,7 +66,7 @@ public final class GoproSetRequest {
             unitSize = 1
     )
     public final GoproCommand cmdId() {
-        return cmdId;
+        return this.cmdId;
     }
 
     /**
@@ -97,10 +78,10 @@ public final class GoproSetRequest {
             arraySize = 4
     )
     public final byte[] value() {
-        return value;
+        return this.value;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -108,9 +89,6 @@ public final class GoproSetRequest {
         private GoproCommand cmdId;
 
         private byte[] value;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

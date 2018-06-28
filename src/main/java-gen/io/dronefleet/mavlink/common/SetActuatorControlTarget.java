@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -17,56 +15,31 @@ import java.util.List;
         crc = 168
 )
 public final class SetActuatorControlTarget {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation 
-     * direction motors is 0..1, negative range for reverse direction. Standard mapping for 
-     * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
-     * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
-     */
-    private final List<Float> controls;
-
-    /**
-     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
-     * should use this field to difference between instances. 
-     */
     private final int groupMlx;
 
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private SetActuatorControlTarget(BigInteger timeUsec, List<Float> controls, int groupMlx,
-            int targetSystem, int targetComponent) {
+    private final List<Float> controls;
+
+    private SetActuatorControlTarget(BigInteger timeUsec, int groupMlx, int targetSystem,
+            int targetComponent, List<Float> controls) {
         this.timeUsec = timeUsec;
-        this.controls = controls;
         this.groupMlx = groupMlx;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.controls = controls;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SetActuatorControlTarget{timeUsec=" + timeUsec
-                 + ", groupMlx=" + groupMlx
-                 + ", targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", controls=" + controls + "}";
     }
 
     /**
@@ -77,7 +50,41 @@ public final class SetActuatorControlTarget {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
+    }
+
+    /**
+     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
+     * should use this field to difference between instances. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int groupMlx() {
+        return this.groupMlx;
+    }
+
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 1
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
     }
 
     /**
@@ -92,47 +99,11 @@ public final class SetActuatorControlTarget {
             arraySize = 8
     )
     public final List<Float> controls() {
-        return controls;
+        return this.controls;
     }
 
-    /**
-     * Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser 
-     * should use this field to difference between instances. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int groupMlx() {
-        return groupMlx;
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 1
-    )
-    public final int targetComponent() {
-        return targetComponent;
-    }
-
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
-
-        private List<Float> controls;
 
         private int groupMlx;
 
@@ -140,8 +111,7 @@ public final class SetActuatorControlTarget {
 
         private int targetComponent;
 
-        private Builder() {
-        }
+        private List<Float> controls;
 
         /**
          * Timestamp (micros since boot or Unix epoch) 
@@ -152,22 +122,6 @@ public final class SetActuatorControlTarget {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
-            return this;
-        }
-
-        /**
-         * Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation 
-         * direction motors is 0..1, negative range for reverse direction. Standard mapping for 
-         * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
-         * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 4,
-                arraySize = 8
-        )
-        public final Builder controls(List<Float> controls) {
-            this.controls = controls;
             return this;
         }
 
@@ -208,8 +162,24 @@ public final class SetActuatorControlTarget {
             return this;
         }
 
+        /**
+         * Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation 
+         * direction motors is 0..1, negative range for reverse direction. Standard mapping for 
+         * attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, 
+         * airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs. 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4,
+                arraySize = 8
+        )
+        public final Builder controls(List<Float> controls) {
+            this.controls = controls;
+            return this;
+        }
+
         public final SetActuatorControlTarget build() {
-            return new SetActuatorControlTarget(timeUsec, controls, groupMlx, targetSystem, targetComponent);
+            return new SetActuatorControlTarget(timeUsec, groupMlx, targetSystem, targetComponent, controls);
         }
     }
 }

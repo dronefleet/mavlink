@@ -11,65 +11,49 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavModeFlagDecodePosition {
     /**
-     * First bit:  10000000<dl>
-     *
-     * </dl>
+     * First bit: 10000000 
      */
     @MavlinkEntryInfo(128)
     MAV_MODE_FLAG_DECODE_POSITION_SAFETY,
 
     /**
-     * Second bit: 01000000<dl>
-     *
-     * </dl>
+     * Second bit: 01000000 
      */
     @MavlinkEntryInfo(64)
     MAV_MODE_FLAG_DECODE_POSITION_MANUAL,
 
     /**
-     * Third bit:  00100000<dl>
-     *
-     * </dl>
+     * Third bit: 00100000 
      */
     @MavlinkEntryInfo(32)
     MAV_MODE_FLAG_DECODE_POSITION_HIL,
 
     /**
-     * Fourth bit: 00010000<dl>
-     *
-     * </dl>
+     * Fourth bit: 00010000 
      */
     @MavlinkEntryInfo(16)
     MAV_MODE_FLAG_DECODE_POSITION_STABILIZE,
 
     /**
-     * Fifth bit:  00001000<dl>
-     *
-     * </dl>
+     * Fifth bit: 00001000 
      */
     @MavlinkEntryInfo(8)
     MAV_MODE_FLAG_DECODE_POSITION_GUIDED,
 
     /**
-     * Sixt bit:   00000100<dl>
-     *
-     * </dl>
+     * Sixt bit: 00000100 
      */
     @MavlinkEntryInfo(4)
     MAV_MODE_FLAG_DECODE_POSITION_AUTO,
 
     /**
-     * Seventh bit: 00000010<dl>
-     *
-     * </dl>
+     * Seventh bit: 00000010 
      */
     @MavlinkEntryInfo(2)
     MAV_MODE_FLAG_DECODE_POSITION_TEST,
 
     /**
-     * Eighth bit: 00000001<dl>
-     *
-     * </dl>
+     * Eighth bit: 00000001 
      */
     @MavlinkEntryInfo(1)
     MAV_MODE_FLAG_DECODE_POSITION_CUSTOM_MODE

@@ -3,58 +3,29 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 132,
         crc = 85
 )
 public final class DistanceSensor {
-    /**
-     * Time since system boot 
-     */
     private final long timeBootMs;
 
-    /**
-     * Minimum distance the sensor can measure in centimeters 
-     */
     private final int minDistance;
 
-    /**
-     * Maximum distance the sensor can measure in centimeters 
-     */
     private final int maxDistance;
 
-    /**
-     * Current distance reading 
-     */
     private final int currentDistance;
 
-    /**
-     * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MavDistanceSensor} enum. 
-     */
     private final MavDistanceSensor type;
 
-    /**
-     * Onboard ID of the sensor 
-     */
     private final int id;
 
-    /**
-     * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MavSensorOrientation} enum. downward-facing: 
-     * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
-     * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
-     * right-facing: ROTATION_YAW_270 
-     */
     private final MavSensorOrientation orientation;
 
-    /**
-     * Measurement covariance in centimeters, 0 for unknown / invalid readings 
-     */
     private final int covariance;
 
     private DistanceSensor(long timeBootMs, int minDistance, int maxDistance, int currentDistance,
@@ -69,21 +40,12 @@ public final class DistanceSensor {
         this.covariance = covariance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DistanceSensor{timeBootMs=" + timeBootMs
-                 + ", minDistance=" + minDistance
-                 + ", maxDistance=" + maxDistance
-                 + ", currentDistance=" + currentDistance
-                 + ", type=" + type
-                 + ", id=" + id
-                 + ", orientation=" + orientation
-                 + ", covariance=" + covariance + "}";
     }
 
     /**
@@ -94,7 +56,7 @@ public final class DistanceSensor {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -105,7 +67,7 @@ public final class DistanceSensor {
             unitSize = 2
     )
     public final int minDistance() {
-        return minDistance;
+        return this.minDistance;
     }
 
     /**
@@ -116,7 +78,7 @@ public final class DistanceSensor {
             unitSize = 2
     )
     public final int maxDistance() {
-        return maxDistance;
+        return this.maxDistance;
     }
 
     /**
@@ -127,18 +89,18 @@ public final class DistanceSensor {
             unitSize = 2
     )
     public final int currentDistance() {
-        return currentDistance;
+        return this.currentDistance;
     }
 
     /**
-     * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MavDistanceSensor} enum. 
+     * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1
     )
     public final MavDistanceSensor type() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -149,11 +111,11 @@ public final class DistanceSensor {
             unitSize = 1
     )
     public final int id() {
-        return id;
+        return this.id;
     }
 
     /**
-     * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MavSensorOrientation} enum. downward-facing: 
+     * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MAV_SENSOR_ORIENTATION} enum. downward-facing: 
      * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
      * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
      * right-facing: ROTATION_YAW_270 
@@ -163,7 +125,7 @@ public final class DistanceSensor {
             unitSize = 1
     )
     public final MavSensorOrientation orientation() {
-        return orientation;
+        return this.orientation;
     }
 
     /**
@@ -174,10 +136,10 @@ public final class DistanceSensor {
             unitSize = 1
     )
     public final int covariance() {
-        return covariance;
+        return this.covariance;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private int minDistance;
@@ -193,9 +155,6 @@ public final class DistanceSensor {
         private MavSensorOrientation orientation;
 
         private int covariance;
-
-        private Builder() {
-        }
 
         /**
          * Time since system boot 
@@ -246,7 +205,7 @@ public final class DistanceSensor {
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MavDistanceSensor} enum. 
+         * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
          */
         @MavlinkFieldInfo(
                 position = 4,
@@ -270,7 +229,7 @@ public final class DistanceSensor {
         }
 
         /**
-         * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MavSensorOrientation} enum. downward-facing: 
+         * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MAV_SENSOR_ORIENTATION} enum. downward-facing: 
          * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
          * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
          * right-facing: ROTATION_YAW_270 

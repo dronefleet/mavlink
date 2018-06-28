@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * raw ADC output 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 188
 )
 public final class ApAdc {
-    /**
-     * ADC output 1 
-     */
     private final int adc1;
 
-    /**
-     * ADC output 2 
-     */
     private final int adc2;
 
-    /**
-     * ADC output 3 
-     */
     private final int adc3;
 
-    /**
-     * ADC output 4 
-     */
     private final int adc4;
 
-    /**
-     * ADC output 5 
-     */
     private final int adc5;
 
-    /**
-     * ADC output 6 
-     */
     private final int adc6;
 
     private ApAdc(int adc1, int adc2, int adc3, int adc4, int adc5, int adc6) {
@@ -53,19 +33,12 @@ public final class ApAdc {
         this.adc6 = adc6;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ApAdc{adc1=" + adc1
-                 + ", adc2=" + adc2
-                 + ", adc3=" + adc3
-                 + ", adc4=" + adc4
-                 + ", adc5=" + adc5
-                 + ", adc6=" + adc6 + "}";
     }
 
     /**
@@ -76,7 +49,7 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc1() {
-        return adc1;
+        return this.adc1;
     }
 
     /**
@@ -87,7 +60,7 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc2() {
-        return adc2;
+        return this.adc2;
     }
 
     /**
@@ -98,7 +71,7 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc3() {
-        return adc3;
+        return this.adc3;
     }
 
     /**
@@ -109,7 +82,7 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc4() {
-        return adc4;
+        return this.adc4;
     }
 
     /**
@@ -120,7 +93,7 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc5() {
-        return adc5;
+        return this.adc5;
     }
 
     /**
@@ -131,10 +104,10 @@ public final class ApAdc {
             unitSize = 2
     )
     public final int adc6() {
-        return adc6;
+        return this.adc6;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int adc1;
 
         private int adc2;
@@ -146,9 +119,6 @@ public final class ApAdc {
         private int adc5;
 
         private int adc6;
-
-        private Builder() {
-        }
 
         /**
          * ADC output 1 

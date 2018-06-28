@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,29 +14,14 @@ import java.math.BigInteger;
         crc = 67
 )
 public final class RawPressure {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Absolute pressure (raw) 
-     */
     private final int pressAbs;
 
-    /**
-     * Differential pressure 1 (raw, 0 if nonexistant) 
-     */
     private final int pressDiff1;
 
-    /**
-     * Differential pressure 2 (raw, 0 if nonexistant) 
-     */
     private final int pressDiff2;
 
-    /**
-     * Raw Temperature measurement (raw) 
-     */
     private final int temperature;
 
     private RawPressure(BigInteger timeUsec, int pressAbs, int pressDiff1, int pressDiff2,
@@ -50,18 +33,12 @@ public final class RawPressure {
         this.temperature = temperature;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "RawPressure{timeUsec=" + timeUsec
-                 + ", pressAbs=" + pressAbs
-                 + ", pressDiff1=" + pressDiff1
-                 + ", pressDiff2=" + pressDiff2
-                 + ", temperature=" + temperature + "}";
     }
 
     /**
@@ -72,7 +49,7 @@ public final class RawPressure {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -84,7 +61,7 @@ public final class RawPressure {
             signed = true
     )
     public final int pressAbs() {
-        return pressAbs;
+        return this.pressAbs;
     }
 
     /**
@@ -96,7 +73,7 @@ public final class RawPressure {
             signed = true
     )
     public final int pressDiff1() {
-        return pressDiff1;
+        return this.pressDiff1;
     }
 
     /**
@@ -108,7 +85,7 @@ public final class RawPressure {
             signed = true
     )
     public final int pressDiff2() {
-        return pressDiff2;
+        return this.pressDiff2;
     }
 
     /**
@@ -120,10 +97,10 @@ public final class RawPressure {
             signed = true
     )
     public final int temperature() {
-        return temperature;
+        return this.temperature;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private int pressAbs;
@@ -133,9 +110,6 @@ public final class RawPressure {
         private int pressDiff2;
 
         private int temperature;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 

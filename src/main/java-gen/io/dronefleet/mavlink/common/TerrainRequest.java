@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,55 +13,27 @@ import java.math.BigInteger;
         crc = 6
 )
 public final class TerrainRequest {
-    /**
-     * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
-     */
-    private final BigInteger mask;
-
-    /**
-     * Latitude of SW corner of first grid (degrees *10^7) 
-     */
     private final int lat;
 
-    /**
-     * Longitude of SW corner of first grid (in degrees *10^7) 
-     */
     private final int lon;
 
-    /**
-     * Grid spacing in meters 
-     */
     private final int gridSpacing;
 
-    private TerrainRequest(BigInteger mask, int lat, int lon, int gridSpacing) {
-        this.mask = mask;
+    private final BigInteger mask;
+
+    private TerrainRequest(int lat, int lon, int gridSpacing, BigInteger mask) {
         this.lat = lat;
         this.lon = lon;
         this.gridSpacing = gridSpacing;
-    }
-
-    @MavlinkMessageBuilder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "TerrainRequest{lat=" + lat
-                 + ", lon=" + lon
-                 + ", gridSpacing=" + gridSpacing
-                 + ", mask=" + mask + "}";
+        this.mask = mask;
     }
 
     /**
-     * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+     * Returns a builder instance for this message.
      */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 8
-    )
-    public final BigInteger mask() {
-        return mask;
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**
@@ -75,7 +45,7 @@ public final class TerrainRequest {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -87,7 +57,7 @@ public final class TerrainRequest {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -98,32 +68,28 @@ public final class TerrainRequest {
             unitSize = 2
     )
     public final int gridSpacing() {
-        return gridSpacing;
+        return this.gridSpacing;
     }
 
-    public static class Builder {
-        private BigInteger mask;
+    /**
+     * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 8
+    )
+    public final BigInteger mask() {
+        return this.mask;
+    }
 
+    public static final class Builder {
         private int lat;
 
         private int lon;
 
         private int gridSpacing;
 
-        private Builder() {
-        }
-
-        /**
-         * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 8
-        )
-        public final Builder mask(BigInteger mask) {
-            this.mask = mask;
-            return this;
-        }
+        private BigInteger mask;
 
         /**
          * Latitude of SW corner of first grid (degrees *10^7) 
@@ -163,8 +129,20 @@ public final class TerrainRequest {
             return this;
         }
 
+        /**
+         * Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 8
+        )
+        public final Builder mask(BigInteger mask) {
+            this.mask = mask;
+            return this;
+        }
+
         public final TerrainRequest build() {
-            return new TerrainRequest(mask, lat, lon, gridSpacing);
+            return new TerrainRequest(lat, lon, gridSpacing, mask);
         }
     }
 }

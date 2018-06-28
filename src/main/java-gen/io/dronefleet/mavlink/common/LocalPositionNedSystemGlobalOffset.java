@@ -3,11 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * The offset in X, Y, Z and yaw between the {@link io.dronefleet.mavlink.common.LocalPositionNed LocalPositionNed} messages of MAV X and the global 
+ * The offset in X, Y, Z and yaw between the {@link io.dronefleet.mavlink.common.LocalPositionNed LOCAL_POSITION_NED} messages of MAV X and the global 
  * coordinate frame in NED coordinates. Coordinate frame is right-handed, Z-axis down 
  * (aeronautical frame, NED / north-east-down convention) 
  */
@@ -16,39 +14,18 @@ import java.lang.String;
         crc = 231
 )
 public final class LocalPositionNedSystemGlobalOffset {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * X Position 
-     */
     private final float x;
 
-    /**
-     * Y Position 
-     */
     private final float y;
 
-    /**
-     * Z Position 
-     */
     private final float z;
 
-    /**
-     * Roll 
-     */
     private final float roll;
 
-    /**
-     * Pitch 
-     */
     private final float pitch;
 
-    /**
-     * Yaw 
-     */
     private final float yaw;
 
     private LocalPositionNedSystemGlobalOffset(long timeBootMs, float x, float y, float z,
@@ -62,20 +39,12 @@ public final class LocalPositionNedSystemGlobalOffset {
         this.yaw = yaw;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LocalPositionNedSystemGlobalOffset{timeBootMs=" + timeBootMs
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw + "}";
     }
 
     /**
@@ -86,7 +55,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -97,7 +66,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -108,7 +77,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -119,7 +88,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -130,7 +99,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -141,7 +110,7 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -152,10 +121,10 @@ public final class LocalPositionNedSystemGlobalOffset {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float x;
@@ -169,9 +138,6 @@ public final class LocalPositionNedSystemGlobalOffset {
         private float pitch;
 
         private float yaw;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

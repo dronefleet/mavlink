@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.paparazzi;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -15,55 +14,27 @@ import java.lang.String;
         crc = 231
 )
 public final class ScriptItem {
-    /**
-     * Sequence 
-     */
-    private final int seq;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * The name of the mission script, NULL terminated. 
-     */
+    private final int seq;
+
     private final String name;
 
-    private ScriptItem(int seq, int targetSystem, int targetComponent, String name) {
-        this.seq = seq;
+    private ScriptItem(int targetSystem, int targetComponent, int seq, String name) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.seq = seq;
         this.name = name;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ScriptItem{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", seq=" + seq
-                 + ", name=" + name + "}";
-    }
-
-    /**
-     * Sequence 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int seq() {
-        return seq;
     }
 
     /**
@@ -74,7 +45,7 @@ public final class ScriptItem {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -85,7 +56,18 @@ public final class ScriptItem {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
+    }
+
+    /**
+     * Sequence 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int seq() {
+        return this.seq;
     }
 
     /**
@@ -97,32 +79,17 @@ public final class ScriptItem {
             arraySize = 50
     )
     public final String name() {
-        return name;
+        return this.name;
     }
 
-    public static class Builder {
-        private int seq;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
+        private int seq;
+
         private String name;
-
-        private Builder() {
-        }
-
-        /**
-         * Sequence 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder seq(int seq) {
-            this.seq = seq;
-            return this;
-        }
 
         /**
          * System ID 
@@ -149,6 +116,18 @@ public final class ScriptItem {
         }
 
         /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        /**
          * The name of the mission script, NULL terminated. 
          */
         @MavlinkFieldInfo(
@@ -162,7 +141,7 @@ public final class ScriptItem {
         }
 
         public final ScriptItem build() {
-            return new ScriptItem(seq, targetSystem, targetComponent, name);
+            return new ScriptItem(targetSystem, targetComponent, seq, name);
         }
     }
 }

@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -17,31 +15,14 @@ import java.util.List;
         crc = 106
 )
 public final class VisionPositionDelta {
-    /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Time in microseconds since the last reported camera frame 
-     */
     private final BigInteger timeDeltaUsec;
 
-    /**
-     * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
-     * current orientation 
-     */
     private final List<Float> angleDelta;
 
-    /**
-     * Change in position in meters from previous to current frame rotated into body frame 
-     * (0=forward, 1=right, 2=down) 
-     */
     private final List<Float> positionDelta;
 
-    /**
-     * normalised confidence value from 0 to 100 
-     */
     private final float confidence;
 
     private VisionPositionDelta(BigInteger timeUsec, BigInteger timeDeltaUsec,
@@ -53,18 +34,12 @@ public final class VisionPositionDelta {
         this.confidence = confidence;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "VisionPositionDelta{timeUsec=" + timeUsec
-                 + ", timeDeltaUsec=" + timeDeltaUsec
-                 + ", angleDelta=" + angleDelta
-                 + ", positionDelta=" + positionDelta
-                 + ", confidence=" + confidence + "}";
     }
 
     /**
@@ -75,7 +50,7 @@ public final class VisionPositionDelta {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -86,7 +61,7 @@ public final class VisionPositionDelta {
             unitSize = 8
     )
     public final BigInteger timeDeltaUsec() {
-        return timeDeltaUsec;
+        return this.timeDeltaUsec;
     }
 
     /**
@@ -99,7 +74,7 @@ public final class VisionPositionDelta {
             arraySize = 3
     )
     public final List<Float> angleDelta() {
-        return angleDelta;
+        return this.angleDelta;
     }
 
     /**
@@ -112,7 +87,7 @@ public final class VisionPositionDelta {
             arraySize = 3
     )
     public final List<Float> positionDelta() {
-        return positionDelta;
+        return this.positionDelta;
     }
 
     /**
@@ -123,10 +98,10 @@ public final class VisionPositionDelta {
             unitSize = 4
     )
     public final float confidence() {
-        return confidence;
+        return this.confidence;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private BigInteger timeDeltaUsec;
@@ -136,9 +111,6 @@ public final class VisionPositionDelta {
         private List<Float> positionDelta;
 
         private float confidence;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds, synced to UNIX time or since system boot) 

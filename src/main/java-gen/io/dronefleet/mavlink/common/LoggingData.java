@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * A message containing logged data (see also MAV_CMD_LOGGING_START) 
@@ -14,71 +12,34 @@ import java.lang.String;
         crc = 193
 )
 public final class LoggingData {
-    /**
-     * sequence number (can wrap) 
-     */
-    private final int sequence;
-
-    /**
-     * system ID of the target 
-     */
     private final int targetSystem;
 
-    /**
-     * component ID of the target 
-     */
     private final int targetComponent;
 
-    /**
-     * data length 
-     */
+    private final int sequence;
+
     private final int length;
 
-    /**
-     * offset into data where first message starts. This can be used for recovery, when a previous 
-     * message got lost (set to 255 if no start exists). 
-     */
     private final int firstMessageOffset;
 
-    /**
-     * logged data 
-     */
     private final byte[] data;
 
-    private LoggingData(int sequence, int targetSystem, int targetComponent, int length,
+    private LoggingData(int targetSystem, int targetComponent, int sequence, int length,
             int firstMessageOffset, byte[] data) {
-        this.sequence = sequence;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.sequence = sequence;
         this.length = length;
         this.firstMessageOffset = firstMessageOffset;
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LoggingData{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", sequence=" + sequence
-                 + ", length=" + length
-                 + ", firstMessageOffset=" + firstMessageOffset
-                 + ", data=" + data + "}";
-    }
-
-    /**
-     * sequence number (can wrap) 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int sequence() {
-        return sequence;
     }
 
     /**
@@ -89,7 +50,7 @@ public final class LoggingData {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -100,7 +61,18 @@ public final class LoggingData {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
+    }
+
+    /**
+     * sequence number (can wrap) 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int sequence() {
+        return this.sequence;
     }
 
     /**
@@ -111,7 +83,7 @@ public final class LoggingData {
             unitSize = 1
     )
     public final int length() {
-        return length;
+        return this.length;
     }
 
     /**
@@ -123,7 +95,7 @@ public final class LoggingData {
             unitSize = 1
     )
     public final int firstMessageOffset() {
-        return firstMessageOffset;
+        return this.firstMessageOffset;
     }
 
     /**
@@ -135,36 +107,21 @@ public final class LoggingData {
             arraySize = 249
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
-        private int sequence;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
+
+        private int sequence;
 
         private int length;
 
         private int firstMessageOffset;
 
         private byte[] data;
-
-        private Builder() {
-        }
-
-        /**
-         * sequence number (can wrap) 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder sequence(int sequence) {
-            this.sequence = sequence;
-            return this;
-        }
 
         /**
          * system ID of the target 
@@ -187,6 +144,18 @@ public final class LoggingData {
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * sequence number (can wrap) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder sequence(int sequence) {
+            this.sequence = sequence;
             return this;
         }
 
@@ -229,7 +198,7 @@ public final class LoggingData {
         }
 
         public final LoggingData build() {
-            return new LoggingData(sequence, targetSystem, targetComponent, length, firstMessageOffset, data);
+            return new LoggingData(targetSystem, targetComponent, sequence, length, firstMessageOffset, data);
         }
     }
 }

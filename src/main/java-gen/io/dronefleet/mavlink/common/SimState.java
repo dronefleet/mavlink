@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Status of simulation environment, if used 
@@ -14,109 +12,46 @@ import java.lang.String;
         crc = 32
 )
 public final class SimState {
-    /**
-     * True attitude quaternion component 1, w (1 in null-rotation) 
-     */
     private final float q1;
 
-    /**
-     * True attitude quaternion component 2, x (0 in null-rotation) 
-     */
     private final float q2;
 
-    /**
-     * True attitude quaternion component 3, y (0 in null-rotation) 
-     */
     private final float q3;
 
-    /**
-     * True attitude quaternion component 4, z (0 in null-rotation) 
-     */
     private final float q4;
 
-    /**
-     * Attitude roll expressed as Euler angles, not recommended except for human-readable outputs 
-     */
     private final float roll;
 
-    /**
-     * Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs 
-     */
     private final float pitch;
 
-    /**
-     * Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs 
-     */
     private final float yaw;
 
-    /**
-     * X acceleration m/s/s 
-     */
     private final float xacc;
 
-    /**
-     * Y acceleration m/s/s 
-     */
     private final float yacc;
 
-    /**
-     * Z acceleration m/s/s 
-     */
     private final float zacc;
 
-    /**
-     * Angular speed around X axis rad/s 
-     */
     private final float xgyro;
 
-    /**
-     * Angular speed around Y axis rad/s 
-     */
     private final float ygyro;
 
-    /**
-     * Angular speed around Z axis rad/s 
-     */
     private final float zgyro;
 
-    /**
-     * Latitude in degrees 
-     */
     private final float lat;
 
-    /**
-     * Longitude in degrees 
-     */
     private final float lon;
 
-    /**
-     * Altitude in meters 
-     */
     private final float alt;
 
-    /**
-     * Horizontal position standard deviation 
-     */
     private final float stdDevHorz;
 
-    /**
-     * Vertical position standard deviation 
-     */
     private final float stdDevVert;
 
-    /**
-     * True velocity in m/s in NORTH direction in earth-fixed NED frame 
-     */
     private final float vn;
 
-    /**
-     * True velocity in m/s in EAST direction in earth-fixed NED frame 
-     */
     private final float ve;
 
-    /**
-     * True velocity in m/s in DOWN direction in earth-fixed NED frame 
-     */
     private final float vd;
 
     private SimState(float q1, float q2, float q3, float q4, float roll, float pitch, float yaw,
@@ -146,34 +81,12 @@ public final class SimState {
         this.vd = vd;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SimState{q1=" + q1
-                 + ", q2=" + q2
-                 + ", q3=" + q3
-                 + ", q4=" + q4
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc
-                 + ", xgyro=" + xgyro
-                 + ", ygyro=" + ygyro
-                 + ", zgyro=" + zgyro
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", stdDevHorz=" + stdDevHorz
-                 + ", stdDevVert=" + stdDevVert
-                 + ", vn=" + vn
-                 + ", ve=" + ve
-                 + ", vd=" + vd + "}";
     }
 
     /**
@@ -184,7 +97,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float q1() {
-        return q1;
+        return this.q1;
     }
 
     /**
@@ -195,7 +108,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float q2() {
-        return q2;
+        return this.q2;
     }
 
     /**
@@ -206,7 +119,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float q3() {
-        return q3;
+        return this.q3;
     }
 
     /**
@@ -217,7 +130,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float q4() {
-        return q4;
+        return this.q4;
     }
 
     /**
@@ -228,7 +141,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -239,7 +152,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -250,7 +163,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -261,7 +174,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -272,7 +185,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -283,7 +196,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float zacc() {
-        return zacc;
+        return this.zacc;
     }
 
     /**
@@ -294,7 +207,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float xgyro() {
-        return xgyro;
+        return this.xgyro;
     }
 
     /**
@@ -305,7 +218,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float ygyro() {
-        return ygyro;
+        return this.ygyro;
     }
 
     /**
@@ -316,7 +229,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float zgyro() {
-        return zgyro;
+        return this.zgyro;
     }
 
     /**
@@ -327,7 +240,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -338,7 +251,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -349,7 +262,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -360,7 +273,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float stdDevHorz() {
-        return stdDevHorz;
+        return this.stdDevHorz;
     }
 
     /**
@@ -371,7 +284,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float stdDevVert() {
-        return stdDevVert;
+        return this.stdDevVert;
     }
 
     /**
@@ -382,7 +295,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float vn() {
-        return vn;
+        return this.vn;
     }
 
     /**
@@ -393,7 +306,7 @@ public final class SimState {
             unitSize = 4
     )
     public final float ve() {
-        return ve;
+        return this.ve;
     }
 
     /**
@@ -404,10 +317,10 @@ public final class SimState {
             unitSize = 4
     )
     public final float vd() {
-        return vd;
+        return this.vd;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float q1;
 
         private float q2;
@@ -449,9 +362,6 @@ public final class SimState {
         private float ve;
 
         private float vd;
-
-        private Builder() {
-        }
 
         /**
          * True attitude quaternion component 1, w (1 in null-rotation) 

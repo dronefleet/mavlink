@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,59 +13,26 @@ import java.math.BigInteger;
         crc = 63
 )
 public final class HilControls {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Control output -1 .. 1 
-     */
     private final float rollAilerons;
 
-    /**
-     * Control output -1 .. 1 
-     */
     private final float pitchElevator;
 
-    /**
-     * Control output -1 .. 1 
-     */
     private final float yawRudder;
 
-    /**
-     * Throttle 0 .. 1 
-     */
     private final float throttle;
 
-    /**
-     * Aux 1, -1 .. 1 
-     */
     private final float aux1;
 
-    /**
-     * Aux 2, -1 .. 1 
-     */
     private final float aux2;
 
-    /**
-     * Aux 3, -1 .. 1 
-     */
     private final float aux3;
 
-    /**
-     * Aux 4, -1 .. 1 
-     */
     private final float aux4;
 
-    /**
-     * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}) 
-     */
     private final MavMode mode;
 
-    /**
-     * Navigation mode (MAV_NAV_MODE) 
-     */
     private final int navMode;
 
     private HilControls(BigInteger timeUsec, float rollAilerons, float pitchElevator,
@@ -86,24 +51,12 @@ public final class HilControls {
         this.navMode = navMode;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HilControls{timeUsec=" + timeUsec
-                 + ", rollAilerons=" + rollAilerons
-                 + ", pitchElevator=" + pitchElevator
-                 + ", yawRudder=" + yawRudder
-                 + ", throttle=" + throttle
-                 + ", aux1=" + aux1
-                 + ", aux2=" + aux2
-                 + ", aux3=" + aux3
-                 + ", aux4=" + aux4
-                 + ", mode=" + mode
-                 + ", navMode=" + navMode + "}";
     }
 
     /**
@@ -114,7 +67,7 @@ public final class HilControls {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -125,7 +78,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float rollAilerons() {
-        return rollAilerons;
+        return this.rollAilerons;
     }
 
     /**
@@ -136,7 +89,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float pitchElevator() {
-        return pitchElevator;
+        return this.pitchElevator;
     }
 
     /**
@@ -147,7 +100,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float yawRudder() {
-        return yawRudder;
+        return this.yawRudder;
     }
 
     /**
@@ -158,7 +111,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float throttle() {
-        return throttle;
+        return this.throttle;
     }
 
     /**
@@ -169,7 +122,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float aux1() {
-        return aux1;
+        return this.aux1;
     }
 
     /**
@@ -180,7 +133,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float aux2() {
-        return aux2;
+        return this.aux2;
     }
 
     /**
@@ -191,7 +144,7 @@ public final class HilControls {
             unitSize = 4
     )
     public final float aux3() {
-        return aux3;
+        return this.aux3;
     }
 
     /**
@@ -202,18 +155,18 @@ public final class HilControls {
             unitSize = 4
     )
     public final float aux4() {
-        return aux4;
+        return this.aux4;
     }
 
     /**
-     * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}) 
+     * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}) 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1
     )
     public final MavMode mode() {
-        return mode;
+        return this.mode;
     }
 
     /**
@@ -224,10 +177,10 @@ public final class HilControls {
             unitSize = 1
     )
     public final int navMode() {
-        return navMode;
+        return this.navMode;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float rollAilerons;
@@ -249,9 +202,6 @@ public final class HilControls {
         private MavMode mode;
 
         private int navMode;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
@@ -362,7 +312,7 @@ public final class HilControls {
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MavMode}) 
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}) 
          */
         @MavlinkFieldInfo(
                 position = 10,

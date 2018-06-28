@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Message encoding a mission item. This message is emitted to announce the presence of a mission 
@@ -14,88 +12,49 @@ import java.lang.String;
  */
 @MavlinkMessageInfo(
         id = 73,
-        crc = 38
+        crc = 209
 )
 public final class MissionItemInt {
-    /**
-     * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    private final float param1;
-
-    /**
-     * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    private final float param2;
-
-    /**
-     * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    private final float param3;
-
-    /**
-     * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    private final float param4;
-
-    /**
-     * PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7 
-     */
-    private final int x;
-
-    /**
-     * PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7 
-     */
-    private final int y;
-
-    /**
-     * PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame. 
-     */
-    private final float z;
-
-    /**
-     * Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no 
-     * gaps in the sequence (0,1,2,3,4). 
-     */
-    private final int seq;
-
-    /**
-     * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    private final MavCmd command;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum 
-     */
+    private final int seq;
+
     private final MavFrame frame;
 
-    /**
-     * false:0, true:1 
-     */
+    private final MavCmd command;
+
     private final int current;
 
-    /**
-     * autocontinue to next wp 
-     */
     private final int autocontinue;
 
-    /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-     */
+    private final float param1;
+
+    private final float param2;
+
+    private final float param3;
+
+    private final float param4;
+
+    private final int x;
+
+    private final int y;
+
+    private final float z;
+
     private final MavMissionType missionType;
 
-    private MissionItemInt(float param1, float param2, float param3, float param4, int x, int y,
-            float z, int seq, MavCmd command, int targetSystem, int targetComponent, MavFrame frame,
-            int current, int autocontinue, MavMissionType missionType) {
+    private MissionItemInt(int targetSystem, int targetComponent, int seq, MavFrame frame,
+            MavCmd command, int current, int autocontinue, float param1, float param2, float param3,
+            float param4, int x, int y, float z, MavMissionType missionType) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.seq = seq;
+        this.frame = frame;
+        this.command = command;
+        this.current = current;
+        this.autocontinue = autocontinue;
         this.param1 = param1;
         this.param2 = param2;
         this.param3 = param3;
@@ -103,117 +62,37 @@ public final class MissionItemInt {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.seq = seq;
-        this.command = command;
-        this.targetSystem = targetSystem;
-        this.targetComponent = targetComponent;
-        this.frame = frame;
-        this.current = current;
-        this.autocontinue = autocontinue;
         this.missionType = missionType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "MissionItemInt{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", seq=" + seq
-                 + ", frame=" + frame
-                 + ", command=" + command
-                 + ", current=" + current
-                 + ", autocontinue=" + autocontinue
-                 + ", param1=" + param1
-                 + ", param2=" + param2
-                 + ", param3=" + param3
-                 + ", param4=" + param4
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", missionType=" + missionType + "}";
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
     }
 
     /**
-     * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
+     * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
+            position = 2,
+            unitSize = 1
     )
-    public final float param1() {
-        return param1;
-    }
-
-    /**
-     * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float param2() {
-        return param2;
-    }
-
-    /**
-     * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 4
-    )
-    public final float param3() {
-        return param3;
-    }
-
-    /**
-     * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 4
-    )
-    public final float param4() {
-        return param4;
-    }
-
-    /**
-     * PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7 
-     */
-    @MavlinkFieldInfo(
-            position = 12,
-            unitSize = 4,
-            signed = true
-    )
-    public final int x() {
-        return x;
-    }
-
-    /**
-     * PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7 
-     */
-    @MavlinkFieldInfo(
-            position = 13,
-            unitSize = 4,
-            signed = true
-    )
-    public final int y() {
-        return y;
-    }
-
-    /**
-     * PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame. 
-     */
-    @MavlinkFieldInfo(
-            position = 14,
-            unitSize = 4
-    )
-    public final float z() {
-        return z;
+    public final int targetComponent() {
+        return this.targetComponent;
     }
 
     /**
@@ -225,51 +104,29 @@ public final class MissionItemInt {
             unitSize = 2
     )
     public final int seq() {
-        return seq;
+        return this.seq;
     }
 
     /**
-     * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2
-    )
-    public final MavCmd command() {
-        return command;
-    }
-
-    /**
-     * System ID 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
-    }
-
-    /**
-     * Component ID 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int targetComponent() {
-        return targetComponent;
-    }
-
-    /**
-     * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum 
+     * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1
     )
     public final MavFrame frame() {
-        return frame;
+        return this.frame;
+    }
+
+    /**
+     * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2
+    )
+    public final MavCmd command() {
+        return this.command;
     }
 
     /**
@@ -280,7 +137,7 @@ public final class MissionItemInt {
             unitSize = 1
     )
     public final int current() {
-        return current;
+        return this.current;
     }
 
     /**
@@ -291,11 +148,90 @@ public final class MissionItemInt {
             unitSize = 1
     )
     public final int autocontinue() {
-        return autocontinue;
+        return this.autocontinue;
     }
 
     /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+     * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float param1() {
+        return this.param1;
+    }
+
+    /**
+     * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float param2() {
+        return this.param2;
+    }
+
+    /**
+     * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4
+    )
+    public final float param3() {
+        return this.param3;
+    }
+
+    /**
+     * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4
+    )
+    public final float param4() {
+        return this.param4;
+    }
+
+    /**
+     * PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 4,
+            signed = true
+    )
+    public final int x() {
+        return this.x;
+    }
+
+    /**
+     * PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 4,
+            signed = true
+    )
+    public final int y() {
+        return this.y;
+    }
+
+    /**
+     * PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame. 
+     */
+    @MavlinkFieldInfo(
+            position = 14,
+            unitSize = 4
+    )
+    public final float z() {
+        return this.z;
+    }
+
+    /**
+     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
      */
     @MavlinkFieldInfo(
             position = 16,
@@ -303,10 +239,24 @@ public final class MissionItemInt {
             extension = true
     )
     public final MavMissionType missionType() {
-        return missionType;
+        return this.missionType;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private int seq;
+
+        private MavFrame frame;
+
+        private MavCmd command;
+
+        private int current;
+
+        private int autocontinue;
+
         private float param1;
 
         private float param2;
@@ -321,27 +271,95 @@ public final class MissionItemInt {
 
         private float z;
 
-        private int seq;
-
-        private MavCmd command;
-
-        private int targetSystem;
-
-        private int targetComponent;
-
-        private MavFrame frame;
-
-        private int current;
-
-        private int autocontinue;
-
         private MavMissionType missionType;
 
-        private Builder() {
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
         }
 
         /**
-         * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no 
+         * gaps in the sequence (0,1,2,3,4). 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
+        /**
+         * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1
+        )
+        public final Builder frame(MavFrame frame) {
+            this.frame = frame;
+            return this;
+        }
+
+        /**
+         * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2
+        )
+        public final Builder command(MavCmd command) {
+            this.command = command;
+            return this;
+        }
+
+        /**
+         * false:0, true:1 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 1
+        )
+        public final Builder current(int current) {
+            this.current = current;
+            return this;
+        }
+
+        /**
+         * autocontinue to next wp 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 1
+        )
+        public final Builder autocontinue(int autocontinue) {
+            this.autocontinue = autocontinue;
+            return this;
+        }
+
+        /**
+         * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
                 position = 8,
@@ -353,7 +371,7 @@ public final class MissionItemInt {
         }
 
         /**
-         * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
+         * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
                 position = 9,
@@ -365,7 +383,7 @@ public final class MissionItemInt {
         }
 
         /**
-         * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
+         * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
                 position = 10,
@@ -377,7 +395,7 @@ public final class MissionItemInt {
         }
 
         /**
-         * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
+         * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
                 position = 11,
@@ -427,92 +445,7 @@ public final class MissionItemInt {
         }
 
         /**
-         * Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no 
-         * gaps in the sequence (0,1,2,3,4). 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder seq(int seq) {
-            this.seq = seq;
-            return this;
-        }
-
-        /**
-         * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MavCmd} enum 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 2
-        )
-        public final Builder command(MavCmd command) {
-            this.command = command;
-            return this;
-        }
-
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
-        /**
-         * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 1
-        )
-        public final Builder frame(MavFrame frame) {
-            this.frame = frame;
-            return this;
-        }
-
-        /**
-         * false:0, true:1 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 1
-        )
-        public final Builder current(int current) {
-            this.current = current;
-            return this;
-        }
-
-        /**
-         * autocontinue to next wp 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 1
-        )
-        public final Builder autocontinue(int autocontinue) {
-            this.autocontinue = autocontinue;
-            return this;
-        }
-
-        /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         @MavlinkFieldInfo(
                 position = 16,
@@ -525,7 +458,7 @@ public final class MissionItemInt {
         }
 
         public final MissionItemInt build() {
-            return new MissionItemInt(param1, param2, param3, param4, x, y, z, seq, command, targetSystem, targetComponent, frame, current, autocontinue, missionType);
+            return new MissionItemInt(targetSystem, targetComponent, seq, frame, command, current, autocontinue, param1, param2, param3, param4, x, y, z, missionType);
         }
     }
 }

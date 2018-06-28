@@ -3,12 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * THIS INTERFACE IS DEPRECATED. USE COMMAND_LONG with MAV_CMD_DO_SET_MODE INSTEAD. Set the 
- * system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MavMode}. There is no target component id as the mode is by 
+ * THIS INTERFACE IS DEPRECATED. USE {@link io.dronefleet.mavlink.common.CommandLong COMMAND_LONG} with MAV_CMD_DO_SET_MODE INSTEAD. Set the 
+ * system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MAV_MODE}. There is no target component id as the mode is by 
  * definition for the overall aircraft, not only for one component. 
  */
 @MavlinkMessageInfo(
@@ -16,48 +14,24 @@ import java.lang.String;
         crc = 89
 )
 public final class SetMode {
-    /**
-     * The new autopilot-specific mode. This field can be ignored by an autopilot. 
-     */
-    private final long customMode;
-
-    /**
-     * The system setting the mode 
-     */
     private final int targetSystem;
 
-    /**
-     * The new base mode 
-     */
     private final MavMode baseMode;
 
-    private SetMode(long customMode, int targetSystem, MavMode baseMode) {
-        this.customMode = customMode;
+    private final long customMode;
+
+    private SetMode(int targetSystem, MavMode baseMode, long customMode) {
         this.targetSystem = targetSystem;
         this.baseMode = baseMode;
+        this.customMode = customMode;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SetMode{targetSystem=" + targetSystem
-                 + ", baseMode=" + baseMode
-                 + ", customMode=" + customMode + "}";
-    }
-
-    /**
-     * The new autopilot-specific mode. This field can be ignored by an autopilot. 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final long customMode() {
-        return customMode;
     }
 
     /**
@@ -68,7 +42,7 @@ public final class SetMode {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -79,30 +53,26 @@ public final class SetMode {
             unitSize = 1
     )
     public final MavMode baseMode() {
-        return baseMode;
+        return this.baseMode;
     }
 
-    public static class Builder {
-        private long customMode;
+    /**
+     * The new autopilot-specific mode. This field can be ignored by an autopilot. 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final long customMode() {
+        return this.customMode;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private MavMode baseMode;
 
-        private Builder() {
-        }
-
-        /**
-         * The new autopilot-specific mode. This field can be ignored by an autopilot. 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 4
-        )
-        public final Builder customMode(long customMode) {
-            this.customMode = customMode;
-            return this;
-        }
+        private long customMode;
 
         /**
          * The system setting the mode 
@@ -128,8 +98,20 @@ public final class SetMode {
             return this;
         }
 
+        /**
+         * The new autopilot-specific mode. This field can be ignored by an autopilot. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder customMode(long customMode) {
+            this.customMode = customMode;
+            return this;
+        }
+
         public final SetMode build() {
-            return new SetMode(customMode, targetSystem, baseMode);
+            return new SetMode(targetSystem, baseMode, customMode);
         }
     }
 }

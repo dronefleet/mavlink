@@ -10,41 +10,31 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum FirmwareVersionType {
     /**
-     * development release<dl>
-     *
-     * </dl>
+     * development release 
      */
     @MavlinkEntryInfo(0)
     FIRMWARE_VERSION_TYPE_DEV,
 
     /**
-     * alpha release<dl>
-     *
-     * </dl>
+     * alpha release 
      */
     @MavlinkEntryInfo(64)
     FIRMWARE_VERSION_TYPE_ALPHA,
 
     /**
-     * beta release<dl>
-     *
-     * </dl>
+     * beta release 
      */
     @MavlinkEntryInfo(128)
     FIRMWARE_VERSION_TYPE_BETA,
 
     /**
-     * release candidate<dl>
-     *
-     * </dl>
+     * release candidate 
      */
     @MavlinkEntryInfo(192)
     FIRMWARE_VERSION_TYPE_RC,
 
     /**
-     * official stable release<dl>
-     *
-     * </dl>
+     * official stable release 
      */
     @MavlinkEntryInfo(255)
     FIRMWARE_VERSION_TYPE_OFFICIAL

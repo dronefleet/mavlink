@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.autoquad;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Sends up to 20 raw float values. 
@@ -14,115 +12,53 @@ import java.lang.String;
         crc = 241
 )
 public final class AqTelemetryF {
-    /**
-     * value1 
-     */
-    private final float value1;
-
-    /**
-     * value2 
-     */
-    private final float value2;
-
-    /**
-     * value3 
-     */
-    private final float value3;
-
-    /**
-     * value4 
-     */
-    private final float value4;
-
-    /**
-     * value5 
-     */
-    private final float value5;
-
-    /**
-     * value6 
-     */
-    private final float value6;
-
-    /**
-     * value7 
-     */
-    private final float value7;
-
-    /**
-     * value8 
-     */
-    private final float value8;
-
-    /**
-     * value9 
-     */
-    private final float value9;
-
-    /**
-     * value10 
-     */
-    private final float value10;
-
-    /**
-     * value11 
-     */
-    private final float value11;
-
-    /**
-     * value12 
-     */
-    private final float value12;
-
-    /**
-     * value13 
-     */
-    private final float value13;
-
-    /**
-     * value14 
-     */
-    private final float value14;
-
-    /**
-     * value15 
-     */
-    private final float value15;
-
-    /**
-     * value16 
-     */
-    private final float value16;
-
-    /**
-     * value17 
-     */
-    private final float value17;
-
-    /**
-     * value18 
-     */
-    private final float value18;
-
-    /**
-     * value19 
-     */
-    private final float value19;
-
-    /**
-     * value20 
-     */
-    private final float value20;
-
-    /**
-     * Index of message 
-     */
     private final int index;
 
-    private AqTelemetryF(float value1, float value2, float value3, float value4, float value5,
-            float value6, float value7, float value8, float value9, float value10, float value11,
-            float value12, float value13, float value14, float value15, float value16,
-            float value17, float value18, float value19, float value20, int index) {
+    private final float value1;
+
+    private final float value2;
+
+    private final float value3;
+
+    private final float value4;
+
+    private final float value5;
+
+    private final float value6;
+
+    private final float value7;
+
+    private final float value8;
+
+    private final float value9;
+
+    private final float value10;
+
+    private final float value11;
+
+    private final float value12;
+
+    private final float value13;
+
+    private final float value14;
+
+    private final float value15;
+
+    private final float value16;
+
+    private final float value17;
+
+    private final float value18;
+
+    private final float value19;
+
+    private final float value20;
+
+    private AqTelemetryF(int index, float value1, float value2, float value3, float value4,
+            float value5, float value6, float value7, float value8, float value9, float value10,
+            float value11, float value12, float value13, float value14, float value15,
+            float value16, float value17, float value18, float value19, float value20) {
+        this.index = index;
         this.value1 = value1;
         this.value2 = value2;
         this.value3 = value3;
@@ -143,257 +79,14 @@ public final class AqTelemetryF {
         this.value18 = value18;
         this.value19 = value19;
         this.value20 = value20;
-        this.index = index;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AqTelemetryF{index=" + index
-                 + ", value1=" + value1
-                 + ", value2=" + value2
-                 + ", value3=" + value3
-                 + ", value4=" + value4
-                 + ", value5=" + value5
-                 + ", value6=" + value6
-                 + ", value7=" + value7
-                 + ", value8=" + value8
-                 + ", value9=" + value9
-                 + ", value10=" + value10
-                 + ", value11=" + value11
-                 + ", value12=" + value12
-                 + ", value13=" + value13
-                 + ", value14=" + value14
-                 + ", value15=" + value15
-                 + ", value16=" + value16
-                 + ", value17=" + value17
-                 + ", value18=" + value18
-                 + ", value19=" + value19
-                 + ", value20=" + value20 + "}";
-    }
-
-    /**
-     * value1 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float value1() {
-        return value1;
-    }
-
-    /**
-     * value2 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float value2() {
-        return value2;
-    }
-
-    /**
-     * value3 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float value3() {
-        return value3;
-    }
-
-    /**
-     * value4 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float value4() {
-        return value4;
-    }
-
-    /**
-     * value5 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float value5() {
-        return value5;
-    }
-
-    /**
-     * value6 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float value6() {
-        return value6;
-    }
-
-    /**
-     * value7 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float value7() {
-        return value7;
-    }
-
-    /**
-     * value8 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float value8() {
-        return value8;
-    }
-
-    /**
-     * value9 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 4
-    )
-    public final float value9() {
-        return value9;
-    }
-
-    /**
-     * value10 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 4
-    )
-    public final float value10() {
-        return value10;
-    }
-
-    /**
-     * value11 
-     */
-    @MavlinkFieldInfo(
-            position = 12,
-            unitSize = 4
-    )
-    public final float value11() {
-        return value11;
-    }
-
-    /**
-     * value12 
-     */
-    @MavlinkFieldInfo(
-            position = 13,
-            unitSize = 4
-    )
-    public final float value12() {
-        return value12;
-    }
-
-    /**
-     * value13 
-     */
-    @MavlinkFieldInfo(
-            position = 14,
-            unitSize = 4
-    )
-    public final float value13() {
-        return value13;
-    }
-
-    /**
-     * value14 
-     */
-    @MavlinkFieldInfo(
-            position = 15,
-            unitSize = 4
-    )
-    public final float value14() {
-        return value14;
-    }
-
-    /**
-     * value15 
-     */
-    @MavlinkFieldInfo(
-            position = 16,
-            unitSize = 4
-    )
-    public final float value15() {
-        return value15;
-    }
-
-    /**
-     * value16 
-     */
-    @MavlinkFieldInfo(
-            position = 17,
-            unitSize = 4
-    )
-    public final float value16() {
-        return value16;
-    }
-
-    /**
-     * value17 
-     */
-    @MavlinkFieldInfo(
-            position = 18,
-            unitSize = 4
-    )
-    public final float value17() {
-        return value17;
-    }
-
-    /**
-     * value18 
-     */
-    @MavlinkFieldInfo(
-            position = 19,
-            unitSize = 4
-    )
-    public final float value18() {
-        return value18;
-    }
-
-    /**
-     * value19 
-     */
-    @MavlinkFieldInfo(
-            position = 20,
-            unitSize = 4
-    )
-    public final float value19() {
-        return value19;
-    }
-
-    /**
-     * value20 
-     */
-    @MavlinkFieldInfo(
-            position = 21,
-            unitSize = 4
-    )
-    public final float value20() {
-        return value20;
     }
 
     /**
@@ -404,10 +97,232 @@ public final class AqTelemetryF {
             unitSize = 2
     )
     public final int index() {
-        return index;
+        return this.index;
     }
 
-    public static class Builder {
+    /**
+     * value1 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float value1() {
+        return this.value1;
+    }
+
+    /**
+     * value2 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float value2() {
+        return this.value2;
+    }
+
+    /**
+     * value3 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float value3() {
+        return this.value3;
+    }
+
+    /**
+     * value4 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float value4() {
+        return this.value4;
+    }
+
+    /**
+     * value5 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float value5() {
+        return this.value5;
+    }
+
+    /**
+     * value6 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float value6() {
+        return this.value6;
+    }
+
+    /**
+     * value7 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float value7() {
+        return this.value7;
+    }
+
+    /**
+     * value8 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float value8() {
+        return this.value8;
+    }
+
+    /**
+     * value9 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4
+    )
+    public final float value9() {
+        return this.value9;
+    }
+
+    /**
+     * value10 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4
+    )
+    public final float value10() {
+        return this.value10;
+    }
+
+    /**
+     * value11 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 4
+    )
+    public final float value11() {
+        return this.value11;
+    }
+
+    /**
+     * value12 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 4
+    )
+    public final float value12() {
+        return this.value12;
+    }
+
+    /**
+     * value13 
+     */
+    @MavlinkFieldInfo(
+            position = 14,
+            unitSize = 4
+    )
+    public final float value13() {
+        return this.value13;
+    }
+
+    /**
+     * value14 
+     */
+    @MavlinkFieldInfo(
+            position = 15,
+            unitSize = 4
+    )
+    public final float value14() {
+        return this.value14;
+    }
+
+    /**
+     * value15 
+     */
+    @MavlinkFieldInfo(
+            position = 16,
+            unitSize = 4
+    )
+    public final float value15() {
+        return this.value15;
+    }
+
+    /**
+     * value16 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 4
+    )
+    public final float value16() {
+        return this.value16;
+    }
+
+    /**
+     * value17 
+     */
+    @MavlinkFieldInfo(
+            position = 18,
+            unitSize = 4
+    )
+    public final float value17() {
+        return this.value17;
+    }
+
+    /**
+     * value18 
+     */
+    @MavlinkFieldInfo(
+            position = 19,
+            unitSize = 4
+    )
+    public final float value18() {
+        return this.value18;
+    }
+
+    /**
+     * value19 
+     */
+    @MavlinkFieldInfo(
+            position = 20,
+            unitSize = 4
+    )
+    public final float value19() {
+        return this.value19;
+    }
+
+    /**
+     * value20 
+     */
+    @MavlinkFieldInfo(
+            position = 21,
+            unitSize = 4
+    )
+    public final float value20() {
+        return this.value20;
+    }
+
+    public static final class Builder {
+        private int index;
+
         private float value1;
 
         private float value2;
@@ -448,9 +363,16 @@ public final class AqTelemetryF {
 
         private float value20;
 
-        private int index;
-
-        private Builder() {
+        /**
+         * Index of message 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder index(int index) {
+            this.index = index;
+            return this;
         }
 
         /**
@@ -693,20 +615,8 @@ public final class AqTelemetryF {
             return this;
         }
 
-        /**
-         * Index of message 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 2
-        )
-        public final Builder index(int index) {
-            this.index = index;
-            return this;
-        }
-
         public final AqTelemetryF build() {
-            return new AqTelemetryF(value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12, value13, value14, value15, value16, value17, value18, value19, value20, index);
+            return new AqTelemetryF(index, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12, value13, value14, value15, value16, value17, value18, value19, value20);
         }
     }
 }

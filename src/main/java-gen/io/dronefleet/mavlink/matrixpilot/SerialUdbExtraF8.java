@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F8: format 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 142
 )
 public final class SerialUdbExtraF8 {
-    /**
-     * Serial UDB Extra HEIGHT_TARGET_MAX 
-     */
     private final float sueHeightTargetMax;
 
-    /**
-     * Serial UDB Extra HEIGHT_TARGET_MIN 
-     */
     private final float sueHeightTargetMin;
 
-    /**
-     * Serial UDB Extra ALT_HOLD_THROTTLE_MIN 
-     */
     private final float sueAltHoldThrottleMin;
 
-    /**
-     * Serial UDB Extra ALT_HOLD_THROTTLE_MAX 
-     */
     private final float sueAltHoldThrottleMax;
 
-    /**
-     * Serial UDB Extra ALT_HOLD_PITCH_MIN 
-     */
     private final float sueAltHoldPitchMin;
 
-    /**
-     * Serial UDB Extra ALT_HOLD_PITCH_MAX 
-     */
     private final float sueAltHoldPitchMax;
 
-    /**
-     * Serial UDB Extra ALT_HOLD_PITCH_HIGH 
-     */
     private final float sueAltHoldPitchHigh;
 
     private SerialUdbExtraF8(float sueHeightTargetMax, float sueHeightTargetMin,
@@ -61,20 +38,12 @@ public final class SerialUdbExtraF8 {
         this.sueAltHoldPitchHigh = sueAltHoldPitchHigh;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF8{sueHeightTargetMax=" + sueHeightTargetMax
-                 + ", sueHeightTargetMin=" + sueHeightTargetMin
-                 + ", sueAltHoldThrottleMin=" + sueAltHoldThrottleMin
-                 + ", sueAltHoldThrottleMax=" + sueAltHoldThrottleMax
-                 + ", sueAltHoldPitchMin=" + sueAltHoldPitchMin
-                 + ", sueAltHoldPitchMax=" + sueAltHoldPitchMax
-                 + ", sueAltHoldPitchHigh=" + sueAltHoldPitchHigh + "}";
     }
 
     /**
@@ -85,7 +54,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueHeightTargetMax() {
-        return sueHeightTargetMax;
+        return this.sueHeightTargetMax;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueHeightTargetMin() {
-        return sueHeightTargetMin;
+        return this.sueHeightTargetMin;
     }
 
     /**
@@ -107,7 +76,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueAltHoldThrottleMin() {
-        return sueAltHoldThrottleMin;
+        return this.sueAltHoldThrottleMin;
     }
 
     /**
@@ -118,7 +87,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueAltHoldThrottleMax() {
-        return sueAltHoldThrottleMax;
+        return this.sueAltHoldThrottleMax;
     }
 
     /**
@@ -129,7 +98,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueAltHoldPitchMin() {
-        return sueAltHoldPitchMin;
+        return this.sueAltHoldPitchMin;
     }
 
     /**
@@ -140,7 +109,7 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueAltHoldPitchMax() {
-        return sueAltHoldPitchMax;
+        return this.sueAltHoldPitchMax;
     }
 
     /**
@@ -151,10 +120,10 @@ public final class SerialUdbExtraF8 {
             unitSize = 4
     )
     public final float sueAltHoldPitchHigh() {
-        return sueAltHoldPitchHigh;
+        return this.sueAltHoldPitchHigh;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float sueHeightTargetMax;
 
         private float sueHeightTargetMin;
@@ -168,9 +137,6 @@ public final class SerialUdbExtraF8 {
         private float sueAltHoldPitchMax;
 
         private float sueAltHoldPitchHigh;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB Extra HEIGHT_TARGET_MAX 

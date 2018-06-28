@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 133
 )
 public final class FlexifunctionCommand {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Flexifunction command type 
-     */
     private final int commandType;
 
     private FlexifunctionCommand(int targetSystem, int targetComponent, int commandType) {
@@ -35,16 +24,12 @@ public final class FlexifunctionCommand {
         this.commandType = commandType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FlexifunctionCommand{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", commandType=" + commandType + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class FlexifunctionCommand {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class FlexifunctionCommand {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -77,18 +62,15 @@ public final class FlexifunctionCommand {
             unitSize = 1
     )
     public final int commandType() {
-        return commandType;
+        return this.commandType;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private int commandType;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

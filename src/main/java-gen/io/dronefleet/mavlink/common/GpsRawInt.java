@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -14,90 +12,44 @@ import java.math.BigInteger;
  */
 @MavlinkMessageInfo(
         id = 24,
-        crc = 24
+        crc = 20
 )
 public final class GpsRawInt {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Latitude (WGS84, EGM96 ellipsoid), in degrees * 1E7 
-     */
-    private final int lat;
-
-    /**
-     * Longitude (WGS84, EGM96 ellipsoid), in degrees * 1E7 
-     */
-    private final int lon;
-
-    /**
-     * Altitude (AMSL, NOT WGS84), in meters * 1000 (positive for up). Note that virtually all GPS 
-     * modules provide the AMSL altitude in addition to the WGS84 altitude. 
-     */
-    private final int alt;
-
-    /**
-     * GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX 
-     */
-    private final int eph;
-
-    /**
-     * GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX 
-     */
-    private final int epv;
-
-    /**
-     * GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX 
-     */
-    private final int vel;
-
-    /**
-     * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
-     * degrees. If unknown, set to: UINT16_MAX 
-     */
-    private final int cog;
-
-    /**
-     * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
-     */
     private final GpsFixType fixType;
 
-    /**
-     * Number of satellites visible. If unknown, set to 255 
-     */
+    private final int lat;
+
+    private final int lon;
+
+    private final int alt;
+
+    private final int eph;
+
+    private final int epv;
+
+    private final int vel;
+
+    private final int cog;
+
     private final int satellitesVisible;
 
-    /**
-     * Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up). 
-     */
     private final int altEllipsoid;
 
-    /**
-     * Position uncertainty in meters * 1000 (positive for up). 
-     */
     private final long hAcc;
 
-    /**
-     * Altitude uncertainty in meters * 1000 (positive for up). 
-     */
     private final long vAcc;
 
-    /**
-     * Speed uncertainty in meters * 1000 (positive for up). 
-     */
     private final long velAcc;
 
-    /**
-     * Heading / track uncertainty in degrees * 1e5. 
-     */
     private final long hdgAcc;
 
-    private GpsRawInt(BigInteger timeUsec, int lat, int lon, int alt, int eph, int epv, int vel,
-            int cog, GpsFixType fixType, int satellitesVisible, int altEllipsoid, long hAcc,
+    private GpsRawInt(BigInteger timeUsec, GpsFixType fixType, int lat, int lon, int alt, int eph,
+            int epv, int vel, int cog, int satellitesVisible, int altEllipsoid, long hAcc,
             long vAcc, long velAcc, long hdgAcc) {
         this.timeUsec = timeUsec;
+        this.fixType = fixType;
         this.lat = lat;
         this.lon = lon;
         this.alt = alt;
@@ -105,7 +57,6 @@ public final class GpsRawInt {
         this.epv = epv;
         this.vel = vel;
         this.cog = cog;
-        this.fixType = fixType;
         this.satellitesVisible = satellitesVisible;
         this.altEllipsoid = altEllipsoid;
         this.hAcc = hAcc;
@@ -114,28 +65,12 @@ public final class GpsRawInt {
         this.hdgAcc = hdgAcc;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsRawInt{timeUsec=" + timeUsec
-                 + ", fixType=" + fixType
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", eph=" + eph
-                 + ", epv=" + epv
-                 + ", vel=" + vel
-                 + ", cog=" + cog
-                 + ", satellitesVisible=" + satellitesVisible
-                 + ", altEllipsoid=" + altEllipsoid
-                 + ", hAcc=" + hAcc
-                 + ", vAcc=" + vAcc
-                 + ", velAcc=" + velAcc
-                 + ", hdgAcc=" + hdgAcc + "}";
     }
 
     /**
@@ -146,7 +81,18 @@ public final class GpsRawInt {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
+    }
+
+    /**
+     * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final GpsFixType fixType() {
+        return this.fixType;
     }
 
     /**
@@ -158,7 +104,7 @@ public final class GpsRawInt {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -170,7 +116,7 @@ public final class GpsRawInt {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -183,7 +129,7 @@ public final class GpsRawInt {
             signed = true
     )
     public final int alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -194,7 +140,7 @@ public final class GpsRawInt {
             unitSize = 2
     )
     public final int eph() {
-        return eph;
+        return this.eph;
     }
 
     /**
@@ -205,7 +151,7 @@ public final class GpsRawInt {
             unitSize = 2
     )
     public final int epv() {
-        return epv;
+        return this.epv;
     }
 
     /**
@@ -216,7 +162,7 @@ public final class GpsRawInt {
             unitSize = 2
     )
     public final int vel() {
-        return vel;
+        return this.vel;
     }
 
     /**
@@ -228,18 +174,7 @@ public final class GpsRawInt {
             unitSize = 2
     )
     public final int cog() {
-        return cog;
-    }
-
-    /**
-     * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final GpsFixType fixType() {
-        return fixType;
+        return this.cog;
     }
 
     /**
@@ -250,7 +185,7 @@ public final class GpsRawInt {
             unitSize = 1
     )
     public final int satellitesVisible() {
-        return satellitesVisible;
+        return this.satellitesVisible;
     }
 
     /**
@@ -263,7 +198,7 @@ public final class GpsRawInt {
             extension = true
     )
     public final int altEllipsoid() {
-        return altEllipsoid;
+        return this.altEllipsoid;
     }
 
     /**
@@ -275,7 +210,7 @@ public final class GpsRawInt {
             extension = true
     )
     public final long hAcc() {
-        return hAcc;
+        return this.hAcc;
     }
 
     /**
@@ -287,7 +222,7 @@ public final class GpsRawInt {
             extension = true
     )
     public final long vAcc() {
-        return vAcc;
+        return this.vAcc;
     }
 
     /**
@@ -299,7 +234,7 @@ public final class GpsRawInt {
             extension = true
     )
     public final long velAcc() {
-        return velAcc;
+        return this.velAcc;
     }
 
     /**
@@ -311,11 +246,13 @@ public final class GpsRawInt {
             extension = true
     )
     public final long hdgAcc() {
-        return hdgAcc;
+        return this.hdgAcc;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
+
+        private GpsFixType fixType;
 
         private int lat;
 
@@ -331,8 +268,6 @@ public final class GpsRawInt {
 
         private int cog;
 
-        private GpsFixType fixType;
-
         private int satellitesVisible;
 
         private int altEllipsoid;
@@ -345,9 +280,6 @@ public final class GpsRawInt {
 
         private long hdgAcc;
 
-        private Builder() {
-        }
-
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
          */
@@ -357,6 +289,18 @@ public final class GpsRawInt {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder fixType(GpsFixType fixType) {
+            this.fixType = fixType;
             return this;
         }
 
@@ -450,18 +394,6 @@ public final class GpsRawInt {
         }
 
         /**
-         * See the {@link io.dronefleet.mavlink.common.GpsFixType GpsFixType} enum. 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder fixType(GpsFixType fixType) {
-            this.fixType = fixType;
-            return this;
-        }
-
-        /**
          * Number of satellites visible. If unknown, set to 255 
          */
         @MavlinkFieldInfo(
@@ -540,7 +472,7 @@ public final class GpsRawInt {
         }
 
         public final GpsRawInt build() {
-            return new GpsRawInt(timeUsec, lat, lon, alt, eph, epv, vel, cog, fixType, satellitesVisible, altEllipsoid, hAcc, vAcc, velAcc, hdgAcc);
+            return new GpsRawInt(timeUsec, fixType, lat, lon, alt, eph, epv, vel, cog, satellitesVisible, altEllipsoid, hAcc, vAcc, velAcc, hdgAcc);
         }
     }
 }

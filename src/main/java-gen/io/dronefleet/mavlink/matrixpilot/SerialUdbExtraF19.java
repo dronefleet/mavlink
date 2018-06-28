@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F19 format 
@@ -14,44 +12,20 @@ import java.lang.String;
         crc = 87
 )
 public final class SerialUdbExtraF19 {
-    /**
-     * SUE aileron output channel 
-     */
     private final int sueAileronOutputChannel;
 
-    /**
-     * SUE aileron reversed 
-     */
     private final int sueAileronReversed;
 
-    /**
-     * SUE elevator output channel 
-     */
     private final int sueElevatorOutputChannel;
 
-    /**
-     * SUE elevator reversed 
-     */
     private final int sueElevatorReversed;
 
-    /**
-     * SUE throttle output channel 
-     */
     private final int sueThrottleOutputChannel;
 
-    /**
-     * SUE throttle reversed 
-     */
     private final int sueThrottleReversed;
 
-    /**
-     * SUE rudder output channel 
-     */
     private final int sueRudderOutputChannel;
 
-    /**
-     * SUE rudder reversed 
-     */
     private final int sueRudderReversed;
 
     private SerialUdbExtraF19(int sueAileronOutputChannel, int sueAileronReversed,
@@ -67,21 +41,12 @@ public final class SerialUdbExtraF19 {
         this.sueRudderReversed = sueRudderReversed;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF19{sueAileronOutputChannel=" + sueAileronOutputChannel
-                 + ", sueAileronReversed=" + sueAileronReversed
-                 + ", sueElevatorOutputChannel=" + sueElevatorOutputChannel
-                 + ", sueElevatorReversed=" + sueElevatorReversed
-                 + ", sueThrottleOutputChannel=" + sueThrottleOutputChannel
-                 + ", sueThrottleReversed=" + sueThrottleReversed
-                 + ", sueRudderOutputChannel=" + sueRudderOutputChannel
-                 + ", sueRudderReversed=" + sueRudderReversed + "}";
     }
 
     /**
@@ -92,7 +57,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueAileronOutputChannel() {
-        return sueAileronOutputChannel;
+        return this.sueAileronOutputChannel;
     }
 
     /**
@@ -103,7 +68,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueAileronReversed() {
-        return sueAileronReversed;
+        return this.sueAileronReversed;
     }
 
     /**
@@ -114,7 +79,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueElevatorOutputChannel() {
-        return sueElevatorOutputChannel;
+        return this.sueElevatorOutputChannel;
     }
 
     /**
@@ -125,7 +90,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueElevatorReversed() {
-        return sueElevatorReversed;
+        return this.sueElevatorReversed;
     }
 
     /**
@@ -136,7 +101,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueThrottleOutputChannel() {
-        return sueThrottleOutputChannel;
+        return this.sueThrottleOutputChannel;
     }
 
     /**
@@ -147,7 +112,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueThrottleReversed() {
-        return sueThrottleReversed;
+        return this.sueThrottleReversed;
     }
 
     /**
@@ -158,7 +123,7 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueRudderOutputChannel() {
-        return sueRudderOutputChannel;
+        return this.sueRudderOutputChannel;
     }
 
     /**
@@ -169,10 +134,10 @@ public final class SerialUdbExtraF19 {
             unitSize = 1
     )
     public final int sueRudderReversed() {
-        return sueRudderReversed;
+        return this.sueRudderReversed;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int sueAileronOutputChannel;
 
         private int sueAileronReversed;
@@ -188,9 +153,6 @@ public final class SerialUdbExtraF19 {
         private int sueRudderOutputChannel;
 
         private int sueRudderReversed;
-
-        private Builder() {
-        }
 
         /**
          * SUE aileron output channel 

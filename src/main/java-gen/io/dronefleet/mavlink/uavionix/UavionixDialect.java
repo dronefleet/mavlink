@@ -1,35 +1,46 @@
 package io.dronefleet.mavlink.uavionix;
 
 import io.dronefleet.mavlink.MavlinkDialect;
-import io.dronefleet.mavlink.MavlinkDialects;
+import io.dronefleet.mavlink.common.CommonDialect;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
 import java.lang.Override;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.lang.String;
+import java.util.Arrays;
+import java.util.List;
 
 public final class UavionixDialect implements MavlinkDialect {
-    private static final Set<MavlinkDialect> dependencies;
+    /**
+     * A list of dialects that this dialect depends on.
+     */
+    private final List<MavlinkDialect> dependencies = Arrays.asList(
+            new CommonDialect());
 
-    static {
-        dependencies = Stream.of(
-                MavlinkDialects.COMMON)
-                .collect(Collectors.toSet());
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final String name() {
+        return "uavionix";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean supports(int messageId) {
         switch (messageId) {
             case 10001:
             case 10002:
             case 10003:
-            return true;
+                return true;
         }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
+        return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Class resolve(int messageId) {
         switch (messageId) {
@@ -37,10 +48,6 @@ public final class UavionixDialect implements MavlinkDialect {
             case 10002: return UavionixAdsbOutDynamic.class;
             case 10003: return UavionixAdsbTransceiverHealthReport.class;
         }
-        return dependencies.stream()
-                .filter(d -> d.supports(messageId))
-                .map(d -> d.resolve(messageId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Dialect uAvionix does not support a message of ID " + messageId));
+        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
     }
 }

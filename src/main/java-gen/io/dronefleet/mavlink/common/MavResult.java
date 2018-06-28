@@ -9,49 +9,37 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavResult {
     /**
-     * Command ACCEPTED and EXECUTED<dl>
-     *
-     * </dl>
+     * Command ACCEPTED and EXECUTED 
      */
     @MavlinkEntryInfo(0)
     MAV_RESULT_ACCEPTED,
 
     /**
-     * Command TEMPORARY REJECTED/DENIED<dl>
-     *
-     * </dl>
+     * Command TEMPORARY REJECTED/DENIED 
      */
     @MavlinkEntryInfo(1)
     MAV_RESULT_TEMPORARILY_REJECTED,
 
     /**
-     * Command PERMANENTLY DENIED<dl>
-     *
-     * </dl>
+     * Command PERMANENTLY DENIED 
      */
     @MavlinkEntryInfo(2)
     MAV_RESULT_DENIED,
 
     /**
-     * Command UNKNOWN/UNSUPPORTED<dl>
-     *
-     * </dl>
+     * Command UNKNOWN/UNSUPPORTED 
      */
     @MavlinkEntryInfo(3)
     MAV_RESULT_UNSUPPORTED,
 
     /**
-     * Command executed, but failed<dl>
-     *
-     * </dl>
+     * Command executed, but failed 
      */
     @MavlinkEntryInfo(4)
     MAV_RESULT_FAILED,
 
     /**
-     * WIP: Command being executed<dl>
-     *
-     * </dl>
+     * WIP: Command being executed 
      */
     @MavlinkEntryInfo(5)
     MAV_RESULT_IN_PROGRESS

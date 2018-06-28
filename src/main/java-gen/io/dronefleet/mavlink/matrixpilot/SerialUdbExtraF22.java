@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F22 format 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 91
 )
 public final class SerialUdbExtraF22 {
-    /**
-     * SUE X accelerometer at calibration time 
-     */
     private final int sueAccelXAtCalibration;
 
-    /**
-     * SUE Y accelerometer at calibration time 
-     */
     private final int sueAccelYAtCalibration;
 
-    /**
-     * SUE Z accelerometer at calibration time 
-     */
     private final int sueAccelZAtCalibration;
 
-    /**
-     * SUE X gyro at calibration time 
-     */
     private final int sueGyroXAtCalibration;
 
-    /**
-     * SUE Y gyro at calibration time 
-     */
     private final int sueGyroYAtCalibration;
 
-    /**
-     * SUE Z gyro at calibration time 
-     */
     private final int sueGyroZAtCalibration;
 
     private SerialUdbExtraF22(int sueAccelXAtCalibration, int sueAccelYAtCalibration,
@@ -55,19 +35,12 @@ public final class SerialUdbExtraF22 {
         this.sueGyroZAtCalibration = sueGyroZAtCalibration;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF22{sueAccelXAtCalibration=" + sueAccelXAtCalibration
-                 + ", sueAccelYAtCalibration=" + sueAccelYAtCalibration
-                 + ", sueAccelZAtCalibration=" + sueAccelZAtCalibration
-                 + ", sueGyroXAtCalibration=" + sueGyroXAtCalibration
-                 + ", sueGyroYAtCalibration=" + sueGyroYAtCalibration
-                 + ", sueGyroZAtCalibration=" + sueGyroZAtCalibration + "}";
     }
 
     /**
@@ -79,7 +52,7 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueAccelXAtCalibration() {
-        return sueAccelXAtCalibration;
+        return this.sueAccelXAtCalibration;
     }
 
     /**
@@ -91,7 +64,7 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueAccelYAtCalibration() {
-        return sueAccelYAtCalibration;
+        return this.sueAccelYAtCalibration;
     }
 
     /**
@@ -103,7 +76,7 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueAccelZAtCalibration() {
-        return sueAccelZAtCalibration;
+        return this.sueAccelZAtCalibration;
     }
 
     /**
@@ -115,7 +88,7 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueGyroXAtCalibration() {
-        return sueGyroXAtCalibration;
+        return this.sueGyroXAtCalibration;
     }
 
     /**
@@ -127,7 +100,7 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueGyroYAtCalibration() {
-        return sueGyroYAtCalibration;
+        return this.sueGyroYAtCalibration;
     }
 
     /**
@@ -139,10 +112,10 @@ public final class SerialUdbExtraF22 {
             signed = true
     )
     public final int sueGyroZAtCalibration() {
-        return sueGyroZAtCalibration;
+        return this.sueGyroZAtCalibration;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int sueAccelXAtCalibration;
 
         private int sueAccelYAtCalibration;
@@ -154,9 +127,6 @@ public final class SerialUdbExtraF22 {
         private int sueGyroYAtCalibration;
 
         private int sueGyroZAtCalibration;
-
-        private Builder() {
-        }
 
         /**
          * SUE X accelerometer at calibration time 

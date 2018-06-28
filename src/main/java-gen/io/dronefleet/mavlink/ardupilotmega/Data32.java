@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Data packet, size 32 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 73
 )
 public final class Data32 {
-    /**
-     * data type 
-     */
     private final int type;
 
-    /**
-     * data length 
-     */
     private final int len;
 
-    /**
-     * raw data 
-     */
     private final byte[] data;
 
     private Data32(int type, int len, byte[] data) {
@@ -35,16 +24,12 @@ public final class Data32 {
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Data32{type=" + type
-                 + ", len=" + len
-                 + ", data=" + data + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class Data32 {
             unitSize = 1
     )
     public final int type() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class Data32 {
             unitSize = 1
     )
     public final int len() {
-        return len;
+        return this.len;
     }
 
     /**
@@ -78,18 +63,15 @@ public final class Data32 {
             arraySize = 32
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int type;
 
         private int len;
 
         private byte[] data;
-
-        private Builder() {
-        }
 
         /**
          * data type 

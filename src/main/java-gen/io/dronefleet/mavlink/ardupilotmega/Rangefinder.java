@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Rangefinder reporting 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 83
 )
 public final class Rangefinder {
-    /**
-     * distance in meters 
-     */
     private final float distance;
 
-    /**
-     * raw voltage if available, zero otherwise 
-     */
     private final float voltage;
 
     private Rangefinder(float distance, float voltage) {
@@ -29,15 +21,12 @@ public final class Rangefinder {
         this.voltage = voltage;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Rangefinder{distance=" + distance
-                 + ", voltage=" + voltage + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class Rangefinder {
             unitSize = 4
     )
     public final float distance() {
-        return distance;
+        return this.distance;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class Rangefinder {
             unitSize = 4
     )
     public final float voltage() {
-        return voltage;
+        return this.voltage;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float distance;
 
         private float voltage;
-
-        private Builder() {
-        }
 
         /**
          * distance in meters 

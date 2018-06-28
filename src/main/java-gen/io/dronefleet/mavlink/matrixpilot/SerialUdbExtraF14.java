@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F14: format 
@@ -14,106 +12,105 @@ import java.lang.String;
         crc = 123
 )
 public final class SerialUdbExtraF14 {
-    /**
-     * Serial UDB Extra Type Program Address of Last Trap 
-     */
-    private final long sueTrapSource;
-
-    /**
-     * Serial UDB Extra Reboot Register of DSPIC 
-     */
-    private final int sueRcon;
-
-    /**
-     * Serial UDB Extra Last dspic Trap Flags 
-     */
-    private final int sueTrapFlags;
-
-    /**
-     * Serial UDB Extra Number of Ocillator Failures 
-     */
-    private final int sueOscFailCount;
-
-    /**
-     * Serial UDB Extra Wind Estimation Enabled 
-     */
     private final int sueWindEstimation;
 
-    /**
-     * Serial UDB Extra Type of GPS Unit 
-     */
     private final int sueGpsType;
 
-    /**
-     * Serial UDB Extra Dead Reckoning Enabled 
-     */
     private final int sueDr;
 
-    /**
-     * Serial UDB Extra Type of UDB Hardware 
-     */
     private final int sueBoardType;
 
-    /**
-     * Serial UDB Extra Type of Airframe 
-     */
     private final int sueAirframe;
 
-    /**
-     * Serial UDB Extra UDB Internal Clock Configuration 
-     */
+    private final int sueRcon;
+
+    private final int sueTrapFlags;
+
+    private final long sueTrapSource;
+
+    private final int sueOscFailCount;
+
     private final int sueClockConfig;
 
-    /**
-     * Serial UDB Extra Type of Flight Plan 
-     */
     private final int sueFlightPlanType;
 
-    private SerialUdbExtraF14(long sueTrapSource, int sueRcon, int sueTrapFlags,
-            int sueOscFailCount, int sueWindEstimation, int sueGpsType, int sueDr, int sueBoardType,
-            int sueAirframe, int sueClockConfig, int sueFlightPlanType) {
-        this.sueTrapSource = sueTrapSource;
-        this.sueRcon = sueRcon;
-        this.sueTrapFlags = sueTrapFlags;
-        this.sueOscFailCount = sueOscFailCount;
+    private SerialUdbExtraF14(int sueWindEstimation, int sueGpsType, int sueDr, int sueBoardType,
+            int sueAirframe, int sueRcon, int sueTrapFlags, long sueTrapSource, int sueOscFailCount,
+            int sueClockConfig, int sueFlightPlanType) {
         this.sueWindEstimation = sueWindEstimation;
         this.sueGpsType = sueGpsType;
         this.sueDr = sueDr;
         this.sueBoardType = sueBoardType;
         this.sueAirframe = sueAirframe;
+        this.sueRcon = sueRcon;
+        this.sueTrapFlags = sueTrapFlags;
+        this.sueTrapSource = sueTrapSource;
+        this.sueOscFailCount = sueOscFailCount;
         this.sueClockConfig = sueClockConfig;
         this.sueFlightPlanType = sueFlightPlanType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF14{sueWindEstimation=" + sueWindEstimation
-                 + ", sueGpsType=" + sueGpsType
-                 + ", sueDr=" + sueDr
-                 + ", sueBoardType=" + sueBoardType
-                 + ", sueAirframe=" + sueAirframe
-                 + ", sueRcon=" + sueRcon
-                 + ", sueTrapFlags=" + sueTrapFlags
-                 + ", sueTrapSource=" + sueTrapSource
-                 + ", sueOscFailCount=" + sueOscFailCount
-                 + ", sueClockConfig=" + sueClockConfig
-                 + ", sueFlightPlanType=" + sueFlightPlanType + "}";
+    /**
+     * Serial UDB Extra Wind Estimation Enabled 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int sueWindEstimation() {
+        return this.sueWindEstimation;
     }
 
     /**
-     * Serial UDB Extra Type Program Address of Last Trap 
+     * Serial UDB Extra Type of GPS Unit 
      */
     @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
+            position = 2,
+            unitSize = 1
     )
-    public final long sueTrapSource() {
-        return sueTrapSource;
+    public final int sueGpsType() {
+        return this.sueGpsType;
+    }
+
+    /**
+     * Serial UDB Extra Dead Reckoning Enabled 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1
+    )
+    public final int sueDr() {
+        return this.sueDr;
+    }
+
+    /**
+     * Serial UDB Extra Type of UDB Hardware 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 1
+    )
+    public final int sueBoardType() {
+        return this.sueBoardType;
+    }
+
+    /**
+     * Serial UDB Extra Type of Airframe 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 1
+    )
+    public final int sueAirframe() {
+        return this.sueAirframe;
     }
 
     /**
@@ -125,7 +122,7 @@ public final class SerialUdbExtraF14 {
             signed = true
     )
     public final int sueRcon() {
-        return sueRcon;
+        return this.sueRcon;
     }
 
     /**
@@ -137,7 +134,18 @@ public final class SerialUdbExtraF14 {
             signed = true
     )
     public final int sueTrapFlags() {
-        return sueTrapFlags;
+        return this.sueTrapFlags;
+    }
+
+    /**
+     * Serial UDB Extra Type Program Address of Last Trap 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final long sueTrapSource() {
+        return this.sueTrapSource;
     }
 
     /**
@@ -149,62 +157,7 @@ public final class SerialUdbExtraF14 {
             signed = true
     )
     public final int sueOscFailCount() {
-        return sueOscFailCount;
-    }
-
-    /**
-     * Serial UDB Extra Wind Estimation Enabled 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int sueWindEstimation() {
-        return sueWindEstimation;
-    }
-
-    /**
-     * Serial UDB Extra Type of GPS Unit 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int sueGpsType() {
-        return sueGpsType;
-    }
-
-    /**
-     * Serial UDB Extra Dead Reckoning Enabled 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 1
-    )
-    public final int sueDr() {
-        return sueDr;
-    }
-
-    /**
-     * Serial UDB Extra Type of UDB Hardware 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 1
-    )
-    public final int sueBoardType() {
-        return sueBoardType;
-    }
-
-    /**
-     * Serial UDB Extra Type of Airframe 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 1
-    )
-    public final int sueAirframe() {
-        return sueAirframe;
+        return this.sueOscFailCount;
     }
 
     /**
@@ -215,7 +168,7 @@ public final class SerialUdbExtraF14 {
             unitSize = 1
     )
     public final int sueClockConfig() {
-        return sueClockConfig;
+        return this.sueClockConfig;
     }
 
     /**
@@ -226,18 +179,10 @@ public final class SerialUdbExtraF14 {
             unitSize = 1
     )
     public final int sueFlightPlanType() {
-        return sueFlightPlanType;
+        return this.sueFlightPlanType;
     }
 
-    public static class Builder {
-        private long sueTrapSource;
-
-        private int sueRcon;
-
-        private int sueTrapFlags;
-
-        private int sueOscFailCount;
-
+    public static final class Builder {
         private int sueWindEstimation;
 
         private int sueGpsType;
@@ -248,63 +193,17 @@ public final class SerialUdbExtraF14 {
 
         private int sueAirframe;
 
+        private int sueRcon;
+
+        private int sueTrapFlags;
+
+        private long sueTrapSource;
+
+        private int sueOscFailCount;
+
         private int sueClockConfig;
 
         private int sueFlightPlanType;
-
-        private Builder() {
-        }
-
-        /**
-         * Serial UDB Extra Type Program Address of Last Trap 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 4
-        )
-        public final Builder sueTrapSource(long sueTrapSource) {
-            this.sueTrapSource = sueTrapSource;
-            return this;
-        }
-
-        /**
-         * Serial UDB Extra Reboot Register of DSPIC 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 2,
-                signed = true
-        )
-        public final Builder sueRcon(int sueRcon) {
-            this.sueRcon = sueRcon;
-            return this;
-        }
-
-        /**
-         * Serial UDB Extra Last dspic Trap Flags 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 2,
-                signed = true
-        )
-        public final Builder sueTrapFlags(int sueTrapFlags) {
-            this.sueTrapFlags = sueTrapFlags;
-            return this;
-        }
-
-        /**
-         * Serial UDB Extra Number of Ocillator Failures 
-         */
-        @MavlinkFieldInfo(
-                position = 9,
-                unitSize = 2,
-                signed = true
-        )
-        public final Builder sueOscFailCount(int sueOscFailCount) {
-            this.sueOscFailCount = sueOscFailCount;
-            return this;
-        }
 
         /**
          * Serial UDB Extra Wind Estimation Enabled 
@@ -367,6 +266,57 @@ public final class SerialUdbExtraF14 {
         }
 
         /**
+         * Serial UDB Extra Reboot Register of DSPIC 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder sueRcon(int sueRcon) {
+            this.sueRcon = sueRcon;
+            return this;
+        }
+
+        /**
+         * Serial UDB Extra Last dspic Trap Flags 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder sueTrapFlags(int sueTrapFlags) {
+            this.sueTrapFlags = sueTrapFlags;
+            return this;
+        }
+
+        /**
+         * Serial UDB Extra Type Program Address of Last Trap 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 4
+        )
+        public final Builder sueTrapSource(long sueTrapSource) {
+            this.sueTrapSource = sueTrapSource;
+            return this;
+        }
+
+        /**
+         * Serial UDB Extra Number of Ocillator Failures 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 2,
+                signed = true
+        )
+        public final Builder sueOscFailCount(int sueOscFailCount) {
+            this.sueOscFailCount = sueOscFailCount;
+            return this;
+        }
+
+        /**
          * Serial UDB Extra UDB Internal Clock Configuration 
          */
         @MavlinkFieldInfo(
@@ -391,7 +341,7 @@ public final class SerialUdbExtraF14 {
         }
 
         public final SerialUdbExtraF14 build() {
-            return new SerialUdbExtraF14(sueTrapSource, sueRcon, sueTrapFlags, sueOscFailCount, sueWindEstimation, sueGpsType, sueDr, sueBoardType, sueAirframe, sueClockConfig, sueFlightPlanType);
+            return new SerialUdbExtraF14(sueWindEstimation, sueGpsType, sueDr, sueBoardType, sueAirframe, sueRcon, sueTrapFlags, sueTrapSource, sueOscFailCount, sueClockConfig, sueFlightPlanType);
         }
     }
 }

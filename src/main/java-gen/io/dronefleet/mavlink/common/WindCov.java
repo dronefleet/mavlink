@@ -3,61 +3,32 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 231,
         crc = 105
 )
 public final class WindCov {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Wind in X (NED) direction in m/s 
-     */
     private final float windX;
 
-    /**
-     * Wind in Y (NED) direction in m/s 
-     */
     private final float windY;
 
-    /**
-     * Wind in Z (NED) direction in m/s 
-     */
     private final float windZ;
 
-    /**
-     * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
-     */
     private final float varHoriz;
 
-    /**
-     * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
-     */
     private final float varVert;
 
-    /**
-     * AMSL altitude (m) this measurement was taken at 
-     */
     private final float windAlt;
 
-    /**
-     * Horizontal speed 1-STD accuracy 
-     */
     private final float horizAccuracy;
 
-    /**
-     * Vertical speed 1-STD accuracy 
-     */
     private final float vertAccuracy;
 
     private WindCov(BigInteger timeUsec, float windX, float windY, float windZ, float varHoriz,
@@ -73,22 +44,12 @@ public final class WindCov {
         this.vertAccuracy = vertAccuracy;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "WindCov{timeUsec=" + timeUsec
-                 + ", windX=" + windX
-                 + ", windY=" + windY
-                 + ", windZ=" + windZ
-                 + ", varHoriz=" + varHoriz
-                 + ", varVert=" + varVert
-                 + ", windAlt=" + windAlt
-                 + ", horizAccuracy=" + horizAccuracy
-                 + ", vertAccuracy=" + vertAccuracy + "}";
     }
 
     /**
@@ -99,7 +60,7 @@ public final class WindCov {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -110,7 +71,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float windX() {
-        return windX;
+        return this.windX;
     }
 
     /**
@@ -121,7 +82,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float windY() {
-        return windY;
+        return this.windY;
     }
 
     /**
@@ -132,7 +93,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float windZ() {
-        return windZ;
+        return this.windZ;
     }
 
     /**
@@ -143,7 +104,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float varHoriz() {
-        return varHoriz;
+        return this.varHoriz;
     }
 
     /**
@@ -154,7 +115,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float varVert() {
-        return varVert;
+        return this.varVert;
     }
 
     /**
@@ -165,7 +126,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float windAlt() {
-        return windAlt;
+        return this.windAlt;
     }
 
     /**
@@ -176,7 +137,7 @@ public final class WindCov {
             unitSize = 4
     )
     public final float horizAccuracy() {
-        return horizAccuracy;
+        return this.horizAccuracy;
     }
 
     /**
@@ -187,10 +148,10 @@ public final class WindCov {
             unitSize = 4
     )
     public final float vertAccuracy() {
-        return vertAccuracy;
+        return this.vertAccuracy;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float windX;
@@ -208,9 +169,6 @@ public final class WindCov {
         private float horizAccuracy;
 
         private float vertAccuracy;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 

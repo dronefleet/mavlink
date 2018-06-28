@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.MavMountMode;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Message to configure a camera mount, directional antenna, etc. 
@@ -15,34 +13,16 @@ import java.lang.String;
         crc = 19
 )
 public final class MountConfigure {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MavMountMode} enum) 
-     */
     private final MavMountMode mountMode;
 
-    /**
-     * (1 = yes, 0 = no) 
-     */
     private final int stabRoll;
 
-    /**
-     * (1 = yes, 0 = no) 
-     */
     private final int stabPitch;
 
-    /**
-     * (1 = yes, 0 = no) 
-     */
     private final int stabYaw;
 
     private MountConfigure(int targetSystem, int targetComponent, MavMountMode mountMode,
@@ -55,19 +35,12 @@ public final class MountConfigure {
         this.stabYaw = stabYaw;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MountConfigure{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", mountMode=" + mountMode
-                 + ", stabRoll=" + stabRoll
-                 + ", stabPitch=" + stabPitch
-                 + ", stabYaw=" + stabYaw + "}";
     }
 
     /**
@@ -78,7 +51,7 @@ public final class MountConfigure {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -89,18 +62,18 @@ public final class MountConfigure {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
-     * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MavMountMode} enum) 
+     * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavMountMode mountMode() {
-        return mountMode;
+        return this.mountMode;
     }
 
     /**
@@ -111,7 +84,7 @@ public final class MountConfigure {
             unitSize = 1
     )
     public final int stabRoll() {
-        return stabRoll;
+        return this.stabRoll;
     }
 
     /**
@@ -122,7 +95,7 @@ public final class MountConfigure {
             unitSize = 1
     )
     public final int stabPitch() {
-        return stabPitch;
+        return this.stabPitch;
     }
 
     /**
@@ -133,10 +106,10 @@ public final class MountConfigure {
             unitSize = 1
     )
     public final int stabYaw() {
-        return stabYaw;
+        return this.stabYaw;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -148,9 +121,6 @@ public final class MountConfigure {
         private int stabPitch;
 
         private int stabYaw;
-
-        private Builder() {
-        }
 
         /**
          * System ID 
@@ -177,7 +147,7 @@ public final class MountConfigure {
         }
 
         /**
-         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MavMountMode} enum) 
+         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
          */
         @MavlinkFieldInfo(
                 position = 3,

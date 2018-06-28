@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F17 format 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 175
 )
 public final class SerialUdbExtraF17 {
-    /**
-     * SUE Feed Forward Gain 
-     */
     private final float sueFeedForward;
 
-    /**
-     * SUE Max Turn Rate when Navigating 
-     */
     private final float sueTurnRateNav;
 
-    /**
-     * SUE Max Turn Rate in Fly By Wire Mode 
-     */
     private final float sueTurnRateFbw;
 
     private SerialUdbExtraF17(float sueFeedForward, float sueTurnRateNav, float sueTurnRateFbw) {
@@ -35,16 +24,12 @@ public final class SerialUdbExtraF17 {
         this.sueTurnRateFbw = sueTurnRateFbw;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF17{sueFeedForward=" + sueFeedForward
-                 + ", sueTurnRateNav=" + sueTurnRateNav
-                 + ", sueTurnRateFbw=" + sueTurnRateFbw + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class SerialUdbExtraF17 {
             unitSize = 4
     )
     public final float sueFeedForward() {
-        return sueFeedForward;
+        return this.sueFeedForward;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class SerialUdbExtraF17 {
             unitSize = 4
     )
     public final float sueTurnRateNav() {
-        return sueTurnRateNav;
+        return this.sueTurnRateNav;
     }
 
     /**
@@ -77,18 +62,15 @@ public final class SerialUdbExtraF17 {
             unitSize = 4
     )
     public final float sueTurnRateFbw() {
-        return sueTurnRateFbw;
+        return this.sueTurnRateFbw;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float sueFeedForward;
 
         private float sueTurnRateNav;
 
         private float sueTurnRateFbw;
-
-        private Builder() {
-        }
 
         /**
          * SUE Feed Forward Gain 

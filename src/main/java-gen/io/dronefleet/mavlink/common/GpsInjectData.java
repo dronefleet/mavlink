@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * data for injecting into the onboard GPS (used for DGPS) 
@@ -14,24 +12,12 @@ import java.lang.String;
         crc = 250
 )
 public final class GpsInjectData {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * data length 
-     */
     private final int len;
 
-    /**
-     * raw data (110 is enough for 12 satellites of RTCMv2) 
-     */
     private final byte[] data;
 
     private GpsInjectData(int targetSystem, int targetComponent, int len, byte[] data) {
@@ -41,17 +27,12 @@ public final class GpsInjectData {
         this.data = data;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsInjectData{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", len=" + len
-                 + ", data=" + data + "}";
     }
 
     /**
@@ -62,7 +43,7 @@ public final class GpsInjectData {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -73,7 +54,7 @@ public final class GpsInjectData {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -84,7 +65,7 @@ public final class GpsInjectData {
             unitSize = 1
     )
     public final int len() {
-        return len;
+        return this.len;
     }
 
     /**
@@ -96,10 +77,10 @@ public final class GpsInjectData {
             arraySize = 110
     )
     public final byte[] data() {
-        return data;
+        return this.data;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -107,9 +88,6 @@ public final class GpsInjectData {
         private int len;
 
         private byte[] data;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

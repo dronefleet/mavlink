@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Provides state for additional features 
@@ -14,15 +12,8 @@ import java.lang.String;
         crc = 130
 )
 public final class ExtendedSysState {
-    /**
-     * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
-     * configuration. 
-     */
     private final MavVtolState vtolState;
 
-    /**
-     * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
-     */
     private final MavLandedState landedState;
 
     private ExtendedSysState(MavVtolState vtolState, MavLandedState landedState) {
@@ -30,15 +21,12 @@ public final class ExtendedSysState {
         this.landedState = landedState;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ExtendedSysState{vtolState=" + vtolState
-                 + ", landedState=" + landedState + "}";
     }
 
     /**
@@ -50,7 +38,7 @@ public final class ExtendedSysState {
             unitSize = 1
     )
     public final MavVtolState vtolState() {
-        return vtolState;
+        return this.vtolState;
     }
 
     /**
@@ -61,16 +49,13 @@ public final class ExtendedSysState {
             unitSize = 1
     )
     public final MavLandedState landedState() {
-        return landedState;
+        return this.landedState;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private MavVtolState vtolState;
 
         private MavLandedState landedState;
-
-        private Builder() {
-        }
 
         /**
          * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 

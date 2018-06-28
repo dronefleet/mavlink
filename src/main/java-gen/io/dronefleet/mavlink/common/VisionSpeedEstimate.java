@@ -4,42 +4,25 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 103,
-        crc = 208
+        crc = 27
 )
 public final class VisionSpeedEstimate {
-    /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
-     */
     private final BigInteger usec;
 
-    /**
-     * Global X speed 
-     */
     private final float x;
 
-    /**
-     * Global Y speed 
-     */
     private final float y;
 
-    /**
-     * Global Z speed 
-     */
     private final float z;
 
-    /**
-     * Linear velocity covariance matrix (1st three entries - 1st row, etc.) 
-     */
     private final List<Float> covariance;
 
     private VisionSpeedEstimate(BigInteger usec, float x, float y, float z,
@@ -51,18 +34,12 @@ public final class VisionSpeedEstimate {
         this.covariance = covariance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "VisionSpeedEstimate{usec=" + usec
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", covariance=" + covariance + "}";
     }
 
     /**
@@ -73,7 +50,7 @@ public final class VisionSpeedEstimate {
             unitSize = 8
     )
     public final BigInteger usec() {
-        return usec;
+        return this.usec;
     }
 
     /**
@@ -84,7 +61,7 @@ public final class VisionSpeedEstimate {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -95,7 +72,7 @@ public final class VisionSpeedEstimate {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -106,7 +83,7 @@ public final class VisionSpeedEstimate {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -119,10 +96,10 @@ public final class VisionSpeedEstimate {
             extension = true
     )
     public final List<Float> covariance() {
-        return covariance;
+        return this.covariance;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger usec;
 
         private float x;
@@ -132,9 +109,6 @@ public final class VisionSpeedEstimate {
         private float z;
 
         private List<Float> covariance;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds, synced to UNIX time or since system boot) 

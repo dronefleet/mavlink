@@ -3,30 +3,19 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * state of APM memory 
  */
 @MavlinkMessageInfo(
         id = 152,
-        crc = 208
+        crc = 128
 )
 public final class Meminfo {
-    /**
-     * heap top 
-     */
     private final int brkval;
 
-    /**
-     * free memory 
-     */
     private final int freemem;
 
-    /**
-     * free memory (32 bit) 
-     */
     private final long freemem32;
 
     private Meminfo(int brkval, int freemem, long freemem32) {
@@ -35,16 +24,12 @@ public final class Meminfo {
         this.freemem32 = freemem32;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Meminfo{brkval=" + brkval
-                 + ", freemem=" + freemem
-                 + ", freemem32=" + freemem32 + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class Meminfo {
             unitSize = 2
     )
     public final int brkval() {
-        return brkval;
+        return this.brkval;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class Meminfo {
             unitSize = 2
     )
     public final int freemem() {
-        return freemem;
+        return this.freemem;
     }
 
     /**
@@ -78,18 +63,15 @@ public final class Meminfo {
             extension = true
     )
     public final long freemem32() {
-        return freemem32;
+        return this.freemem32;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int brkval;
 
         private int freemem;
 
         private long freemem32;
-
-        private Builder() {
-        }
 
         /**
          * heap top 

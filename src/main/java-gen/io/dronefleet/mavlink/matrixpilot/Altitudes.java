@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The altitude measured by sensors and IMU 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 55
 )
 public final class Altitudes {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * GPS altitude in meters, expressed as * 1000 (millimeters), above MSL 
-     */
     private final int altGps;
 
-    /**
-     * IMU altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int altImu;
 
-    /**
-     * barometeric altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int altBarometric;
 
-    /**
-     * Optical flow altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int altOpticalFlow;
 
-    /**
-     * Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int altRangeFinder;
 
-    /**
-     * Extra altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int altExtra;
 
     private Altitudes(long timeBootMs, int altGps, int altImu, int altBarometric,
@@ -60,20 +37,12 @@ public final class Altitudes {
         this.altExtra = altExtra;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Altitudes{timeBootMs=" + timeBootMs
-                 + ", altGps=" + altGps
-                 + ", altImu=" + altImu
-                 + ", altBarometric=" + altBarometric
-                 + ", altOpticalFlow=" + altOpticalFlow
-                 + ", altRangeFinder=" + altRangeFinder
-                 + ", altExtra=" + altExtra + "}";
     }
 
     /**
@@ -84,7 +53,7 @@ public final class Altitudes {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class Altitudes {
             signed = true
     )
     public final int altGps() {
-        return altGps;
+        return this.altGps;
     }
 
     /**
@@ -108,7 +77,7 @@ public final class Altitudes {
             signed = true
     )
     public final int altImu() {
-        return altImu;
+        return this.altImu;
     }
 
     /**
@@ -120,7 +89,7 @@ public final class Altitudes {
             signed = true
     )
     public final int altBarometric() {
-        return altBarometric;
+        return this.altBarometric;
     }
 
     /**
@@ -132,7 +101,7 @@ public final class Altitudes {
             signed = true
     )
     public final int altOpticalFlow() {
-        return altOpticalFlow;
+        return this.altOpticalFlow;
     }
 
     /**
@@ -144,7 +113,7 @@ public final class Altitudes {
             signed = true
     )
     public final int altRangeFinder() {
-        return altRangeFinder;
+        return this.altRangeFinder;
     }
 
     /**
@@ -156,10 +125,10 @@ public final class Altitudes {
             signed = true
     )
     public final int altExtra() {
-        return altExtra;
+        return this.altExtra;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private int altGps;
@@ -173,9 +142,6 @@ public final class Altitudes {
         private int altRangeFinder;
 
         private int altExtra;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

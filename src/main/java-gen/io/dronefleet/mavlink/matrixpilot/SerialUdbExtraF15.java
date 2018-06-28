@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F15 format 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 7
 )
 public final class SerialUdbExtraF15 {
-    /**
-     * Serial UDB Extra Model Name Of Vehicle 
-     */
     private final byte[] sueIdVehicleModelName;
 
-    /**
-     * Serial UDB Extra Registraton Number of Vehicle 
-     */
     private final byte[] sueIdVehicleRegistration;
 
     private SerialUdbExtraF15(byte[] sueIdVehicleModelName, byte[] sueIdVehicleRegistration) {
@@ -29,15 +21,12 @@ public final class SerialUdbExtraF15 {
         this.sueIdVehicleRegistration = sueIdVehicleRegistration;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF15{sueIdVehicleModelName=" + sueIdVehicleModelName
-                 + ", sueIdVehicleRegistration=" + sueIdVehicleRegistration + "}";
     }
 
     /**
@@ -49,7 +38,7 @@ public final class SerialUdbExtraF15 {
             arraySize = 40
     )
     public final byte[] sueIdVehicleModelName() {
-        return sueIdVehicleModelName;
+        return this.sueIdVehicleModelName;
     }
 
     /**
@@ -61,16 +50,13 @@ public final class SerialUdbExtraF15 {
             arraySize = 20
     )
     public final byte[] sueIdVehicleRegistration() {
-        return sueIdVehicleRegistration;
+        return this.sueIdVehicleRegistration;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private byte[] sueIdVehicleModelName;
 
         private byte[] sueIdVehicleRegistration;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB Extra Model Name Of Vehicle 

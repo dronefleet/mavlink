@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -16,56 +14,28 @@ import java.math.BigInteger;
         crc = 71
 )
 public final class SetupSigning {
-    /**
-     * initial timestamp 
-     */
-    private final BigInteger initialTimestamp;
-
-    /**
-     * system id of the target 
-     */
     private final int targetSystem;
 
-    /**
-     * component ID of the target 
-     */
     private final int targetComponent;
 
-    /**
-     * signing key 
-     */
     private final byte[] secretKey;
 
-    private SetupSigning(BigInteger initialTimestamp, int targetSystem, int targetComponent,
-            byte[] secretKey) {
-        this.initialTimestamp = initialTimestamp;
+    private final BigInteger initialTimestamp;
+
+    private SetupSigning(int targetSystem, int targetComponent, byte[] secretKey,
+            BigInteger initialTimestamp) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.secretKey = secretKey;
-    }
-
-    @MavlinkMessageBuilder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SetupSigning{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", secretKey=" + secretKey
-                 + ", initialTimestamp=" + initialTimestamp + "}";
+        this.initialTimestamp = initialTimestamp;
     }
 
     /**
-     * initial timestamp 
+     * Returns a builder instance for this message.
      */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 8
-    )
-    public final BigInteger initialTimestamp() {
-        return initialTimestamp;
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**
@@ -76,7 +46,7 @@ public final class SetupSigning {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -87,7 +57,7 @@ public final class SetupSigning {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -99,32 +69,28 @@ public final class SetupSigning {
             arraySize = 32
     )
     public final byte[] secretKey() {
-        return secretKey;
+        return this.secretKey;
     }
 
-    public static class Builder {
-        private BigInteger initialTimestamp;
+    /**
+     * initial timestamp 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 8
+    )
+    public final BigInteger initialTimestamp() {
+        return this.initialTimestamp;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private byte[] secretKey;
 
-        private Builder() {
-        }
-
-        /**
-         * initial timestamp 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 8
-        )
-        public final Builder initialTimestamp(BigInteger initialTimestamp) {
-            this.initialTimestamp = initialTimestamp;
-            return this;
-        }
+        private BigInteger initialTimestamp;
 
         /**
          * system id of the target 
@@ -163,8 +129,20 @@ public final class SetupSigning {
             return this;
         }
 
+        /**
+         * initial timestamp 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 8
+        )
+        public final Builder initialTimestamp(BigInteger initialTimestamp) {
+            this.initialTimestamp = initialTimestamp;
+            return this;
+        }
+
         public final SetupSigning build() {
-            return new SetupSigning(initialTimestamp, targetSystem, targetComponent, secretKey);
+            return new SetupSigning(targetSystem, targetComponent, secretKey, initialTimestamp);
         }
     }
 }

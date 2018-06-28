@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * WIP: Message appropriate for high latency connections like Iridium (version 2) 
@@ -15,160 +13,77 @@ import java.lang.String;
         crc = 179
 )
 public final class HighLatency2 {
-    /**
-     * Timestamp (milliseconds since boot or Unix epoch) 
-     */
     private final long timestamp;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 
-     */
-    private final int latitude;
-
-    /**
-     * Longitude, expressed as degrees * 1E7 
-     */
-    private final int longitude;
-
-    /**
-     * A bitfield for use for autopilot-specific flags (2 byte version). 
-     */
-    private final int customMode;
-
-    /**
-     * Altitude above mean sea level 
-     */
-    private final int altitude;
-
-    /**
-     * Altitude setpoint 
-     */
-    private final int targetAltitude;
-
-    /**
-     * Distance to target waypoint or position (meters / 10) 
-     */
-    private final int targetDistance;
-
-    /**
-     * Current waypoint number 
-     */
-    private final int wpNum;
-
-    /**
-     * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
-     */
-    private final EnumFlagSet<HlFailureFlag> failureFlags;
-
-    /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-     */
     private final MavType type;
 
-    /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-     */
     private final MavAutopilot autopilot;
 
-    /**
-     * Heading (degrees / 2) 
-     */
+    private final int customMode;
+
+    private final int latitude;
+
+    private final int longitude;
+
+    private final int altitude;
+
+    private final int targetAltitude;
+
     private final int heading;
 
-    /**
-     * Heading setpoint (degrees / 2) 
-     */
     private final int targetHeading;
 
-    /**
-     * Throttle (percentage) 
-     */
+    private final int targetDistance;
+
     private final int throttle;
 
-    /**
-     * Airspeed (m/s * 5) 
-     */
     private final int airspeed;
 
-    /**
-     * Airspeed setpoint (m/s * 5) 
-     */
     private final int airspeedSp;
 
-    /**
-     * Groundspeed (m/s * 5) 
-     */
     private final int groundspeed;
 
-    /**
-     * Windspeed (m/s * 5) 
-     */
     private final int windspeed;
 
-    /**
-     * Wind heading (deg / 2) 
-     */
     private final int windHeading;
 
-    /**
-     * Maximum error horizontal position since last message (m * 10) 
-     */
     private final int eph;
 
-    /**
-     * Maximum error vertical position since last message (m * 10) 
-     */
     private final int epv;
 
-    /**
-     * Air temperature (degrees C) from airspeed sensor 
-     */
     private final int temperatureAir;
 
-    /**
-     * Maximum climb rate magnitude since last message (m/s * 10) 
-     */
     private final int climbRate;
 
-    /**
-     * Battery (percentage, -1 for DNU) 
-     */
     private final int battery;
 
-    /**
-     * Field for custom payload. 
-     */
+    private final int wpNum;
+
+    private final EnumFlagSet<HlFailureFlag> failureFlags;
+
     private final int custom0;
 
-    /**
-     * Field for custom payload. 
-     */
     private final int custom1;
 
-    /**
-     * Field for custom payload. 
-     */
     private final int custom2;
 
-    private HighLatency2(long timestamp, int latitude, int longitude, int customMode, int altitude,
-            int targetAltitude, int targetDistance, int wpNum,
-            EnumFlagSet<HlFailureFlag> failureFlags, MavType type, MavAutopilot autopilot,
-            int heading, int targetHeading, int throttle, int airspeed, int airspeedSp,
+    private HighLatency2(long timestamp, MavType type, MavAutopilot autopilot, int customMode,
+            int latitude, int longitude, int altitude, int targetAltitude, int heading,
+            int targetHeading, int targetDistance, int throttle, int airspeed, int airspeedSp,
             int groundspeed, int windspeed, int windHeading, int eph, int epv, int temperatureAir,
-            int climbRate, int battery, int custom0, int custom1, int custom2) {
+            int climbRate, int battery, int wpNum, EnumFlagSet<HlFailureFlag> failureFlags,
+            int custom0, int custom1, int custom2) {
         this.timestamp = timestamp;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.customMode = customMode;
-        this.altitude = altitude;
-        this.targetAltitude = targetAltitude;
-        this.targetDistance = targetDistance;
-        this.wpNum = wpNum;
-        this.failureFlags = failureFlags;
         this.type = type;
         this.autopilot = autopilot;
+        this.customMode = customMode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitude = altitude;
+        this.targetAltitude = targetAltitude;
         this.heading = heading;
         this.targetHeading = targetHeading;
+        this.targetDistance = targetDistance;
         this.throttle = throttle;
         this.airspeed = airspeed;
         this.airspeedSp = airspeedSp;
@@ -180,45 +95,19 @@ public final class HighLatency2 {
         this.temperatureAir = temperatureAir;
         this.climbRate = climbRate;
         this.battery = battery;
+        this.wpNum = wpNum;
+        this.failureFlags = failureFlags;
         this.custom0 = custom0;
         this.custom1 = custom1;
         this.custom2 = custom2;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HighLatency2{timestamp=" + timestamp
-                 + ", type=" + type
-                 + ", autopilot=" + autopilot
-                 + ", customMode=" + customMode
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", targetAltitude=" + targetAltitude
-                 + ", heading=" + heading
-                 + ", targetHeading=" + targetHeading
-                 + ", targetDistance=" + targetDistance
-                 + ", throttle=" + throttle
-                 + ", airspeed=" + airspeed
-                 + ", airspeedSp=" + airspeedSp
-                 + ", groundspeed=" + groundspeed
-                 + ", windspeed=" + windspeed
-                 + ", windHeading=" + windHeading
-                 + ", eph=" + eph
-                 + ", epv=" + epv
-                 + ", temperatureAir=" + temperatureAir
-                 + ", climbRate=" + climbRate
-                 + ", battery=" + battery
-                 + ", wpNum=" + wpNum
-                 + ", failureFlags=" + failureFlags
-                 + ", custom0=" + custom0
-                 + ", custom1=" + custom1
-                 + ", custom2=" + custom2 + "}";
     }
 
     /**
@@ -229,7 +118,40 @@ public final class HighLatency2 {
             unitSize = 4
     )
     public final long timestamp() {
-        return timestamp;
+        return this.timestamp;
+    }
+
+    /**
+     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final MavType type() {
+        return this.type;
+    }
+
+    /**
+     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1
+    )
+    public final MavAutopilot autopilot() {
+        return this.autopilot;
+    }
+
+    /**
+     * A bitfield for use for autopilot-specific flags (2 byte version). 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2
+    )
+    public final int customMode() {
+        return this.customMode;
     }
 
     /**
@@ -241,7 +163,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -253,18 +175,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int longitude() {
-        return longitude;
-    }
-
-    /**
-     * A bitfield for use for autopilot-specific flags (2 byte version). 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2
-    )
-    public final int customMode() {
-        return customMode;
+        return this.longitude;
     }
 
     /**
@@ -276,7 +187,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -288,62 +199,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int targetAltitude() {
-        return targetAltitude;
-    }
-
-    /**
-     * Distance to target waypoint or position (meters / 10) 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 2
-    )
-    public final int targetDistance() {
-        return targetDistance;
-    }
-
-    /**
-     * Current waypoint number 
-     */
-    @MavlinkFieldInfo(
-            position = 23,
-            unitSize = 2
-    )
-    public final int wpNum() {
-        return wpNum;
-    }
-
-    /**
-     * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
-     */
-    @MavlinkFieldInfo(
-            position = 24,
-            unitSize = 2
-    )
-    public final EnumFlagSet<HlFailureFlag> failureFlags() {
-        return failureFlags;
-    }
-
-    /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final MavType type() {
-        return type;
-    }
-
-    /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 1
-    )
-    public final MavAutopilot autopilot() {
-        return autopilot;
+        return this.targetAltitude;
     }
 
     /**
@@ -354,7 +210,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int heading() {
-        return heading;
+        return this.heading;
     }
 
     /**
@@ -365,7 +221,18 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int targetHeading() {
-        return targetHeading;
+        return this.targetHeading;
+    }
+
+    /**
+     * Distance to target waypoint or position (meters / 10) 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 2
+    )
+    public final int targetDistance() {
+        return this.targetDistance;
     }
 
     /**
@@ -376,7 +243,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int throttle() {
-        return throttle;
+        return this.throttle;
     }
 
     /**
@@ -387,7 +254,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int airspeed() {
-        return airspeed;
+        return this.airspeed;
     }
 
     /**
@@ -398,7 +265,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int airspeedSp() {
-        return airspeedSp;
+        return this.airspeedSp;
     }
 
     /**
@@ -409,7 +276,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int groundspeed() {
-        return groundspeed;
+        return this.groundspeed;
     }
 
     /**
@@ -420,7 +287,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int windspeed() {
-        return windspeed;
+        return this.windspeed;
     }
 
     /**
@@ -431,7 +298,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int windHeading() {
-        return windHeading;
+        return this.windHeading;
     }
 
     /**
@@ -442,7 +309,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int eph() {
-        return eph;
+        return this.eph;
     }
 
     /**
@@ -453,7 +320,7 @@ public final class HighLatency2 {
             unitSize = 1
     )
     public final int epv() {
-        return epv;
+        return this.epv;
     }
 
     /**
@@ -465,7 +332,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int temperatureAir() {
-        return temperatureAir;
+        return this.temperatureAir;
     }
 
     /**
@@ -477,7 +344,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int climbRate() {
-        return climbRate;
+        return this.climbRate;
     }
 
     /**
@@ -489,7 +356,29 @@ public final class HighLatency2 {
             signed = true
     )
     public final int battery() {
-        return battery;
+        return this.battery;
+    }
+
+    /**
+     * Current waypoint number 
+     */
+    @MavlinkFieldInfo(
+            position = 23,
+            unitSize = 2
+    )
+    public final int wpNum() {
+        return this.wpNum;
+    }
+
+    /**
+     * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
+     */
+    @MavlinkFieldInfo(
+            position = 24,
+            unitSize = 2
+    )
+    public final EnumFlagSet<HlFailureFlag> failureFlags() {
+        return this.failureFlags;
     }
 
     /**
@@ -501,7 +390,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int custom0() {
-        return custom0;
+        return this.custom0;
     }
 
     /**
@@ -513,7 +402,7 @@ public final class HighLatency2 {
             signed = true
     )
     public final int custom1() {
-        return custom1;
+        return this.custom1;
     }
 
     /**
@@ -525,35 +414,31 @@ public final class HighLatency2 {
             signed = true
     )
     public final int custom2() {
-        return custom2;
+        return this.custom2;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timestamp;
-
-        private int latitude;
-
-        private int longitude;
-
-        private int customMode;
-
-        private int altitude;
-
-        private int targetAltitude;
-
-        private int targetDistance;
-
-        private int wpNum;
-
-        private EnumFlagSet<HlFailureFlag> failureFlags;
 
         private MavType type;
 
         private MavAutopilot autopilot;
 
+        private int customMode;
+
+        private int latitude;
+
+        private int longitude;
+
+        private int altitude;
+
+        private int targetAltitude;
+
         private int heading;
 
         private int targetHeading;
+
+        private int targetDistance;
 
         private int throttle;
 
@@ -577,14 +462,15 @@ public final class HighLatency2 {
 
         private int battery;
 
+        private int wpNum;
+
+        private EnumFlagSet<HlFailureFlag> failureFlags;
+
         private int custom0;
 
         private int custom1;
 
         private int custom2;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since boot or Unix epoch) 
@@ -595,6 +481,42 @@ public final class HighLatency2 {
         )
         public final Builder timestamp(long timestamp) {
             this.timestamp = timestamp;
+            return this;
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder type(MavType type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder autopilot(MavAutopilot autopilot) {
+            this.autopilot = autopilot;
+            return this;
+        }
+
+        /**
+         * A bitfield for use for autopilot-specific flags (2 byte version). 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2
+        )
+        public final Builder customMode(int customMode) {
+            this.customMode = customMode;
             return this;
         }
 
@@ -625,18 +547,6 @@ public final class HighLatency2 {
         }
 
         /**
-         * A bitfield for use for autopilot-specific flags (2 byte version). 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 2
-        )
-        public final Builder customMode(int customMode) {
-            this.customMode = customMode;
-            return this;
-        }
-
-        /**
          * Altitude above mean sea level 
          */
         @MavlinkFieldInfo(
@@ -663,66 +573,6 @@ public final class HighLatency2 {
         }
 
         /**
-         * Distance to target waypoint or position (meters / 10) 
-         */
-        @MavlinkFieldInfo(
-                position = 11,
-                unitSize = 2
-        )
-        public final Builder targetDistance(int targetDistance) {
-            this.targetDistance = targetDistance;
-            return this;
-        }
-
-        /**
-         * Current waypoint number 
-         */
-        @MavlinkFieldInfo(
-                position = 23,
-                unitSize = 2
-        )
-        public final Builder wpNum(int wpNum) {
-            this.wpNum = wpNum;
-            return this;
-        }
-
-        /**
-         * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HlFailureFlag} ENUM. 
-         */
-        @MavlinkFieldInfo(
-                position = 24,
-                unitSize = 2
-        )
-        public final Builder failureFlags(EnumFlagSet<HlFailureFlag> failureFlags) {
-            this.failureFlags = failureFlags;
-            return this;
-        }
-
-        /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MavType} ENUM) 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder type(MavType type) {
-            this.type = type;
-            return this;
-        }
-
-        /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MavAutopilot} ENUM 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder autopilot(MavAutopilot autopilot) {
-            this.autopilot = autopilot;
-            return this;
-        }
-
-        /**
          * Heading (degrees / 2) 
          */
         @MavlinkFieldInfo(
@@ -743,6 +593,18 @@ public final class HighLatency2 {
         )
         public final Builder targetHeading(int targetHeading) {
             this.targetHeading = targetHeading;
+            return this;
+        }
+
+        /**
+         * Distance to target waypoint or position (meters / 10) 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 2
+        )
+        public final Builder targetDistance(int targetDistance) {
+            this.targetDistance = targetDistance;
             return this;
         }
 
@@ -882,6 +744,30 @@ public final class HighLatency2 {
         }
 
         /**
+         * Current waypoint number 
+         */
+        @MavlinkFieldInfo(
+                position = 23,
+                unitSize = 2
+        )
+        public final Builder wpNum(int wpNum) {
+            this.wpNum = wpNum;
+            return this;
+        }
+
+        /**
+         * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
+         */
+        @MavlinkFieldInfo(
+                position = 24,
+                unitSize = 2
+        )
+        public final Builder failureFlags(EnumFlagSet<HlFailureFlag> failureFlags) {
+            this.failureFlags = failureFlags;
+            return this;
+        }
+
+        /**
          * Field for custom payload. 
          */
         @MavlinkFieldInfo(
@@ -921,7 +807,7 @@ public final class HighLatency2 {
         }
 
         public final HighLatency2 build() {
-            return new HighLatency2(timestamp, latitude, longitude, customMode, altitude, targetAltitude, targetDistance, wpNum, failureFlags, type, autopilot, heading, targetHeading, throttle, airspeed, airspeedSp, groundspeed, windspeed, windHeading, eph, epv, temperatureAir, climbRate, battery, custom0, custom1, custom2);
+            return new HighLatency2(timestamp, type, autopilot, customMode, latitude, longitude, altitude, targetAltitude, heading, targetHeading, targetDistance, throttle, airspeed, airspeedSp, groundspeed, windspeed, windHeading, eph, epv, temperatureAir, climbRate, battery, wpNum, failureFlags, custom0, custom1, custom2);
         }
     }
 }

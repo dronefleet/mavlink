@@ -9,25 +9,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavCollisionThreatLevel {
     /**
-     * Not a threat<dl>
-     *
-     * </dl>
+     * Not a threat 
      */
     @MavlinkEntryInfo(0)
     MAV_COLLISION_THREAT_LEVEL_NONE,
 
     /**
-     * Craft is mildly concerned about this threat<dl>
-     *
-     * </dl>
+     * Craft is mildly concerned about this threat 
      */
     @MavlinkEntryInfo(1)
     MAV_COLLISION_THREAT_LEVEL_LOW,
 
     /**
-     * Craft is panicing, and may take actions to avoid threat<dl>
-     *
-     * </dl>
+     * Craft is panicing, and may take actions to avoid threat 
      */
     @MavlinkEntryInfo(2)
     MAV_COLLISION_THREAT_LEVEL_HIGH

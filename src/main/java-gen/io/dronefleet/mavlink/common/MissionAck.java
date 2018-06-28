@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Ack message during waypoint handling. The type field states if this message is a positive ack 
@@ -12,27 +10,15 @@ import java.lang.String;
  */
 @MavlinkMessageInfo(
         id = 47,
-        crc = 153
+        crc = 146
 )
 public final class MissionAck {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * See {@link io.dronefleet.mavlink.common.MavMissionResult MavMissionResult} enum 
-     */
     private final MavMissionResult type;
 
-    /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-     */
     private final MavMissionType missionType;
 
     private MissionAck(int targetSystem, int targetComponent, MavMissionResult type,
@@ -43,17 +29,12 @@ public final class MissionAck {
         this.missionType = missionType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MissionAck{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", type=" + type
-                 + ", missionType=" + missionType + "}";
     }
 
     /**
@@ -64,7 +45,7 @@ public final class MissionAck {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -75,22 +56,22 @@ public final class MissionAck {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.MavMissionResult MavMissionResult} enum 
+     * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavMissionResult type() {
-        return type;
+        return this.type;
     }
 
     /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
      */
     @MavlinkFieldInfo(
             position = 5,
@@ -98,10 +79,10 @@ public final class MissionAck {
             extension = true
     )
     public final MavMissionType missionType() {
-        return missionType;
+        return this.missionType;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -109,9 +90,6 @@ public final class MissionAck {
         private MavMissionResult type;
 
         private MavMissionType missionType;
-
-        private Builder() {
-        }
 
         /**
          * System ID 
@@ -138,7 +116,7 @@ public final class MissionAck {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavMissionResult MavMissionResult} enum 
+         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -150,7 +128,7 @@ public final class MissionAck {
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         @MavlinkFieldInfo(
                 position = 5,

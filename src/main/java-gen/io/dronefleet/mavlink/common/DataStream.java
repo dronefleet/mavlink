@@ -3,59 +3,33 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * THIS INTERFACE IS DEPRECATED. USE MESSAGE_INTERVAL INSTEAD. 
+ * THIS INTERFACE IS DEPRECATED. USE {@link io.dronefleet.mavlink.common.MessageInterval MESSAGE_INTERVAL} INSTEAD. 
  */
 @MavlinkMessageInfo(
         id = 67,
         crc = 21
 )
 public final class DataStream {
-    /**
-     * The message rate 
-     */
-    private final int messageRate;
-
-    /**
-     * The ID of the requested data stream 
-     */
     private final int streamId;
 
-    /**
-     * 1 stream is enabled, 0 stream is stopped. 
-     */
+    private final int messageRate;
+
     private final int onOff;
 
-    private DataStream(int messageRate, int streamId, int onOff) {
-        this.messageRate = messageRate;
+    private DataStream(int streamId, int messageRate, int onOff) {
         this.streamId = streamId;
+        this.messageRate = messageRate;
         this.onOff = onOff;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DataStream{streamId=" + streamId
-                 + ", messageRate=" + messageRate
-                 + ", onOff=" + onOff + "}";
-    }
-
-    /**
-     * The message rate 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 2
-    )
-    public final int messageRate() {
-        return messageRate;
     }
 
     /**
@@ -66,7 +40,18 @@ public final class DataStream {
             unitSize = 1
     )
     public final int streamId() {
-        return streamId;
+        return this.streamId;
+    }
+
+    /**
+     * The message rate 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 2
+    )
+    public final int messageRate() {
+        return this.messageRate;
     }
 
     /**
@@ -77,17 +62,26 @@ public final class DataStream {
             unitSize = 1
     )
     public final int onOff() {
-        return onOff;
+        return this.onOff;
     }
 
-    public static class Builder {
-        private int messageRate;
-
+    public static final class Builder {
         private int streamId;
+
+        private int messageRate;
 
         private int onOff;
 
-        private Builder() {
+        /**
+         * The ID of the requested data stream 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder streamId(int streamId) {
+            this.streamId = streamId;
+            return this;
         }
 
         /**
@@ -99,18 +93,6 @@ public final class DataStream {
         )
         public final Builder messageRate(int messageRate) {
             this.messageRate = messageRate;
-            return this;
-        }
-
-        /**
-         * The ID of the requested data stream 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder streamId(int streamId) {
-            this.streamId = streamId;
             return this;
         }
 
@@ -127,7 +109,7 @@ public final class DataStream {
         }
 
         public final DataStream build() {
-            return new DataStream(messageRate, streamId, onOff);
+            return new DataStream(streamId, messageRate, onOff);
         }
     }
 }

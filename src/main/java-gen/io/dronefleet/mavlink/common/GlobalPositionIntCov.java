@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -14,67 +12,38 @@ import java.util.List;
  * GPS-frame (right-handed, Z-up). It is designed as scaled integer message since the 
  * resolution of float is not sufficient. NOTE: This message is intended for onboard networks / 
  * companion computers and higher-bandwidth links and optimized for accuracy and 
- * completeness. Please use the {@link io.dronefleet.mavlink.common.GlobalPositionInt GlobalPositionInt} message for a minimal subset. 
+ * completeness. Please use the {@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} message for a minimal subset. 
  */
 @MavlinkMessageInfo(
         id = 63,
         crc = 119
 )
 public final class GlobalPositionIntCov {
-    /**
-     * Timestamp (microseconds since system boot or since UNIX epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 
-     */
-    private final int lat;
-
-    /**
-     * Longitude, expressed as degrees * 1E7 
-     */
-    private final int lon;
-
-    /**
-     * Altitude in meters, expressed as * 1000 (millimeters), above MSL 
-     */
-    private final int alt;
-
-    /**
-     * Altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
-    private final int relativeAlt;
-
-    /**
-     * Ground X Speed (Latitude), expressed as m/s 
-     */
-    private final float vx;
-
-    /**
-     * Ground Y Speed (Longitude), expressed as m/s 
-     */
-    private final float vy;
-
-    /**
-     * Ground Z Speed (Altitude), expressed as m/s 
-     */
-    private final float vz;
-
-    /**
-     * Covariance matrix (first six entries are the first ROW, next six entries are the second row, 
-     * etc.) 
-     */
-    private final List<Float> covariance;
-
-    /**
-     * Class id of the estimator this estimate originated from. 
-     */
     private final MavEstimatorType estimatorType;
 
-    private GlobalPositionIntCov(BigInteger timeUsec, int lat, int lon, int alt, int relativeAlt,
-            float vx, float vy, float vz, List<Float> covariance, MavEstimatorType estimatorType) {
+    private final int lat;
+
+    private final int lon;
+
+    private final int alt;
+
+    private final int relativeAlt;
+
+    private final float vx;
+
+    private final float vy;
+
+    private final float vz;
+
+    private final List<Float> covariance;
+
+    private GlobalPositionIntCov(BigInteger timeUsec, MavEstimatorType estimatorType, int lat,
+            int lon, int alt, int relativeAlt, float vx, float vy, float vz,
+            List<Float> covariance) {
         this.timeUsec = timeUsec;
+        this.estimatorType = estimatorType;
         this.lat = lat;
         this.lon = lon;
         this.alt = alt;
@@ -83,26 +52,14 @@ public final class GlobalPositionIntCov {
         this.vy = vy;
         this.vz = vz;
         this.covariance = covariance;
-        this.estimatorType = estimatorType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GlobalPositionIntCov{timeUsec=" + timeUsec
-                 + ", estimatorType=" + estimatorType
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", relativeAlt=" + relativeAlt
-                 + ", vx=" + vx
-                 + ", vy=" + vy
-                 + ", vz=" + vz
-                 + ", covariance=" + covariance + "}";
     }
 
     /**
@@ -113,7 +70,18 @@ public final class GlobalPositionIntCov {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
+    }
+
+    /**
+     * Class id of the estimator this estimate originated from. 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final MavEstimatorType estimatorType() {
+        return this.estimatorType;
     }
 
     /**
@@ -125,7 +93,7 @@ public final class GlobalPositionIntCov {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -137,7 +105,7 @@ public final class GlobalPositionIntCov {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -149,7 +117,7 @@ public final class GlobalPositionIntCov {
             signed = true
     )
     public final int alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -161,7 +129,7 @@ public final class GlobalPositionIntCov {
             signed = true
     )
     public final int relativeAlt() {
-        return relativeAlt;
+        return this.relativeAlt;
     }
 
     /**
@@ -172,7 +140,7 @@ public final class GlobalPositionIntCov {
             unitSize = 4
     )
     public final float vx() {
-        return vx;
+        return this.vx;
     }
 
     /**
@@ -183,7 +151,7 @@ public final class GlobalPositionIntCov {
             unitSize = 4
     )
     public final float vy() {
-        return vy;
+        return this.vy;
     }
 
     /**
@@ -194,7 +162,7 @@ public final class GlobalPositionIntCov {
             unitSize = 4
     )
     public final float vz() {
-        return vz;
+        return this.vz;
     }
 
     /**
@@ -207,22 +175,13 @@ public final class GlobalPositionIntCov {
             arraySize = 36
     )
     public final List<Float> covariance() {
-        return covariance;
+        return this.covariance;
     }
 
-    /**
-     * Class id of the estimator this estimate originated from. 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final MavEstimatorType estimatorType() {
-        return estimatorType;
-    }
-
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
+
+        private MavEstimatorType estimatorType;
 
         private int lat;
 
@@ -240,11 +199,6 @@ public final class GlobalPositionIntCov {
 
         private List<Float> covariance;
 
-        private MavEstimatorType estimatorType;
-
-        private Builder() {
-        }
-
         /**
          * Timestamp (microseconds since system boot or since UNIX epoch) 
          */
@@ -254,6 +208,18 @@ public final class GlobalPositionIntCov {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * Class id of the estimator this estimate originated from. 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder estimatorType(MavEstimatorType estimatorType) {
+            this.estimatorType = estimatorType;
             return this;
         }
 
@@ -359,20 +325,8 @@ public final class GlobalPositionIntCov {
             return this;
         }
 
-        /**
-         * Class id of the estimator this estimate originated from. 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder estimatorType(MavEstimatorType estimatorType) {
-            this.estimatorType = estimatorType;
-            return this;
-        }
-
         public final GlobalPositionIntCov build() {
-            return new GlobalPositionIntCov(timeUsec, lat, lon, alt, relativeAlt, vx, vy, vz, covariance, estimatorType);
+            return new GlobalPositionIntCov(timeUsec, estimatorType, lat, lon, alt, relativeAlt, vx, vy, vz, covariance);
         }
     }
 }

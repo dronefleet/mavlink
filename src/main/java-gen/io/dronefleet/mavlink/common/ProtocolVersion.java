@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * WIP: Version and capability of protocol version. This message is the response to 
@@ -18,29 +16,14 @@ import java.lang.String;
         crc = 217
 )
 public final class ProtocolVersion {
-    /**
-     * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 
-     */
     private final int version;
 
-    /**
-     * Minimum MAVLink version supported 
-     */
     private final int minVersion;
 
-    /**
-     * Maximum MAVLink version supported (set to the same value as version by default) 
-     */
     private final int maxVersion;
 
-    /**
-     * The first 8 bytes (not characters printed in hex!) of the git hash. 
-     */
     private final byte[] specVersionHash;
 
-    /**
-     * The first 8 bytes (not characters printed in hex!) of the git hash. 
-     */
     private final byte[] libraryVersionHash;
 
     private ProtocolVersion(int version, int minVersion, int maxVersion, byte[] specVersionHash,
@@ -52,18 +35,12 @@ public final class ProtocolVersion {
         this.libraryVersionHash = libraryVersionHash;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ProtocolVersion{version=" + version
-                 + ", minVersion=" + minVersion
-                 + ", maxVersion=" + maxVersion
-                 + ", specVersionHash=" + specVersionHash
-                 + ", libraryVersionHash=" + libraryVersionHash + "}";
     }
 
     /**
@@ -74,7 +51,7 @@ public final class ProtocolVersion {
             unitSize = 2
     )
     public final int version() {
-        return version;
+        return this.version;
     }
 
     /**
@@ -85,7 +62,7 @@ public final class ProtocolVersion {
             unitSize = 2
     )
     public final int minVersion() {
-        return minVersion;
+        return this.minVersion;
     }
 
     /**
@@ -96,7 +73,7 @@ public final class ProtocolVersion {
             unitSize = 2
     )
     public final int maxVersion() {
-        return maxVersion;
+        return this.maxVersion;
     }
 
     /**
@@ -108,7 +85,7 @@ public final class ProtocolVersion {
             arraySize = 8
     )
     public final byte[] specVersionHash() {
-        return specVersionHash;
+        return this.specVersionHash;
     }
 
     /**
@@ -120,10 +97,10 @@ public final class ProtocolVersion {
             arraySize = 8
     )
     public final byte[] libraryVersionHash() {
-        return libraryVersionHash;
+        return this.libraryVersionHash;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int version;
 
         private int minVersion;
@@ -133,9 +110,6 @@ public final class ProtocolVersion {
         private byte[] specVersionHash;
 
         private byte[] libraryVersionHash;
-
-        private Builder() {
-        }
 
         /**
          * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 

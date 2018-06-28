@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The positioning status, as reported by GPS. This message is intended to display status 
@@ -16,34 +14,16 @@ import java.lang.String;
         crc = 23
 )
 public final class GpsStatus {
-    /**
-     * Number of satellites visible 
-     */
     private final int satellitesVisible;
 
-    /**
-     * Global satellite ID 
-     */
     private final byte[] satellitePrn;
 
-    /**
-     * 0: Satellite not used, 1: used for localization 
-     */
     private final byte[] satelliteUsed;
 
-    /**
-     * Elevation (0: right on top of receiver, 90: on the horizon) of satellite 
-     */
     private final byte[] satelliteElevation;
 
-    /**
-     * Direction of satellite, 0: 0 deg, 255: 360 deg. 
-     */
     private final byte[] satelliteAzimuth;
 
-    /**
-     * Signal to noise ratio of satellite 
-     */
     private final byte[] satelliteSnr;
 
     private GpsStatus(int satellitesVisible, byte[] satellitePrn, byte[] satelliteUsed,
@@ -56,19 +36,12 @@ public final class GpsStatus {
         this.satelliteSnr = satelliteSnr;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsStatus{satellitesVisible=" + satellitesVisible
-                 + ", satellitePrn=" + satellitePrn
-                 + ", satelliteUsed=" + satelliteUsed
-                 + ", satelliteElevation=" + satelliteElevation
-                 + ", satelliteAzimuth=" + satelliteAzimuth
-                 + ", satelliteSnr=" + satelliteSnr + "}";
     }
 
     /**
@@ -79,7 +52,7 @@ public final class GpsStatus {
             unitSize = 1
     )
     public final int satellitesVisible() {
-        return satellitesVisible;
+        return this.satellitesVisible;
     }
 
     /**
@@ -91,7 +64,7 @@ public final class GpsStatus {
             arraySize = 20
     )
     public final byte[] satellitePrn() {
-        return satellitePrn;
+        return this.satellitePrn;
     }
 
     /**
@@ -103,7 +76,7 @@ public final class GpsStatus {
             arraySize = 20
     )
     public final byte[] satelliteUsed() {
-        return satelliteUsed;
+        return this.satelliteUsed;
     }
 
     /**
@@ -115,7 +88,7 @@ public final class GpsStatus {
             arraySize = 20
     )
     public final byte[] satelliteElevation() {
-        return satelliteElevation;
+        return this.satelliteElevation;
     }
 
     /**
@@ -127,7 +100,7 @@ public final class GpsStatus {
             arraySize = 20
     )
     public final byte[] satelliteAzimuth() {
-        return satelliteAzimuth;
+        return this.satelliteAzimuth;
     }
 
     /**
@@ -139,10 +112,10 @@ public final class GpsStatus {
             arraySize = 20
     )
     public final byte[] satelliteSnr() {
-        return satelliteSnr;
+        return this.satelliteSnr;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int satellitesVisible;
 
         private byte[] satellitePrn;
@@ -154,9 +127,6 @@ public final class GpsStatus {
         private byte[] satelliteAzimuth;
 
         private byte[] satelliteSnr;
-
-        private Builder() {
-        }
 
         /**
          * Number of satellites visible 

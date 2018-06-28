@@ -1,6 +1,10 @@
 package io.dronefleet.mavlink;
 
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.ardupilotmega.ArdupilotmegaDialect;
+import io.dronefleet.mavlink.asluav.AsluavDialect;
+import io.dronefleet.mavlink.autoquad.AutoquadDialect;
+import io.dronefleet.mavlink.common.CommonDialect;
 import io.dronefleet.mavlink.common.Heartbeat;
 import io.dronefleet.mavlink.common.MavAutopilot;
 import io.dronefleet.mavlink.protocol.MavlinkException;
@@ -12,6 +16,7 @@ import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadSerializer;
 import io.dronefleet.mavlink.signing.SigningConfiguration;
+import io.dronefleet.mavlink.slugs.SlugsDialect;
 import io.dronefleet.mavlink.util.TimeProvider;
 
 import java.io.EOFException;
@@ -50,10 +55,10 @@ public class MavlinkConnection {
             this.in = in;
             this.out = out;
             dialects = new HashMap<>();
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_SLUGS, MavlinkDialects.SLUGS);
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, MavlinkDialects.ASLUAV);
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, MavlinkDialects.AUTOQUAD);
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, MavlinkDialects.ARDUPILOTMEGA);
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_SLUGS, new SlugsDialect());
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, new AsluavDialect());
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect());
+            dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect());
             this.timeProvider = TimeProvider.SYSTEM_CLOCK;
         }
 
@@ -106,6 +111,12 @@ public class MavlinkConnection {
                     new ReflectionPayloadSerializer(), signingConfiguration, timeProvider);
         }
     }
+
+    /**
+     * The default dialect for systems which have not yet been associated
+     * with a specific dialect.
+     */
+    private static MavlinkDialect COMMON_DIALECT = new CommonDialect();
 
     /**
      * Creates a new builder for the specified input/output streams.
@@ -219,7 +230,7 @@ public class MavlinkConnection {
      *
      * <p>When receiving messages from an origin which dialect is unknown or unsupported -- Such as before receiving
      * a heartbeat, or if the autopilot of the heartbeat is unrecognized, this method defaults to using the
-     * {@link MavlinkDialects#COMMON common} dialect.</p>
+     * {@link io.dronefleet.mavlink.common.CommonDialect common} dialect.</p>
      *
      * @return  The next supported and valid Mavlink message.
      * @throws EOFException When the stream ends.
@@ -231,7 +242,7 @@ public class MavlinkConnection {
 
             // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
             // or we don't support the dialect of its autopilot, then we use the common dialect.
-            MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), MavlinkDialects.COMMON);
+            MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
 
             // If the packet is not supported by the dialect, then we drop the packet and continue.
             // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates

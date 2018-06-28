@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,44 +13,20 @@ import java.math.BigInteger;
         crc = 234
 )
 public final class AslObctrl {
-    /**
-     * Time since system start 
-     */
     private final BigInteger timestamp;
 
-    /**
-     * Elevator command [~] 
-     */
     private final float uelev;
 
-    /**
-     * Throttle command [~] 
-     */
     private final float uthrot;
 
-    /**
-     * Throttle 2 command [~] 
-     */
     private final float uthrot2;
 
-    /**
-     * Left aileron command [~] 
-     */
     private final float uaill;
 
-    /**
-     * Right aileron command [~] 
-     */
     private final float uailr;
 
-    /**
-     * Rudder command [~] 
-     */
     private final float urud;
 
-    /**
-     * Off-board computer status 
-     */
     private final int obctrlStatus;
 
     private AslObctrl(BigInteger timestamp, float uelev, float uthrot, float uthrot2, float uaill,
@@ -67,21 +41,12 @@ public final class AslObctrl {
         this.obctrlStatus = obctrlStatus;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AslObctrl{timestamp=" + timestamp
-                 + ", uelev=" + uelev
-                 + ", uthrot=" + uthrot
-                 + ", uthrot2=" + uthrot2
-                 + ", uaill=" + uaill
-                 + ", uailr=" + uailr
-                 + ", urud=" + urud
-                 + ", obctrlStatus=" + obctrlStatus + "}";
     }
 
     /**
@@ -92,7 +57,7 @@ public final class AslObctrl {
             unitSize = 8
     )
     public final BigInteger timestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     /**
@@ -103,7 +68,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float uelev() {
-        return uelev;
+        return this.uelev;
     }
 
     /**
@@ -114,7 +79,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float uthrot() {
-        return uthrot;
+        return this.uthrot;
     }
 
     /**
@@ -125,7 +90,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float uthrot2() {
-        return uthrot2;
+        return this.uthrot2;
     }
 
     /**
@@ -136,7 +101,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float uaill() {
-        return uaill;
+        return this.uaill;
     }
 
     /**
@@ -147,7 +112,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float uailr() {
-        return uailr;
+        return this.uailr;
     }
 
     /**
@@ -158,7 +123,7 @@ public final class AslObctrl {
             unitSize = 4
     )
     public final float urud() {
-        return urud;
+        return this.urud;
     }
 
     /**
@@ -169,10 +134,10 @@ public final class AslObctrl {
             unitSize = 1
     )
     public final int obctrlStatus() {
-        return obctrlStatus;
+        return this.obctrlStatus;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timestamp;
 
         private float uelev;
@@ -188,9 +153,6 @@ public final class AslObctrl {
         private float urud;
 
         private int obctrlStatus;
-
-        private Builder() {
-        }
 
         /**
          * Time since system start 

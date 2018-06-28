@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -15,109 +14,56 @@ import java.lang.String;
         crc = 184
 )
 public final class AdsbVehicle {
-    /**
-     * ICAO address 
-     */
     private final long icaoAddress;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude, expressed as degrees * 1E7 
-     */
     private final int lon;
 
-    /**
-     * Altitude(ASL) in millimeters 
-     */
-    private final int altitude;
-
-    /**
-     * Course over ground in centidegrees 
-     */
-    private final int heading;
-
-    /**
-     * The horizontal velocity in centimeters/second 
-     */
-    private final int horVelocity;
-
-    /**
-     * The vertical velocity in centimeters/second, positive is up 
-     */
-    private final int verVelocity;
-
-    /**
-     * Flags to indicate various statuses including valid data fields 
-     */
-    private final EnumFlagSet<AdsbFlags> flags;
-
-    /**
-     * Squawk code 
-     */
-    private final int squawk;
-
-    /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType AdsbAltitudeType} enum 
-     */
     private final AdsbAltitudeType altitudeType;
 
-    /**
-     * The callsign, 8+null 
-     */
+    private final int altitude;
+
+    private final int heading;
+
+    private final int horVelocity;
+
+    private final int verVelocity;
+
     private final String callsign;
 
-    /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
-     */
     private final AdsbEmitterType emitterType;
 
-    /**
-     * Time since last communication in seconds 
-     */
     private final int tslc;
 
-    private AdsbVehicle(long icaoAddress, int lat, int lon, int altitude, int heading,
-            int horVelocity, int verVelocity, EnumFlagSet<AdsbFlags> flags, int squawk,
-            AdsbAltitudeType altitudeType, String callsign, AdsbEmitterType emitterType, int tslc) {
+    private final EnumFlagSet<AdsbFlags> flags;
+
+    private final int squawk;
+
+    private AdsbVehicle(long icaoAddress, int lat, int lon, AdsbAltitudeType altitudeType,
+            int altitude, int heading, int horVelocity, int verVelocity, String callsign,
+            AdsbEmitterType emitterType, int tslc, EnumFlagSet<AdsbFlags> flags, int squawk) {
         this.icaoAddress = icaoAddress;
         this.lat = lat;
         this.lon = lon;
+        this.altitudeType = altitudeType;
         this.altitude = altitude;
         this.heading = heading;
         this.horVelocity = horVelocity;
         this.verVelocity = verVelocity;
-        this.flags = flags;
-        this.squawk = squawk;
-        this.altitudeType = altitudeType;
         this.callsign = callsign;
         this.emitterType = emitterType;
         this.tslc = tslc;
+        this.flags = flags;
+        this.squawk = squawk;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AdsbVehicle{icaoAddress=" + icaoAddress
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", altitudeType=" + altitudeType
-                 + ", altitude=" + altitude
-                 + ", heading=" + heading
-                 + ", horVelocity=" + horVelocity
-                 + ", verVelocity=" + verVelocity
-                 + ", callsign=" + callsign
-                 + ", emitterType=" + emitterType
-                 + ", tslc=" + tslc
-                 + ", flags=" + flags
-                 + ", squawk=" + squawk + "}";
     }
 
     /**
@@ -128,7 +74,7 @@ public final class AdsbVehicle {
             unitSize = 4
     )
     public final long icaoAddress() {
-        return icaoAddress;
+        return this.icaoAddress;
     }
 
     /**
@@ -140,7 +86,7 @@ public final class AdsbVehicle {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -152,7 +98,18 @@ public final class AdsbVehicle {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
+    }
+
+    /**
+     * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 1
+    )
+    public final AdsbAltitudeType altitudeType() {
+        return this.altitudeType;
     }
 
     /**
@@ -164,7 +121,7 @@ public final class AdsbVehicle {
             signed = true
     )
     public final int altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -175,7 +132,7 @@ public final class AdsbVehicle {
             unitSize = 2
     )
     public final int heading() {
-        return heading;
+        return this.heading;
     }
 
     /**
@@ -186,7 +143,7 @@ public final class AdsbVehicle {
             unitSize = 2
     )
     public final int horVelocity() {
-        return horVelocity;
+        return this.horVelocity;
     }
 
     /**
@@ -198,40 +155,7 @@ public final class AdsbVehicle {
             signed = true
     )
     public final int verVelocity() {
-        return verVelocity;
-    }
-
-    /**
-     * Flags to indicate various statuses including valid data fields 
-     */
-    @MavlinkFieldInfo(
-            position = 12,
-            unitSize = 2
-    )
-    public final EnumFlagSet<AdsbFlags> flags() {
-        return flags;
-    }
-
-    /**
-     * Squawk code 
-     */
-    @MavlinkFieldInfo(
-            position = 13,
-            unitSize = 2
-    )
-    public final int squawk() {
-        return squawk;
-    }
-
-    /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType AdsbAltitudeType} enum 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 1
-    )
-    public final AdsbAltitudeType altitudeType() {
-        return altitudeType;
+        return this.verVelocity;
     }
 
     /**
@@ -243,18 +167,18 @@ public final class AdsbVehicle {
             arraySize = 9
     )
     public final String callsign() {
-        return callsign;
+        return this.callsign;
     }
 
     /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
+     * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1
     )
     public final AdsbEmitterType emitterType() {
-        return emitterType;
+        return this.emitterType;
     }
 
     /**
@@ -265,15 +189,39 @@ public final class AdsbVehicle {
             unitSize = 1
     )
     public final int tslc() {
-        return tslc;
+        return this.tslc;
     }
 
-    public static class Builder {
+    /**
+     * Flags to indicate various statuses including valid data fields 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 2
+    )
+    public final EnumFlagSet<AdsbFlags> flags() {
+        return this.flags;
+    }
+
+    /**
+     * Squawk code 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 2
+    )
+    public final int squawk() {
+        return this.squawk;
+    }
+
+    public static final class Builder {
         private long icaoAddress;
 
         private int lat;
 
         private int lon;
+
+        private AdsbAltitudeType altitudeType;
 
         private int altitude;
 
@@ -283,20 +231,15 @@ public final class AdsbVehicle {
 
         private int verVelocity;
 
-        private EnumFlagSet<AdsbFlags> flags;
-
-        private int squawk;
-
-        private AdsbAltitudeType altitudeType;
-
         private String callsign;
 
         private AdsbEmitterType emitterType;
 
         private int tslc;
 
-        private Builder() {
-        }
+        private EnumFlagSet<AdsbFlags> flags;
+
+        private int squawk;
 
         /**
          * ICAO address 
@@ -333,6 +276,18 @@ public final class AdsbVehicle {
         )
         public final Builder lon(int lon) {
             this.lon = lon;
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1
+        )
+        public final Builder altitudeType(AdsbAltitudeType altitudeType) {
+            this.altitudeType = altitudeType;
             return this;
         }
 
@@ -387,6 +342,43 @@ public final class AdsbVehicle {
         }
 
         /**
+         * The callsign, 8+null 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 1,
+                arraySize = 9
+        )
+        public final Builder callsign(String callsign) {
+            this.callsign = callsign;
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 1
+        )
+        public final Builder emitterType(AdsbEmitterType emitterType) {
+            this.emitterType = emitterType;
+            return this;
+        }
+
+        /**
+         * Time since last communication in seconds 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 1
+        )
+        public final Builder tslc(int tslc) {
+            this.tslc = tslc;
+            return this;
+        }
+
+        /**
          * Flags to indicate various statuses including valid data fields 
          */
         @MavlinkFieldInfo(
@@ -410,57 +402,8 @@ public final class AdsbVehicle {
             return this;
         }
 
-        /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType AdsbAltitudeType} enum 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 1
-        )
-        public final Builder altitudeType(AdsbAltitudeType altitudeType) {
-            this.altitudeType = altitudeType;
-            return this;
-        }
-
-        /**
-         * The callsign, 8+null 
-         */
-        @MavlinkFieldInfo(
-                position = 9,
-                unitSize = 1,
-                arraySize = 9
-        )
-        public final Builder callsign(String callsign) {
-            this.callsign = callsign;
-            return this;
-        }
-
-        /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType AdsbEmitterType} enum 
-         */
-        @MavlinkFieldInfo(
-                position = 10,
-                unitSize = 1
-        )
-        public final Builder emitterType(AdsbEmitterType emitterType) {
-            this.emitterType = emitterType;
-            return this;
-        }
-
-        /**
-         * Time since last communication in seconds 
-         */
-        @MavlinkFieldInfo(
-                position = 11,
-                unitSize = 1
-        )
-        public final Builder tslc(int tslc) {
-            this.tslc = tslc;
-            return this;
-        }
-
         public final AdsbVehicle build() {
-            return new AdsbVehicle(icaoAddress, lat, lon, altitude, heading, horVelocity, verVelocity, flags, squawk, altitudeType, callsign, emitterType, tslc);
+            return new AdsbVehicle(icaoAddress, lat, lon, altitudeType, altitude, heading, horVelocity, verVelocity, callsign, emitterType, tslc, flags, squawk);
         }
     }
 }

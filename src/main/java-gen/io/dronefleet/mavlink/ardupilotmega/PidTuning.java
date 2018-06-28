@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * PID tuning information 
@@ -14,132 +12,37 @@ import java.lang.String;
         crc = 98
 )
 public final class PidTuning {
-    /**
-     * desired rate (degrees/s) 
-     */
-    private final float desired;
-
-    /**
-     * achieved rate (degrees/s) 
-     */
-    private final float achieved;
-
-    /**
-     * FF component 
-     */
-    private final float ff;
-
-    /**
-     * P component 
-     */
-    private final float p;
-
-    /**
-     * I component 
-     */
-    private final float i;
-
-    /**
-     * D component 
-     */
-    private final float d;
-
-    /**
-     * axis 
-     */
     private final PidTuningAxis axis;
 
-    private PidTuning(float desired, float achieved, float ff, float p, float i, float d,
-            PidTuningAxis axis) {
+    private final float desired;
+
+    private final float achieved;
+
+    private final float ff;
+
+    private final float p;
+
+    private final float i;
+
+    private final float d;
+
+    private PidTuning(PidTuningAxis axis, float desired, float achieved, float ff, float p, float i,
+            float d) {
+        this.axis = axis;
         this.desired = desired;
         this.achieved = achieved;
         this.ff = ff;
         this.p = p;
         this.i = i;
         this.d = d;
-        this.axis = axis;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "PidTuning{axis=" + axis
-                 + ", desired=" + desired
-                 + ", achieved=" + achieved
-                 + ", ff=" + ff
-                 + ", p=" + p
-                 + ", i=" + i
-                 + ", d=" + d + "}";
-    }
-
-    /**
-     * desired rate (degrees/s) 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float desired() {
-        return desired;
-    }
-
-    /**
-     * achieved rate (degrees/s) 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float achieved() {
-        return achieved;
-    }
-
-    /**
-     * FF component 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float ff() {
-        return ff;
-    }
-
-    /**
-     * P component 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float p() {
-        return p;
-    }
-
-    /**
-     * I component 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float i() {
-        return i;
-    }
-
-    /**
-     * D component 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float d() {
-        return d;
     }
 
     /**
@@ -150,10 +53,78 @@ public final class PidTuning {
             unitSize = 1
     )
     public final PidTuningAxis axis() {
-        return axis;
+        return this.axis;
     }
 
-    public static class Builder {
+    /**
+     * desired rate (degrees/s) 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float desired() {
+        return this.desired;
+    }
+
+    /**
+     * achieved rate (degrees/s) 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float achieved() {
+        return this.achieved;
+    }
+
+    /**
+     * FF component 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float ff() {
+        return this.ff;
+    }
+
+    /**
+     * P component 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float p() {
+        return this.p;
+    }
+
+    /**
+     * I component 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float i() {
+        return this.i;
+    }
+
+    /**
+     * D component 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float d() {
+        return this.d;
+    }
+
+    public static final class Builder {
+        private PidTuningAxis axis;
+
         private float desired;
 
         private float achieved;
@@ -166,9 +137,16 @@ public final class PidTuning {
 
         private float d;
 
-        private PidTuningAxis axis;
-
-        private Builder() {
+        /**
+         * axis 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder axis(PidTuningAxis axis) {
+            this.axis = axis;
+            return this;
         }
 
         /**
@@ -243,20 +221,8 @@ public final class PidTuning {
             return this;
         }
 
-        /**
-         * axis 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder axis(PidTuningAxis axis) {
-            this.axis = axis;
-            return this;
-        }
-
         public final PidTuning build() {
-            return new PidTuning(desired, achieved, ff, p, i, d, axis);
+            return new PidTuning(axis, desired, achieved, ff, p, i, d);
         }
     }
 }

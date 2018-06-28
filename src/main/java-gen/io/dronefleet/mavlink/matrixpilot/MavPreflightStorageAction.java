@@ -9,57 +9,43 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavPreflightStorageAction {
     /**
-     * Read all parameters from storage<dl>
-     *
-     * </dl>
+     * Read all parameters from storage 
      */
     @MavlinkEntryInfo(0)
     MAV_PFS_CMD_READ_ALL,
 
     /**
-     * Write all parameters to storage<dl>
-     *
-     * </dl>
+     * Write all parameters to storage 
      */
     @MavlinkEntryInfo(1)
     MAV_PFS_CMD_WRITE_ALL,
 
     /**
-     * Clear all  parameters in storage<dl>
-     *
-     * </dl>
+     * Clear all parameters in storage 
      */
     @MavlinkEntryInfo(2)
     MAV_PFS_CMD_CLEAR_ALL,
 
     /**
-     * Read specific parameters from storage<dl>
-     *
-     * </dl>
+     * Read specific parameters from storage 
      */
     @MavlinkEntryInfo(3)
     MAV_PFS_CMD_READ_SPECIFIC,
 
     /**
-     * Write specific parameters to storage<dl>
-     *
-     * </dl>
+     * Write specific parameters to storage 
      */
     @MavlinkEntryInfo(4)
     MAV_PFS_CMD_WRITE_SPECIFIC,
 
     /**
-     * Clear specific parameters in storage<dl>
-     *
-     * </dl>
+     * Clear specific parameters in storage 
      */
     @MavlinkEntryInfo(5)
     MAV_PFS_CMD_CLEAR_SPECIFIC,
 
     /**
-     * do nothing<dl>
-     *
-     * </dl>
+     * do nothing 
      */
     @MavlinkEntryInfo(6)
     MAV_PFS_CMD_DO_NOTHING

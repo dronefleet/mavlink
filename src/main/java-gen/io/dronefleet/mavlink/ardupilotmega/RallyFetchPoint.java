@@ -3,11 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Request a current rally point from MAV. MAV should respond with a {@link io.dronefleet.mavlink.ardupilotmega.RallyPoint RallyPoint} message. MAV 
+ * Request a current rally point from MAV. MAV should respond with a {@link io.dronefleet.mavlink.ardupilotmega.RallyPoint RALLY_POINT} message. MAV 
  * should not respond if the request is invalid. 
  */
 @MavlinkMessageInfo(
@@ -15,19 +13,10 @@ import java.lang.String;
         crc = 234
 )
 public final class RallyFetchPoint {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * point index (first point is 0) 
-     */
     private final int idx;
 
     private RallyFetchPoint(int targetSystem, int targetComponent, int idx) {
@@ -36,16 +25,12 @@ public final class RallyFetchPoint {
         this.idx = idx;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "RallyFetchPoint{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", idx=" + idx + "}";
     }
 
     /**
@@ -56,7 +41,7 @@ public final class RallyFetchPoint {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -67,7 +52,7 @@ public final class RallyFetchPoint {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -78,18 +63,15 @@ public final class RallyFetchPoint {
             unitSize = 1
     )
     public final int idx() {
-        return idx;
+        return this.idx;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private int idx;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

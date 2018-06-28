@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Erase all logs 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 237
 )
 public final class LogErase {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
     private LogErase(int targetSystem, int targetComponent) {
@@ -29,15 +21,12 @@ public final class LogErase {
         this.targetComponent = targetComponent;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LogErase{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class LogErase {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class LogErase {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

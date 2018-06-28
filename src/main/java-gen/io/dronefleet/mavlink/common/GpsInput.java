@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -17,103 +15,52 @@ import java.math.BigInteger;
         crc = 151
 )
 public final class GpsInput {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * GPS time (milliseconds from start of GPS week) 
-     */
-    private final long timeWeekMs;
-
-    /**
-     * Latitude (WGS84), in degrees * 1E7 
-     */
-    private final int lat;
-
-    /**
-     * Longitude (WGS84), in degrees * 1E7 
-     */
-    private final int lon;
-
-    /**
-     * Altitude (AMSL, not WGS84), in m (positive for up) 
-     */
-    private final float alt;
-
-    /**
-     * GPS HDOP horizontal dilution of position in m 
-     */
-    private final float hdop;
-
-    /**
-     * GPS VDOP vertical dilution of position in m 
-     */
-    private final float vdop;
-
-    /**
-     * GPS velocity in m/s in NORTH direction in earth-fixed NED frame 
-     */
-    private final float vn;
-
-    /**
-     * GPS velocity in m/s in EAST direction in earth-fixed NED frame 
-     */
-    private final float ve;
-
-    /**
-     * GPS velocity in m/s in DOWN direction in earth-fixed NED frame 
-     */
-    private final float vd;
-
-    /**
-     * GPS speed accuracy in m/s 
-     */
-    private final float speedAccuracy;
-
-    /**
-     * GPS horizontal accuracy in m 
-     */
-    private final float horizAccuracy;
-
-    /**
-     * GPS vertical accuracy in m 
-     */
-    private final float vertAccuracy;
-
-    /**
-     * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GpsInputIgnoreFlags} enum). All other fields 
-     * must be provided. 
-     */
-    private final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
-
-    /**
-     * GPS week number 
-     */
-    private final int timeWeek;
-
-    /**
-     * ID of the GPS for multiple GPS inputs 
-     */
     private final int gpsId;
 
-    /**
-     * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
-     */
+    private final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
+
+    private final long timeWeekMs;
+
+    private final int timeWeek;
+
     private final int fixType;
 
-    /**
-     * Number of satellites visible. 
-     */
+    private final int lat;
+
+    private final int lon;
+
+    private final float alt;
+
+    private final float hdop;
+
+    private final float vdop;
+
+    private final float vn;
+
+    private final float ve;
+
+    private final float vd;
+
+    private final float speedAccuracy;
+
+    private final float horizAccuracy;
+
+    private final float vertAccuracy;
+
     private final int satellitesVisible;
 
-    private GpsInput(BigInteger timeUsec, long timeWeekMs, int lat, int lon, float alt, float hdop,
+    private GpsInput(BigInteger timeUsec, int gpsId, EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags,
+            long timeWeekMs, int timeWeek, int fixType, int lat, int lon, float alt, float hdop,
             float vdop, float vn, float ve, float vd, float speedAccuracy, float horizAccuracy,
-            float vertAccuracy, EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags, int timeWeek,
-            int gpsId, int fixType, int satellitesVisible) {
+            float vertAccuracy, int satellitesVisible) {
         this.timeUsec = timeUsec;
+        this.gpsId = gpsId;
+        this.ignoreFlags = ignoreFlags;
         this.timeWeekMs = timeWeekMs;
+        this.timeWeek = timeWeek;
+        this.fixType = fixType;
         this.lat = lat;
         this.lon = lon;
         this.alt = alt;
@@ -125,38 +72,15 @@ public final class GpsInput {
         this.speedAccuracy = speedAccuracy;
         this.horizAccuracy = horizAccuracy;
         this.vertAccuracy = vertAccuracy;
-        this.ignoreFlags = ignoreFlags;
-        this.timeWeek = timeWeek;
-        this.gpsId = gpsId;
-        this.fixType = fixType;
         this.satellitesVisible = satellitesVisible;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsInput{timeUsec=" + timeUsec
-                 + ", gpsId=" + gpsId
-                 + ", ignoreFlags=" + ignoreFlags
-                 + ", timeWeekMs=" + timeWeekMs
-                 + ", timeWeek=" + timeWeek
-                 + ", fixType=" + fixType
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", hdop=" + hdop
-                 + ", vdop=" + vdop
-                 + ", vn=" + vn
-                 + ", ve=" + ve
-                 + ", vd=" + vd
-                 + ", speedAccuracy=" + speedAccuracy
-                 + ", horizAccuracy=" + horizAccuracy
-                 + ", vertAccuracy=" + vertAccuracy
-                 + ", satellitesVisible=" + satellitesVisible + "}";
     }
 
     /**
@@ -167,7 +91,30 @@ public final class GpsInput {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
+    }
+
+    /**
+     * ID of the GPS for multiple GPS inputs 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int gpsId() {
+        return this.gpsId;
+    }
+
+    /**
+     * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GPS_INPUT_IGNORE_FLAGS} enum). All other fields 
+     * must be provided. 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags() {
+        return this.ignoreFlags;
     }
 
     /**
@@ -178,7 +125,29 @@ public final class GpsInput {
             unitSize = 4
     )
     public final long timeWeekMs() {
-        return timeWeekMs;
+        return this.timeWeekMs;
+    }
+
+    /**
+     * GPS week number 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2
+    )
+    public final int timeWeek() {
+        return this.timeWeek;
+    }
+
+    /**
+     * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 1
+    )
+    public final int fixType() {
+        return this.fixType;
     }
 
     /**
@@ -190,7 +159,7 @@ public final class GpsInput {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -202,7 +171,7 @@ public final class GpsInput {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -213,7 +182,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -224,7 +193,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float hdop() {
-        return hdop;
+        return this.hdop;
     }
 
     /**
@@ -235,7 +204,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float vdop() {
-        return vdop;
+        return this.vdop;
     }
 
     /**
@@ -246,7 +215,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float vn() {
-        return vn;
+        return this.vn;
     }
 
     /**
@@ -257,7 +226,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float ve() {
-        return ve;
+        return this.ve;
     }
 
     /**
@@ -268,7 +237,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float vd() {
-        return vd;
+        return this.vd;
     }
 
     /**
@@ -279,7 +248,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float speedAccuracy() {
-        return speedAccuracy;
+        return this.speedAccuracy;
     }
 
     /**
@@ -290,7 +259,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float horizAccuracy() {
-        return horizAccuracy;
+        return this.horizAccuracy;
     }
 
     /**
@@ -301,52 +270,7 @@ public final class GpsInput {
             unitSize = 4
     )
     public final float vertAccuracy() {
-        return vertAccuracy;
-    }
-
-    /**
-     * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GpsInputIgnoreFlags} enum). All other fields 
-     * must be provided. 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags() {
-        return ignoreFlags;
-    }
-
-    /**
-     * GPS week number 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2
-    )
-    public final int timeWeek() {
-        return timeWeek;
-    }
-
-    /**
-     * ID of the GPS for multiple GPS inputs 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int gpsId() {
-        return gpsId;
-    }
-
-    /**
-     * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 1
-    )
-    public final int fixType() {
-        return fixType;
+        return this.vertAccuracy;
     }
 
     /**
@@ -357,13 +281,21 @@ public final class GpsInput {
             unitSize = 1
     )
     public final int satellitesVisible() {
-        return satellitesVisible;
+        return this.satellitesVisible;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
+        private int gpsId;
+
+        private EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
+
         private long timeWeekMs;
+
+        private int timeWeek;
+
+        private int fixType;
 
         private int lat;
 
@@ -387,18 +319,7 @@ public final class GpsInput {
 
         private float vertAccuracy;
 
-        private EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
-
-        private int timeWeek;
-
-        private int gpsId;
-
-        private int fixType;
-
         private int satellitesVisible;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 
@@ -413,6 +334,31 @@ public final class GpsInput {
         }
 
         /**
+         * ID of the GPS for multiple GPS inputs 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder gpsId(int gpsId) {
+            this.gpsId = gpsId;
+            return this;
+        }
+
+        /**
+         * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GPS_INPUT_IGNORE_FLAGS} enum). All other fields 
+         * must be provided. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder ignoreFlags(EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags) {
+            this.ignoreFlags = ignoreFlags;
+            return this;
+        }
+
+        /**
          * GPS time (milliseconds from start of GPS week) 
          */
         @MavlinkFieldInfo(
@@ -421,6 +367,30 @@ public final class GpsInput {
         )
         public final Builder timeWeekMs(long timeWeekMs) {
             this.timeWeekMs = timeWeekMs;
+            return this;
+        }
+
+        /**
+         * GPS week number 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2
+        )
+        public final Builder timeWeek(int timeWeek) {
+            this.timeWeek = timeWeek;
+            return this;
+        }
+
+        /**
+         * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 1
+        )
+        public final Builder fixType(int fixType) {
+            this.fixType = fixType;
             return this;
         }
 
@@ -559,55 +529,6 @@ public final class GpsInput {
         }
 
         /**
-         * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GpsInputIgnoreFlags} enum). All other fields 
-         * must be provided. 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder ignoreFlags(EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags) {
-            this.ignoreFlags = ignoreFlags;
-            return this;
-        }
-
-        /**
-         * GPS week number 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 2
-        )
-        public final Builder timeWeek(int timeWeek) {
-            this.timeWeek = timeWeek;
-            return this;
-        }
-
-        /**
-         * ID of the GPS for multiple GPS inputs 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder gpsId(int gpsId) {
-            this.gpsId = gpsId;
-            return this;
-        }
-
-        /**
-         * 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 1
-        )
-        public final Builder fixType(int fixType) {
-            this.fixType = fixType;
-            return this;
-        }
-
-        /**
          * Number of satellites visible. 
          */
         @MavlinkFieldInfo(
@@ -620,7 +541,7 @@ public final class GpsInput {
         }
 
         public final GpsInput build() {
-            return new GpsInput(timeUsec, timeWeekMs, lat, lon, alt, hdop, vdop, vn, ve, vd, speedAccuracy, horizAccuracy, vertAccuracy, ignoreFlags, timeWeek, gpsId, fixType, satellitesVisible);
+            return new GpsInput(timeUsec, gpsId, ignoreFlags, timeWeekMs, timeWeek, fixType, lat, lon, alt, hdop, vdop, vn, ve, vd, speedAccuracy, horizAccuracy, vertAccuracy, satellitesVisible);
         }
     }
 }

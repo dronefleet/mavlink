@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The filtered global position (e.g. fused GPS and accelerometers). The position is in 
@@ -16,51 +14,22 @@ import java.lang.String;
         crc = 104
 )
 public final class GlobalPositionInt {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude, expressed as degrees * 1E7 
-     */
     private final int lon;
 
-    /**
-     * Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually 
-     * all GPS modules provide the AMSL as well) 
-     */
     private final int alt;
 
-    /**
-     * Altitude above ground in meters, expressed as * 1000 (millimeters) 
-     */
     private final int relativeAlt;
 
-    /**
-     * Ground X Speed (Latitude, positive north), expressed as m/s * 100 
-     */
     private final int vx;
 
-    /**
-     * Ground Y Speed (Longitude, positive east), expressed as m/s * 100 
-     */
     private final int vy;
 
-    /**
-     * Ground Z Speed (Altitude, positive down), expressed as m/s * 100 
-     */
     private final int vz;
 
-    /**
-     * Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 
-     * UINT16_MAX 
-     */
     private final int hdg;
 
     private GlobalPositionInt(long timeBootMs, int lat, int lon, int alt, int relativeAlt, int vx,
@@ -76,22 +45,12 @@ public final class GlobalPositionInt {
         this.hdg = hdg;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GlobalPositionInt{timeBootMs=" + timeBootMs
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", relativeAlt=" + relativeAlt
-                 + ", vx=" + vx
-                 + ", vy=" + vy
-                 + ", vz=" + vz
-                 + ", hdg=" + hdg + "}";
     }
 
     /**
@@ -102,7 +61,7 @@ public final class GlobalPositionInt {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -114,7 +73,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -126,7 +85,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -139,7 +98,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -151,7 +110,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int relativeAlt() {
-        return relativeAlt;
+        return this.relativeAlt;
     }
 
     /**
@@ -163,7 +122,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int vx() {
-        return vx;
+        return this.vx;
     }
 
     /**
@@ -175,7 +134,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int vy() {
-        return vy;
+        return this.vy;
     }
 
     /**
@@ -187,7 +146,7 @@ public final class GlobalPositionInt {
             signed = true
     )
     public final int vz() {
-        return vz;
+        return this.vz;
     }
 
     /**
@@ -199,10 +158,10 @@ public final class GlobalPositionInt {
             unitSize = 2
     )
     public final int hdg() {
-        return hdg;
+        return this.hdg;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private int lat;
@@ -220,9 +179,6 @@ public final class GlobalPositionInt {
         private int vz;
 
         private int hdg;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

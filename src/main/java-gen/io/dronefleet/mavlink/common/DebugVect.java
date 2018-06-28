@@ -3,107 +3,41 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 
 /**
- * null
+ *  
  */
 @MavlinkMessageInfo(
         id = 250,
         crc = 49
 )
 public final class DebugVect {
-    /**
-     * Timestamp 
-     */
-    private final BigInteger timeUsec;
-
-    /**
-     * x 
-     */
-    private final float x;
-
-    /**
-     * y 
-     */
-    private final float y;
-
-    /**
-     * z 
-     */
-    private final float z;
-
-    /**
-     * Name 
-     */
     private final String name;
 
-    private DebugVect(BigInteger timeUsec, float x, float y, float z, String name) {
+    private final BigInteger timeUsec;
+
+    private final float x;
+
+    private final float y;
+
+    private final float z;
+
+    private DebugVect(String name, BigInteger timeUsec, float x, float y, float z) {
+        this.name = name;
         this.timeUsec = timeUsec;
         this.x = x;
         this.y = y;
         this.z = z;
-        this.name = name;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DebugVect{name=" + name
-                 + ", timeUsec=" + timeUsec
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z + "}";
-    }
-
-    /**
-     * Timestamp 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 8
-    )
-    public final BigInteger timeUsec() {
-        return timeUsec;
-    }
-
-    /**
-     * x 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float x() {
-        return x;
-    }
-
-    /**
-     * y 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float y() {
-        return y;
-    }
-
-    /**
-     * z 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float z() {
-        return z;
     }
 
     /**
@@ -115,10 +49,56 @@ public final class DebugVect {
             arraySize = 10
     )
     public final String name() {
-        return name;
+        return this.name;
     }
 
-    public static class Builder {
+    /**
+     * Timestamp 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 8
+    )
+    public final BigInteger timeUsec() {
+        return this.timeUsec;
+    }
+
+    /**
+     * x 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float x() {
+        return this.x;
+    }
+
+    /**
+     * y 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float y() {
+        return this.y;
+    }
+
+    /**
+     * z 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float z() {
+        return this.z;
+    }
+
+    public static final class Builder {
+        private String name;
+
         private BigInteger timeUsec;
 
         private float x;
@@ -127,9 +107,17 @@ public final class DebugVect {
 
         private float z;
 
-        private String name;
-
-        private Builder() {
+        /**
+         * Name 
+         */
+        @MavlinkFieldInfo(
+                position = 0,
+                unitSize = 1,
+                arraySize = 10
+        )
+        public final Builder name(String name) {
+            this.name = name;
+            return this;
         }
 
         /**
@@ -180,21 +168,8 @@ public final class DebugVect {
             return this;
         }
 
-        /**
-         * Name 
-         */
-        @MavlinkFieldInfo(
-                position = 0,
-                unitSize = 1,
-                arraySize = 10
-        )
-        public final Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
         public final DebugVect build() {
-            return new DebugVect(timeUsec, x, y, z, name);
+            return new DebugVect(name, timeUsec, x, y, z);
         }
     }
 }

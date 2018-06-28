@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -14,135 +13,44 @@ import java.lang.String;
         crc = 232
 )
 public final class SetVideoStreamSettings {
-    /**
-     * Frames per second (set to -1 for highest framerate possible) 
-     */
-    private final float framerate;
-
-    /**
-     * Bit rate in bits per second (set to -1 for auto) 
-     */
-    private final long bitrate;
-
-    /**
-     * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
-     */
-    private final int resolutionH;
-
-    /**
-     * Resolution vertical in pixels (set to -1 for highest resolution possible) 
-     */
-    private final int resolutionV;
-
-    /**
-     * Video image rotation clockwise (0-359 degrees) 
-     */
-    private final int rotation;
-
-    /**
-     * system ID of the target 
-     */
     private final int targetSystem;
 
-    /**
-     * component ID of the target 
-     */
     private final int targetComponent;
 
-    /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
     private final int cameraId;
 
-    /**
-     * Video stream URI 
-     */
+    private final float framerate;
+
+    private final int resolutionH;
+
+    private final int resolutionV;
+
+    private final long bitrate;
+
+    private final int rotation;
+
     private final String uri;
 
-    private SetVideoStreamSettings(float framerate, long bitrate, int resolutionH, int resolutionV,
-            int rotation, int targetSystem, int targetComponent, int cameraId, String uri) {
-        this.framerate = framerate;
-        this.bitrate = bitrate;
-        this.resolutionH = resolutionH;
-        this.resolutionV = resolutionV;
-        this.rotation = rotation;
+    private SetVideoStreamSettings(int targetSystem, int targetComponent, int cameraId,
+            float framerate, int resolutionH, int resolutionV, long bitrate, int rotation,
+            String uri) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.cameraId = cameraId;
+        this.framerate = framerate;
+        this.resolutionH = resolutionH;
+        this.resolutionV = resolutionV;
+        this.bitrate = bitrate;
+        this.rotation = rotation;
         this.uri = uri;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SetVideoStreamSettings{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", cameraId=" + cameraId
-                 + ", framerate=" + framerate
-                 + ", resolutionH=" + resolutionH
-                 + ", resolutionV=" + resolutionV
-                 + ", bitrate=" + bitrate
-                 + ", rotation=" + rotation
-                 + ", uri=" + uri + "}";
-    }
-
-    /**
-     * Frames per second (set to -1 for highest framerate possible) 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float framerate() {
-        return framerate;
-    }
-
-    /**
-     * Bit rate in bits per second (set to -1 for auto) 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final long bitrate() {
-        return bitrate;
-    }
-
-    /**
-     * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2
-    )
-    public final int resolutionH() {
-        return resolutionH;
-    }
-
-    /**
-     * Resolution vertical in pixels (set to -1 for highest resolution possible) 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 2
-    )
-    public final int resolutionV() {
-        return resolutionV;
-    }
-
-    /**
-     * Video image rotation clockwise (0-359 degrees) 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 2
-    )
-    public final int rotation() {
-        return rotation;
     }
 
     /**
@@ -153,7 +61,7 @@ public final class SetVideoStreamSettings {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -164,7 +72,7 @@ public final class SetVideoStreamSettings {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -175,7 +83,62 @@ public final class SetVideoStreamSettings {
             unitSize = 1
     )
     public final int cameraId() {
-        return cameraId;
+        return this.cameraId;
+    }
+
+    /**
+     * Frames per second (set to -1 for highest framerate possible) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float framerate() {
+        return this.framerate;
+    }
+
+    /**
+     * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2
+    )
+    public final int resolutionH() {
+        return this.resolutionH;
+    }
+
+    /**
+     * Resolution vertical in pixels (set to -1 for highest resolution possible) 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 2
+    )
+    public final int resolutionV() {
+        return this.resolutionV;
+    }
+
+    /**
+     * Bit rate in bits per second (set to -1 for auto) 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final long bitrate() {
+        return this.bitrate;
+    }
+
+    /**
+     * Video image rotation clockwise (0-359 degrees) 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 2
+    )
+    public final int rotation() {
+        return this.rotation;
     }
 
     /**
@@ -187,90 +150,27 @@ public final class SetVideoStreamSettings {
             arraySize = 230
     )
     public final String uri() {
-        return uri;
+        return this.uri;
     }
 
-    public static class Builder {
-        private float framerate;
-
-        private long bitrate;
-
-        private int resolutionH;
-
-        private int resolutionV;
-
-        private int rotation;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private int cameraId;
 
+        private float framerate;
+
+        private int resolutionH;
+
+        private int resolutionV;
+
+        private long bitrate;
+
+        private int rotation;
+
         private String uri;
-
-        private Builder() {
-        }
-
-        /**
-         * Frames per second (set to -1 for highest framerate possible) 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 4
-        )
-        public final Builder framerate(float framerate) {
-            this.framerate = framerate;
-            return this;
-        }
-
-        /**
-         * Bit rate in bits per second (set to -1 for auto) 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 4
-        )
-        public final Builder bitrate(long bitrate) {
-            this.bitrate = bitrate;
-            return this;
-        }
-
-        /**
-         * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 2
-        )
-        public final Builder resolutionH(int resolutionH) {
-            this.resolutionH = resolutionH;
-            return this;
-        }
-
-        /**
-         * Resolution vertical in pixels (set to -1 for highest resolution possible) 
-         */
-        @MavlinkFieldInfo(
-                position = 6,
-                unitSize = 2
-        )
-        public final Builder resolutionV(int resolutionV) {
-            this.resolutionV = resolutionV;
-            return this;
-        }
-
-        /**
-         * Video image rotation clockwise (0-359 degrees) 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 2
-        )
-        public final Builder rotation(int rotation) {
-            this.rotation = rotation;
-            return this;
-        }
 
         /**
          * system ID of the target 
@@ -309,6 +209,66 @@ public final class SetVideoStreamSettings {
         }
 
         /**
+         * Frames per second (set to -1 for highest framerate possible) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 4
+        )
+        public final Builder framerate(float framerate) {
+            this.framerate = framerate;
+            return this;
+        }
+
+        /**
+         * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2
+        )
+        public final Builder resolutionH(int resolutionH) {
+            this.resolutionH = resolutionH;
+            return this;
+        }
+
+        /**
+         * Resolution vertical in pixels (set to -1 for highest resolution possible) 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 2
+        )
+        public final Builder resolutionV(int resolutionV) {
+            this.resolutionV = resolutionV;
+            return this;
+        }
+
+        /**
+         * Bit rate in bits per second (set to -1 for auto) 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 4
+        )
+        public final Builder bitrate(long bitrate) {
+            this.bitrate = bitrate;
+            return this;
+        }
+
+        /**
+         * Video image rotation clockwise (0-359 degrees) 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 2
+        )
+        public final Builder rotation(int rotation) {
+            this.rotation = rotation;
+            return this;
+        }
+
+        /**
          * Video stream URI 
          */
         @MavlinkFieldInfo(
@@ -322,7 +282,7 @@ public final class SetVideoStreamSettings {
         }
 
         public final SetVideoStreamSettings build() {
-            return new SetVideoStreamSettings(framerate, bitrate, resolutionH, resolutionV, rotation, targetSystem, targetComponent, cameraId, uri);
+            return new SetVideoStreamSettings(targetSystem, targetComponent, cameraId, framerate, resolutionH, resolutionV, bitrate, rotation, uri);
         }
     }
 }

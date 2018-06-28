@@ -3,133 +3,47 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * EKF Status message including flags and variances 
  */
 @MavlinkMessageInfo(
         id = 193,
-        crc = 71
+        crc = 88
 )
 public final class EkfStatusReport {
-    /**
-     * Velocity variance 
-     */
-    private final float velocityVariance;
-
-    /**
-     * Horizontal Position variance 
-     */
-    private final float posHorizVariance;
-
-    /**
-     * Vertical Position variance 
-     */
-    private final float posVertVariance;
-
-    /**
-     * Compass variance 
-     */
-    private final float compassVariance;
-
-    /**
-     * Terrain Altitude variance 
-     */
-    private final float terrainAltVariance;
-
-    /**
-     * Flags 
-     */
     private final EkfStatusFlags flags;
 
-    /**
-     * Airspeed variance 
-     */
+    private final float velocityVariance;
+
+    private final float posHorizVariance;
+
+    private final float posVertVariance;
+
+    private final float compassVariance;
+
+    private final float terrainAltVariance;
+
     private final float airspeedVariance;
 
-    private EkfStatusReport(float velocityVariance, float posHorizVariance, float posVertVariance,
-            float compassVariance, float terrainAltVariance, EkfStatusFlags flags,
+    private EkfStatusReport(EkfStatusFlags flags, float velocityVariance, float posHorizVariance,
+            float posVertVariance, float compassVariance, float terrainAltVariance,
             float airspeedVariance) {
+        this.flags = flags;
         this.velocityVariance = velocityVariance;
         this.posHorizVariance = posHorizVariance;
         this.posVertVariance = posVertVariance;
         this.compassVariance = compassVariance;
         this.terrainAltVariance = terrainAltVariance;
-        this.flags = flags;
         this.airspeedVariance = airspeedVariance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "EkfStatusReport{flags=" + flags
-                 + ", velocityVariance=" + velocityVariance
-                 + ", posHorizVariance=" + posHorizVariance
-                 + ", posVertVariance=" + posVertVariance
-                 + ", compassVariance=" + compassVariance
-                 + ", terrainAltVariance=" + terrainAltVariance
-                 + ", airspeedVariance=" + airspeedVariance + "}";
-    }
-
-    /**
-     * Velocity variance 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float velocityVariance() {
-        return velocityVariance;
-    }
-
-    /**
-     * Horizontal Position variance 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float posHorizVariance() {
-        return posHorizVariance;
-    }
-
-    /**
-     * Vertical Position variance 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float posVertVariance() {
-        return posVertVariance;
-    }
-
-    /**
-     * Compass variance 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float compassVariance() {
-        return compassVariance;
-    }
-
-    /**
-     * Terrain Altitude variance 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float terrainAltVariance() {
-        return terrainAltVariance;
     }
 
     /**
@@ -140,7 +54,62 @@ public final class EkfStatusReport {
             unitSize = 2
     )
     public final EkfStatusFlags flags() {
-        return flags;
+        return this.flags;
+    }
+
+    /**
+     * Velocity variance 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float velocityVariance() {
+        return this.velocityVariance;
+    }
+
+    /**
+     * Horizontal Position variance 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float posHorizVariance() {
+        return this.posHorizVariance;
+    }
+
+    /**
+     * Vertical Position variance 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float posVertVariance() {
+        return this.posVertVariance;
+    }
+
+    /**
+     * Compass variance 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float compassVariance() {
+        return this.compassVariance;
+    }
+
+    /**
+     * Terrain Altitude variance 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float terrainAltVariance() {
+        return this.terrainAltVariance;
     }
 
     /**
@@ -152,10 +121,12 @@ public final class EkfStatusReport {
             extension = true
     )
     public final float airspeedVariance() {
-        return airspeedVariance;
+        return this.airspeedVariance;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private EkfStatusFlags flags;
+
         private float velocityVariance;
 
         private float posHorizVariance;
@@ -166,11 +137,18 @@ public final class EkfStatusReport {
 
         private float terrainAltVariance;
 
-        private EkfStatusFlags flags;
-
         private float airspeedVariance;
 
-        private Builder() {
+        /**
+         * Flags 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 2
+        )
+        public final Builder flags(EkfStatusFlags flags) {
+            this.flags = flags;
+            return this;
         }
 
         /**
@@ -234,18 +212,6 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Flags 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 2
-        )
-        public final Builder flags(EkfStatusFlags flags) {
-            this.flags = flags;
-            return this;
-        }
-
-        /**
          * Airspeed variance 
          */
         @MavlinkFieldInfo(
@@ -259,7 +225,7 @@ public final class EkfStatusReport {
         }
 
         public final EkfStatusReport build() {
-            return new EkfStatusReport(velocityVariance, posHorizVariance, posVertVariance, compassVariance, terrainAltVariance, flags, airspeedVariance);
+            return new EkfStatusReport(flags, velocityVariance, posHorizVariance, posVertVariance, compassVariance, terrainAltVariance, airspeedVariance);
         }
     }
 }

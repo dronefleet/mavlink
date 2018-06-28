@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Diagnostic data Sensor MCU 
@@ -14,24 +12,12 @@ import java.lang.String;
         crc = 129
 )
 public final class SensorDiag {
-    /**
-     * Float field 1 
-     */
     private final float float1;
 
-    /**
-     * Float field 2 
-     */
     private final float float2;
 
-    /**
-     * Int 16 field 1 
-     */
     private final int int1;
 
-    /**
-     * Int 8 field 1 
-     */
     private final int char1;
 
     private SensorDiag(float float1, float float2, int int1, int char1) {
@@ -41,17 +27,12 @@ public final class SensorDiag {
         this.char1 = char1;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SensorDiag{float1=" + float1
-                 + ", float2=" + float2
-                 + ", int1=" + int1
-                 + ", char1=" + char1 + "}";
     }
 
     /**
@@ -62,7 +43,7 @@ public final class SensorDiag {
             unitSize = 4
     )
     public final float float1() {
-        return float1;
+        return this.float1;
     }
 
     /**
@@ -73,7 +54,7 @@ public final class SensorDiag {
             unitSize = 4
     )
     public final float float2() {
-        return float2;
+        return this.float2;
     }
 
     /**
@@ -85,7 +66,7 @@ public final class SensorDiag {
             signed = true
     )
     public final int int1() {
-        return int1;
+        return this.int1;
     }
 
     /**
@@ -97,10 +78,10 @@ public final class SensorDiag {
             signed = true
     )
     public final int char1() {
-        return char1;
+        return this.char1;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float float1;
 
         private float float2;
@@ -108,9 +89,6 @@ public final class SensorDiag {
         private int int1;
 
         private int char1;
-
-        private Builder() {
-        }
 
         /**
          * Float field 1 

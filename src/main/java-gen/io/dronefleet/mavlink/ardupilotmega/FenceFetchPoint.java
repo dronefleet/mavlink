@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Request a current fence point from MAV 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 68
 )
 public final class FenceFetchPoint {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * point index (first point is 1, 0 is for return point) 
-     */
     private final int idx;
 
     private FenceFetchPoint(int targetSystem, int targetComponent, int idx) {
@@ -35,16 +24,12 @@ public final class FenceFetchPoint {
         this.idx = idx;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FenceFetchPoint{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", idx=" + idx + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class FenceFetchPoint {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class FenceFetchPoint {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -77,18 +62,15 @@ public final class FenceFetchPoint {
             unitSize = 1
     )
     public final int idx() {
-        return idx;
+        return this.idx;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private int idx;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

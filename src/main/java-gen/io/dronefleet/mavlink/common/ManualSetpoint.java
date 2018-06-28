@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Setpoint in roll, pitch, yaw and thrust from the operator 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 106
 )
 public final class ManualSetpoint {
-    /**
-     * Timestamp in milliseconds since system boot 
-     */
     private final long timeBootMs;
 
-    /**
-     * Desired roll rate in radians per second 
-     */
     private final float roll;
 
-    /**
-     * Desired pitch rate in radians per second 
-     */
     private final float pitch;
 
-    /**
-     * Desired yaw rate in radians per second 
-     */
     private final float yaw;
 
-    /**
-     * Collective thrust, normalized to 0 .. 1 
-     */
     private final float thrust;
 
-    /**
-     * Flight mode switch position, 0.. 255 
-     */
     private final int modeSwitch;
 
-    /**
-     * Override mode switch position, 0.. 255 
-     */
     private final int manualOverrideSwitch;
 
     private ManualSetpoint(long timeBootMs, float roll, float pitch, float yaw, float thrust,
@@ -60,20 +37,12 @@ public final class ManualSetpoint {
         this.manualOverrideSwitch = manualOverrideSwitch;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ManualSetpoint{timeBootMs=" + timeBootMs
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", thrust=" + thrust
-                 + ", modeSwitch=" + modeSwitch
-                 + ", manualOverrideSwitch=" + manualOverrideSwitch + "}";
     }
 
     /**
@@ -84,7 +53,7 @@ public final class ManualSetpoint {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -95,7 +64,7 @@ public final class ManualSetpoint {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -106,7 +75,7 @@ public final class ManualSetpoint {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -117,7 +86,7 @@ public final class ManualSetpoint {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -128,7 +97,7 @@ public final class ManualSetpoint {
             unitSize = 4
     )
     public final float thrust() {
-        return thrust;
+        return this.thrust;
     }
 
     /**
@@ -139,7 +108,7 @@ public final class ManualSetpoint {
             unitSize = 1
     )
     public final int modeSwitch() {
-        return modeSwitch;
+        return this.modeSwitch;
     }
 
     /**
@@ -150,10 +119,10 @@ public final class ManualSetpoint {
             unitSize = 1
     )
     public final int manualOverrideSwitch() {
-        return manualOverrideSwitch;
+        return this.manualOverrideSwitch;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float roll;
@@ -167,9 +136,6 @@ public final class ManualSetpoint {
         private int modeSwitch;
 
         private int manualOverrideSwitch;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp in milliseconds since system boot 

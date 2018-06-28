@@ -3,37 +3,22 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
- * Response from a {@link io.dronefleet.mavlink.common.ParamExtSet ParamExtSet} message. 
+ * Response from a {@link io.dronefleet.mavlink.common.ParamExtSet PARAM_EXT_SET} message. 
  */
 @MavlinkMessageInfo(
         id = 324,
         crc = 132
 )
 public final class ParamExtAck {
-    /**
-     * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
-     * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
-     * 16+1 bytes storage if the ID is stored as string 
-     */
     private final String paramId;
 
-    /**
-     * Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise) 
-     */
     private final String paramValue;
 
-    /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
-     */
     private final MavParamExtType paramType;
 
-    /**
-     * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck ParamAck} enum for possible codes. 
-     */
     private final ParamAck paramResult;
 
     private ParamExtAck(String paramId, String paramValue, MavParamExtType paramType,
@@ -44,17 +29,12 @@ public final class ParamExtAck {
         this.paramResult = paramResult;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ParamExtAck{paramId=" + paramId
-                 + ", paramValue=" + paramValue
-                 + ", paramType=" + paramType
-                 + ", paramResult=" + paramResult + "}";
     }
 
     /**
@@ -68,7 +48,7 @@ public final class ParamExtAck {
             arraySize = 16
     )
     public final String paramId() {
-        return paramId;
+        return this.paramId;
     }
 
     /**
@@ -80,32 +60,32 @@ public final class ParamExtAck {
             arraySize = 128
     )
     public final String paramValue() {
-        return paramValue;
+        return this.paramValue;
     }
 
     /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavParamExtType paramType() {
-        return paramType;
+        return this.paramType;
     }
 
     /**
-     * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck ParamAck} enum for possible codes. 
+     * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1
     )
     public final ParamAck paramResult() {
-        return paramResult;
+        return this.paramResult;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private String paramId;
 
         private String paramValue;
@@ -113,9 +93,6 @@ public final class ParamExtAck {
         private MavParamExtType paramType;
 
         private ParamAck paramResult;
-
-        private Builder() {
-        }
 
         /**
          * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
@@ -146,7 +123,7 @@ public final class ParamExtAck {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -158,7 +135,7 @@ public final class ParamExtAck {
         }
 
         /**
-         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck ParamAck} enum for possible codes. 
+         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
          */
         @MavlinkFieldInfo(
                 position = 4,

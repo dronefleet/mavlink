@@ -4,16 +4,27 @@ import io.dronefleet.mavlink.MavlinkDialect;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 public final class CommonDialect implements MavlinkDialect {
-    private static final Set<MavlinkDialect> dependencies;
+    /**
+     * A list of dialects that this dialect depends on.
+     */
+    private final List<MavlinkDialect> dependencies = Collections.emptyList();
 
-    static {
-        dependencies = Collections.emptySet();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final String name() {
+        return "common";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean supports(int messageId) {
         switch (messageId) {
@@ -181,12 +192,14 @@ public final class CommonDialect implements MavlinkDialect {
             case 330:
             case 331:
             case 332:
-            return true;
+                return true;
         }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
+        return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Class resolve(int messageId) {
         switch (messageId) {
@@ -355,10 +368,6 @@ public final class CommonDialect implements MavlinkDialect {
             case 331: return Odometry.class;
             case 332: return Trajectory.class;
         }
-        return dependencies.stream()
-                .filter(d -> d.supports(messageId))
-                .map(d -> d.resolve(messageId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Dialect common does not support a message of ID " + messageId));
+        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
     }
 }

@@ -3,45 +3,25 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs Ahrs} filter if available 
+ * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available 
  */
 @MavlinkMessageInfo(
         id = 178,
         crc = 47
 )
 public final class Ahrs2 {
-    /**
-     * Roll angle (rad) 
-     */
     private final float roll;
 
-    /**
-     * Pitch angle (rad) 
-     */
     private final float pitch;
 
-    /**
-     * Yaw angle (rad) 
-     */
     private final float yaw;
 
-    /**
-     * Altitude (MSL) 
-     */
     private final float altitude;
 
-    /**
-     * Latitude in degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude in degrees * 1E7 
-     */
     private final int lng;
 
     private Ahrs2(float roll, float pitch, float yaw, float altitude, int lat, int lng) {
@@ -53,19 +33,12 @@ public final class Ahrs2 {
         this.lng = lng;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Ahrs2{roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", altitude=" + altitude
-                 + ", lat=" + lat
-                 + ", lng=" + lng + "}";
     }
 
     /**
@@ -76,7 +49,7 @@ public final class Ahrs2 {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -87,7 +60,7 @@ public final class Ahrs2 {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -98,7 +71,7 @@ public final class Ahrs2 {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -109,7 +82,7 @@ public final class Ahrs2 {
             unitSize = 4
     )
     public final float altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -121,7 +94,7 @@ public final class Ahrs2 {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -133,10 +106,10 @@ public final class Ahrs2 {
             signed = true
     )
     public final int lng() {
-        return lng;
+        return this.lng;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float roll;
 
         private float pitch;
@@ -148,9 +121,6 @@ public final class Ahrs2 {
         private int lat;
 
         private int lng;
-
-        private Builder() {
-        }
 
         /**
          * Roll angle (rad) 

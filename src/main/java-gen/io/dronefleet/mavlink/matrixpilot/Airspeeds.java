@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The airspeed measured by sensors and IMU 
@@ -14,39 +12,18 @@ import java.lang.String;
         crc = 154
 )
 public final class Airspeeds {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Airspeed estimate from IMU, cm/s 
-     */
     private final int airspeedImu;
 
-    /**
-     * Pitot measured forward airpseed, cm/s 
-     */
     private final int airspeedPitot;
 
-    /**
-     * Hot wire anenometer measured airspeed, cm/s 
-     */
     private final int airspeedHotWire;
 
-    /**
-     * Ultrasonic measured airspeed, cm/s 
-     */
     private final int airspeedUltrasonic;
 
-    /**
-     * Angle of attack sensor, degrees * 10 
-     */
     private final int aoa;
 
-    /**
-     * Yaw angle sensor, degrees * 10 
-     */
     private final int aoy;
 
     private Airspeeds(long timeBootMs, int airspeedImu, int airspeedPitot, int airspeedHotWire,
@@ -60,20 +37,12 @@ public final class Airspeeds {
         this.aoy = aoy;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Airspeeds{timeBootMs=" + timeBootMs
-                 + ", airspeedImu=" + airspeedImu
-                 + ", airspeedPitot=" + airspeedPitot
-                 + ", airspeedHotWire=" + airspeedHotWire
-                 + ", airspeedUltrasonic=" + airspeedUltrasonic
-                 + ", aoa=" + aoa
-                 + ", aoy=" + aoy + "}";
     }
 
     /**
@@ -84,7 +53,7 @@ public final class Airspeeds {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -96,7 +65,7 @@ public final class Airspeeds {
             signed = true
     )
     public final int airspeedImu() {
-        return airspeedImu;
+        return this.airspeedImu;
     }
 
     /**
@@ -108,7 +77,7 @@ public final class Airspeeds {
             signed = true
     )
     public final int airspeedPitot() {
-        return airspeedPitot;
+        return this.airspeedPitot;
     }
 
     /**
@@ -120,7 +89,7 @@ public final class Airspeeds {
             signed = true
     )
     public final int airspeedHotWire() {
-        return airspeedHotWire;
+        return this.airspeedHotWire;
     }
 
     /**
@@ -132,7 +101,7 @@ public final class Airspeeds {
             signed = true
     )
     public final int airspeedUltrasonic() {
-        return airspeedUltrasonic;
+        return this.airspeedUltrasonic;
     }
 
     /**
@@ -144,7 +113,7 @@ public final class Airspeeds {
             signed = true
     )
     public final int aoa() {
-        return aoa;
+        return this.aoa;
     }
 
     /**
@@ -156,10 +125,10 @@ public final class Airspeeds {
             signed = true
     )
     public final int aoy() {
-        return aoy;
+        return this.aoy;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private int airspeedImu;
@@ -173,9 +142,6 @@ public final class Airspeeds {
         private int aoa;
 
         private int aoy;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F6: format 
@@ -14,29 +12,14 @@ import java.lang.String;
         crc = 54
 )
 public final class SerialUdbExtraF6 {
-    /**
-     * Serial UDB Extra PITCHGAIN Proportional Control 
-     */
     private final float suePitchgain;
 
-    /**
-     * Serial UDB Extra Pitch Rate Control 
-     */
     private final float suePitchkd;
 
-    /**
-     * Serial UDB Extra Rudder to Elevator Mix 
-     */
     private final float sueRudderElevMix;
 
-    /**
-     * Serial UDB Extra Roll to Elevator Mix 
-     */
     private final float sueRollElevMix;
 
-    /**
-     * Gain For Boosting Manual Elevator control When Plane Stabilized 
-     */
     private final float sueElevatorBoost;
 
     private SerialUdbExtraF6(float suePitchgain, float suePitchkd, float sueRudderElevMix,
@@ -48,18 +31,12 @@ public final class SerialUdbExtraF6 {
         this.sueElevatorBoost = sueElevatorBoost;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF6{suePitchgain=" + suePitchgain
-                 + ", suePitchkd=" + suePitchkd
-                 + ", sueRudderElevMix=" + sueRudderElevMix
-                 + ", sueRollElevMix=" + sueRollElevMix
-                 + ", sueElevatorBoost=" + sueElevatorBoost + "}";
     }
 
     /**
@@ -70,7 +47,7 @@ public final class SerialUdbExtraF6 {
             unitSize = 4
     )
     public final float suePitchgain() {
-        return suePitchgain;
+        return this.suePitchgain;
     }
 
     /**
@@ -81,7 +58,7 @@ public final class SerialUdbExtraF6 {
             unitSize = 4
     )
     public final float suePitchkd() {
-        return suePitchkd;
+        return this.suePitchkd;
     }
 
     /**
@@ -92,7 +69,7 @@ public final class SerialUdbExtraF6 {
             unitSize = 4
     )
     public final float sueRudderElevMix() {
-        return sueRudderElevMix;
+        return this.sueRudderElevMix;
     }
 
     /**
@@ -103,7 +80,7 @@ public final class SerialUdbExtraF6 {
             unitSize = 4
     )
     public final float sueRollElevMix() {
-        return sueRollElevMix;
+        return this.sueRollElevMix;
     }
 
     /**
@@ -114,10 +91,10 @@ public final class SerialUdbExtraF6 {
             unitSize = 4
     )
     public final float sueElevatorBoost() {
-        return sueElevatorBoost;
+        return this.sueElevatorBoost;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float suePitchgain;
 
         private float suePitchkd;
@@ -127,9 +104,6 @@ public final class SerialUdbExtraF6 {
         private float sueRollElevMix;
 
         private float sueElevatorBoost;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB Extra PITCHGAIN Proportional Control 

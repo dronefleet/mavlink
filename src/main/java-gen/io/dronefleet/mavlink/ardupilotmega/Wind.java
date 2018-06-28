@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Wind estimation 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 1
 )
 public final class Wind {
-    /**
-     * wind direction that wind is coming from (degrees) 
-     */
     private final float direction;
 
-    /**
-     * wind speed in ground plane (m/s) 
-     */
     private final float speed;
 
-    /**
-     * vertical wind speed (m/s) 
-     */
     private final float speedZ;
 
     private Wind(float direction, float speed, float speedZ) {
@@ -35,16 +24,12 @@ public final class Wind {
         this.speedZ = speedZ;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Wind{direction=" + direction
-                 + ", speed=" + speed
-                 + ", speedZ=" + speedZ + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class Wind {
             unitSize = 4
     )
     public final float direction() {
-        return direction;
+        return this.direction;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class Wind {
             unitSize = 4
     )
     public final float speed() {
-        return speed;
+        return this.speed;
     }
 
     /**
@@ -77,18 +62,15 @@ public final class Wind {
             unitSize = 4
     )
     public final float speedZ() {
-        return speedZ;
+        return this.speedZ;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float direction;
 
         private float speed;
 
         private float speedZ;
-
-        private Builder() {
-        }
 
         /**
          * wind direction that wind is coming from (degrees) 

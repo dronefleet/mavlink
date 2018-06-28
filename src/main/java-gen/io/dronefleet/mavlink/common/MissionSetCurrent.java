@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Set the mission item with sequence number seq as current item. This means that the MAV will 
@@ -16,48 +14,24 @@ import java.lang.String;
         crc = 28
 )
 public final class MissionSetCurrent {
-    /**
-     * Sequence 
-     */
-    private final int seq;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private MissionSetCurrent(int seq, int targetSystem, int targetComponent) {
-        this.seq = seq;
+    private final int seq;
+
+    private MissionSetCurrent(int targetSystem, int targetComponent, int seq) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.seq = seq;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MissionSetCurrent{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", seq=" + seq + "}";
-    }
-
-    /**
-     * Sequence 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int seq() {
-        return seq;
     }
 
     /**
@@ -68,7 +42,7 @@ public final class MissionSetCurrent {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -79,30 +53,26 @@ public final class MissionSetCurrent {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
-        private int seq;
+    /**
+     * Sequence 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int seq() {
+        return this.seq;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
-        private Builder() {
-        }
-
-        /**
-         * Sequence 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder seq(int seq) {
-            this.seq = seq;
-            return this;
-        }
+        private int seq;
 
         /**
          * System ID 
@@ -128,8 +98,20 @@ public final class MissionSetCurrent {
             return this;
         }
 
+        /**
+         * Sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder seq(int seq) {
+            this.seq = seq;
+            return this;
+        }
+
         public final MissionSetCurrent build() {
-            return new MissionSetCurrent(seq, targetSystem, targetComponent);
+            return new MissionSetCurrent(targetSystem, targetComponent, seq);
         }
     }
 }

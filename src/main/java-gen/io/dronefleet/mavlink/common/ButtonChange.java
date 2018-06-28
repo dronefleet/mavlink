@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Report button state change 
@@ -14,19 +12,10 @@ import java.lang.String;
         crc = 131
 )
 public final class ButtonChange {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Time of last change of button state 
-     */
     private final long lastChangeMs;
 
-    /**
-     * Bitmap state of buttons 
-     */
     private final int state;
 
     private ButtonChange(long timeBootMs, long lastChangeMs, int state) {
@@ -35,16 +24,12 @@ public final class ButtonChange {
         this.state = state;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ButtonChange{timeBootMs=" + timeBootMs
-                 + ", lastChangeMs=" + lastChangeMs
-                 + ", state=" + state + "}";
     }
 
     /**
@@ -55,7 +40,7 @@ public final class ButtonChange {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -66,7 +51,7 @@ public final class ButtonChange {
             unitSize = 4
     )
     public final long lastChangeMs() {
-        return lastChangeMs;
+        return this.lastChangeMs;
     }
 
     /**
@@ -77,18 +62,15 @@ public final class ButtonChange {
             unitSize = 1
     )
     public final int state() {
-        return state;
+        return this.state;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private long lastChangeMs;
 
         private int state;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

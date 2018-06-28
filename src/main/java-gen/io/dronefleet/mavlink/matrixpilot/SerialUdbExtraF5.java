@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F5: format 
@@ -14,24 +12,12 @@ import java.lang.String;
         crc = 54
 )
 public final class SerialUdbExtraF5 {
-    /**
-     * Serial UDB YAWKP_AILERON Gain for Proporional control of navigation 
-     */
     private final float sueYawkpAileron;
 
-    /**
-     * Serial UDB YAWKD_AILERON Gain for Rate control of navigation 
-     */
     private final float sueYawkdAileron;
 
-    /**
-     * Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization 
-     */
     private final float sueRollkp;
 
-    /**
-     * Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization 
-     */
     private final float sueRollkd;
 
     private SerialUdbExtraF5(float sueYawkpAileron, float sueYawkdAileron, float sueRollkp,
@@ -42,17 +28,12 @@ public final class SerialUdbExtraF5 {
         this.sueRollkd = sueRollkd;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF5{sueYawkpAileron=" + sueYawkpAileron
-                 + ", sueYawkdAileron=" + sueYawkdAileron
-                 + ", sueRollkp=" + sueRollkp
-                 + ", sueRollkd=" + sueRollkd + "}";
     }
 
     /**
@@ -63,7 +44,7 @@ public final class SerialUdbExtraF5 {
             unitSize = 4
     )
     public final float sueYawkpAileron() {
-        return sueYawkpAileron;
+        return this.sueYawkpAileron;
     }
 
     /**
@@ -74,7 +55,7 @@ public final class SerialUdbExtraF5 {
             unitSize = 4
     )
     public final float sueYawkdAileron() {
-        return sueYawkdAileron;
+        return this.sueYawkdAileron;
     }
 
     /**
@@ -85,7 +66,7 @@ public final class SerialUdbExtraF5 {
             unitSize = 4
     )
     public final float sueRollkp() {
-        return sueRollkp;
+        return this.sueRollkp;
     }
 
     /**
@@ -96,10 +77,10 @@ public final class SerialUdbExtraF5 {
             unitSize = 4
     )
     public final float sueRollkd() {
-        return sueRollkd;
+        return this.sueRollkd;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float sueYawkpAileron;
 
         private float sueYawkdAileron;
@@ -107,9 +88,6 @@ public final class SerialUdbExtraF5 {
         private float sueRollkp;
 
         private float sueRollkd;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB YAWKP_AILERON Gain for Proporional control of navigation 

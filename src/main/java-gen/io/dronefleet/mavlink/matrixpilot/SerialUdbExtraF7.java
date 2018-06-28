@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F7: format 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 171
 )
 public final class SerialUdbExtraF7 {
-    /**
-     * Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation 
-     */
     private final float sueYawkpRudder;
 
-    /**
-     * Serial UDB YAWKD_RUDDER Gain for Rate control of navigation 
-     */
     private final float sueYawkdRudder;
 
-    /**
-     * Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization 
-     */
     private final float sueRollkpRudder;
 
-    /**
-     * Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization 
-     */
     private final float sueRollkdRudder;
 
-    /**
-     * SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized 
-     */
     private final float sueRudderBoost;
 
-    /**
-     * Serial UDB Extra Return To Landing - Angle to Pitch Plane Down 
-     */
     private final float sueRtlPitchDown;
 
     private SerialUdbExtraF7(float sueYawkpRudder, float sueYawkdRudder, float sueRollkpRudder,
@@ -54,19 +34,12 @@ public final class SerialUdbExtraF7 {
         this.sueRtlPitchDown = sueRtlPitchDown;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF7{sueYawkpRudder=" + sueYawkpRudder
-                 + ", sueYawkdRudder=" + sueYawkdRudder
-                 + ", sueRollkpRudder=" + sueRollkpRudder
-                 + ", sueRollkdRudder=" + sueRollkdRudder
-                 + ", sueRudderBoost=" + sueRudderBoost
-                 + ", sueRtlPitchDown=" + sueRtlPitchDown + "}";
     }
 
     /**
@@ -77,7 +50,7 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueYawkpRudder() {
-        return sueYawkpRudder;
+        return this.sueYawkpRudder;
     }
 
     /**
@@ -88,7 +61,7 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueYawkdRudder() {
-        return sueYawkdRudder;
+        return this.sueYawkdRudder;
     }
 
     /**
@@ -99,7 +72,7 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueRollkpRudder() {
-        return sueRollkpRudder;
+        return this.sueRollkpRudder;
     }
 
     /**
@@ -110,7 +83,7 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueRollkdRudder() {
-        return sueRollkdRudder;
+        return this.sueRollkdRudder;
     }
 
     /**
@@ -121,7 +94,7 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueRudderBoost() {
-        return sueRudderBoost;
+        return this.sueRudderBoost;
     }
 
     /**
@@ -132,10 +105,10 @@ public final class SerialUdbExtraF7 {
             unitSize = 4
     )
     public final float sueRtlPitchDown() {
-        return sueRtlPitchDown;
+        return this.sueRtlPitchDown;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float sueYawkpRudder;
 
         private float sueYawkdRudder;
@@ -147,9 +120,6 @@ public final class SerialUdbExtraF7 {
         private float sueRudderBoost;
 
         private float sueRtlPitchDown;
-
-        private Builder() {
-        }
 
         /**
          * Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation 

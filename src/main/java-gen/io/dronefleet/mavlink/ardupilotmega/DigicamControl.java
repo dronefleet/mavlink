@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Control on-board Camera Control System to take shots. 
@@ -14,60 +12,29 @@ import java.lang.String;
         crc = 22
 )
 public final class DigicamControl {
-    /**
-     * Correspondent value to given extra_param 
-     */
-    private final float extraValue;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens 
-     */
     private final int session;
 
-    /**
-     * 1 to N //Zoom's absolute position (0 means ignore) 
-     */
     private final int zoomPos;
 
-    /**
-     * -100 to 100 //Zooming step value to offset zoom from the current position 
-     */
     private final int zoomStep;
 
-    /**
-     * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus 
-     */
     private final int focusLock;
 
-    /**
-     * 0: ignore, 1: shot or start filming 
-     */
     private final int shot;
 
-    /**
-     * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-     * or pooled just once 
-     */
     private final int commandId;
 
-    /**
-     * Extra parameters enumeration (0 means ignore) 
-     */
     private final int extraParam;
 
-    private DigicamControl(float extraValue, int targetSystem, int targetComponent, int session,
-            int zoomPos, int zoomStep, int focusLock, int shot, int commandId, int extraParam) {
-        this.extraValue = extraValue;
+    private final float extraValue;
+
+    private DigicamControl(int targetSystem, int targetComponent, int session, int zoomPos,
+            int zoomStep, int focusLock, int shot, int commandId, int extraParam,
+            float extraValue) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.session = session;
@@ -77,36 +44,15 @@ public final class DigicamControl {
         this.shot = shot;
         this.commandId = commandId;
         this.extraParam = extraParam;
-    }
-
-    @MavlinkMessageBuilder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DigicamControl{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", session=" + session
-                 + ", zoomPos=" + zoomPos
-                 + ", zoomStep=" + zoomStep
-                 + ", focusLock=" + focusLock
-                 + ", shot=" + shot
-                 + ", commandId=" + commandId
-                 + ", extraParam=" + extraParam
-                 + ", extraValue=" + extraValue + "}";
+        this.extraValue = extraValue;
     }
 
     /**
-     * Correspondent value to given extra_param 
+     * Returns a builder instance for this message.
      */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 4
-    )
-    public final float extraValue() {
-        return extraValue;
+    @MavlinkMessageBuilder
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**
@@ -117,7 +63,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -128,7 +74,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -139,7 +85,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int session() {
-        return session;
+        return this.session;
     }
 
     /**
@@ -150,7 +96,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int zoomPos() {
-        return zoomPos;
+        return this.zoomPos;
     }
 
     /**
@@ -162,7 +108,7 @@ public final class DigicamControl {
             signed = true
     )
     public final int zoomStep() {
-        return zoomStep;
+        return this.zoomStep;
     }
 
     /**
@@ -173,7 +119,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int focusLock() {
-        return focusLock;
+        return this.focusLock;
     }
 
     /**
@@ -184,7 +130,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int shot() {
-        return shot;
+        return this.shot;
     }
 
     /**
@@ -196,7 +142,7 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int commandId() {
-        return commandId;
+        return this.commandId;
     }
 
     /**
@@ -207,12 +153,21 @@ public final class DigicamControl {
             unitSize = 1
     )
     public final int extraParam() {
-        return extraParam;
+        return this.extraParam;
     }
 
-    public static class Builder {
-        private float extraValue;
+    /**
+     * Correspondent value to given extra_param 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4
+    )
+    public final float extraValue() {
+        return this.extraValue;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -231,20 +186,7 @@ public final class DigicamControl {
 
         private int extraParam;
 
-        private Builder() {
-        }
-
-        /**
-         * Correspondent value to given extra_param 
-         */
-        @MavlinkFieldInfo(
-                position = 10,
-                unitSize = 4
-        )
-        public final Builder extraValue(float extraValue) {
-            this.extraValue = extraValue;
-            return this;
-        }
+        private float extraValue;
 
         /**
          * System ID 
@@ -356,8 +298,20 @@ public final class DigicamControl {
             return this;
         }
 
+        /**
+         * Correspondent value to given extra_param 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 4
+        )
+        public final Builder extraValue(float extraValue) {
+            this.extraValue = extraValue;
+            return this;
+        }
+
         public final DigicamControl build() {
-            return new DigicamControl(extraValue, targetSystem, targetComponent, session, zoomPos, zoomStep, focusLock, shot, commandId, extraParam);
+            return new DigicamControl(targetSystem, targetComponent, session, zoomPos, zoomStep, focusLock, shot, commandId, extraParam, extraValue);
         }
     }
 }

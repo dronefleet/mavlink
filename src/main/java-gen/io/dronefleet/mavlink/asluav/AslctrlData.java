@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,137 +13,63 @@ import java.math.BigInteger;
         crc = 172
 )
 public final class AslctrlData {
-    /**
-     * Timestamp 
-     */
     private final BigInteger timestamp;
 
-    /**
-     * See sourcecode for a description of these values... 
-     */
-    private final float h;
-
-    /**
-     * null
-     */
-    private final float href;
-
-    /**
-     * null
-     */
-    private final float hrefT;
-
-    /**
-     * Pitch angle 
-     */
-    private final float pitchangle;
-
-    /**
-     * Pitch angle reference 
-     */
-    private final float pitchangleref;
-
-    /**
-     * null
-     */
-    private final float q;
-
-    /**
-     * null
-     */
-    private final float qref;
-
-    /**
-     * null
-     */
-    private final float uelev;
-
-    /**
-     * null
-     */
-    private final float uthrot;
-
-    /**
-     * null
-     */
-    private final float uthrot2;
-
-    /**
-     * null
-     */
-    private final float nz;
-
-    /**
-     * Airspeed reference 
-     */
-    private final float airspeedref;
-
-    /**
-     * Yaw angle 
-     */
-    private final float yawangle;
-
-    /**
-     * Yaw angle reference 
-     */
-    private final float yawangleref;
-
-    /**
-     * Roll angle 
-     */
-    private final float rollangle;
-
-    /**
-     * Roll angle reference 
-     */
-    private final float rollangleref;
-
-    /**
-     * null
-     */
-    private final float p;
-
-    /**
-     * null
-     */
-    private final float pref;
-
-    /**
-     * null
-     */
-    private final float r;
-
-    /**
-     * null
-     */
-    private final float rref;
-
-    /**
-     * null
-     */
-    private final float uail;
-
-    /**
-     * null
-     */
-    private final float urud;
-
-    /**
-     * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
-     */
     private final int aslctrlMode;
 
-    /**
-     * null
-     */
+    private final float h;
+
+    private final float href;
+
+    private final float hrefT;
+
+    private final float pitchangle;
+
+    private final float pitchangleref;
+
+    private final float q;
+
+    private final float qref;
+
+    private final float uelev;
+
+    private final float uthrot;
+
+    private final float uthrot2;
+
+    private final float nz;
+
+    private final float airspeedref;
+
     private final int spoilersengaged;
 
-    private AslctrlData(BigInteger timestamp, float h, float href, float hrefT, float pitchangle,
-            float pitchangleref, float q, float qref, float uelev, float uthrot, float uthrot2,
-            float nz, float airspeedref, float yawangle, float yawangleref, float rollangle,
-            float rollangleref, float p, float pref, float r, float rref, float uail, float urud,
-            int aslctrlMode, int spoilersengaged) {
+    private final float yawangle;
+
+    private final float yawangleref;
+
+    private final float rollangle;
+
+    private final float rollangleref;
+
+    private final float p;
+
+    private final float pref;
+
+    private final float r;
+
+    private final float rref;
+
+    private final float uail;
+
+    private final float urud;
+
+    private AslctrlData(BigInteger timestamp, int aslctrlMode, float h, float href, float hrefT,
+            float pitchangle, float pitchangleref, float q, float qref, float uelev, float uthrot,
+            float uthrot2, float nz, float airspeedref, int spoilersengaged, float yawangle,
+            float yawangleref, float rollangle, float rollangleref, float p, float pref, float r,
+            float rref, float uail, float urud) {
         this.timestamp = timestamp;
+        this.aslctrlMode = aslctrlMode;
         this.h = h;
         this.href = href;
         this.hrefT = hrefT;
@@ -158,6 +82,7 @@ public final class AslctrlData {
         this.uthrot2 = uthrot2;
         this.nz = nz;
         this.airspeedref = airspeedref;
+        this.spoilersengaged = spoilersengaged;
         this.yawangle = yawangle;
         this.yawangleref = yawangleref;
         this.rollangle = rollangle;
@@ -168,42 +93,14 @@ public final class AslctrlData {
         this.rref = rref;
         this.uail = uail;
         this.urud = urud;
-        this.aslctrlMode = aslctrlMode;
-        this.spoilersengaged = spoilersengaged;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AslctrlData{timestamp=" + timestamp
-                 + ", aslctrlMode=" + aslctrlMode
-                 + ", h=" + h
-                 + ", href=" + href
-                 + ", hrefT=" + hrefT
-                 + ", pitchangle=" + pitchangle
-                 + ", pitchangleref=" + pitchangleref
-                 + ", q=" + q
-                 + ", qref=" + qref
-                 + ", uelev=" + uelev
-                 + ", uthrot=" + uthrot
-                 + ", uthrot2=" + uthrot2
-                 + ", nz=" + nz
-                 + ", airspeedref=" + airspeedref
-                 + ", spoilersengaged=" + spoilersengaged
-                 + ", yawangle=" + yawangle
-                 + ", yawangleref=" + yawangleref
-                 + ", rollangle=" + rollangle
-                 + ", rollangleref=" + rollangleref
-                 + ", p=" + p
-                 + ", pref=" + pref
-                 + ", r=" + r
-                 + ", rref=" + rref
-                 + ", uail=" + uail
-                 + ", urud=" + urud + "}";
     }
 
     /**
@@ -214,249 +111,7 @@ public final class AslctrlData {
             unitSize = 8
     )
     public final BigInteger timestamp() {
-        return timestamp;
-    }
-
-    /**
-     * See sourcecode for a description of these values... 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float h() {
-        return h;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float href() {
-        return href;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float hrefT() {
-        return hrefT;
-    }
-
-    /**
-     * Pitch angle 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float pitchangle() {
-        return pitchangle;
-    }
-
-    /**
-     * Pitch angle reference 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float pitchangleref() {
-        return pitchangleref;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float q() {
-        return q;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float qref() {
-        return qref;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 4
-    )
-    public final float uelev() {
-        return uelev;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 4
-    )
-    public final float uthrot() {
-        return uthrot;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 12,
-            unitSize = 4
-    )
-    public final float uthrot2() {
-        return uthrot2;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 13,
-            unitSize = 4
-    )
-    public final float nz() {
-        return nz;
-    }
-
-    /**
-     * Airspeed reference 
-     */
-    @MavlinkFieldInfo(
-            position = 14,
-            unitSize = 4
-    )
-    public final float airspeedref() {
-        return airspeedref;
-    }
-
-    /**
-     * Yaw angle 
-     */
-    @MavlinkFieldInfo(
-            position = 16,
-            unitSize = 4
-    )
-    public final float yawangle() {
-        return yawangle;
-    }
-
-    /**
-     * Yaw angle reference 
-     */
-    @MavlinkFieldInfo(
-            position = 17,
-            unitSize = 4
-    )
-    public final float yawangleref() {
-        return yawangleref;
-    }
-
-    /**
-     * Roll angle 
-     */
-    @MavlinkFieldInfo(
-            position = 18,
-            unitSize = 4
-    )
-    public final float rollangle() {
-        return rollangle;
-    }
-
-    /**
-     * Roll angle reference 
-     */
-    @MavlinkFieldInfo(
-            position = 19,
-            unitSize = 4
-    )
-    public final float rollangleref() {
-        return rollangleref;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 20,
-            unitSize = 4
-    )
-    public final float p() {
-        return p;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 21,
-            unitSize = 4
-    )
-    public final float pref() {
-        return pref;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 22,
-            unitSize = 4
-    )
-    public final float r() {
-        return r;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 23,
-            unitSize = 4
-    )
-    public final float rref() {
-        return rref;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 24,
-            unitSize = 4
-    )
-    public final float uail() {
-        return uail;
-    }
-
-    /**
-     * null
-     */
-    @MavlinkFieldInfo(
-            position = 25,
-            unitSize = 4
-    )
-    public final float urud() {
-        return urud;
+        return this.timestamp;
     }
 
     /**
@@ -467,22 +122,266 @@ public final class AslctrlData {
             unitSize = 1
     )
     public final int aslctrlMode() {
-        return aslctrlMode;
+        return this.aslctrlMode;
     }
 
     /**
-     * null
+     * See sourcecode for a description of these values... 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float h() {
+        return this.h;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float href() {
+        return this.href;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float hrefT() {
+        return this.hrefT;
+    }
+
+    /**
+     * Pitch angle 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float pitchangle() {
+        return this.pitchangle;
+    }
+
+    /**
+     * Pitch angle reference 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float pitchangleref() {
+        return this.pitchangleref;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float q() {
+        return this.q;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float qref() {
+        return this.qref;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4
+    )
+    public final float uelev() {
+        return this.uelev;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4
+    )
+    public final float uthrot() {
+        return this.uthrot;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 4
+    )
+    public final float uthrot2() {
+        return this.uthrot2;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 4
+    )
+    public final float nz() {
+        return this.nz;
+    }
+
+    /**
+     * Airspeed reference 
+     */
+    @MavlinkFieldInfo(
+            position = 14,
+            unitSize = 4
+    )
+    public final float airspeedref() {
+        return this.airspeedref;
+    }
+
+    /**
+     *  
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 1
     )
     public final int spoilersengaged() {
-        return spoilersengaged;
+        return this.spoilersengaged;
     }
 
-    public static class Builder {
+    /**
+     * Yaw angle 
+     */
+    @MavlinkFieldInfo(
+            position = 16,
+            unitSize = 4
+    )
+    public final float yawangle() {
+        return this.yawangle;
+    }
+
+    /**
+     * Yaw angle reference 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 4
+    )
+    public final float yawangleref() {
+        return this.yawangleref;
+    }
+
+    /**
+     * Roll angle 
+     */
+    @MavlinkFieldInfo(
+            position = 18,
+            unitSize = 4
+    )
+    public final float rollangle() {
+        return this.rollangle;
+    }
+
+    /**
+     * Roll angle reference 
+     */
+    @MavlinkFieldInfo(
+            position = 19,
+            unitSize = 4
+    )
+    public final float rollangleref() {
+        return this.rollangleref;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 20,
+            unitSize = 4
+    )
+    public final float p() {
+        return this.p;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 21,
+            unitSize = 4
+    )
+    public final float pref() {
+        return this.pref;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 22,
+            unitSize = 4
+    )
+    public final float r() {
+        return this.r;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 23,
+            unitSize = 4
+    )
+    public final float rref() {
+        return this.rref;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 24,
+            unitSize = 4
+    )
+    public final float uail() {
+        return this.uail;
+    }
+
+    /**
+     *  
+     */
+    @MavlinkFieldInfo(
+            position = 25,
+            unitSize = 4
+    )
+    public final float urud() {
+        return this.urud;
+    }
+
+    public static final class Builder {
         private BigInteger timestamp;
+
+        private int aslctrlMode;
 
         private float h;
 
@@ -508,6 +407,8 @@ public final class AslctrlData {
 
         private float airspeedref;
 
+        private int spoilersengaged;
+
         private float yawangle;
 
         private float yawangleref;
@@ -528,13 +429,6 @@ public final class AslctrlData {
 
         private float urud;
 
-        private int aslctrlMode;
-
-        private int spoilersengaged;
-
-        private Builder() {
-        }
-
         /**
          * Timestamp 
          */
@@ -544,6 +438,18 @@ public final class AslctrlData {
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
+            return this;
+        }
+
+        /**
+         * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder aslctrlMode(int aslctrlMode) {
+            this.aslctrlMode = aslctrlMode;
             return this;
         }
 
@@ -560,7 +466,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 4,
@@ -572,7 +478,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 5,
@@ -608,7 +514,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 8,
@@ -620,7 +526,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 9,
@@ -632,7 +538,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 10,
@@ -644,7 +550,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 11,
@@ -656,7 +562,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 12,
@@ -668,7 +574,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 13,
@@ -688,6 +594,18 @@ public final class AslctrlData {
         )
         public final Builder airspeedref(float airspeedref) {
             this.airspeedref = airspeedref;
+            return this;
+        }
+
+        /**
+         *  
+         */
+        @MavlinkFieldInfo(
+                position = 15,
+                unitSize = 1
+        )
+        public final Builder spoilersengaged(int spoilersengaged) {
+            this.spoilersengaged = spoilersengaged;
             return this;
         }
 
@@ -740,7 +658,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 20,
@@ -752,7 +670,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 21,
@@ -764,7 +682,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 22,
@@ -776,7 +694,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 23,
@@ -788,7 +706,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 24,
@@ -800,7 +718,7 @@ public final class AslctrlData {
         }
 
         /**
-         * null
+         *  
          */
         @MavlinkFieldInfo(
                 position = 25,
@@ -811,32 +729,8 @@ public final class AslctrlData {
             return this;
         }
 
-        /**
-         * ASLCTRL control-mode (manual, stabilized, auto, etc...) 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder aslctrlMode(int aslctrlMode) {
-            this.aslctrlMode = aslctrlMode;
-            return this;
-        }
-
-        /**
-         * null
-         */
-        @MavlinkFieldInfo(
-                position = 15,
-                unitSize = 1
-        )
-        public final Builder spoilersengaged(int spoilersengaged) {
-            this.spoilersengaged = spoilersengaged;
-            return this;
-        }
-
         public final AslctrlData build() {
-            return new AslctrlData(timestamp, h, href, hrefT, pitchangle, pitchangleref, q, qref, uelev, uthrot, uthrot2, nz, airspeedref, yawangle, yawangleref, rollangle, rollangleref, p, pref, r, rref, uail, urud, aslctrlMode, spoilersengaged);
+            return new AslctrlData(timestamp, aslctrlMode, h, href, hrefT, pitchangle, pitchangleref, q, qref, uelev, uthrot, uthrot2, nz, airspeedref, spoilersengaged, yawangle, yawangleref, rollangle, rollangleref, p, pref, r, rref, uail, urud);
         }
     }
 }

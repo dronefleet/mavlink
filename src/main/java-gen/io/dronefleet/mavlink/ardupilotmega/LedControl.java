@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Control vehicle LEDs 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 72
 )
 public final class LedControl {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Instance (LED instance to control or 255 for all LEDs) 
-     */
     private final int instance;
 
-    /**
-     * Pattern (see LED_PATTERN_ENUM) 
-     */
     private final int pattern;
 
-    /**
-     * Custom Byte Length 
-     */
     private final int customLen;
 
-    /**
-     * Custom Bytes 
-     */
     private final byte[] customBytes;
 
     private LedControl(int targetSystem, int targetComponent, int instance, int pattern,
@@ -54,19 +34,12 @@ public final class LedControl {
         this.customBytes = customBytes;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LedControl{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", instance=" + instance
-                 + ", pattern=" + pattern
-                 + ", customLen=" + customLen
-                 + ", customBytes=" + customBytes + "}";
     }
 
     /**
@@ -77,7 +50,7 @@ public final class LedControl {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -88,7 +61,7 @@ public final class LedControl {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -99,7 +72,7 @@ public final class LedControl {
             unitSize = 1
     )
     public final int instance() {
-        return instance;
+        return this.instance;
     }
 
     /**
@@ -110,7 +83,7 @@ public final class LedControl {
             unitSize = 1
     )
     public final int pattern() {
-        return pattern;
+        return this.pattern;
     }
 
     /**
@@ -121,7 +94,7 @@ public final class LedControl {
             unitSize = 1
     )
     public final int customLen() {
-        return customLen;
+        return this.customLen;
     }
 
     /**
@@ -133,10 +106,10 @@ public final class LedControl {
             arraySize = 24
     )
     public final byte[] customBytes() {
-        return customBytes;
+        return this.customBytes;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -148,9 +121,6 @@ public final class LedControl {
         private int customLen;
 
         private byte[] customBytes;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

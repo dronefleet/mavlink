@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
-import java.lang.Override;
-import java.lang.String;
 import java.util.List;
 
 /**
@@ -16,34 +14,16 @@ import java.util.List;
         crc = 12
 )
 public final class FlexifunctionDirectory {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * 0=inputs, 1=outputs 
-     */
     private final int directoryType;
 
-    /**
-     * index of first directory entry to write 
-     */
     private final int startIndex;
 
-    /**
-     * count of directory entries to write 
-     */
     private final int count;
 
-    /**
-     * Settings data 
-     */
     private final List<Integer> directoryData;
 
     private FlexifunctionDirectory(int targetSystem, int targetComponent, int directoryType,
@@ -56,19 +36,12 @@ public final class FlexifunctionDirectory {
         this.directoryData = directoryData;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FlexifunctionDirectory{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", directoryType=" + directoryType
-                 + ", startIndex=" + startIndex
-                 + ", count=" + count
-                 + ", directoryData=" + directoryData + "}";
     }
 
     /**
@@ -79,7 +52,7 @@ public final class FlexifunctionDirectory {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -90,7 +63,7 @@ public final class FlexifunctionDirectory {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -101,7 +74,7 @@ public final class FlexifunctionDirectory {
             unitSize = 1
     )
     public final int directoryType() {
-        return directoryType;
+        return this.directoryType;
     }
 
     /**
@@ -112,7 +85,7 @@ public final class FlexifunctionDirectory {
             unitSize = 1
     )
     public final int startIndex() {
-        return startIndex;
+        return this.startIndex;
     }
 
     /**
@@ -123,7 +96,7 @@ public final class FlexifunctionDirectory {
             unitSize = 1
     )
     public final int count() {
-        return count;
+        return this.count;
     }
 
     /**
@@ -132,14 +105,14 @@ public final class FlexifunctionDirectory {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            signed = true,
-            arraySize = 48
+            arraySize = 48,
+            signed = true
     )
     public final List<Integer> directoryData() {
-        return directoryData;
+        return this.directoryData;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
@@ -151,9 +124,6 @@ public final class FlexifunctionDirectory {
         private int count;
 
         private List<Integer> directoryData;
-
-        private Builder() {
-        }
 
         /**
          * System ID 
@@ -221,8 +191,8 @@ public final class FlexifunctionDirectory {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                signed = true,
-                arraySize = 48
+                arraySize = 48,
+                signed = true
         )
         public final Builder directoryData(List<Integer> directoryData) {
             this.directoryData = directoryData;

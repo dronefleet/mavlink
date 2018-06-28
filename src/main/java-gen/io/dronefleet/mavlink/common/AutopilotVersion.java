@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -13,135 +11,68 @@ import java.math.BigInteger;
  */
 @MavlinkMessageInfo(
         id = 148,
-        crc = 178
+        crc = 39
 )
 public final class AutopilotVersion {
-    /**
-     * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MavProtocolCapability} enum) 
-     */
     private final EnumFlagSet<MavProtocolCapability> capabilities;
 
-    /**
-     * UID if provided by hardware (see uid2) 
-     */
-    private final BigInteger uid;
-
-    /**
-     * Firmware version number 
-     */
     private final long flightSwVersion;
 
-    /**
-     * Middleware version number 
-     */
     private final long middlewareSwVersion;
 
-    /**
-     * Operating system version number 
-     */
     private final long osSwVersion;
 
-    /**
-     * HW / board version (last 8 bytes should be silicon ID, if any) 
-     */
     private final long boardVersion;
 
-    /**
-     * ID of the board vendor 
-     */
-    private final int vendorId;
-
-    /**
-     * ID of the product 
-     */
-    private final int productId;
-
-    /**
-     * Custom version field, commonly the first 8 bytes of the git hash. This is not an unique 
-     * identifier, but should allow to identify the commit using the main version number even for very 
-     * large code bases. 
-     */
     private final byte[] flightCustomVersion;
 
-    /**
-     * Custom version field, commonly the first 8 bytes of the git hash. This is not an unique 
-     * identifier, but should allow to identify the commit using the main version number even for very 
-     * large code bases. 
-     */
     private final byte[] middlewareCustomVersion;
 
-    /**
-     * Custom version field, commonly the first 8 bytes of the git hash. This is not an unique 
-     * identifier, but should allow to identify the commit using the main version number even for very 
-     * large code bases. 
-     */
     private final byte[] osCustomVersion;
 
-    /**
-     * UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, 
-     * otherwise use uid) 
-     */
+    private final int vendorId;
+
+    private final int productId;
+
+    private final BigInteger uid;
+
     private final byte[] uid2;
 
-    private AutopilotVersion(EnumFlagSet<MavProtocolCapability> capabilities, BigInteger uid,
-            long flightSwVersion, long middlewareSwVersion, long osSwVersion, long boardVersion,
-            int vendorId, int productId, byte[] flightCustomVersion, byte[] middlewareCustomVersion,
-            byte[] osCustomVersion, byte[] uid2) {
+    private AutopilotVersion(EnumFlagSet<MavProtocolCapability> capabilities, long flightSwVersion,
+            long middlewareSwVersion, long osSwVersion, long boardVersion,
+            byte[] flightCustomVersion, byte[] middlewareCustomVersion, byte[] osCustomVersion,
+            int vendorId, int productId, BigInteger uid, byte[] uid2) {
         this.capabilities = capabilities;
-        this.uid = uid;
         this.flightSwVersion = flightSwVersion;
         this.middlewareSwVersion = middlewareSwVersion;
         this.osSwVersion = osSwVersion;
         this.boardVersion = boardVersion;
-        this.vendorId = vendorId;
-        this.productId = productId;
         this.flightCustomVersion = flightCustomVersion;
         this.middlewareCustomVersion = middlewareCustomVersion;
         this.osCustomVersion = osCustomVersion;
+        this.vendorId = vendorId;
+        this.productId = productId;
+        this.uid = uid;
         this.uid2 = uid2;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "AutopilotVersion{capabilities=" + capabilities
-                 + ", flightSwVersion=" + flightSwVersion
-                 + ", middlewareSwVersion=" + middlewareSwVersion
-                 + ", osSwVersion=" + osSwVersion
-                 + ", boardVersion=" + boardVersion
-                 + ", flightCustomVersion=" + flightCustomVersion
-                 + ", middlewareCustomVersion=" + middlewareCustomVersion
-                 + ", osCustomVersion=" + osCustomVersion
-                 + ", vendorId=" + vendorId
-                 + ", productId=" + productId
-                 + ", uid=" + uid
-                 + ", uid2=" + uid2 + "}";
-    }
-
     /**
-     * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MavProtocolCapability} enum) 
+     * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8
     )
     public final EnumFlagSet<MavProtocolCapability> capabilities() {
-        return capabilities;
-    }
-
-    /**
-     * UID if provided by hardware (see uid2) 
-     */
-    @MavlinkFieldInfo(
-            position = 11,
-            unitSize = 8
-    )
-    public final BigInteger uid() {
-        return uid;
+        return this.capabilities;
     }
 
     /**
@@ -152,7 +83,7 @@ public final class AutopilotVersion {
             unitSize = 4
     )
     public final long flightSwVersion() {
-        return flightSwVersion;
+        return this.flightSwVersion;
     }
 
     /**
@@ -163,7 +94,7 @@ public final class AutopilotVersion {
             unitSize = 4
     )
     public final long middlewareSwVersion() {
-        return middlewareSwVersion;
+        return this.middlewareSwVersion;
     }
 
     /**
@@ -174,7 +105,7 @@ public final class AutopilotVersion {
             unitSize = 4
     )
     public final long osSwVersion() {
-        return osSwVersion;
+        return this.osSwVersion;
     }
 
     /**
@@ -185,29 +116,7 @@ public final class AutopilotVersion {
             unitSize = 4
     )
     public final long boardVersion() {
-        return boardVersion;
-    }
-
-    /**
-     * ID of the board vendor 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 2
-    )
-    public final int vendorId() {
-        return vendorId;
-    }
-
-    /**
-     * ID of the product 
-     */
-    @MavlinkFieldInfo(
-            position = 10,
-            unitSize = 2
-    )
-    public final int productId() {
-        return productId;
+        return this.boardVersion;
     }
 
     /**
@@ -221,7 +130,7 @@ public final class AutopilotVersion {
             arraySize = 8
     )
     public final byte[] flightCustomVersion() {
-        return flightCustomVersion;
+        return this.flightCustomVersion;
     }
 
     /**
@@ -235,7 +144,7 @@ public final class AutopilotVersion {
             arraySize = 8
     )
     public final byte[] middlewareCustomVersion() {
-        return middlewareCustomVersion;
+        return this.middlewareCustomVersion;
     }
 
     /**
@@ -249,7 +158,40 @@ public final class AutopilotVersion {
             arraySize = 8
     )
     public final byte[] osCustomVersion() {
-        return osCustomVersion;
+        return this.osCustomVersion;
+    }
+
+    /**
+     * ID of the board vendor 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 2
+    )
+    public final int vendorId() {
+        return this.vendorId;
+    }
+
+    /**
+     * ID of the product 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 2
+    )
+    public final int productId() {
+        return this.productId;
+    }
+
+    /**
+     * UID if provided by hardware (see uid2) 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 8
+    )
+    public final BigInteger uid() {
+        return this.uid;
     }
 
     /**
@@ -263,13 +205,11 @@ public final class AutopilotVersion {
             extension = true
     )
     public final byte[] uid2() {
-        return uid2;
+        return this.uid2;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private EnumFlagSet<MavProtocolCapability> capabilities;
-
-        private BigInteger uid;
 
         private long flightSwVersion;
 
@@ -279,23 +219,22 @@ public final class AutopilotVersion {
 
         private long boardVersion;
 
-        private int vendorId;
-
-        private int productId;
-
         private byte[] flightCustomVersion;
 
         private byte[] middlewareCustomVersion;
 
         private byte[] osCustomVersion;
 
+        private int vendorId;
+
+        private int productId;
+
+        private BigInteger uid;
+
         private byte[] uid2;
 
-        private Builder() {
-        }
-
         /**
-         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MavProtocolCapability} enum) 
+         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
          */
         @MavlinkFieldInfo(
                 position = 1,
@@ -303,18 +242,6 @@ public final class AutopilotVersion {
         )
         public final Builder capabilities(EnumFlagSet<MavProtocolCapability> capabilities) {
             this.capabilities = capabilities;
-            return this;
-        }
-
-        /**
-         * UID if provided by hardware (see uid2) 
-         */
-        @MavlinkFieldInfo(
-                position = 11,
-                unitSize = 8
-        )
-        public final Builder uid(BigInteger uid) {
-            this.uid = uid;
             return this;
         }
 
@@ -367,30 +294,6 @@ public final class AutopilotVersion {
         }
 
         /**
-         * ID of the board vendor 
-         */
-        @MavlinkFieldInfo(
-                position = 9,
-                unitSize = 2
-        )
-        public final Builder vendorId(int vendorId) {
-            this.vendorId = vendorId;
-            return this;
-        }
-
-        /**
-         * ID of the product 
-         */
-        @MavlinkFieldInfo(
-                position = 10,
-                unitSize = 2
-        )
-        public final Builder productId(int productId) {
-            this.productId = productId;
-            return this;
-        }
-
-        /**
          * Custom version field, commonly the first 8 bytes of the git hash. This is not an unique 
          * identifier, but should allow to identify the commit using the main version number even for very 
          * large code bases. 
@@ -436,6 +339,42 @@ public final class AutopilotVersion {
         }
 
         /**
+         * ID of the board vendor 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 2
+        )
+        public final Builder vendorId(int vendorId) {
+            this.vendorId = vendorId;
+            return this;
+        }
+
+        /**
+         * ID of the product 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 2
+        )
+        public final Builder productId(int productId) {
+            this.productId = productId;
+            return this;
+        }
+
+        /**
+         * UID if provided by hardware (see uid2) 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 8
+        )
+        public final Builder uid(BigInteger uid) {
+            this.uid = uid;
+            return this;
+        }
+
+        /**
          * UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, 
          * otherwise use uid) 
          */
@@ -451,7 +390,7 @@ public final class AutopilotVersion {
         }
 
         public final AutopilotVersion build() {
-            return new AutopilotVersion(capabilities, uid, flightSwVersion, middlewareSwVersion, osSwVersion, boardVersion, vendorId, productId, flightCustomVersion, middlewareCustomVersion, osCustomVersion, uid2);
+            return new AutopilotVersion(capabilities, flightSwVersion, middlewareSwVersion, osSwVersion, boardVersion, flightCustomVersion, middlewareCustomVersion, osCustomVersion, vendorId, productId, uid, uid2);
         }
     }
 }

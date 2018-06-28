@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -16,87 +15,31 @@ import java.lang.String;
         crc = 220
 )
 public final class ParamValue {
-    /**
-     * Onboard parameter value 
-     */
-    private final float paramValue;
-
-    /**
-     * Total number of onboard parameters 
-     */
-    private final int paramCount;
-
-    /**
-     * Index of this onboard parameter 
-     */
-    private final int paramIndex;
-
-    /**
-     * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
-     * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
-     * provide 16+1 bytes storage if the ID is stored as string 
-     */
     private final String paramId;
 
-    /**
-     * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
-     */
+    private final float paramValue;
+
     private final MavParamType paramType;
 
-    private ParamValue(float paramValue, int paramCount, int paramIndex, String paramId,
-            MavParamType paramType) {
+    private final int paramCount;
+
+    private final int paramIndex;
+
+    private ParamValue(String paramId, float paramValue, MavParamType paramType, int paramCount,
+            int paramIndex) {
+        this.paramId = paramId;
         this.paramValue = paramValue;
+        this.paramType = paramType;
         this.paramCount = paramCount;
         this.paramIndex = paramIndex;
-        this.paramId = paramId;
-        this.paramType = paramType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ParamValue{paramId=" + paramId
-                 + ", paramValue=" + paramValue
-                 + ", paramType=" + paramType
-                 + ", paramCount=" + paramCount
-                 + ", paramIndex=" + paramIndex + "}";
-    }
-
-    /**
-     * Onboard parameter value 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float paramValue() {
-        return paramValue;
-    }
-
-    /**
-     * Total number of onboard parameters 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2
-    )
-    public final int paramCount() {
-        return paramCount;
-    }
-
-    /**
-     * Index of this onboard parameter 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2
-    )
-    public final int paramIndex() {
-        return paramIndex;
     }
 
     /**
@@ -110,32 +53,77 @@ public final class ParamValue {
             arraySize = 16
     )
     public final String paramId() {
-        return paramId;
+        return this.paramId;
     }
 
     /**
-     * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
+     * Onboard parameter value 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float paramValue() {
+        return this.paramValue;
+    }
+
+    /**
+     * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavParamType paramType() {
-        return paramType;
+        return this.paramType;
     }
 
-    public static class Builder {
+    /**
+     * Total number of onboard parameters 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2
+    )
+    public final int paramCount() {
+        return this.paramCount;
+    }
+
+    /**
+     * Index of this onboard parameter 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2
+    )
+    public final int paramIndex() {
+        return this.paramIndex;
+    }
+
+    public static final class Builder {
+        private String paramId;
+
         private float paramValue;
+
+        private MavParamType paramType;
 
         private int paramCount;
 
         private int paramIndex;
 
-        private String paramId;
-
-        private MavParamType paramType;
-
-        private Builder() {
+        /**
+         * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
+         * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
+         * provide 16+1 bytes storage if the ID is stored as string 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1,
+                arraySize = 16
+        )
+        public final Builder paramId(String paramId) {
+            this.paramId = paramId;
+            return this;
         }
 
         /**
@@ -147,6 +135,18 @@ public final class ParamValue {
         )
         public final Builder paramValue(float paramValue) {
             this.paramValue = paramValue;
+            return this;
+        }
+
+        /**
+         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder paramType(MavParamType paramType) {
+            this.paramType = paramType;
             return this;
         }
 
@@ -174,35 +174,8 @@ public final class ParamValue {
             return this;
         }
 
-        /**
-         * Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and 
-         * WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to 
-         * provide 16+1 bytes storage if the ID is stored as string 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1,
-                arraySize = 16
-        )
-        public final Builder paramId(String paramId) {
-            this.paramId = paramId;
-            return this;
-        }
-
-        /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MavParamType} enum for supported data types. 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder paramType(MavParamType paramType) {
-            this.paramType = paramType;
-            return this;
-        }
-
         public final ParamValue build() {
-            return new ParamValue(paramValue, paramCount, paramIndex, paramId, paramType);
+            return new ParamValue(paramId, paramValue, paramType, paramCount, paramIndex);
         }
     }
 }

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Pilot console PWM messges. 
@@ -14,64 +12,28 @@ import java.lang.String;
         crc = 132
 )
 public final class GpsDateTime {
-    /**
-     * Year reported by Gps 
-     */
     private final int year;
 
-    /**
-     * Month reported by Gps 
-     */
     private final int month;
 
-    /**
-     * Day reported by Gps 
-     */
     private final int day;
 
-    /**
-     * Hour reported by Gps 
-     */
     private final int hour;
 
-    /**
-     * Min reported by Gps 
-     */
     private final int min;
 
-    /**
-     * Sec reported by Gps 
-     */
     private final int sec;
 
-    /**
-     * Clock Status. See table 47 page 211 OEMStar Manual 
-     */
     private final int clockstat;
 
-    /**
-     * Visible satellites reported by Gps 
-     */
     private final int vissat;
 
-    /**
-     * Used satellites in Solution 
-     */
     private final int usesat;
 
-    /**
-     * GPS+GLONASS satellites in Solution 
-     */
     private final int gppgl;
 
-    /**
-     * GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?) 
-     */
     private final int sigusedmask;
 
-    /**
-     * Percent used GPS 
-     */
     private final int percentused;
 
     private GpsDateTime(int year, int month, int day, int hour, int min, int sec, int clockstat,
@@ -90,25 +52,12 @@ public final class GpsDateTime {
         this.percentused = percentused;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GpsDateTime{year=" + year
-                 + ", month=" + month
-                 + ", day=" + day
-                 + ", hour=" + hour
-                 + ", min=" + min
-                 + ", sec=" + sec
-                 + ", clockstat=" + clockstat
-                 + ", vissat=" + vissat
-                 + ", usesat=" + usesat
-                 + ", gppgl=" + gppgl
-                 + ", sigusedmask=" + sigusedmask
-                 + ", percentused=" + percentused + "}";
     }
 
     /**
@@ -119,7 +68,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int year() {
-        return year;
+        return this.year;
     }
 
     /**
@@ -130,7 +79,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int month() {
-        return month;
+        return this.month;
     }
 
     /**
@@ -141,7 +90,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int day() {
-        return day;
+        return this.day;
     }
 
     /**
@@ -152,7 +101,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int hour() {
-        return hour;
+        return this.hour;
     }
 
     /**
@@ -163,7 +112,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int min() {
-        return min;
+        return this.min;
     }
 
     /**
@@ -174,7 +123,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int sec() {
-        return sec;
+        return this.sec;
     }
 
     /**
@@ -185,7 +134,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int clockstat() {
-        return clockstat;
+        return this.clockstat;
     }
 
     /**
@@ -196,7 +145,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int vissat() {
-        return vissat;
+        return this.vissat;
     }
 
     /**
@@ -207,7 +156,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int usesat() {
-        return usesat;
+        return this.usesat;
     }
 
     /**
@@ -218,7 +167,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int gppgl() {
-        return gppgl;
+        return this.gppgl;
     }
 
     /**
@@ -229,7 +178,7 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int sigusedmask() {
-        return sigusedmask;
+        return this.sigusedmask;
     }
 
     /**
@@ -240,10 +189,10 @@ public final class GpsDateTime {
             unitSize = 1
     )
     public final int percentused() {
-        return percentused;
+        return this.percentused;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int year;
 
         private int month;
@@ -267,9 +216,6 @@ public final class GpsDateTime {
         private int sigusedmask;
 
         private int percentused;
-
-        private Builder() {
-        }
 
         /**
          * Year reported by Gps 

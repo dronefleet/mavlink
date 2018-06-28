@@ -10,9 +10,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum AutoquadMavlinkDefsVersion {
     /**
-     * null<dl>
-     *
-     * </dl>
+     *  
      */
     @MavlinkEntryInfo(1)
     AQ_MAVLINK_DEFS_VERSION_1

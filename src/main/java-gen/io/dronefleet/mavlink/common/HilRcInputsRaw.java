@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -17,74 +15,32 @@ import java.math.BigInteger;
         crc = 54
 )
 public final class HilRcInputsRaw {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * RC channel 1 value, in microseconds 
-     */
     private final int chan1Raw;
 
-    /**
-     * RC channel 2 value, in microseconds 
-     */
     private final int chan2Raw;
 
-    /**
-     * RC channel 3 value, in microseconds 
-     */
     private final int chan3Raw;
 
-    /**
-     * RC channel 4 value, in microseconds 
-     */
     private final int chan4Raw;
 
-    /**
-     * RC channel 5 value, in microseconds 
-     */
     private final int chan5Raw;
 
-    /**
-     * RC channel 6 value, in microseconds 
-     */
     private final int chan6Raw;
 
-    /**
-     * RC channel 7 value, in microseconds 
-     */
     private final int chan7Raw;
 
-    /**
-     * RC channel 8 value, in microseconds 
-     */
     private final int chan8Raw;
 
-    /**
-     * RC channel 9 value, in microseconds 
-     */
     private final int chan9Raw;
 
-    /**
-     * RC channel 10 value, in microseconds 
-     */
     private final int chan10Raw;
 
-    /**
-     * RC channel 11 value, in microseconds 
-     */
     private final int chan11Raw;
 
-    /**
-     * RC channel 12 value, in microseconds 
-     */
     private final int chan12Raw;
 
-    /**
-     * Receive signal strength indicator, 0: 0%, 255: 100% 
-     */
     private final int rssi;
 
     private HilRcInputsRaw(BigInteger timeUsec, int chan1Raw, int chan2Raw, int chan3Raw,
@@ -106,27 +62,12 @@ public final class HilRcInputsRaw {
         this.rssi = rssi;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HilRcInputsRaw{timeUsec=" + timeUsec
-                 + ", chan1Raw=" + chan1Raw
-                 + ", chan2Raw=" + chan2Raw
-                 + ", chan3Raw=" + chan3Raw
-                 + ", chan4Raw=" + chan4Raw
-                 + ", chan5Raw=" + chan5Raw
-                 + ", chan6Raw=" + chan6Raw
-                 + ", chan7Raw=" + chan7Raw
-                 + ", chan8Raw=" + chan8Raw
-                 + ", chan9Raw=" + chan9Raw
-                 + ", chan10Raw=" + chan10Raw
-                 + ", chan11Raw=" + chan11Raw
-                 + ", chan12Raw=" + chan12Raw
-                 + ", rssi=" + rssi + "}";
     }
 
     /**
@@ -137,7 +78,7 @@ public final class HilRcInputsRaw {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -148,7 +89,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan1Raw() {
-        return chan1Raw;
+        return this.chan1Raw;
     }
 
     /**
@@ -159,7 +100,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan2Raw() {
-        return chan2Raw;
+        return this.chan2Raw;
     }
 
     /**
@@ -170,7 +111,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan3Raw() {
-        return chan3Raw;
+        return this.chan3Raw;
     }
 
     /**
@@ -181,7 +122,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan4Raw() {
-        return chan4Raw;
+        return this.chan4Raw;
     }
 
     /**
@@ -192,7 +133,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan5Raw() {
-        return chan5Raw;
+        return this.chan5Raw;
     }
 
     /**
@@ -203,7 +144,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan6Raw() {
-        return chan6Raw;
+        return this.chan6Raw;
     }
 
     /**
@@ -214,7 +155,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan7Raw() {
-        return chan7Raw;
+        return this.chan7Raw;
     }
 
     /**
@@ -225,7 +166,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan8Raw() {
-        return chan8Raw;
+        return this.chan8Raw;
     }
 
     /**
@@ -236,7 +177,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan9Raw() {
-        return chan9Raw;
+        return this.chan9Raw;
     }
 
     /**
@@ -247,7 +188,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan10Raw() {
-        return chan10Raw;
+        return this.chan10Raw;
     }
 
     /**
@@ -258,7 +199,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan11Raw() {
-        return chan11Raw;
+        return this.chan11Raw;
     }
 
     /**
@@ -269,7 +210,7 @@ public final class HilRcInputsRaw {
             unitSize = 2
     )
     public final int chan12Raw() {
-        return chan12Raw;
+        return this.chan12Raw;
     }
 
     /**
@@ -280,10 +221,10 @@ public final class HilRcInputsRaw {
             unitSize = 1
     )
     public final int rssi() {
-        return rssi;
+        return this.rssi;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private int chan1Raw;
@@ -311,9 +252,6 @@ public final class HilRcInputsRaw {
         private int chan12Raw;
 
         private int rssi;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 

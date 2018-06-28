@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Atmospheric sensors (temperature, humidity, ...) 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 175
 )
 public final class SensAtmos {
-    /**
-     * Ambient temperature 
-     */
     private final float tempambient;
 
-    /**
-     * Relative humidity 
-     */
     private final float humidity;
 
     private SensAtmos(float tempambient, float humidity) {
@@ -29,15 +21,12 @@ public final class SensAtmos {
         this.humidity = humidity;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SensAtmos{tempambient=" + tempambient
-                 + ", humidity=" + humidity + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class SensAtmos {
             unitSize = 4
     )
     public final float tempambient() {
-        return tempambient;
+        return this.tempambient;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class SensAtmos {
             unitSize = 4
     )
     public final float humidity() {
-        return humidity;
+        return this.humidity;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float tempambient;
 
         private float humidity;
-
-        private Builder() {
-        }
 
         /**
          * Ambient temperature 

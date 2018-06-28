@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,14 +13,8 @@ import java.math.BigInteger;
         crc = 174
 )
 public final class CameraTrigger {
-    /**
-     * Timestamp for the image frame in microseconds 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Image frame sequence 
-     */
     private final long seq;
 
     private CameraTrigger(BigInteger timeUsec, long seq) {
@@ -30,15 +22,12 @@ public final class CameraTrigger {
         this.seq = seq;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CameraTrigger{timeUsec=" + timeUsec
-                 + ", seq=" + seq + "}";
     }
 
     /**
@@ -49,7 +38,7 @@ public final class CameraTrigger {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -60,16 +49,13 @@ public final class CameraTrigger {
             unitSize = 4
     )
     public final long seq() {
-        return seq;
+        return this.seq;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private long seq;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp for the image frame in microseconds 

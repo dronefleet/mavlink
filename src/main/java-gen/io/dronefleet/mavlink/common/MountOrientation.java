@@ -3,40 +3,23 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Orientation of a mount 
  */
 @MavlinkMessageInfo(
         id = 265,
-        crc = 26
+        crc = 77
 )
 public final class MountOrientation {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Roll in global frame in degrees (set to NaN for invalid). 
-     */
     private final float roll;
 
-    /**
-     * Pitch in global frame in degrees (set to NaN for invalid). 
-     */
     private final float pitch;
 
-    /**
-     * Yaw relative to vehicle in degrees (set to NaN for invalid). 
-     */
     private final float yaw;
 
-    /**
-     * Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid). 
-     */
     private final float yawAbsolute;
 
     private MountOrientation(long timeBootMs, float roll, float pitch, float yaw,
@@ -48,18 +31,12 @@ public final class MountOrientation {
         this.yawAbsolute = yawAbsolute;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MountOrientation{timeBootMs=" + timeBootMs
-                 + ", roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", yawAbsolute=" + yawAbsolute + "}";
     }
 
     /**
@@ -70,7 +47,7 @@ public final class MountOrientation {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -81,7 +58,7 @@ public final class MountOrientation {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -92,7 +69,7 @@ public final class MountOrientation {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -103,7 +80,7 @@ public final class MountOrientation {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -115,10 +92,10 @@ public final class MountOrientation {
             extension = true
     )
     public final float yawAbsolute() {
-        return yawAbsolute;
+        return this.yawAbsolute;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private float roll;
@@ -128,9 +105,6 @@ public final class MountOrientation {
         private float yaw;
 
         private float yawAbsolute;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

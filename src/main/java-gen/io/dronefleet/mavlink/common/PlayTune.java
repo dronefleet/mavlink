@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -14,19 +13,10 @@ import java.lang.String;
         crc = 187
 )
 public final class PlayTune {
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * tune in board specific format 
-     */
     private final String tune;
 
     private PlayTune(int targetSystem, int targetComponent, String tune) {
@@ -35,16 +25,12 @@ public final class PlayTune {
         this.tune = tune;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "PlayTune{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", tune=" + tune + "}";
     }
 
     /**
@@ -55,7 +41,7 @@ public final class PlayTune {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -66,7 +52,7 @@ public final class PlayTune {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -78,18 +64,15 @@ public final class PlayTune {
             arraySize = 30
     )
     public final String tune() {
-        return tune;
+        return this.tune;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
         private String tune;
-
-        private Builder() {
-        }
 
         /**
          * System ID 

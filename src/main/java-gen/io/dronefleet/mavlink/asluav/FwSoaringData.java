@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,129 +13,54 @@ import java.math.BigInteger;
         crc = 20
 )
 public final class FwSoaringData {
-    /**
-     * Timestamp 
-     */
     private final BigInteger timestamp;
 
-    /**
-     * Timestamp since last mode change 
-     */
     private final BigInteger timestampmodechanged;
 
-    /**
-     * Thermal core updraft strength 
-     */
     private final float xw;
 
-    /**
-     * Thermal radius 
-     */
     private final float xr;
 
-    /**
-     * Thermal center latitude 
-     */
     private final float xlat;
 
-    /**
-     * Thermal center longitude 
-     */
     private final float xlon;
 
-    /**
-     * Variance W 
-     */
     private final float varw;
 
-    /**
-     * Variance R 
-     */
     private final float varr;
 
-    /**
-     * Variance Lat 
-     */
     private final float varlat;
 
-    /**
-     * Variance Lon 
-     */
     private final float varlon;
 
-    /**
-     * Suggested loiter radius 
-     */
     private final float loiterradius;
 
-    /**
-     * Suggested loiter direction 
-     */
     private final float loiterdirection;
 
-    /**
-     * Distance to soar point 
-     */
     private final float disttosoarpoint;
 
-    /**
-     * Expected sink rate at current airspeed, roll and throttle 
-     */
     private final float vsinkexp;
 
-    /**
-     * Measurement / updraft speed at current/local airplane position 
-     */
     private final float z1Localupdraftspeed;
 
-    /**
-     * Measurement / roll angle tracking error 
-     */
     private final float z2Deltaroll;
 
-    /**
-     * Expected measurement 1 
-     */
     private final float z1Exp;
 
-    /**
-     * Expected measurement 2 
-     */
     private final float z2Exp;
 
-    /**
-     * Thermal drift (from estimator prediction step only) 
-     */
     private final float thermalgsnorth;
 
-    /**
-     * Thermal drift (from estimator prediction step only) 
-     */
     private final float thermalgseast;
 
-    /**
-     * Total specific energy change (filtered) 
-     */
     private final float tseDot;
 
-    /**
-     * Debug variable 1 
-     */
     private final float debugvar1;
 
-    /**
-     * Debug variable 2 
-     */
     private final float debugvar2;
 
-    /**
-     * Control Mode [-] 
-     */
     private final int controlmode;
 
-    /**
-     * Data valid [-] 
-     */
     private final int valid;
 
     private FwSoaringData(BigInteger timestamp, BigInteger timestampmodechanged, float xw, float xr,
@@ -173,38 +96,12 @@ public final class FwSoaringData {
         this.valid = valid;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FwSoaringData{timestamp=" + timestamp
-                 + ", timestampmodechanged=" + timestampmodechanged
-                 + ", xw=" + xw
-                 + ", xr=" + xr
-                 + ", xlat=" + xlat
-                 + ", xlon=" + xlon
-                 + ", varw=" + varw
-                 + ", varr=" + varr
-                 + ", varlat=" + varlat
-                 + ", varlon=" + varlon
-                 + ", loiterradius=" + loiterradius
-                 + ", loiterdirection=" + loiterdirection
-                 + ", disttosoarpoint=" + disttosoarpoint
-                 + ", vsinkexp=" + vsinkexp
-                 + ", z1Localupdraftspeed=" + z1Localupdraftspeed
-                 + ", z2Deltaroll=" + z2Deltaroll
-                 + ", z1Exp=" + z1Exp
-                 + ", z2Exp=" + z2Exp
-                 + ", thermalgsnorth=" + thermalgsnorth
-                 + ", thermalgseast=" + thermalgseast
-                 + ", tseDot=" + tseDot
-                 + ", debugvar1=" + debugvar1
-                 + ", debugvar2=" + debugvar2
-                 + ", controlmode=" + controlmode
-                 + ", valid=" + valid + "}";
     }
 
     /**
@@ -215,7 +112,7 @@ public final class FwSoaringData {
             unitSize = 8
     )
     public final BigInteger timestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     /**
@@ -226,7 +123,7 @@ public final class FwSoaringData {
             unitSize = 8
     )
     public final BigInteger timestampmodechanged() {
-        return timestampmodechanged;
+        return this.timestampmodechanged;
     }
 
     /**
@@ -237,7 +134,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float xw() {
-        return xw;
+        return this.xw;
     }
 
     /**
@@ -248,7 +145,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float xr() {
-        return xr;
+        return this.xr;
     }
 
     /**
@@ -259,7 +156,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float xlat() {
-        return xlat;
+        return this.xlat;
     }
 
     /**
@@ -270,7 +167,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float xlon() {
-        return xlon;
+        return this.xlon;
     }
 
     /**
@@ -281,7 +178,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float varw() {
-        return varw;
+        return this.varw;
     }
 
     /**
@@ -292,7 +189,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float varr() {
-        return varr;
+        return this.varr;
     }
 
     /**
@@ -303,7 +200,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float varlat() {
-        return varlat;
+        return this.varlat;
     }
 
     /**
@@ -314,7 +211,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float varlon() {
-        return varlon;
+        return this.varlon;
     }
 
     /**
@@ -325,7 +222,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float loiterradius() {
-        return loiterradius;
+        return this.loiterradius;
     }
 
     /**
@@ -336,7 +233,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float loiterdirection() {
-        return loiterdirection;
+        return this.loiterdirection;
     }
 
     /**
@@ -347,7 +244,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float disttosoarpoint() {
-        return disttosoarpoint;
+        return this.disttosoarpoint;
     }
 
     /**
@@ -358,7 +255,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float vsinkexp() {
-        return vsinkexp;
+        return this.vsinkexp;
     }
 
     /**
@@ -369,7 +266,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float z1Localupdraftspeed() {
-        return z1Localupdraftspeed;
+        return this.z1Localupdraftspeed;
     }
 
     /**
@@ -380,7 +277,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float z2Deltaroll() {
-        return z2Deltaroll;
+        return this.z2Deltaroll;
     }
 
     /**
@@ -391,7 +288,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float z1Exp() {
-        return z1Exp;
+        return this.z1Exp;
     }
 
     /**
@@ -402,7 +299,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float z2Exp() {
-        return z2Exp;
+        return this.z2Exp;
     }
 
     /**
@@ -413,7 +310,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float thermalgsnorth() {
-        return thermalgsnorth;
+        return this.thermalgsnorth;
     }
 
     /**
@@ -424,7 +321,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float thermalgseast() {
-        return thermalgseast;
+        return this.thermalgseast;
     }
 
     /**
@@ -435,7 +332,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float tseDot() {
-        return tseDot;
+        return this.tseDot;
     }
 
     /**
@@ -446,7 +343,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float debugvar1() {
-        return debugvar1;
+        return this.debugvar1;
     }
 
     /**
@@ -457,7 +354,7 @@ public final class FwSoaringData {
             unitSize = 4
     )
     public final float debugvar2() {
-        return debugvar2;
+        return this.debugvar2;
     }
 
     /**
@@ -468,7 +365,7 @@ public final class FwSoaringData {
             unitSize = 1
     )
     public final int controlmode() {
-        return controlmode;
+        return this.controlmode;
     }
 
     /**
@@ -479,10 +376,10 @@ public final class FwSoaringData {
             unitSize = 1
     )
     public final int valid() {
-        return valid;
+        return this.valid;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timestamp;
 
         private BigInteger timestampmodechanged;
@@ -532,9 +429,6 @@ public final class FwSoaringData {
         private int controlmode;
 
         private int valid;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp 

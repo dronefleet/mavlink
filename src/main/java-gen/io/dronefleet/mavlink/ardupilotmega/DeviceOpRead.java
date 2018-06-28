@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -14,57 +13,30 @@ import java.lang.String;
         crc = 134
 )
 public final class DeviceOpRead {
-    /**
-     * request ID - copied to reply 
-     */
-    private final long requestId;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * The bus type 
-     */
+    private final long requestId;
+
     private final DeviceOpBustype bustype;
 
-    /**
-     * Bus number 
-     */
     private final int bus;
 
-    /**
-     * Bus address 
-     */
     private final int address;
 
-    /**
-     * Name of device on bus (for SPI) 
-     */
     private final String busname;
 
-    /**
-     * First register to read 
-     */
     private final int regstart;
 
-    /**
-     * count of registers to read 
-     */
     private final int count;
 
-    private DeviceOpRead(long requestId, int targetSystem, int targetComponent,
+    private DeviceOpRead(int targetSystem, int targetComponent, long requestId,
             DeviceOpBustype bustype, int bus, int address, String busname, int regstart,
             int count) {
-        this.requestId = requestId;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.requestId = requestId;
         this.bustype = bustype;
         this.bus = bus;
         this.address = address;
@@ -73,33 +45,12 @@ public final class DeviceOpRead {
         this.count = count;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "DeviceOpRead{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", requestId=" + requestId
-                 + ", bustype=" + bustype
-                 + ", bus=" + bus
-                 + ", address=" + address
-                 + ", busname=" + busname
-                 + ", regstart=" + regstart
-                 + ", count=" + count + "}";
-    }
-
-    /**
-     * request ID - copied to reply 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final long requestId() {
-        return requestId;
     }
 
     /**
@@ -110,7 +61,7 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -121,7 +72,18 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
+    }
+
+    /**
+     * request ID - copied to reply 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final long requestId() {
+        return this.requestId;
     }
 
     /**
@@ -132,7 +94,7 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final DeviceOpBustype bustype() {
-        return bustype;
+        return this.bustype;
     }
 
     /**
@@ -143,7 +105,7 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int bus() {
-        return bus;
+        return this.bus;
     }
 
     /**
@@ -154,7 +116,7 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int address() {
-        return address;
+        return this.address;
     }
 
     /**
@@ -166,7 +128,7 @@ public final class DeviceOpRead {
             arraySize = 40
     )
     public final String busname() {
-        return busname;
+        return this.busname;
     }
 
     /**
@@ -177,7 +139,7 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int regstart() {
-        return regstart;
+        return this.regstart;
     }
 
     /**
@@ -188,15 +150,15 @@ public final class DeviceOpRead {
             unitSize = 1
     )
     public final int count() {
-        return count;
+        return this.count;
     }
 
-    public static class Builder {
-        private long requestId;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
+
+        private long requestId;
 
         private DeviceOpBustype bustype;
 
@@ -209,21 +171,6 @@ public final class DeviceOpRead {
         private int regstart;
 
         private int count;
-
-        private Builder() {
-        }
-
-        /**
-         * request ID - copied to reply 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 4
-        )
-        public final Builder requestId(long requestId) {
-            this.requestId = requestId;
-            return this;
-        }
 
         /**
          * System ID 
@@ -246,6 +193,18 @@ public final class DeviceOpRead {
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * request ID - copied to reply 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4
+        )
+        public final Builder requestId(long requestId) {
+            this.requestId = requestId;
             return this;
         }
 
@@ -323,7 +282,7 @@ public final class DeviceOpRead {
         }
 
         public final DeviceOpRead build() {
-            return new DeviceOpRead(requestId, targetSystem, targetComponent, bustype, bus, address, busname, regstart, count);
+            return new DeviceOpRead(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count);
         }
     }
 }

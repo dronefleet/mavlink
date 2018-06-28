@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -17,89 +15,38 @@ import java.util.List;
         crc = 103
 )
 public final class ControlSystemState {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * X acceleration in body frame 
-     */
     private final float xAcc;
 
-    /**
-     * Y acceleration in body frame 
-     */
     private final float yAcc;
 
-    /**
-     * Z acceleration in body frame 
-     */
     private final float zAcc;
 
-    /**
-     * X velocity in body frame 
-     */
     private final float xVel;
 
-    /**
-     * Y velocity in body frame 
-     */
     private final float yVel;
 
-    /**
-     * Z velocity in body frame 
-     */
     private final float zVel;
 
-    /**
-     * X position in local frame 
-     */
     private final float xPos;
 
-    /**
-     * Y position in local frame 
-     */
     private final float yPos;
 
-    /**
-     * Z position in local frame 
-     */
     private final float zPos;
 
-    /**
-     * Airspeed, set to -1 if unknown 
-     */
     private final float airspeed;
 
-    /**
-     * Variance of body velocity estimate 
-     */
     private final List<Float> velVariance;
 
-    /**
-     * Variance in local position 
-     */
     private final List<Float> posVariance;
 
-    /**
-     * The attitude, represented as Quaternion 
-     */
     private final List<Float> q;
 
-    /**
-     * Angular rate in roll axis 
-     */
     private final float rollRate;
 
-    /**
-     * Angular rate in pitch axis 
-     */
     private final float pitchRate;
 
-    /**
-     * Angular rate in yaw axis 
-     */
     private final float yawRate;
 
     private ControlSystemState(BigInteger timeUsec, float xAcc, float yAcc, float zAcc, float xVel,
@@ -125,30 +72,12 @@ public final class ControlSystemState {
         this.yawRate = yawRate;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ControlSystemState{timeUsec=" + timeUsec
-                 + ", xAcc=" + xAcc
-                 + ", yAcc=" + yAcc
-                 + ", zAcc=" + zAcc
-                 + ", xVel=" + xVel
-                 + ", yVel=" + yVel
-                 + ", zVel=" + zVel
-                 + ", xPos=" + xPos
-                 + ", yPos=" + yPos
-                 + ", zPos=" + zPos
-                 + ", airspeed=" + airspeed
-                 + ", velVariance=" + velVariance
-                 + ", posVariance=" + posVariance
-                 + ", q=" + q
-                 + ", rollRate=" + rollRate
-                 + ", pitchRate=" + pitchRate
-                 + ", yawRate=" + yawRate + "}";
     }
 
     /**
@@ -159,7 +88,7 @@ public final class ControlSystemState {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -170,7 +99,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float xAcc() {
-        return xAcc;
+        return this.xAcc;
     }
 
     /**
@@ -181,7 +110,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float yAcc() {
-        return yAcc;
+        return this.yAcc;
     }
 
     /**
@@ -192,7 +121,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float zAcc() {
-        return zAcc;
+        return this.zAcc;
     }
 
     /**
@@ -203,7 +132,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float xVel() {
-        return xVel;
+        return this.xVel;
     }
 
     /**
@@ -214,7 +143,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float yVel() {
-        return yVel;
+        return this.yVel;
     }
 
     /**
@@ -225,7 +154,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float zVel() {
-        return zVel;
+        return this.zVel;
     }
 
     /**
@@ -236,7 +165,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float xPos() {
-        return xPos;
+        return this.xPos;
     }
 
     /**
@@ -247,7 +176,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float yPos() {
-        return yPos;
+        return this.yPos;
     }
 
     /**
@@ -258,7 +187,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float zPos() {
-        return zPos;
+        return this.zPos;
     }
 
     /**
@@ -269,7 +198,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float airspeed() {
-        return airspeed;
+        return this.airspeed;
     }
 
     /**
@@ -281,7 +210,7 @@ public final class ControlSystemState {
             arraySize = 3
     )
     public final List<Float> velVariance() {
-        return velVariance;
+        return this.velVariance;
     }
 
     /**
@@ -293,7 +222,7 @@ public final class ControlSystemState {
             arraySize = 3
     )
     public final List<Float> posVariance() {
-        return posVariance;
+        return this.posVariance;
     }
 
     /**
@@ -305,7 +234,7 @@ public final class ControlSystemState {
             arraySize = 4
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
@@ -316,7 +245,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float rollRate() {
-        return rollRate;
+        return this.rollRate;
     }
 
     /**
@@ -327,7 +256,7 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float pitchRate() {
-        return pitchRate;
+        return this.pitchRate;
     }
 
     /**
@@ -338,10 +267,10 @@ public final class ControlSystemState {
             unitSize = 4
     )
     public final float yawRate() {
-        return yawRate;
+        return this.yawRate;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float xAcc;
@@ -375,9 +304,6 @@ public final class ControlSystemState {
         private float pitchRate;
 
         private float yawRate;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 

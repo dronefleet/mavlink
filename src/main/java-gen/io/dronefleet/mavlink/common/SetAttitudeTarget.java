@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.util.List;
 
 /**
@@ -17,83 +15,44 @@ import java.util.List;
         crc = 49
 )
 public final class SetAttitudeTarget {
-    /**
-     * Timestamp in milliseconds since system boot 
-     */
     private final long timeBootMs;
 
-    /**
-     * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
-     */
-    private final List<Float> q;
-
-    /**
-     * Body roll rate in radians per second 
-     */
-    private final float bodyRollRate;
-
-    /**
-     * Body pitch rate in radians per second 
-     */
-    private final float bodyPitchRate;
-
-    /**
-     * Body yaw rate in radians per second 
-     */
-    private final float bodyYawRate;
-
-    /**
-     * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
-     */
-    private final float thrust;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
-     * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
-     * bit 8: attitude 
-     */
     private final int typeMask;
 
-    private SetAttitudeTarget(long timeBootMs, List<Float> q, float bodyRollRate,
-            float bodyPitchRate, float bodyYawRate, float thrust, int targetSystem,
-            int targetComponent, int typeMask) {
+    private final List<Float> q;
+
+    private final float bodyRollRate;
+
+    private final float bodyPitchRate;
+
+    private final float bodyYawRate;
+
+    private final float thrust;
+
+    private SetAttitudeTarget(long timeBootMs, int targetSystem, int targetComponent, int typeMask,
+            List<Float> q, float bodyRollRate, float bodyPitchRate, float bodyYawRate,
+            float thrust) {
         this.timeBootMs = timeBootMs;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.typeMask = typeMask;
         this.q = q;
         this.bodyRollRate = bodyRollRate;
         this.bodyPitchRate = bodyPitchRate;
         this.bodyYawRate = bodyYawRate;
         this.thrust = thrust;
-        this.targetSystem = targetSystem;
-        this.targetComponent = targetComponent;
-        this.typeMask = typeMask;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SetAttitudeTarget{timeBootMs=" + timeBootMs
-                 + ", targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", typeMask=" + typeMask
-                 + ", q=" + q
-                 + ", bodyRollRate=" + bodyRollRate
-                 + ", bodyPitchRate=" + bodyPitchRate
-                 + ", bodyYawRate=" + bodyYawRate
-                 + ", thrust=" + thrust + "}";
     }
 
     /**
@@ -104,63 +63,7 @@ public final class SetAttitudeTarget {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
-    }
-
-    /**
-     * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4,
-            arraySize = 4
-    )
-    public final List<Float> q() {
-        return q;
-    }
-
-    /**
-     * Body roll rate in radians per second 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float bodyRollRate() {
-        return bodyRollRate;
-    }
-
-    /**
-     * Body pitch rate in radians per second 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float bodyPitchRate() {
-        return bodyPitchRate;
-    }
-
-    /**
-     * Body yaw rate in radians per second 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float bodyYawRate() {
-        return bodyYawRate;
-    }
-
-    /**
-     * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
-            unitSize = 4
-    )
-    public final float thrust() {
-        return thrust;
+        return this.timeBootMs;
     }
 
     /**
@@ -171,7 +74,7 @@ public final class SetAttitudeTarget {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -182,7 +85,7 @@ public final class SetAttitudeTarget {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
@@ -195,11 +98,73 @@ public final class SetAttitudeTarget {
             unitSize = 1
     )
     public final int typeMask() {
-        return typeMask;
+        return this.typeMask;
     }
 
-    public static class Builder {
+    /**
+     * Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4,
+            arraySize = 4
+    )
+    public final List<Float> q() {
+        return this.q;
+    }
+
+    /**
+     * Body roll rate in radians per second 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float bodyRollRate() {
+        return this.bodyRollRate;
+    }
+
+    /**
+     * Body pitch rate in radians per second 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float bodyPitchRate() {
+        return this.bodyPitchRate;
+    }
+
+    /**
+     * Body yaw rate in radians per second 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float bodyYawRate() {
+        return this.bodyYawRate;
+    }
+
+    /**
+     * Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust) 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4
+    )
+    public final float thrust() {
+        return this.thrust;
+    }
+
+    public static final class Builder {
         private long timeBootMs;
+
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private int typeMask;
 
         private List<Float> q;
 
@@ -211,15 +176,6 @@ public final class SetAttitudeTarget {
 
         private float thrust;
 
-        private int targetSystem;
-
-        private int targetComponent;
-
-        private int typeMask;
-
-        private Builder() {
-        }
-
         /**
          * Timestamp in milliseconds since system boot 
          */
@@ -229,6 +185,44 @@ public final class SetAttitudeTarget {
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
+            return this;
+        }
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
+         * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
+         * bit 8: attitude 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1
+        )
+        public final Builder typeMask(int typeMask) {
+            this.typeMask = typeMask;
             return this;
         }
 
@@ -293,46 +287,8 @@ public final class SetAttitudeTarget {
             return this;
         }
 
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
-        /**
-         * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
-         * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
-         * bit 8: attitude 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 1
-        )
-        public final Builder typeMask(int typeMask) {
-            this.typeMask = typeMask;
-            return this;
-        }
-
         public final SetAttitudeTarget build() {
-            return new SetAttitudeTarget(timeBootMs, q, bodyRollRate, bodyPitchRate, bodyYawRate, thrust, targetSystem, targetComponent, typeMask);
+            return new SetAttitudeTarget(timeBootMs, targetSystem, targetComponent, typeMask, q, bodyRollRate, bodyPitchRate, bodyYawRate, thrust);
         }
     }
 }

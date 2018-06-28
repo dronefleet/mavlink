@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Message with some status from APM to GCS about camera or antenna mount 
@@ -14,52 +12,53 @@ import java.lang.String;
         crc = 134
 )
 public final class MountStatus {
-    /**
-     * pitch(deg*100) 
-     */
-    private final int pointingA;
-
-    /**
-     * roll(deg*100) 
-     */
-    private final int pointingB;
-
-    /**
-     * yaw(deg*100) 
-     */
-    private final int pointingC;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private MountStatus(int pointingA, int pointingB, int pointingC, int targetSystem,
-            int targetComponent) {
+    private final int pointingA;
+
+    private final int pointingB;
+
+    private final int pointingC;
+
+    private MountStatus(int targetSystem, int targetComponent, int pointingA, int pointingB,
+            int pointingC) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
         this.pointingA = pointingA;
         this.pointingB = pointingB;
         this.pointingC = pointingC;
-        this.targetSystem = targetSystem;
-        this.targetComponent = targetComponent;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "MountStatus{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", pointingA=" + pointingA
-                 + ", pointingB=" + pointingB
-                 + ", pointingC=" + pointingC + "}";
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 1
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
     }
 
     /**
@@ -71,7 +70,7 @@ public final class MountStatus {
             signed = true
     )
     public final int pointingA() {
-        return pointingA;
+        return this.pointingA;
     }
 
     /**
@@ -83,7 +82,7 @@ public final class MountStatus {
             signed = true
     )
     public final int pointingB() {
-        return pointingB;
+        return this.pointingB;
     }
 
     /**
@@ -95,43 +94,42 @@ public final class MountStatus {
             signed = true
     )
     public final int pointingC() {
-        return pointingC;
+        return this.pointingC;
     }
 
-    /**
-     * System ID 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
-    }
+    public static final class Builder {
+        private int targetSystem;
 
-    /**
-     * Component ID 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 1
-    )
-    public final int targetComponent() {
-        return targetComponent;
-    }
+        private int targetComponent;
 
-    public static class Builder {
         private int pointingA;
 
         private int pointingB;
 
         private int pointingC;
 
-        private int targetSystem;
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
 
-        private int targetComponent;
-
-        private Builder() {
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
         }
 
         /**
@@ -173,32 +171,8 @@ public final class MountStatus {
             return this;
         }
 
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
         public final MountStatus build() {
-            return new MountStatus(pointingA, pointingB, pointingC, targetSystem, targetComponent);
+            return new MountStatus(targetSystem, targetComponent, pointingA, pointingB, pointingC);
         }
     }
 }

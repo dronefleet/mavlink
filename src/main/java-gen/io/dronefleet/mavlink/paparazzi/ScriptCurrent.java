@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.paparazzi;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * This message informs about the currently active SCRIPT. 
@@ -14,23 +12,18 @@ import java.lang.String;
         crc = 40
 )
 public final class ScriptCurrent {
-    /**
-     * Active Sequence 
-     */
     private final int seq;
 
     private ScriptCurrent(int seq) {
         this.seq = seq;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ScriptCurrent{seq=" + seq + "}";
     }
 
     /**
@@ -41,14 +34,11 @@ public final class ScriptCurrent {
             unitSize = 2
     )
     public final int seq() {
-        return seq;
+        return this.seq;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int seq;
-
-        private Builder() {
-        }
 
         /**
          * Active Sequence 

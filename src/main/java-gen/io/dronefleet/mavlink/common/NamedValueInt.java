@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -15,37 +14,24 @@ import java.lang.String;
         crc = 44
 )
 public final class NamedValueInt {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * Signed integer value 
-     */
-    private final int value;
-
-    /**
-     * Name of the debug variable 
-     */
     private final String name;
 
-    private NamedValueInt(long timeBootMs, int value, String name) {
+    private final int value;
+
+    private NamedValueInt(long timeBootMs, String name, int value) {
         this.timeBootMs = timeBootMs;
-        this.value = value;
         this.name = name;
+        this.value = value;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "NamedValueInt{timeBootMs=" + timeBootMs
-                 + ", name=" + name
-                 + ", value=" + value + "}";
     }
 
     /**
@@ -56,19 +42,7 @@ public final class NamedValueInt {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
-    }
-
-    /**
-     * Signed integer value 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4,
-            signed = true
-    )
-    public final int value() {
-        return value;
+        return this.timeBootMs;
     }
 
     /**
@@ -80,18 +54,27 @@ public final class NamedValueInt {
             arraySize = 10
     )
     public final String name() {
-        return name;
+        return this.name;
     }
 
-    public static class Builder {
-        private long timeBootMs;
+    /**
+     * Signed integer value 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4,
+            signed = true
+    )
+    public final int value() {
+        return this.value;
+    }
 
-        private int value;
+    public static final class Builder {
+        private long timeBootMs;
 
         private String name;
 
-        private Builder() {
-        }
+        private int value;
 
         /**
          * Timestamp (milliseconds since system boot) 
@@ -102,19 +85,6 @@ public final class NamedValueInt {
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
-            return this;
-        }
-
-        /**
-         * Signed integer value 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 4,
-                signed = true
-        )
-        public final Builder value(int value) {
-            this.value = value;
             return this;
         }
 
@@ -131,8 +101,21 @@ public final class NamedValueInt {
             return this;
         }
 
+        /**
+         * Signed integer value 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 4,
+                signed = true
+        )
+        public final Builder value(int value) {
+            this.value = value;
+            return this;
+        }
+
         public final NamedValueInt build() {
-            return new NamedValueInt(timeBootMs, value, name);
+            return new NamedValueInt(timeBootMs, name, value);
         }
     }
 }

@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
@@ -14,14 +12,8 @@ import java.lang.String;
         crc = 208
 )
 public final class FlexifunctionCommandAck {
-    /**
-     * Command acknowledged 
-     */
     private final int commandType;
 
-    /**
-     * result of acknowledge 
-     */
     private final int result;
 
     private FlexifunctionCommandAck(int commandType, int result) {
@@ -29,15 +21,12 @@ public final class FlexifunctionCommandAck {
         this.result = result;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "FlexifunctionCommandAck{commandType=" + commandType
-                 + ", result=" + result + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class FlexifunctionCommandAck {
             unitSize = 2
     )
     public final int commandType() {
-        return commandType;
+        return this.commandType;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class FlexifunctionCommandAck {
             unitSize = 2
     )
     public final int result() {
-        return result;
+        return this.result;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int commandType;
 
         private int result;
-
-        private Builder() {
-        }
 
         /**
          * Command acknowledged 

@@ -4,38 +4,30 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * null
+ *  
  */
 @MavlinkEnum
 public enum FenceBreach {
     /**
-     * No last fence breach<dl>
-     *
-     * </dl>
+     * No last fence breach 
      */
     @MavlinkEntryInfo(0)
     FENCE_BREACH_NONE,
 
     /**
-     * Breached minimum altitude<dl>
-     *
-     * </dl>
+     * Breached minimum altitude 
      */
     @MavlinkEntryInfo(1)
     FENCE_BREACH_MINALT,
 
     /**
-     * Breached maximum altitude<dl>
-     *
-     * </dl>
+     * Breached maximum altitude 
      */
     @MavlinkEntryInfo(2)
     FENCE_BREACH_MAXALT,
 
     /**
-     * Breached fence boundary<dl>
-     *
-     * </dl>
+     * Breached fence boundary 
      */
     @MavlinkEntryInfo(3)
     FENCE_BREACH_BOUNDARY

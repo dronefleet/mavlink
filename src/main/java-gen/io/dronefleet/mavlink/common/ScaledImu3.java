@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * The RAW IMU readings for 3rd 9DOF sensor setup. This message should contain the scaled values to 
@@ -15,54 +13,24 @@ import java.lang.String;
         crc = 46
 )
 public final class ScaledImu3 {
-    /**
-     * Timestamp (milliseconds since system boot) 
-     */
     private final long timeBootMs;
 
-    /**
-     * X acceleration (mg) 
-     */
     private final int xacc;
 
-    /**
-     * Y acceleration (mg) 
-     */
     private final int yacc;
 
-    /**
-     * Z acceleration (mg) 
-     */
     private final int zacc;
 
-    /**
-     * Angular speed around X axis (millirad /sec) 
-     */
     private final int xgyro;
 
-    /**
-     * Angular speed around Y axis (millirad /sec) 
-     */
     private final int ygyro;
 
-    /**
-     * Angular speed around Z axis (millirad /sec) 
-     */
     private final int zgyro;
 
-    /**
-     * X Magnetic field (milli tesla) 
-     */
     private final int xmag;
 
-    /**
-     * Y Magnetic field (milli tesla) 
-     */
     private final int ymag;
 
-    /**
-     * Z Magnetic field (milli tesla) 
-     */
     private final int zmag;
 
     private ScaledImu3(long timeBootMs, int xacc, int yacc, int zacc, int xgyro, int ygyro,
@@ -79,23 +47,12 @@ public final class ScaledImu3 {
         this.zmag = zmag;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ScaledImu3{timeBootMs=" + timeBootMs
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc
-                 + ", xgyro=" + xgyro
-                 + ", ygyro=" + ygyro
-                 + ", zgyro=" + zgyro
-                 + ", xmag=" + xmag
-                 + ", ymag=" + ymag
-                 + ", zmag=" + zmag + "}";
     }
 
     /**
@@ -106,7 +63,7 @@ public final class ScaledImu3 {
             unitSize = 4
     )
     public final long timeBootMs() {
-        return timeBootMs;
+        return this.timeBootMs;
     }
 
     /**
@@ -118,7 +75,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -130,7 +87,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -142,7 +99,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int zacc() {
-        return zacc;
+        return this.zacc;
     }
 
     /**
@@ -154,7 +111,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int xgyro() {
-        return xgyro;
+        return this.xgyro;
     }
 
     /**
@@ -166,7 +123,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int ygyro() {
-        return ygyro;
+        return this.ygyro;
     }
 
     /**
@@ -178,7 +135,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int zgyro() {
-        return zgyro;
+        return this.zgyro;
     }
 
     /**
@@ -190,7 +147,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int xmag() {
-        return xmag;
+        return this.xmag;
     }
 
     /**
@@ -202,7 +159,7 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int ymag() {
-        return ymag;
+        return this.ymag;
     }
 
     /**
@@ -214,10 +171,10 @@ public final class ScaledImu3 {
             signed = true
     )
     public final int zmag() {
-        return zmag;
+        return this.zmag;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private long timeBootMs;
 
         private int xacc;
@@ -237,9 +194,6 @@ public final class ScaledImu3 {
         private int ymag;
 
         private int zmag;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (milliseconds since system boot) 

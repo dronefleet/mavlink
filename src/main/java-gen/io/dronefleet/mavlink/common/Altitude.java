@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,51 +13,18 @@ import java.math.BigInteger;
         crc = 47
 )
 public final class Altitude {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * This altitude measure is initialized on system boot and monotonic (it is never reset, but 
-     * represents the local altitude change). The only guarantee on this field is that it will never be 
-     * reset and is consistent within a flight. The recommended value for this field is the 
-     * uncorrected barometric altitude at boot time. This altitude will also drift and vary between 
-     * flights. 
-     */
     private final float altitudeMonotonic;
 
-    /**
-     * This altitude measure is strictly above mean sea level and might be non-monotonic (it might 
-     * reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which 
-     * global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, 
-     * most GPS modules already output AMSL by default and not the WGS84 altitude. 
-     */
     private final float altitudeAmsl;
 
-    /**
-     * This is the local altitude in the local coordinate frame. It is not the altitude above home, but 
-     * in reference to the coordinate origin (0, 0, 0). It is up-positive. 
-     */
     private final float altitudeLocal;
 
-    /**
-     * This is the altitude above the home position. It resets on each change of the current home 
-     * position. 
-     */
     private final float altitudeRelative;
 
-    /**
-     * This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values 
-     * smaller than -1000 should be interpreted as unknown. 
-     */
     private final float altitudeTerrain;
 
-    /**
-     * This is not the altitude, but the clear space below the system according to the fused clearance 
-     * estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is 
-     * generally a moving target. A negative value indicates no measurement available. 
-     */
     private final float bottomClearance;
 
     private Altitude(BigInteger timeUsec, float altitudeMonotonic, float altitudeAmsl,
@@ -74,20 +39,12 @@ public final class Altitude {
         this.bottomClearance = bottomClearance;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Altitude{timeUsec=" + timeUsec
-                 + ", altitudeMonotonic=" + altitudeMonotonic
-                 + ", altitudeAmsl=" + altitudeAmsl
-                 + ", altitudeLocal=" + altitudeLocal
-                 + ", altitudeRelative=" + altitudeRelative
-                 + ", altitudeTerrain=" + altitudeTerrain
-                 + ", bottomClearance=" + bottomClearance + "}";
     }
 
     /**
@@ -98,7 +55,7 @@ public final class Altitude {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -113,7 +70,7 @@ public final class Altitude {
             unitSize = 4
     )
     public final float altitudeMonotonic() {
-        return altitudeMonotonic;
+        return this.altitudeMonotonic;
     }
 
     /**
@@ -127,7 +84,7 @@ public final class Altitude {
             unitSize = 4
     )
     public final float altitudeAmsl() {
-        return altitudeAmsl;
+        return this.altitudeAmsl;
     }
 
     /**
@@ -139,7 +96,7 @@ public final class Altitude {
             unitSize = 4
     )
     public final float altitudeLocal() {
-        return altitudeLocal;
+        return this.altitudeLocal;
     }
 
     /**
@@ -151,7 +108,7 @@ public final class Altitude {
             unitSize = 4
     )
     public final float altitudeRelative() {
-        return altitudeRelative;
+        return this.altitudeRelative;
     }
 
     /**
@@ -163,7 +120,7 @@ public final class Altitude {
             unitSize = 4
     )
     public final float altitudeTerrain() {
-        return altitudeTerrain;
+        return this.altitudeTerrain;
     }
 
     /**
@@ -176,10 +133,10 @@ public final class Altitude {
             unitSize = 4
     )
     public final float bottomClearance() {
-        return bottomClearance;
+        return this.bottomClearance;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float altitudeMonotonic;
@@ -193,9 +150,6 @@ public final class Altitude {
         private float altitudeTerrain;
 
         private float bottomClearance;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 

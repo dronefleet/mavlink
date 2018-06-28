@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F18 format 
@@ -14,29 +12,14 @@ import java.lang.String;
         crc = 41
 )
 public final class SerialUdbExtraF18 {
-    /**
-     * SUE Angle of Attack Normal 
-     */
     private final float angleOfAttackNormal;
 
-    /**
-     * SUE Angle of Attack Inverted 
-     */
     private final float angleOfAttackInverted;
 
-    /**
-     * SUE Elevator Trim Normal 
-     */
     private final float elevatorTrimNormal;
 
-    /**
-     * SUE Elevator Trim Inverted 
-     */
     private final float elevatorTrimInverted;
 
-    /**
-     * SUE reference_speed 
-     */
     private final float referenceSpeed;
 
     private SerialUdbExtraF18(float angleOfAttackNormal, float angleOfAttackInverted,
@@ -48,18 +31,12 @@ public final class SerialUdbExtraF18 {
         this.referenceSpeed = referenceSpeed;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF18{angleOfAttackNormal=" + angleOfAttackNormal
-                 + ", angleOfAttackInverted=" + angleOfAttackInverted
-                 + ", elevatorTrimNormal=" + elevatorTrimNormal
-                 + ", elevatorTrimInverted=" + elevatorTrimInverted
-                 + ", referenceSpeed=" + referenceSpeed + "}";
     }
 
     /**
@@ -70,7 +47,7 @@ public final class SerialUdbExtraF18 {
             unitSize = 4
     )
     public final float angleOfAttackNormal() {
-        return angleOfAttackNormal;
+        return this.angleOfAttackNormal;
     }
 
     /**
@@ -81,7 +58,7 @@ public final class SerialUdbExtraF18 {
             unitSize = 4
     )
     public final float angleOfAttackInverted() {
-        return angleOfAttackInverted;
+        return this.angleOfAttackInverted;
     }
 
     /**
@@ -92,7 +69,7 @@ public final class SerialUdbExtraF18 {
             unitSize = 4
     )
     public final float elevatorTrimNormal() {
-        return elevatorTrimNormal;
+        return this.elevatorTrimNormal;
     }
 
     /**
@@ -103,7 +80,7 @@ public final class SerialUdbExtraF18 {
             unitSize = 4
     )
     public final float elevatorTrimInverted() {
-        return elevatorTrimInverted;
+        return this.elevatorTrimInverted;
     }
 
     /**
@@ -114,10 +91,10 @@ public final class SerialUdbExtraF18 {
             unitSize = 4
     )
     public final float referenceSpeed() {
-        return referenceSpeed;
+        return this.referenceSpeed;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float angleOfAttackNormal;
 
         private float angleOfAttackInverted;
@@ -127,9 +104,6 @@ public final class SerialUdbExtraF18 {
         private float elevatorTrimInverted;
 
         private float referenceSpeed;
-
-        private Builder() {
-        }
 
         /**
          * SUE Angle of Attack Normal 

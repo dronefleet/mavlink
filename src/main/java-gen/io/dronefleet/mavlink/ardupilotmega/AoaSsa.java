@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 
 /**
@@ -15,19 +13,10 @@ import java.math.BigInteger;
         crc = 205
 )
 public final class AoaSsa {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Angle of Attack (degrees) 
-     */
     private final float aoa;
 
-    /**
-     * Side Slip Angle (degrees) 
-     */
     private final float ssa;
 
     private AoaSsa(BigInteger timeUsec, float aoa, float ssa) {
@@ -36,16 +25,12 @@ public final class AoaSsa {
         this.ssa = ssa;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "AoaSsa{timeUsec=" + timeUsec
-                 + ", aoa=" + aoa
-                 + ", ssa=" + ssa + "}";
     }
 
     /**
@@ -56,7 +41,7 @@ public final class AoaSsa {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -67,7 +52,7 @@ public final class AoaSsa {
             unitSize = 4
     )
     public final float aoa() {
-        return aoa;
+        return this.aoa;
     }
 
     /**
@@ -78,18 +63,15 @@ public final class AoaSsa {
             unitSize = 4
     )
     public final float ssa() {
-        return ssa;
+        return this.ssa;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private float aoa;
 
         private float ssa;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (micros since boot or Unix epoch) 

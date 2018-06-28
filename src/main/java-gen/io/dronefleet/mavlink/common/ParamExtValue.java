@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -16,76 +15,31 @@ import java.lang.String;
         crc = 243
 )
 public final class ParamExtValue {
-    /**
-     * Total number of parameters 
-     */
-    private final int paramCount;
-
-    /**
-     * Index of this parameter 
-     */
-    private final int paramIndex;
-
-    /**
-     * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
-     * null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 
-     * 16+1 bytes storage if the ID is stored as string 
-     */
     private final String paramId;
 
-    /**
-     * Parameter value 
-     */
     private final String paramValue;
 
-    /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
-     */
     private final MavParamExtType paramType;
 
-    private ParamExtValue(int paramCount, int paramIndex, String paramId, String paramValue,
-            MavParamExtType paramType) {
-        this.paramCount = paramCount;
-        this.paramIndex = paramIndex;
+    private final int paramCount;
+
+    private final int paramIndex;
+
+    private ParamExtValue(String paramId, String paramValue, MavParamExtType paramType,
+            int paramCount, int paramIndex) {
         this.paramId = paramId;
         this.paramValue = paramValue;
         this.paramType = paramType;
+        this.paramCount = paramCount;
+        this.paramIndex = paramIndex;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "ParamExtValue{paramId=" + paramId
-                 + ", paramValue=" + paramValue
-                 + ", paramType=" + paramType
-                 + ", paramCount=" + paramCount
-                 + ", paramIndex=" + paramIndex + "}";
-    }
-
-    /**
-     * Total number of parameters 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 2
-    )
-    public final int paramCount() {
-        return paramCount;
-    }
-
-    /**
-     * Index of this parameter 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 2
-    )
-    public final int paramIndex() {
-        return paramIndex;
     }
 
     /**
@@ -99,7 +53,7 @@ public final class ParamExtValue {
             arraySize = 16
     )
     public final String paramId() {
-        return paramId;
+        return this.paramId;
     }
 
     /**
@@ -111,57 +65,52 @@ public final class ParamExtValue {
             arraySize = 128
     )
     public final String paramValue() {
-        return paramValue;
+        return this.paramValue;
     }
 
     /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1
     )
     public final MavParamExtType paramType() {
-        return paramType;
+        return this.paramType;
     }
 
-    public static class Builder {
-        private int paramCount;
+    /**
+     * Total number of parameters 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2
+    )
+    public final int paramCount() {
+        return this.paramCount;
+    }
 
-        private int paramIndex;
+    /**
+     * Index of this parameter 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 2
+    )
+    public final int paramIndex() {
+        return this.paramIndex;
+    }
 
+    public static final class Builder {
         private String paramId;
 
         private String paramValue;
 
         private MavParamExtType paramType;
 
-        private Builder() {
-        }
+        private int paramCount;
 
-        /**
-         * Total number of parameters 
-         */
-        @MavlinkFieldInfo(
-                position = 4,
-                unitSize = 2
-        )
-        public final Builder paramCount(int paramCount) {
-            this.paramCount = paramCount;
-            return this;
-        }
-
-        /**
-         * Index of this parameter 
-         */
-        @MavlinkFieldInfo(
-                position = 5,
-                unitSize = 2
-        )
-        public final Builder paramIndex(int paramIndex) {
-            this.paramIndex = paramIndex;
-            return this;
-        }
+        private int paramIndex;
 
         /**
          * Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT 
@@ -192,7 +141,7 @@ public final class ParamExtValue {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MavParamExtType} enum for supported data types. 
+         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
          */
         @MavlinkFieldInfo(
                 position = 3,
@@ -203,8 +152,32 @@ public final class ParamExtValue {
             return this;
         }
 
+        /**
+         * Total number of parameters 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2
+        )
+        public final Builder paramCount(int paramCount) {
+            this.paramCount = paramCount;
+            return this;
+        }
+
+        /**
+         * Index of this parameter 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 2
+        )
+        public final Builder paramIndex(int paramIndex) {
+            this.paramIndex = paramIndex;
+            return this;
+        }
+
         public final ParamExtValue build() {
-            return new ParamExtValue(paramCount, paramIndex, paramId, paramValue, paramType);
+            return new ParamExtValue(paramId, paramValue, paramType, paramCount, paramIndex);
         }
     }
 }

@@ -3,69 +3,39 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * This message is emitted as response to {@link io.dronefleet.mavlink.common.MissionRequestList MissionRequestList} by the MAV and to initiate a write 
+ * This message is emitted as response to {@link io.dronefleet.mavlink.common.MissionRequestList MISSION_REQUEST_LIST} by the MAV and to initiate a write 
  * transaction. The GCS can then request the individual mission item based on the knowledge of the 
  * total number of waypoints. 
  */
 @MavlinkMessageInfo(
         id = 44,
-        crc = 221
+        crc = 52
 )
 public final class MissionCount {
-    /**
-     * Number of mission items in the sequence 
-     */
-    private final int count;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
-     */
+    private final int count;
+
     private final MavMissionType missionType;
 
-    private MissionCount(int count, int targetSystem, int targetComponent,
+    private MissionCount(int targetSystem, int targetComponent, int count,
             MavMissionType missionType) {
-        this.count = count;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.count = count;
         this.missionType = missionType;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MissionCount{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", count=" + count
-                 + ", missionType=" + missionType + "}";
-    }
-
-    /**
-     * Number of mission items in the sequence 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int count() {
-        return count;
     }
 
     /**
@@ -76,7 +46,7 @@ public final class MissionCount {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -87,11 +57,22 @@ public final class MissionCount {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
     /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+     * Number of mission items in the sequence 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int count() {
+        return this.count;
+    }
+
+    /**
+     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
      */
     @MavlinkFieldInfo(
             position = 5,
@@ -99,32 +80,17 @@ public final class MissionCount {
             extension = true
     )
     public final MavMissionType missionType() {
-        return missionType;
+        return this.missionType;
     }
 
-    public static class Builder {
-        private int count;
-
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
+        private int count;
+
         private MavMissionType missionType;
-
-        private Builder() {
-        }
-
-        /**
-         * Number of mission items in the sequence 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder count(int count) {
-            this.count = count;
-            return this;
-        }
 
         /**
          * System ID 
@@ -151,7 +117,19 @@ public final class MissionCount {
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MavMissionType} 
+         * Number of mission items in the sequence 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder count(int count) {
+            this.count = count;
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         @MavlinkFieldInfo(
                 position = 5,
@@ -164,7 +142,7 @@ public final class MissionCount {
         }
 
         public final MissionCount build() {
-            return new MissionCount(count, targetSystem, targetComponent, missionType);
+            return new MissionCount(targetSystem, targetComponent, count, missionType);
         }
     }
 }

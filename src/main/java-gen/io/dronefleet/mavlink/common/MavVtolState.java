@@ -9,41 +9,31 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavVtolState {
     /**
-     * MAV is not configured as VTOL<dl>
-     *
-     * </dl>
+     * MAV is not configured as VTOL 
      */
     @MavlinkEntryInfo(0)
     MAV_VTOL_STATE_UNDEFINED,
 
     /**
-     * VTOL is in transition from multicopter to fixed-wing<dl>
-     *
-     * </dl>
+     * VTOL is in transition from multicopter to fixed-wing 
      */
     @MavlinkEntryInfo(1)
     MAV_VTOL_STATE_TRANSITION_TO_FW,
 
     /**
-     * VTOL is in transition from fixed-wing to multicopter<dl>
-     *
-     * </dl>
+     * VTOL is in transition from fixed-wing to multicopter 
      */
     @MavlinkEntryInfo(2)
     MAV_VTOL_STATE_TRANSITION_TO_MC,
 
     /**
-     * VTOL is in multicopter state<dl>
-     *
-     * </dl>
+     * VTOL is in multicopter state 
      */
     @MavlinkEntryInfo(3)
     MAV_VTOL_STATE_MC,
 
     /**
-     * VTOL is in fixed-wing state<dl>
-     *
-     * </dl>
+     * VTOL is in fixed-wing state 
      */
     @MavlinkEntryInfo(4)
     MAV_VTOL_STATE_FW

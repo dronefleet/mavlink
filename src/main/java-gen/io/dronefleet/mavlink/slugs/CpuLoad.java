@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Sensor and DSC control loads. 
@@ -14,48 +12,24 @@ import java.lang.String;
         crc = 75
 )
 public final class CpuLoad {
-    /**
-     * Battery Voltage 
-     */
-    private final int batvolt;
-
-    /**
-     * Sensor DSC Load 
-     */
     private final int sensload;
 
-    /**
-     * Control DSC Load 
-     */
     private final int ctrlload;
 
-    private CpuLoad(int batvolt, int sensload, int ctrlload) {
-        this.batvolt = batvolt;
+    private final int batvolt;
+
+    private CpuLoad(int sensload, int ctrlload, int batvolt) {
         this.sensload = sensload;
         this.ctrlload = ctrlload;
+        this.batvolt = batvolt;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "CpuLoad{sensload=" + sensload
-                 + ", ctrlload=" + ctrlload
-                 + ", batvolt=" + batvolt + "}";
-    }
-
-    /**
-     * Battery Voltage 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int batvolt() {
-        return batvolt;
     }
 
     /**
@@ -66,7 +40,7 @@ public final class CpuLoad {
             unitSize = 1
     )
     public final int sensload() {
-        return sensload;
+        return this.sensload;
     }
 
     /**
@@ -77,30 +51,26 @@ public final class CpuLoad {
             unitSize = 1
     )
     public final int ctrlload() {
-        return ctrlload;
+        return this.ctrlload;
     }
 
-    public static class Builder {
-        private int batvolt;
+    /**
+     * Battery Voltage 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int batvolt() {
+        return this.batvolt;
+    }
 
+    public static final class Builder {
         private int sensload;
 
         private int ctrlload;
 
-        private Builder() {
-        }
-
-        /**
-         * Battery Voltage 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder batvolt(int batvolt) {
-            this.batvolt = batvolt;
-            return this;
-        }
+        private int batvolt;
 
         /**
          * Sensor DSC Load 
@@ -126,8 +96,20 @@ public final class CpuLoad {
             return this;
         }
 
+        /**
+         * Battery Voltage 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder batvolt(int batvolt) {
+            this.batvolt = batvolt;
+            return this;
+        }
+
         public final CpuLoad build() {
-            return new CpuLoad(batvolt, sensload, ctrlload);
+            return new CpuLoad(sensload, ctrlload, batvolt);
         }
     }
 }

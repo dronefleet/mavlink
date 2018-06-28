@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F21 format 
@@ -14,34 +12,16 @@ import java.lang.String;
         crc = 134
 )
 public final class SerialUdbExtraF21 {
-    /**
-     * SUE X accelerometer offset 
-     */
     private final int sueAccelXOffset;
 
-    /**
-     * SUE Y accelerometer offset 
-     */
     private final int sueAccelYOffset;
 
-    /**
-     * SUE Z accelerometer offset 
-     */
     private final int sueAccelZOffset;
 
-    /**
-     * SUE X gyro offset 
-     */
     private final int sueGyroXOffset;
 
-    /**
-     * SUE Y gyro offset 
-     */
     private final int sueGyroYOffset;
 
-    /**
-     * SUE Z gyro offset 
-     */
     private final int sueGyroZOffset;
 
     private SerialUdbExtraF21(int sueAccelXOffset, int sueAccelYOffset, int sueAccelZOffset,
@@ -54,19 +34,12 @@ public final class SerialUdbExtraF21 {
         this.sueGyroZOffset = sueGyroZOffset;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SerialUdbExtraF21{sueAccelXOffset=" + sueAccelXOffset
-                 + ", sueAccelYOffset=" + sueAccelYOffset
-                 + ", sueAccelZOffset=" + sueAccelZOffset
-                 + ", sueGyroXOffset=" + sueGyroXOffset
-                 + ", sueGyroYOffset=" + sueGyroYOffset
-                 + ", sueGyroZOffset=" + sueGyroZOffset + "}";
     }
 
     /**
@@ -78,7 +51,7 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueAccelXOffset() {
-        return sueAccelXOffset;
+        return this.sueAccelXOffset;
     }
 
     /**
@@ -90,7 +63,7 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueAccelYOffset() {
-        return sueAccelYOffset;
+        return this.sueAccelYOffset;
     }
 
     /**
@@ -102,7 +75,7 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueAccelZOffset() {
-        return sueAccelZOffset;
+        return this.sueAccelZOffset;
     }
 
     /**
@@ -114,7 +87,7 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueGyroXOffset() {
-        return sueGyroXOffset;
+        return this.sueGyroXOffset;
     }
 
     /**
@@ -126,7 +99,7 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueGyroYOffset() {
-        return sueGyroYOffset;
+        return this.sueGyroYOffset;
     }
 
     /**
@@ -138,10 +111,10 @@ public final class SerialUdbExtraF21 {
             signed = true
     )
     public final int sueGyroZOffset() {
-        return sueGyroZOffset;
+        return this.sueGyroZOffset;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int sueAccelXOffset;
 
         private int sueAccelYOffset;
@@ -153,9 +126,6 @@ public final class SerialUdbExtraF21 {
         private int sueGyroYOffset;
 
         private int sueGyroZOffset;
-
-        private Builder() {
-        }
 
         /**
          * SUE X accelerometer offset 

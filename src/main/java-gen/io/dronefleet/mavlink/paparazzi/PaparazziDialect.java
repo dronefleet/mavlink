@@ -1,23 +1,32 @@
 package io.dronefleet.mavlink.paparazzi;
 
 import io.dronefleet.mavlink.MavlinkDialect;
-import io.dronefleet.mavlink.MavlinkDialects;
+import io.dronefleet.mavlink.common.CommonDialect;
 import java.lang.Class;
 import java.lang.IllegalArgumentException;
 import java.lang.Override;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.lang.String;
+import java.util.Arrays;
+import java.util.List;
 
 public final class PaparazziDialect implements MavlinkDialect {
-    private static final Set<MavlinkDialect> dependencies;
+    /**
+     * A list of dialects that this dialect depends on.
+     */
+    private final List<MavlinkDialect> dependencies = Arrays.asList(
+            new CommonDialect());
 
-    static {
-        dependencies = Stream.of(
-                MavlinkDialects.COMMON)
-                .collect(Collectors.toSet());
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final String name() {
+        return "paparazzi";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean supports(int messageId) {
         switch (messageId) {
@@ -26,12 +35,14 @@ public final class PaparazziDialect implements MavlinkDialect {
             case 182:
             case 183:
             case 184:
-            return true;
+                return true;
         }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
+        return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Class resolve(int messageId) {
         switch (messageId) {
@@ -41,10 +52,6 @@ public final class PaparazziDialect implements MavlinkDialect {
             case 183: return ScriptCount.class;
             case 184: return ScriptCurrent.class;
         }
-        return dependencies.stream()
-                .filter(d -> d.supports(messageId))
-                .map(d -> d.resolve(messageId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Dialect paparazzi does not support a message of ID " + messageId));
+        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
     }
 }

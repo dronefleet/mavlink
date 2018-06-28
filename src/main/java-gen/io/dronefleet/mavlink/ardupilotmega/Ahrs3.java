@@ -3,65 +3,33 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs Ahrs} filter if available. This is for ANU research group (Ali and Sean) 
+ * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available. This is for ANU research group (Ali and Sean) 
  */
 @MavlinkMessageInfo(
         id = 182,
         crc = 229
 )
 public final class Ahrs3 {
-    /**
-     * Roll angle (rad) 
-     */
     private final float roll;
 
-    /**
-     * Pitch angle (rad) 
-     */
     private final float pitch;
 
-    /**
-     * Yaw angle (rad) 
-     */
     private final float yaw;
 
-    /**
-     * Altitude (MSL) 
-     */
     private final float altitude;
 
-    /**
-     * Latitude in degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude in degrees * 1E7 
-     */
     private final int lng;
 
-    /**
-     * test variable1 
-     */
     private final float v1;
 
-    /**
-     * test variable2 
-     */
     private final float v2;
 
-    /**
-     * test variable3 
-     */
     private final float v3;
 
-    /**
-     * test variable4 
-     */
     private final float v4;
 
     private Ahrs3(float roll, float pitch, float yaw, float altitude, int lat, int lng, float v1,
@@ -78,23 +46,12 @@ public final class Ahrs3 {
         this.v4 = v4;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "Ahrs3{roll=" + roll
-                 + ", pitch=" + pitch
-                 + ", yaw=" + yaw
-                 + ", altitude=" + altitude
-                 + ", lat=" + lat
-                 + ", lng=" + lng
-                 + ", v1=" + v1
-                 + ", v2=" + v2
-                 + ", v3=" + v3
-                 + ", v4=" + v4 + "}";
     }
 
     /**
@@ -105,7 +62,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float roll() {
-        return roll;
+        return this.roll;
     }
 
     /**
@@ -116,7 +73,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     /**
@@ -127,7 +84,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     /**
@@ -138,7 +95,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -150,7 +107,7 @@ public final class Ahrs3 {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -162,7 +119,7 @@ public final class Ahrs3 {
             signed = true
     )
     public final int lng() {
-        return lng;
+        return this.lng;
     }
 
     /**
@@ -173,7 +130,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float v1() {
-        return v1;
+        return this.v1;
     }
 
     /**
@@ -184,7 +141,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float v2() {
-        return v2;
+        return this.v2;
     }
 
     /**
@@ -195,7 +152,7 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float v3() {
-        return v3;
+        return this.v3;
     }
 
     /**
@@ -206,10 +163,10 @@ public final class Ahrs3 {
             unitSize = 4
     )
     public final float v4() {
-        return v4;
+        return this.v4;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private float roll;
 
         private float pitch;
@@ -229,9 +186,6 @@ public final class Ahrs3 {
         private float v3;
 
         private float v4;
-
-        private Builder() {
-        }
 
         /**
          * Roll angle (rad) 

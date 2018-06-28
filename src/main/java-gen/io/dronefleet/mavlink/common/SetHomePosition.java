@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,82 +18,37 @@ import java.util.List;
  */
 @MavlinkMessageInfo(
         id = 243,
-        crc = 85
+        crc = 96
 )
 public final class SetHomePosition {
-    /**
-     * Latitude (WGS84), in degrees * 1E7 
-     */
-    private final int latitude;
-
-    /**
-     * Longitude (WGS84, in degrees * 1E7 
-     */
-    private final int longitude;
-
-    /**
-     * Altitude (AMSL), in meters * 1000 (positive for up) 
-     */
-    private final int altitude;
-
-    /**
-     * Local X position of this position in the local coordinate frame 
-     */
-    private final float x;
-
-    /**
-     * Local Y position of this position in the local coordinate frame 
-     */
-    private final float y;
-
-    /**
-     * Local Z position of this position in the local coordinate frame 
-     */
-    private final float z;
-
-    /**
-     * World to surface normal and heading transformation of the takeoff position. Used to indicate 
-     * the heading and slope of the ground 
-     */
-    private final List<Float> q;
-
-    /**
-     * Local X position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
-    private final float approachX;
-
-    /**
-     * Local Y position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
-    private final float approachY;
-
-    /**
-     * Local Z position of the end of the approach vector. Multicopters should set this position based 
-     * on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as 
-     * multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of 
-     * the takeoff, assuming the takeoff happened from the threshold / touchdown zone. 
-     */
-    private final float approachZ;
-
-    /**
-     * System ID. 
-     */
     private final int targetSystem;
 
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
+    private final int latitude;
+
+    private final int longitude;
+
+    private final int altitude;
+
+    private final float x;
+
+    private final float y;
+
+    private final float z;
+
+    private final List<Float> q;
+
+    private final float approachX;
+
+    private final float approachY;
+
+    private final float approachZ;
+
     private final BigInteger timeUsec;
 
-    private SetHomePosition(int latitude, int longitude, int altitude, float x, float y, float z,
-            List<Float> q, float approachX, float approachY, float approachZ, int targetSystem,
+    private SetHomePosition(int targetSystem, int latitude, int longitude, int altitude, float x,
+            float y, float z, List<Float> q, float approachX, float approachY, float approachZ,
             BigInteger timeUsec) {
+        this.targetSystem = targetSystem;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
@@ -106,29 +59,26 @@ public final class SetHomePosition {
         this.approachX = approachX;
         this.approachY = approachY;
         this.approachZ = approachZ;
-        this.targetSystem = targetSystem;
         this.timeUsec = timeUsec;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "SetHomePosition{targetSystem=" + targetSystem
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude
-                 + ", altitude=" + altitude
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", q=" + q
-                 + ", approachX=" + approachX
-                 + ", approachY=" + approachY
-                 + ", approachZ=" + approachZ
-                 + ", timeUsec=" + timeUsec + "}";
+    /**
+     * System ID. 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
     }
 
     /**
@@ -140,7 +90,7 @@ public final class SetHomePosition {
             signed = true
     )
     public final int latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -152,7 +102,7 @@ public final class SetHomePosition {
             signed = true
     )
     public final int longitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -164,7 +114,7 @@ public final class SetHomePosition {
             signed = true
     )
     public final int altitude() {
-        return altitude;
+        return this.altitude;
     }
 
     /**
@@ -175,7 +125,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -186,7 +136,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -197,7 +147,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -210,7 +160,7 @@ public final class SetHomePosition {
             arraySize = 4
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
@@ -224,7 +174,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float approachX() {
-        return approachX;
+        return this.approachX;
     }
 
     /**
@@ -238,7 +188,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float approachY() {
-        return approachY;
+        return this.approachY;
     }
 
     /**
@@ -252,18 +202,7 @@ public final class SetHomePosition {
             unitSize = 4
     )
     public final float approachZ() {
-        return approachZ;
-    }
-
-    /**
-     * System ID. 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1
-    )
-    public final int targetSystem() {
-        return targetSystem;
+        return this.approachZ;
     }
 
     /**
@@ -275,10 +214,12 @@ public final class SetHomePosition {
             extension = true
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
-    public static class Builder {
+    public static final class Builder {
+        private int targetSystem;
+
         private int latitude;
 
         private int longitude;
@@ -299,11 +240,18 @@ public final class SetHomePosition {
 
         private float approachZ;
 
-        private int targetSystem;
-
         private BigInteger timeUsec;
 
-        private Builder() {
+        /**
+         * System ID. 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
         }
 
         /**
@@ -441,18 +389,6 @@ public final class SetHomePosition {
         }
 
         /**
-         * System ID. 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
          */
         @MavlinkFieldInfo(
@@ -466,7 +402,7 @@ public final class SetHomePosition {
         }
 
         public final SetHomePosition build() {
-            return new SetHomePosition(latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, targetSystem, timeUsec);
+            return new SetHomePosition(targetSystem, latitude, longitude, altitude, x, y, z, q, approachX, approachY, approachZ, timeUsec);
         }
     }
 }

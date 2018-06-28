@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Transmits the last known position of the mobile GS to the UAV. Very relevant when Track Mobile is 
@@ -15,59 +13,24 @@ import java.lang.String;
         crc = 101
 )
 public final class SlugsMobileLocation {
-    /**
-     * Mobile Latitude 
-     */
-    private final float latitude;
-
-    /**
-     * Mobile Longitude 
-     */
-    private final float longitude;
-
-    /**
-     * The system reporting the action 
-     */
     private final int target;
 
-    private SlugsMobileLocation(float latitude, float longitude, int target) {
+    private final float latitude;
+
+    private final float longitude;
+
+    private SlugsMobileLocation(int target, float latitude, float longitude) {
+        this.target = target;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.target = target;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "SlugsMobileLocation{target=" + target
-                 + ", latitude=" + latitude
-                 + ", longitude=" + longitude + "}";
-    }
-
-    /**
-     * Mobile Latitude 
-     */
-    @MavlinkFieldInfo(
-            position = 2,
-            unitSize = 4
-    )
-    public final float latitude() {
-        return latitude;
-    }
-
-    /**
-     * Mobile Longitude 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 4
-    )
-    public final float longitude() {
-        return longitude;
     }
 
     /**
@@ -78,17 +41,48 @@ public final class SlugsMobileLocation {
             unitSize = 1
     )
     public final int target() {
-        return target;
+        return this.target;
     }
 
-    public static class Builder {
+    /**
+     * Mobile Latitude 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
+            unitSize = 4
+    )
+    public final float latitude() {
+        return this.latitude;
+    }
+
+    /**
+     * Mobile Longitude 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 4
+    )
+    public final float longitude() {
+        return this.longitude;
+    }
+
+    public static final class Builder {
+        private int target;
+
         private float latitude;
 
         private float longitude;
 
-        private int target;
-
-        private Builder() {
+        /**
+         * The system reporting the action 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder target(int target) {
+            this.target = target;
+            return this;
         }
 
         /**
@@ -115,20 +109,8 @@ public final class SlugsMobileLocation {
             return this;
         }
 
-        /**
-         * The system reporting the action 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder target(int target) {
-            this.target = target;
-            return this;
-        }
-
         public final SlugsMobileLocation build() {
-            return new SlugsMobileLocation(latitude, longitude, target);
+            return new SlugsMobileLocation(target, latitude, longitude);
         }
     }
 }

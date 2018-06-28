@@ -3,25 +3,17 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
- * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GoproCommand} set request 
+ * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} set request 
  */
 @MavlinkMessageInfo(
         id = 219,
         crc = 162
 )
 public final class GoproSetResponse {
-    /**
-     * Command ID 
-     */
     private final GoproCommand cmdId;
 
-    /**
-     * Status 
-     */
     private final GoproRequestStatus status;
 
     private GoproSetResponse(GoproCommand cmdId, GoproRequestStatus status) {
@@ -29,15 +21,12 @@ public final class GoproSetResponse {
         this.status = status;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "GoproSetResponse{cmdId=" + cmdId
-                 + ", status=" + status + "}";
     }
 
     /**
@@ -48,7 +37,7 @@ public final class GoproSetResponse {
             unitSize = 1
     )
     public final GoproCommand cmdId() {
-        return cmdId;
+        return this.cmdId;
     }
 
     /**
@@ -59,16 +48,13 @@ public final class GoproSetResponse {
             unitSize = 1
     )
     public final GoproRequestStatus status() {
-        return status;
+        return this.status;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private GoproCommand cmdId;
 
         private GoproRequestStatus status;
-
-        private Builder() {
-        }
 
         /**
          * Command ID 

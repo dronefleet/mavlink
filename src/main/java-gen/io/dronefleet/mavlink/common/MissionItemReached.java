@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * A certain mission item has been reached. The system will either hold this position (or circle on 
@@ -15,23 +13,18 @@ import java.lang.String;
         crc = 11
 )
 public final class MissionItemReached {
-    /**
-     * Sequence 
-     */
     private final int seq;
 
     private MissionItemReached(int seq) {
         this.seq = seq;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MissionItemReached{seq=" + seq + "}";
     }
 
     /**
@@ -42,14 +35,11 @@ public final class MissionItemReached {
             unitSize = 2
     )
     public final int seq() {
-        return seq;
+        return this.seq;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int seq;
-
-        private Builder() {
-        }
 
         /**
          * Sequence 

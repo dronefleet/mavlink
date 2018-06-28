@@ -3,8 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
-import java.lang.String;
 
 /**
  * Request a chunk of a log 
@@ -14,84 +12,30 @@ import java.lang.String;
         crc = 116
 )
 public final class LogRequestData {
-    /**
-     * Offset into the log 
-     */
-    private final long ofs;
-
-    /**
-     * Number of bytes 
-     */
-    private final long count;
-
-    /**
-     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-     */
-    private final int id;
-
-    /**
-     * System ID 
-     */
     private final int targetSystem;
 
-    /**
-     * Component ID 
-     */
     private final int targetComponent;
 
-    private LogRequestData(long ofs, long count, int id, int targetSystem, int targetComponent) {
-        this.ofs = ofs;
-        this.count = count;
-        this.id = id;
+    private final int id;
+
+    private final long ofs;
+
+    private final long count;
+
+    private LogRequestData(int targetSystem, int targetComponent, int id, long ofs, long count) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
+        this.id = id;
+        this.ofs = ofs;
+        this.count = count;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LogRequestData{targetSystem=" + targetSystem
-                 + ", targetComponent=" + targetComponent
-                 + ", id=" + id
-                 + ", ofs=" + ofs
-                 + ", count=" + count + "}";
-    }
-
-    /**
-     * Offset into the log 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final long ofs() {
-        return ofs;
-    }
-
-    /**
-     * Number of bytes 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final long count() {
-        return count;
-    }
-
-    /**
-     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-     */
-    @MavlinkFieldInfo(
-            position = 3,
-            unitSize = 2
-    )
-    public final int id() {
-        return id;
     }
 
     /**
@@ -102,7 +46,7 @@ public final class LogRequestData {
             unitSize = 1
     )
     public final int targetSystem() {
-        return targetSystem;
+        return this.targetSystem;
     }
 
     /**
@@ -113,21 +57,87 @@ public final class LogRequestData {
             unitSize = 1
     )
     public final int targetComponent() {
-        return targetComponent;
+        return this.targetComponent;
     }
 
-    public static class Builder {
-        private long ofs;
+    /**
+     * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LOG_ENTRY} reply) 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 2
+    )
+    public final int id() {
+        return this.id;
+    }
 
-        private long count;
+    /**
+     * Offset into the log 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final long ofs() {
+        return this.ofs;
+    }
 
-        private int id;
+    /**
+     * Number of bytes 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final long count() {
+        return this.count;
+    }
 
+    public static final class Builder {
         private int targetSystem;
 
         private int targetComponent;
 
-        private Builder() {
+        private int id;
+
+        private long ofs;
+
+        private long count;
+
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LOG_ENTRY} reply) 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 2
+        )
+        public final Builder id(int id) {
+            this.id = id;
+            return this;
         }
 
         /**
@@ -154,44 +164,8 @@ public final class LogRequestData {
             return this;
         }
 
-        /**
-         * Log id (from {@link io.dronefleet.mavlink.common.LogEntry LogEntry} reply) 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 2
-        )
-        public final Builder id(int id) {
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * System ID 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1
-        )
-        public final Builder targetSystem(int targetSystem) {
-            this.targetSystem = targetSystem;
-            return this;
-        }
-
-        /**
-         * Component ID 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetComponent(int targetComponent) {
-            this.targetComponent = targetComponent;
-            return this;
-        }
-
         public final LogRequestData build() {
-            return new LogRequestData(ofs, count, id, targetSystem, targetComponent);
+            return new LogRequestData(targetSystem, targetComponent, id, ofs, count);
         }
     }
 }

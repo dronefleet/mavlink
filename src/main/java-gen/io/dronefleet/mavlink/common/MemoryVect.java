@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
-import java.lang.Override;
-import java.lang.String;
 import java.util.List;
 
 /**
@@ -17,25 +15,12 @@ import java.util.List;
         crc = 204
 )
 public final class MemoryVect {
-    /**
-     * Starting address of the debug variables 
-     */
     private final int address;
 
-    /**
-     * Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below 
-     */
     private final int ver;
 
-    /**
-     * Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 
-     * 1Q14 
-     */
     private final int type;
 
-    /**
-     * Memory contents at specified address 
-     */
     private final List<Integer> value;
 
     private MemoryVect(int address, int ver, int type, List<Integer> value) {
@@ -45,17 +30,12 @@ public final class MemoryVect {
         this.value = value;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "MemoryVect{address=" + address
-                 + ", ver=" + ver
-                 + ", type=" + type
-                 + ", value=" + value + "}";
     }
 
     /**
@@ -66,7 +46,7 @@ public final class MemoryVect {
             unitSize = 2
     )
     public final int address() {
-        return address;
+        return this.address;
     }
 
     /**
@@ -77,7 +57,7 @@ public final class MemoryVect {
             unitSize = 1
     )
     public final int ver() {
-        return ver;
+        return this.ver;
     }
 
     /**
@@ -89,7 +69,7 @@ public final class MemoryVect {
             unitSize = 1
     )
     public final int type() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -98,14 +78,14 @@ public final class MemoryVect {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            signed = true,
-            arraySize = 32
+            arraySize = 32,
+            signed = true
     )
     public final List<Integer> value() {
-        return value;
+        return this.value;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private int address;
 
         private int ver;
@@ -113,9 +93,6 @@ public final class MemoryVect {
         private int type;
 
         private List<Integer> value;
-
-        private Builder() {
-        }
 
         /**
          * Starting address of the debug variables 
@@ -160,8 +137,8 @@ public final class MemoryVect {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                signed = true,
-                arraySize = 32
+                arraySize = 32,
+                signed = true
         )
         public final Builder value(List<Integer> value) {
             this.value = value;

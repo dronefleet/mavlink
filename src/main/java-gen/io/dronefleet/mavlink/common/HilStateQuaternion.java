@@ -4,13 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
 /**
- * Sent from simulation to autopilot, avoids in contrast to {@link io.dronefleet.mavlink.common.HilState HilState} singularities. This 
+ * Sent from simulation to autopilot, avoids in contrast to {@link io.dronefleet.mavlink.common.HilState HIL_STATE} singularities. This 
  * packet is useful for high throughput applications such as hardware in the loop simulations. 
  */
 @MavlinkMessageInfo(
@@ -18,85 +16,36 @@ import java.util.List;
         crc = 4
 )
 public final class HilStateQuaternion {
-    /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the 
-     * null-rotation) 
-     */
     private final List<Float> attitudeQuaternion;
 
-    /**
-     * Body frame roll / phi angular speed (rad/s) 
-     */
     private final float rollspeed;
 
-    /**
-     * Body frame pitch / theta angular speed (rad/s) 
-     */
     private final float pitchspeed;
 
-    /**
-     * Body frame yaw / psi angular speed (rad/s) 
-     */
     private final float yawspeed;
 
-    /**
-     * Latitude, expressed as degrees * 1E7 
-     */
     private final int lat;
 
-    /**
-     * Longitude, expressed as degrees * 1E7 
-     */
     private final int lon;
 
-    /**
-     * Altitude in meters, expressed as * 1000 (millimeters) 
-     */
     private final int alt;
 
-    /**
-     * Ground X Speed (Latitude), expressed as cm/s 
-     */
     private final int vx;
 
-    /**
-     * Ground Y Speed (Longitude), expressed as cm/s 
-     */
     private final int vy;
 
-    /**
-     * Ground Z Speed (Altitude), expressed as cm/s 
-     */
     private final int vz;
 
-    /**
-     * Indicated airspeed, expressed as cm/s 
-     */
     private final int indAirspeed;
 
-    /**
-     * True airspeed, expressed as cm/s 
-     */
     private final int trueAirspeed;
 
-    /**
-     * X acceleration (mg) 
-     */
     private final int xacc;
 
-    /**
-     * Y acceleration (mg) 
-     */
     private final int yacc;
 
-    /**
-     * Z acceleration (mg) 
-     */
     private final int zacc;
 
     private HilStateQuaternion(BigInteger timeUsec, List<Float> attitudeQuaternion, float rollspeed,
@@ -120,29 +69,12 @@ public final class HilStateQuaternion {
         this.zacc = zacc;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "HilStateQuaternion{timeUsec=" + timeUsec
-                 + ", attitudeQuaternion=" + attitudeQuaternion
-                 + ", rollspeed=" + rollspeed
-                 + ", pitchspeed=" + pitchspeed
-                 + ", yawspeed=" + yawspeed
-                 + ", lat=" + lat
-                 + ", lon=" + lon
-                 + ", alt=" + alt
-                 + ", vx=" + vx
-                 + ", vy=" + vy
-                 + ", vz=" + vz
-                 + ", indAirspeed=" + indAirspeed
-                 + ", trueAirspeed=" + trueAirspeed
-                 + ", xacc=" + xacc
-                 + ", yacc=" + yacc
-                 + ", zacc=" + zacc + "}";
     }
 
     /**
@@ -153,7 +85,7 @@ public final class HilStateQuaternion {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
+        return this.timeUsec;
     }
 
     /**
@@ -166,7 +98,7 @@ public final class HilStateQuaternion {
             arraySize = 4
     )
     public final List<Float> attitudeQuaternion() {
-        return attitudeQuaternion;
+        return this.attitudeQuaternion;
     }
 
     /**
@@ -177,7 +109,7 @@ public final class HilStateQuaternion {
             unitSize = 4
     )
     public final float rollspeed() {
-        return rollspeed;
+        return this.rollspeed;
     }
 
     /**
@@ -188,7 +120,7 @@ public final class HilStateQuaternion {
             unitSize = 4
     )
     public final float pitchspeed() {
-        return pitchspeed;
+        return this.pitchspeed;
     }
 
     /**
@@ -199,7 +131,7 @@ public final class HilStateQuaternion {
             unitSize = 4
     )
     public final float yawspeed() {
-        return yawspeed;
+        return this.yawspeed;
     }
 
     /**
@@ -211,7 +143,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int lat() {
-        return lat;
+        return this.lat;
     }
 
     /**
@@ -223,7 +155,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int lon() {
-        return lon;
+        return this.lon;
     }
 
     /**
@@ -235,7 +167,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int alt() {
-        return alt;
+        return this.alt;
     }
 
     /**
@@ -247,7 +179,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int vx() {
-        return vx;
+        return this.vx;
     }
 
     /**
@@ -259,7 +191,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int vy() {
-        return vy;
+        return this.vy;
     }
 
     /**
@@ -271,7 +203,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int vz() {
-        return vz;
+        return this.vz;
     }
 
     /**
@@ -282,7 +214,7 @@ public final class HilStateQuaternion {
             unitSize = 2
     )
     public final int indAirspeed() {
-        return indAirspeed;
+        return this.indAirspeed;
     }
 
     /**
@@ -293,7 +225,7 @@ public final class HilStateQuaternion {
             unitSize = 2
     )
     public final int trueAirspeed() {
-        return trueAirspeed;
+        return this.trueAirspeed;
     }
 
     /**
@@ -305,7 +237,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int xacc() {
-        return xacc;
+        return this.xacc;
     }
 
     /**
@@ -317,7 +249,7 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int yacc() {
-        return yacc;
+        return this.yacc;
     }
 
     /**
@@ -329,10 +261,10 @@ public final class HilStateQuaternion {
             signed = true
     )
     public final int zacc() {
-        return zacc;
+        return this.zacc;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
 
         private List<Float> attitudeQuaternion;
@@ -364,9 +296,6 @@ public final class HilStateQuaternion {
         private int yacc;
 
         private int zacc;
-
-        private Builder() {
-        }
 
         /**
          * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 

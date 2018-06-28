@@ -4,8 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
-import java.lang.Override;
-import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -14,92 +12,48 @@ import java.util.List;
  */
 @MavlinkMessageInfo(
         id = 149,
-        crc = 200
+        crc = 166
 )
 public final class LandingTarget {
-    /**
-     * Timestamp (micros since boot or Unix epoch) 
-     */
     private final BigInteger timeUsec;
 
-    /**
-     * X-axis angular offset (in radians) of the target from the center of the image 
-     */
-    private final float angleX;
-
-    /**
-     * Y-axis angular offset (in radians) of the target from the center of the image 
-     */
-    private final float angleY;
-
-    /**
-     * Distance to the target from the vehicle in meters 
-     */
-    private final float distance;
-
-    /**
-     * Size in radians of target along x-axis 
-     */
-    private final float sizeX;
-
-    /**
-     * Size in radians of target along y-axis 
-     */
-    private final float sizeY;
-
-    /**
-     * The ID of the target if multiple targets are present 
-     */
     private final int targetNum;
 
-    /**
-     * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
-     * etc. 
-     */
     private final MavFrame frame;
 
-    /**
-     * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
-     */
+    private final float angleX;
+
+    private final float angleY;
+
+    private final float distance;
+
+    private final float sizeX;
+
+    private final float sizeY;
+
     private final float x;
 
-    /**
-     * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
-     */
     private final float y;
 
-    /**
-     * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
-     */
     private final float z;
 
-    /**
-     * Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0) 
-     */
     private final List<Float> q;
 
-    /**
-     * {@link io.dronefleet.mavlink.common.LandingTargetType LandingTargetType} enum specifying the type of landing target 
-     */
     private final LandingTargetType type;
 
-    /**
-     * Boolean indicating known position (1) or default unkown position (0), for validation of 
-     * positioning of the landing target 
-     */
     private final int positionValid;
 
-    private LandingTarget(BigInteger timeUsec, float angleX, float angleY, float distance,
-            float sizeX, float sizeY, int targetNum, MavFrame frame, float x, float y, float z,
+    private LandingTarget(BigInteger timeUsec, int targetNum, MavFrame frame, float angleX,
+            float angleY, float distance, float sizeX, float sizeY, float x, float y, float z,
             List<Float> q, LandingTargetType type, int positionValid) {
         this.timeUsec = timeUsec;
+        this.targetNum = targetNum;
+        this.frame = frame;
         this.angleX = angleX;
         this.angleY = angleY;
         this.distance = distance;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.targetNum = targetNum;
-        this.frame = frame;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -108,27 +62,12 @@ public final class LandingTarget {
         this.positionValid = positionValid;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
-    }
-
-    @Override
-    public String toString() {
-        return "LandingTarget{timeUsec=" + timeUsec
-                 + ", targetNum=" + targetNum
-                 + ", frame=" + frame
-                 + ", angleX=" + angleX
-                 + ", angleY=" + angleY
-                 + ", distance=" + distance
-                 + ", sizeX=" + sizeX
-                 + ", sizeY=" + sizeY
-                 + ", x=" + x
-                 + ", y=" + y
-                 + ", z=" + z
-                 + ", q=" + q
-                 + ", type=" + type
-                 + ", positionValid=" + positionValid + "}";
     }
 
     /**
@@ -139,62 +78,7 @@ public final class LandingTarget {
             unitSize = 8
     )
     public final BigInteger timeUsec() {
-        return timeUsec;
-    }
-
-    /**
-     * X-axis angular offset (in radians) of the target from the center of the image 
-     */
-    @MavlinkFieldInfo(
-            position = 4,
-            unitSize = 4
-    )
-    public final float angleX() {
-        return angleX;
-    }
-
-    /**
-     * Y-axis angular offset (in radians) of the target from the center of the image 
-     */
-    @MavlinkFieldInfo(
-            position = 5,
-            unitSize = 4
-    )
-    public final float angleY() {
-        return angleY;
-    }
-
-    /**
-     * Distance to the target from the vehicle in meters 
-     */
-    @MavlinkFieldInfo(
-            position = 6,
-            unitSize = 4
-    )
-    public final float distance() {
-        return distance;
-    }
-
-    /**
-     * Size in radians of target along x-axis 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4
-    )
-    public final float sizeX() {
-        return sizeX;
-    }
-
-    /**
-     * Size in radians of target along y-axis 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4
-    )
-    public final float sizeY() {
-        return sizeY;
+        return this.timeUsec;
     }
 
     /**
@@ -205,11 +89,11 @@ public final class LandingTarget {
             unitSize = 1
     )
     public final int targetNum() {
-        return targetNum;
+        return this.targetNum;
     }
 
     /**
-     * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
+     * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
      * etc. 
      */
     @MavlinkFieldInfo(
@@ -217,11 +101,66 @@ public final class LandingTarget {
             unitSize = 1
     )
     public final MavFrame frame() {
-        return frame;
+        return this.frame;
     }
 
     /**
-     * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+     * X-axis angular offset (in radians) of the target from the center of the image 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4
+    )
+    public final float angleX() {
+        return this.angleX;
+    }
+
+    /**
+     * Y-axis angular offset (in radians) of the target from the center of the image 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4
+    )
+    public final float angleY() {
+        return this.angleY;
+    }
+
+    /**
+     * Distance to the target from the vehicle in meters 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 4
+    )
+    public final float distance() {
+        return this.distance;
+    }
+
+    /**
+     * Size in radians of target along x-axis 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 4
+    )
+    public final float sizeX() {
+        return this.sizeX;
+    }
+
+    /**
+     * Size in radians of target along y-axis 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4
+    )
+    public final float sizeY() {
+        return this.sizeY;
+    }
+
+    /**
+     * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 10,
@@ -229,11 +168,11 @@ public final class LandingTarget {
             extension = true
     )
     public final float x() {
-        return x;
+        return this.x;
     }
 
     /**
-     * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+     * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 11,
@@ -241,11 +180,11 @@ public final class LandingTarget {
             extension = true
     )
     public final float y() {
-        return y;
+        return this.y;
     }
 
     /**
-     * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+     * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 12,
@@ -253,7 +192,7 @@ public final class LandingTarget {
             extension = true
     )
     public final float z() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -266,11 +205,11 @@ public final class LandingTarget {
             extension = true
     )
     public final List<Float> q() {
-        return q;
+        return this.q;
     }
 
     /**
-     * {@link io.dronefleet.mavlink.common.LandingTargetType LandingTargetType} enum specifying the type of landing target 
+     * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
      */
     @MavlinkFieldInfo(
             position = 14,
@@ -278,7 +217,7 @@ public final class LandingTarget {
             extension = true
     )
     public final LandingTargetType type() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -291,11 +230,15 @@ public final class LandingTarget {
             extension = true
     )
     public final int positionValid() {
-        return positionValid;
+        return this.positionValid;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private BigInteger timeUsec;
+
+        private int targetNum;
+
+        private MavFrame frame;
 
         private float angleX;
 
@@ -306,10 +249,6 @@ public final class LandingTarget {
         private float sizeX;
 
         private float sizeY;
-
-        private int targetNum;
-
-        private MavFrame frame;
 
         private float x;
 
@@ -323,9 +262,6 @@ public final class LandingTarget {
 
         private int positionValid;
 
-        private Builder() {
-        }
-
         /**
          * Timestamp (micros since boot or Unix epoch) 
          */
@@ -335,6 +271,31 @@ public final class LandingTarget {
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
+            return this;
+        }
+
+        /**
+         * The ID of the target if multiple targets are present 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1
+        )
+        public final Builder targetNum(int targetNum) {
+            this.targetNum = targetNum;
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
+         * etc. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1
+        )
+        public final Builder frame(MavFrame frame) {
+            this.frame = frame;
             return this;
         }
 
@@ -399,32 +360,7 @@ public final class LandingTarget {
         }
 
         /**
-         * The ID of the target if multiple targets are present 
-         */
-        @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 1
-        )
-        public final Builder targetNum(int targetNum) {
-            this.targetNum = targetNum;
-            return this;
-        }
-
-        /**
-         * {@link io.dronefleet.mavlink.common.MavFrame MavFrame} enum specifying the whether the following feilds are earth-frame, body-frame, 
-         * etc. 
-         */
-        @MavlinkFieldInfo(
-                position = 3,
-                unitSize = 1
-        )
-        public final Builder frame(MavFrame frame) {
-            this.frame = frame;
-            return this;
-        }
-
-        /**
-         * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+         * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 10,
@@ -437,7 +373,7 @@ public final class LandingTarget {
         }
 
         /**
-         * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+         * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 11,
@@ -450,7 +386,7 @@ public final class LandingTarget {
         }
 
         /**
-         * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MavFrame} 
+         * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 12,
@@ -477,7 +413,7 @@ public final class LandingTarget {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.LandingTargetType LandingTargetType} enum specifying the type of landing target 
+         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
          */
         @MavlinkFieldInfo(
                 position = 14,
@@ -504,7 +440,7 @@ public final class LandingTarget {
         }
 
         public final LandingTarget build() {
-            return new LandingTarget(timeUsec, angleX, angleY, distance, sizeX, sizeY, targetNum, frame, x, y, z, q, type, positionValid);
+            return new LandingTarget(timeUsec, targetNum, frame, angleX, angleY, distance, sizeX, sizeY, x, y, z, q, type, positionValid);
         }
     }
 }

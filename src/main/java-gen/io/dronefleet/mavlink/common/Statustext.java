@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -17,14 +16,8 @@ import java.lang.String;
         crc = 83
 )
 public final class Statustext {
-    /**
-     * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MavSeverity}. 
-     */
     private final MavSeverity severity;
 
-    /**
-     * Status text message, without null termination character 
-     */
     private final String text;
 
     private Statustext(MavSeverity severity, String text) {
@@ -32,26 +25,23 @@ public final class Statustext {
         this.text = text;
     }
 
+    /**
+     * Returns a builder instance for this message.
+     */
     @MavlinkMessageBuilder
     public static Builder builder() {
         return new Builder();
     }
 
-    @Override
-    public String toString() {
-        return "Statustext{severity=" + severity
-                 + ", text=" + text + "}";
-    }
-
     /**
-     * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MavSeverity}. 
+     * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1
     )
     public final MavSeverity severity() {
-        return severity;
+        return this.severity;
     }
 
     /**
@@ -63,19 +53,16 @@ public final class Statustext {
             arraySize = 50
     )
     public final String text() {
-        return text;
+        return this.text;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private MavSeverity severity;
 
         private String text;
 
-        private Builder() {
-        }
-
         /**
-         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MavSeverity}. 
+         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
          */
         @MavlinkFieldInfo(
                 position = 1,
