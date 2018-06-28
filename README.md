@@ -95,6 +95,7 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
     // Now we are ready to read and send messages.
     MavlinkMessage message;
     while ((message = connection.next()) != null) {
+        
         // The received message could be either a Mavlink1 message, or a Mavlink2 message.
         // To check if the message is a Mavlink2 message, we could do the following:
         if (message instanceof Mavlink2Message) {
@@ -109,6 +110,7 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
         }
         // However, we are likely better off by publishing the payload to a pub/sub mechanism such as RxJava,
         // or any other implementation that we like.
+        
     }
 } catch (EOFException eof) {
     // The stream has ended. This is where we may want to start retrying or reporting that the
