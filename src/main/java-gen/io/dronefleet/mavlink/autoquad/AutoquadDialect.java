@@ -8,6 +8,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public final class AutoquadDialect implements MavlinkDialect {
     /**
@@ -34,7 +35,8 @@ public final class AutoquadDialect implements MavlinkDialect {
             case 152:
                 return true;
         }
-        return false;
+        return dependencies.stream()
+                .anyMatch(d -> d.supports(messageId));
     }
 
     /**
@@ -46,6 +48,10 @@ public final class AutoquadDialect implements MavlinkDialect {
             case 150: return AqTelemetryF.class;
             case 152: return AqEscTelemetry.class;
         }
-        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
+        return dependencies.stream()
+                .map(d -> d.resolve(messageId))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
     }
 }

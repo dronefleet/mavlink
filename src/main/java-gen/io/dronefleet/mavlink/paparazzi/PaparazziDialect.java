@@ -8,6 +8,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public final class PaparazziDialect implements MavlinkDialect {
     /**
@@ -37,7 +38,8 @@ public final class PaparazziDialect implements MavlinkDialect {
             case 184:
                 return true;
         }
-        return false;
+        return dependencies.stream()
+                .anyMatch(d -> d.supports(messageId));
     }
 
     /**
@@ -52,6 +54,10 @@ public final class PaparazziDialect implements MavlinkDialect {
             case 183: return ScriptCount.class;
             case 184: return ScriptCurrent.class;
         }
-        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
+        return dependencies.stream()
+                .map(d -> d.resolve(messageId))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
     }
 }

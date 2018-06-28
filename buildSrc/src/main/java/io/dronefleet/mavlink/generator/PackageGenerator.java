@@ -3,10 +3,7 @@ package io.dronefleet.mavlink.generator;
 import com.squareup.javapoet.*;
 
 import javax.lang.model.element.Modifier;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -129,24 +126,34 @@ public class PackageGenerator {
 
     public TypeSpec generateDialect() {
         String messageId = "messageId";
-        CodeBlock.Builder supportsCode = CodeBlock.builder()
-                .beginControlFlow("switch ($N)", messageId);
-        messages.stream()
-                .map(MessageGenerator::getId)
-                .forEach(id -> supportsCode.add("case $L:\n", id));
-        supportsCode.addStatement("$>return true$<");
-        supportsCode.endControlFlow();
-        supportsCode.addStatement("return false");
+        CodeBlock.Builder supportsCode = CodeBlock.builder();
+        if (messages.size() > 0) {
+            supportsCode.beginControlFlow("switch ($N)", messageId);
+            messages.stream()
+                    .map(MessageGenerator::getId)
+                    .forEach(id -> supportsCode.add("case $L:\n", id));
+            supportsCode.addStatement("$>return true$<");
+            supportsCode.endControlFlow();
+        }
+        supportsCode.addStatement("return dependencies.stream()\n" +
+                ".anyMatch(d -> d.supports($N))", messageId);
 
-        CodeBlock.Builder resolveCode = CodeBlock.builder()
-                .beginControlFlow("switch ($N)", messageId);
-        messages.forEach(m -> resolveCode.addStatement("case $L: return $T.class",
-                m.getId(), m.getClassName()));
-        resolveCode.endControlFlow();
-        resolveCode.addStatement("throw new $T(getClass().getSimpleName() + $S + $N)",
+        CodeBlock.Builder resolveCode = CodeBlock.builder();
+        if (messages.size() > 0) {
+            resolveCode.beginControlFlow("switch ($N)", messageId);
+            messages.forEach(m -> resolveCode.addStatement("case $L: return $T.class",
+                    m.getId(), m.getClassName()));
+            resolveCode.endControlFlow();
+        }
+        resolveCode.addStatement("return dependencies.stream()\n" +
+                ".map(d -> d.resolve($1N))\n" +
+                ".filter($2T::nonNull)\n" +
+                ".findFirst()\n" +
+                ".orElseThrow(() -> new $3T(getClass().getSimpleName() + $4S + $1N))",
+                messageId,
+                Objects.class,
                 IllegalArgumentException.class,
-                " does not support message of ID ",
-                messageId);
+                " does not support message of ID ");
 
         CodeBlock.Builder dependenciesInitializer = CodeBlock.builder();
         if (dependencies.size() == 0) {

@@ -7,6 +7,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public final class CommonDialect implements MavlinkDialect {
     /**
@@ -194,7 +195,8 @@ public final class CommonDialect implements MavlinkDialect {
             case 332:
                 return true;
         }
-        return false;
+        return dependencies.stream()
+                .anyMatch(d -> d.supports(messageId));
     }
 
     /**
@@ -368,6 +370,10 @@ public final class CommonDialect implements MavlinkDialect {
             case 331: return Odometry.class;
             case 332: return Trajectory.class;
         }
-        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
+        return dependencies.stream()
+                .map(d -> d.resolve(messageId))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
     }
 }

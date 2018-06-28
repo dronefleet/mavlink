@@ -8,6 +8,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public final class StandardDialect implements MavlinkDialect {
     /**
@@ -29,10 +30,8 @@ public final class StandardDialect implements MavlinkDialect {
      */
     @Override
     public final boolean supports(int messageId) {
-        switch (messageId) {
-                return true;
-        }
-        return false;
+        return dependencies.stream()
+                .anyMatch(d -> d.supports(messageId));
     }
 
     /**
@@ -40,8 +39,10 @@ public final class StandardDialect implements MavlinkDialect {
      */
     @Override
     public final Class resolve(int messageId) {
-        switch (messageId) {
-        }
-        throw new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId);
+        return dependencies.stream()
+                .map(d -> d.resolve(messageId))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
     }
 }
