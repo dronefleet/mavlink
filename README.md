@@ -55,7 +55,7 @@ connection.send(new MavlinkMessage<>(
 ```
 
 #### Detailed
-This is a detailed explanation of how to use the API to read and write messages.
+This is a detailed example of how to use the API to read and write messages.
 ```java
 // This example uses a TCP socket, however you may also use a UDP socket by injecting
 // PipedInputStream/PipedOutputStream to MavlinkConnection, or even USB by using any
