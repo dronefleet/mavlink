@@ -29,6 +29,32 @@ Still no maven release.
 
 ## Examples
 
+#### Brief
+This is a brief example for the minimum required to communicate, using Mavlink1
+
+```java
+// Reading
+MavlinkConnection connection = MavlinkConnection.create(in, out); // InputStream, OutputStream
+MavlinkMessage message;
+while ((message = connection.next()) != null) {
+    // ...
+}
+
+// Writing
+connection.send(new MavlinkMessage<>(
+        255, // your system id
+        0, // your component id (0 if you're a ground control system)
+        Heartbeat.builder()
+                .type(MavType.MAV_TYPE_GCS)
+                .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+                .systemStatus(MavState.MAV_STATE_UNINIT)
+                .mavlinkVersion(3)
+                .build()));
+
+```
+
+#### Detailed
+This is a detailed explanation of how to use the API to read and write messages.
 ```java
 // This example uses a TCP socket, however you may also use a UDP socket by injecting
 // PipedInputStream/PipedOutputStream to MavlinkConnection, or even USB by using any
@@ -40,6 +66,9 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
     MavlinkConnection connection = MavlinkConnection.builder(socket.getInputStream(), socket.getOutputStream())
             .dialect(MavAutopilot.MAV_AUTOPILOT_GENERIC, new StandardDialect())
             .dialect(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect())
+            // When specifying signing configuration, every Mavlink2Message that is send
+            // through this connection will be signed. You will need to setup signing
+            // by sending Mavlink1 messages before you can communicate with Mavlink2 messages.
             .signing(new SigningConfiguration(
                     0, // This is the initial timestamp for signing, you should only specify
                                 // a value other than 0 if you do not trust that your system's clock is
@@ -59,12 +88,18 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
     // Now we are ready to read and send messages.
     MavlinkMessage message;
     while ((message = connection.next()) != null) {
+        // The received message could be either a Mavlink1 message, or a Mavlink2 message.
+        // To check if the message is a Mavlink2 message, you could do the following:
+        if (message instanceof Mavlink2Message) {
+            // This is a Mavlink2 message.
+        }
+        
         // When a message is received, its payload and content aren't resolved yet. You can resolve
         // which kind of message it is by its payload, like so:
         if (message.getPayload() instanceof Heartbeat) {
+            // This is a heartbeat message
             MavlinkMessage<Heartbeat> heartbeatMessage = (MavlinkMessage<Heartbeat>)message;
         }
-
         // However, you are likely better off by publishing the payload to a pub/sub mechanism such as RxJava,
         // or any other implementation that you like.
     }
