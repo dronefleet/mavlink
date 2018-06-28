@@ -16,7 +16,7 @@ choice for you.
 Used in order to generate dialect-specific sources. The generated sources depend upon the
 classes of this root project, and therefore the plugin is unlikely to be of any use as a 
 stand-alone -- If you are writing your own dialect XML files, then forking this project
-is likely your best bet.
+is likely what you're after.
 
 #### mavlink (root project)
 A higher level API which provides its users with a complete abstraction from the lower level 
@@ -43,8 +43,8 @@ while ((message = connection.next()) != null) {
 
 // Writing
 connection.send(new MavlinkMessage<>(
-        255, // your system id
-        0, // your component id (0 if you're a ground control system)
+        255, // our system id
+        0, // our component id (0 if we're a ground control system)
         Heartbeat.builder()
                 .type(MavType.MAV_TYPE_GCS)
                 .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
@@ -57,22 +57,28 @@ connection.send(new MavlinkMessage<>(
 #### Detailed
 This is a detailed example of how to use the API to read and write messages.
 ```java
-// This example uses a TCP socket, however you may also use a UDP socket by injecting
+// This example uses a TCP socket, however we may also use a UDP socket by injecting
 // PipedInputStream/PipedOutputStream to MavlinkConnection, or even USB by using any
 // implementation that will eventually yield an InputStream and an OutputStream.
 try (Socket socket = new Socket("127.0.0.1", 5760)) {
+    
     // After establishing a connection, we proceed to building a MavlinkConnection instance.
     // Basically, the options conclude at mapping different autopilots to dialects, and
     // specifying configuration for packet signing.
     MavlinkConnection connection = MavlinkConnection.builder(socket.getInputStream(), socket.getOutputStream())
+            
+            // Dialects are associated to systems when a heartbeat is received. The heartbeat
+            // informs us of the autopilot of the device, which tells us which dialect
+            // that device adheres to.
             .dialect(MavAutopilot.MAV_AUTOPILOT_GENERIC, new StandardDialect())
             .dialect(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect())
+            
             // When specifying signing configuration, every Mavlink2Message that is send
-            // through this connection will be signed. You will need to setup signing
-            // by sending Mavlink1 messages before you can communicate with Mavlink2 messages.
+            // through this connection will be signed. We will need to setup signing
+            // by sending Mavlink1 messages before we can communicate with Mavlink2 messages.
             .signing(new SigningConfiguration(
-                    0, // This is the initial timestamp for signing, you should only specify
-                                // a value other than 0 if you do not trust that your system's clock is
+                    0, // This is the initial timestamp for signing, We should only specify
+                                // a value other than 0 if we do not trust that our system's clock is
                                 // going to be calibrated prior to the connection. Generally, this value
                                 // is loaded from persistence (where the last signature timestamp is stored)
 
@@ -90,7 +96,7 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
     MavlinkMessage message;
     while ((message = connection.next()) != null) {
         // The received message could be either a Mavlink1 message, or a Mavlink2 message.
-        // To check if the message is a Mavlink2 message, you could do the following:
+        // To check if the message is a Mavlink2 message, we could do the following:
         if (message instanceof Mavlink2Message) {
             // This is a Mavlink2 message.
         }
@@ -101,11 +107,11 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
             // This is a heartbeat message
             MavlinkMessage<Heartbeat> heartbeatMessage = (MavlinkMessage<Heartbeat>)message;
         }
-        // However, you are likely better off by publishing the payload to a pub/sub mechanism such as RxJava,
-        // or any other implementation that you like.
+        // However, we are likely better off by publishing the payload to a pub/sub mechanism such as RxJava,
+        // or any other implementation that we like.
     }
 } catch (EOFException eof) {
-    // The stream has ended. This is where you may want to start retrying or reporting that the
+    // The stream has ended. This is where we may want to start retrying or reporting that the
     // host has disconnected.
 }
 ```
