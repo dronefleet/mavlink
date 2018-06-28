@@ -7,7 +7,6 @@ import io.dronefleet.mavlink.autoquad.AutoquadDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
 import io.dronefleet.mavlink.common.Heartbeat;
 import io.dronefleet.mavlink.common.MavAutopilot;
-import io.dronefleet.mavlink.protocol.MavlinkException;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
 import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
 import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
@@ -30,11 +29,11 @@ import java.util.Map;
  * <p>Represents a Mavlink connection. This class is responsible for mid-to-low-level function of Mavlink communication.
  * A {@code MavlinkConnection} is responsible for the following responsibilities:</p>
  * <ul>
- *      <li>Serialization of Mavlink messages.</li>
- *      <li>Tracking and resolving dialects of systems that are available through the connection.</li>
- *      <li>Low level validation of packets.</li>
+ * <li>Serialization of Mavlink messages.</li>
+ * <li>Tracking and resolving dialects of systems that are available through the connection.</li>
+ * <li>Low level validation of packets.</li>
  * </ul>
- *
+ * <p>
  * <p>This class doesn't provide any features other than the simple means of sending/reading and ensuring the validity
  * of messages in terms of transmission and protocol. Higher level features of the protocol, such as message signings
  * should be implemented by users of this class.</p>
@@ -65,9 +64,10 @@ public class MavlinkConnection {
         /**
          * Adds a dialect entry to this builder. The added dialect will then become supported
          * by the built connection.
+         *
          * @param autopilot The autopilot to associate the dialect with.
          * @param dialect   The dialect to associate.
-         * @return  This builder.
+         * @return This builder.
          */
         public Builder dialect(MavAutopilot autopilot, MavlinkDialect dialect) {
             dialects.put(autopilot, dialect);
@@ -79,8 +79,9 @@ public class MavlinkConnection {
          * the specified configuration in order to sign Mavlink2 messages. Using this feature require
          * requires implementations using the produced MavlinkConnection to send
          * {@link io.dronefleet.mavlink.common.SetupSigning} requests prior to sending Mavlink2 messages.
+         *
          * @param configuration The signing configuration to use when signing Mavlink2 messages.
-         * @return  This builder.
+         * @return This builder.
          */
         public Builder signing(SigningConfiguration configuration) {
             signingConfiguration = configuration;
@@ -91,8 +92,9 @@ public class MavlinkConnection {
          * The time provider to use when querying for the current time. The default value is
          * {@link TimeProvider#SYSTEM_CLOCK} which uses the {@code java.time} package in order to
          * get the actual current time.
-         * @param timeProvider  The time provider to use.
-         * @return  This builder.
+         *
+         * @param timeProvider The time provider to use.
+         * @return This builder.
          */
         public Builder timeProvider(TimeProvider timeProvider) {
             this.timeProvider = timeProvider;
@@ -120,9 +122,10 @@ public class MavlinkConnection {
 
     /**
      * Creates a new builder for the specified input/output streams.
-     * @param in    The input stream to read messages from.
-     * @param out   The output stream to write messages to.
-     * @return  A builder instance for the specified settings.
+     *
+     * @param in  The input stream to read messages from.
+     * @param out The output stream to write messages to.
+     * @return A builder instance for the specified settings.
      */
     public static Builder builder(InputStream in, OutputStream out) {
         return new Builder(in, out);
@@ -131,12 +134,13 @@ public class MavlinkConnection {
     /**
      * Creates a default connection instance. The result of calling this method
      * is equivalent to calling {@code builder(in,out).build()}.
-     * @param in    The input stream to read messages from.
-     * @param out   The output stream to write messages to.
+     *
+     * @param in  The input stream to read messages from.
+     * @param out The output stream to write messages to.
      * @return A builder instance for the specified settings.
      */
     public static MavlinkConnection create(InputStream in, OutputStream out) {
-        return builder(in,out).build();
+        return builder(in, out).build();
     }
 
     /**
@@ -218,28 +222,27 @@ public class MavlinkConnection {
     /**
      * <p>Reads a single message from this connection. This method drops messages, attempting to read the next
      * message when given the following conditions:</p>
-     *
+     * <p>
      * <ul>
-     *     <li>The currently configured dialect for the origin system does not support the received message.</li>
-     *     <li>The received message failed to pass CRC validation.</li>
+     * <li>The currently configured dialect for the origin system does not support the received message.</li>
+     * <li>The received message failed to pass CRC validation.</li>
      * </ul>
-     *
+     * <p>
      * <p>When a heartbeat is read, this method resolves the dialect of the originating system by using the
      * dialect map that was specified when this connection was constructed. The resolved dialect will then be used
      * when evaluating the next messages received from that system.</p>
-     *
+     * <p>
      * <p>When receiving messages from an origin which dialect is unknown or unsupported -- Such as before receiving
      * a heartbeat, or if the autopilot of the heartbeat is unrecognized, this method defaults to using the
      * {@link io.dronefleet.mavlink.common.CommonDialect common} dialect.</p>
      *
-     * @return  The next supported and valid Mavlink message.
+     * @return The next supported and valid Mavlink message.
      * @throws EOFException When the stream ends.
-     * @throws IOException If there has been an error reading from the stream.
+     * @throws IOException  If there has been an error reading from the stream.
      */
     public MavlinkMessage next() throws IOException {
-        while (reader.next()) {
-            MavlinkPacket packet = reader.packet();
-
+        MavlinkPacket packet;
+        while ((packet = reader.next()) != null) {
             // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
             // or we don't support the dialect of its autopilot, then we use the common dialect.
             MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
@@ -258,14 +261,14 @@ public class MavlinkConnection {
                 continue;
             }
 
+            // Get the message type and deserialize the payload.
             Class<?> messageType = dialect.resolve(packet.getMessageId());
             MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
-
             if (!packet.validateCrc(messageInfo.crc())) {
+                // This packet did not pass CRC validation. It may be dropped.
                 reader.drop();
                 continue;
             }
-
             Object payload = deserializer.deserialize(packet.getPayload(), messageType);
 
             // If we received a Heartbeat message, then we can use that in order to update the dialect
@@ -289,10 +292,11 @@ public class MavlinkConnection {
 
     /**
      * Sends the specified message to the output stream of this connection.
-     * @param message   The message to send. The specified message could be either a {@link MavlinkMessage mavlink1 message}
-     *                  or a {@link Mavlink2Message mavlink2 message}.
+     *
+     * @param message The message to send. The specified message could be either a {@link MavlinkMessage mavlink1 message}
+     *                or a {@link Mavlink2Message mavlink2 message}.
      */
-    public synchronized void send(MavlinkMessage message) {
+    public synchronized void send(MavlinkMessage message) throws IOException {
         Object payload = message.getPayload();
         Class<?> payloadType = payload.getClass();
 
@@ -342,6 +346,7 @@ public class MavlinkConnection {
 
     /**
      * Whether or not signing is enabled for this connection.
+     *
      * @see #getSigningConfiguration()
      */
     public boolean isSigningEnabled() {
@@ -351,6 +356,7 @@ public class MavlinkConnection {
     /**
      * Returns this connection's signing configuration. The returned configuration includes the last timestamp
      * which has been used for signing by this connection.
+     *
      * @throws IllegalStateException if signing is not enabled for this connection.
      * @see #isSigningEnabled()
      */
@@ -368,10 +374,11 @@ public class MavlinkConnection {
      * Resolves the dialect of the specified system by its ID. This method relies on that
      * a heartbeat has previously been received for the system for which the dialect is
      * requested.
-     * @param systemId  The ID of the system for which dialect resolution is requested.
-     * @return  The dialect of the system of the specified ID, or {@code null} if a
-     *          heartbeat has not yet been received for that system or if there is no
-     *          dialect configured for that system's autopilot.
+     *
+     * @param systemId The ID of the system for which dialect resolution is requested.
+     * @return The dialect of the system of the specified ID, or {@code null} if a
+     * heartbeat has not yet been received for that system or if there is no
+     * dialect configured for that system's autopilot.
      */
     public MavlinkDialect getDialect(int systemId) {
         return systemDialects.get(systemId);
@@ -379,13 +386,10 @@ public class MavlinkConnection {
 
     /**
      * Sends the specified packet directly to the stream.
-     * @param packet    The packet to send.
+     *
+     * @param packet The packet to send.
      */
-    private void send(MavlinkPacket packet) {
-        try {
-            out.write(packet.getRawBytes());
-        } catch (IOException e) {
-            throw new MavlinkException(e);
-        }
+    private void send(MavlinkPacket packet) throws IOException {
+        out.write(packet.getRawBytes());
     }
 }

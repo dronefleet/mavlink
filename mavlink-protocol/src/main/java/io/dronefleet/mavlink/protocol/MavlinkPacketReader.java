@@ -1,5 +1,6 @@
 package io.dronefleet.mavlink.protocol;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -10,19 +11,18 @@ public class MavlinkPacketReader {
         this.in = new MavlinkFrameReader(in);
     }
 
-    public boolean next() throws IOException {
-        return in.next();
-    }
+    public MavlinkPacket next() throws IOException {
+        while (in.next()) {
+            byte[] frame = in.frame();
+            switch (frame[0] & 0xff) {
+                case MavlinkPacket.MAGIC_V1: return MavlinkPacket.fromV1Bytes(frame);
+                case MavlinkPacket.MAGIC_V2: return MavlinkPacket.fromV2Bytes(frame);
+            }
 
-    public MavlinkPacket packet() throws IOException {
-        byte[] frame = in.frame();
-        if (frame[0] == (byte) MavlinkPacket.MAGIC_V1) {
-            return MavlinkPacket.fromV1Bytes(frame);
+            // The frame did not begin with a magic marker that we understand.
+            in.drop();
         }
-        if (frame[0] == (byte) MavlinkPacket.MAGIC_V2) {
-            return MavlinkPacket.fromV2Bytes(frame);
-        }
-        throw new MavlinkException("Unknown version marker 0x" + Integer.toHexString(frame[0]));
+        throw new EOFException("End of stream");
     }
 
     public void drop() throws IOException {
