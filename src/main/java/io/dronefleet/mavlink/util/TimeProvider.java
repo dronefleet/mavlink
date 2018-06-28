@@ -8,7 +8,7 @@ import java.time.*;
 public interface TimeProvider {
 
     /**
-     * A time provider that uses the system's clock to calculate durations.
+     * A time provider that uses the system's clock to get the time.
      */
     TimeProvider SYSTEM_CLOCK = () -> {
         Duration since1stJan2015GMT = Duration.between(
