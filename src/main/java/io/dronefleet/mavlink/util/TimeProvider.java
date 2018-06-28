@@ -1,8 +1,6 @@
 package io.dronefleet.mavlink.util;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.*;
 
 /**
  * Provides time
@@ -13,10 +11,10 @@ public interface TimeProvider {
      * A time provider that uses the system's clock to calculate durations.
      */
     TimeProvider SYSTEM_CLOCK = () -> {
-        Duration elapsed = Duration.between(
-                LocalDateTime.of(2015, 1, 1, 0, 0),
-                Instant.now());
-        return elapsed.getSeconds() * 1000000 + elapsed.getNano() / 1000;
+        Duration since1stJan2015GMT = Duration.between(
+                OffsetDateTime.of(2015, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC),
+                OffsetDateTime.now(ZoneOffset.UTC));
+        return since1stJan2015GMT.getSeconds() * 1000000 + since1stJan2015GMT.getNano() / 1000;
     };
 
     /**
