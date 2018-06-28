@@ -102,14 +102,14 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
             // This is a Mavlink2 message.
         }
         
-        // When a message is received, its payload and content aren't resolved yet. You can resolve
-        // which kind of message it is by its payload, like so:
+        // When a message is received, its payload type isn't statically available.
+        // You can resolve which kind of message it is by its payload, like so:
         if (message.getPayload() instanceof Heartbeat) {
             // This is a heartbeat message
             MavlinkMessage<Heartbeat> heartbeatMessage = (MavlinkMessage<Heartbeat>)message;
         }
-        // However, we are likely better off by publishing the payload to a pub/sub mechanism such as RxJava,
-        // or any other implementation that we like.
+        // We are likely better off by publishing the payload to a pub/sub mechanism such 
+        // as RxJava, JMS or any other favorite instead, though.
         
     }
 } catch (EOFException eof) {
