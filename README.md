@@ -30,7 +30,8 @@ Still no maven release.
 ## Examples
 
 #### Brief
-This is a brief example for the minimum required to communicate, using Mavlink1
+This is a brief example for the minimum required to communicate using Mavlink1 with the
+default dialects.
 
 ```java
 // Reading
