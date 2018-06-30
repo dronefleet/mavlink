@@ -1,14 +1,92 @@
 group 'io.dronefleet.mavlink'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 apply plugin: 'java'
 apply plugin: 'io.dronefleet.mavlink.generator'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = 1.8
+
+def envOrProperty = { envKey, propKey, defaultValue ->
+    System.getenv(envKey) ?:
+            project.hasProperty(propKey) ?
+                    project.getProperty(propKey) : defaultValue
+}
+
+def ossrhUsername = envOrProperty('OSSRH_USERNAME', 'ossrhUsername', '')
+def ossrhPassword = envOrProperty('OSSRH_PASSWORD', 'ossrhPassword', '')
+
+ext."signing.keyId" = envOrProperty('SIGNING_KEYID', 'signing.keyId', '')
+ext."signing.password" = envOrProperty('SIGNING_PASSWORD', 'signing.password', '')
+ext."signing.secretKeyRingFile" = envOrProperty('SIGNING_SECRETKEYRINGFILE', 'signing.secretKeyRingFile', file("secring.gpg").absolutePath)
 
 repositories {
     mavenLocal()
     mavenCentral()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'htmltopdf'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'An HTML to PDF conversion library written in Java, based on wkhtmltopdf.'
+                url 'http://www.example.com/example-application'
+
+                scm {
+                    connection 'scm:git:git://github.com/wooio/htmltopdf-java.git'
+                    developerConnection 'scm:git:ssh://github.com:wooio/htmltopdf-java.git'
+                    url 'http://github.com/wooio/htmltopdf-java/tree/master'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'benbarkay'
+                        name 'Ben Barkay'
+                        email 'benb+htmltopdf@woo.io'
+                    }
+                }
+            }
+        }
+    }
 }
 
 def genSrc = "src/main/java-gen"

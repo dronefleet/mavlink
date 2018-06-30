@@ -22,6 +22,7 @@
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+gradle.properties
 
 # CMake
 cmake-build-debug/
@@ -108,5 +109,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+
+# GPG
+secring.gpg
 
 # End of https://www.gitignore.io/api/java,gradle,intellij+all
