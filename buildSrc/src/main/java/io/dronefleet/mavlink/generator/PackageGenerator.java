@@ -118,6 +118,7 @@ public class PackageGenerator {
         matcher.appendTail(sb);
         sb.append("\n");
         return sb.toString()
+                .replace("&", "&amp;")
                 .replace(">", "&gt;")
                 .replace("<", "&lt;");
     }

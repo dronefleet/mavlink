@@ -102,7 +102,7 @@ public final class CameraInformation {
     }
 
     /**
-     * Version of the camera firmware (v &lt;&lt; 24 & 0xff = Dev, v &lt;&lt; 16 & 0xff = Patch, v &lt;&lt; 8 & 0xff = Minor, v & 
+     * Version of the camera firmware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
      * 0xff = Major) 
      */
     @MavlinkFieldInfo(
@@ -279,7 +279,7 @@ public final class CameraInformation {
         }
 
         /**
-         * Version of the camera firmware (v &lt;&lt; 24 & 0xff = Dev, v &lt;&lt; 16 & 0xff = Patch, v &lt;&lt; 8 & 0xff = Minor, v & 
+         * Version of the camera firmware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
          * 0xff = Major) 
          */
         @MavlinkFieldInfo(
