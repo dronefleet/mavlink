@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class MavlinkFrameReader {
-
-    private static final int MARKER_V1 = 0xFE;
-    private static final int MARKER_V2 = 0xFD;
-
     private final TransactionalInputStream in;
 
     public MavlinkFrameReader(InputStream in) {
@@ -24,9 +20,9 @@ public class MavlinkFrameReader {
                 return false;
             }
             switch (versionMarker) {
-                case MARKER_V1:
+                case MavlinkPacket.MAGIC_V1:
                     return in.advance(6 + payloadLength);
-                case MARKER_V2:
+                case MavlinkPacket.MAGIC_V2:
                     return in.advance(25 + payloadLength);
                 default:
                     in.rollback();
