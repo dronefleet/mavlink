@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Transmits the position of watch 
@@ -120,6 +123,34 @@ public final class IsrLocation {
     )
     public final int option3() {
         return this.option3;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        IsrLocation other = (IsrLocation)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(height, other.height)) return false;
+        if (!Objects.deepEquals(option1, other.option1)) return false;
+        if (!Objects.deepEquals(option2, other.option2)) return false;
+        if (!Objects.deepEquals(option3, other.option3)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(height);
+        result = 31 * result + Objects.hashCode(option1);
+        result = 31 * result + Objects.hashCode(option2);
+        result = 31 * result + Objects.hashCode(option3);
+        return result;
     }
 
     public static final class Builder {

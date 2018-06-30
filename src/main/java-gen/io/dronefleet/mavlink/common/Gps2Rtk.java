@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting 
@@ -209,6 +212,46 @@ public final class Gps2Rtk {
     )
     public final int iarNumHypotheses() {
         return this.iarNumHypotheses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Gps2Rtk other = (Gps2Rtk)o;
+        if (!Objects.deepEquals(timeLastBaselineMs, other.timeLastBaselineMs)) return false;
+        if (!Objects.deepEquals(rtkReceiverId, other.rtkReceiverId)) return false;
+        if (!Objects.deepEquals(wn, other.wn)) return false;
+        if (!Objects.deepEquals(tow, other.tow)) return false;
+        if (!Objects.deepEquals(rtkHealth, other.rtkHealth)) return false;
+        if (!Objects.deepEquals(rtkRate, other.rtkRate)) return false;
+        if (!Objects.deepEquals(nsats, other.nsats)) return false;
+        if (!Objects.deepEquals(baselineCoordsType, other.baselineCoordsType)) return false;
+        if (!Objects.deepEquals(baselineAMm, other.baselineAMm)) return false;
+        if (!Objects.deepEquals(baselineBMm, other.baselineBMm)) return false;
+        if (!Objects.deepEquals(baselineCMm, other.baselineCMm)) return false;
+        if (!Objects.deepEquals(accuracy, other.accuracy)) return false;
+        if (!Objects.deepEquals(iarNumHypotheses, other.iarNumHypotheses)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeLastBaselineMs);
+        result = 31 * result + Objects.hashCode(rtkReceiverId);
+        result = 31 * result + Objects.hashCode(wn);
+        result = 31 * result + Objects.hashCode(tow);
+        result = 31 * result + Objects.hashCode(rtkHealth);
+        result = 31 * result + Objects.hashCode(rtkRate);
+        result = 31 * result + Objects.hashCode(nsats);
+        result = 31 * result + Objects.hashCode(baselineCoordsType);
+        result = 31 * result + Objects.hashCode(baselineAMm);
+        result = 31 * result + Objects.hashCode(baselineBMm);
+        result = 31 * result + Objects.hashCode(baselineCMm);
+        result = 31 * result + Objects.hashCode(accuracy);
+        result = 31 * result + Objects.hashCode(iarNumHypotheses);
+        return result;
     }
 
     public static final class Builder {

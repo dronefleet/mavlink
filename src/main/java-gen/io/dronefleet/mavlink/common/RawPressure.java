@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * The RAW pressure readings for the typical setup of one absolute pressure and one differential 
@@ -98,6 +101,30 @@ public final class RawPressure {
     )
     public final int temperature() {
         return this.temperature;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        RawPressure other = (RawPressure)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(pressAbs, other.pressAbs)) return false;
+        if (!Objects.deepEquals(pressDiff1, other.pressDiff1)) return false;
+        if (!Objects.deepEquals(pressDiff2, other.pressDiff2)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(pressAbs);
+        result = 31 * result + Objects.hashCode(pressDiff1);
+        result = 31 * result + Objects.hashCode(pressDiff2);
+        result = 31 * result + Objects.hashCode(temperature);
+        return result;
     }
 
     public static final class Builder {

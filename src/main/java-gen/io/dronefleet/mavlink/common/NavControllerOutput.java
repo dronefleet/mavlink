@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The state of the fixed wing navigation and position controller. 
@@ -136,6 +139,36 @@ public final class NavControllerOutput {
     )
     public final float xtrackError() {
         return this.xtrackError;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        NavControllerOutput other = (NavControllerOutput)o;
+        if (!Objects.deepEquals(navRoll, other.navRoll)) return false;
+        if (!Objects.deepEquals(navPitch, other.navPitch)) return false;
+        if (!Objects.deepEquals(navBearing, other.navBearing)) return false;
+        if (!Objects.deepEquals(targetBearing, other.targetBearing)) return false;
+        if (!Objects.deepEquals(wpDist, other.wpDist)) return false;
+        if (!Objects.deepEquals(altError, other.altError)) return false;
+        if (!Objects.deepEquals(aspdError, other.aspdError)) return false;
+        if (!Objects.deepEquals(xtrackError, other.xtrackError)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(navRoll);
+        result = 31 * result + Objects.hashCode(navPitch);
+        result = 31 * result + Objects.hashCode(navBearing);
+        result = 31 * result + Objects.hashCode(targetBearing);
+        result = 31 * result + Objects.hashCode(wpDist);
+        result = 31 * result + Objects.hashCode(altError);
+        result = 31 * result + Objects.hashCode(aspdError);
+        result = 31 * result + Objects.hashCode(xtrackError);
+        return result;
     }
 
     public static final class Builder {

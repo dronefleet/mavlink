@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Reports progress of compass calibration. 
@@ -150,6 +153,38 @@ public final class MagCalProgress {
     )
     public final float directionZ() {
         return this.directionZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MagCalProgress other = (MagCalProgress)o;
+        if (!Objects.deepEquals(compassId, other.compassId)) return false;
+        if (!Objects.deepEquals(calMask, other.calMask)) return false;
+        if (!Objects.deepEquals(calStatus, other.calStatus)) return false;
+        if (!Objects.deepEquals(attempt, other.attempt)) return false;
+        if (!Objects.deepEquals(completionPct, other.completionPct)) return false;
+        if (!Objects.deepEquals(completionMask, other.completionMask)) return false;
+        if (!Objects.deepEquals(directionX, other.directionX)) return false;
+        if (!Objects.deepEquals(directionY, other.directionY)) return false;
+        if (!Objects.deepEquals(directionZ, other.directionZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(compassId);
+        result = 31 * result + Objects.hashCode(calMask);
+        result = 31 * result + Objects.hashCode(calStatus);
+        result = 31 * result + Objects.hashCode(attempt);
+        result = 31 * result + Objects.hashCode(completionPct);
+        result = 31 * result + Objects.hashCode(completionMask);
+        result = 31 * result + Objects.hashCode(directionX);
+        result = 31 * result + Objects.hashCode(directionY);
+        result = 31 * result + Objects.hashCode(directionZ);
+        return result;
     }
 
     public static final class Builder {

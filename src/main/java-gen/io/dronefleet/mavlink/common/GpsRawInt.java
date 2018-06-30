@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * The global position, as returned by the Global Positioning System (GPS). This is NOT the global 
@@ -247,6 +250,50 @@ public final class GpsRawInt {
     )
     public final long hdgAcc() {
         return this.hdgAcc;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsRawInt other = (GpsRawInt)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(fixType, other.fixType)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(eph, other.eph)) return false;
+        if (!Objects.deepEquals(epv, other.epv)) return false;
+        if (!Objects.deepEquals(vel, other.vel)) return false;
+        if (!Objects.deepEquals(cog, other.cog)) return false;
+        if (!Objects.deepEquals(satellitesVisible, other.satellitesVisible)) return false;
+        if (!Objects.deepEquals(altEllipsoid, other.altEllipsoid)) return false;
+        if (!Objects.deepEquals(hAcc, other.hAcc)) return false;
+        if (!Objects.deepEquals(vAcc, other.vAcc)) return false;
+        if (!Objects.deepEquals(velAcc, other.velAcc)) return false;
+        if (!Objects.deepEquals(hdgAcc, other.hdgAcc)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(fixType);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(eph);
+        result = 31 * result + Objects.hashCode(epv);
+        result = 31 * result + Objects.hashCode(vel);
+        result = 31 * result + Objects.hashCode(cog);
+        result = 31 * result + Objects.hashCode(satellitesVisible);
+        result = 31 * result + Objects.hashCode(altEllipsoid);
+        result = 31 * result + Objects.hashCode(hAcc);
+        result = 31 * result + Objects.hashCode(vAcc);
+        result = 31 * result + Objects.hashCode(velAcc);
+        result = 31 * result + Objects.hashCode(hdgAcc);
+        return result;
     }
 
     public static final class Builder {

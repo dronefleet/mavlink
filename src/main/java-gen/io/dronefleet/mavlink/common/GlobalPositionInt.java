@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The filtered global position (e.g. fused GPS and accelerometers). The position is in 
@@ -159,6 +162,38 @@ public final class GlobalPositionInt {
     )
     public final int hdg() {
         return this.hdg;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GlobalPositionInt other = (GlobalPositionInt)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(relativeAlt, other.relativeAlt)) return false;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(hdg, other.hdg)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(relativeAlt);
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(hdg);
+        return result;
     }
 
     public static final class Builder {

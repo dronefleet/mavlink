@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Sets a desired vehicle position in a local north-east-down coordinate frame. Used by an 
@@ -253,6 +256,52 @@ public final class SetPositionTargetLocalNed {
     )
     public final float yawRate() {
         return this.yawRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SetPositionTargetLocalNed other = (SetPositionTargetLocalNed)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(coordinateFrame, other.coordinateFrame)) return false;
+        if (!Objects.deepEquals(typeMask, other.typeMask)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(afx, other.afx)) return false;
+        if (!Objects.deepEquals(afy, other.afy)) return false;
+        if (!Objects.deepEquals(afz, other.afz)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
+        if (!Objects.deepEquals(yawRate, other.yawRate)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(coordinateFrame);
+        result = 31 * result + Objects.hashCode(typeMask);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(afx);
+        result = 31 * result + Objects.hashCode(afy);
+        result = 31 * result + Objects.hashCode(afz);
+        result = 31 * result + Objects.hashCode(yaw);
+        result = 31 * result + Objects.hashCode(yawRate);
+        return result;
     }
 
     public static final class Builder {

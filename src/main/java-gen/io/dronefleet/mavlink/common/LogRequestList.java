@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Request a list of available logs. On some systems calling this may stop on-board logging until 
@@ -78,6 +81,28 @@ public final class LogRequestList {
     )
     public final int end() {
         return this.end;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LogRequestList other = (LogRequestList)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(start, other.start)) return false;
+        if (!Objects.deepEquals(end, other.end)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(start);
+        result = 31 * result + Objects.hashCode(end);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Data used in the navigation algorithm. 
@@ -162,6 +165,40 @@ public final class SlugsNavigation {
     )
     public final int hC() {
         return this.hC;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SlugsNavigation other = (SlugsNavigation)o;
+        if (!Objects.deepEquals(uM, other.uM)) return false;
+        if (!Objects.deepEquals(phiC, other.phiC)) return false;
+        if (!Objects.deepEquals(thetaC, other.thetaC)) return false;
+        if (!Objects.deepEquals(psidotC, other.psidotC)) return false;
+        if (!Objects.deepEquals(ayBody, other.ayBody)) return false;
+        if (!Objects.deepEquals(totaldist, other.totaldist)) return false;
+        if (!Objects.deepEquals(dist2go, other.dist2go)) return false;
+        if (!Objects.deepEquals(fromwp, other.fromwp)) return false;
+        if (!Objects.deepEquals(towp, other.towp)) return false;
+        if (!Objects.deepEquals(hC, other.hC)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(uM);
+        result = 31 * result + Objects.hashCode(phiC);
+        result = 31 * result + Objects.hashCode(thetaC);
+        result = 31 * result + Objects.hashCode(psidotC);
+        result = 31 * result + Objects.hashCode(ayBody);
+        result = 31 * result + Objects.hashCode(totaldist);
+        result = 31 * result + Objects.hashCode(dist2go);
+        result = 31 * result + Objects.hashCode(fromwp);
+        result = 31 * result + Objects.hashCode(towp);
+        result = 31 * result + Objects.hashCode(hC);
+        return result;
     }
 
     public static final class Builder {

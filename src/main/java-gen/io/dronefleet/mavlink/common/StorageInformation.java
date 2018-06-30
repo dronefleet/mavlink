@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * WIP: Information about a storage medium. 
@@ -149,6 +152,38 @@ public final class StorageInformation {
     )
     public final float writeSpeed() {
         return this.writeSpeed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        StorageInformation other = (StorageInformation)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(storageId, other.storageId)) return false;
+        if (!Objects.deepEquals(storageCount, other.storageCount)) return false;
+        if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(totalCapacity, other.totalCapacity)) return false;
+        if (!Objects.deepEquals(usedCapacity, other.usedCapacity)) return false;
+        if (!Objects.deepEquals(availableCapacity, other.availableCapacity)) return false;
+        if (!Objects.deepEquals(readSpeed, other.readSpeed)) return false;
+        if (!Objects.deepEquals(writeSpeed, other.writeSpeed)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(storageId);
+        result = 31 * result + Objects.hashCode(storageCount);
+        result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(totalCapacity);
+        result = 31 * result + Objects.hashCode(usedCapacity);
+        result = 31 * result + Objects.hashCode(availableCapacity);
+        result = 31 * result + Objects.hashCode(readSpeed);
+        result = 31 * result + Objects.hashCode(writeSpeed);
+        return result;
     }
 
     public static final class Builder {

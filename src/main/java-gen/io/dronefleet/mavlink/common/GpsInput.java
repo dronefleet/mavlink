@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * GPS sensor input message. This is a raw sensor value sent by the GPS. This is NOT the global 
@@ -282,6 +285,56 @@ public final class GpsInput {
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsInput other = (GpsInput)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(gpsId, other.gpsId)) return false;
+        if (!Objects.deepEquals(ignoreFlags, other.ignoreFlags)) return false;
+        if (!Objects.deepEquals(timeWeekMs, other.timeWeekMs)) return false;
+        if (!Objects.deepEquals(timeWeek, other.timeWeek)) return false;
+        if (!Objects.deepEquals(fixType, other.fixType)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(hdop, other.hdop)) return false;
+        if (!Objects.deepEquals(vdop, other.vdop)) return false;
+        if (!Objects.deepEquals(vn, other.vn)) return false;
+        if (!Objects.deepEquals(ve, other.ve)) return false;
+        if (!Objects.deepEquals(vd, other.vd)) return false;
+        if (!Objects.deepEquals(speedAccuracy, other.speedAccuracy)) return false;
+        if (!Objects.deepEquals(horizAccuracy, other.horizAccuracy)) return false;
+        if (!Objects.deepEquals(vertAccuracy, other.vertAccuracy)) return false;
+        if (!Objects.deepEquals(satellitesVisible, other.satellitesVisible)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(gpsId);
+        result = 31 * result + Objects.hashCode(ignoreFlags);
+        result = 31 * result + Objects.hashCode(timeWeekMs);
+        result = 31 * result + Objects.hashCode(timeWeek);
+        result = 31 * result + Objects.hashCode(fixType);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(hdop);
+        result = 31 * result + Objects.hashCode(vdop);
+        result = 31 * result + Objects.hashCode(vn);
+        result = 31 * result + Objects.hashCode(ve);
+        result = 31 * result + Objects.hashCode(vd);
+        result = 31 * result + Objects.hashCode(speedAccuracy);
+        result = 31 * result + Objects.hashCode(horizAccuracy);
+        result = 31 * result + Objects.hashCode(vertAccuracy);
+        result = 31 * result + Objects.hashCode(satellitesVisible);
+        return result;
     }
 
     public static final class Builder {

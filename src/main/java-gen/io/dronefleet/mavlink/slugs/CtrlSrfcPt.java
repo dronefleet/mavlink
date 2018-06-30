@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * This message sets the control surfaces for selective passthrough mode. 
@@ -50,6 +53,24 @@ public final class CtrlSrfcPt {
     )
     public final EnumFlagSet<ControlSurfaceFlag> bitfieldpt() {
         return this.bitfieldpt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CtrlSrfcPt other = (CtrlSrfcPt)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(bitfieldpt, other.bitfieldpt)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(bitfieldpt);
+        return result;
     }
 
     public static final class Builder {

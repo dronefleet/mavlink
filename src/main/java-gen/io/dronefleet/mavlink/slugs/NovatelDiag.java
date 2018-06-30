@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Transmits the diagnostics data from the Novatel OEMStar GPS 
@@ -120,6 +123,34 @@ public final class NovatelDiag {
     )
     public final int csfails() {
         return this.csfails;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        NovatelDiag other = (NovatelDiag)o;
+        if (!Objects.deepEquals(timestatus, other.timestatus)) return false;
+        if (!Objects.deepEquals(receiverstatus, other.receiverstatus)) return false;
+        if (!Objects.deepEquals(solstatus, other.solstatus)) return false;
+        if (!Objects.deepEquals(postype, other.postype)) return false;
+        if (!Objects.deepEquals(veltype, other.veltype)) return false;
+        if (!Objects.deepEquals(possolage, other.possolage)) return false;
+        if (!Objects.deepEquals(csfails, other.csfails)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestatus);
+        result = 31 * result + Objects.hashCode(receiverstatus);
+        result = 31 * result + Objects.hashCode(solstatus);
+        result = 31 * result + Objects.hashCode(postype);
+        result = 31 * result + Objects.hashCode(veltype);
+        result = 31 * result + Objects.hashCode(possolage);
+        result = 31 * result + Objects.hashCode(csfails);
+        return result;
     }
 
     public static final class Builder {

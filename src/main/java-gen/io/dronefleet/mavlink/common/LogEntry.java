@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Reply to {@link io.dronefleet.mavlink.common.LogRequestList LOG_REQUEST_LIST} 
@@ -91,6 +94,30 @@ public final class LogEntry {
     )
     public final long size() {
         return this.size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LogEntry other = (LogEntry)o;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(numLogs, other.numLogs)) return false;
+        if (!Objects.deepEquals(lastLogNum, other.lastLogNum)) return false;
+        if (!Objects.deepEquals(timeUtc, other.timeUtc)) return false;
+        if (!Objects.deepEquals(size, other.size)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(numLogs);
+        result = 31 * result + Objects.hashCode(lastLogNum);
+        result = 31 * result + Objects.hashCode(timeUtc);
+        result = 31 * result + Objects.hashCode(size);
+        return result;
     }
 
     public static final class Builder {

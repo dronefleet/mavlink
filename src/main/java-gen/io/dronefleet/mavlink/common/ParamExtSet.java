@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Set a parameter value. In order to deal with message loss (and retransmission of 
@@ -100,6 +103,30 @@ public final class ParamExtSet {
     )
     public final MavParamExtType paramType() {
         return this.paramType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ParamExtSet other = (ParamExtSet)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(paramId, other.paramId)) return false;
+        if (!Objects.deepEquals(paramValue, other.paramValue)) return false;
+        if (!Objects.deepEquals(paramType, other.paramType)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(paramId);
+        result = 31 * result + Objects.hashCode(paramValue);
+        result = 31 * result + Objects.hashCode(paramType);
+        return result;
     }
 
     public static final class Builder {

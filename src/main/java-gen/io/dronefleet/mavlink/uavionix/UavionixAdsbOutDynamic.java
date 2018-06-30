@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Dynamic data used to generate ADS-B out transponder data (send at 5Hz) 
@@ -258,6 +261,52 @@ public final class UavionixAdsbOutDynamic {
     )
     public final int squawk() {
         return this.squawk;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        UavionixAdsbOutDynamic other = (UavionixAdsbOutDynamic)o;
+        if (!Objects.deepEquals(utctime, other.utctime)) return false;
+        if (!Objects.deepEquals(gpslat, other.gpslat)) return false;
+        if (!Objects.deepEquals(gpslon, other.gpslon)) return false;
+        if (!Objects.deepEquals(gpsalt, other.gpsalt)) return false;
+        if (!Objects.deepEquals(gpsfix, other.gpsfix)) return false;
+        if (!Objects.deepEquals(numsats, other.numsats)) return false;
+        if (!Objects.deepEquals(baroaltmsl, other.baroaltmsl)) return false;
+        if (!Objects.deepEquals(accuracyhor, other.accuracyhor)) return false;
+        if (!Objects.deepEquals(accuracyvert, other.accuracyvert)) return false;
+        if (!Objects.deepEquals(accuracyvel, other.accuracyvel)) return false;
+        if (!Objects.deepEquals(velvert, other.velvert)) return false;
+        if (!Objects.deepEquals(velns, other.velns)) return false;
+        if (!Objects.deepEquals(velew, other.velew)) return false;
+        if (!Objects.deepEquals(emergencystatus, other.emergencystatus)) return false;
+        if (!Objects.deepEquals(state, other.state)) return false;
+        if (!Objects.deepEquals(squawk, other.squawk)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(utctime);
+        result = 31 * result + Objects.hashCode(gpslat);
+        result = 31 * result + Objects.hashCode(gpslon);
+        result = 31 * result + Objects.hashCode(gpsalt);
+        result = 31 * result + Objects.hashCode(gpsfix);
+        result = 31 * result + Objects.hashCode(numsats);
+        result = 31 * result + Objects.hashCode(baroaltmsl);
+        result = 31 * result + Objects.hashCode(accuracyhor);
+        result = 31 * result + Objects.hashCode(accuracyvert);
+        result = 31 * result + Objects.hashCode(accuracyvel);
+        result = 31 * result + Objects.hashCode(velvert);
+        result = 31 * result + Objects.hashCode(velns);
+        result = 31 * result + Objects.hashCode(velew);
+        result = 31 * result + Objects.hashCode(emergencystatus);
+        result = 31 * result + Objects.hashCode(state);
+        result = 31 * result + Objects.hashCode(squawk);
+        return result;
     }
 
     public static final class Builder {

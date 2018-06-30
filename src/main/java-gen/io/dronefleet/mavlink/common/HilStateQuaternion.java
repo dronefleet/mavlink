@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Sent from simulation to autopilot, avoids in contrast to {@link io.dronefleet.mavlink.common.HilState HIL_STATE} singularities. This 
@@ -262,6 +265,52 @@ public final class HilStateQuaternion {
     )
     public final int zacc() {
         return this.zacc;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HilStateQuaternion other = (HilStateQuaternion)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(attitudeQuaternion, other.attitudeQuaternion)) return false;
+        if (!Objects.deepEquals(rollspeed, other.rollspeed)) return false;
+        if (!Objects.deepEquals(pitchspeed, other.pitchspeed)) return false;
+        if (!Objects.deepEquals(yawspeed, other.yawspeed)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(indAirspeed, other.indAirspeed)) return false;
+        if (!Objects.deepEquals(trueAirspeed, other.trueAirspeed)) return false;
+        if (!Objects.deepEquals(xacc, other.xacc)) return false;
+        if (!Objects.deepEquals(yacc, other.yacc)) return false;
+        if (!Objects.deepEquals(zacc, other.zacc)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(attitudeQuaternion);
+        result = 31 * result + Objects.hashCode(rollspeed);
+        result = 31 * result + Objects.hashCode(pitchspeed);
+        result = 31 * result + Objects.hashCode(yawspeed);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(indAirspeed);
+        result = 31 * result + Objects.hashCode(trueAirspeed);
+        result = 31 * result + Objects.hashCode(xacc);
+        result = 31 * result + Objects.hashCode(yacc);
+        result = 31 * result + Objects.hashCode(zacc);
+        return result;
     }
 
     public static final class Builder {

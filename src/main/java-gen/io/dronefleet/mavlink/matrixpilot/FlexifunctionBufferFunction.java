@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Flexifunction type and parameters for component at function index from buffer 
@@ -124,6 +127,34 @@ public final class FlexifunctionBufferFunction {
     )
     public final List<Integer> data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FlexifunctionBufferFunction other = (FlexifunctionBufferFunction)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(funcIndex, other.funcIndex)) return false;
+        if (!Objects.deepEquals(funcCount, other.funcCount)) return false;
+        if (!Objects.deepEquals(dataAddress, other.dataAddress)) return false;
+        if (!Objects.deepEquals(dataSize, other.dataSize)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(funcIndex);
+        result = 31 * result + Objects.hashCode(funcCount);
+        result = 31 * result + Objects.hashCode(dataAddress);
+        result = 31 * result + Objects.hashCode(dataSize);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

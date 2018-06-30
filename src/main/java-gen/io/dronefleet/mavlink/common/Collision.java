@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Information about a potential collision 
@@ -121,6 +124,34 @@ public final class Collision {
     )
     public final float horizontalMinimumDelta() {
         return this.horizontalMinimumDelta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Collision other = (Collision)o;
+        if (!Objects.deepEquals(src, other.src)) return false;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(action, other.action)) return false;
+        if (!Objects.deepEquals(threatLevel, other.threatLevel)) return false;
+        if (!Objects.deepEquals(timeToMinimumDelta, other.timeToMinimumDelta)) return false;
+        if (!Objects.deepEquals(altitudeMinimumDelta, other.altitudeMinimumDelta)) return false;
+        if (!Objects.deepEquals(horizontalMinimumDelta, other.horizontalMinimumDelta)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(src);
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(action);
+        result = 31 * result + Objects.hashCode(threatLevel);
+        result = 31 * result + Objects.hashCode(timeToMinimumDelta);
+        result = 31 * result + Objects.hashCode(altitudeMinimumDelta);
+        result = 31 * result + Objects.hashCode(horizontalMinimumDelta);
+        return result;
     }
 
     public static final class Builder {

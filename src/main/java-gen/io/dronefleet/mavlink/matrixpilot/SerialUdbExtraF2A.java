@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible MAVLink version of SERIAL_UDB_EXTRA - F2: Format Part A 
@@ -425,6 +428,74 @@ public final class SerialUdbExtraF2A {
     )
     public final int sueHdop() {
         return this.sueHdop;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF2A other = (SerialUdbExtraF2A)o;
+        if (!Objects.deepEquals(sueTime, other.sueTime)) return false;
+        if (!Objects.deepEquals(sueStatus, other.sueStatus)) return false;
+        if (!Objects.deepEquals(sueLatitude, other.sueLatitude)) return false;
+        if (!Objects.deepEquals(sueLongitude, other.sueLongitude)) return false;
+        if (!Objects.deepEquals(sueAltitude, other.sueAltitude)) return false;
+        if (!Objects.deepEquals(sueWaypointIndex, other.sueWaypointIndex)) return false;
+        if (!Objects.deepEquals(sueRmat0, other.sueRmat0)) return false;
+        if (!Objects.deepEquals(sueRmat1, other.sueRmat1)) return false;
+        if (!Objects.deepEquals(sueRmat2, other.sueRmat2)) return false;
+        if (!Objects.deepEquals(sueRmat3, other.sueRmat3)) return false;
+        if (!Objects.deepEquals(sueRmat4, other.sueRmat4)) return false;
+        if (!Objects.deepEquals(sueRmat5, other.sueRmat5)) return false;
+        if (!Objects.deepEquals(sueRmat6, other.sueRmat6)) return false;
+        if (!Objects.deepEquals(sueRmat7, other.sueRmat7)) return false;
+        if (!Objects.deepEquals(sueRmat8, other.sueRmat8)) return false;
+        if (!Objects.deepEquals(sueCog, other.sueCog)) return false;
+        if (!Objects.deepEquals(sueSog, other.sueSog)) return false;
+        if (!Objects.deepEquals(sueCpuLoad, other.sueCpuLoad)) return false;
+        if (!Objects.deepEquals(sueAirSpeed3dimu, other.sueAirSpeed3dimu)) return false;
+        if (!Objects.deepEquals(sueEstimatedWind0, other.sueEstimatedWind0)) return false;
+        if (!Objects.deepEquals(sueEstimatedWind1, other.sueEstimatedWind1)) return false;
+        if (!Objects.deepEquals(sueEstimatedWind2, other.sueEstimatedWind2)) return false;
+        if (!Objects.deepEquals(sueMagfieldearth0, other.sueMagfieldearth0)) return false;
+        if (!Objects.deepEquals(sueMagfieldearth1, other.sueMagfieldearth1)) return false;
+        if (!Objects.deepEquals(sueMagfieldearth2, other.sueMagfieldearth2)) return false;
+        if (!Objects.deepEquals(sueSvs, other.sueSvs)) return false;
+        if (!Objects.deepEquals(sueHdop, other.sueHdop)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueTime);
+        result = 31 * result + Objects.hashCode(sueStatus);
+        result = 31 * result + Objects.hashCode(sueLatitude);
+        result = 31 * result + Objects.hashCode(sueLongitude);
+        result = 31 * result + Objects.hashCode(sueAltitude);
+        result = 31 * result + Objects.hashCode(sueWaypointIndex);
+        result = 31 * result + Objects.hashCode(sueRmat0);
+        result = 31 * result + Objects.hashCode(sueRmat1);
+        result = 31 * result + Objects.hashCode(sueRmat2);
+        result = 31 * result + Objects.hashCode(sueRmat3);
+        result = 31 * result + Objects.hashCode(sueRmat4);
+        result = 31 * result + Objects.hashCode(sueRmat5);
+        result = 31 * result + Objects.hashCode(sueRmat6);
+        result = 31 * result + Objects.hashCode(sueRmat7);
+        result = 31 * result + Objects.hashCode(sueRmat8);
+        result = 31 * result + Objects.hashCode(sueCog);
+        result = 31 * result + Objects.hashCode(sueSog);
+        result = 31 * result + Objects.hashCode(sueCpuLoad);
+        result = 31 * result + Objects.hashCode(sueAirSpeed3dimu);
+        result = 31 * result + Objects.hashCode(sueEstimatedWind0);
+        result = 31 * result + Objects.hashCode(sueEstimatedWind1);
+        result = 31 * result + Objects.hashCode(sueEstimatedWind2);
+        result = 31 * result + Objects.hashCode(sueMagfieldearth0);
+        result = 31 * result + Objects.hashCode(sueMagfieldearth1);
+        result = 31 * result + Objects.hashCode(sueMagfieldearth2);
+        result = 31 * result + Objects.hashCode(sueSvs);
+        result = 31 * result + Objects.hashCode(sueHdop);
+        return result;
     }
 
     public static final class Builder {

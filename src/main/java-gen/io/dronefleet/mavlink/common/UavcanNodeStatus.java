@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * General status information of an UAVCAN node. Please refer to the definition of the UAVCAN 
@@ -109,6 +112,32 @@ public final class UavcanNodeStatus {
     )
     public final int vendorSpecificStatusCode() {
         return this.vendorSpecificStatusCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        UavcanNodeStatus other = (UavcanNodeStatus)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(uptimeSec, other.uptimeSec)) return false;
+        if (!Objects.deepEquals(health, other.health)) return false;
+        if (!Objects.deepEquals(mode, other.mode)) return false;
+        if (!Objects.deepEquals(subMode, other.subMode)) return false;
+        if (!Objects.deepEquals(vendorSpecificStatusCode, other.vendorSpecificStatusCode)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(uptimeSec);
+        result = 31 * result + Objects.hashCode(health);
+        result = 31 * result + Objects.hashCode(mode);
+        result = 31 * result + Objects.hashCode(subMode);
+        result = 31 * result + Objects.hashCode(vendorSpecificStatusCode);
+        return result;
     }
 
     public static final class Builder {

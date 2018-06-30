@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * This contains the status of the GPS readings 
@@ -124,6 +127,34 @@ public final class StatusGps {
     )
     public final int modeind() {
         return this.modeind;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        StatusGps other = (StatusGps)o;
+        if (!Objects.deepEquals(csfails, other.csfails)) return false;
+        if (!Objects.deepEquals(gpsquality, other.gpsquality)) return false;
+        if (!Objects.deepEquals(msgstype, other.msgstype)) return false;
+        if (!Objects.deepEquals(posstatus, other.posstatus)) return false;
+        if (!Objects.deepEquals(magvar, other.magvar)) return false;
+        if (!Objects.deepEquals(magdir, other.magdir)) return false;
+        if (!Objects.deepEquals(modeind, other.modeind)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(csfails);
+        result = 31 * result + Objects.hashCode(gpsquality);
+        result = 31 * result + Objects.hashCode(msgstype);
+        result = 31 * result + Objects.hashCode(posstatus);
+        result = 31 * result + Objects.hashCode(magvar);
+        result = 31 * result + Objects.hashCode(magdir);
+        result = 31 * result + Objects.hashCode(modeind);
+        return result;
     }
 
     public static final class Builder {

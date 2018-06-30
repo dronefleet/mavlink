@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  *  
@@ -137,6 +140,36 @@ public final class DistanceSensor {
     )
     public final int covariance() {
         return this.covariance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DistanceSensor other = (DistanceSensor)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(minDistance, other.minDistance)) return false;
+        if (!Objects.deepEquals(maxDistance, other.maxDistance)) return false;
+        if (!Objects.deepEquals(currentDistance, other.currentDistance)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(orientation, other.orientation)) return false;
+        if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(minDistance);
+        result = 31 * result + Objects.hashCode(maxDistance);
+        result = 31 * result + Objects.hashCode(currentDistance);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(orientation);
+        result = 31 * result + Objects.hashCode(covariance);
+        return result;
     }
 
     public static final class Builder {

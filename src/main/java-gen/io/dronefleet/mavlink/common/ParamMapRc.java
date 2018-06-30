@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Bind a RC channel to a parameter. The parameter should change accoding to the RC channel value. 
@@ -158,6 +161,38 @@ public final class ParamMapRc {
     )
     public final float paramValueMax() {
         return this.paramValueMax;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ParamMapRc other = (ParamMapRc)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(paramId, other.paramId)) return false;
+        if (!Objects.deepEquals(paramIndex, other.paramIndex)) return false;
+        if (!Objects.deepEquals(parameterRcChannelIndex, other.parameterRcChannelIndex)) return false;
+        if (!Objects.deepEquals(paramValue0, other.paramValue0)) return false;
+        if (!Objects.deepEquals(scale, other.scale)) return false;
+        if (!Objects.deepEquals(paramValueMin, other.paramValueMin)) return false;
+        if (!Objects.deepEquals(paramValueMax, other.paramValueMax)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(paramId);
+        result = 31 * result + Objects.hashCode(paramIndex);
+        result = 31 * result + Objects.hashCode(parameterRcChannelIndex);
+        result = 31 * result + Objects.hashCode(paramValue0);
+        result = 31 * result + Objects.hashCode(scale);
+        result = 31 * result + Objects.hashCode(paramValueMin);
+        result = 31 * result + Objects.hashCode(paramValueMax);
+        return result;
     }
 
     public static final class Builder {

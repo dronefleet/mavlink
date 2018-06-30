@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Information about the status of a capture 
@@ -107,6 +110,32 @@ public final class CameraCaptureStatus {
     )
     public final float availableCapacity() {
         return this.availableCapacity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CameraCaptureStatus other = (CameraCaptureStatus)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(imageStatus, other.imageStatus)) return false;
+        if (!Objects.deepEquals(videoStatus, other.videoStatus)) return false;
+        if (!Objects.deepEquals(imageInterval, other.imageInterval)) return false;
+        if (!Objects.deepEquals(recordingTimeMs, other.recordingTimeMs)) return false;
+        if (!Objects.deepEquals(availableCapacity, other.availableCapacity)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(imageStatus);
+        result = 31 * result + Objects.hashCode(videoStatus);
+        result = 31 * result + Objects.hashCode(imageInterval);
+        result = 31 * result + Objects.hashCode(recordingTimeMs);
+        result = 31 * result + Objects.hashCode(availableCapacity);
+        return result;
     }
 
     public static final class Builder {

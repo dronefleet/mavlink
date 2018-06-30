@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Obstacle distances in front of the sensor, starting from the left in increment degrees to the 
@@ -114,6 +117,32 @@ public final class ObstacleDistance {
     )
     public final int maxDistance() {
         return this.maxDistance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ObstacleDistance other = (ObstacleDistance)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(sensorType, other.sensorType)) return false;
+        if (!Objects.deepEquals(distances, other.distances)) return false;
+        if (!Objects.deepEquals(increment, other.increment)) return false;
+        if (!Objects.deepEquals(minDistance, other.minDistance)) return false;
+        if (!Objects.deepEquals(maxDistance, other.maxDistance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(sensorType);
+        result = 31 * result + Objects.hashCode(distances);
+        result = 31 * result + Objects.hashCode(increment);
+        result = 31 * result + Objects.hashCode(minDistance);
+        result = 31 * result + Objects.hashCode(maxDistance);
+        return result;
     }
 
     public static final class Builder {

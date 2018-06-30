@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 
@@ -179,6 +182,42 @@ public final class RcChannelsRaw {
     )
     public final int rssi() {
         return this.rssi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        RcChannelsRaw other = (RcChannelsRaw)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(port, other.port)) return false;
+        if (!Objects.deepEquals(chan1Raw, other.chan1Raw)) return false;
+        if (!Objects.deepEquals(chan2Raw, other.chan2Raw)) return false;
+        if (!Objects.deepEquals(chan3Raw, other.chan3Raw)) return false;
+        if (!Objects.deepEquals(chan4Raw, other.chan4Raw)) return false;
+        if (!Objects.deepEquals(chan5Raw, other.chan5Raw)) return false;
+        if (!Objects.deepEquals(chan6Raw, other.chan6Raw)) return false;
+        if (!Objects.deepEquals(chan7Raw, other.chan7Raw)) return false;
+        if (!Objects.deepEquals(chan8Raw, other.chan8Raw)) return false;
+        if (!Objects.deepEquals(rssi, other.rssi)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(port);
+        result = 31 * result + Objects.hashCode(chan1Raw);
+        result = 31 * result + Objects.hashCode(chan2Raw);
+        result = 31 * result + Objects.hashCode(chan3Raw);
+        result = 31 * result + Objects.hashCode(chan4Raw);
+        result = 31 * result + Objects.hashCode(chan5Raw);
+        result = 31 * result + Objects.hashCode(chan6Raw);
+        result = 31 * result + Objects.hashCode(chan7Raw);
+        result = 31 * result + Objects.hashCode(chan8Raw);
+        result = 31 * result + Objects.hashCode(rssi);
+        return result;
     }
 
     public static final class Builder {

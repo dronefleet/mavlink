@@ -5,7 +5,10 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Sends ESC32 telemetry data for up to 4 motors. Multiple messages may be sent in sequence when 
@@ -162,6 +165,38 @@ public final class AqEscTelemetry {
     )
     public final List<Long> data1() {
         return this.data1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AqEscTelemetry other = (AqEscTelemetry)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(seq, other.seq)) return false;
+        if (!Objects.deepEquals(numMotors, other.numMotors)) return false;
+        if (!Objects.deepEquals(numInSeq, other.numInSeq)) return false;
+        if (!Objects.deepEquals(escid, other.escid)) return false;
+        if (!Objects.deepEquals(statusAge, other.statusAge)) return false;
+        if (!Objects.deepEquals(dataVersion, other.dataVersion)) return false;
+        if (!Objects.deepEquals(data0, other.data0)) return false;
+        if (!Objects.deepEquals(data1, other.data1)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(seq);
+        result = 31 * result + Objects.hashCode(numMotors);
+        result = 31 * result + Objects.hashCode(numInSeq);
+        result = 31 * result + Objects.hashCode(escid);
+        result = 31 * result + Objects.hashCode(statusAge);
+        result = 31 * result + Objects.hashCode(dataVersion);
+        result = 31 * result + Objects.hashCode(data0);
+        result = 31 * result + Objects.hashCode(data1);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The RAW values of the servo outputs (for RC input from the remote, use the {@link io.dronefleet.mavlink.common.RcChannels RC_CHANNELS} 
@@ -287,6 +290,56 @@ public final class ServoOutputRaw {
     )
     public final int servo16Raw() {
         return this.servo16Raw;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ServoOutputRaw other = (ServoOutputRaw)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(port, other.port)) return false;
+        if (!Objects.deepEquals(servo1Raw, other.servo1Raw)) return false;
+        if (!Objects.deepEquals(servo2Raw, other.servo2Raw)) return false;
+        if (!Objects.deepEquals(servo3Raw, other.servo3Raw)) return false;
+        if (!Objects.deepEquals(servo4Raw, other.servo4Raw)) return false;
+        if (!Objects.deepEquals(servo5Raw, other.servo5Raw)) return false;
+        if (!Objects.deepEquals(servo6Raw, other.servo6Raw)) return false;
+        if (!Objects.deepEquals(servo7Raw, other.servo7Raw)) return false;
+        if (!Objects.deepEquals(servo8Raw, other.servo8Raw)) return false;
+        if (!Objects.deepEquals(servo9Raw, other.servo9Raw)) return false;
+        if (!Objects.deepEquals(servo10Raw, other.servo10Raw)) return false;
+        if (!Objects.deepEquals(servo11Raw, other.servo11Raw)) return false;
+        if (!Objects.deepEquals(servo12Raw, other.servo12Raw)) return false;
+        if (!Objects.deepEquals(servo13Raw, other.servo13Raw)) return false;
+        if (!Objects.deepEquals(servo14Raw, other.servo14Raw)) return false;
+        if (!Objects.deepEquals(servo15Raw, other.servo15Raw)) return false;
+        if (!Objects.deepEquals(servo16Raw, other.servo16Raw)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(port);
+        result = 31 * result + Objects.hashCode(servo1Raw);
+        result = 31 * result + Objects.hashCode(servo2Raw);
+        result = 31 * result + Objects.hashCode(servo3Raw);
+        result = 31 * result + Objects.hashCode(servo4Raw);
+        result = 31 * result + Objects.hashCode(servo5Raw);
+        result = 31 * result + Objects.hashCode(servo6Raw);
+        result = 31 * result + Objects.hashCode(servo7Raw);
+        result = 31 * result + Objects.hashCode(servo8Raw);
+        result = 31 * result + Objects.hashCode(servo9Raw);
+        result = 31 * result + Objects.hashCode(servo10Raw);
+        result = 31 * result + Objects.hashCode(servo11Raw);
+        result = 31 * result + Objects.hashCode(servo12Raw);
+        result = 31 * result + Objects.hashCode(servo13Raw);
+        result = 31 * result + Objects.hashCode(servo14Raw);
+        result = 31 * result + Objects.hashCode(servo15Raw);
+        result = 31 * result + Objects.hashCode(servo16Raw);
+        return result;
     }
 
     public static final class Builder {

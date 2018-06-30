@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * raw ADC output 
@@ -105,6 +108,32 @@ public final class ApAdc {
     )
     public final int adc6() {
         return this.adc6;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ApAdc other = (ApAdc)o;
+        if (!Objects.deepEquals(adc1, other.adc1)) return false;
+        if (!Objects.deepEquals(adc2, other.adc2)) return false;
+        if (!Objects.deepEquals(adc3, other.adc3)) return false;
+        if (!Objects.deepEquals(adc4, other.adc4)) return false;
+        if (!Objects.deepEquals(adc5, other.adc5)) return false;
+        if (!Objects.deepEquals(adc6, other.adc6)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(adc1);
+        result = 31 * result + Objects.hashCode(adc2);
+        result = 31 * result + Objects.hashCode(adc3);
+        result = 31 * result + Objects.hashCode(adc4);
+        result = 31 * result + Objects.hashCode(adc5);
+        result = 31 * result + Objects.hashCode(adc6);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F5: format 
@@ -78,6 +81,28 @@ public final class SerialUdbExtraF5 {
     )
     public final float sueRollkd() {
         return this.sueRollkd;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF5 other = (SerialUdbExtraF5)o;
+        if (!Objects.deepEquals(sueYawkpAileron, other.sueYawkpAileron)) return false;
+        if (!Objects.deepEquals(sueYawkdAileron, other.sueYawkdAileron)) return false;
+        if (!Objects.deepEquals(sueRollkp, other.sueRollkp)) return false;
+        if (!Objects.deepEquals(sueRollkd, other.sueRollkd)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueYawkpAileron);
+        result = 31 * result + Objects.hashCode(sueYawkdAileron);
+        result = 31 * result + Objects.hashCode(sueRollkp);
+        result = 31 * result + Objects.hashCode(sueRollkd);
+        return result;
     }
 
     public static final class Builder {

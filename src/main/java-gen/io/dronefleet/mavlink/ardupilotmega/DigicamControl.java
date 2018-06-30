@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Control on-board Camera Control System to take shots. 
@@ -165,6 +168,40 @@ public final class DigicamControl {
     )
     public final float extraValue() {
         return this.extraValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DigicamControl other = (DigicamControl)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(session, other.session)) return false;
+        if (!Objects.deepEquals(zoomPos, other.zoomPos)) return false;
+        if (!Objects.deepEquals(zoomStep, other.zoomStep)) return false;
+        if (!Objects.deepEquals(focusLock, other.focusLock)) return false;
+        if (!Objects.deepEquals(shot, other.shot)) return false;
+        if (!Objects.deepEquals(commandId, other.commandId)) return false;
+        if (!Objects.deepEquals(extraParam, other.extraParam)) return false;
+        if (!Objects.deepEquals(extraValue, other.extraValue)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(session);
+        result = 31 * result + Objects.hashCode(zoomPos);
+        result = 31 * result + Objects.hashCode(zoomStep);
+        result = 31 * result + Objects.hashCode(focusLock);
+        result = 31 * result + Objects.hashCode(shot);
+        result = 31 * result + Objects.hashCode(commandId);
+        result = 31 * result + Objects.hashCode(extraParam);
+        result = 31 * result + Objects.hashCode(extraValue);
+        return result;
     }
 
     public static final class Builder {

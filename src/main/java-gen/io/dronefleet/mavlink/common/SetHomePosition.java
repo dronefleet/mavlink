@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The position the system will return to and land on. The position is set automatically by the 
@@ -215,6 +218,44 @@ public final class SetHomePosition {
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SetHomePosition other = (SetHomePosition)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(approachX, other.approachX)) return false;
+        if (!Objects.deepEquals(approachY, other.approachY)) return false;
+        if (!Objects.deepEquals(approachZ, other.approachZ)) return false;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(approachX);
+        result = 31 * result + Objects.hashCode(approachY);
+        result = 31 * result + Objects.hashCode(approachZ);
+        result = 31 * result + Objects.hashCode(timeUsec);
+        return result;
     }
 
     public static final class Builder {

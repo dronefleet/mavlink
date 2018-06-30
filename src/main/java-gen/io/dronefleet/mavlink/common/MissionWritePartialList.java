@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * This message is sent to the MAV to write a partial list. If start index == end index, only one item 
@@ -97,6 +100,30 @@ public final class MissionWritePartialList {
     )
     public final MavMissionType missionType() {
         return this.missionType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MissionWritePartialList other = (MissionWritePartialList)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(startIndex, other.startIndex)) return false;
+        if (!Objects.deepEquals(endIndex, other.endIndex)) return false;
+        if (!Objects.deepEquals(missionType, other.missionType)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(startIndex);
+        result = 31 * result + Objects.hashCode(endIndex);
+        result = 31 * result + Objects.hashCode(missionType);
+        return result;
     }
 
     public static final class Builder {

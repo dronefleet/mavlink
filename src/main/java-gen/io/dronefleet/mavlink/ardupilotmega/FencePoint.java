@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * A fence point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
@@ -106,6 +109,32 @@ public final class FencePoint {
     )
     public final float lng() {
         return this.lng;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FencePoint other = (FencePoint)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(idx, other.idx)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lng, other.lng)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(idx);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lng);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of key hardware 
@@ -49,6 +52,24 @@ public final class Hwstatus {
     )
     public final int i2cerr() {
         return this.i2cerr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Hwstatus other = (Hwstatus)o;
+        if (!Objects.deepEquals(vcc, other.vcc)) return false;
+        if (!Objects.deepEquals(i2cerr, other.i2cerr)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(vcc);
+        result = 31 * result + Objects.hashCode(i2cerr);
+        return result;
     }
 
     public static final class Builder {

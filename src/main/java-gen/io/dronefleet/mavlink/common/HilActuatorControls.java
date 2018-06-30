@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Sent from autopilot to simulation. Hardware in the loop control outputs (replacement for 
@@ -83,6 +86,28 @@ public final class HilActuatorControls {
     )
     public final BigInteger flags() {
         return this.flags;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HilActuatorControls other = (HilActuatorControls)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(controls, other.controls)) return false;
+        if (!Objects.deepEquals(mode, other.mode)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(controls);
+        result = 31 * result + Objects.hashCode(mode);
+        result = 31 * result + Objects.hashCode(flags);
+        return result;
     }
 
     public static final class Builder {

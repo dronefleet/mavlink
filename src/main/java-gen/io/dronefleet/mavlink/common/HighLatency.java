@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message appropriate for high latency connections like Iridium 
@@ -375,6 +378,68 @@ public final class HighLatency {
     )
     public final int wpDistance() {
         return this.wpDistance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HighLatency other = (HighLatency)o;
+        if (!Objects.deepEquals(baseMode, other.baseMode)) return false;
+        if (!Objects.deepEquals(customMode, other.customMode)) return false;
+        if (!Objects.deepEquals(landedState, other.landedState)) return false;
+        if (!Objects.deepEquals(roll, other.roll)) return false;
+        if (!Objects.deepEquals(pitch, other.pitch)) return false;
+        if (!Objects.deepEquals(heading, other.heading)) return false;
+        if (!Objects.deepEquals(throttle, other.throttle)) return false;
+        if (!Objects.deepEquals(headingSp, other.headingSp)) return false;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(altitudeAmsl, other.altitudeAmsl)) return false;
+        if (!Objects.deepEquals(altitudeSp, other.altitudeSp)) return false;
+        if (!Objects.deepEquals(airspeed, other.airspeed)) return false;
+        if (!Objects.deepEquals(airspeedSp, other.airspeedSp)) return false;
+        if (!Objects.deepEquals(groundspeed, other.groundspeed)) return false;
+        if (!Objects.deepEquals(climbRate, other.climbRate)) return false;
+        if (!Objects.deepEquals(gpsNsat, other.gpsNsat)) return false;
+        if (!Objects.deepEquals(gpsFixType, other.gpsFixType)) return false;
+        if (!Objects.deepEquals(batteryRemaining, other.batteryRemaining)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(temperatureAir, other.temperatureAir)) return false;
+        if (!Objects.deepEquals(failsafe, other.failsafe)) return false;
+        if (!Objects.deepEquals(wpNum, other.wpNum)) return false;
+        if (!Objects.deepEquals(wpDistance, other.wpDistance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(baseMode);
+        result = 31 * result + Objects.hashCode(customMode);
+        result = 31 * result + Objects.hashCode(landedState);
+        result = 31 * result + Objects.hashCode(roll);
+        result = 31 * result + Objects.hashCode(pitch);
+        result = 31 * result + Objects.hashCode(heading);
+        result = 31 * result + Objects.hashCode(throttle);
+        result = 31 * result + Objects.hashCode(headingSp);
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(altitudeAmsl);
+        result = 31 * result + Objects.hashCode(altitudeSp);
+        result = 31 * result + Objects.hashCode(airspeed);
+        result = 31 * result + Objects.hashCode(airspeedSp);
+        result = 31 * result + Objects.hashCode(groundspeed);
+        result = 31 * result + Objects.hashCode(climbRate);
+        result = 31 * result + Objects.hashCode(gpsNsat);
+        result = 31 * result + Objects.hashCode(gpsFixType);
+        result = 31 * result + Objects.hashCode(batteryRemaining);
+        result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(temperatureAir);
+        result = 31 * result + Objects.hashCode(failsafe);
+        result = 31 * result + Objects.hashCode(wpNum);
+        result = 31 * result + Objects.hashCode(wpDistance);
+        return result;
     }
 
     public static final class Builder {

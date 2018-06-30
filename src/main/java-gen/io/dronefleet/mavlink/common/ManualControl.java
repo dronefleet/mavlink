@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * This message provides an API for manually controlling the vehicle using standard joystick 
@@ -121,6 +124,32 @@ public final class ManualControl {
     )
     public final int buttons() {
         return this.buttons;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ManualControl other = (ManualControl)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        if (!Objects.deepEquals(r, other.r)) return false;
+        if (!Objects.deepEquals(buttons, other.buttons)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        result = 31 * result + Objects.hashCode(r);
+        result = 31 * result + Objects.hashCode(buttons);
+        return result;
     }
 
     public static final class Builder {

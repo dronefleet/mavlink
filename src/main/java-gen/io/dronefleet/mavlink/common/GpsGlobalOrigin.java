@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Once the MAV sets a new GPS-Local correspondence, this message announces the origin (0,0,0) 
@@ -83,6 +86,28 @@ public final class GpsGlobalOrigin {
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsGlobalOrigin other = (GpsGlobalOrigin)o;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(timeUsec);
+        return result;
     }
 
     public static final class Builder {

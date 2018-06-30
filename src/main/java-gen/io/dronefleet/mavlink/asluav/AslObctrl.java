@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Off-board controls/commands for ASLUAVs 
@@ -135,6 +138,36 @@ public final class AslObctrl {
     )
     public final int obctrlStatus() {
         return this.obctrlStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AslObctrl other = (AslObctrl)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(uelev, other.uelev)) return false;
+        if (!Objects.deepEquals(uthrot, other.uthrot)) return false;
+        if (!Objects.deepEquals(uthrot2, other.uthrot2)) return false;
+        if (!Objects.deepEquals(uaill, other.uaill)) return false;
+        if (!Objects.deepEquals(uailr, other.uailr)) return false;
+        if (!Objects.deepEquals(urud, other.urud)) return false;
+        if (!Objects.deepEquals(obctrlStatus, other.obctrlStatus)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(uelev);
+        result = 31 * result + Objects.hashCode(uthrot);
+        result = 31 * result + Objects.hashCode(uthrot2);
+        result = 31 * result + Objects.hashCode(uaill);
+        result = 31 * result + Objects.hashCode(uailr);
+        result = 31 * result + Objects.hashCode(urud);
+        result = 31 * result + Objects.hashCode(obctrlStatus);
+        return result;
     }
 
     public static final class Builder {

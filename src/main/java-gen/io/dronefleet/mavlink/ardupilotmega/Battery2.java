@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Deprecated. Use {@link io.dronefleet.mavlink.common.BatteryStatus BATTERY_STATUS} instead. 2nd Battery status 
@@ -51,6 +54,24 @@ public final class Battery2 {
     )
     public final int currentBattery() {
         return this.currentBattery;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Battery2 other = (Battery2)o;
+        if (!Objects.deepEquals(voltage, other.voltage)) return false;
+        if (!Objects.deepEquals(currentBattery, other.currentBattery)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(voltage);
+        result = 31 * result + Objects.hashCode(currentBattery);
+        return result;
     }
 
     public static final class Builder {

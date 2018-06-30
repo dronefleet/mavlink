@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Wind estimation 
@@ -63,6 +66,26 @@ public final class Wind {
     )
     public final float speedZ() {
         return this.speedZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Wind other = (Wind)o;
+        if (!Objects.deepEquals(direction, other.direction)) return false;
+        if (!Objects.deepEquals(speed, other.speed)) return false;
+        if (!Objects.deepEquals(speedZ, other.speedZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(direction);
+        result = 31 * result + Objects.hashCode(speed);
+        result = 31 * result + Objects.hashCode(speedZ);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Deepstall path planning 
@@ -169,6 +172,40 @@ public final class Deepstall {
     )
     public final DeepstallStage stage() {
         return this.stage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Deepstall other = (Deepstall)o;
+        if (!Objects.deepEquals(landingLat, other.landingLat)) return false;
+        if (!Objects.deepEquals(landingLon, other.landingLon)) return false;
+        if (!Objects.deepEquals(pathLat, other.pathLat)) return false;
+        if (!Objects.deepEquals(pathLon, other.pathLon)) return false;
+        if (!Objects.deepEquals(arcEntryLat, other.arcEntryLat)) return false;
+        if (!Objects.deepEquals(arcEntryLon, other.arcEntryLon)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(expectedTravelDistance, other.expectedTravelDistance)) return false;
+        if (!Objects.deepEquals(crossTrackError, other.crossTrackError)) return false;
+        if (!Objects.deepEquals(stage, other.stage)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(landingLat);
+        result = 31 * result + Objects.hashCode(landingLon);
+        result = 31 * result + Objects.hashCode(pathLat);
+        result = 31 * result + Objects.hashCode(pathLon);
+        result = 31 * result + Objects.hashCode(arcEntryLat);
+        result = 31 * result + Objects.hashCode(arcEntryLon);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(expectedTravelDistance);
+        result = 31 * result + Objects.hashCode(crossTrackError);
+        result = 31 * result + Objects.hashCode(stage);
+        return result;
     }
 
     public static final class Builder {

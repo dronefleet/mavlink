@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Provides state for additional features 
@@ -50,6 +53,24 @@ public final class ExtendedSysState {
     )
     public final MavLandedState landedState() {
         return this.landedState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ExtendedSysState other = (ExtendedSysState)o;
+        if (!Objects.deepEquals(vtolState, other.vtolState)) return false;
+        if (!Objects.deepEquals(landedState, other.landedState)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(vtolState);
+        result = 31 * result + Objects.hashCode(landedState);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.common.TerrainCheck TERRAIN_CHECK} request 
@@ -122,6 +125,34 @@ public final class TerrainReport {
     )
     public final int loaded() {
         return this.loaded;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        TerrainReport other = (TerrainReport)o;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(spacing, other.spacing)) return false;
+        if (!Objects.deepEquals(terrainHeight, other.terrainHeight)) return false;
+        if (!Objects.deepEquals(currentHeight, other.currentHeight)) return false;
+        if (!Objects.deepEquals(pending, other.pending)) return false;
+        if (!Objects.deepEquals(loaded, other.loaded)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(spacing);
+        result = 31 * result + Objects.hashCode(terrainHeight);
+        result = 31 * result + Objects.hashCode(currentHeight);
+        result = 31 * result + Objects.hashCode(pending);
+        result = 31 * result + Objects.hashCode(loaded);
+        return result;
     }
 
     public static final class Builder {

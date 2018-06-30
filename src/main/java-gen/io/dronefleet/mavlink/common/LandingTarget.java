@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The location of a landing area captured from a downward facing camera 
@@ -231,6 +234,48 @@ public final class LandingTarget {
     )
     public final int positionValid() {
         return this.positionValid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LandingTarget other = (LandingTarget)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(targetNum, other.targetNum)) return false;
+        if (!Objects.deepEquals(frame, other.frame)) return false;
+        if (!Objects.deepEquals(angleX, other.angleX)) return false;
+        if (!Objects.deepEquals(angleY, other.angleY)) return false;
+        if (!Objects.deepEquals(distance, other.distance)) return false;
+        if (!Objects.deepEquals(sizeX, other.sizeX)) return false;
+        if (!Objects.deepEquals(sizeY, other.sizeY)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(positionValid, other.positionValid)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(targetNum);
+        result = 31 * result + Objects.hashCode(frame);
+        result = 31 * result + Objects.hashCode(angleX);
+        result = 31 * result + Objects.hashCode(angleY);
+        result = 31 * result + Objects.hashCode(distance);
+        result = 31 * result + Objects.hashCode(sizeX);
+        result = 31 * result + Objects.hashCode(sizeY);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(positionValid);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} get request 
@@ -64,6 +67,26 @@ public final class GoproGetResponse {
     )
     public final byte[] value() {
         return this.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GoproGetResponse other = (GoproGetResponse)o;
+        if (!Objects.deepEquals(cmdId, other.cmdId)) return false;
+        if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(value, other.value)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(cmdId);
+        result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(value);
+        return result;
     }
 
     public static final class Builder {

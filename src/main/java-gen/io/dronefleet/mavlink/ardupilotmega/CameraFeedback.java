@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Camera Capture Feedback 
@@ -224,6 +227,48 @@ public final class CameraFeedback {
     )
     public final int completedCaptures() {
         return this.completedCaptures;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CameraFeedback other = (CameraFeedback)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(camIdx, other.camIdx)) return false;
+        if (!Objects.deepEquals(imgIdx, other.imgIdx)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lng, other.lng)) return false;
+        if (!Objects.deepEquals(altMsl, other.altMsl)) return false;
+        if (!Objects.deepEquals(altRel, other.altRel)) return false;
+        if (!Objects.deepEquals(roll, other.roll)) return false;
+        if (!Objects.deepEquals(pitch, other.pitch)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
+        if (!Objects.deepEquals(focLen, other.focLen)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(completedCaptures, other.completedCaptures)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(camIdx);
+        result = 31 * result + Objects.hashCode(imgIdx);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lng);
+        result = 31 * result + Objects.hashCode(altMsl);
+        result = 31 * result + Objects.hashCode(altRel);
+        result = 31 * result + Objects.hashCode(roll);
+        result = 31 * result + Objects.hashCode(pitch);
+        result = 31 * result + Objects.hashCode(yaw);
+        result = 31 * result + Objects.hashCode(focLen);
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(completedCaptures);
+        return result;
     }
 
     public static final class Builder {

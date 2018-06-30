@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The smoothed, monotonic system state used to feed the control loops of the system. 
@@ -268,6 +271,54 @@ public final class ControlSystemState {
     )
     public final float yawRate() {
         return this.yawRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ControlSystemState other = (ControlSystemState)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(xAcc, other.xAcc)) return false;
+        if (!Objects.deepEquals(yAcc, other.yAcc)) return false;
+        if (!Objects.deepEquals(zAcc, other.zAcc)) return false;
+        if (!Objects.deepEquals(xVel, other.xVel)) return false;
+        if (!Objects.deepEquals(yVel, other.yVel)) return false;
+        if (!Objects.deepEquals(zVel, other.zVel)) return false;
+        if (!Objects.deepEquals(xPos, other.xPos)) return false;
+        if (!Objects.deepEquals(yPos, other.yPos)) return false;
+        if (!Objects.deepEquals(zPos, other.zPos)) return false;
+        if (!Objects.deepEquals(airspeed, other.airspeed)) return false;
+        if (!Objects.deepEquals(velVariance, other.velVariance)) return false;
+        if (!Objects.deepEquals(posVariance, other.posVariance)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(rollRate, other.rollRate)) return false;
+        if (!Objects.deepEquals(pitchRate, other.pitchRate)) return false;
+        if (!Objects.deepEquals(yawRate, other.yawRate)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(xAcc);
+        result = 31 * result + Objects.hashCode(yAcc);
+        result = 31 * result + Objects.hashCode(zAcc);
+        result = 31 * result + Objects.hashCode(xVel);
+        result = 31 * result + Objects.hashCode(yVel);
+        result = 31 * result + Objects.hashCode(zVel);
+        result = 31 * result + Objects.hashCode(xPos);
+        result = 31 * result + Objects.hashCode(yPos);
+        result = 31 * result + Objects.hashCode(zPos);
+        result = 31 * result + Objects.hashCode(airspeed);
+        result = 31 * result + Objects.hashCode(velVariance);
+        result = 31 * result + Objects.hashCode(posVariance);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(rollRate);
+        result = 31 * result + Objects.hashCode(pitchRate);
+        result = 31 * result + Objects.hashCode(yawRate);
+        return result;
     }
 
     public static final class Builder {

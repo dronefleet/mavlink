@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Sent from autopilot to simulation. Hardware in the loop control outputs 
@@ -178,6 +181,42 @@ public final class HilControls {
     )
     public final int navMode() {
         return this.navMode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HilControls other = (HilControls)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(rollAilerons, other.rollAilerons)) return false;
+        if (!Objects.deepEquals(pitchElevator, other.pitchElevator)) return false;
+        if (!Objects.deepEquals(yawRudder, other.yawRudder)) return false;
+        if (!Objects.deepEquals(throttle, other.throttle)) return false;
+        if (!Objects.deepEquals(aux1, other.aux1)) return false;
+        if (!Objects.deepEquals(aux2, other.aux2)) return false;
+        if (!Objects.deepEquals(aux3, other.aux3)) return false;
+        if (!Objects.deepEquals(aux4, other.aux4)) return false;
+        if (!Objects.deepEquals(mode, other.mode)) return false;
+        if (!Objects.deepEquals(navMode, other.navMode)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(rollAilerons);
+        result = 31 * result + Objects.hashCode(pitchElevator);
+        result = 31 * result + Objects.hashCode(yawRudder);
+        result = 31 * result + Objects.hashCode(throttle);
+        result = 31 * result + Objects.hashCode(aux1);
+        result = 31 * result + Objects.hashCode(aux2);
+        result = 31 * result + Objects.hashCode(aux3);
+        result = 31 * result + Objects.hashCode(aux4);
+        result = 31 * result + Objects.hashCode(mode);
+        result = 31 * result + Objects.hashCode(navMode);
+        return result;
     }
 
     public static final class Builder {

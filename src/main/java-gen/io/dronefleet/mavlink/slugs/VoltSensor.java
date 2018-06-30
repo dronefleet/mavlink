@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Transmits the readings from the voltage and current sensors 
@@ -64,6 +67,26 @@ public final class VoltSensor {
     )
     public final int reading2() {
         return this.reading2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        VoltSensor other = (VoltSensor)o;
+        if (!Objects.deepEquals(r2type, other.r2type)) return false;
+        if (!Objects.deepEquals(voltage, other.voltage)) return false;
+        if (!Objects.deepEquals(reading2, other.reading2)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(r2type);
+        result = 31 * result + Objects.hashCode(voltage);
+        result = 31 * result + Objects.hashCode(reading2);
+        return result;
     }
 
     public static final class Builder {

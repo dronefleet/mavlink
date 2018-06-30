@@ -3,8 +3,11 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  *  
@@ -94,6 +97,30 @@ public final class DebugVect {
     )
     public final float z() {
         return this.z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DebugVect other = (DebugVect)o;
+        if (!Objects.deepEquals(name, other.name)) return false;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        return result;
     }
 
     public static final class Builder {

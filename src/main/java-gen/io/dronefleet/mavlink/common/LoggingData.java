@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * A message containing logged data (see also MAV_CMD_LOGGING_START) 
@@ -108,6 +111,32 @@ public final class LoggingData {
     )
     public final byte[] data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LoggingData other = (LoggingData)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(sequence, other.sequence)) return false;
+        if (!Objects.deepEquals(length, other.length)) return false;
+        if (!Objects.deepEquals(firstMessageOffset, other.firstMessageOffset)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(sequence);
+        result = 31 * result + Objects.hashCode(length);
+        result = 31 * result + Objects.hashCode(firstMessageOffset);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

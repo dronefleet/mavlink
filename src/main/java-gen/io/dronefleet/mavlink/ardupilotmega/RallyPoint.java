@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * A rally point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
@@ -167,6 +170,40 @@ public final class RallyPoint {
     )
     public final EnumFlagSet<RallyFlags> flags() {
         return this.flags;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        RallyPoint other = (RallyPoint)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(idx, other.idx)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lng, other.lng)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(breakAlt, other.breakAlt)) return false;
+        if (!Objects.deepEquals(landDir, other.landDir)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(idx);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lng);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(breakAlt);
+        result = 31 * result + Objects.hashCode(landDir);
+        result = 31 * result + Objects.hashCode(flags);
+        return result;
     }
 
     public static final class Builder {

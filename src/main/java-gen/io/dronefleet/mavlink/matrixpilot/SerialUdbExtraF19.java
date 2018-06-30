@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F19 format 
@@ -135,6 +138,36 @@ public final class SerialUdbExtraF19 {
     )
     public final int sueRudderReversed() {
         return this.sueRudderReversed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF19 other = (SerialUdbExtraF19)o;
+        if (!Objects.deepEquals(sueAileronOutputChannel, other.sueAileronOutputChannel)) return false;
+        if (!Objects.deepEquals(sueAileronReversed, other.sueAileronReversed)) return false;
+        if (!Objects.deepEquals(sueElevatorOutputChannel, other.sueElevatorOutputChannel)) return false;
+        if (!Objects.deepEquals(sueElevatorReversed, other.sueElevatorReversed)) return false;
+        if (!Objects.deepEquals(sueThrottleOutputChannel, other.sueThrottleOutputChannel)) return false;
+        if (!Objects.deepEquals(sueThrottleReversed, other.sueThrottleReversed)) return false;
+        if (!Objects.deepEquals(sueRudderOutputChannel, other.sueRudderOutputChannel)) return false;
+        if (!Objects.deepEquals(sueRudderReversed, other.sueRudderReversed)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueAileronOutputChannel);
+        result = 31 * result + Objects.hashCode(sueAileronReversed);
+        result = 31 * result + Objects.hashCode(sueElevatorOutputChannel);
+        result = 31 * result + Objects.hashCode(sueElevatorReversed);
+        result = 31 * result + Objects.hashCode(sueThrottleOutputChannel);
+        result = 31 * result + Objects.hashCode(sueThrottleReversed);
+        result = 31 * result + Objects.hashCode(sueRudderOutputChannel);
+        result = 31 * result + Objects.hashCode(sueRudderReversed);
+        return result;
     }
 
     public static final class Builder {

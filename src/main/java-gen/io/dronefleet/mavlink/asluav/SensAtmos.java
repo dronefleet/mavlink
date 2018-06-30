@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Atmospheric sensors (temperature, humidity, ...) 
@@ -49,6 +52,24 @@ public final class SensAtmos {
     )
     public final float humidity() {
         return this.humidity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensAtmos other = (SensAtmos)o;
+        if (!Objects.deepEquals(tempambient, other.tempambient)) return false;
+        if (!Objects.deepEquals(humidity, other.humidity)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(tempambient);
+        result = 31 * result + Objects.hashCode(humidity);
+        return result;
     }
 
     public static final class Builder {

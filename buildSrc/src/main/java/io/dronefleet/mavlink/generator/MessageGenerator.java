@@ -103,6 +103,35 @@ public class MessageGenerator {
 
     }
 
+    public MethodSpec generateEquals() {
+        CodeBlock.Builder equalsCode = CodeBlock.builder()
+                .addStatement("if (this == o) return true")
+                .addStatement("if (o == null || !getClass().equals(o.getClass())) return false")
+                .addStatement("$1T other = ($1T)o", className);
+        fields.forEach(f -> f.addEqualsStatement(equalsCode, "other"));
+        equalsCode.addStatement("return true");
+        return MethodSpec.methodBuilder("equals")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override.class)
+                .addParameter(Object.class, "o")
+                .addCode(equalsCode.build())
+                .returns(boolean.class)
+                .build();
+    }
+
+    public MethodSpec generateHashCode() {
+        CodeBlock.Builder equalsCode = CodeBlock.builder()
+                .addStatement("int result = 0");
+        fields.forEach(f -> f.addHashCodeStatement(equalsCode, "result"));
+        equalsCode.addStatement("return result");
+        return MethodSpec.methodBuilder("hashCode")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override.class)
+                .addCode(equalsCode.build())
+                .returns(int.class)
+                .build();
+    }
+
     public TypeSpec generate() {
         return TypeSpec.classBuilder(className)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -133,6 +162,8 @@ public class MessageGenerator {
                                         .build())
                                 .collect(CodeBlock.joining("")))
                         .build())
+                .addMethod(generateEquals())
+                .addMethod(generateHashCode())
                 .build();
     }
 }

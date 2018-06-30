@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * DEPRECATED PACKET! Suffers from missing airspeed fields and singularities due to Euler 
@@ -259,6 +262,52 @@ public final class HilState {
     )
     public final int zacc() {
         return this.zacc;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HilState other = (HilState)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(roll, other.roll)) return false;
+        if (!Objects.deepEquals(pitch, other.pitch)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
+        if (!Objects.deepEquals(rollspeed, other.rollspeed)) return false;
+        if (!Objects.deepEquals(pitchspeed, other.pitchspeed)) return false;
+        if (!Objects.deepEquals(yawspeed, other.yawspeed)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(xacc, other.xacc)) return false;
+        if (!Objects.deepEquals(yacc, other.yacc)) return false;
+        if (!Objects.deepEquals(zacc, other.zacc)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(roll);
+        result = 31 * result + Objects.hashCode(pitch);
+        result = 31 * result + Objects.hashCode(yaw);
+        result = 31 * result + Objects.hashCode(rollspeed);
+        result = 31 * result + Objects.hashCode(pitchspeed);
+        result = 31 * result + Objects.hashCode(yawspeed);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(xacc);
+        result = 31 * result + Objects.hashCode(yacc);
+        result = 31 * result + Objects.hashCode(zacc);
+        return result;
     }
 
     public static final class Builder {

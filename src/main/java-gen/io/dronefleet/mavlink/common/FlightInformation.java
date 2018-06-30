@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * WIP: Information about flight since last arming 
@@ -79,6 +82,28 @@ public final class FlightInformation {
     )
     public final BigInteger flightUuid() {
         return this.flightUuid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FlightInformation other = (FlightInformation)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(armingTimeUtc, other.armingTimeUtc)) return false;
+        if (!Objects.deepEquals(takeoffTimeUtc, other.takeoffTimeUtc)) return false;
+        if (!Objects.deepEquals(flightUuid, other.flightUuid)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(armingTimeUtc);
+        result = 31 * result + Objects.hashCode(takeoffTimeUtc);
+        result = 31 * result + Objects.hashCode(flightUuid);
+        return result;
     }
 
     public static final class Builder {

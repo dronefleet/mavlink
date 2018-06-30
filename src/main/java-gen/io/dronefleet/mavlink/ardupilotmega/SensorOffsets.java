@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Offsets and calibrations values for hardware sensors. This makes it easier to debug the 
@@ -197,6 +200,44 @@ public final class SensorOffsets {
     )
     public final float accelCalZ() {
         return this.accelCalZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensorOffsets other = (SensorOffsets)o;
+        if (!Objects.deepEquals(magOfsX, other.magOfsX)) return false;
+        if (!Objects.deepEquals(magOfsY, other.magOfsY)) return false;
+        if (!Objects.deepEquals(magOfsZ, other.magOfsZ)) return false;
+        if (!Objects.deepEquals(magDeclination, other.magDeclination)) return false;
+        if (!Objects.deepEquals(rawPress, other.rawPress)) return false;
+        if (!Objects.deepEquals(rawTemp, other.rawTemp)) return false;
+        if (!Objects.deepEquals(gyroCalX, other.gyroCalX)) return false;
+        if (!Objects.deepEquals(gyroCalY, other.gyroCalY)) return false;
+        if (!Objects.deepEquals(gyroCalZ, other.gyroCalZ)) return false;
+        if (!Objects.deepEquals(accelCalX, other.accelCalX)) return false;
+        if (!Objects.deepEquals(accelCalY, other.accelCalY)) return false;
+        if (!Objects.deepEquals(accelCalZ, other.accelCalZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(magOfsX);
+        result = 31 * result + Objects.hashCode(magOfsY);
+        result = 31 * result + Objects.hashCode(magOfsZ);
+        result = 31 * result + Objects.hashCode(magDeclination);
+        result = 31 * result + Objects.hashCode(rawPress);
+        result = 31 * result + Objects.hashCode(rawTemp);
+        result = 31 * result + Objects.hashCode(gyroCalX);
+        result = 31 * result + Objects.hashCode(gyroCalY);
+        result = 31 * result + Objects.hashCode(gyroCalZ);
+        result = 31 * result + Objects.hashCode(accelCalX);
+        result = 31 * result + Objects.hashCode(accelCalY);
+        result = 31 * result + Objects.hashCode(accelCalZ);
+        return result;
     }
 
     public static final class Builder {

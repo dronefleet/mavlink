@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Time synchronization message. 
@@ -51,6 +54,24 @@ public final class Timesync {
     )
     public final long ts1() {
         return this.ts1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Timesync other = (Timesync)o;
+        if (!Objects.deepEquals(tc1, other.tc1)) return false;
+        if (!Objects.deepEquals(ts1, other.ts1)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(tc1);
+        result = 31 * result + Objects.hashCode(ts1);
+        return result;
     }
 
     public static final class Builder {

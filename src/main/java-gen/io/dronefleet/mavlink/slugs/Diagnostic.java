@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Configurable diagnostic messages. 
@@ -109,6 +112,32 @@ public final class Diagnostic {
     )
     public final int diagsh3() {
         return this.diagsh3;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Diagnostic other = (Diagnostic)o;
+        if (!Objects.deepEquals(diagfl1, other.diagfl1)) return false;
+        if (!Objects.deepEquals(diagfl2, other.diagfl2)) return false;
+        if (!Objects.deepEquals(diagfl3, other.diagfl3)) return false;
+        if (!Objects.deepEquals(diagsh1, other.diagsh1)) return false;
+        if (!Objects.deepEquals(diagsh2, other.diagsh2)) return false;
+        if (!Objects.deepEquals(diagsh3, other.diagsh3)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(diagfl1);
+        result = 31 * result + Objects.hashCode(diagfl2);
+        result = 31 * result + Objects.hashCode(diagfl3);
+        result = 31 * result + Objects.hashCode(diagsh1);
+        result = 31 * result + Objects.hashCode(diagsh2);
+        result = 31 * result + Objects.hashCode(diagsh3);
+        return result;
     }
 
     public static final class Builder {

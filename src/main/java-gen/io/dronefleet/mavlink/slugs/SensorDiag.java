@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Diagnostic data Sensor MCU 
@@ -79,6 +82,28 @@ public final class SensorDiag {
     )
     public final int char1() {
         return this.char1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensorDiag other = (SensorDiag)o;
+        if (!Objects.deepEquals(float1, other.float1)) return false;
+        if (!Objects.deepEquals(float2, other.float2)) return false;
+        if (!Objects.deepEquals(int1, other.int1)) return false;
+        if (!Objects.deepEquals(char1, other.char1)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(float1);
+        result = 31 * result + Objects.hashCode(float2);
+        result = 31 * result + Objects.hashCode(int1);
+        result = 31 * result + Objects.hashCode(char1);
+        return result;
     }
 
     public static final class Builder {

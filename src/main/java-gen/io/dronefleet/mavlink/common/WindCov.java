@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  *  
@@ -149,6 +152,38 @@ public final class WindCov {
     )
     public final float vertAccuracy() {
         return this.vertAccuracy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        WindCov other = (WindCov)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(windX, other.windX)) return false;
+        if (!Objects.deepEquals(windY, other.windY)) return false;
+        if (!Objects.deepEquals(windZ, other.windZ)) return false;
+        if (!Objects.deepEquals(varHoriz, other.varHoriz)) return false;
+        if (!Objects.deepEquals(varVert, other.varVert)) return false;
+        if (!Objects.deepEquals(windAlt, other.windAlt)) return false;
+        if (!Objects.deepEquals(horizAccuracy, other.horizAccuracy)) return false;
+        if (!Objects.deepEquals(vertAccuracy, other.vertAccuracy)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(windX);
+        result = 31 * result + Objects.hashCode(windY);
+        result = 31 * result + Objects.hashCode(windZ);
+        result = 31 * result + Objects.hashCode(varHoriz);
+        result = 31 * result + Objects.hashCode(varVert);
+        result = 31 * result + Objects.hashCode(windAlt);
+        result = 31 * result + Objects.hashCode(horizAccuracy);
+        result = 31 * result + Objects.hashCode(vertAccuracy);
+        return result;
     }
 
     public static final class Builder {

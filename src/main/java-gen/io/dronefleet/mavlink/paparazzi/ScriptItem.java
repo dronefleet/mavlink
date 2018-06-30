@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.paparazzi;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Message encoding a mission script item. This message is emitted upon a request for the next 
@@ -80,6 +83,28 @@ public final class ScriptItem {
     )
     public final String name() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ScriptItem other = (ScriptItem)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(seq, other.seq)) return false;
+        if (!Objects.deepEquals(name, other.name)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(seq);
+        result = 31 * result + Objects.hashCode(name);
+        return result;
     }
 
     public static final class Builder {

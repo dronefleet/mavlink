@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * WIP: Information about video stream 
@@ -136,6 +139,36 @@ public final class VideoStreamInformation {
     )
     public final String uri() {
         return this.uri;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        VideoStreamInformation other = (VideoStreamInformation)o;
+        if (!Objects.deepEquals(cameraId, other.cameraId)) return false;
+        if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(framerate, other.framerate)) return false;
+        if (!Objects.deepEquals(resolutionH, other.resolutionH)) return false;
+        if (!Objects.deepEquals(resolutionV, other.resolutionV)) return false;
+        if (!Objects.deepEquals(bitrate, other.bitrate)) return false;
+        if (!Objects.deepEquals(rotation, other.rotation)) return false;
+        if (!Objects.deepEquals(uri, other.uri)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(cameraId);
+        result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(framerate);
+        result = 31 * result + Objects.hashCode(resolutionH);
+        result = 31 * result + Objects.hashCode(resolutionV);
+        result = 31 * result + Objects.hashCode(bitrate);
+        result = 31 * result + Objects.hashCode(rotation);
+        result = 31 * result + Objects.hashCode(uri);
+        return result;
     }
 
     public static final class Builder {

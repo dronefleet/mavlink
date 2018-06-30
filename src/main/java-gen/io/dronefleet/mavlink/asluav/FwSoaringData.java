@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Fixed-wing soaring (i.e. thermal seeking) data 
@@ -377,6 +380,70 @@ public final class FwSoaringData {
     )
     public final int valid() {
         return this.valid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FwSoaringData other = (FwSoaringData)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(timestampmodechanged, other.timestampmodechanged)) return false;
+        if (!Objects.deepEquals(xw, other.xw)) return false;
+        if (!Objects.deepEquals(xr, other.xr)) return false;
+        if (!Objects.deepEquals(xlat, other.xlat)) return false;
+        if (!Objects.deepEquals(xlon, other.xlon)) return false;
+        if (!Objects.deepEquals(varw, other.varw)) return false;
+        if (!Objects.deepEquals(varr, other.varr)) return false;
+        if (!Objects.deepEquals(varlat, other.varlat)) return false;
+        if (!Objects.deepEquals(varlon, other.varlon)) return false;
+        if (!Objects.deepEquals(loiterradius, other.loiterradius)) return false;
+        if (!Objects.deepEquals(loiterdirection, other.loiterdirection)) return false;
+        if (!Objects.deepEquals(disttosoarpoint, other.disttosoarpoint)) return false;
+        if (!Objects.deepEquals(vsinkexp, other.vsinkexp)) return false;
+        if (!Objects.deepEquals(z1Localupdraftspeed, other.z1Localupdraftspeed)) return false;
+        if (!Objects.deepEquals(z2Deltaroll, other.z2Deltaroll)) return false;
+        if (!Objects.deepEquals(z1Exp, other.z1Exp)) return false;
+        if (!Objects.deepEquals(z2Exp, other.z2Exp)) return false;
+        if (!Objects.deepEquals(thermalgsnorth, other.thermalgsnorth)) return false;
+        if (!Objects.deepEquals(thermalgseast, other.thermalgseast)) return false;
+        if (!Objects.deepEquals(tseDot, other.tseDot)) return false;
+        if (!Objects.deepEquals(debugvar1, other.debugvar1)) return false;
+        if (!Objects.deepEquals(debugvar2, other.debugvar2)) return false;
+        if (!Objects.deepEquals(controlmode, other.controlmode)) return false;
+        if (!Objects.deepEquals(valid, other.valid)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(timestampmodechanged);
+        result = 31 * result + Objects.hashCode(xw);
+        result = 31 * result + Objects.hashCode(xr);
+        result = 31 * result + Objects.hashCode(xlat);
+        result = 31 * result + Objects.hashCode(xlon);
+        result = 31 * result + Objects.hashCode(varw);
+        result = 31 * result + Objects.hashCode(varr);
+        result = 31 * result + Objects.hashCode(varlat);
+        result = 31 * result + Objects.hashCode(varlon);
+        result = 31 * result + Objects.hashCode(loiterradius);
+        result = 31 * result + Objects.hashCode(loiterdirection);
+        result = 31 * result + Objects.hashCode(disttosoarpoint);
+        result = 31 * result + Objects.hashCode(vsinkexp);
+        result = 31 * result + Objects.hashCode(z1Localupdraftspeed);
+        result = 31 * result + Objects.hashCode(z2Deltaroll);
+        result = 31 * result + Objects.hashCode(z1Exp);
+        result = 31 * result + Objects.hashCode(z2Exp);
+        result = 31 * result + Objects.hashCode(thermalgsnorth);
+        result = 31 * result + Objects.hashCode(thermalgseast);
+        result = 31 * result + Objects.hashCode(tseDot);
+        result = 31 * result + Objects.hashCode(debugvar1);
+        result = 31 * result + Objects.hashCode(debugvar2);
+        result = 31 * result + Objects.hashCode(controlmode);
+        result = 31 * result + Objects.hashCode(valid);
+        return result;
     }
 
     public static final class Builder {

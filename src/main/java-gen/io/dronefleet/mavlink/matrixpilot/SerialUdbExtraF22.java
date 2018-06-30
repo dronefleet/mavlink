@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F22 format 
@@ -113,6 +116,32 @@ public final class SerialUdbExtraF22 {
     )
     public final int sueGyroZAtCalibration() {
         return this.sueGyroZAtCalibration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF22 other = (SerialUdbExtraF22)o;
+        if (!Objects.deepEquals(sueAccelXAtCalibration, other.sueAccelXAtCalibration)) return false;
+        if (!Objects.deepEquals(sueAccelYAtCalibration, other.sueAccelYAtCalibration)) return false;
+        if (!Objects.deepEquals(sueAccelZAtCalibration, other.sueAccelZAtCalibration)) return false;
+        if (!Objects.deepEquals(sueGyroXAtCalibration, other.sueGyroXAtCalibration)) return false;
+        if (!Objects.deepEquals(sueGyroYAtCalibration, other.sueGyroYAtCalibration)) return false;
+        if (!Objects.deepEquals(sueGyroZAtCalibration, other.sueGyroZAtCalibration)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueAccelXAtCalibration);
+        result = 31 * result + Objects.hashCode(sueAccelYAtCalibration);
+        result = 31 * result + Objects.hashCode(sueAccelZAtCalibration);
+        result = 31 * result + Objects.hashCode(sueGyroXAtCalibration);
+        result = 31 * result + Objects.hashCode(sueGyroYAtCalibration);
+        result = 31 * result + Objects.hashCode(sueGyroZAtCalibration);
+        return result;
     }
 
     public static final class Builder {

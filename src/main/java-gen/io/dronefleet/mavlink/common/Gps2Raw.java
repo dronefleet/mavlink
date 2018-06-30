@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Second GPS data. 
@@ -195,6 +198,44 @@ public final class Gps2Raw {
     )
     public final long dgpsAge() {
         return this.dgpsAge;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Gps2Raw other = (Gps2Raw)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(fixType, other.fixType)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(eph, other.eph)) return false;
+        if (!Objects.deepEquals(epv, other.epv)) return false;
+        if (!Objects.deepEquals(vel, other.vel)) return false;
+        if (!Objects.deepEquals(cog, other.cog)) return false;
+        if (!Objects.deepEquals(satellitesVisible, other.satellitesVisible)) return false;
+        if (!Objects.deepEquals(dgpsNumch, other.dgpsNumch)) return false;
+        if (!Objects.deepEquals(dgpsAge, other.dgpsAge)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(fixType);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(eph);
+        result = 31 * result + Objects.hashCode(epv);
+        result = 31 * result + Objects.hashCode(vel);
+        result = 31 * result + Objects.hashCode(cog);
+        result = 31 * result + Objects.hashCode(satellitesVisible);
+        result = 31 * result + Objects.hashCode(dgpsNumch);
+        result = 31 * result + Objects.hashCode(dgpsAge);
+        return result;
     }
 
     public static final class Builder {

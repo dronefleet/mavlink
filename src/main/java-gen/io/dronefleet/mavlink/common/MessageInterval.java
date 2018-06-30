@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The interval between messages for a particular MAVLink message ID. This interface replaces 
@@ -52,6 +55,24 @@ public final class MessageInterval {
     )
     public final int intervalUs() {
         return this.intervalUs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MessageInterval other = (MessageInterval)o;
+        if (!Objects.deepEquals(messageId, other.messageId)) return false;
+        if (!Objects.deepEquals(intervalUs, other.intervalUs)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(messageId);
+        result = 31 * result + Objects.hashCode(intervalUs);
+        return result;
     }
 
     public static final class Builder {

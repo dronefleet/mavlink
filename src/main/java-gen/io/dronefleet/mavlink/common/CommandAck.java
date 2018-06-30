@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Report status of a command. Includes feedback whether the command was executed. 
@@ -114,6 +117,32 @@ public final class CommandAck {
     )
     public final int targetComponent() {
         return this.targetComponent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CommandAck other = (CommandAck)o;
+        if (!Objects.deepEquals(command, other.command)) return false;
+        if (!Objects.deepEquals(result, other.result)) return false;
+        if (!Objects.deepEquals(progress, other.progress)) return false;
+        if (!Objects.deepEquals(resultParam2, other.resultParam2)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(command);
+        result = 31 * result + Objects.hashCode(result);
+        result = 31 * result + Objects.hashCode(progress);
+        result = 31 * result + Objects.hashCode(resultParam2);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        return result;
     }
 
     public static final class Builder {

@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Reports the current commanded attitude of the vehicle as specified by the autopilot. This 
@@ -126,6 +129,34 @@ public final class AttitudeTarget {
     )
     public final float thrust() {
         return this.thrust;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AttitudeTarget other = (AttitudeTarget)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(typeMask, other.typeMask)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(bodyRollRate, other.bodyRollRate)) return false;
+        if (!Objects.deepEquals(bodyPitchRate, other.bodyPitchRate)) return false;
+        if (!Objects.deepEquals(bodyYawRate, other.bodyYawRate)) return false;
+        if (!Objects.deepEquals(thrust, other.thrust)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(typeMask);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(bodyRollRate);
+        result = 31 * result + Objects.hashCode(bodyPitchRate);
+        result = 31 * result + Objects.hashCode(bodyYawRate);
+        result = 31 * result + Objects.hashCode(thrust);
+        return result;
     }
 
     public static final class Builder {

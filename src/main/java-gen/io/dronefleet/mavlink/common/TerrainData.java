@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a 
@@ -98,6 +101,30 @@ public final class TerrainData {
     )
     public final List<Integer> data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        TerrainData other = (TerrainData)o;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(gridSpacing, other.gridSpacing)) return false;
+        if (!Objects.deepEquals(gridbit, other.gridbit)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(gridSpacing);
+        result = 31 * result + Objects.hashCode(gridbit);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

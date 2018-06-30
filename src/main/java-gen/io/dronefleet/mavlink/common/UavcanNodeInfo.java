@@ -3,8 +3,11 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * General information describing a particular UAVCAN node. Please refer to the definition of 
@@ -160,6 +163,38 @@ public final class UavcanNodeInfo {
     )
     public final long swVcsCommit() {
         return this.swVcsCommit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        UavcanNodeInfo other = (UavcanNodeInfo)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(uptimeSec, other.uptimeSec)) return false;
+        if (!Objects.deepEquals(name, other.name)) return false;
+        if (!Objects.deepEquals(hwVersionMajor, other.hwVersionMajor)) return false;
+        if (!Objects.deepEquals(hwVersionMinor, other.hwVersionMinor)) return false;
+        if (!Objects.deepEquals(hwUniqueId, other.hwUniqueId)) return false;
+        if (!Objects.deepEquals(swVersionMajor, other.swVersionMajor)) return false;
+        if (!Objects.deepEquals(swVersionMinor, other.swVersionMinor)) return false;
+        if (!Objects.deepEquals(swVcsCommit, other.swVcsCommit)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(uptimeSec);
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(hwVersionMajor);
+        result = 31 * result + Objects.hashCode(hwVersionMinor);
+        result = 31 * result + Objects.hashCode(hwUniqueId);
+        result = 31 * result + Objects.hashCode(swVersionMajor);
+        result = 31 * result + Objects.hashCode(swVersionMinor);
+        result = 31 * result + Objects.hashCode(swVcsCommit);
+        return result;
     }
 
     public static final class Builder {

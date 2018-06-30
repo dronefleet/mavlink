@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * WIP: Version and capability of protocol version. This message is the response to 
@@ -98,6 +101,30 @@ public final class ProtocolVersion {
     )
     public final byte[] libraryVersionHash() {
         return this.libraryVersionHash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ProtocolVersion other = (ProtocolVersion)o;
+        if (!Objects.deepEquals(version, other.version)) return false;
+        if (!Objects.deepEquals(minVersion, other.minVersion)) return false;
+        if (!Objects.deepEquals(maxVersion, other.maxVersion)) return false;
+        if (!Objects.deepEquals(specVersionHash, other.specVersionHash)) return false;
+        if (!Objects.deepEquals(libraryVersionHash, other.libraryVersionHash)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(version);
+        result = 31 * result + Objects.hashCode(minVersion);
+        result = 31 * result + Objects.hashCode(maxVersion);
+        result = 31 * result + Objects.hashCode(specVersionHash);
+        result = 31 * result + Objects.hashCode(libraryVersionHash);
+        return result;
     }
 
     public static final class Builder {

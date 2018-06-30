@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * state of APM memory 
@@ -64,6 +67,26 @@ public final class Meminfo {
     )
     public final long freemem32() {
         return this.freemem32;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Meminfo other = (Meminfo)o;
+        if (!Objects.deepEquals(brkval, other.brkval)) return false;
+        if (!Objects.deepEquals(freemem, other.freemem)) return false;
+        if (!Objects.deepEquals(freemem32, other.freemem32)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(brkval);
+        result = 31 * result + Objects.hashCode(freemem);
+        result = 31 * result + Objects.hashCode(freemem32);
+        return result;
     }
 
     public static final class Builder {

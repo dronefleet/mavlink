@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The altitude measured by sensors and IMU 
@@ -126,6 +129,34 @@ public final class Altitudes {
     )
     public final int altExtra() {
         return this.altExtra;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Altitudes other = (Altitudes)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(altGps, other.altGps)) return false;
+        if (!Objects.deepEquals(altImu, other.altImu)) return false;
+        if (!Objects.deepEquals(altBarometric, other.altBarometric)) return false;
+        if (!Objects.deepEquals(altOpticalFlow, other.altOpticalFlow)) return false;
+        if (!Objects.deepEquals(altRangeFinder, other.altRangeFinder)) return false;
+        if (!Objects.deepEquals(altExtra, other.altExtra)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(altGps);
+        result = 31 * result + Objects.hashCode(altImu);
+        result = 31 * result + Objects.hashCode(altBarometric);
+        result = 31 * result + Objects.hashCode(altOpticalFlow);
+        result = 31 * result + Objects.hashCode(altRangeFinder);
+        result = 31 * result + Objects.hashCode(altExtra);
+        return result;
     }
 
     public static final class Builder {

@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Optical flow from a flow sensor (e.g. optical mouse sensor) 
@@ -167,6 +170,40 @@ public final class OpticalFlow {
     )
     public final float flowRateY() {
         return this.flowRateY;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        OpticalFlow other = (OpticalFlow)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(sensorId, other.sensorId)) return false;
+        if (!Objects.deepEquals(flowX, other.flowX)) return false;
+        if (!Objects.deepEquals(flowY, other.flowY)) return false;
+        if (!Objects.deepEquals(flowCompMX, other.flowCompMX)) return false;
+        if (!Objects.deepEquals(flowCompMY, other.flowCompMY)) return false;
+        if (!Objects.deepEquals(quality, other.quality)) return false;
+        if (!Objects.deepEquals(groundDistance, other.groundDistance)) return false;
+        if (!Objects.deepEquals(flowRateX, other.flowRateX)) return false;
+        if (!Objects.deepEquals(flowRateY, other.flowRateY)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(sensorId);
+        result = 31 * result + Objects.hashCode(flowX);
+        result = 31 * result + Objects.hashCode(flowY);
+        result = 31 * result + Objects.hashCode(flowCompMX);
+        result = 31 * result + Objects.hashCode(flowCompMY);
+        result = 31 * result + Objects.hashCode(quality);
+        result = 31 * result + Objects.hashCode(groundDistance);
+        result = 31 * result + Objects.hashCode(flowRateX);
+        result = 31 * result + Objects.hashCode(flowRateY);
+        return result;
     }
 
     public static final class Builder {

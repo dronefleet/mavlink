@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Camera Event 
@@ -149,6 +152,38 @@ public final class CameraStatus {
     )
     public final float p4() {
         return this.p4;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CameraStatus other = (CameraStatus)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(camIdx, other.camIdx)) return false;
+        if (!Objects.deepEquals(imgIdx, other.imgIdx)) return false;
+        if (!Objects.deepEquals(eventId, other.eventId)) return false;
+        if (!Objects.deepEquals(p1, other.p1)) return false;
+        if (!Objects.deepEquals(p2, other.p2)) return false;
+        if (!Objects.deepEquals(p3, other.p3)) return false;
+        if (!Objects.deepEquals(p4, other.p4)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(camIdx);
+        result = 31 * result + Objects.hashCode(imgIdx);
+        result = 31 * result + Objects.hashCode(eventId);
+        result = 31 * result + Objects.hashCode(p1);
+        result = 31 * result + Objects.hashCode(p2);
+        result = 31 * result + Objects.hashCode(p3);
+        result = 31 * result + Objects.hashCode(p4);
+        return result;
     }
 
     public static final class Builder {

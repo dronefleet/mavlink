@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * WORK IN PROGRESS! DO NOT DEPLOY! Message to describe a trajectory in the local frame. Supported 
@@ -145,6 +148,36 @@ public final class Trajectory {
     )
     public final byte[] pointValid() {
         return this.pointValid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Trajectory other = (Trajectory)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(point1, other.point1)) return false;
+        if (!Objects.deepEquals(point2, other.point2)) return false;
+        if (!Objects.deepEquals(point3, other.point3)) return false;
+        if (!Objects.deepEquals(point4, other.point4)) return false;
+        if (!Objects.deepEquals(point5, other.point5)) return false;
+        if (!Objects.deepEquals(pointValid, other.pointValid)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(point1);
+        result = 31 * result + Objects.hashCode(point2);
+        result = 31 * result + Objects.hashCode(point3);
+        result = 31 * result + Objects.hashCode(point4);
+        result = 31 * result + Objects.hashCode(point5);
+        result = 31 * result + Objects.hashCode(pointValid);
+        return result;
     }
 
     public static final class Builder {

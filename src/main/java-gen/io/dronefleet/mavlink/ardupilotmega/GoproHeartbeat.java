@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Heartbeat from a HeroBus attached GoPro 
@@ -65,6 +68,26 @@ public final class GoproHeartbeat {
     )
     public final EnumFlagSet<GoproHeartbeatFlags> flags() {
         return this.flags;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GoproHeartbeat other = (GoproHeartbeat)o;
+        if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(captureMode, other.captureMode)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(captureMode);
+        result = 31 * result + Objects.hashCode(flags);
+        return result;
     }
 
     public static final class Builder {

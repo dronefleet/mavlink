@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * ASL-fixed-wing controller data 
@@ -376,6 +379,70 @@ public final class AslctrlData {
     )
     public final float urud() {
         return this.urud;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AslctrlData other = (AslctrlData)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(aslctrlMode, other.aslctrlMode)) return false;
+        if (!Objects.deepEquals(h, other.h)) return false;
+        if (!Objects.deepEquals(href, other.href)) return false;
+        if (!Objects.deepEquals(hrefT, other.hrefT)) return false;
+        if (!Objects.deepEquals(pitchangle, other.pitchangle)) return false;
+        if (!Objects.deepEquals(pitchangleref, other.pitchangleref)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(qref, other.qref)) return false;
+        if (!Objects.deepEquals(uelev, other.uelev)) return false;
+        if (!Objects.deepEquals(uthrot, other.uthrot)) return false;
+        if (!Objects.deepEquals(uthrot2, other.uthrot2)) return false;
+        if (!Objects.deepEquals(nz, other.nz)) return false;
+        if (!Objects.deepEquals(airspeedref, other.airspeedref)) return false;
+        if (!Objects.deepEquals(spoilersengaged, other.spoilersengaged)) return false;
+        if (!Objects.deepEquals(yawangle, other.yawangle)) return false;
+        if (!Objects.deepEquals(yawangleref, other.yawangleref)) return false;
+        if (!Objects.deepEquals(rollangle, other.rollangle)) return false;
+        if (!Objects.deepEquals(rollangleref, other.rollangleref)) return false;
+        if (!Objects.deepEquals(p, other.p)) return false;
+        if (!Objects.deepEquals(pref, other.pref)) return false;
+        if (!Objects.deepEquals(r, other.r)) return false;
+        if (!Objects.deepEquals(rref, other.rref)) return false;
+        if (!Objects.deepEquals(uail, other.uail)) return false;
+        if (!Objects.deepEquals(urud, other.urud)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(aslctrlMode);
+        result = 31 * result + Objects.hashCode(h);
+        result = 31 * result + Objects.hashCode(href);
+        result = 31 * result + Objects.hashCode(hrefT);
+        result = 31 * result + Objects.hashCode(pitchangle);
+        result = 31 * result + Objects.hashCode(pitchangleref);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(qref);
+        result = 31 * result + Objects.hashCode(uelev);
+        result = 31 * result + Objects.hashCode(uthrot);
+        result = 31 * result + Objects.hashCode(uthrot2);
+        result = 31 * result + Objects.hashCode(nz);
+        result = 31 * result + Objects.hashCode(airspeedref);
+        result = 31 * result + Objects.hashCode(spoilersengaged);
+        result = 31 * result + Objects.hashCode(yawangle);
+        result = 31 * result + Objects.hashCode(yawangleref);
+        result = 31 * result + Objects.hashCode(rollangle);
+        result = 31 * result + Objects.hashCode(rollangleref);
+        result = 31 * result + Objects.hashCode(p);
+        result = 31 * result + Objects.hashCode(pref);
+        result = 31 * result + Objects.hashCode(r);
+        result = 31 * result + Objects.hashCode(rref);
+        result = 31 * result + Objects.hashCode(uail);
+        result = 31 * result + Objects.hashCode(urud);
+        return result;
     }
 
     public static final class Builder {

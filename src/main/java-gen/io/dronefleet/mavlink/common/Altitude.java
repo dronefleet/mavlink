@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * The current system altitude. 
@@ -134,6 +137,34 @@ public final class Altitude {
     )
     public final float bottomClearance() {
         return this.bottomClearance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Altitude other = (Altitude)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(altitudeMonotonic, other.altitudeMonotonic)) return false;
+        if (!Objects.deepEquals(altitudeAmsl, other.altitudeAmsl)) return false;
+        if (!Objects.deepEquals(altitudeLocal, other.altitudeLocal)) return false;
+        if (!Objects.deepEquals(altitudeRelative, other.altitudeRelative)) return false;
+        if (!Objects.deepEquals(altitudeTerrain, other.altitudeTerrain)) return false;
+        if (!Objects.deepEquals(bottomClearance, other.bottomClearance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(altitudeMonotonic);
+        result = 31 * result + Objects.hashCode(altitudeAmsl);
+        result = 31 * result + Objects.hashCode(altitudeLocal);
+        result = 31 * result + Objects.hashCode(altitudeRelative);
+        result = 31 * result + Objects.hashCode(altitudeTerrain);
+        result = 31 * result + Objects.hashCode(bottomClearance);
+        return result;
     }
 
     public static final class Builder {

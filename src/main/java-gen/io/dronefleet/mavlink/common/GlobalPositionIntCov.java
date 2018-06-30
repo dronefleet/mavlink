@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The filtered global position (e.g. fused GPS and accelerometers). The position is in 
@@ -176,6 +179,40 @@ public final class GlobalPositionIntCov {
     )
     public final List<Float> covariance() {
         return this.covariance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GlobalPositionIntCov other = (GlobalPositionIntCov)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(estimatorType, other.estimatorType)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(relativeAlt, other.relativeAlt)) return false;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(estimatorType);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(relativeAlt);
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(covariance);
+        return result;
     }
 
     public static final class Builder {

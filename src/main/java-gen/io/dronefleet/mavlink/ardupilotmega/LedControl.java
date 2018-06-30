@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Control vehicle LEDs 
@@ -107,6 +110,32 @@ public final class LedControl {
     )
     public final byte[] customBytes() {
         return this.customBytes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LedControl other = (LedControl)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(instance, other.instance)) return false;
+        if (!Objects.deepEquals(pattern, other.pattern)) return false;
+        if (!Objects.deepEquals(customLen, other.customLen)) return false;
+        if (!Objects.deepEquals(customBytes, other.customBytes)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(instance);
+        result = 31 * result + Objects.hashCode(pattern);
+        result = 31 * result + Objects.hashCode(customLen);
+        result = 31 * result + Objects.hashCode(customBytes);
+        return result;
     }
 
     public static final class Builder {

@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
@@ -110,6 +113,32 @@ public final class FlexifunctionDirectory {
     )
     public final List<Integer> directoryData() {
         return this.directoryData;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FlexifunctionDirectory other = (FlexifunctionDirectory)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(directoryType, other.directoryType)) return false;
+        if (!Objects.deepEquals(startIndex, other.startIndex)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(directoryData, other.directoryData)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(directoryType);
+        result = 31 * result + Objects.hashCode(startIndex);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(directoryData);
+        return result;
     }
 
     public static final class Builder {

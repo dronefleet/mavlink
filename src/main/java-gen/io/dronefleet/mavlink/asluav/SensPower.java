@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Voltage and current sensor data 
@@ -78,6 +81,28 @@ public final class SensPower {
     )
     public final float adc121Cs2Amp() {
         return this.adc121Cs2Amp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensPower other = (SensPower)o;
+        if (!Objects.deepEquals(adc121VspbVolt, other.adc121VspbVolt)) return false;
+        if (!Objects.deepEquals(adc121CspbAmp, other.adc121CspbAmp)) return false;
+        if (!Objects.deepEquals(adc121Cs1Amp, other.adc121Cs1Amp)) return false;
+        if (!Objects.deepEquals(adc121Cs2Amp, other.adc121Cs2Amp)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(adc121VspbVolt);
+        result = 31 * result + Objects.hashCode(adc121CspbAmp);
+        result = 31 * result + Objects.hashCode(adc121Cs1Amp);
+        result = 31 * result + Objects.hashCode(adc121Cs2Amp);
+        return result;
     }
 
     public static final class Builder {

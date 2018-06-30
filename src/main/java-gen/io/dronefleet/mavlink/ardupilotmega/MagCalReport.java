@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Reports results of completed compass calibration. Sent until MAG_CAL_ACK received. 
@@ -219,6 +222,48 @@ public final class MagCalReport {
     )
     public final float offdiagZ() {
         return this.offdiagZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MagCalReport other = (MagCalReport)o;
+        if (!Objects.deepEquals(compassId, other.compassId)) return false;
+        if (!Objects.deepEquals(calMask, other.calMask)) return false;
+        if (!Objects.deepEquals(calStatus, other.calStatus)) return false;
+        if (!Objects.deepEquals(autosaved, other.autosaved)) return false;
+        if (!Objects.deepEquals(fitness, other.fitness)) return false;
+        if (!Objects.deepEquals(ofsX, other.ofsX)) return false;
+        if (!Objects.deepEquals(ofsY, other.ofsY)) return false;
+        if (!Objects.deepEquals(ofsZ, other.ofsZ)) return false;
+        if (!Objects.deepEquals(diagX, other.diagX)) return false;
+        if (!Objects.deepEquals(diagY, other.diagY)) return false;
+        if (!Objects.deepEquals(diagZ, other.diagZ)) return false;
+        if (!Objects.deepEquals(offdiagX, other.offdiagX)) return false;
+        if (!Objects.deepEquals(offdiagY, other.offdiagY)) return false;
+        if (!Objects.deepEquals(offdiagZ, other.offdiagZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(compassId);
+        result = 31 * result + Objects.hashCode(calMask);
+        result = 31 * result + Objects.hashCode(calStatus);
+        result = 31 * result + Objects.hashCode(autosaved);
+        result = 31 * result + Objects.hashCode(fitness);
+        result = 31 * result + Objects.hashCode(ofsX);
+        result = 31 * result + Objects.hashCode(ofsY);
+        result = 31 * result + Objects.hashCode(ofsZ);
+        result = 31 * result + Objects.hashCode(diagX);
+        result = 31 * result + Objects.hashCode(diagY);
+        result = 31 * result + Objects.hashCode(diagZ);
+        result = 31 * result + Objects.hashCode(offdiagX);
+        result = 31 * result + Objects.hashCode(offdiagY);
+        result = 31 * result + Objects.hashCode(offdiagZ);
+        return result;
     }
 
     public static final class Builder {

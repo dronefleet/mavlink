@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.FenceBreach;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of geo-fencing. Sent in extended status stream when fencing enabled 
@@ -79,6 +82,28 @@ public final class FenceStatus {
     )
     public final long breachTime() {
         return this.breachTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FenceStatus other = (FenceStatus)o;
+        if (!Objects.deepEquals(breachStatus, other.breachStatus)) return false;
+        if (!Objects.deepEquals(breachCount, other.breachCount)) return false;
+        if (!Objects.deepEquals(breachType, other.breachType)) return false;
+        if (!Objects.deepEquals(breachTime, other.breachTime)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(breachStatus);
+        result = 31 * result + Objects.hashCode(breachCount);
+        result = 31 * result + Objects.hashCode(breachType);
+        result = 31 * result + Objects.hashCode(breachTime);
+        return result;
     }
 
     public static final class Builder {

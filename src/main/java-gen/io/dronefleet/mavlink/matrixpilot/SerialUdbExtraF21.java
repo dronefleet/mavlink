@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F21 format 
@@ -112,6 +115,32 @@ public final class SerialUdbExtraF21 {
     )
     public final int sueGyroZOffset() {
         return this.sueGyroZOffset;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF21 other = (SerialUdbExtraF21)o;
+        if (!Objects.deepEquals(sueAccelXOffset, other.sueAccelXOffset)) return false;
+        if (!Objects.deepEquals(sueAccelYOffset, other.sueAccelYOffset)) return false;
+        if (!Objects.deepEquals(sueAccelZOffset, other.sueAccelZOffset)) return false;
+        if (!Objects.deepEquals(sueGyroXOffset, other.sueGyroXOffset)) return false;
+        if (!Objects.deepEquals(sueGyroYOffset, other.sueGyroYOffset)) return false;
+        if (!Objects.deepEquals(sueGyroZOffset, other.sueGyroZOffset)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueAccelXOffset);
+        result = 31 * result + Objects.hashCode(sueAccelYOffset);
+        result = 31 * result + Objects.hashCode(sueAccelZOffset);
+        result = 31 * result + Objects.hashCode(sueGyroXOffset);
+        result = 31 * result + Objects.hashCode(sueGyroYOffset);
+        result = 31 * result + Objects.hashCode(sueGyroZOffset);
+        return result;
     }
 
     public static final class Builder {

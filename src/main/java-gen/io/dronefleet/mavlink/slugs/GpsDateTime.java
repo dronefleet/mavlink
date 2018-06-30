@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Pilot console PWM messges. 
@@ -190,6 +193,44 @@ public final class GpsDateTime {
     )
     public final int percentused() {
         return this.percentused;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsDateTime other = (GpsDateTime)o;
+        if (!Objects.deepEquals(year, other.year)) return false;
+        if (!Objects.deepEquals(month, other.month)) return false;
+        if (!Objects.deepEquals(day, other.day)) return false;
+        if (!Objects.deepEquals(hour, other.hour)) return false;
+        if (!Objects.deepEquals(min, other.min)) return false;
+        if (!Objects.deepEquals(sec, other.sec)) return false;
+        if (!Objects.deepEquals(clockstat, other.clockstat)) return false;
+        if (!Objects.deepEquals(vissat, other.vissat)) return false;
+        if (!Objects.deepEquals(usesat, other.usesat)) return false;
+        if (!Objects.deepEquals(gppgl, other.gppgl)) return false;
+        if (!Objects.deepEquals(sigusedmask, other.sigusedmask)) return false;
+        if (!Objects.deepEquals(percentused, other.percentused)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(year);
+        result = 31 * result + Objects.hashCode(month);
+        result = 31 * result + Objects.hashCode(day);
+        result = 31 * result + Objects.hashCode(hour);
+        result = 31 * result + Objects.hashCode(min);
+        result = 31 * result + Objects.hashCode(sec);
+        result = 31 * result + Objects.hashCode(clockstat);
+        result = 31 * result + Objects.hashCode(vissat);
+        result = 31 * result + Objects.hashCode(usesat);
+        result = 31 * result + Objects.hashCode(gppgl);
+        result = 31 * result + Objects.hashCode(sigusedmask);
+        result = 31 * result + Objects.hashCode(percentused);
+        return result;
     }
 
     public static final class Builder {

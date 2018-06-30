@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * The location and information of an ADSB vehicle 
@@ -212,6 +215,46 @@ public final class AdsbVehicle {
     )
     public final int squawk() {
         return this.squawk;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AdsbVehicle other = (AdsbVehicle)o;
+        if (!Objects.deepEquals(icaoAddress, other.icaoAddress)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(altitudeType, other.altitudeType)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(heading, other.heading)) return false;
+        if (!Objects.deepEquals(horVelocity, other.horVelocity)) return false;
+        if (!Objects.deepEquals(verVelocity, other.verVelocity)) return false;
+        if (!Objects.deepEquals(callsign, other.callsign)) return false;
+        if (!Objects.deepEquals(emitterType, other.emitterType)) return false;
+        if (!Objects.deepEquals(tslc, other.tslc)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(squawk, other.squawk)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(icaoAddress);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(altitudeType);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(heading);
+        result = 31 * result + Objects.hashCode(horVelocity);
+        result = 31 * result + Objects.hashCode(verVelocity);
+        result = 31 * result + Objects.hashCode(callsign);
+        result = 31 * result + Objects.hashCode(emitterType);
+        result = 31 * result + Objects.hashCode(tslc);
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(squawk);
+        return result;
     }
 
     public static final class Builder {

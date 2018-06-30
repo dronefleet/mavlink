@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of AP_Limits. Sent in extended status stream when AP_Limits is enabled 
@@ -151,6 +154,38 @@ public final class LimitsStatus {
     )
     public final EnumFlagSet<LimitModule> modsTriggered() {
         return this.modsTriggered;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LimitsStatus other = (LimitsStatus)o;
+        if (!Objects.deepEquals(limitsState, other.limitsState)) return false;
+        if (!Objects.deepEquals(lastTrigger, other.lastTrigger)) return false;
+        if (!Objects.deepEquals(lastAction, other.lastAction)) return false;
+        if (!Objects.deepEquals(lastRecovery, other.lastRecovery)) return false;
+        if (!Objects.deepEquals(lastClear, other.lastClear)) return false;
+        if (!Objects.deepEquals(breachCount, other.breachCount)) return false;
+        if (!Objects.deepEquals(modsEnabled, other.modsEnabled)) return false;
+        if (!Objects.deepEquals(modsRequired, other.modsRequired)) return false;
+        if (!Objects.deepEquals(modsTriggered, other.modsTriggered)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(limitsState);
+        result = 31 * result + Objects.hashCode(lastTrigger);
+        result = 31 * result + Objects.hashCode(lastAction);
+        result = 31 * result + Objects.hashCode(lastRecovery);
+        result = 31 * result + Objects.hashCode(lastClear);
+        result = 31 * result + Objects.hashCode(breachCount);
+        result = 31 * result + Objects.hashCode(modsEnabled);
+        result = 31 * result + Objects.hashCode(modsRequired);
+        result = 31 * result + Objects.hashCode(modsTriggered);
+        return result;
     }
 
     public static final class Builder {

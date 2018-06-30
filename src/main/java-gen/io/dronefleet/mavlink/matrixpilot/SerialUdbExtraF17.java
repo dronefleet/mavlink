@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F17 format 
@@ -63,6 +66,26 @@ public final class SerialUdbExtraF17 {
     )
     public final float sueTurnRateFbw() {
         return this.sueTurnRateFbw;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF17 other = (SerialUdbExtraF17)o;
+        if (!Objects.deepEquals(sueFeedForward, other.sueFeedForward)) return false;
+        if (!Objects.deepEquals(sueTurnRateNav, other.sueTurnRateNav)) return false;
+        if (!Objects.deepEquals(sueTurnRateFbw, other.sueTurnRateFbw)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueFeedForward);
+        result = 31 * result + Objects.hashCode(sueTurnRateNav);
+        result = 31 * result + Objects.hashCode(sueTurnRateFbw);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * RTCM message for injecting into the onboard GPS (used for DGPS) 
@@ -71,6 +74,26 @@ public final class GpsRtcmData {
     )
     public final byte[] data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsRtcmData other = (GpsRtcmData)o;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(len, other.len)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(len);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The positioning status, as reported by GPS. This message is intended to display status 
@@ -113,6 +116,32 @@ public final class GpsStatus {
     )
     public final byte[] satelliteSnr() {
         return this.satelliteSnr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GpsStatus other = (GpsStatus)o;
+        if (!Objects.deepEquals(satellitesVisible, other.satellitesVisible)) return false;
+        if (!Objects.deepEquals(satellitePrn, other.satellitePrn)) return false;
+        if (!Objects.deepEquals(satelliteUsed, other.satelliteUsed)) return false;
+        if (!Objects.deepEquals(satelliteElevation, other.satelliteElevation)) return false;
+        if (!Objects.deepEquals(satelliteAzimuth, other.satelliteAzimuth)) return false;
+        if (!Objects.deepEquals(satelliteSnr, other.satelliteSnr)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(satellitesVisible);
+        result = 31 * result + Objects.hashCode(satellitePrn);
+        result = 31 * result + Objects.hashCode(satelliteUsed);
+        result = 31 * result + Objects.hashCode(satelliteElevation);
+        result = 31 * result + Objects.hashCode(satelliteAzimuth);
+        result = 31 * result + Objects.hashCode(satelliteSnr);
+        return result;
     }
 
     public static final class Builder {

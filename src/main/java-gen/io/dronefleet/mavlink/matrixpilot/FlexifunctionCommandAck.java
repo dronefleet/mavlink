@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Acknowldge sucess or failure of a flexifunction command 
@@ -49,6 +52,24 @@ public final class FlexifunctionCommandAck {
     )
     public final int result() {
         return this.result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FlexifunctionCommandAck other = (FlexifunctionCommandAck)o;
+        if (!Objects.deepEquals(commandType, other.commandType)) return false;
+        if (!Objects.deepEquals(result, other.result)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(commandType);
+        result = 31 * result + Objects.hashCode(result);
+        return result;
     }
 
     public static final class Builder {

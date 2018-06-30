@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The scaled values of the RC channels received. (-100%) -10000, (0%) 0, (100%) 10000. Channels 
@@ -187,6 +190,42 @@ public final class RcChannelsScaled {
     )
     public final int rssi() {
         return this.rssi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        RcChannelsScaled other = (RcChannelsScaled)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(port, other.port)) return false;
+        if (!Objects.deepEquals(chan1Scaled, other.chan1Scaled)) return false;
+        if (!Objects.deepEquals(chan2Scaled, other.chan2Scaled)) return false;
+        if (!Objects.deepEquals(chan3Scaled, other.chan3Scaled)) return false;
+        if (!Objects.deepEquals(chan4Scaled, other.chan4Scaled)) return false;
+        if (!Objects.deepEquals(chan5Scaled, other.chan5Scaled)) return false;
+        if (!Objects.deepEquals(chan6Scaled, other.chan6Scaled)) return false;
+        if (!Objects.deepEquals(chan7Scaled, other.chan7Scaled)) return false;
+        if (!Objects.deepEquals(chan8Scaled, other.chan8Scaled)) return false;
+        if (!Objects.deepEquals(rssi, other.rssi)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(port);
+        result = 31 * result + Objects.hashCode(chan1Scaled);
+        result = 31 * result + Objects.hashCode(chan2Scaled);
+        result = 31 * result + Objects.hashCode(chan3Scaled);
+        result = 31 * result + Objects.hashCode(chan4Scaled);
+        result = 31 * result + Objects.hashCode(chan5Scaled);
+        result = 31 * result + Objects.hashCode(chan6Scaled);
+        result = 31 * result + Objects.hashCode(chan7Scaled);
+        result = 31 * result + Objects.hashCode(chan8Scaled);
+        result = 31 * result + Objects.hashCode(rssi);
+        return result;
     }
 
     public static final class Builder {

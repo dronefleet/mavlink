@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Configurable data log probes to be used inside Simulink 
@@ -105,6 +108,32 @@ public final class DataLog {
     )
     public final float fl6() {
         return this.fl6;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DataLog other = (DataLog)o;
+        if (!Objects.deepEquals(fl1, other.fl1)) return false;
+        if (!Objects.deepEquals(fl2, other.fl2)) return false;
+        if (!Objects.deepEquals(fl3, other.fl3)) return false;
+        if (!Objects.deepEquals(fl4, other.fl4)) return false;
+        if (!Objects.deepEquals(fl5, other.fl5)) return false;
+        if (!Objects.deepEquals(fl6, other.fl6)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(fl1);
+        result = 31 * result + Objects.hashCode(fl2);
+        result = 31 * result + Objects.hashCode(fl3);
+        result = 31 * result + Objects.hashCode(fl4);
+        result = 31 * result + Objects.hashCode(fl5);
+        result = 31 * result + Objects.hashCode(fl6);
+        return result;
     }
 
     public static final class Builder {

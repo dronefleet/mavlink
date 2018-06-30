@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Flexifunction type and parameters for component at function index from buffer 
@@ -78,6 +81,28 @@ public final class FlexifunctionBufferFunctionAck {
     )
     public final int result() {
         return this.result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FlexifunctionBufferFunctionAck other = (FlexifunctionBufferFunctionAck)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(funcIndex, other.funcIndex)) return false;
+        if (!Objects.deepEquals(result, other.result)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(funcIndex);
+        result = 31 * result + Objects.hashCode(result);
+        return result;
     }
 
     public static final class Builder {

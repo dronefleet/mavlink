@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Send raw controller memory. The use of this message is discouraged for normal packets, but a 
@@ -83,6 +86,28 @@ public final class MemoryVect {
     )
     public final List<Integer> value() {
         return this.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MemoryVect other = (MemoryVect)o;
+        if (!Objects.deepEquals(address, other.address)) return false;
+        if (!Objects.deepEquals(ver, other.ver)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(value, other.value)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(address);
+        result = 31 * result + Objects.hashCode(ver);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(value);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message to control a camera mount, directional antenna, etc. 
@@ -109,6 +112,32 @@ public final class MountControl {
     )
     public final int savePosition() {
         return this.savePosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MountControl other = (MountControl)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(inputA, other.inputA)) return false;
+        if (!Objects.deepEquals(inputB, other.inputB)) return false;
+        if (!Objects.deepEquals(inputC, other.inputC)) return false;
+        if (!Objects.deepEquals(savePosition, other.savePosition)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(inputA);
+        result = 31 * result + Objects.hashCode(inputB);
+        result = 31 * result + Objects.hashCode(inputC);
+        result = 31 * result + Objects.hashCode(savePosition);
+        return result;
     }
 
     public static final class Builder {

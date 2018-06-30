@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Monitoring of power board status 
@@ -193,6 +196,44 @@ public final class SensPowerBoard {
     )
     public final float pwrBrdAuxAmp() {
         return this.pwrBrdAuxAmp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensPowerBoard other = (SensPowerBoard)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(pwrBrdStatus, other.pwrBrdStatus)) return false;
+        if (!Objects.deepEquals(pwrBrdLedStatus, other.pwrBrdLedStatus)) return false;
+        if (!Objects.deepEquals(pwrBrdSystemVolt, other.pwrBrdSystemVolt)) return false;
+        if (!Objects.deepEquals(pwrBrdServoVolt, other.pwrBrdServoVolt)) return false;
+        if (!Objects.deepEquals(pwrBrdDigitalVolt, other.pwrBrdDigitalVolt)) return false;
+        if (!Objects.deepEquals(pwrBrdMotLAmp, other.pwrBrdMotLAmp)) return false;
+        if (!Objects.deepEquals(pwrBrdMotRAmp, other.pwrBrdMotRAmp)) return false;
+        if (!Objects.deepEquals(pwrBrdAnalogAmp, other.pwrBrdAnalogAmp)) return false;
+        if (!Objects.deepEquals(pwrBrdDigitalAmp, other.pwrBrdDigitalAmp)) return false;
+        if (!Objects.deepEquals(pwrBrdExtAmp, other.pwrBrdExtAmp)) return false;
+        if (!Objects.deepEquals(pwrBrdAuxAmp, other.pwrBrdAuxAmp)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(pwrBrdStatus);
+        result = 31 * result + Objects.hashCode(pwrBrdLedStatus);
+        result = 31 * result + Objects.hashCode(pwrBrdSystemVolt);
+        result = 31 * result + Objects.hashCode(pwrBrdServoVolt);
+        result = 31 * result + Objects.hashCode(pwrBrdDigitalVolt);
+        result = 31 * result + Objects.hashCode(pwrBrdMotLAmp);
+        result = 31 * result + Objects.hashCode(pwrBrdMotRAmp);
+        result = 31 * result + Objects.hashCode(pwrBrdAnalogAmp);
+        result = 31 * result + Objects.hashCode(pwrBrdDigitalAmp);
+        result = 31 * result + Objects.hashCode(pwrBrdExtAmp);
+        result = 31 * result + Objects.hashCode(pwrBrdAuxAmp);
+        return result;
     }
 
     public static final class Builder {

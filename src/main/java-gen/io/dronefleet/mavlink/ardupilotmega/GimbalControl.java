@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Control message for rate gimbal 
@@ -92,6 +95,30 @@ public final class GimbalControl {
     )
     public final float demandedRateZ() {
         return this.demandedRateZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GimbalControl other = (GimbalControl)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(demandedRateX, other.demandedRateX)) return false;
+        if (!Objects.deepEquals(demandedRateY, other.demandedRateY)) return false;
+        if (!Objects.deepEquals(demandedRateZ, other.demandedRateZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(demandedRateX);
+        result = 31 * result + Objects.hashCode(demandedRateY);
+        result = 31 * result + Objects.hashCode(demandedRateZ);
+        return result;
     }
 
     public static final class Builder {

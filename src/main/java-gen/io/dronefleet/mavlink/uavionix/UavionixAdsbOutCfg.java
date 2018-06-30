@@ -5,7 +5,10 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.AdsbEmitterType;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Static data to configure the ADS-B transponder (send within 10 sec of a POR and every 10 sec 
@@ -143,6 +146,36 @@ public final class UavionixAdsbOutCfg {
     )
     public final EnumFlagSet<UavionixAdsbOutRfSelect> rfselect() {
         return this.rfselect;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        UavionixAdsbOutCfg other = (UavionixAdsbOutCfg)o;
+        if (!Objects.deepEquals(icao, other.icao)) return false;
+        if (!Objects.deepEquals(callsign, other.callsign)) return false;
+        if (!Objects.deepEquals(emittertype, other.emittertype)) return false;
+        if (!Objects.deepEquals(aircraftsize, other.aircraftsize)) return false;
+        if (!Objects.deepEquals(gpsoffsetlat, other.gpsoffsetlat)) return false;
+        if (!Objects.deepEquals(gpsoffsetlon, other.gpsoffsetlon)) return false;
+        if (!Objects.deepEquals(stallspeed, other.stallspeed)) return false;
+        if (!Objects.deepEquals(rfselect, other.rfselect)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(icao);
+        result = 31 * result + Objects.hashCode(callsign);
+        result = 31 * result + Objects.hashCode(emittertype);
+        result = 31 * result + Objects.hashCode(aircraftsize);
+        result = 31 * result + Objects.hashCode(gpsoffsetlat);
+        result = 31 * result + Objects.hashCode(gpsoffsetlon);
+        result = 31 * result + Objects.hashCode(stallspeed);
+        result = 31 * result + Objects.hashCode(rfselect);
+        return result;
     }
 
     public static final class Builder {

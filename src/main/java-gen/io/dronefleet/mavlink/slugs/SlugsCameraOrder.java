@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Orders generated to the SLUGS camera mount. 
@@ -96,6 +99,30 @@ public final class SlugsCameraOrder {
     )
     public final int movehome() {
         return this.movehome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SlugsCameraOrder other = (SlugsCameraOrder)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(pan, other.pan)) return false;
+        if (!Objects.deepEquals(tilt, other.tilt)) return false;
+        if (!Objects.deepEquals(zoom, other.zoom)) return false;
+        if (!Objects.deepEquals(movehome, other.movehome)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(pan);
+        result = 31 * result + Objects.hashCode(tilt);
+        result = 31 * result + Objects.hashCode(zoom);
+        result = 31 * result + Objects.hashCode(movehome);
+        return result;
     }
 
     public static final class Builder {

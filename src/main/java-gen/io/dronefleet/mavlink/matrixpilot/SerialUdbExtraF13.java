@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F13: format 
@@ -81,6 +84,28 @@ public final class SerialUdbExtraF13 {
     )
     public final int sueAltOrigin() {
         return this.sueAltOrigin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF13 other = (SerialUdbExtraF13)o;
+        if (!Objects.deepEquals(sueWeekNo, other.sueWeekNo)) return false;
+        if (!Objects.deepEquals(sueLatOrigin, other.sueLatOrigin)) return false;
+        if (!Objects.deepEquals(sueLonOrigin, other.sueLonOrigin)) return false;
+        if (!Objects.deepEquals(sueAltOrigin, other.sueAltOrigin)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueWeekNo);
+        result = 31 * result + Objects.hashCode(sueLatOrigin);
+        result = 31 * result + Objects.hashCode(sueLonOrigin);
+        result = 31 * result + Objects.hashCode(sueAltOrigin);
+        return result;
     }
 
     public static final class Builder {

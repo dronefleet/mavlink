@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Transmits the actual Pan, Tilt and Zoom values of the camera unit 
@@ -65,6 +68,26 @@ public final class PtzStatus {
     )
     public final int tilt() {
         return this.tilt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        PtzStatus other = (PtzStatus)o;
+        if (!Objects.deepEquals(zoom, other.zoom)) return false;
+        if (!Objects.deepEquals(pan, other.pan)) return false;
+        if (!Objects.deepEquals(tilt, other.tilt)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(zoom);
+        result = 31 * result + Objects.hashCode(pan);
+        result = 31 * result + Objects.hashCode(tilt);
+        return result;
     }
 
     public static final class Builder {

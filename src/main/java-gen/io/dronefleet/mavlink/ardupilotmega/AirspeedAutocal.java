@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Airspeed auto-calibration 
@@ -191,6 +194,44 @@ public final class AirspeedAutocal {
     )
     public final float pcz() {
         return this.pcz;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AirspeedAutocal other = (AirspeedAutocal)o;
+        if (!Objects.deepEquals(vx, other.vx)) return false;
+        if (!Objects.deepEquals(vy, other.vy)) return false;
+        if (!Objects.deepEquals(vz, other.vz)) return false;
+        if (!Objects.deepEquals(diffPressure, other.diffPressure)) return false;
+        if (!Objects.deepEquals(eas2tas, other.eas2tas)) return false;
+        if (!Objects.deepEquals(ratio, other.ratio)) return false;
+        if (!Objects.deepEquals(stateX, other.stateX)) return false;
+        if (!Objects.deepEquals(stateY, other.stateY)) return false;
+        if (!Objects.deepEquals(stateZ, other.stateZ)) return false;
+        if (!Objects.deepEquals(pax, other.pax)) return false;
+        if (!Objects.deepEquals(pby, other.pby)) return false;
+        if (!Objects.deepEquals(pcz, other.pcz)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(vx);
+        result = 31 * result + Objects.hashCode(vy);
+        result = 31 * result + Objects.hashCode(vz);
+        result = 31 * result + Objects.hashCode(diffPressure);
+        result = 31 * result + Objects.hashCode(eas2tas);
+        result = 31 * result + Objects.hashCode(ratio);
+        result = 31 * result + Objects.hashCode(stateX);
+        result = 31 * result + Objects.hashCode(stateY);
+        result = 31 * result + Objects.hashCode(stateZ);
+        result = 31 * result + Objects.hashCode(pax);
+        result = 31 * result + Objects.hashCode(pby);
+        result = 31 * result + Objects.hashCode(pcz);
+        return result;
     }
 
     public static final class Builder {

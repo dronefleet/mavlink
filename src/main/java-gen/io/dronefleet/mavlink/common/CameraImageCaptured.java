@@ -4,9 +4,12 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Information about a captured image 
@@ -190,6 +193,42 @@ public final class CameraImageCaptured {
     )
     public final String fileUrl() {
         return this.fileUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CameraImageCaptured other = (CameraImageCaptured)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(timeUtc, other.timeUtc)) return false;
+        if (!Objects.deepEquals(cameraId, other.cameraId)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(relativeAlt, other.relativeAlt)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(imageIndex, other.imageIndex)) return false;
+        if (!Objects.deepEquals(captureResult, other.captureResult)) return false;
+        if (!Objects.deepEquals(fileUrl, other.fileUrl)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(timeUtc);
+        result = 31 * result + Objects.hashCode(cameraId);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(relativeAlt);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(imageIndex);
+        result = 31 * result + Objects.hashCode(captureResult);
+        result = 31 * result + Objects.hashCode(fileUrl);
+        return result;
     }
 
     public static final class Builder {

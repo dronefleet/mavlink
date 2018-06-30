@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor) 
@@ -198,6 +201,44 @@ public final class HilOpticalFlow {
     )
     public final float distance() {
         return this.distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HilOpticalFlow other = (HilOpticalFlow)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(sensorId, other.sensorId)) return false;
+        if (!Objects.deepEquals(integrationTimeUs, other.integrationTimeUs)) return false;
+        if (!Objects.deepEquals(integratedX, other.integratedX)) return false;
+        if (!Objects.deepEquals(integratedY, other.integratedY)) return false;
+        if (!Objects.deepEquals(integratedXgyro, other.integratedXgyro)) return false;
+        if (!Objects.deepEquals(integratedYgyro, other.integratedYgyro)) return false;
+        if (!Objects.deepEquals(integratedZgyro, other.integratedZgyro)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(quality, other.quality)) return false;
+        if (!Objects.deepEquals(timeDeltaDistanceUs, other.timeDeltaDistanceUs)) return false;
+        if (!Objects.deepEquals(distance, other.distance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(sensorId);
+        result = 31 * result + Objects.hashCode(integrationTimeUs);
+        result = 31 * result + Objects.hashCode(integratedX);
+        result = 31 * result + Objects.hashCode(integratedY);
+        result = 31 * result + Objects.hashCode(integratedXgyro);
+        result = 31 * result + Objects.hashCode(integratedYgyro);
+        result = 31 * result + Objects.hashCode(integratedZgyro);
+        result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(quality);
+        result = 31 * result + Objects.hashCode(timeDeltaDistanceUs);
+        result = 31 * result + Objects.hashCode(distance);
+        return result;
     }
 
     public static final class Builder {

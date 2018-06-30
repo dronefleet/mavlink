@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Reply to {@link io.dronefleet.mavlink.common.LogRequestData LOG_REQUEST_DATA} 
@@ -78,6 +81,28 @@ public final class LogData {
     )
     public final byte[] data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        LogData other = (LogData)o;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(ofs, other.ofs)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(ofs);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

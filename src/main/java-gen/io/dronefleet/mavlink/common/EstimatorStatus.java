@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Estimator status message including flags, innovation test ratios and estimated accuracies. 
@@ -174,6 +177,40 @@ public final class EstimatorStatus {
     )
     public final float posVertAccuracy() {
         return this.posVertAccuracy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        EstimatorStatus other = (EstimatorStatus)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(velRatio, other.velRatio)) return false;
+        if (!Objects.deepEquals(posHorizRatio, other.posHorizRatio)) return false;
+        if (!Objects.deepEquals(posVertRatio, other.posVertRatio)) return false;
+        if (!Objects.deepEquals(magRatio, other.magRatio)) return false;
+        if (!Objects.deepEquals(haglRatio, other.haglRatio)) return false;
+        if (!Objects.deepEquals(tasRatio, other.tasRatio)) return false;
+        if (!Objects.deepEquals(posHorizAccuracy, other.posHorizAccuracy)) return false;
+        if (!Objects.deepEquals(posVertAccuracy, other.posVertAccuracy)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(velRatio);
+        result = 31 * result + Objects.hashCode(posHorizRatio);
+        result = 31 * result + Objects.hashCode(posVertRatio);
+        result = 31 * result + Objects.hashCode(magRatio);
+        result = 31 * result + Objects.hashCode(haglRatio);
+        result = 31 * result + Objects.hashCode(tasRatio);
+        result = 31 * result + Objects.hashCode(posHorizAccuracy);
+        result = 31 * result + Objects.hashCode(posVertAccuracy);
+        return result;
     }
 
     public static final class Builder {

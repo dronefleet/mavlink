@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Send a command with up to seven parameters to the MAV 
@@ -178,6 +181,42 @@ public final class CommandLong {
     )
     public final float param7() {
         return this.param7;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CommandLong other = (CommandLong)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(command, other.command)) return false;
+        if (!Objects.deepEquals(confirmation, other.confirmation)) return false;
+        if (!Objects.deepEquals(param1, other.param1)) return false;
+        if (!Objects.deepEquals(param2, other.param2)) return false;
+        if (!Objects.deepEquals(param3, other.param3)) return false;
+        if (!Objects.deepEquals(param4, other.param4)) return false;
+        if (!Objects.deepEquals(param5, other.param5)) return false;
+        if (!Objects.deepEquals(param6, other.param6)) return false;
+        if (!Objects.deepEquals(param7, other.param7)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(command);
+        result = 31 * result + Objects.hashCode(confirmation);
+        result = 31 * result + Objects.hashCode(param1);
+        result = 31 * result + Objects.hashCode(param2);
+        result = 31 * result + Objects.hashCode(param3);
+        result = 31 * result + Objects.hashCode(param4);
+        result = 31 * result + Objects.hashCode(param5);
+        result = 31 * result + Objects.hashCode(param6);
+        result = 31 * result + Objects.hashCode(param7);
+        return result;
     }
 
     public static final class Builder {

@@ -5,7 +5,9 @@ import io.dronefleet.mavlink.generator.definitions.model.MavlinkTypeDef;
 
 import javax.lang.model.element.Modifier;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class FieldGenerator implements Comparable<FieldGenerator> {
     private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get(
@@ -141,6 +143,20 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
 
     public ParameterSpec generateParameter() {
         return ParameterSpec.builder(javaType(), nameCamelCase).build();
+    }
+
+    public void addEqualsStatement(CodeBlock.Builder codeBuilder, String other) {
+        codeBuilder.addStatement("if (!$1T.deepEquals($2N, $3N.$2N)) return false",
+                Objects.class,
+                getNameCamelCase(),
+                other);
+    }
+
+    public void addHashCodeStatement(CodeBlock.Builder codeBuilder, String result) {
+        codeBuilder.addStatement("$1N = 31 * $1N + $2T.hashCode($3N)",
+                result,
+                Objects.class,
+                getNameCamelCase());
     }
 
     private boolean signed() {

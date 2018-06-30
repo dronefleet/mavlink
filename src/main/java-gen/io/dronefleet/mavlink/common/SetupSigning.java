@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Setup a MAVLink2 signing key. If called with secret_key of all zero and zero initial_timestamp 
@@ -81,6 +84,28 @@ public final class SetupSigning {
     )
     public final BigInteger initialTimestamp() {
         return this.initialTimestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SetupSigning other = (SetupSigning)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(secretKey, other.secretKey)) return false;
+        if (!Objects.deepEquals(initialTimestamp, other.initialTimestamp)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(secretKey);
+        result = 31 * result + Objects.hashCode(initialTimestamp);
+        return result;
     }
 
     public static final class Builder {

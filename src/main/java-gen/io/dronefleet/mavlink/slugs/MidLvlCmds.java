@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Mid Level commands sent from the GS to the autopilot. These are only sent when being operated in 
@@ -78,6 +81,28 @@ public final class MidLvlCmds {
     )
     public final float rcommand() {
         return this.rcommand;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MidLvlCmds other = (MidLvlCmds)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(hcommand, other.hcommand)) return false;
+        if (!Objects.deepEquals(ucommand, other.ucommand)) return false;
+        if (!Objects.deepEquals(rcommand, other.rcommand)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(hcommand);
+        result = 31 * result + Objects.hashCode(ucommand);
+        result = 31 * result + Objects.hashCode(rcommand);
+        return result;
     }
 
     public static final class Builder {

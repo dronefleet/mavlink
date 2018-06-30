@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE {@link io.dronefleet.mavlink.common.MessageInterval MESSAGE_INTERVAL} INSTEAD. 
@@ -63,6 +66,26 @@ public final class DataStream {
     )
     public final int onOff() {
         return this.onOff;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DataStream other = (DataStream)o;
+        if (!Objects.deepEquals(streamId, other.streamId)) return false;
+        if (!Objects.deepEquals(messageRate, other.messageRate)) return false;
+        if (!Objects.deepEquals(onOff, other.onOff)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(streamId);
+        result = 31 * result + Objects.hashCode(messageRate);
+        result = 31 * result + Objects.hashCode(onOff);
+        return result;
     }
 
     public static final class Builder {

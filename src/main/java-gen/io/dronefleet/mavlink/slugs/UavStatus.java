@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Transmits the actual status values UAV in flight 
@@ -106,6 +109,32 @@ public final class UavStatus {
     )
     public final float course() {
         return this.course;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        UavStatus other = (UavStatus)o;
+        if (!Objects.deepEquals(target, other.target)) return false;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(speed, other.speed)) return false;
+        if (!Objects.deepEquals(course, other.course)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(target);
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(speed);
+        result = 31 * result + Objects.hashCode(course);
+        return result;
     }
 
     public static final class Builder {

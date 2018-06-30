@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Configure on-board Camera Control System. 
@@ -178,6 +181,42 @@ public final class DigicamConfigure {
     )
     public final float extraValue() {
         return this.extraValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DigicamConfigure other = (DigicamConfigure)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(mode, other.mode)) return false;
+        if (!Objects.deepEquals(shutterSpeed, other.shutterSpeed)) return false;
+        if (!Objects.deepEquals(aperture, other.aperture)) return false;
+        if (!Objects.deepEquals(iso, other.iso)) return false;
+        if (!Objects.deepEquals(exposureType, other.exposureType)) return false;
+        if (!Objects.deepEquals(commandId, other.commandId)) return false;
+        if (!Objects.deepEquals(engineCutOff, other.engineCutOff)) return false;
+        if (!Objects.deepEquals(extraParam, other.extraParam)) return false;
+        if (!Objects.deepEquals(extraValue, other.extraValue)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(mode);
+        result = 31 * result + Objects.hashCode(shutterSpeed);
+        result = 31 * result + Objects.hashCode(aperture);
+        result = 31 * result + Objects.hashCode(iso);
+        result = 31 * result + Objects.hashCode(exposureType);
+        result = 31 * result + Objects.hashCode(commandId);
+        result = 31 * result + Objects.hashCode(engineCutOff);
+        result = 31 * result + Objects.hashCode(extraParam);
+        result = 31 * result + Objects.hashCode(extraValue);
+        return result;
     }
 
     public static final class Builder {

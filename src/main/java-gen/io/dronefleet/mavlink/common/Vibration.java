@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Vibration levels and accelerometer clipping 
@@ -121,6 +124,34 @@ public final class Vibration {
     )
     public final long clipping2() {
         return this.clipping2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Vibration other = (Vibration)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(vibrationX, other.vibrationX)) return false;
+        if (!Objects.deepEquals(vibrationY, other.vibrationY)) return false;
+        if (!Objects.deepEquals(vibrationZ, other.vibrationZ)) return false;
+        if (!Objects.deepEquals(clipping0, other.clipping0)) return false;
+        if (!Objects.deepEquals(clipping1, other.clipping1)) return false;
+        if (!Objects.deepEquals(clipping2, other.clipping2)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(vibrationX);
+        result = 31 * result + Objects.hashCode(vibrationY);
+        result = 31 * result + Objects.hashCode(vibrationZ);
+        result = 31 * result + Objects.hashCode(clipping0);
+        result = 31 * result + Objects.hashCode(clipping1);
+        result = 31 * result + Objects.hashCode(clipping2);
+        return result;
     }
 
     public static final class Builder {

@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Extended EKF state estimates for ASLUAVs 
@@ -121,6 +124,34 @@ public final class EkfExt {
     )
     public final float alpha() {
         return this.alpha;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        EkfExt other = (EkfExt)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(windspeed, other.windspeed)) return false;
+        if (!Objects.deepEquals(winddir, other.winddir)) return false;
+        if (!Objects.deepEquals(windz, other.windz)) return false;
+        if (!Objects.deepEquals(airspeed, other.airspeed)) return false;
+        if (!Objects.deepEquals(beta, other.beta)) return false;
+        if (!Objects.deepEquals(alpha, other.alpha)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(windspeed);
+        result = 31 * result + Objects.hashCode(winddir);
+        result = 31 * result + Objects.hashCode(windz);
+        result = 31 * result + Objects.hashCode(airspeed);
+        result = 31 * result + Objects.hashCode(beta);
+        result = 31 * result + Objects.hashCode(alpha);
+        return result;
     }
 
     public static final class Builder {

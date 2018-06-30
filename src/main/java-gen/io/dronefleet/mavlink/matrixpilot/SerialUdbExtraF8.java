@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F8: format 
@@ -121,6 +124,34 @@ public final class SerialUdbExtraF8 {
     )
     public final float sueAltHoldPitchHigh() {
         return this.sueAltHoldPitchHigh;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF8 other = (SerialUdbExtraF8)o;
+        if (!Objects.deepEquals(sueHeightTargetMax, other.sueHeightTargetMax)) return false;
+        if (!Objects.deepEquals(sueHeightTargetMin, other.sueHeightTargetMin)) return false;
+        if (!Objects.deepEquals(sueAltHoldThrottleMin, other.sueAltHoldThrottleMin)) return false;
+        if (!Objects.deepEquals(sueAltHoldThrottleMax, other.sueAltHoldThrottleMax)) return false;
+        if (!Objects.deepEquals(sueAltHoldPitchMin, other.sueAltHoldPitchMin)) return false;
+        if (!Objects.deepEquals(sueAltHoldPitchMax, other.sueAltHoldPitchMax)) return false;
+        if (!Objects.deepEquals(sueAltHoldPitchHigh, other.sueAltHoldPitchHigh)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueHeightTargetMax);
+        result = 31 * result + Objects.hashCode(sueHeightTargetMin);
+        result = 31 * result + Objects.hashCode(sueAltHoldThrottleMin);
+        result = 31 * result + Objects.hashCode(sueAltHoldThrottleMax);
+        result = 31 * result + Objects.hashCode(sueAltHoldPitchMin);
+        result = 31 * result + Objects.hashCode(sueAltHoldPitchMax);
+        result = 31 * result + Objects.hashCode(sueAltHoldPitchHigh);
+        return result;
     }
 
     public static final class Builder {

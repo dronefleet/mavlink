@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * ASL-fixed-wing controller debug data 
@@ -176,6 +179,42 @@ public final class AslctrlDebug {
     )
     public final float f8() {
         return this.f8;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AslctrlDebug other = (AslctrlDebug)o;
+        if (!Objects.deepEquals(i321, other.i321)) return false;
+        if (!Objects.deepEquals(i81, other.i81)) return false;
+        if (!Objects.deepEquals(i82, other.i82)) return false;
+        if (!Objects.deepEquals(f1, other.f1)) return false;
+        if (!Objects.deepEquals(f2, other.f2)) return false;
+        if (!Objects.deepEquals(f3, other.f3)) return false;
+        if (!Objects.deepEquals(f4, other.f4)) return false;
+        if (!Objects.deepEquals(f5, other.f5)) return false;
+        if (!Objects.deepEquals(f6, other.f6)) return false;
+        if (!Objects.deepEquals(f7, other.f7)) return false;
+        if (!Objects.deepEquals(f8, other.f8)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(i321);
+        result = 31 * result + Objects.hashCode(i81);
+        result = 31 * result + Objects.hashCode(i82);
+        result = 31 * result + Objects.hashCode(f1);
+        result = 31 * result + Objects.hashCode(f2);
+        result = 31 * result + Objects.hashCode(f3);
+        result = 31 * result + Objects.hashCode(f4);
+        result = 31 * result + Objects.hashCode(f5);
+        result = 31 * result + Objects.hashCode(f6);
+        result = 31 * result + Objects.hashCode(f7);
+        result = 31 * result + Objects.hashCode(f8);
+        return result;
     }
 
     public static final class Builder {

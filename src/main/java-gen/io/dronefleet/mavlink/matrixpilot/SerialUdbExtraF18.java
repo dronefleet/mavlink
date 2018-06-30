@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F18 format 
@@ -92,6 +95,30 @@ public final class SerialUdbExtraF18 {
     )
     public final float referenceSpeed() {
         return this.referenceSpeed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF18 other = (SerialUdbExtraF18)o;
+        if (!Objects.deepEquals(angleOfAttackNormal, other.angleOfAttackNormal)) return false;
+        if (!Objects.deepEquals(angleOfAttackInverted, other.angleOfAttackInverted)) return false;
+        if (!Objects.deepEquals(elevatorTrimNormal, other.elevatorTrimNormal)) return false;
+        if (!Objects.deepEquals(elevatorTrimInverted, other.elevatorTrimInverted)) return false;
+        if (!Objects.deepEquals(referenceSpeed, other.referenceSpeed)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(angleOfAttackNormal);
+        result = 31 * result + Objects.hashCode(angleOfAttackInverted);
+        result = 31 * result + Objects.hashCode(elevatorTrimNormal);
+        result = 31 * result + Objects.hashCode(elevatorTrimInverted);
+        result = 31 * result + Objects.hashCode(referenceSpeed);
+        return result;
     }
 
     public static final class Builder {

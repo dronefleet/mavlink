@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Request to control this MAV 
@@ -83,6 +86,28 @@ public final class ChangeOperatorControl {
     )
     public final String passkey() {
         return this.passkey;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ChangeOperatorControl other = (ChangeOperatorControl)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(controlRequest, other.controlRequest)) return false;
+        if (!Objects.deepEquals(version, other.version)) return false;
+        if (!Objects.deepEquals(passkey, other.passkey)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(controlRequest);
+        result = 31 * result + Objects.hashCode(version);
+        result = 31 * result + Objects.hashCode(passkey);
+        return result;
     }
 
     public static final class Builder {

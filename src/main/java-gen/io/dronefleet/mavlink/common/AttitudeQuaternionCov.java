@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed 
@@ -112,6 +115,32 @@ public final class AttitudeQuaternionCov {
     )
     public final List<Float> covariance() {
         return this.covariance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AttitudeQuaternionCov other = (AttitudeQuaternionCov)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(q, other.q)) return false;
+        if (!Objects.deepEquals(rollspeed, other.rollspeed)) return false;
+        if (!Objects.deepEquals(pitchspeed, other.pitchspeed)) return false;
+        if (!Objects.deepEquals(yawspeed, other.yawspeed)) return false;
+        if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(q);
+        result = 31 * result + Objects.hashCode(rollspeed);
+        result = 31 * result + Objects.hashCode(pitchspeed);
+        result = 31 * result + Objects.hashCode(yawspeed);
+        result = 31 * result + Objects.hashCode(covariance);
+        return result;
     }
 
     public static final class Builder {

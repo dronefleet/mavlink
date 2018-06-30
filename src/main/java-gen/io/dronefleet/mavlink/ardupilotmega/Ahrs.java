@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of DCM attitude estimator 
@@ -120,6 +123,34 @@ public final class Ahrs {
     )
     public final float errorYaw() {
         return this.errorYaw;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Ahrs other = (Ahrs)o;
+        if (!Objects.deepEquals(omegaix, other.omegaix)) return false;
+        if (!Objects.deepEquals(omegaiy, other.omegaiy)) return false;
+        if (!Objects.deepEquals(omegaiz, other.omegaiz)) return false;
+        if (!Objects.deepEquals(accelWeight, other.accelWeight)) return false;
+        if (!Objects.deepEquals(renormVal, other.renormVal)) return false;
+        if (!Objects.deepEquals(errorRp, other.errorRp)) return false;
+        if (!Objects.deepEquals(errorYaw, other.errorYaw)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(omegaix);
+        result = 31 * result + Objects.hashCode(omegaiy);
+        result = 31 * result + Objects.hashCode(omegaiz);
+        result = 31 * result + Objects.hashCode(accelWeight);
+        result = 31 * result + Objects.hashCode(renormVal);
+        result = 31 * result + Objects.hashCode(errorRp);
+        result = 31 * result + Objects.hashCode(errorYaw);
+        return result;
     }
 
     public static final class Builder {

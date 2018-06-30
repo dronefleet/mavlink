@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Information about a camera 
@@ -211,6 +214,46 @@ public final class CameraInformation {
     )
     public final String camDefinitionUri() {
         return this.camDefinitionUri;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CameraInformation other = (CameraInformation)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(vendorName, other.vendorName)) return false;
+        if (!Objects.deepEquals(modelName, other.modelName)) return false;
+        if (!Objects.deepEquals(firmwareVersion, other.firmwareVersion)) return false;
+        if (!Objects.deepEquals(focalLength, other.focalLength)) return false;
+        if (!Objects.deepEquals(sensorSizeH, other.sensorSizeH)) return false;
+        if (!Objects.deepEquals(sensorSizeV, other.sensorSizeV)) return false;
+        if (!Objects.deepEquals(resolutionH, other.resolutionH)) return false;
+        if (!Objects.deepEquals(resolutionV, other.resolutionV)) return false;
+        if (!Objects.deepEquals(lensId, other.lensId)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(camDefinitionVersion, other.camDefinitionVersion)) return false;
+        if (!Objects.deepEquals(camDefinitionUri, other.camDefinitionUri)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(vendorName);
+        result = 31 * result + Objects.hashCode(modelName);
+        result = 31 * result + Objects.hashCode(firmwareVersion);
+        result = 31 * result + Objects.hashCode(focalLength);
+        result = 31 * result + Objects.hashCode(sensorSizeH);
+        result = 31 * result + Objects.hashCode(sensorSizeV);
+        result = 31 * result + Objects.hashCode(resolutionH);
+        result = 31 * result + Objects.hashCode(resolutionV);
+        result = 31 * result + Objects.hashCode(lensId);
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(camDefinitionVersion);
+        result = 31 * result + Objects.hashCode(camDefinitionUri);
+        return result;
     }
 
     public static final class Builder {

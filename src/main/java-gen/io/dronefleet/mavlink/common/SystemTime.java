@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * The system time is the time of the master clock, typically the computer clock of the main onboard 
@@ -51,6 +54,24 @@ public final class SystemTime {
     )
     public final long timeBootMs() {
         return this.timeBootMs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SystemTime other = (SystemTime)o;
+        if (!Objects.deepEquals(timeUnixUsec, other.timeUnixUsec)) return false;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUnixUsec);
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        return result;
     }
 
     public static final class Builder {

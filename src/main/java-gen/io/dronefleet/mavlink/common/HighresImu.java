@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * The IMU readings in SI units in NED body frame 
@@ -234,6 +237,50 @@ public final class HighresImu {
     )
     public final int fieldsUpdated() {
         return this.fieldsUpdated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HighresImu other = (HighresImu)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(xacc, other.xacc)) return false;
+        if (!Objects.deepEquals(yacc, other.yacc)) return false;
+        if (!Objects.deepEquals(zacc, other.zacc)) return false;
+        if (!Objects.deepEquals(xgyro, other.xgyro)) return false;
+        if (!Objects.deepEquals(ygyro, other.ygyro)) return false;
+        if (!Objects.deepEquals(zgyro, other.zgyro)) return false;
+        if (!Objects.deepEquals(xmag, other.xmag)) return false;
+        if (!Objects.deepEquals(ymag, other.ymag)) return false;
+        if (!Objects.deepEquals(zmag, other.zmag)) return false;
+        if (!Objects.deepEquals(absPressure, other.absPressure)) return false;
+        if (!Objects.deepEquals(diffPressure, other.diffPressure)) return false;
+        if (!Objects.deepEquals(pressureAlt, other.pressureAlt)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(fieldsUpdated, other.fieldsUpdated)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(xacc);
+        result = 31 * result + Objects.hashCode(yacc);
+        result = 31 * result + Objects.hashCode(zacc);
+        result = 31 * result + Objects.hashCode(xgyro);
+        result = 31 * result + Objects.hashCode(ygyro);
+        result = 31 * result + Objects.hashCode(zgyro);
+        result = 31 * result + Objects.hashCode(xmag);
+        result = 31 * result + Objects.hashCode(ymag);
+        result = 31 * result + Objects.hashCode(zmag);
+        result = 31 * result + Objects.hashCode(absPressure);
+        result = 31 * result + Objects.hashCode(diffPressure);
+        result = 31 * result + Objects.hashCode(pressureAlt);
+        result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(fieldsUpdated);
+        return result;
     }
 
     public static final class Builder {

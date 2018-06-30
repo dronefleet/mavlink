@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE {@link io.dronefleet.mavlink.common.CommandLong COMMAND_LONG} with MAV_CMD_DO_SET_MODE INSTEAD. Set the 
@@ -65,6 +68,26 @@ public final class SetMode {
     )
     public final long customMode() {
         return this.customMode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SetMode other = (SetMode)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(baseMode, other.baseMode)) return false;
+        if (!Objects.deepEquals(customMode, other.customMode)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(baseMode);
+        result = 31 * result + Objects.hashCode(customMode);
+        return result;
     }
 
     public static final class Builder {

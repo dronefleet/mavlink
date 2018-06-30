@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Emit the value of a onboard parameter. The inclusion of param_count and param_index in the 
@@ -98,6 +101,30 @@ public final class ParamValue {
     )
     public final int paramIndex() {
         return this.paramIndex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ParamValue other = (ParamValue)o;
+        if (!Objects.deepEquals(paramId, other.paramId)) return false;
+        if (!Objects.deepEquals(paramValue, other.paramValue)) return false;
+        if (!Objects.deepEquals(paramType, other.paramType)) return false;
+        if (!Objects.deepEquals(paramCount, other.paramCount)) return false;
+        if (!Objects.deepEquals(paramIndex, other.paramIndex)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(paramId);
+        result = 31 * result + Objects.hashCode(paramValue);
+        result = 31 * result + Objects.hashCode(paramType);
+        result = 31 * result + Objects.hashCode(paramCount);
+        result = 31 * result + Objects.hashCode(paramIndex);
+        return result;
     }
 
     public static final class Builder {

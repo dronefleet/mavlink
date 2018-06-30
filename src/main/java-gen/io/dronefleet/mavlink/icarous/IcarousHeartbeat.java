@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.icarous;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * ICAROUS heartbeat 
@@ -35,6 +38,22 @@ public final class IcarousHeartbeat {
     )
     public final IcarousFmsState status() {
         return this.status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        IcarousHeartbeat other = (IcarousHeartbeat)o;
+        if (!Objects.deepEquals(status, other.status)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(status);
+        return result;
     }
 
     public static final class Builder {

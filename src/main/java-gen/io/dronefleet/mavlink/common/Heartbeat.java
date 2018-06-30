@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The heartbeat message shows that a system is present and responding. The type of the MAV and 
@@ -110,6 +113,32 @@ public final class Heartbeat {
     )
     public final int mavlinkVersion() {
         return this.mavlinkVersion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Heartbeat other = (Heartbeat)o;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(autopilot, other.autopilot)) return false;
+        if (!Objects.deepEquals(baseMode, other.baseMode)) return false;
+        if (!Objects.deepEquals(customMode, other.customMode)) return false;
+        if (!Objects.deepEquals(systemStatus, other.systemStatus)) return false;
+        if (!Objects.deepEquals(mavlinkVersion, other.mavlinkVersion)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(autopilot);
+        result = 31 * result + Objects.hashCode(baseMode);
+        result = 31 * result + Objects.hashCode(customMode);
+        result = 31 * result + Objects.hashCode(systemStatus);
+        result = 31 * result + Objects.hashCode(mavlinkVersion);
+        return result;
     }
 
     public static final class Builder {

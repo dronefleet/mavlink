@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * PID tuning information 
@@ -120,6 +123,34 @@ public final class PidTuning {
     )
     public final float d() {
         return this.d;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        PidTuning other = (PidTuning)o;
+        if (!Objects.deepEquals(axis, other.axis)) return false;
+        if (!Objects.deepEquals(desired, other.desired)) return false;
+        if (!Objects.deepEquals(achieved, other.achieved)) return false;
+        if (!Objects.deepEquals(ff, other.ff)) return false;
+        if (!Objects.deepEquals(p, other.p)) return false;
+        if (!Objects.deepEquals(i, other.i)) return false;
+        if (!Objects.deepEquals(d, other.d)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(axis);
+        result = 31 * result + Objects.hashCode(desired);
+        result = 31 * result + Objects.hashCode(achieved);
+        result = 31 * result + Objects.hashCode(ff);
+        result = 31 * result + Objects.hashCode(p);
+        result = 31 * result + Objects.hashCode(i);
+        result = 31 * result + Objects.hashCode(d);
+        return result;
     }
 
     public static final class Builder {

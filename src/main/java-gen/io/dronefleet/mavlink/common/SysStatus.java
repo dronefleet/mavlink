@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The general system state. If the system is following the MAVLink standard, the system state is 
@@ -227,6 +230,46 @@ public final class SysStatus {
     )
     public final int errorsCount4() {
         return this.errorsCount4;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SysStatus other = (SysStatus)o;
+        if (!Objects.deepEquals(onboardControlSensorsPresent, other.onboardControlSensorsPresent)) return false;
+        if (!Objects.deepEquals(onboardControlSensorsEnabled, other.onboardControlSensorsEnabled)) return false;
+        if (!Objects.deepEquals(onboardControlSensorsHealth, other.onboardControlSensorsHealth)) return false;
+        if (!Objects.deepEquals(load, other.load)) return false;
+        if (!Objects.deepEquals(voltageBattery, other.voltageBattery)) return false;
+        if (!Objects.deepEquals(currentBattery, other.currentBattery)) return false;
+        if (!Objects.deepEquals(batteryRemaining, other.batteryRemaining)) return false;
+        if (!Objects.deepEquals(dropRateComm, other.dropRateComm)) return false;
+        if (!Objects.deepEquals(errorsComm, other.errorsComm)) return false;
+        if (!Objects.deepEquals(errorsCount1, other.errorsCount1)) return false;
+        if (!Objects.deepEquals(errorsCount2, other.errorsCount2)) return false;
+        if (!Objects.deepEquals(errorsCount3, other.errorsCount3)) return false;
+        if (!Objects.deepEquals(errorsCount4, other.errorsCount4)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(onboardControlSensorsPresent);
+        result = 31 * result + Objects.hashCode(onboardControlSensorsEnabled);
+        result = 31 * result + Objects.hashCode(onboardControlSensorsHealth);
+        result = 31 * result + Objects.hashCode(load);
+        result = 31 * result + Objects.hashCode(voltageBattery);
+        result = 31 * result + Objects.hashCode(currentBattery);
+        result = 31 * result + Objects.hashCode(batteryRemaining);
+        result = 31 * result + Objects.hashCode(dropRateComm);
+        result = 31 * result + Objects.hashCode(errorsComm);
+        result = 31 * result + Objects.hashCode(errorsCount1);
+        result = 31 * result + Objects.hashCode(errorsCount2);
+        result = 31 * result + Objects.hashCode(errorsCount3);
+        result = 31 * result + Objects.hashCode(errorsCount4);
+        return result;
     }
 
     public static final class Builder {

@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Version and capability of autopilot software 
@@ -206,6 +209,44 @@ public final class AutopilotVersion {
     )
     public final byte[] uid2() {
         return this.uid2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AutopilotVersion other = (AutopilotVersion)o;
+        if (!Objects.deepEquals(capabilities, other.capabilities)) return false;
+        if (!Objects.deepEquals(flightSwVersion, other.flightSwVersion)) return false;
+        if (!Objects.deepEquals(middlewareSwVersion, other.middlewareSwVersion)) return false;
+        if (!Objects.deepEquals(osSwVersion, other.osSwVersion)) return false;
+        if (!Objects.deepEquals(boardVersion, other.boardVersion)) return false;
+        if (!Objects.deepEquals(flightCustomVersion, other.flightCustomVersion)) return false;
+        if (!Objects.deepEquals(middlewareCustomVersion, other.middlewareCustomVersion)) return false;
+        if (!Objects.deepEquals(osCustomVersion, other.osCustomVersion)) return false;
+        if (!Objects.deepEquals(vendorId, other.vendorId)) return false;
+        if (!Objects.deepEquals(productId, other.productId)) return false;
+        if (!Objects.deepEquals(uid, other.uid)) return false;
+        if (!Objects.deepEquals(uid2, other.uid2)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(capabilities);
+        result = 31 * result + Objects.hashCode(flightSwVersion);
+        result = 31 * result + Objects.hashCode(middlewareSwVersion);
+        result = 31 * result + Objects.hashCode(osSwVersion);
+        result = 31 * result + Objects.hashCode(boardVersion);
+        result = 31 * result + Objects.hashCode(flightCustomVersion);
+        result = 31 * result + Objects.hashCode(middlewareCustomVersion);
+        result = 31 * result + Objects.hashCode(osCustomVersion);
+        result = 31 * result + Objects.hashCode(vendorId);
+        result = 31 * result + Objects.hashCode(productId);
+        result = 31 * result + Objects.hashCode(uid);
+        result = 31 * result + Objects.hashCode(uid2);
+        return result;
     }
 
     public static final class Builder {

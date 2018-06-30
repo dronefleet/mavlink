@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * camera vision based attitude and position deltas 
@@ -99,6 +102,30 @@ public final class VisionPositionDelta {
     )
     public final float confidence() {
         return this.confidence;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        VisionPositionDelta other = (VisionPositionDelta)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(timeDeltaUsec, other.timeDeltaUsec)) return false;
+        if (!Objects.deepEquals(angleDelta, other.angleDelta)) return false;
+        if (!Objects.deepEquals(positionDelta, other.positionDelta)) return false;
+        if (!Objects.deepEquals(confidence, other.confidence)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(timeDeltaUsec);
+        result = 31 * result + Objects.hashCode(angleDelta);
+        result = 31 * result + Objects.hashCode(positionDelta);
+        result = 31 * result + Objects.hashCode(confidence);
+        return result;
     }
 
     public static final class Builder {

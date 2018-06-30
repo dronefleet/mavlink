@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of compassmot calibration 
@@ -106,6 +109,32 @@ public final class CompassmotStatus {
     )
     public final float compensationz() {
         return this.compensationz;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CompassmotStatus other = (CompassmotStatus)o;
+        if (!Objects.deepEquals(throttle, other.throttle)) return false;
+        if (!Objects.deepEquals(current, other.current)) return false;
+        if (!Objects.deepEquals(interference, other.interference)) return false;
+        if (!Objects.deepEquals(compensationx, other.compensationx)) return false;
+        if (!Objects.deepEquals(compensationy, other.compensationy)) return false;
+        if (!Objects.deepEquals(compensationz, other.compensationz)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(throttle);
+        result = 31 * result + Objects.hashCode(current);
+        result = 31 * result + Objects.hashCode(interference);
+        result = 31 * result + Objects.hashCode(compensationx);
+        result = 31 * result + Objects.hashCode(compensationy);
+        result = 31 * result + Objects.hashCode(compensationz);
+        return result;
     }
 
     public static final class Builder {

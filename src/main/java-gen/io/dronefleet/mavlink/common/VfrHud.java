@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Metrics typically displayed on a HUD for fixed wing aircraft 
@@ -107,6 +110,32 @@ public final class VfrHud {
     )
     public final float climb() {
         return this.climb;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        VfrHud other = (VfrHud)o;
+        if (!Objects.deepEquals(airspeed, other.airspeed)) return false;
+        if (!Objects.deepEquals(groundspeed, other.groundspeed)) return false;
+        if (!Objects.deepEquals(heading, other.heading)) return false;
+        if (!Objects.deepEquals(throttle, other.throttle)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(climb, other.climb)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(airspeed);
+        result = 31 * result + Objects.hashCode(groundspeed);
+        result = 31 * result + Objects.hashCode(heading);
+        result = 31 * result + Objects.hashCode(throttle);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(climb);
+        return result;
     }
 
     public static final class Builder {

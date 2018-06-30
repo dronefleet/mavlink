@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message implementing parts of the V2 payload specs in V1 frames for transitional support. 
@@ -102,6 +105,30 @@ public final class V2Extension {
     )
     public final byte[] payload() {
         return this.payload;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        V2Extension other = (V2Extension)o;
+        if (!Objects.deepEquals(targetNetwork, other.targetNetwork)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(messageType, other.messageType)) return false;
+        if (!Objects.deepEquals(payload, other.payload)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetNetwork);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(messageType);
+        result = 31 * result + Objects.hashCode(payload);
+        return result;
     }
 
     public static final class Builder {

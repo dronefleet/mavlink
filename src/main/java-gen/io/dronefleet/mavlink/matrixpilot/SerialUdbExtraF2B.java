@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA - F2: Part B 
@@ -781,6 +784,120 @@ public final class SerialUdbExtraF2B {
     )
     public final int sueMemoryStackFree() {
         return this.sueMemoryStackFree;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF2B other = (SerialUdbExtraF2B)o;
+        if (!Objects.deepEquals(sueTime, other.sueTime)) return false;
+        if (!Objects.deepEquals(suePwmInput1, other.suePwmInput1)) return false;
+        if (!Objects.deepEquals(suePwmInput2, other.suePwmInput2)) return false;
+        if (!Objects.deepEquals(suePwmInput3, other.suePwmInput3)) return false;
+        if (!Objects.deepEquals(suePwmInput4, other.suePwmInput4)) return false;
+        if (!Objects.deepEquals(suePwmInput5, other.suePwmInput5)) return false;
+        if (!Objects.deepEquals(suePwmInput6, other.suePwmInput6)) return false;
+        if (!Objects.deepEquals(suePwmInput7, other.suePwmInput7)) return false;
+        if (!Objects.deepEquals(suePwmInput8, other.suePwmInput8)) return false;
+        if (!Objects.deepEquals(suePwmInput9, other.suePwmInput9)) return false;
+        if (!Objects.deepEquals(suePwmInput10, other.suePwmInput10)) return false;
+        if (!Objects.deepEquals(suePwmInput11, other.suePwmInput11)) return false;
+        if (!Objects.deepEquals(suePwmInput12, other.suePwmInput12)) return false;
+        if (!Objects.deepEquals(suePwmOutput1, other.suePwmOutput1)) return false;
+        if (!Objects.deepEquals(suePwmOutput2, other.suePwmOutput2)) return false;
+        if (!Objects.deepEquals(suePwmOutput3, other.suePwmOutput3)) return false;
+        if (!Objects.deepEquals(suePwmOutput4, other.suePwmOutput4)) return false;
+        if (!Objects.deepEquals(suePwmOutput5, other.suePwmOutput5)) return false;
+        if (!Objects.deepEquals(suePwmOutput6, other.suePwmOutput6)) return false;
+        if (!Objects.deepEquals(suePwmOutput7, other.suePwmOutput7)) return false;
+        if (!Objects.deepEquals(suePwmOutput8, other.suePwmOutput8)) return false;
+        if (!Objects.deepEquals(suePwmOutput9, other.suePwmOutput9)) return false;
+        if (!Objects.deepEquals(suePwmOutput10, other.suePwmOutput10)) return false;
+        if (!Objects.deepEquals(suePwmOutput11, other.suePwmOutput11)) return false;
+        if (!Objects.deepEquals(suePwmOutput12, other.suePwmOutput12)) return false;
+        if (!Objects.deepEquals(sueImuLocationX, other.sueImuLocationX)) return false;
+        if (!Objects.deepEquals(sueImuLocationY, other.sueImuLocationY)) return false;
+        if (!Objects.deepEquals(sueImuLocationZ, other.sueImuLocationZ)) return false;
+        if (!Objects.deepEquals(sueLocationErrorEarthX, other.sueLocationErrorEarthX)) return false;
+        if (!Objects.deepEquals(sueLocationErrorEarthY, other.sueLocationErrorEarthY)) return false;
+        if (!Objects.deepEquals(sueLocationErrorEarthZ, other.sueLocationErrorEarthZ)) return false;
+        if (!Objects.deepEquals(sueFlags, other.sueFlags)) return false;
+        if (!Objects.deepEquals(sueOscFails, other.sueOscFails)) return false;
+        if (!Objects.deepEquals(sueImuVelocityX, other.sueImuVelocityX)) return false;
+        if (!Objects.deepEquals(sueImuVelocityY, other.sueImuVelocityY)) return false;
+        if (!Objects.deepEquals(sueImuVelocityZ, other.sueImuVelocityZ)) return false;
+        if (!Objects.deepEquals(sueWaypointGoalX, other.sueWaypointGoalX)) return false;
+        if (!Objects.deepEquals(sueWaypointGoalY, other.sueWaypointGoalY)) return false;
+        if (!Objects.deepEquals(sueWaypointGoalZ, other.sueWaypointGoalZ)) return false;
+        if (!Objects.deepEquals(sueAeroX, other.sueAeroX)) return false;
+        if (!Objects.deepEquals(sueAeroY, other.sueAeroY)) return false;
+        if (!Objects.deepEquals(sueAeroZ, other.sueAeroZ)) return false;
+        if (!Objects.deepEquals(sueBaromTemp, other.sueBaromTemp)) return false;
+        if (!Objects.deepEquals(sueBaromPress, other.sueBaromPress)) return false;
+        if (!Objects.deepEquals(sueBaromAlt, other.sueBaromAlt)) return false;
+        if (!Objects.deepEquals(sueBatVolt, other.sueBatVolt)) return false;
+        if (!Objects.deepEquals(sueBatAmp, other.sueBatAmp)) return false;
+        if (!Objects.deepEquals(sueBatAmpHours, other.sueBatAmpHours)) return false;
+        if (!Objects.deepEquals(sueDesiredHeight, other.sueDesiredHeight)) return false;
+        if (!Objects.deepEquals(sueMemoryStackFree, other.sueMemoryStackFree)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueTime);
+        result = 31 * result + Objects.hashCode(suePwmInput1);
+        result = 31 * result + Objects.hashCode(suePwmInput2);
+        result = 31 * result + Objects.hashCode(suePwmInput3);
+        result = 31 * result + Objects.hashCode(suePwmInput4);
+        result = 31 * result + Objects.hashCode(suePwmInput5);
+        result = 31 * result + Objects.hashCode(suePwmInput6);
+        result = 31 * result + Objects.hashCode(suePwmInput7);
+        result = 31 * result + Objects.hashCode(suePwmInput8);
+        result = 31 * result + Objects.hashCode(suePwmInput9);
+        result = 31 * result + Objects.hashCode(suePwmInput10);
+        result = 31 * result + Objects.hashCode(suePwmInput11);
+        result = 31 * result + Objects.hashCode(suePwmInput12);
+        result = 31 * result + Objects.hashCode(suePwmOutput1);
+        result = 31 * result + Objects.hashCode(suePwmOutput2);
+        result = 31 * result + Objects.hashCode(suePwmOutput3);
+        result = 31 * result + Objects.hashCode(suePwmOutput4);
+        result = 31 * result + Objects.hashCode(suePwmOutput5);
+        result = 31 * result + Objects.hashCode(suePwmOutput6);
+        result = 31 * result + Objects.hashCode(suePwmOutput7);
+        result = 31 * result + Objects.hashCode(suePwmOutput8);
+        result = 31 * result + Objects.hashCode(suePwmOutput9);
+        result = 31 * result + Objects.hashCode(suePwmOutput10);
+        result = 31 * result + Objects.hashCode(suePwmOutput11);
+        result = 31 * result + Objects.hashCode(suePwmOutput12);
+        result = 31 * result + Objects.hashCode(sueImuLocationX);
+        result = 31 * result + Objects.hashCode(sueImuLocationY);
+        result = 31 * result + Objects.hashCode(sueImuLocationZ);
+        result = 31 * result + Objects.hashCode(sueLocationErrorEarthX);
+        result = 31 * result + Objects.hashCode(sueLocationErrorEarthY);
+        result = 31 * result + Objects.hashCode(sueLocationErrorEarthZ);
+        result = 31 * result + Objects.hashCode(sueFlags);
+        result = 31 * result + Objects.hashCode(sueOscFails);
+        result = 31 * result + Objects.hashCode(sueImuVelocityX);
+        result = 31 * result + Objects.hashCode(sueImuVelocityY);
+        result = 31 * result + Objects.hashCode(sueImuVelocityZ);
+        result = 31 * result + Objects.hashCode(sueWaypointGoalX);
+        result = 31 * result + Objects.hashCode(sueWaypointGoalY);
+        result = 31 * result + Objects.hashCode(sueWaypointGoalZ);
+        result = 31 * result + Objects.hashCode(sueAeroX);
+        result = 31 * result + Objects.hashCode(sueAeroY);
+        result = 31 * result + Objects.hashCode(sueAeroZ);
+        result = 31 * result + Objects.hashCode(sueBaromTemp);
+        result = 31 * result + Objects.hashCode(sueBaromPress);
+        result = 31 * result + Objects.hashCode(sueBaromAlt);
+        result = 31 * result + Objects.hashCode(sueBatVolt);
+        result = 31 * result + Objects.hashCode(sueBatAmp);
+        result = 31 * result + Objects.hashCode(sueBatAmpHours);
+        result = 31 * result + Objects.hashCode(sueDesiredHeight);
+        result = 31 * result + Objects.hashCode(sueMemoryStackFree);
+        return result;
     }
 
     public static final class Builder {

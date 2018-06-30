@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.icarous;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Kinematic multi bands (track) output from Daidalus 
@@ -249,6 +252,52 @@ public final class IcarousKinematicBands {
     )
     public final float max5() {
         return this.max5;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        IcarousKinematicBands other = (IcarousKinematicBands)o;
+        if (!Objects.deepEquals(numbands, other.numbands)) return false;
+        if (!Objects.deepEquals(type1, other.type1)) return false;
+        if (!Objects.deepEquals(min1, other.min1)) return false;
+        if (!Objects.deepEquals(max1, other.max1)) return false;
+        if (!Objects.deepEquals(type2, other.type2)) return false;
+        if (!Objects.deepEquals(min2, other.min2)) return false;
+        if (!Objects.deepEquals(max2, other.max2)) return false;
+        if (!Objects.deepEquals(type3, other.type3)) return false;
+        if (!Objects.deepEquals(min3, other.min3)) return false;
+        if (!Objects.deepEquals(max3, other.max3)) return false;
+        if (!Objects.deepEquals(type4, other.type4)) return false;
+        if (!Objects.deepEquals(min4, other.min4)) return false;
+        if (!Objects.deepEquals(max4, other.max4)) return false;
+        if (!Objects.deepEquals(type5, other.type5)) return false;
+        if (!Objects.deepEquals(min5, other.min5)) return false;
+        if (!Objects.deepEquals(max5, other.max5)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(numbands);
+        result = 31 * result + Objects.hashCode(type1);
+        result = 31 * result + Objects.hashCode(min1);
+        result = 31 * result + Objects.hashCode(max1);
+        result = 31 * result + Objects.hashCode(type2);
+        result = 31 * result + Objects.hashCode(min2);
+        result = 31 * result + Objects.hashCode(max2);
+        result = 31 * result + Objects.hashCode(type3);
+        result = 31 * result + Objects.hashCode(min3);
+        result = 31 * result + Objects.hashCode(max3);
+        result = 31 * result + Objects.hashCode(type4);
+        result = 31 * result + Objects.hashCode(min4);
+        result = 31 * result + Objects.hashCode(max4);
+        result = 31 * result + Objects.hashCode(type5);
+        result = 31 * result + Objects.hashCode(min5);
+        result = 31 * result + Objects.hashCode(max5);
+        return result;
     }
 
     public static final class Builder {

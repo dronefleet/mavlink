@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Configure AP SSID and Password. 
@@ -52,6 +55,24 @@ public final class WifiConfigAp {
     )
     public final String password() {
         return this.password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        WifiConfigAp other = (WifiConfigAp)o;
+        if (!Objects.deepEquals(ssid, other.ssid)) return false;
+        if (!Objects.deepEquals(password, other.password)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(ssid);
+        result = 31 * result + Objects.hashCode(password);
+        return result;
     }
 
     public static final class Builder {

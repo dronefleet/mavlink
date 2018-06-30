@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The autopilot is requesting a resource (file, binary, other type of data) 
@@ -96,6 +99,30 @@ public final class ResourceRequest {
     )
     public final byte[] storage() {
         return this.storage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ResourceRequest other = (ResourceRequest)o;
+        if (!Objects.deepEquals(requestId, other.requestId)) return false;
+        if (!Objects.deepEquals(uriType, other.uriType)) return false;
+        if (!Objects.deepEquals(uri, other.uri)) return false;
+        if (!Objects.deepEquals(transferType, other.transferType)) return false;
+        if (!Objects.deepEquals(storage, other.storage)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(requestId);
+        result = 31 * result + Objects.hashCode(uriType);
+        result = 31 * result + Objects.hashCode(uri);
+        result = 31 * result + Objects.hashCode(transferType);
+        result = 31 * result + Objects.hashCode(storage);
+        return result;
     }
 
     public static final class Builder {

@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Maximum Power Point Tracker (MPPT) sensor data for solar module power performance tracking 
@@ -206,6 +209,46 @@ public final class SensMppt {
     )
     public final int mppt3Status() {
         return this.mppt3Status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensMppt other = (SensMppt)o;
+        if (!Objects.deepEquals(mpptTimestamp, other.mpptTimestamp)) return false;
+        if (!Objects.deepEquals(mppt1Volt, other.mppt1Volt)) return false;
+        if (!Objects.deepEquals(mppt1Amp, other.mppt1Amp)) return false;
+        if (!Objects.deepEquals(mppt1Pwm, other.mppt1Pwm)) return false;
+        if (!Objects.deepEquals(mppt1Status, other.mppt1Status)) return false;
+        if (!Objects.deepEquals(mppt2Volt, other.mppt2Volt)) return false;
+        if (!Objects.deepEquals(mppt2Amp, other.mppt2Amp)) return false;
+        if (!Objects.deepEquals(mppt2Pwm, other.mppt2Pwm)) return false;
+        if (!Objects.deepEquals(mppt2Status, other.mppt2Status)) return false;
+        if (!Objects.deepEquals(mppt3Volt, other.mppt3Volt)) return false;
+        if (!Objects.deepEquals(mppt3Amp, other.mppt3Amp)) return false;
+        if (!Objects.deepEquals(mppt3Pwm, other.mppt3Pwm)) return false;
+        if (!Objects.deepEquals(mppt3Status, other.mppt3Status)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(mpptTimestamp);
+        result = 31 * result + Objects.hashCode(mppt1Volt);
+        result = 31 * result + Objects.hashCode(mppt1Amp);
+        result = 31 * result + Objects.hashCode(mppt1Pwm);
+        result = 31 * result + Objects.hashCode(mppt1Status);
+        result = 31 * result + Objects.hashCode(mppt2Volt);
+        result = 31 * result + Objects.hashCode(mppt2Amp);
+        result = 31 * result + Objects.hashCode(mppt2Pwm);
+        result = 31 * result + Objects.hashCode(mppt2Status);
+        result = 31 * result + Objects.hashCode(mppt3Volt);
+        result = 31 * result + Objects.hashCode(mppt3Amp);
+        result = 31 * result + Objects.hashCode(mppt3Pwm);
+        result = 31 * result + Objects.hashCode(mppt3Status);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message with some status from APM to GCS about camera or antenna mount 
@@ -95,6 +98,30 @@ public final class MountStatus {
     )
     public final int pointingC() {
         return this.pointingC;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MountStatus other = (MountStatus)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(pointingA, other.pointingA)) return false;
+        if (!Objects.deepEquals(pointingB, other.pointingB)) return false;
+        if (!Objects.deepEquals(pointingC, other.pointingC)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(pointingA);
+        result = 31 * result + Objects.hashCode(pointingB);
+        result = 31 * result + Objects.hashCode(pointingC);
+        return result;
     }
 
     public static final class Builder {

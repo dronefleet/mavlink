@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Sensor and DSC control loads. 
@@ -63,6 +66,26 @@ public final class CpuLoad {
     )
     public final int batvolt() {
         return this.batvolt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        CpuLoad other = (CpuLoad)o;
+        if (!Objects.deepEquals(sensload, other.sensload)) return false;
+        if (!Objects.deepEquals(ctrlload, other.ctrlload)) return false;
+        if (!Objects.deepEquals(batvolt, other.batvolt)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sensload);
+        result = 31 * result + Objects.hashCode(ctrlload);
+        result = 31 * result + Objects.hashCode(batvolt);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F4: format 
@@ -164,6 +167,40 @@ public final class SerialUdbExtraF4 {
     )
     public final int sueRacingMode() {
         return this.sueRacingMode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF4 other = (SerialUdbExtraF4)o;
+        if (!Objects.deepEquals(sueRollStabilizationAilerons, other.sueRollStabilizationAilerons)) return false;
+        if (!Objects.deepEquals(sueRollStabilizationRudder, other.sueRollStabilizationRudder)) return false;
+        if (!Objects.deepEquals(suePitchStabilization, other.suePitchStabilization)) return false;
+        if (!Objects.deepEquals(sueYawStabilizationRudder, other.sueYawStabilizationRudder)) return false;
+        if (!Objects.deepEquals(sueYawStabilizationAileron, other.sueYawStabilizationAileron)) return false;
+        if (!Objects.deepEquals(sueAileronNavigation, other.sueAileronNavigation)) return false;
+        if (!Objects.deepEquals(sueRudderNavigation, other.sueRudderNavigation)) return false;
+        if (!Objects.deepEquals(sueAltitudeholdStabilized, other.sueAltitudeholdStabilized)) return false;
+        if (!Objects.deepEquals(sueAltitudeholdWaypoint, other.sueAltitudeholdWaypoint)) return false;
+        if (!Objects.deepEquals(sueRacingMode, other.sueRacingMode)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueRollStabilizationAilerons);
+        result = 31 * result + Objects.hashCode(sueRollStabilizationRudder);
+        result = 31 * result + Objects.hashCode(suePitchStabilization);
+        result = 31 * result + Objects.hashCode(sueYawStabilizationRudder);
+        result = 31 * result + Objects.hashCode(sueYawStabilizationAileron);
+        result = 31 * result + Objects.hashCode(sueAileronNavigation);
+        result = 31 * result + Objects.hashCode(sueRudderNavigation);
+        result = 31 * result + Objects.hashCode(sueAltitudeholdStabilized);
+        result = 31 * result + Objects.hashCode(sueAltitudeholdWaypoint);
+        result = 31 * result + Objects.hashCode(sueRacingMode);
+        return result;
     }
 
     public static final class Builder {

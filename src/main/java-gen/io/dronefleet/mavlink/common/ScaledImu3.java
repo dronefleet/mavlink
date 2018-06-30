@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The RAW IMU readings for 3rd 9DOF sensor setup. This message should contain the scaled values to 
@@ -172,6 +175,40 @@ public final class ScaledImu3 {
     )
     public final int zmag() {
         return this.zmag;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ScaledImu3 other = (ScaledImu3)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(xacc, other.xacc)) return false;
+        if (!Objects.deepEquals(yacc, other.yacc)) return false;
+        if (!Objects.deepEquals(zacc, other.zacc)) return false;
+        if (!Objects.deepEquals(xgyro, other.xgyro)) return false;
+        if (!Objects.deepEquals(ygyro, other.ygyro)) return false;
+        if (!Objects.deepEquals(zgyro, other.zgyro)) return false;
+        if (!Objects.deepEquals(xmag, other.xmag)) return false;
+        if (!Objects.deepEquals(ymag, other.ymag)) return false;
+        if (!Objects.deepEquals(zmag, other.zmag)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(xacc);
+        result = 31 * result + Objects.hashCode(yacc);
+        result = 31 * result + Objects.hashCode(zacc);
+        result = 31 * result + Objects.hashCode(xgyro);
+        result = 31 * result + Objects.hashCode(ygyro);
+        result = 31 * result + Objects.hashCode(zgyro);
+        result = 31 * result + Objects.hashCode(xmag);
+        result = 31 * result + Objects.hashCode(ymag);
+        result = 31 * result + Objects.hashCode(zmag);
+        return result;
     }
 
     public static final class Builder {

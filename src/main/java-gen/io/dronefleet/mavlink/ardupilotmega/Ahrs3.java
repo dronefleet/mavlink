@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available. This is for ANU research group (Ali and Sean) 
@@ -164,6 +167,40 @@ public final class Ahrs3 {
     )
     public final float v4() {
         return this.v4;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Ahrs3 other = (Ahrs3)o;
+        if (!Objects.deepEquals(roll, other.roll)) return false;
+        if (!Objects.deepEquals(pitch, other.pitch)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lng, other.lng)) return false;
+        if (!Objects.deepEquals(v1, other.v1)) return false;
+        if (!Objects.deepEquals(v2, other.v2)) return false;
+        if (!Objects.deepEquals(v3, other.v3)) return false;
+        if (!Objects.deepEquals(v4, other.v4)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(roll);
+        result = 31 * result + Objects.hashCode(pitch);
+        result = 31 * result + Objects.hashCode(yaw);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lng);
+        result = 31 * result + Objects.hashCode(v1);
+        result = 31 * result + Objects.hashCode(v2);
+        result = 31 * result + Objects.hashCode(v3);
+        result = 31 * result + Objects.hashCode(v4);
+        return result;
     }
 
     public static final class Builder {

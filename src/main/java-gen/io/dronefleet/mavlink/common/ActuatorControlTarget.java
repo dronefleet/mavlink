@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Set the vehicle attitude and body angular rates. 
@@ -71,6 +74,26 @@ public final class ActuatorControlTarget {
     )
     public final List<Float> controls() {
         return this.controls;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ActuatorControlTarget other = (ActuatorControlTarget)o;
+        if (!Objects.deepEquals(timeUsec, other.timeUsec)) return false;
+        if (!Objects.deepEquals(groupMlx, other.groupMlx)) return false;
+        if (!Objects.deepEquals(controls, other.controls)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeUsec);
+        result = 31 * result + Objects.hashCode(groupMlx);
+        result = 31 * result + Objects.hashCode(controls);
+        return result;
     }
 
     public static final class Builder {

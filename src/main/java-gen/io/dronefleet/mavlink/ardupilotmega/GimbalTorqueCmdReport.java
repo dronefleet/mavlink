@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * 100 Hz gimbal torque command telemetry 
@@ -95,6 +98,30 @@ public final class GimbalTorqueCmdReport {
     )
     public final int azTorqueCmd() {
         return this.azTorqueCmd;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GimbalTorqueCmdReport other = (GimbalTorqueCmdReport)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(rlTorqueCmd, other.rlTorqueCmd)) return false;
+        if (!Objects.deepEquals(elTorqueCmd, other.elTorqueCmd)) return false;
+        if (!Objects.deepEquals(azTorqueCmd, other.azTorqueCmd)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(rlTorqueCmd);
+        result = 31 * result + Objects.hashCode(elTorqueCmd);
+        result = 31 * result + Objects.hashCode(azTorqueCmd);
+        return result;
     }
 
     public static final class Builder {

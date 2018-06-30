@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * WIP: Message appropriate for high latency connections like Iridium (version 2) 
@@ -415,6 +418,74 @@ public final class HighLatency2 {
     )
     public final int custom2() {
         return this.custom2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        HighLatency2 other = (HighLatency2)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(autopilot, other.autopilot)) return false;
+        if (!Objects.deepEquals(customMode, other.customMode)) return false;
+        if (!Objects.deepEquals(latitude, other.latitude)) return false;
+        if (!Objects.deepEquals(longitude, other.longitude)) return false;
+        if (!Objects.deepEquals(altitude, other.altitude)) return false;
+        if (!Objects.deepEquals(targetAltitude, other.targetAltitude)) return false;
+        if (!Objects.deepEquals(heading, other.heading)) return false;
+        if (!Objects.deepEquals(targetHeading, other.targetHeading)) return false;
+        if (!Objects.deepEquals(targetDistance, other.targetDistance)) return false;
+        if (!Objects.deepEquals(throttle, other.throttle)) return false;
+        if (!Objects.deepEquals(airspeed, other.airspeed)) return false;
+        if (!Objects.deepEquals(airspeedSp, other.airspeedSp)) return false;
+        if (!Objects.deepEquals(groundspeed, other.groundspeed)) return false;
+        if (!Objects.deepEquals(windspeed, other.windspeed)) return false;
+        if (!Objects.deepEquals(windHeading, other.windHeading)) return false;
+        if (!Objects.deepEquals(eph, other.eph)) return false;
+        if (!Objects.deepEquals(epv, other.epv)) return false;
+        if (!Objects.deepEquals(temperatureAir, other.temperatureAir)) return false;
+        if (!Objects.deepEquals(climbRate, other.climbRate)) return false;
+        if (!Objects.deepEquals(battery, other.battery)) return false;
+        if (!Objects.deepEquals(wpNum, other.wpNum)) return false;
+        if (!Objects.deepEquals(failureFlags, other.failureFlags)) return false;
+        if (!Objects.deepEquals(custom0, other.custom0)) return false;
+        if (!Objects.deepEquals(custom1, other.custom1)) return false;
+        if (!Objects.deepEquals(custom2, other.custom2)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(autopilot);
+        result = 31 * result + Objects.hashCode(customMode);
+        result = 31 * result + Objects.hashCode(latitude);
+        result = 31 * result + Objects.hashCode(longitude);
+        result = 31 * result + Objects.hashCode(altitude);
+        result = 31 * result + Objects.hashCode(targetAltitude);
+        result = 31 * result + Objects.hashCode(heading);
+        result = 31 * result + Objects.hashCode(targetHeading);
+        result = 31 * result + Objects.hashCode(targetDistance);
+        result = 31 * result + Objects.hashCode(throttle);
+        result = 31 * result + Objects.hashCode(airspeed);
+        result = 31 * result + Objects.hashCode(airspeedSp);
+        result = 31 * result + Objects.hashCode(groundspeed);
+        result = 31 * result + Objects.hashCode(windspeed);
+        result = 31 * result + Objects.hashCode(windHeading);
+        result = 31 * result + Objects.hashCode(eph);
+        result = 31 * result + Objects.hashCode(epv);
+        result = 31 * result + Objects.hashCode(temperatureAir);
+        result = 31 * result + Objects.hashCode(climbRate);
+        result = 31 * result + Objects.hashCode(battery);
+        result = 31 * result + Objects.hashCode(wpNum);
+        result = 31 * result + Objects.hashCode(failureFlags);
+        result = 31 * result + Objects.hashCode(custom0);
+        result = 31 * result + Objects.hashCode(custom1);
+        result = 31 * result + Objects.hashCode(custom2);
+        return result;
     }
 
     public static final class Builder {

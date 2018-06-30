@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * 3 axis gimbal mesuraments 
@@ -191,6 +194,44 @@ public final class GimbalReport {
     )
     public final float jointAz() {
         return this.jointAz;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        GimbalReport other = (GimbalReport)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(deltaTime, other.deltaTime)) return false;
+        if (!Objects.deepEquals(deltaAngleX, other.deltaAngleX)) return false;
+        if (!Objects.deepEquals(deltaAngleY, other.deltaAngleY)) return false;
+        if (!Objects.deepEquals(deltaAngleZ, other.deltaAngleZ)) return false;
+        if (!Objects.deepEquals(deltaVelocityX, other.deltaVelocityX)) return false;
+        if (!Objects.deepEquals(deltaVelocityY, other.deltaVelocityY)) return false;
+        if (!Objects.deepEquals(deltaVelocityZ, other.deltaVelocityZ)) return false;
+        if (!Objects.deepEquals(jointRoll, other.jointRoll)) return false;
+        if (!Objects.deepEquals(jointEl, other.jointEl)) return false;
+        if (!Objects.deepEquals(jointAz, other.jointAz)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(deltaTime);
+        result = 31 * result + Objects.hashCode(deltaAngleX);
+        result = 31 * result + Objects.hashCode(deltaAngleY);
+        result = 31 * result + Objects.hashCode(deltaAngleZ);
+        result = 31 * result + Objects.hashCode(deltaVelocityX);
+        result = 31 * result + Objects.hashCode(deltaVelocityY);
+        result = 31 * result + Objects.hashCode(deltaVelocityZ);
+        result = 31 * result + Objects.hashCode(jointRoll);
+        result = 31 * result + Objects.hashCode(jointEl);
+        result = 31 * result + Objects.hashCode(jointAz);
+        return result;
     }
 
     public static final class Builder {

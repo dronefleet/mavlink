@@ -4,7 +4,10 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Battery information 
@@ -195,6 +198,42 @@ public final class BatteryStatus {
     )
     public final MavBatteryChargeState chargeState() {
         return this.chargeState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        BatteryStatus other = (BatteryStatus)o;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(batteryFunction, other.batteryFunction)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(voltages, other.voltages)) return false;
+        if (!Objects.deepEquals(currentBattery, other.currentBattery)) return false;
+        if (!Objects.deepEquals(currentConsumed, other.currentConsumed)) return false;
+        if (!Objects.deepEquals(energyConsumed, other.energyConsumed)) return false;
+        if (!Objects.deepEquals(batteryRemaining, other.batteryRemaining)) return false;
+        if (!Objects.deepEquals(timeRemaining, other.timeRemaining)) return false;
+        if (!Objects.deepEquals(chargeState, other.chargeState)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(batteryFunction);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(voltages);
+        result = 31 * result + Objects.hashCode(currentBattery);
+        result = 31 * result + Objects.hashCode(currentConsumed);
+        result = 31 * result + Objects.hashCode(energyConsumed);
+        result = 31 * result + Objects.hashCode(batteryRemaining);
+        result = 31 * result + Objects.hashCode(timeRemaining);
+        result = 31 * result + Objects.hashCode(chargeState);
+        return result;
     }
 
     public static final class Builder {

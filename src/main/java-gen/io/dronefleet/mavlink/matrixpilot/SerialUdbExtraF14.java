@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F14: format 
@@ -180,6 +183,42 @@ public final class SerialUdbExtraF14 {
     )
     public final int sueFlightPlanType() {
         return this.sueFlightPlanType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF14 other = (SerialUdbExtraF14)o;
+        if (!Objects.deepEquals(sueWindEstimation, other.sueWindEstimation)) return false;
+        if (!Objects.deepEquals(sueGpsType, other.sueGpsType)) return false;
+        if (!Objects.deepEquals(sueDr, other.sueDr)) return false;
+        if (!Objects.deepEquals(sueBoardType, other.sueBoardType)) return false;
+        if (!Objects.deepEquals(sueAirframe, other.sueAirframe)) return false;
+        if (!Objects.deepEquals(sueRcon, other.sueRcon)) return false;
+        if (!Objects.deepEquals(sueTrapFlags, other.sueTrapFlags)) return false;
+        if (!Objects.deepEquals(sueTrapSource, other.sueTrapSource)) return false;
+        if (!Objects.deepEquals(sueOscFailCount, other.sueOscFailCount)) return false;
+        if (!Objects.deepEquals(sueClockConfig, other.sueClockConfig)) return false;
+        if (!Objects.deepEquals(sueFlightPlanType, other.sueFlightPlanType)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueWindEstimation);
+        result = 31 * result + Objects.hashCode(sueGpsType);
+        result = 31 * result + Objects.hashCode(sueDr);
+        result = 31 * result + Objects.hashCode(sueBoardType);
+        result = 31 * result + Objects.hashCode(sueAirframe);
+        result = 31 * result + Objects.hashCode(sueRcon);
+        result = 31 * result + Objects.hashCode(sueTrapFlags);
+        result = 31 * result + Objects.hashCode(sueTrapSource);
+        result = 31 * result + Objects.hashCode(sueOscFailCount);
+        result = 31 * result + Objects.hashCode(sueClockConfig);
+        result = 31 * result + Objects.hashCode(sueFlightPlanType);
+        return result;
     }
 
     public static final class Builder {

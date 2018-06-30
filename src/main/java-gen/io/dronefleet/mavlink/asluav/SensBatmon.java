@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Battery pack monitoring data for Li-Ion batteries 
@@ -236,6 +239,50 @@ public final class SensBatmon {
     )
     public final int cellvoltage6() {
         return this.cellvoltage6;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensBatmon other = (SensBatmon)o;
+        if (!Objects.deepEquals(batmonTimestamp, other.batmonTimestamp)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(voltage, other.voltage)) return false;
+        if (!Objects.deepEquals(current, other.current)) return false;
+        if (!Objects.deepEquals(soc, other.soc)) return false;
+        if (!Objects.deepEquals(batterystatus, other.batterystatus)) return false;
+        if (!Objects.deepEquals(serialnumber, other.serialnumber)) return false;
+        if (!Objects.deepEquals(safetystatus, other.safetystatus)) return false;
+        if (!Objects.deepEquals(operationstatus, other.operationstatus)) return false;
+        if (!Objects.deepEquals(cellvoltage1, other.cellvoltage1)) return false;
+        if (!Objects.deepEquals(cellvoltage2, other.cellvoltage2)) return false;
+        if (!Objects.deepEquals(cellvoltage3, other.cellvoltage3)) return false;
+        if (!Objects.deepEquals(cellvoltage4, other.cellvoltage4)) return false;
+        if (!Objects.deepEquals(cellvoltage5, other.cellvoltage5)) return false;
+        if (!Objects.deepEquals(cellvoltage6, other.cellvoltage6)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(batmonTimestamp);
+        result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(voltage);
+        result = 31 * result + Objects.hashCode(current);
+        result = 31 * result + Objects.hashCode(soc);
+        result = 31 * result + Objects.hashCode(batterystatus);
+        result = 31 * result + Objects.hashCode(serialnumber);
+        result = 31 * result + Objects.hashCode(safetystatus);
+        result = 31 * result + Objects.hashCode(operationstatus);
+        result = 31 * result + Objects.hashCode(cellvoltage1);
+        result = 31 * result + Objects.hashCode(cellvoltage2);
+        result = 31 * result + Objects.hashCode(cellvoltage3);
+        result = 31 * result + Objects.hashCode(cellvoltage4);
+        result = 31 * result + Objects.hashCode(cellvoltage5);
+        result = 31 * result + Objects.hashCode(cellvoltage6);
+        return result;
     }
 
     public static final class Builder {

@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Accelerometer and gyro biases. 
@@ -106,6 +109,32 @@ public final class SensorBias {
     )
     public final float gzbias() {
         return this.gzbias;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SensorBias other = (SensorBias)o;
+        if (!Objects.deepEquals(axbias, other.axbias)) return false;
+        if (!Objects.deepEquals(aybias, other.aybias)) return false;
+        if (!Objects.deepEquals(azbias, other.azbias)) return false;
+        if (!Objects.deepEquals(gxbias, other.gxbias)) return false;
+        if (!Objects.deepEquals(gybias, other.gybias)) return false;
+        if (!Objects.deepEquals(gzbias, other.gzbias)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(axbias);
+        result = 31 * result + Objects.hashCode(aybias);
+        result = 31 * result + Objects.hashCode(azbias);
+        result = 31 * result + Objects.hashCode(gxbias);
+        result = 31 * result + Objects.hashCode(gybias);
+        result = 31 * result + Objects.hashCode(gzbias);
+        return result;
     }
 
     public static final class Builder {

@@ -3,7 +3,10 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
 import java.lang.String;
+import java.util.Objects;
 
 /**
  * Read registers for a device 
@@ -151,6 +154,38 @@ public final class DeviceOpRead {
     )
     public final int count() {
         return this.count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DeviceOpRead other = (DeviceOpRead)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(requestId, other.requestId)) return false;
+        if (!Objects.deepEquals(bustype, other.bustype)) return false;
+        if (!Objects.deepEquals(bus, other.bus)) return false;
+        if (!Objects.deepEquals(address, other.address)) return false;
+        if (!Objects.deepEquals(busname, other.busname)) return false;
+        if (!Objects.deepEquals(regstart, other.regstart)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(requestId);
+        result = 31 * result + Objects.hashCode(bustype);
+        result = 31 * result + Objects.hashCode(bus);
+        result = 31 * result + Objects.hashCode(address);
+        result = 31 * result + Objects.hashCode(busname);
+        result = 31 * result + Objects.hashCode(regstart);
+        result = 31 * result + Objects.hashCode(count);
+        return result;
     }
 
     public static final class Builder {

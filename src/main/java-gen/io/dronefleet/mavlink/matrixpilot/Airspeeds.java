@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The airspeed measured by sensors and IMU 
@@ -126,6 +129,34 @@ public final class Airspeeds {
     )
     public final int aoy() {
         return this.aoy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        Airspeeds other = (Airspeeds)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(airspeedImu, other.airspeedImu)) return false;
+        if (!Objects.deepEquals(airspeedPitot, other.airspeedPitot)) return false;
+        if (!Objects.deepEquals(airspeedHotWire, other.airspeedHotWire)) return false;
+        if (!Objects.deepEquals(airspeedUltrasonic, other.airspeedUltrasonic)) return false;
+        if (!Objects.deepEquals(aoa, other.aoa)) return false;
+        if (!Objects.deepEquals(aoy, other.aoy)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(airspeedImu);
+        result = 31 * result + Objects.hashCode(airspeedPitot);
+        result = 31 * result + Objects.hashCode(airspeedHotWire);
+        result = 31 * result + Objects.hashCode(airspeedUltrasonic);
+        result = 31 * result + Objects.hashCode(aoa);
+        result = 31 * result + Objects.hashCode(aoy);
+        return result;
     }
 
     public static final class Builder {

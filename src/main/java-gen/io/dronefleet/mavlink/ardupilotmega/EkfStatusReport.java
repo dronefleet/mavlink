@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * EKF Status message including flags and variances 
@@ -122,6 +125,34 @@ public final class EkfStatusReport {
     )
     public final float airspeedVariance() {
         return this.airspeedVariance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        EkfStatusReport other = (EkfStatusReport)o;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(velocityVariance, other.velocityVariance)) return false;
+        if (!Objects.deepEquals(posHorizVariance, other.posHorizVariance)) return false;
+        if (!Objects.deepEquals(posVertVariance, other.posVertVariance)) return false;
+        if (!Objects.deepEquals(compassVariance, other.compassVariance)) return false;
+        if (!Objects.deepEquals(terrainAltVariance, other.terrainAltVariance)) return false;
+        if (!Objects.deepEquals(airspeedVariance, other.airspeedVariance)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(velocityVariance);
+        result = 31 * result + Objects.hashCode(posHorizVariance);
+        result = 31 * result + Objects.hashCode(posVertVariance);
+        result = 31 * result + Objects.hashCode(compassVariance);
+        result = 31 * result + Objects.hashCode(terrainAltVariance);
+        result = 31 * result + Objects.hashCode(airspeedVariance);
+        return result;
     }
 
     public static final class Builder {

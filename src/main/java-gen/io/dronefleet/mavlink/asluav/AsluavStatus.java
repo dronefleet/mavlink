@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.asluav;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Extended state information for ASLUAVs 
@@ -78,6 +81,28 @@ public final class AsluavStatus {
     )
     public final float motorRpm() {
         return this.motorRpm;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AsluavStatus other = (AsluavStatus)o;
+        if (!Objects.deepEquals(ledStatus, other.ledStatus)) return false;
+        if (!Objects.deepEquals(satcomStatus, other.satcomStatus)) return false;
+        if (!Objects.deepEquals(servoStatus, other.servoStatus)) return false;
+        if (!Objects.deepEquals(motorRpm, other.motorRpm)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(ledStatus);
+        result = 31 * result + Objects.hashCode(satcomStatus);
+        result = 31 * result + Objects.hashCode(servoStatus);
+        result = 31 * result + Objects.hashCode(motorRpm);
+        return result;
     }
 
     public static final class Builder {

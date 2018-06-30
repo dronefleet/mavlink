@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Adaptive Controller tuning information 
@@ -205,6 +208,46 @@ public final class AdapTuning {
     )
     public final float u() {
         return this.u;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AdapTuning other = (AdapTuning)o;
+        if (!Objects.deepEquals(axis, other.axis)) return false;
+        if (!Objects.deepEquals(desired, other.desired)) return false;
+        if (!Objects.deepEquals(achieved, other.achieved)) return false;
+        if (!Objects.deepEquals(error, other.error)) return false;
+        if (!Objects.deepEquals(theta, other.theta)) return false;
+        if (!Objects.deepEquals(omega, other.omega)) return false;
+        if (!Objects.deepEquals(sigma, other.sigma)) return false;
+        if (!Objects.deepEquals(thetaDot, other.thetaDot)) return false;
+        if (!Objects.deepEquals(omegaDot, other.omegaDot)) return false;
+        if (!Objects.deepEquals(sigmaDot, other.sigmaDot)) return false;
+        if (!Objects.deepEquals(f, other.f)) return false;
+        if (!Objects.deepEquals(fDot, other.fDot)) return false;
+        if (!Objects.deepEquals(u, other.u)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(axis);
+        result = 31 * result + Objects.hashCode(desired);
+        result = 31 * result + Objects.hashCode(achieved);
+        result = 31 * result + Objects.hashCode(error);
+        result = 31 * result + Objects.hashCode(theta);
+        result = 31 * result + Objects.hashCode(omega);
+        result = 31 * result + Objects.hashCode(sigma);
+        result = 31 * result + Objects.hashCode(thetaDot);
+        result = 31 * result + Objects.hashCode(omegaDot);
+        result = 31 * result + Objects.hashCode(sigmaDot);
+        result = 31 * result + Objects.hashCode(f);
+        result = 31 * result + Objects.hashCode(fDot);
+        result = 31 * result + Objects.hashCode(u);
+        return result;
     }
 
     public static final class Builder {

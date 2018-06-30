@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.matrixpilot;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Backwards compatible version of SERIAL_UDB_EXTRA F20 format 
@@ -219,6 +222,46 @@ public final class SerialUdbExtraF20 {
     )
     public final int sueTrimValueInput12() {
         return this.sueTrimValueInput12;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialUdbExtraF20 other = (SerialUdbExtraF20)o;
+        if (!Objects.deepEquals(sueNumberOfInputs, other.sueNumberOfInputs)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput1, other.sueTrimValueInput1)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput2, other.sueTrimValueInput2)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput3, other.sueTrimValueInput3)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput4, other.sueTrimValueInput4)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput5, other.sueTrimValueInput5)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput6, other.sueTrimValueInput6)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput7, other.sueTrimValueInput7)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput8, other.sueTrimValueInput8)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput9, other.sueTrimValueInput9)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput10, other.sueTrimValueInput10)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput11, other.sueTrimValueInput11)) return false;
+        if (!Objects.deepEquals(sueTrimValueInput12, other.sueTrimValueInput12)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(sueNumberOfInputs);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput1);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput2);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput3);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput4);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput5);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput6);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput7);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput8);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput9);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput10);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput11);
+        result = 31 * result + Objects.hashCode(sueTrimValueInput12);
+        return result;
     }
 
     public static final class Builder {

@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Control a serial port. This can be used for raw access to an onboard serial peripheral such as a 
@@ -111,6 +114,32 @@ public final class SerialControl {
     )
     public final byte[] data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SerialControl other = (SerialControl)o;
+        if (!Objects.deepEquals(device, other.device)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
+        if (!Objects.deepEquals(timeout, other.timeout)) return false;
+        if (!Objects.deepEquals(baudrate, other.baudrate)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(device);
+        result = 31 * result + Objects.hashCode(flags);
+        result = 31 * result + Objects.hashCode(timeout);
+        result = 31 * result + Objects.hashCode(baudrate);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

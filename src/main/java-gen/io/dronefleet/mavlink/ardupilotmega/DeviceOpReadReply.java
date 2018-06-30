@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Read registers reply 
@@ -92,6 +95,30 @@ public final class DeviceOpReadReply {
     )
     public final byte[] data() {
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        DeviceOpReadReply other = (DeviceOpReadReply)o;
+        if (!Objects.deepEquals(requestId, other.requestId)) return false;
+        if (!Objects.deepEquals(result, other.result)) return false;
+        if (!Objects.deepEquals(regstart, other.regstart)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(data, other.data)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(requestId);
+        result = 31 * result + Objects.hashCode(result);
+        result = 31 * result + Objects.hashCode(regstart);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(data);
+        return result;
     }
 
     public static final class Builder {

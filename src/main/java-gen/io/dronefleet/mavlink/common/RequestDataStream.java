@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * THIS INTERFACE IS DEPRECATED. USE SET_MESSAGE_INTERVAL INSTEAD. 
@@ -92,6 +95,30 @@ public final class RequestDataStream {
     )
     public final int startStop() {
         return this.startStop;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        RequestDataStream other = (RequestDataStream)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(reqStreamId, other.reqStreamId)) return false;
+        if (!Objects.deepEquals(reqMessageRate, other.reqMessageRate)) return false;
+        if (!Objects.deepEquals(startStop, other.startStop)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(reqStreamId);
+        result = 31 * result + Objects.hashCode(reqMessageRate);
+        result = 31 * result + Objects.hashCode(startStop);
+        return result;
     }
 
     public static final class Builder {

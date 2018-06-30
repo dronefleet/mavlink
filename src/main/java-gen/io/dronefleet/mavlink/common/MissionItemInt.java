@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message encoding a mission item. This message is emitted to announce the presence of a mission 
@@ -240,6 +243,50 @@ public final class MissionItemInt {
     )
     public final MavMissionType missionType() {
         return this.missionType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MissionItemInt other = (MissionItemInt)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(seq, other.seq)) return false;
+        if (!Objects.deepEquals(frame, other.frame)) return false;
+        if (!Objects.deepEquals(command, other.command)) return false;
+        if (!Objects.deepEquals(current, other.current)) return false;
+        if (!Objects.deepEquals(autocontinue, other.autocontinue)) return false;
+        if (!Objects.deepEquals(param1, other.param1)) return false;
+        if (!Objects.deepEquals(param2, other.param2)) return false;
+        if (!Objects.deepEquals(param3, other.param3)) return false;
+        if (!Objects.deepEquals(param4, other.param4)) return false;
+        if (!Objects.deepEquals(x, other.x)) return false;
+        if (!Objects.deepEquals(y, other.y)) return false;
+        if (!Objects.deepEquals(z, other.z)) return false;
+        if (!Objects.deepEquals(missionType, other.missionType)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(seq);
+        result = 31 * result + Objects.hashCode(frame);
+        result = 31 * result + Objects.hashCode(command);
+        result = 31 * result + Objects.hashCode(current);
+        result = 31 * result + Objects.hashCode(autocontinue);
+        result = 31 * result + Objects.hashCode(param1);
+        result = 31 * result + Objects.hashCode(param2);
+        result = 31 * result + Objects.hashCode(param3);
+        result = 31 * result + Objects.hashCode(param4);
+        result = 31 * result + Objects.hashCode(x);
+        result = 31 * result + Objects.hashCode(y);
+        result = 31 * result + Objects.hashCode(z);
+        result = 31 * result + Objects.hashCode(missionType);
+        return result;
     }
 
     public static final class Builder {

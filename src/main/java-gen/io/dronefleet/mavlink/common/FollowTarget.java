@@ -4,8 +4,11 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
+import java.lang.Object;
+import java.lang.Override;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * current motion information from a designated system 
@@ -187,6 +190,42 @@ public final class FollowTarget {
     )
     public final BigInteger customState() {
         return this.customState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        FollowTarget other = (FollowTarget)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
+        if (!Objects.deepEquals(estCapabilities, other.estCapabilities)) return false;
+        if (!Objects.deepEquals(lat, other.lat)) return false;
+        if (!Objects.deepEquals(lon, other.lon)) return false;
+        if (!Objects.deepEquals(alt, other.alt)) return false;
+        if (!Objects.deepEquals(vel, other.vel)) return false;
+        if (!Objects.deepEquals(acc, other.acc)) return false;
+        if (!Objects.deepEquals(attitudeQ, other.attitudeQ)) return false;
+        if (!Objects.deepEquals(rates, other.rates)) return false;
+        if (!Objects.deepEquals(positionCov, other.positionCov)) return false;
+        if (!Objects.deepEquals(customState, other.customState)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
+        result = 31 * result + Objects.hashCode(estCapabilities);
+        result = 31 * result + Objects.hashCode(lat);
+        result = 31 * result + Objects.hashCode(lon);
+        result = 31 * result + Objects.hashCode(alt);
+        result = 31 * result + Objects.hashCode(vel);
+        result = 31 * result + Objects.hashCode(acc);
+        result = 31 * result + Objects.hashCode(attitudeQ);
+        result = 31 * result + Objects.hashCode(rates);
+        result = 31 * result + Objects.hashCode(positionCov);
+        result = 31 * result + Objects.hashCode(customState);
+        return result;
     }
 
     public static final class Builder {

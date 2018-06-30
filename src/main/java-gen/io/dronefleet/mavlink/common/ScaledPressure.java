@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * The pressure readings for the typical setup of one absolute and differential pressure sensor. 
@@ -79,6 +82,28 @@ public final class ScaledPressure {
     )
     public final int temperature() {
         return this.temperature;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        ScaledPressure other = (ScaledPressure)o;
+        if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
+        if (!Objects.deepEquals(pressAbs, other.pressAbs)) return false;
+        if (!Objects.deepEquals(pressDiff, other.pressDiff)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(timeBootMs);
+        result = 31 * result + Objects.hashCode(pressAbs);
+        result = 31 * result + Objects.hashCode(pressDiff);
+        result = 31 * result + Objects.hashCode(temperature);
+        return result;
     }
 
     public static final class Builder {

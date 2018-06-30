@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Read out the safety zone the MAV currently assumes. 
@@ -121,6 +124,34 @@ public final class SafetyAllowedArea {
     )
     public final float p2z() {
         return this.p2z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SafetyAllowedArea other = (SafetyAllowedArea)o;
+        if (!Objects.deepEquals(frame, other.frame)) return false;
+        if (!Objects.deepEquals(p1x, other.p1x)) return false;
+        if (!Objects.deepEquals(p1y, other.p1y)) return false;
+        if (!Objects.deepEquals(p1z, other.p1z)) return false;
+        if (!Objects.deepEquals(p2x, other.p2x)) return false;
+        if (!Objects.deepEquals(p2y, other.p2y)) return false;
+        if (!Objects.deepEquals(p2z, other.p2z)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(frame);
+        result = 31 * result + Objects.hashCode(p1x);
+        result = 31 * result + Objects.hashCode(p1y);
+        result = 31 * result + Objects.hashCode(p1z);
+        result = 31 * result + Objects.hashCode(p2x);
+        result = 31 * result + Objects.hashCode(p2y);
+        result = 31 * result + Objects.hashCode(p2z);
+        return result;
     }
 
     public static final class Builder {

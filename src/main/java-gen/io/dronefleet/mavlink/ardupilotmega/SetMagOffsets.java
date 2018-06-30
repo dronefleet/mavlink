@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Deprecated. Use MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS instead. Set the magnetometer 
@@ -96,6 +99,30 @@ public final class SetMagOffsets {
     )
     public final int magOfsZ() {
         return this.magOfsZ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        SetMagOffsets other = (SetMagOffsets)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(magOfsX, other.magOfsX)) return false;
+        if (!Objects.deepEquals(magOfsY, other.magOfsY)) return false;
+        if (!Objects.deepEquals(magOfsZ, other.magOfsZ)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(magOfsX);
+        result = 31 * result + Objects.hashCode(magOfsY);
+        result = 31 * result + Objects.hashCode(magOfsZ);
+        return result;
     }
 
     public static final class Builder {

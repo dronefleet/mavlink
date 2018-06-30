@@ -4,6 +4,9 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.MavMountMode;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Message to configure a camera mount, directional antenna, etc. 
@@ -107,6 +110,32 @@ public final class MountConfigure {
     )
     public final int stabYaw() {
         return this.stabYaw;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        MountConfigure other = (MountConfigure)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(mountMode, other.mountMode)) return false;
+        if (!Objects.deepEquals(stabRoll, other.stabRoll)) return false;
+        if (!Objects.deepEquals(stabPitch, other.stabPitch)) return false;
+        if (!Objects.deepEquals(stabYaw, other.stabYaw)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(mountMode);
+        result = 31 * result + Objects.hashCode(stabRoll);
+        result = 31 * result + Objects.hashCode(stabPitch);
+        result = 31 * result + Objects.hashCode(stabYaw);
+        return result;
     }
 
     public static final class Builder {

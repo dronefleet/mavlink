@@ -3,6 +3,9 @@ package io.dronefleet.mavlink.autoquad;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Object;
+import java.lang.Override;
+import java.util.Objects;
 
 /**
  * Sends up to 20 raw float values. 
@@ -318,6 +321,62 @@ public final class AqTelemetryF {
     )
     public final float value20() {
         return this.value20;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
+        AqTelemetryF other = (AqTelemetryF)o;
+        if (!Objects.deepEquals(index, other.index)) return false;
+        if (!Objects.deepEquals(value1, other.value1)) return false;
+        if (!Objects.deepEquals(value2, other.value2)) return false;
+        if (!Objects.deepEquals(value3, other.value3)) return false;
+        if (!Objects.deepEquals(value4, other.value4)) return false;
+        if (!Objects.deepEquals(value5, other.value5)) return false;
+        if (!Objects.deepEquals(value6, other.value6)) return false;
+        if (!Objects.deepEquals(value7, other.value7)) return false;
+        if (!Objects.deepEquals(value8, other.value8)) return false;
+        if (!Objects.deepEquals(value9, other.value9)) return false;
+        if (!Objects.deepEquals(value10, other.value10)) return false;
+        if (!Objects.deepEquals(value11, other.value11)) return false;
+        if (!Objects.deepEquals(value12, other.value12)) return false;
+        if (!Objects.deepEquals(value13, other.value13)) return false;
+        if (!Objects.deepEquals(value14, other.value14)) return false;
+        if (!Objects.deepEquals(value15, other.value15)) return false;
+        if (!Objects.deepEquals(value16, other.value16)) return false;
+        if (!Objects.deepEquals(value17, other.value17)) return false;
+        if (!Objects.deepEquals(value18, other.value18)) return false;
+        if (!Objects.deepEquals(value19, other.value19)) return false;
+        if (!Objects.deepEquals(value20, other.value20)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = 31 * result + Objects.hashCode(index);
+        result = 31 * result + Objects.hashCode(value1);
+        result = 31 * result + Objects.hashCode(value2);
+        result = 31 * result + Objects.hashCode(value3);
+        result = 31 * result + Objects.hashCode(value4);
+        result = 31 * result + Objects.hashCode(value5);
+        result = 31 * result + Objects.hashCode(value6);
+        result = 31 * result + Objects.hashCode(value7);
+        result = 31 * result + Objects.hashCode(value8);
+        result = 31 * result + Objects.hashCode(value9);
+        result = 31 * result + Objects.hashCode(value10);
+        result = 31 * result + Objects.hashCode(value11);
+        result = 31 * result + Objects.hashCode(value12);
+        result = 31 * result + Objects.hashCode(value13);
+        result = 31 * result + Objects.hashCode(value14);
+        result = 31 * result + Objects.hashCode(value15);
+        result = 31 * result + Objects.hashCode(value16);
+        result = 31 * result + Objects.hashCode(value17);
+        result = 31 * result + Objects.hashCode(value18);
+        result = 31 * result + Objects.hashCode(value19);
+        result = 31 * result + Objects.hashCode(value20);
+        return result;
     }
 
     public static final class Builder {
