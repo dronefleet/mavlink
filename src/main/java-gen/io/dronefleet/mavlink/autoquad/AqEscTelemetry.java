@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Sends ESC32 telemetry data for up to 4 motors. Multiple messages may be sent in sequence when 
- * system has > 4 motors. Data is described as follows: // unsigned int state : 3; // unsigned int vin 
+ * system has &gt; 4 motors. Data is described as follows: // unsigned int state : 3; // unsigned int vin 
  * : 12; // x 100 // unsigned int amps : 14; // x 100 // unsigned int rpm : 15; // unsigned int duty : 8; // x 
  * (255/100) // - Data Version 2 - // unsigned int errors : 9; // Bad detects error count // - Data 
  * Version 3 - // unsigned int temp : 9; // (Deg C + 32) * 4 // unsigned int errCode : 3; 

@@ -6,7 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumFlagSet;
 
 /**
- * A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
+ * A rally point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
  */
 @MavlinkMessageInfo(
         id = 175,

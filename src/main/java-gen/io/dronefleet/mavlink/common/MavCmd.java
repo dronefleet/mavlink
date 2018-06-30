@@ -20,7 +20,7 @@ public enum MavCmd {
      * <dt>param2</dt><dd>Acceptance radius in meters (if the sphere with this radius is hit, the waypoint counts as 
      * reached) 
      * </dd>
-     * <dt>param3</dt><dd>0 to pass through the WP, if > 0 radius in meters to pass by WP. Positive value for clockwise orbit, 
+     * <dt>param3</dt><dd>0 to pass through the WP, if &gt; 0 radius in meters to pass by WP. Positive value for clockwise orbit, 
      * negative value for counter-clockwise orbit. Allows trajectory control. 
      * </dd>
      * <dt>param4</dt><dd>Desired yaw angle at waypoint (rotary wing). NaN for unchanged. 
@@ -459,7 +459,7 @@ public enum MavCmd {
     /**
      * hand control over to an external controller 
      * <dl>
-     * <dt>param1</dt><dd>On / Off (> 0.5f on) 
+     * <dt>param1</dt><dd>On / Off (&gt; 0.5f on) 
      * </dd>
      * <dt>param2</dt><dd>Empty 
      * </dd>
@@ -863,7 +863,7 @@ public enum MavCmd {
     /**
      * Terminate flight immediately 
      * <dl>
-     * <dt>param1</dt><dd>Flight termination activated if > 0.5 
+     * <dt>param1</dt><dd>Flight termination activated if &gt; 0.5 
      * </dd>
      * <dt>param2</dt><dd>Empty 
      * </dd>
@@ -1121,7 +1121,7 @@ public enum MavCmd {
      * </dd>
      * <dt>param2</dt><dd>Transmission: 0: disabled, 1: enabled compressed, 2: enabled raw 
      * </dd>
-     * <dt>param3</dt><dd>Transmission mode: 0: video stream, >0: single images every n seconds (decimal) 
+     * <dt>param3</dt><dd>Transmission mode: 0: video stream, &gt;0: single images every n seconds (decimal) 
      * </dd>
      * <dt>param4</dt><dd>Recording: 0: disabled, 1: enabled compressed, 2: enabled raw 
      * </dd>
@@ -1615,7 +1615,7 @@ public enum MavCmd {
      * <dt>param2</dt><dd>Mission storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROM, 2: Reset to 
      * defaults 
      * </dd>
-     * <dt>param3</dt><dd>Onboard logging: 0: Ignore, 1: Start default rate logging, -1: Stop logging, > 1: start logging 
+     * <dt>param3</dt><dd>Onboard logging: 0: Ignore, 1: Start default rate logging, -1: Stop logging, &gt; 1: start logging 
      * with rate of param 3 in Hz (e.g. set to 1000 for 1000 Hz logging) 
      * </dd>
      * <dt>param4</dt><dd>Reserved 
@@ -1898,7 +1898,7 @@ public enum MavCmd {
      * </dd>
      * <dt>param3</dt><dd>Number of images to capture total - 0 for unlimited capture 
      * </dd>
-     * <dt>param4</dt><dd>Capture sequence (ID to prevent double captures when a command is retransmitted, 0: unused, >= 
+     * <dt>param4</dt><dd>Capture sequence (ID to prevent double captures when a command is retransmitted, 0: unused, &gt;= 
      * 1: used) 
      * </dd>
      * <dt>param5</dt><dd>Reserved (all remaining params) 

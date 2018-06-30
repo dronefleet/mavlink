@@ -117,7 +117,9 @@ public class PackageGenerator {
         }
         matcher.appendTail(sb);
         sb.append("\n");
-        return sb.toString();
+        return sb.toString()
+                .replace(">", "&gt;")
+                .replace("<", "&lt;");
     }
 
     public String getXmlName() {

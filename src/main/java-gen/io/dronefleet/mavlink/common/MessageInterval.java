@@ -43,7 +43,7 @@ public final class MessageInterval {
 
     /**
      * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
-     * disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent. 
+     * disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent. 
      */
     @MavlinkFieldInfo(
             position = 2,
@@ -73,7 +73,7 @@ public final class MessageInterval {
 
         /**
          * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
-         * disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent. 
+         * disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent. 
          */
         @MavlinkFieldInfo(
                 position = 2,

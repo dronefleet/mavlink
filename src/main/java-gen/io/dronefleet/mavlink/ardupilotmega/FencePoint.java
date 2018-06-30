@@ -5,7 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 
 /**
- * A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS 
+ * A fence point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
  */
 @MavlinkMessageInfo(
         id = 160,
