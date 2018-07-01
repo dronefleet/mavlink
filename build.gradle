@@ -58,16 +58,16 @@ uploadArchives {
             }
 
             pom.project {
-                name 'htmltopdf'
+                name 'mavlink'
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description 'An HTML to PDF conversion library written in Java, based on wkhtmltopdf.'
-                url 'http://www.example.com/example-application'
+                description 'A library for communication using the Mavlink1 and Mavlink2 protocols'
+                url 'http://dronefleet.io'
 
                 scm {
-                    connection 'scm:git:git://github.com/wooio/htmltopdf-java.git'
-                    developerConnection 'scm:git:ssh://github.com:wooio/htmltopdf-java.git'
-                    url 'http://github.com/wooio/htmltopdf-java/tree/master'
+                    connection 'scm:git:git://github.com/dronefleet/mavlink.git'
+                    developerConnection 'scm:git:ssh://github.com:dronefleet/mavlink.git'
+                    url 'http://github.com/dronefleet/mavlink/tree/master'
                 }
 
                 licenses {
@@ -81,7 +81,7 @@ uploadArchives {
                     developer {
                         id 'benbarkay'
                         name 'Ben Barkay'
-                        email 'benb+htmltopdf@woo.io'
+                        email 'ben@dronefleet.io'
                     }
                 }
             }

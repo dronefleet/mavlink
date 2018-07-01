@@ -25,6 +25,8 @@ and signing.
 
 ## Examples
 
+### Reading and validating packets
+
 ```java
 try (Socket socket = new Socket("127.0.0.1", 5760)) {
     MavlinkPacketReader reader = new MavlinkPacketReader(socket.getInputStream()); 
@@ -61,3 +63,6 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
     // Stream has ended
 }
 ```
+
+### Signing packets
+
