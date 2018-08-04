@@ -23,6 +23,10 @@ Represents a Mavlink packet, providing methods to easily access information in a
 bytes, deserializing packets from bytes to object, as well as performing CRC validation/calculation
 and signing.
 
+## Get it
+
+Maven Central coordinates are `io.dronefleet.mavlink:mavlink-protocol:1.0.0`
+
 ## Examples
 
 ### Reading and validating packets
