@@ -1,7 +1,7 @@
 group 'io.dronefleet.mavlink'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply from: rootProject.file('sonatype.gradle')
 
 sourceCompatibility = 1.8
 

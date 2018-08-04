@@ -3,90 +3,13 @@ version '1.0.0'
 
 apply plugin: 'java'
 apply plugin: 'io.dronefleet.mavlink.generator'
-apply plugin: 'maven'
-apply plugin: 'signing'
+apply from: rootProject.file('sonatype.gradle')
 
 sourceCompatibility = 1.8
-
-def envOrProperty = { envKey, propKey, defaultValue ->
-    System.getenv(envKey) ?:
-            project.hasProperty(propKey) ?
-                    project.getProperty(propKey) : defaultValue
-}
-
-def ossrhUsername = envOrProperty('OSSRH_USERNAME', 'ossrhUsername', '')
-def ossrhPassword = envOrProperty('OSSRH_PASSWORD', 'ossrhPassword', '')
-
-ext."signing.keyId" = envOrProperty('SIGNING_KEYID', 'signing.keyId', '')
-ext."signing.password" = envOrProperty('SIGNING_PASSWORD', 'signing.password', '')
-ext."signing.secretKeyRingFile" = envOrProperty('SIGNING_SECRETKEYRINGFILE', 'signing.secretKeyRingFile', file("secring.gpg").absolutePath)
 
 repositories {
     mavenLocal()
     mavenCentral()
-}
-
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name 'mavlink'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'A library for communication using the Mavlink1 and Mavlink2 protocols'
-                url 'http://dronefleet.io'
-
-                scm {
-                    connection 'scm:git:git://github.com/dronefleet/mavlink.git'
-                    developerConnection 'scm:git:ssh://github.com:dronefleet/mavlink.git'
-                    url 'http://github.com/dronefleet/mavlink/tree/master'
-                }
-
-                licenses {
-                    license {
-                        name 'MIT License'
-                        url 'https://opensource.org/licenses/MIT'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'benbarkay'
-                        name 'Ben Barkay'
-                        email 'ben@dronefleet.io'
-                    }
-                }
-            }
-        }
-    }
 }
 
 def genSrc = "src/main/java-gen"
