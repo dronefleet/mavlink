@@ -10,7 +10,9 @@ knowledge of dialects or about the meaning of messages. It does, however, provid
 for packet CRC validation as well as packet signing. The required implementation or 
 session-specific information (such as message CRC extra and signing parameters) have to be 
 provided, though. If you are after making your own high-level design then this is likely the 
-choice for you.
+choice for you. If you would like to use mavlink-protocol without the rest of the components of 
+this repository, then you can read [mavlink-protocol's README](https://github.com/dronefleet/mavlink/tree/master/mavlink-protocol)
+to learn how.
 
 #### generator gradle plugin
 Used in order to generate dialect-specific sources. The generated sources depend upon the
