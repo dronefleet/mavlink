@@ -67,6 +67,7 @@ public class MessageGenerator {
         crc.accumulate(name + " ");
         fields.stream()
                 .sorted()
+                .filter(f -> !f.isExtension())
                 .peek(f -> crc.accumulate(f.getType() + " "))
                 .peek(f -> crc.accumulate(f.getName() + " "))
                 .filter(FieldGenerator::isArray)

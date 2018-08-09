@@ -73,6 +73,10 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
         return arraySize;
     }
 
+    public boolean isExtension() {
+        return extension;
+    }
+
     public TypeName javaType() {
         if (enumName != null) {
             return enumType();
