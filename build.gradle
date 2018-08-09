@@ -1,5 +1,5 @@
 group 'io.dronefleet.mavlink'
-version '1.0.1'
+version '1.0.2'
 
 apply plugin: 'java'
 apply plugin: 'io.dronefleet.mavlink.generator'
