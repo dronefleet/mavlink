@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 70,
-        crc = 176
+        crc = 124
 )
 public final class RcChannelsOverride {
     private final int targetSystem;

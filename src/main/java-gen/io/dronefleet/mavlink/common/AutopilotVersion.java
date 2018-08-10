@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 148,
-        crc = 39
+        crc = 178
 )
 public final class AutopilotVersion {
     private final EnumFlagSet<MavProtocolCapability> capabilities;

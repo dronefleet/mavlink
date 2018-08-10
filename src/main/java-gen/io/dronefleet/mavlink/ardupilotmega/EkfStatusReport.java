@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 193,
-        crc = 88
+        crc = 71
 )
 public final class EkfStatusReport {
     private final EkfStatusFlags flags;

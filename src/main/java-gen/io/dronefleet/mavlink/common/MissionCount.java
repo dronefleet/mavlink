@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 44,
-        crc = 52
+        crc = 221
 )
 public final class MissionCount {
     private final int targetSystem;

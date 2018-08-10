@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 100,
-        crc = 97
+        crc = 175
 )
 public final class OpticalFlow {
     private final BigInteger timeUsec;

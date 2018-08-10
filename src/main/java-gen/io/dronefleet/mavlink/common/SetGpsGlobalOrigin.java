@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 48,
-        crc = 25
+        crc = 41
 )
 public final class SetGpsGlobalOrigin {
     private final int targetSystem;

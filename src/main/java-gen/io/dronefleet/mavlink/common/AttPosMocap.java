@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 138,
-        crc = 19
+        crc = 109
 )
 public final class AttPosMocap {
     private final BigInteger timeUsec;

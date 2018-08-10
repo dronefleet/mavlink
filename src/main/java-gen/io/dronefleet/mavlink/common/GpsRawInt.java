@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 24,
-        crc = 20
+        crc = 24
 )
 public final class GpsRawInt {
     private final BigInteger timeUsec;

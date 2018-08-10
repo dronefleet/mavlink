@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 104,
-        crc = 176
+        crc = 56
 )
 public final class ViconPositionEstimate {
     private final BigInteger usec;

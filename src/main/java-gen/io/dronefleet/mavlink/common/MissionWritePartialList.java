@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 38,
-        crc = 168
+        crc = 9
 )
 public final class MissionWritePartialList {
     private final int targetSystem;

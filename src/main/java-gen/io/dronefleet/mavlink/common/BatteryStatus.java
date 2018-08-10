@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 147,
-        crc = 210
+        crc = 154
 )
 public final class BatteryStatus {
     private final int id;

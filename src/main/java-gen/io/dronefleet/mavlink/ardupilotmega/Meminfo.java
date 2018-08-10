@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 152,
-        crc = 128
+        crc = 208
 )
 public final class Meminfo {
     private final int brkval;

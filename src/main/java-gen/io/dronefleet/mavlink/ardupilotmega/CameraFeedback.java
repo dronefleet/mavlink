@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 180,
-        crc = 107
+        crc = 52
 )
 public final class CameraFeedback {
     private final BigInteger timeUsec;

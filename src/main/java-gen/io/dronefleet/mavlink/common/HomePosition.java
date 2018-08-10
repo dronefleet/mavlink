@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 242,
-        crc = 205
+        crc = 104
 )
 public final class HomePosition {
     private final int latitude;

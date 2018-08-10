@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 45,
-        crc = 25
+        crc = 232
 )
 public final class MissionClearAll {
     private final int targetSystem;

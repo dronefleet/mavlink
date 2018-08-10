@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 36,
-        crc = 189
+        crc = 222
 )
 public final class ServoOutputRaw {
     private final long timeUsec;

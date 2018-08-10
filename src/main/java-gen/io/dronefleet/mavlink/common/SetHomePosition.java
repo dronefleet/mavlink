@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 243,
-        crc = 96
+        crc = 85
 )
 public final class SetHomePosition {
     private final int targetSystem;

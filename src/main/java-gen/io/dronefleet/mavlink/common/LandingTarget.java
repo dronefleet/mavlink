@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 149,
-        crc = 166
+        crc = 200
 )
 public final class LandingTarget {
     private final BigInteger timeUsec;

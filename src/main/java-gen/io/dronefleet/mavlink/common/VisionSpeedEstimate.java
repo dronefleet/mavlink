@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 103,
-        crc = 27
+        crc = 208
 )
 public final class VisionSpeedEstimate {
     private final BigInteger usec;

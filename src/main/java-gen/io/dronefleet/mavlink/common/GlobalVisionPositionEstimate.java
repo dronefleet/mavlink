@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 101,
-        crc = 10
+        crc = 102
 )
 public final class GlobalVisionPositionEstimate {
     private final BigInteger usec;

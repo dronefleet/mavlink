@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 49,
-        crc = 23
+        crc = 39
 )
 public final class GpsGlobalOrigin {
     private final int latitude;

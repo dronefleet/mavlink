@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 265,
-        crc = 77
+        crc = 26
 )
 public final class MountOrientation {
     private final long timeBootMs;

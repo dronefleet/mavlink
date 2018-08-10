@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 77,
-        crc = 4
+        crc = 143
 )
 public final class CommandAck {
     private final MavCmd command;
