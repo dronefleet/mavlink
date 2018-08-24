@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -24,9 +26,9 @@ public final class MissionItem {
 
     private final int seq;
 
-    private final MavFrame frame;
+    private final EnumValue<MavFrame> frame;
 
-    private final MavCmd command;
+    private final EnumValue<MavCmd> command;
 
     private final int current;
 
@@ -46,11 +48,12 @@ public final class MissionItem {
 
     private final float z;
 
-    private final MavMissionType missionType;
+    private final EnumValue<MavMissionType> missionType;
 
-    private MissionItem(int targetSystem, int targetComponent, int seq, MavFrame frame,
-            MavCmd command, int current, int autocontinue, float param1, float param2, float param3,
-            float param4, float x, float y, float z, MavMissionType missionType) {
+    private MissionItem(int targetSystem, int targetComponent, int seq, EnumValue<MavFrame> frame,
+            EnumValue<MavCmd> command, int current, int autocontinue, float param1, float param2,
+            float param3, float param4, float x, float y, float z,
+            EnumValue<MavMissionType> missionType) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.seq = seq;
@@ -114,9 +117,10 @@ public final class MissionItem {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame frame() {
+    public final EnumValue<MavFrame> frame() {
         return this.frame;
     }
 
@@ -125,9 +129,10 @@ public final class MissionItem {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            enumType = MavCmd.class
     )
-    public final MavCmd command() {
+    public final EnumValue<MavCmd> command() {
         return this.command;
     }
 
@@ -236,9 +241,10 @@ public final class MissionItem {
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 1,
+            enumType = MavMissionType.class,
             extension = true
     )
-    public final MavMissionType missionType() {
+    public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
     }
 
@@ -293,9 +299,9 @@ public final class MissionItem {
 
         private int seq;
 
-        private MavFrame frame;
+        private EnumValue<MavFrame> frame;
 
-        private MavCmd command;
+        private EnumValue<MavCmd> command;
 
         private int current;
 
@@ -315,7 +321,7 @@ public final class MissionItem {
 
         private float z;
 
-        private MavMissionType missionType;
+        private EnumValue<MavMissionType> missionType;
 
         /**
          * System ID 
@@ -358,10 +364,27 @@ public final class MissionItem {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder frame(MavFrame frame) {
+        public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
+            return this;
+        }
+
+        /**
+         * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        public final Builder frame(MavFrame entry) {
+            this.frame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        public final Builder frame(Enum... flags) {
+            this.frame = EnumValue.create(flags);
             return this;
         }
 
@@ -370,10 +393,27 @@ public final class MissionItem {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                enumType = MavCmd.class
         )
-        public final Builder command(MavCmd command) {
+        public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
+            return this;
+        }
+
+        /**
+         * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        public final Builder command(MavCmd entry) {
+            this.command = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        public final Builder command(Enum... flags) {
+            this.command = EnumValue.create(flags);
             return this;
         }
 
@@ -491,10 +531,27 @@ public final class MissionItem {
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 1,
+                enumType = MavMissionType.class,
                 extension = true
         )
-        public final Builder missionType(MavMissionType missionType) {
+        public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(MavMissionType entry) {
+            this.missionType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(Enum... flags) {
+            this.missionType = EnumValue.create(flags);
             return this;
         }
 

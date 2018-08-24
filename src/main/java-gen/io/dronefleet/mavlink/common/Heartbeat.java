@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -18,20 +19,21 @@ import java.util.Objects;
         crc = 50
 )
 public final class Heartbeat {
-    private final MavType type;
+    private final EnumValue<MavType> type;
 
-    private final MavAutopilot autopilot;
+    private final EnumValue<MavAutopilot> autopilot;
 
-    private final EnumFlagSet<MavModeFlag> baseMode;
+    private final EnumValue<MavModeFlag> baseMode;
 
     private final long customMode;
 
-    private final MavState systemStatus;
+    private final EnumValue<MavState> systemStatus;
 
     private final int mavlinkVersion;
 
-    private Heartbeat(MavType type, MavAutopilot autopilot, EnumFlagSet<MavModeFlag> baseMode,
-            long customMode, MavState systemStatus, int mavlinkVersion) {
+    private Heartbeat(EnumValue<MavType> type, EnumValue<MavAutopilot> autopilot,
+            EnumValue<MavModeFlag> baseMode, long customMode, EnumValue<MavState> systemStatus,
+            int mavlinkVersion) {
         this.type = type;
         this.autopilot = autopilot;
         this.baseMode = baseMode;
@@ -53,9 +55,10 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavType.class
     )
-    public final MavType type() {
+    public final EnumValue<MavType> type() {
         return this.type;
     }
 
@@ -64,9 +67,10 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavAutopilot.class
     )
-    public final MavAutopilot autopilot() {
+    public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
     }
 
@@ -75,9 +79,10 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavModeFlag.class
     )
-    public final EnumFlagSet<MavModeFlag> baseMode() {
+    public final EnumValue<MavModeFlag> baseMode() {
         return this.baseMode;
     }
 
@@ -97,9 +102,10 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavState.class
     )
-    public final MavState systemStatus() {
+    public final EnumValue<MavState> systemStatus() {
         return this.systemStatus;
     }
 
@@ -142,15 +148,15 @@ public final class Heartbeat {
     }
 
     public static final class Builder {
-        private MavType type;
+        private EnumValue<MavType> type;
 
-        private MavAutopilot autopilot;
+        private EnumValue<MavAutopilot> autopilot;
 
-        private EnumFlagSet<MavModeFlag> baseMode;
+        private EnumValue<MavModeFlag> baseMode;
 
         private long customMode;
 
-        private MavState systemStatus;
+        private EnumValue<MavState> systemStatus;
 
         private int mavlinkVersion;
 
@@ -159,10 +165,27 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavType.class
         )
-        public final Builder type(MavType type) {
+        public final Builder type(EnumValue<MavType> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(MavType entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 
@@ -171,10 +194,27 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavAutopilot.class
         )
-        public final Builder autopilot(MavAutopilot autopilot) {
+        public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(MavAutopilot entry) {
+            this.autopilot = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(Enum... flags) {
+            this.autopilot = EnumValue.create(flags);
             return this;
         }
 
@@ -183,10 +223,27 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavModeFlag.class
         )
-        public final Builder baseMode(EnumFlagSet<MavModeFlag> baseMode) {
+        public final Builder baseMode(EnumValue<MavModeFlag> baseMode) {
             this.baseMode = baseMode;
+            return this;
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         */
+        public final Builder baseMode(MavModeFlag entry) {
+            this.baseMode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         */
+        public final Builder baseMode(Enum... flags) {
+            this.baseMode = EnumValue.create(flags);
             return this;
         }
 
@@ -207,10 +264,27 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavState.class
         )
-        public final Builder systemStatus(MavState systemStatus) {
+        public final Builder systemStatus(EnumValue<MavState> systemStatus) {
             this.systemStatus = systemStatus;
+            return this;
+        }
+
+        /**
+         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         */
+        public final Builder systemStatus(MavState entry) {
+            this.systemStatus = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         */
+        public final Builder systemStatus(Enum... flags) {
+            this.systemStatus = EnumValue.create(flags);
             return this;
         }
 

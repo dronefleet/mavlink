@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -21,7 +23,7 @@ import java.util.Objects;
 public final class LocalPositionNedCov {
     private final BigInteger timeUsec;
 
-    private final MavEstimatorType estimatorType;
+    private final EnumValue<MavEstimatorType> estimatorType;
 
     private final float x;
 
@@ -43,8 +45,8 @@ public final class LocalPositionNedCov {
 
     private final List<Float> covariance;
 
-    private LocalPositionNedCov(BigInteger timeUsec, MavEstimatorType estimatorType, float x,
-            float y, float z, float vx, float vy, float vz, float ax, float ay, float az,
+    private LocalPositionNedCov(BigInteger timeUsec, EnumValue<MavEstimatorType> estimatorType,
+            float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az,
             List<Float> covariance) {
         this.timeUsec = timeUsec;
         this.estimatorType = estimatorType;
@@ -84,9 +86,10 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavEstimatorType.class
     )
-    public final MavEstimatorType estimatorType() {
+    public final EnumValue<MavEstimatorType> estimatorType() {
         return this.estimatorType;
     }
 
@@ -243,7 +246,7 @@ public final class LocalPositionNedCov {
     public static final class Builder {
         private BigInteger timeUsec;
 
-        private MavEstimatorType estimatorType;
+        private EnumValue<MavEstimatorType> estimatorType;
 
         private float x;
 
@@ -282,10 +285,27 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavEstimatorType.class
         )
-        public final Builder estimatorType(MavEstimatorType estimatorType) {
+        public final Builder estimatorType(EnumValue<MavEstimatorType> estimatorType) {
             this.estimatorType = estimatorType;
+            return this;
+        }
+
+        /**
+         * Class id of the estimator this estimate originated from. 
+         */
+        public final Builder estimatorType(MavEstimatorType entry) {
+            this.estimatorType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Class id of the estimator this estimate originated from. 
+         */
+        public final Builder estimatorType(Enum... flags) {
+            this.estimatorType = EnumValue.create(flags);
             return this;
         }
 

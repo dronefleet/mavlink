@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -21,7 +23,7 @@ import java.util.Objects;
 public final class ObstacleDistance {
     private final BigInteger timeUsec;
 
-    private final MavDistanceSensor sensorType;
+    private final EnumValue<MavDistanceSensor> sensorType;
 
     private final List<Integer> distances;
 
@@ -31,7 +33,7 @@ public final class ObstacleDistance {
 
     private final int maxDistance;
 
-    private ObstacleDistance(BigInteger timeUsec, MavDistanceSensor sensorType,
+    private ObstacleDistance(BigInteger timeUsec, EnumValue<MavDistanceSensor> sensorType,
             List<Integer> distances, int increment, int minDistance, int maxDistance) {
         this.timeUsec = timeUsec;
         this.sensorType = sensorType;
@@ -65,9 +67,10 @@ public final class ObstacleDistance {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavDistanceSensor.class
     )
-    public final MavDistanceSensor sensorType() {
+    public final EnumValue<MavDistanceSensor> sensorType() {
         return this.sensorType;
     }
 
@@ -148,7 +151,7 @@ public final class ObstacleDistance {
     public static final class Builder {
         private BigInteger timeUsec;
 
-        private MavDistanceSensor sensorType;
+        private EnumValue<MavDistanceSensor> sensorType;
 
         private List<Integer> distances;
 
@@ -175,10 +178,27 @@ public final class ObstacleDistance {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavDistanceSensor.class
         )
-        public final Builder sensorType(MavDistanceSensor sensorType) {
+        public final Builder sensorType(EnumValue<MavDistanceSensor> sensorType) {
             this.sensorType = sensorType;
+            return this;
+        }
+
+        /**
+         * Class id of the distance sensor type. 
+         */
+        public final Builder sensorType(MavDistanceSensor entry) {
+            this.sensorType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Class id of the distance sensor type. 
+         */
+        public final Builder sensorType(Enum... flags) {
+            this.sensorType = EnumValue.create(flags);
             return this;
         }
 

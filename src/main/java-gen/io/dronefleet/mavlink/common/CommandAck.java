@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,9 +17,9 @@ import java.util.Objects;
         crc = 143
 )
 public final class CommandAck {
-    private final MavCmd command;
+    private final EnumValue<MavCmd> command;
 
-    private final MavResult result;
+    private final EnumValue<MavResult> result;
 
     private final int progress;
 
@@ -27,8 +29,8 @@ public final class CommandAck {
 
     private final int targetComponent;
 
-    private CommandAck(MavCmd command, MavResult result, int progress, int resultParam2,
-            int targetSystem, int targetComponent) {
+    private CommandAck(EnumValue<MavCmd> command, EnumValue<MavResult> result, int progress,
+            int resultParam2, int targetSystem, int targetComponent) {
         this.command = command;
         this.result = result;
         this.progress = progress;
@@ -50,9 +52,10 @@ public final class CommandAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            enumType = MavCmd.class
     )
-    public final MavCmd command() {
+    public final EnumValue<MavCmd> command() {
         return this.command;
     }
 
@@ -61,9 +64,10 @@ public final class CommandAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavResult.class
     )
-    public final MavResult result() {
+    public final EnumValue<MavResult> result() {
         return this.result;
     }
 
@@ -146,9 +150,9 @@ public final class CommandAck {
     }
 
     public static final class Builder {
-        private MavCmd command;
+        private EnumValue<MavCmd> command;
 
-        private MavResult result;
+        private EnumValue<MavResult> result;
 
         private int progress;
 
@@ -163,10 +167,27 @@ public final class CommandAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                enumType = MavCmd.class
         )
-        public final Builder command(MavCmd command) {
+        public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
+            return this;
+        }
+
+        /**
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         */
+        public final Builder command(MavCmd entry) {
+            this.command = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         */
+        public final Builder command(Enum... flags) {
+            this.command = EnumValue.create(flags);
             return this;
         }
 
@@ -175,10 +196,27 @@ public final class CommandAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavResult.class
         )
-        public final Builder result(MavResult result) {
+        public final Builder result(EnumValue<MavResult> result) {
             this.result = result;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         */
+        public final Builder result(MavResult entry) {
+            this.result = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         */
+        public final Builder result(Enum... flags) {
+            this.result = EnumValue.create(flags);
             return this;
         }
 

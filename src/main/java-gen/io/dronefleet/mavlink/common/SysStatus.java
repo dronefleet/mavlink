@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -26,11 +27,11 @@ import java.util.Objects;
         crc = 124
 )
 public final class SysStatus {
-    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
+    private final EnumValue<MavSysStatusSensor> onboardControlSensorsPresent;
 
-    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
+    private final EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled;
 
-    private final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
+    private final EnumValue<MavSysStatusSensor> onboardControlSensorsHealth;
 
     private final int load;
 
@@ -52,12 +53,11 @@ public final class SysStatus {
 
     private final int errorsCount4;
 
-    private SysStatus(EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent,
-            EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled,
-            EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth, int load,
-            int voltageBattery, int currentBattery, int batteryRemaining, int dropRateComm,
-            int errorsComm, int errorsCount1, int errorsCount2, int errorsCount3,
-            int errorsCount4) {
+    private SysStatus(EnumValue<MavSysStatusSensor> onboardControlSensorsPresent,
+            EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled,
+            EnumValue<MavSysStatusSensor> onboardControlSensorsHealth, int load, int voltageBattery,
+            int currentBattery, int batteryRemaining, int dropRateComm, int errorsComm,
+            int errorsCount1, int errorsCount2, int errorsCount3, int errorsCount4) {
         this.onboardControlSensorsPresent = onboardControlSensorsPresent;
         this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
         this.onboardControlSensorsHealth = onboardControlSensorsHealth;
@@ -87,9 +87,10 @@ public final class SysStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            enumType = MavSysStatusSensor.class
     )
-    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent() {
+    public final EnumValue<MavSysStatusSensor> onboardControlSensorsPresent() {
         return this.onboardControlSensorsPresent;
     }
 
@@ -99,9 +100,10 @@ public final class SysStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            enumType = MavSysStatusSensor.class
     )
-    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled() {
+    public final EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled() {
         return this.onboardControlSensorsEnabled;
     }
 
@@ -111,9 +113,10 @@ public final class SysStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            enumType = MavSysStatusSensor.class
     )
-    public final EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth() {
+    public final EnumValue<MavSysStatusSensor> onboardControlSensorsHealth() {
         return this.onboardControlSensorsHealth;
     }
 
@@ -273,11 +276,11 @@ public final class SysStatus {
     }
 
     public static final class Builder {
-        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent;
+        private EnumValue<MavSysStatusSensor> onboardControlSensorsPresent;
 
-        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled;
+        private EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled;
 
-        private EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth;
+        private EnumValue<MavSysStatusSensor> onboardControlSensorsHealth;
 
         private int load;
 
@@ -305,11 +308,30 @@ public final class SysStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                enumType = MavSysStatusSensor.class
         )
         public final Builder onboardControlSensorsPresent(
-                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsPresent) {
+                EnumValue<MavSysStatusSensor> onboardControlSensorsPresent) {
             this.onboardControlSensorsPresent = onboardControlSensorsPresent;
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsPresent(MavSysStatusSensor entry) {
+            this.onboardControlSensorsPresent = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsPresent(Enum... flags) {
+            this.onboardControlSensorsPresent = EnumValue.create(flags);
             return this;
         }
 
@@ -319,11 +341,30 @@ public final class SysStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                enumType = MavSysStatusSensor.class
         )
         public final Builder onboardControlSensorsEnabled(
-                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsEnabled) {
+                EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled) {
             this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsEnabled(MavSysStatusSensor entry) {
+            this.onboardControlSensorsEnabled = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsEnabled(Enum... flags) {
+            this.onboardControlSensorsEnabled = EnumValue.create(flags);
             return this;
         }
 
@@ -333,11 +374,30 @@ public final class SysStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                enumType = MavSysStatusSensor.class
         )
         public final Builder onboardControlSensorsHealth(
-                EnumFlagSet<MavSysStatusSensor> onboardControlSensorsHealth) {
+                EnumValue<MavSysStatusSensor> onboardControlSensorsHealth) {
             this.onboardControlSensorsHealth = onboardControlSensorsHealth;
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
+         * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsHealth(MavSysStatusSensor entry) {
+            this.onboardControlSensorsHealth = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
+         * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsHealth(Enum... flags) {
+            this.onboardControlSensorsHealth = EnumValue.create(flags);
             return this;
         }
 

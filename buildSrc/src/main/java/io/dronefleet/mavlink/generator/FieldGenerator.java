@@ -1,11 +1,11 @@
 package io.dronefleet.mavlink.generator;
 
 import com.squareup.javapoet.*;
-import io.dronefleet.mavlink.generator.definitions.model.MavlinkTypeDef;
 
 import javax.lang.model.element.Modifier;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,9 +13,9 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
     private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get(
             "io.dronefleet.mavlink.annotations",
             "MavlinkFieldInfo");
-    private static final ClassName ENUM_FLAG_SET = ClassName.get(
+    private static final ClassName ENUM_VALUE = ClassName.get(
             "io.dronefleet.mavlink.util",
-            "EnumFlagSet");
+            "EnumValue");
 
     private final PackageGenerator parentPackage;
     private final String name;
@@ -23,7 +23,6 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
     private final String description;
     private final String type;
     private final String enumName;
-    private final String display;
     private final int index;
     private final int unitSize;
     private final boolean array;
@@ -37,7 +36,6 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
             String description,
             String type,
             String enumName,
-            String display,
             int index,
             int unitSize,
             boolean array,
@@ -49,7 +47,6 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
         this.description = description;
         this.type = type;
         this.enumName = enumName;
-        this.display = display;
         this.index = index;
         this.unitSize = unitSize;
         this.array = array;
@@ -79,7 +76,7 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
 
     public TypeName javaType() {
         if (enumName != null) {
-            return enumType();
+            return enumValueType();
         }
         if (array) {
             return arrayType();
@@ -100,8 +97,12 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
                 .addMember("position", "$L", index)
                 .addMember("unitSize", "$L", unitSize);
 
-        if(array) {
+        if (array) {
             builder.addMember("arraySize", "$L", arraySize);
+        }
+
+        if (enumName != null) {
+            builder.addMember("enumType", "$T.class", enumType());
         }
 
         if (signed()) {
@@ -145,6 +146,32 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
                 .build();
     }
 
+    public List<MethodSpec> generateConvenienceSetters(ClassName className) {
+        if (enumName != null) {
+            return Arrays.asList(
+                    MethodSpec.methodBuilder(nameCamelCase)
+                            .addJavadoc(javadoc())
+                            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                            .addParameter(enumType(), "entry")
+                            .addStatement("this.$1N = $2T.of($3N)", nameCamelCase, ENUM_VALUE, "entry")
+                            .addStatement("return this")
+                            .returns(className)
+                            .build(),
+
+                    MethodSpec.methodBuilder(nameCamelCase)
+                            .varargs(true)
+                            .addJavadoc(javadoc())
+                            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                            .addParameter(Enum[].class, "flags")
+                            .addStatement("this.$1N = $2T.create(flags)", nameCamelCase, ENUM_VALUE)
+                            .addStatement("return this")
+                            .returns(className)
+                            .build()
+            );
+        }
+        return Collections.emptyList();
+    }
+
     public ParameterSpec generateParameter() {
         return ParameterSpec.builder(javaType(), nameCamelCase).build();
     }
@@ -168,19 +195,13 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
     }
 
     private TypeName enumType() {
-        ClassName enumType = parentPackage.resolveEnum(enumName)
+        return parentPackage.resolveEnum(enumName)
                 .map(EnumGenerator::getClassName)
                 .orElseThrow(() -> new IllegalStateException("unable to find enum " + enumName));
+    }
 
-        if (enumType != null) {
-            if ("bitmask".equals(display)) {
-                return ParameterizedTypeName.get(ENUM_FLAG_SET, enumType);
-            } else {
-                return enumType;
-            }
-        } else {
-            throw new IllegalStateException("unable to find enum " + enumName);
-        }
+    private TypeName enumValueType() {
+        return ParameterizedTypeName.get(ENUM_VALUE, enumType());
     }
 
     private final TypeName arrayType() {

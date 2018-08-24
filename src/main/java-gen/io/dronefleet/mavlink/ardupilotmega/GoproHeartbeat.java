@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -16,14 +17,14 @@ import java.util.Objects;
         crc = 101
 )
 public final class GoproHeartbeat {
-    private final GoproHeartbeatStatus status;
+    private final EnumValue<GoproHeartbeatStatus> status;
 
-    private final GoproCaptureMode captureMode;
+    private final EnumValue<GoproCaptureMode> captureMode;
 
-    private final EnumFlagSet<GoproHeartbeatFlags> flags;
+    private final EnumValue<GoproHeartbeatFlags> flags;
 
-    private GoproHeartbeat(GoproHeartbeatStatus status, GoproCaptureMode captureMode,
-            EnumFlagSet<GoproHeartbeatFlags> flags) {
+    private GoproHeartbeat(EnumValue<GoproHeartbeatStatus> status,
+            EnumValue<GoproCaptureMode> captureMode, EnumValue<GoproHeartbeatFlags> flags) {
         this.status = status;
         this.captureMode = captureMode;
         this.flags = flags;
@@ -42,9 +43,10 @@ public final class GoproHeartbeat {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproHeartbeatStatus.class
     )
-    public final GoproHeartbeatStatus status() {
+    public final EnumValue<GoproHeartbeatStatus> status() {
         return this.status;
     }
 
@@ -53,9 +55,10 @@ public final class GoproHeartbeat {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproCaptureMode.class
     )
-    public final GoproCaptureMode captureMode() {
+    public final EnumValue<GoproCaptureMode> captureMode() {
         return this.captureMode;
     }
 
@@ -64,9 +67,10 @@ public final class GoproHeartbeat {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproHeartbeatFlags.class
     )
-    public final EnumFlagSet<GoproHeartbeatFlags> flags() {
+    public final EnumValue<GoproHeartbeatFlags> flags() {
         return this.flags;
     }
 
@@ -91,21 +95,38 @@ public final class GoproHeartbeat {
     }
 
     public static final class Builder {
-        private GoproHeartbeatStatus status;
+        private EnumValue<GoproHeartbeatStatus> status;
 
-        private GoproCaptureMode captureMode;
+        private EnumValue<GoproCaptureMode> captureMode;
 
-        private EnumFlagSet<GoproHeartbeatFlags> flags;
+        private EnumValue<GoproHeartbeatFlags> flags;
 
         /**
          * Status 
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproHeartbeatStatus.class
         )
-        public final Builder status(GoproHeartbeatStatus status) {
+        public final Builder status(EnumValue<GoproHeartbeatStatus> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * Status 
+         */
+        public final Builder status(GoproHeartbeatStatus entry) {
+            this.status = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Status 
+         */
+        public final Builder status(Enum... flags) {
+            this.status = EnumValue.create(flags);
             return this;
         }
 
@@ -114,10 +135,27 @@ public final class GoproHeartbeat {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproCaptureMode.class
         )
-        public final Builder captureMode(GoproCaptureMode captureMode) {
+        public final Builder captureMode(EnumValue<GoproCaptureMode> captureMode) {
             this.captureMode = captureMode;
+            return this;
+        }
+
+        /**
+         * Current capture mode 
+         */
+        public final Builder captureMode(GoproCaptureMode entry) {
+            this.captureMode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Current capture mode 
+         */
+        public final Builder captureMode(Enum... flags) {
+            this.captureMode = EnumValue.create(flags);
             return this;
         }
 
@@ -126,10 +164,27 @@ public final class GoproHeartbeat {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproHeartbeatFlags.class
         )
-        public final Builder flags(EnumFlagSet<GoproHeartbeatFlags> flags) {
+        public final Builder flags(EnumValue<GoproHeartbeatFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * additional status bits 
+         */
+        public final Builder flags(GoproHeartbeatFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * additional status bits 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

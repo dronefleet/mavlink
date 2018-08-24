@@ -88,7 +88,6 @@ public class MavlinkGeneratorFactory {
                 fieldDef.getDescription(),
                 fieldDef.getType().getConvertedType(),
                 fieldDef.getEnumName(),
-                fieldDef.getDisplay(),
                 fieldDef.getIndex(),
                 fieldDef.getType().getTypeLength(),
                 fieldDef.getType().isArray(),

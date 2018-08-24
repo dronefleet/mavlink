@@ -4,7 +4,8 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.AdsbEmitterType;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -23,23 +24,23 @@ public final class UavionixAdsbOutCfg {
 
     private final String callsign;
 
-    private final AdsbEmitterType emittertype;
+    private final EnumValue<AdsbEmitterType> emittertype;
 
-    private final UavionixAdsbOutCfgAircraftSize aircraftsize;
+    private final EnumValue<UavionixAdsbOutCfgAircraftSize> aircraftsize;
 
-    private final UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat;
+    private final EnumValue<UavionixAdsbOutCfgGpsOffsetLat> gpsoffsetlat;
 
-    private final UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon;
+    private final EnumValue<UavionixAdsbOutCfgGpsOffsetLon> gpsoffsetlon;
 
     private final int stallspeed;
 
-    private final EnumFlagSet<UavionixAdsbOutRfSelect> rfselect;
+    private final EnumValue<UavionixAdsbOutRfSelect> rfselect;
 
-    private UavionixAdsbOutCfg(long icao, String callsign, AdsbEmitterType emittertype,
-            UavionixAdsbOutCfgAircraftSize aircraftsize,
-            UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat,
-            UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon, int stallspeed,
-            EnumFlagSet<UavionixAdsbOutRfSelect> rfselect) {
+    private UavionixAdsbOutCfg(long icao, String callsign, EnumValue<AdsbEmitterType> emittertype,
+            EnumValue<UavionixAdsbOutCfgAircraftSize> aircraftsize,
+            EnumValue<UavionixAdsbOutCfgGpsOffsetLat> gpsoffsetlat,
+            EnumValue<UavionixAdsbOutCfgGpsOffsetLon> gpsoffsetlon, int stallspeed,
+            EnumValue<UavionixAdsbOutRfSelect> rfselect) {
         this.icao = icao;
         this.callsign = callsign;
         this.emittertype = emittertype;
@@ -86,9 +87,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = AdsbEmitterType.class
     )
-    public final AdsbEmitterType emittertype() {
+    public final EnumValue<AdsbEmitterType> emittertype() {
         return this.emittertype;
     }
 
@@ -97,9 +99,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbOutCfgAircraftSize.class
     )
-    public final UavionixAdsbOutCfgAircraftSize aircraftsize() {
+    public final EnumValue<UavionixAdsbOutCfgAircraftSize> aircraftsize() {
         return this.aircraftsize;
     }
 
@@ -108,9 +111,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbOutCfgGpsOffsetLat.class
     )
-    public final UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat() {
+    public final EnumValue<UavionixAdsbOutCfgGpsOffsetLat> gpsoffsetlat() {
         return this.gpsoffsetlat;
     }
 
@@ -120,9 +124,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbOutCfgGpsOffsetLon.class
     )
-    public final UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon() {
+    public final EnumValue<UavionixAdsbOutCfgGpsOffsetLon> gpsoffsetlon() {
         return this.gpsoffsetlon;
     }
 
@@ -142,9 +147,10 @@ public final class UavionixAdsbOutCfg {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbOutRfSelect.class
     )
-    public final EnumFlagSet<UavionixAdsbOutRfSelect> rfselect() {
+    public final EnumValue<UavionixAdsbOutRfSelect> rfselect() {
         return this.rfselect;
     }
 
@@ -183,17 +189,17 @@ public final class UavionixAdsbOutCfg {
 
         private String callsign;
 
-        private AdsbEmitterType emittertype;
+        private EnumValue<AdsbEmitterType> emittertype;
 
-        private UavionixAdsbOutCfgAircraftSize aircraftsize;
+        private EnumValue<UavionixAdsbOutCfgAircraftSize> aircraftsize;
 
-        private UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat;
+        private EnumValue<UavionixAdsbOutCfgGpsOffsetLat> gpsoffsetlat;
 
-        private UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon;
+        private EnumValue<UavionixAdsbOutCfgGpsOffsetLon> gpsoffsetlon;
 
         private int stallspeed;
 
-        private EnumFlagSet<UavionixAdsbOutRfSelect> rfselect;
+        private EnumValue<UavionixAdsbOutRfSelect> rfselect;
 
         /**
          * Vehicle address (24 bit) 
@@ -225,10 +231,27 @@ public final class UavionixAdsbOutCfg {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = AdsbEmitterType.class
         )
-        public final Builder emittertype(AdsbEmitterType emittertype) {
+        public final Builder emittertype(EnumValue<AdsbEmitterType> emittertype) {
             this.emittertype = emittertype;
+            return this;
+        }
+
+        /**
+         * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emittertype(AdsbEmitterType entry) {
+            this.emittertype = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emittertype(Enum... flags) {
+            this.emittertype = EnumValue.create(flags);
             return this;
         }
 
@@ -237,10 +260,27 @@ public final class UavionixAdsbOutCfg {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbOutCfgAircraftSize.class
         )
-        public final Builder aircraftsize(UavionixAdsbOutCfgAircraftSize aircraftsize) {
+        public final Builder aircraftsize(EnumValue<UavionixAdsbOutCfgAircraftSize> aircraftsize) {
             this.aircraftsize = aircraftsize;
+            return this;
+        }
+
+        /**
+         * Aircraft length and width encoding (table 2-35 of DO-282B) 
+         */
+        public final Builder aircraftsize(UavionixAdsbOutCfgAircraftSize entry) {
+            this.aircraftsize = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Aircraft length and width encoding (table 2-35 of DO-282B) 
+         */
+        public final Builder aircraftsize(Enum... flags) {
+            this.aircraftsize = EnumValue.create(flags);
             return this;
         }
 
@@ -249,10 +289,27 @@ public final class UavionixAdsbOutCfg {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbOutCfgGpsOffsetLat.class
         )
-        public final Builder gpsoffsetlat(UavionixAdsbOutCfgGpsOffsetLat gpsoffsetlat) {
+        public final Builder gpsoffsetlat(EnumValue<UavionixAdsbOutCfgGpsOffsetLat> gpsoffsetlat) {
             this.gpsoffsetlat = gpsoffsetlat;
+            return this;
+        }
+
+        /**
+         * GPS antenna lateral offset (table 2-36 of DO-282B) 
+         */
+        public final Builder gpsoffsetlat(UavionixAdsbOutCfgGpsOffsetLat entry) {
+            this.gpsoffsetlat = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * GPS antenna lateral offset (table 2-36 of DO-282B) 
+         */
+        public final Builder gpsoffsetlat(Enum... flags) {
+            this.gpsoffsetlat = EnumValue.create(flags);
             return this;
         }
 
@@ -262,10 +319,29 @@ public final class UavionixAdsbOutCfg {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbOutCfgGpsOffsetLon.class
         )
-        public final Builder gpsoffsetlon(UavionixAdsbOutCfgGpsOffsetLon gpsoffsetlon) {
+        public final Builder gpsoffsetlon(EnumValue<UavionixAdsbOutCfgGpsOffsetLon> gpsoffsetlon) {
             this.gpsoffsetlon = gpsoffsetlon;
+            return this;
+        }
+
+        /**
+         * GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 
+         * and add one] (table 2-37 DO-282B) 
+         */
+        public final Builder gpsoffsetlon(UavionixAdsbOutCfgGpsOffsetLon entry) {
+            this.gpsoffsetlon = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 
+         * and add one] (table 2-37 DO-282B) 
+         */
+        public final Builder gpsoffsetlon(Enum... flags) {
+            this.gpsoffsetlon = EnumValue.create(flags);
             return this;
         }
 
@@ -286,10 +362,27 @@ public final class UavionixAdsbOutCfg {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbOutRfSelect.class
         )
-        public final Builder rfselect(EnumFlagSet<UavionixAdsbOutRfSelect> rfselect) {
+        public final Builder rfselect(EnumValue<UavionixAdsbOutRfSelect> rfselect) {
             this.rfselect = rfselect;
+            return this;
+        }
+
+        /**
+         * ADS-B transponder reciever and transmit enable flags 
+         */
+        public final Builder rfselect(UavionixAdsbOutRfSelect entry) {
+            this.rfselect = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * ADS-B transponder reciever and transmit enable flags 
+         */
+        public final Builder rfselect(Enum... flags) {
+            this.rfselect = EnumValue.create(flags);
             return this;
         }
 

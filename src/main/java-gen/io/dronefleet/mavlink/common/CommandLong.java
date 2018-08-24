@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,7 +21,7 @@ public final class CommandLong {
 
     private final int targetComponent;
 
-    private final MavCmd command;
+    private final EnumValue<MavCmd> command;
 
     private final int confirmation;
 
@@ -37,9 +39,9 @@ public final class CommandLong {
 
     private final float param7;
 
-    private CommandLong(int targetSystem, int targetComponent, MavCmd command, int confirmation,
-            float param1, float param2, float param3, float param4, float param5, float param6,
-            float param7) {
+    private CommandLong(int targetSystem, int targetComponent, EnumValue<MavCmd> command,
+            int confirmation, float param1, float param2, float param3, float param4, float param5,
+            float param6, float param7) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.command = command;
@@ -88,9 +90,10 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            enumType = MavCmd.class
     )
-    public final MavCmd command() {
+    public final EnumValue<MavCmd> command() {
         return this.command;
     }
 
@@ -224,7 +227,7 @@ public final class CommandLong {
 
         private int targetComponent;
 
-        private MavCmd command;
+        private EnumValue<MavCmd> command;
 
         private int confirmation;
 
@@ -271,10 +274,27 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                enumType = MavCmd.class
         )
-        public final Builder command(MavCmd command) {
+        public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
+            return this;
+        }
+
+        /**
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         */
+        public final Builder command(MavCmd entry) {
+            this.command = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         */
+        public final Builder command(Enum... flags) {
+            this.command = EnumValue.create(flags);
             return this;
         }
 

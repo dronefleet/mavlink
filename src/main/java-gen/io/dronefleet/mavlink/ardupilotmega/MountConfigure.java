@@ -4,6 +4,8 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.MavMountMode;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -20,7 +22,7 @@ public final class MountConfigure {
 
     private final int targetComponent;
 
-    private final MavMountMode mountMode;
+    private final EnumValue<MavMountMode> mountMode;
 
     private final int stabRoll;
 
@@ -28,7 +30,7 @@ public final class MountConfigure {
 
     private final int stabYaw;
 
-    private MountConfigure(int targetSystem, int targetComponent, MavMountMode mountMode,
+    private MountConfigure(int targetSystem, int targetComponent, EnumValue<MavMountMode> mountMode,
             int stabRoll, int stabPitch, int stabYaw) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
@@ -73,9 +75,10 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavMountMode.class
     )
-    public final MavMountMode mountMode() {
+    public final EnumValue<MavMountMode> mountMode() {
         return this.mountMode;
     }
 
@@ -143,7 +146,7 @@ public final class MountConfigure {
 
         private int targetComponent;
 
-        private MavMountMode mountMode;
+        private EnumValue<MavMountMode> mountMode;
 
         private int stabRoll;
 
@@ -180,10 +183,27 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavMountMode.class
         )
-        public final Builder mountMode(MavMountMode mountMode) {
+        public final Builder mountMode(EnumValue<MavMountMode> mountMode) {
             this.mountMode = mountMode;
+            return this;
+        }
+
+        /**
+         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         */
+        public final Builder mountMode(MavMountMode entry) {
+            this.mountMode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         */
+        public final Builder mountMode(Enum... flags) {
+            this.mountMode = EnumValue.create(flags);
             return this;
         }
 

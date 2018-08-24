@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.icarous;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,9 +17,9 @@ import java.util.Objects;
         crc = 227
 )
 public final class IcarousHeartbeat {
-    private final IcarousFmsState status;
+    private final EnumValue<IcarousFmsState> status;
 
-    private IcarousHeartbeat(IcarousFmsState status) {
+    private IcarousHeartbeat(EnumValue<IcarousFmsState> status) {
         this.status = status;
     }
 
@@ -34,9 +36,10 @@ public final class IcarousHeartbeat {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousFmsState.class
     )
-    public final IcarousFmsState status() {
+    public final EnumValue<IcarousFmsState> status() {
         return this.status;
     }
 
@@ -57,17 +60,34 @@ public final class IcarousHeartbeat {
     }
 
     public static final class Builder {
-        private IcarousFmsState status;
+        private EnumValue<IcarousFmsState> status;
 
         /**
          * See the FMS_STATE enum. 
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousFmsState.class
         )
-        public final Builder status(IcarousFmsState status) {
+        public final Builder status(EnumValue<IcarousFmsState> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * See the FMS_STATE enum. 
+         */
+        public final Builder status(IcarousFmsState entry) {
+            this.status = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the FMS_STATE enum. 
+         */
+        public final Builder status(Enum... flags) {
+            this.status = EnumValue.create(flags);
             return this;
         }
 

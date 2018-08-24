@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,9 +21,10 @@ public final class MissionRequestList {
 
     private final int targetComponent;
 
-    private final MavMissionType missionType;
+    private final EnumValue<MavMissionType> missionType;
 
-    private MissionRequestList(int targetSystem, int targetComponent, MavMissionType missionType) {
+    private MissionRequestList(int targetSystem, int targetComponent,
+            EnumValue<MavMissionType> missionType) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.missionType = missionType;
@@ -63,9 +66,10 @@ public final class MissionRequestList {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
+            enumType = MavMissionType.class,
             extension = true
     )
-    public final MavMissionType missionType() {
+    public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
     }
 
@@ -94,7 +98,7 @@ public final class MissionRequestList {
 
         private int targetComponent;
 
-        private MavMissionType missionType;
+        private EnumValue<MavMissionType> missionType;
 
         /**
          * System ID 
@@ -126,10 +130,27 @@ public final class MissionRequestList {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
+                enumType = MavMissionType.class,
                 extension = true
         )
-        public final Builder missionType(MavMissionType missionType) {
+        public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(MavMissionType entry) {
+            this.missionType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(Enum... flags) {
+            this.missionType = EnumValue.create(flags);
             return this;
         }
 

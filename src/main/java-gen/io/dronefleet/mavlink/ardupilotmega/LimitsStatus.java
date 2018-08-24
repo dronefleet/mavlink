@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -16,7 +17,7 @@ import java.util.Objects;
         crc = 144
 )
 public final class LimitsStatus {
-    private final LimitsState limitsState;
+    private final EnumValue<LimitsState> limitsState;
 
     private final long lastTrigger;
 
@@ -28,16 +29,15 @@ public final class LimitsStatus {
 
     private final int breachCount;
 
-    private final EnumFlagSet<LimitModule> modsEnabled;
+    private final EnumValue<LimitModule> modsEnabled;
 
-    private final EnumFlagSet<LimitModule> modsRequired;
+    private final EnumValue<LimitModule> modsRequired;
 
-    private final EnumFlagSet<LimitModule> modsTriggered;
+    private final EnumValue<LimitModule> modsTriggered;
 
-    private LimitsStatus(LimitsState limitsState, long lastTrigger, long lastAction,
-            long lastRecovery, long lastClear, int breachCount,
-            EnumFlagSet<LimitModule> modsEnabled, EnumFlagSet<LimitModule> modsRequired,
-            EnumFlagSet<LimitModule> modsTriggered) {
+    private LimitsStatus(EnumValue<LimitsState> limitsState, long lastTrigger, long lastAction,
+            long lastRecovery, long lastClear, int breachCount, EnumValue<LimitModule> modsEnabled,
+            EnumValue<LimitModule> modsRequired, EnumValue<LimitModule> modsTriggered) {
         this.limitsState = limitsState;
         this.lastTrigger = lastTrigger;
         this.lastAction = lastAction;
@@ -62,9 +62,10 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = LimitsState.class
     )
-    public final LimitsState limitsState() {
+    public final EnumValue<LimitsState> limitsState() {
         return this.limitsState;
     }
 
@@ -128,9 +129,10 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            enumType = LimitModule.class
     )
-    public final EnumFlagSet<LimitModule> modsEnabled() {
+    public final EnumValue<LimitModule> modsEnabled() {
         return this.modsEnabled;
     }
 
@@ -139,9 +141,10 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            enumType = LimitModule.class
     )
-    public final EnumFlagSet<LimitModule> modsRequired() {
+    public final EnumValue<LimitModule> modsRequired() {
         return this.modsRequired;
     }
 
@@ -150,9 +153,10 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            enumType = LimitModule.class
     )
-    public final EnumFlagSet<LimitModule> modsTriggered() {
+    public final EnumValue<LimitModule> modsTriggered() {
         return this.modsTriggered;
     }
 
@@ -189,7 +193,7 @@ public final class LimitsStatus {
     }
 
     public static final class Builder {
-        private LimitsState limitsState;
+        private EnumValue<LimitsState> limitsState;
 
         private long lastTrigger;
 
@@ -201,21 +205,38 @@ public final class LimitsStatus {
 
         private int breachCount;
 
-        private EnumFlagSet<LimitModule> modsEnabled;
+        private EnumValue<LimitModule> modsEnabled;
 
-        private EnumFlagSet<LimitModule> modsRequired;
+        private EnumValue<LimitModule> modsRequired;
 
-        private EnumFlagSet<LimitModule> modsTriggered;
+        private EnumValue<LimitModule> modsTriggered;
 
         /**
          * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = LimitsState.class
         )
-        public final Builder limitsState(LimitsState limitsState) {
+        public final Builder limitsState(EnumValue<LimitsState> limitsState) {
             this.limitsState = limitsState;
+            return this;
+        }
+
+        /**
+         * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
+         */
+        public final Builder limitsState(LimitsState entry) {
+            this.limitsState = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
+         */
+        public final Builder limitsState(Enum... flags) {
+            this.limitsState = EnumValue.create(flags);
             return this;
         }
 
@@ -284,10 +305,27 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                enumType = LimitModule.class
         )
-        public final Builder modsEnabled(EnumFlagSet<LimitModule> modsEnabled) {
+        public final Builder modsEnabled(EnumValue<LimitModule> modsEnabled) {
             this.modsEnabled = modsEnabled;
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsEnabled(LimitModule entry) {
+            this.modsEnabled = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsEnabled(Enum... flags) {
+            this.modsEnabled = EnumValue.create(flags);
             return this;
         }
 
@@ -296,10 +334,27 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                enumType = LimitModule.class
         )
-        public final Builder modsRequired(EnumFlagSet<LimitModule> modsRequired) {
+        public final Builder modsRequired(EnumValue<LimitModule> modsRequired) {
             this.modsRequired = modsRequired;
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsRequired(LimitModule entry) {
+            this.modsRequired = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsRequired(Enum... flags) {
+            this.modsRequired = EnumValue.create(flags);
             return this;
         }
 
@@ -308,10 +363,27 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                enumType = LimitModule.class
         )
-        public final Builder modsTriggered(EnumFlagSet<LimitModule> modsTriggered) {
+        public final Builder modsTriggered(EnumValue<LimitModule> modsTriggered) {
             this.modsTriggered = modsTriggered;
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsTriggered(LimitModule entry) {
+            this.modsTriggered = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsTriggered(Enum... flags) {
+            this.modsTriggered = EnumValue.create(flags);
             return this;
         }
 

@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -40,13 +42,13 @@ public final class CameraFeedback {
 
     private final float focLen;
 
-    private final CameraFeedbackFlags flags;
+    private final EnumValue<CameraFeedbackFlags> flags;
 
     private final int completedCaptures;
 
     private CameraFeedback(BigInteger timeUsec, int targetSystem, int camIdx, int imgIdx, int lat,
             int lng, float altMsl, float altRel, float roll, float pitch, float yaw, float focLen,
-            CameraFeedbackFlags flags, int completedCaptures) {
+            EnumValue<CameraFeedbackFlags> flags, int completedCaptures) {
         this.timeUsec = timeUsec;
         this.targetSystem = targetSystem;
         this.camIdx = camIdx;
@@ -211,9 +213,10 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 1
+            unitSize = 1,
+            enumType = CameraFeedbackFlags.class
     )
-    public final CameraFeedbackFlags flags() {
+    public final EnumValue<CameraFeedbackFlags> flags() {
         return this.flags;
     }
 
@@ -296,7 +299,7 @@ public final class CameraFeedback {
 
         private float focLen;
 
-        private CameraFeedbackFlags flags;
+        private EnumValue<CameraFeedbackFlags> flags;
 
         private int completedCaptures;
 
@@ -452,10 +455,27 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 1
+                unitSize = 1,
+                enumType = CameraFeedbackFlags.class
         )
-        public final Builder flags(CameraFeedbackFlags flags) {
+        public final Builder flags(EnumValue<CameraFeedbackFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         */
+        public final Builder flags(CameraFeedbackFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

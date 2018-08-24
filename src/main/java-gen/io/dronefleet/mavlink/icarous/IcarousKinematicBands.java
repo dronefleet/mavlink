@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.icarous;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -17,40 +19,41 @@ import java.util.Objects;
 public final class IcarousKinematicBands {
     private final int numbands;
 
-    private final IcarousTrackBandTypes type1;
+    private final EnumValue<IcarousTrackBandTypes> type1;
 
     private final float min1;
 
     private final float max1;
 
-    private final IcarousTrackBandTypes type2;
+    private final EnumValue<IcarousTrackBandTypes> type2;
 
     private final float min2;
 
     private final float max2;
 
-    private final IcarousTrackBandTypes type3;
+    private final EnumValue<IcarousTrackBandTypes> type3;
 
     private final float min3;
 
     private final float max3;
 
-    private final IcarousTrackBandTypes type4;
+    private final EnumValue<IcarousTrackBandTypes> type4;
 
     private final float min4;
 
     private final float max4;
 
-    private final IcarousTrackBandTypes type5;
+    private final EnumValue<IcarousTrackBandTypes> type5;
 
     private final float min5;
 
     private final float max5;
 
-    private IcarousKinematicBands(int numbands, IcarousTrackBandTypes type1, float min1, float max1,
-            IcarousTrackBandTypes type2, float min2, float max2, IcarousTrackBandTypes type3,
-            float min3, float max3, IcarousTrackBandTypes type4, float min4, float max4,
-            IcarousTrackBandTypes type5, float min5, float max5) {
+    private IcarousKinematicBands(int numbands, EnumValue<IcarousTrackBandTypes> type1, float min1,
+            float max1, EnumValue<IcarousTrackBandTypes> type2, float min2, float max2,
+            EnumValue<IcarousTrackBandTypes> type3, float min3, float max3,
+            EnumValue<IcarousTrackBandTypes> type4, float min4, float max4,
+            EnumValue<IcarousTrackBandTypes> type5, float min5, float max5) {
         this.numbands = numbands;
         this.type1 = type1;
         this.min1 = min1;
@@ -94,9 +97,10 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousTrackBandTypes.class
     )
-    public final IcarousTrackBandTypes type1() {
+    public final EnumValue<IcarousTrackBandTypes> type1() {
         return this.type1;
     }
 
@@ -127,9 +131,10 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousTrackBandTypes.class
     )
-    public final IcarousTrackBandTypes type2() {
+    public final EnumValue<IcarousTrackBandTypes> type2() {
         return this.type2;
     }
 
@@ -160,9 +165,10 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousTrackBandTypes.class
     )
-    public final IcarousTrackBandTypes type3() {
+    public final EnumValue<IcarousTrackBandTypes> type3() {
         return this.type3;
     }
 
@@ -193,9 +199,10 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousTrackBandTypes.class
     )
-    public final IcarousTrackBandTypes type4() {
+    public final EnumValue<IcarousTrackBandTypes> type4() {
         return this.type4;
     }
 
@@ -226,9 +233,10 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 1
+            unitSize = 1,
+            enumType = IcarousTrackBandTypes.class
     )
-    public final IcarousTrackBandTypes type5() {
+    public final EnumValue<IcarousTrackBandTypes> type5() {
         return this.type5;
     }
 
@@ -303,31 +311,31 @@ public final class IcarousKinematicBands {
     public static final class Builder {
         private int numbands;
 
-        private IcarousTrackBandTypes type1;
+        private EnumValue<IcarousTrackBandTypes> type1;
 
         private float min1;
 
         private float max1;
 
-        private IcarousTrackBandTypes type2;
+        private EnumValue<IcarousTrackBandTypes> type2;
 
         private float min2;
 
         private float max2;
 
-        private IcarousTrackBandTypes type3;
+        private EnumValue<IcarousTrackBandTypes> type3;
 
         private float min3;
 
         private float max3;
 
-        private IcarousTrackBandTypes type4;
+        private EnumValue<IcarousTrackBandTypes> type4;
 
         private float min4;
 
         private float max4;
 
-        private IcarousTrackBandTypes type5;
+        private EnumValue<IcarousTrackBandTypes> type5;
 
         private float min5;
 
@@ -351,10 +359,27 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousTrackBandTypes.class
         )
-        public final Builder type1(IcarousTrackBandTypes type1) {
+        public final Builder type1(EnumValue<IcarousTrackBandTypes> type1) {
             this.type1 = type1;
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type1(IcarousTrackBandTypes entry) {
+            this.type1 = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type1(Enum... flags) {
+            this.type1 = EnumValue.create(flags);
             return this;
         }
 
@@ -387,10 +412,27 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousTrackBandTypes.class
         )
-        public final Builder type2(IcarousTrackBandTypes type2) {
+        public final Builder type2(EnumValue<IcarousTrackBandTypes> type2) {
             this.type2 = type2;
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type2(IcarousTrackBandTypes entry) {
+            this.type2 = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type2(Enum... flags) {
+            this.type2 = EnumValue.create(flags);
             return this;
         }
 
@@ -423,10 +465,27 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousTrackBandTypes.class
         )
-        public final Builder type3(IcarousTrackBandTypes type3) {
+        public final Builder type3(EnumValue<IcarousTrackBandTypes> type3) {
             this.type3 = type3;
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type3(IcarousTrackBandTypes entry) {
+            this.type3 = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type3(Enum... flags) {
+            this.type3 = EnumValue.create(flags);
             return this;
         }
 
@@ -459,10 +518,27 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousTrackBandTypes.class
         )
-        public final Builder type4(IcarousTrackBandTypes type4) {
+        public final Builder type4(EnumValue<IcarousTrackBandTypes> type4) {
             this.type4 = type4;
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type4(IcarousTrackBandTypes entry) {
+            this.type4 = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type4(Enum... flags) {
+            this.type4 = EnumValue.create(flags);
             return this;
         }
 
@@ -495,10 +571,27 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 1
+                unitSize = 1,
+                enumType = IcarousTrackBandTypes.class
         )
-        public final Builder type5(IcarousTrackBandTypes type5) {
+        public final Builder type5(EnumValue<IcarousTrackBandTypes> type5) {
             this.type5 = type5;
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type5(IcarousTrackBandTypes entry) {
+            this.type5 = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type5(Enum... flags) {
+            this.type5 = EnumValue.create(flags);
             return this;
         }
 

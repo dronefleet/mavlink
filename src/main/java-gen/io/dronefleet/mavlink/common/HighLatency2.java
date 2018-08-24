@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -18,9 +19,9 @@ import java.util.Objects;
 public final class HighLatency2 {
     private final long timestamp;
 
-    private final MavType type;
+    private final EnumValue<MavType> type;
 
-    private final MavAutopilot autopilot;
+    private final EnumValue<MavAutopilot> autopilot;
 
     private final int customMode;
 
@@ -62,7 +63,7 @@ public final class HighLatency2 {
 
     private final int wpNum;
 
-    private final EnumFlagSet<HlFailureFlag> failureFlags;
+    private final EnumValue<HlFailureFlag> failureFlags;
 
     private final int custom0;
 
@@ -70,12 +71,12 @@ public final class HighLatency2 {
 
     private final int custom2;
 
-    private HighLatency2(long timestamp, MavType type, MavAutopilot autopilot, int customMode,
-            int latitude, int longitude, int altitude, int targetAltitude, int heading,
-            int targetHeading, int targetDistance, int throttle, int airspeed, int airspeedSp,
-            int groundspeed, int windspeed, int windHeading, int eph, int epv, int temperatureAir,
-            int climbRate, int battery, int wpNum, EnumFlagSet<HlFailureFlag> failureFlags,
-            int custom0, int custom1, int custom2) {
+    private HighLatency2(long timestamp, EnumValue<MavType> type, EnumValue<MavAutopilot> autopilot,
+            int customMode, int latitude, int longitude, int altitude, int targetAltitude,
+            int heading, int targetHeading, int targetDistance, int throttle, int airspeed,
+            int airspeedSp, int groundspeed, int windspeed, int windHeading, int eph, int epv,
+            int temperatureAir, int climbRate, int battery, int wpNum,
+            EnumValue<HlFailureFlag> failureFlags, int custom0, int custom1, int custom2) {
         this.timestamp = timestamp;
         this.type = type;
         this.autopilot = autopilot;
@@ -129,9 +130,10 @@ public final class HighLatency2 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavType.class
     )
-    public final MavType type() {
+    public final EnumValue<MavType> type() {
         return this.type;
     }
 
@@ -140,9 +142,10 @@ public final class HighLatency2 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavAutopilot.class
     )
-    public final MavAutopilot autopilot() {
+    public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
     }
 
@@ -378,9 +381,10 @@ public final class HighLatency2 {
      */
     @MavlinkFieldInfo(
             position = 24,
-            unitSize = 2
+            unitSize = 2,
+            enumType = HlFailureFlag.class
     )
-    public final EnumFlagSet<HlFailureFlag> failureFlags() {
+    public final EnumValue<HlFailureFlag> failureFlags() {
         return this.failureFlags;
     }
 
@@ -491,9 +495,9 @@ public final class HighLatency2 {
     public static final class Builder {
         private long timestamp;
 
-        private MavType type;
+        private EnumValue<MavType> type;
 
-        private MavAutopilot autopilot;
+        private EnumValue<MavAutopilot> autopilot;
 
         private int customMode;
 
@@ -535,7 +539,7 @@ public final class HighLatency2 {
 
         private int wpNum;
 
-        private EnumFlagSet<HlFailureFlag> failureFlags;
+        private EnumValue<HlFailureFlag> failureFlags;
 
         private int custom0;
 
@@ -560,10 +564,27 @@ public final class HighLatency2 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavType.class
         )
-        public final Builder type(MavType type) {
+        public final Builder type(EnumValue<MavType> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(MavType entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 
@@ -572,10 +593,27 @@ public final class HighLatency2 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavAutopilot.class
         )
-        public final Builder autopilot(MavAutopilot autopilot) {
+        public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(MavAutopilot entry) {
+            this.autopilot = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(Enum... flags) {
+            this.autopilot = EnumValue.create(flags);
             return this;
         }
 
@@ -831,10 +869,27 @@ public final class HighLatency2 {
          */
         @MavlinkFieldInfo(
                 position = 24,
-                unitSize = 2
+                unitSize = 2,
+                enumType = HlFailureFlag.class
         )
-        public final Builder failureFlags(EnumFlagSet<HlFailureFlag> failureFlags) {
+        public final Builder failureFlags(EnumValue<HlFailureFlag> failureFlags) {
             this.failureFlags = failureFlags;
+            return this;
+        }
+
+        /**
+         * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
+         */
+        public final Builder failureFlags(HlFailureFlag entry) {
+            this.failureFlags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
+         */
+        public final Builder failureFlags(Enum... flags) {
+            this.failureFlags = EnumValue.create(flags);
             return this;
         }
 

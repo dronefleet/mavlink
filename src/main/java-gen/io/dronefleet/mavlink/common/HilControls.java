@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -34,13 +36,13 @@ public final class HilControls {
 
     private final float aux4;
 
-    private final MavMode mode;
+    private final EnumValue<MavMode> mode;
 
     private final int navMode;
 
     private HilControls(BigInteger timeUsec, float rollAilerons, float pitchElevator,
             float yawRudder, float throttle, float aux1, float aux2, float aux3, float aux4,
-            MavMode mode, int navMode) {
+            EnumValue<MavMode> mode, int navMode) {
         this.timeUsec = timeUsec;
         this.rollAilerons = rollAilerons;
         this.pitchElevator = pitchElevator;
@@ -166,9 +168,10 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavMode.class
     )
-    public final MavMode mode() {
+    public final EnumValue<MavMode> mode() {
         return this.mode;
     }
 
@@ -238,7 +241,7 @@ public final class HilControls {
 
         private float aux4;
 
-        private MavMode mode;
+        private EnumValue<MavMode> mode;
 
         private int navMode;
 
@@ -355,10 +358,27 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavMode.class
         )
-        public final Builder mode(MavMode mode) {
+        public final Builder mode(EnumValue<MavMode> mode) {
             this.mode = mode;
+            return this;
+        }
+
+        /**
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}) 
+         */
+        public final Builder mode(MavMode entry) {
+            this.mode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}) 
+         */
+        public final Builder mode(Enum... flags) {
+            this.mode = EnumValue.create(flags);
             return this;
         }
 

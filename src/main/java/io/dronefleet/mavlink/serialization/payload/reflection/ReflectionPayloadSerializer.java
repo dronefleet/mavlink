@@ -3,9 +3,9 @@ package io.dronefleet.mavlink.serialization.payload.reflection;
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
+import io.dronefleet.mavlink.util.EnumValue;
 import io.dronefleet.mavlink.util.reflection.MavlinkReflection;
 
 import java.lang.reflect.InvocationTargetException;
@@ -62,8 +62,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                                 write((Double) fieldValue, payload, offset, length);
                             } else if (Enum.class.isAssignableFrom(fieldType)) {
                                 write((Enum) fieldValue, payload, offset, length);
-                            } else if (EnumFlagSet.class.isAssignableFrom(fieldType)) {
-                                write((EnumFlagSet<? extends Enum>) fieldValue, payload, offset, length);
+                            } else if (EnumValue.class.isAssignableFrom(fieldType)) {
+                                write((EnumValue<? extends Enum>) fieldValue, payload, offset, length);
                             } else if (String.class.isAssignableFrom(fieldType)) {
                                 write((String) fieldValue, payload, offset, length);
                             } else {
@@ -104,12 +104,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                 .ifPresent(e -> write(e, buffer, offset, length));
     }
 
-    private void write(EnumFlagSet<? extends Enum> value, byte[] buffer, int offset, int length) {
-        AtomicInteger flags = new AtomicInteger(0);
-        value.getEnabled().stream()
-                .map(MavlinkReflection::getEnumValue)
-                .forEach(flag -> flags.getAndAccumulate(flag, (a, b) -> a | b));
-        write(flags.get(), buffer, offset, length);
+    private void write(EnumValue<? extends Enum> value, byte[] buffer, int offset, int length) {
+        write(value.value(), buffer, offset, length);
     }
 
     private void write(String str, byte[] buffer, int offset, int length) {

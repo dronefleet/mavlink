@@ -4,6 +4,8 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.common.FenceBreach;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -20,11 +22,11 @@ public final class FenceStatus {
 
     private final int breachCount;
 
-    private final FenceBreach breachType;
+    private final EnumValue<FenceBreach> breachType;
 
     private final long breachTime;
 
-    private FenceStatus(int breachStatus, int breachCount, FenceBreach breachType,
+    private FenceStatus(int breachStatus, int breachCount, EnumValue<FenceBreach> breachType,
             long breachTime) {
         this.breachStatus = breachStatus;
         this.breachCount = breachCount;
@@ -67,9 +69,10 @@ public final class FenceStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = FenceBreach.class
     )
-    public final FenceBreach breachType() {
+    public final EnumValue<FenceBreach> breachType() {
         return this.breachType;
     }
 
@@ -111,7 +114,7 @@ public final class FenceStatus {
 
         private int breachCount;
 
-        private FenceBreach breachType;
+        private EnumValue<FenceBreach> breachType;
 
         private long breachTime;
 
@@ -144,10 +147,27 @@ public final class FenceStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = FenceBreach.class
         )
-        public final Builder breachType(FenceBreach breachType) {
+        public final Builder breachType(EnumValue<FenceBreach> breachType) {
             this.breachType = breachType;
+            return this;
+        }
+
+        /**
+         * last breach type (see FENCE_BREACH_* enum) 
+         */
+        public final Builder breachType(FenceBreach entry) {
+            this.breachType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * last breach type (see FENCE_BREACH_* enum) 
+         */
+        public final Builder breachType(Enum... flags) {
+            this.breachType = EnumValue.create(flags);
             return this;
         }
 

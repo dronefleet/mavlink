@@ -5,8 +5,6 @@ import io.dronefleet.mavlink.common.CommandLong;
 import io.dronefleet.mavlink.common.MavCmd;
 import org.junit.Test;
 
-import java.util.Objects;
-
 import static org.junit.Assert.assertEquals;
 
 public class ReflectionPayloadSerializationTest {

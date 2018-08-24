@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -29,10 +31,10 @@ public final class ParamSet {
 
     private final float paramValue;
 
-    private final MavParamType paramType;
+    private final EnumValue<MavParamType> paramType;
 
     private ParamSet(int targetSystem, int targetComponent, String paramId, float paramValue,
-            MavParamType paramType) {
+            EnumValue<MavParamType> paramType) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.paramId = paramId;
@@ -100,9 +102,10 @@ public final class ParamSet {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavParamType.class
     )
-    public final MavParamType paramType() {
+    public final EnumValue<MavParamType> paramType() {
         return this.paramType;
     }
 
@@ -139,7 +142,7 @@ public final class ParamSet {
 
         private float paramValue;
 
-        private MavParamType paramType;
+        private EnumValue<MavParamType> paramType;
 
         /**
          * System ID 
@@ -197,10 +200,27 @@ public final class ParamSet {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavParamType.class
         )
-        public final Builder paramType(MavParamType paramType) {
+        public final Builder paramType(EnumValue<MavParamType> paramType) {
             this.paramType = paramType;
+            return this;
+        }
+
+        /**
+         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         */
+        public final Builder paramType(MavParamType entry) {
+            this.paramType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         */
+        public final Builder paramType(Enum... flags) {
+            this.paramType = EnumValue.create(flags);
             return this;
         }
 

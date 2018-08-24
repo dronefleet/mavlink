@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -23,7 +24,7 @@ public final class AdsbVehicle {
 
     private final int lon;
 
-    private final AdsbAltitudeType altitudeType;
+    private final EnumValue<AdsbAltitudeType> altitudeType;
 
     private final int altitude;
 
@@ -35,17 +36,18 @@ public final class AdsbVehicle {
 
     private final String callsign;
 
-    private final AdsbEmitterType emitterType;
+    private final EnumValue<AdsbEmitterType> emitterType;
 
     private final int tslc;
 
-    private final EnumFlagSet<AdsbFlags> flags;
+    private final EnumValue<AdsbFlags> flags;
 
     private final int squawk;
 
-    private AdsbVehicle(long icaoAddress, int lat, int lon, AdsbAltitudeType altitudeType,
-            int altitude, int heading, int horVelocity, int verVelocity, String callsign,
-            AdsbEmitterType emitterType, int tslc, EnumFlagSet<AdsbFlags> flags, int squawk) {
+    private AdsbVehicle(long icaoAddress, int lat, int lon,
+            EnumValue<AdsbAltitudeType> altitudeType, int altitude, int heading, int horVelocity,
+            int verVelocity, String callsign, EnumValue<AdsbEmitterType> emitterType, int tslc,
+            EnumValue<AdsbFlags> flags, int squawk) {
         this.icaoAddress = icaoAddress;
         this.lat = lat;
         this.lon = lon;
@@ -109,9 +111,10 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = AdsbAltitudeType.class
     )
-    public final AdsbAltitudeType altitudeType() {
+    public final EnumValue<AdsbAltitudeType> altitudeType() {
         return this.altitudeType;
     }
 
@@ -178,9 +181,10 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            enumType = AdsbEmitterType.class
     )
-    public final AdsbEmitterType emitterType() {
+    public final EnumValue<AdsbEmitterType> emitterType() {
         return this.emitterType;
     }
 
@@ -200,9 +204,10 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 2
+            unitSize = 2,
+            enumType = AdsbFlags.class
     )
-    public final EnumFlagSet<AdsbFlags> flags() {
+    public final EnumValue<AdsbFlags> flags() {
         return this.flags;
     }
 
@@ -264,7 +269,7 @@ public final class AdsbVehicle {
 
         private int lon;
 
-        private AdsbAltitudeType altitudeType;
+        private EnumValue<AdsbAltitudeType> altitudeType;
 
         private int altitude;
 
@@ -276,11 +281,11 @@ public final class AdsbVehicle {
 
         private String callsign;
 
-        private AdsbEmitterType emitterType;
+        private EnumValue<AdsbEmitterType> emitterType;
 
         private int tslc;
 
-        private EnumFlagSet<AdsbFlags> flags;
+        private EnumValue<AdsbFlags> flags;
 
         private int squawk;
 
@@ -327,10 +332,27 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = AdsbAltitudeType.class
         )
-        public final Builder altitudeType(AdsbAltitudeType altitudeType) {
+        public final Builder altitudeType(EnumValue<AdsbAltitudeType> altitudeType) {
             this.altitudeType = altitudeType;
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         */
+        public final Builder altitudeType(AdsbAltitudeType entry) {
+            this.altitudeType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         */
+        public final Builder altitudeType(Enum... flags) {
+            this.altitudeType = EnumValue.create(flags);
             return this;
         }
 
@@ -402,10 +424,27 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                enumType = AdsbEmitterType.class
         )
-        public final Builder emitterType(AdsbEmitterType emitterType) {
+        public final Builder emitterType(EnumValue<AdsbEmitterType> emitterType) {
             this.emitterType = emitterType;
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emitterType(AdsbEmitterType entry) {
+            this.emitterType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emitterType(Enum... flags) {
+            this.emitterType = EnumValue.create(flags);
             return this;
         }
 
@@ -426,10 +465,27 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 2
+                unitSize = 2,
+                enumType = AdsbFlags.class
         )
-        public final Builder flags(EnumFlagSet<AdsbFlags> flags) {
+        public final Builder flags(EnumValue<AdsbFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * Flags to indicate various statuses including valid data fields 
+         */
+        public final Builder flags(AdsbFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Flags to indicate various statuses including valid data fields 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

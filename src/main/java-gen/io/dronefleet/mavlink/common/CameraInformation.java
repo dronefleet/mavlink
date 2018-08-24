@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -36,7 +38,7 @@ public final class CameraInformation {
 
     private final int lensId;
 
-    private final CameraCapFlags flags;
+    private final EnumValue<CameraCapFlags> flags;
 
     private final int camDefinitionVersion;
 
@@ -44,7 +46,7 @@ public final class CameraInformation {
 
     private CameraInformation(long timeBootMs, byte[] vendorName, byte[] modelName,
             long firmwareVersion, float focalLength, float sensorSizeH, float sensorSizeV,
-            int resolutionH, int resolutionV, int lensId, CameraCapFlags flags,
+            int resolutionH, int resolutionV, int lensId, EnumValue<CameraCapFlags> flags,
             int camDefinitionVersion, String camDefinitionUri) {
         this.timeBootMs = timeBootMs;
         this.vendorName = vendorName;
@@ -187,9 +189,10 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            enumType = CameraCapFlags.class
     )
-    public final CameraCapFlags flags() {
+    public final EnumValue<CameraCapFlags> flags() {
         return this.flags;
     }
 
@@ -277,7 +280,7 @@ public final class CameraInformation {
 
         private int lensId;
 
-        private CameraCapFlags flags;
+        private EnumValue<CameraCapFlags> flags;
 
         private int camDefinitionVersion;
 
@@ -411,10 +414,27 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                enumType = CameraCapFlags.class
         )
-        public final Builder flags(CameraCapFlags flags) {
+        public final Builder flags(EnumValue<CameraCapFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         */
+        public final Builder flags(CameraCapFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

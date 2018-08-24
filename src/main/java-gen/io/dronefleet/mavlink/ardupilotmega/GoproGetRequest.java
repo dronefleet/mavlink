@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,9 +21,9 @@ public final class GoproGetRequest {
 
     private final int targetComponent;
 
-    private final GoproCommand cmdId;
+    private final EnumValue<GoproCommand> cmdId;
 
-    private GoproGetRequest(int targetSystem, int targetComponent, GoproCommand cmdId) {
+    private GoproGetRequest(int targetSystem, int targetComponent, EnumValue<GoproCommand> cmdId) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.cmdId = cmdId;
@@ -62,9 +64,10 @@ public final class GoproGetRequest {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproCommand.class
     )
-    public final GoproCommand cmdId() {
+    public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
     }
 
@@ -93,7 +96,7 @@ public final class GoproGetRequest {
 
         private int targetComponent;
 
-        private GoproCommand cmdId;
+        private EnumValue<GoproCommand> cmdId;
 
         /**
          * System ID 
@@ -124,10 +127,27 @@ public final class GoproGetRequest {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproCommand.class
         )
-        public final Builder cmdId(GoproCommand cmdId) {
+        public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
+            return this;
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(GoproCommand entry) {
+            this.cmdId = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(Enum... flags) {
+            this.cmdId = EnumValue.create(flags);
             return this;
         }
 

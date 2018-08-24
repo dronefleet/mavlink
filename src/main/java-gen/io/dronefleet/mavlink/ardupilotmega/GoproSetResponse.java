@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,11 +17,11 @@ import java.util.Objects;
         crc = 162
 )
 public final class GoproSetResponse {
-    private final GoproCommand cmdId;
+    private final EnumValue<GoproCommand> cmdId;
 
-    private final GoproRequestStatus status;
+    private final EnumValue<GoproRequestStatus> status;
 
-    private GoproSetResponse(GoproCommand cmdId, GoproRequestStatus status) {
+    private GoproSetResponse(EnumValue<GoproCommand> cmdId, EnumValue<GoproRequestStatus> status) {
         this.cmdId = cmdId;
         this.status = status;
     }
@@ -37,9 +39,10 @@ public final class GoproSetResponse {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproCommand.class
     )
-    public final GoproCommand cmdId() {
+    public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
     }
 
@@ -48,9 +51,10 @@ public final class GoproSetResponse {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GoproRequestStatus.class
     )
-    public final GoproRequestStatus status() {
+    public final EnumValue<GoproRequestStatus> status() {
         return this.status;
     }
 
@@ -73,19 +77,36 @@ public final class GoproSetResponse {
     }
 
     public static final class Builder {
-        private GoproCommand cmdId;
+        private EnumValue<GoproCommand> cmdId;
 
-        private GoproRequestStatus status;
+        private EnumValue<GoproRequestStatus> status;
 
         /**
          * Command ID 
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproCommand.class
         )
-        public final Builder cmdId(GoproCommand cmdId) {
+        public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
+            return this;
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(GoproCommand entry) {
+            this.cmdId = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(Enum... flags) {
+            this.cmdId = EnumValue.create(flags);
             return this;
         }
 
@@ -94,10 +115,27 @@ public final class GoproSetResponse {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GoproRequestStatus.class
         )
-        public final Builder status(GoproRequestStatus status) {
+        public final Builder status(EnumValue<GoproRequestStatus> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * Status 
+         */
+        public final Builder status(GoproRequestStatus entry) {
+            this.status = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Status 
+         */
+        public final Builder status(Enum... flags) {
+            this.status = EnumValue.create(flags);
             return this;
         }
 

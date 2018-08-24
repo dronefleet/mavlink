@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -21,7 +23,7 @@ import java.util.Objects;
 public final class Trajectory {
     private final BigInteger timeUsec;
 
-    private final MavTrajectoryRepresentation type;
+    private final EnumValue<MavTrajectoryRepresentation> type;
 
     private final List<Float> point1;
 
@@ -35,9 +37,9 @@ public final class Trajectory {
 
     private final byte[] pointValid;
 
-    private Trajectory(BigInteger timeUsec, MavTrajectoryRepresentation type, List<Float> point1,
-            List<Float> point2, List<Float> point3, List<Float> point4, List<Float> point5,
-            byte[] pointValid) {
+    private Trajectory(BigInteger timeUsec, EnumValue<MavTrajectoryRepresentation> type,
+            List<Float> point1, List<Float> point2, List<Float> point3, List<Float> point4,
+            List<Float> point5, byte[] pointValid) {
         this.timeUsec = timeUsec;
         this.type = type;
         this.point1 = point1;
@@ -72,9 +74,10 @@ public final class Trajectory {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavTrajectoryRepresentation.class
     )
-    public final MavTrajectoryRepresentation type() {
+    public final EnumValue<MavTrajectoryRepresentation> type() {
         return this.type;
     }
 
@@ -183,7 +186,7 @@ public final class Trajectory {
     public static final class Builder {
         private BigInteger timeUsec;
 
-        private MavTrajectoryRepresentation type;
+        private EnumValue<MavTrajectoryRepresentation> type;
 
         private List<Float> point1;
 
@@ -214,10 +217,27 @@ public final class Trajectory {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavTrajectoryRepresentation.class
         )
-        public final Builder type(MavTrajectoryRepresentation type) {
+        public final Builder type(EnumValue<MavTrajectoryRepresentation> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
+         */
+        public final Builder type(MavTrajectoryRepresentation entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 

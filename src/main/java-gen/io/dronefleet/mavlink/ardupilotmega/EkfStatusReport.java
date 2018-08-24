@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,7 +17,7 @@ import java.util.Objects;
         crc = 71
 )
 public final class EkfStatusReport {
-    private final EkfStatusFlags flags;
+    private final EnumValue<EkfStatusFlags> flags;
 
     private final float velocityVariance;
 
@@ -29,9 +31,9 @@ public final class EkfStatusReport {
 
     private final float airspeedVariance;
 
-    private EkfStatusReport(EkfStatusFlags flags, float velocityVariance, float posHorizVariance,
-            float posVertVariance, float compassVariance, float terrainAltVariance,
-            float airspeedVariance) {
+    private EkfStatusReport(EnumValue<EkfStatusFlags> flags, float velocityVariance,
+            float posHorizVariance, float posVertVariance, float compassVariance,
+            float terrainAltVariance, float airspeedVariance) {
         this.flags = flags;
         this.velocityVariance = velocityVariance;
         this.posHorizVariance = posHorizVariance;
@@ -54,9 +56,10 @@ public final class EkfStatusReport {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            enumType = EkfStatusFlags.class
     )
-    public final EkfStatusFlags flags() {
+    public final EnumValue<EkfStatusFlags> flags() {
         return this.flags;
     }
 
@@ -156,7 +159,7 @@ public final class EkfStatusReport {
     }
 
     public static final class Builder {
-        private EkfStatusFlags flags;
+        private EnumValue<EkfStatusFlags> flags;
 
         private float velocityVariance;
 
@@ -175,10 +178,27 @@ public final class EkfStatusReport {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                enumType = EkfStatusFlags.class
         )
-        public final Builder flags(EkfStatusFlags flags) {
+        public final Builder flags(EnumValue<EkfStatusFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * Flags 
+         */
+        public final Builder flags(EkfStatusFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Flags 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

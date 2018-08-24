@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -16,11 +17,11 @@ import java.util.Objects;
         crc = 150
 )
 public final class HighLatency {
-    private final EnumFlagSet<MavModeFlag> baseMode;
+    private final EnumValue<MavModeFlag> baseMode;
 
     private final long customMode;
 
-    private final MavLandedState landedState;
+    private final EnumValue<MavLandedState> landedState;
 
     private final int roll;
 
@@ -50,7 +51,7 @@ public final class HighLatency {
 
     private final int gpsNsat;
 
-    private final GpsFixType gpsFixType;
+    private final EnumValue<GpsFixType> gpsFixType;
 
     private final int batteryRemaining;
 
@@ -64,12 +65,12 @@ public final class HighLatency {
 
     private final int wpDistance;
 
-    private HighLatency(EnumFlagSet<MavModeFlag> baseMode, long customMode,
-            MavLandedState landedState, int roll, int pitch, int heading, int throttle,
+    private HighLatency(EnumValue<MavModeFlag> baseMode, long customMode,
+            EnumValue<MavLandedState> landedState, int roll, int pitch, int heading, int throttle,
             int headingSp, int latitude, int longitude, int altitudeAmsl, int altitudeSp,
             int airspeed, int airspeedSp, int groundspeed, int climbRate, int gpsNsat,
-            GpsFixType gpsFixType, int batteryRemaining, int temperature, int temperatureAir,
-            int failsafe, int wpNum, int wpDistance) {
+            EnumValue<GpsFixType> gpsFixType, int batteryRemaining, int temperature,
+            int temperatureAir, int failsafe, int wpNum, int wpDistance) {
         this.baseMode = baseMode;
         this.customMode = customMode;
         this.landedState = landedState;
@@ -109,9 +110,10 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavModeFlag.class
     )
-    public final EnumFlagSet<MavModeFlag> baseMode() {
+    public final EnumValue<MavModeFlag> baseMode() {
         return this.baseMode;
     }
 
@@ -131,9 +133,10 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavLandedState.class
     )
-    public final MavLandedState landedState() {
+    public final EnumValue<MavLandedState> landedState() {
         return this.landedState;
     }
 
@@ -305,9 +308,10 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GpsFixType.class
     )
-    public final GpsFixType gpsFixType() {
+    public final EnumValue<GpsFixType> gpsFixType() {
         return this.gpsFixType;
     }
 
@@ -443,11 +447,11 @@ public final class HighLatency {
     }
 
     public static final class Builder {
-        private EnumFlagSet<MavModeFlag> baseMode;
+        private EnumValue<MavModeFlag> baseMode;
 
         private long customMode;
 
-        private MavLandedState landedState;
+        private EnumValue<MavLandedState> landedState;
 
         private int roll;
 
@@ -477,7 +481,7 @@ public final class HighLatency {
 
         private int gpsNsat;
 
-        private GpsFixType gpsFixType;
+        private EnumValue<GpsFixType> gpsFixType;
 
         private int batteryRemaining;
 
@@ -496,10 +500,27 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavModeFlag.class
         )
-        public final Builder baseMode(EnumFlagSet<MavModeFlag> baseMode) {
+        public final Builder baseMode(EnumValue<MavModeFlag> baseMode) {
             this.baseMode = baseMode;
+            return this;
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum. 
+         */
+        public final Builder baseMode(MavModeFlag entry) {
+            this.baseMode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum. 
+         */
+        public final Builder baseMode(Enum... flags) {
+            this.baseMode = EnumValue.create(flags);
             return this;
         }
 
@@ -520,10 +541,27 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavLandedState.class
         )
-        public final Builder landedState(MavLandedState landedState) {
+        public final Builder landedState(EnumValue<MavLandedState> landedState) {
             this.landedState = landedState;
+            return this;
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(MavLandedState entry) {
+            this.landedState = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(Enum... flags) {
+            this.landedState = EnumValue.create(flags);
             return this;
         }
 
@@ -709,10 +747,27 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GpsFixType.class
         )
-        public final Builder gpsFixType(GpsFixType gpsFixType) {
+        public final Builder gpsFixType(EnumValue<GpsFixType> gpsFixType) {
             this.gpsFixType = gpsFixType;
+            return this;
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder gpsFixType(GpsFixType entry) {
+            this.gpsFixType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder gpsFixType(Enum... flags) {
+            this.gpsFixType = EnumValue.create(flags);
             return this;
         }
 

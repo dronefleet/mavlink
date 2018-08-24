@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -33,11 +35,11 @@ public final class Deepstall {
 
     private final float crossTrackError;
 
-    private final DeepstallStage stage;
+    private final EnumValue<DeepstallStage> stage;
 
     private Deepstall(int landingLat, int landingLon, int pathLat, int pathLon, int arcEntryLat,
             int arcEntryLon, float altitude, float expectedTravelDistance, float crossTrackError,
-            DeepstallStage stage) {
+            EnumValue<DeepstallStage> stage) {
         this.landingLat = landingLat;
         this.landingLon = landingLon;
         this.pathLat = pathLat;
@@ -168,9 +170,10 @@ public final class Deepstall {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            enumType = DeepstallStage.class
     )
-    public final DeepstallStage stage() {
+    public final EnumValue<DeepstallStage> stage() {
         return this.stage;
     }
 
@@ -227,7 +230,7 @@ public final class Deepstall {
 
         private float crossTrackError;
 
-        private DeepstallStage stage;
+        private EnumValue<DeepstallStage> stage;
 
         /**
          * Landing latitude (deg * 1E7) 
@@ -348,10 +351,27 @@ public final class Deepstall {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                enumType = DeepstallStage.class
         )
-        public final Builder stage(DeepstallStage stage) {
+        public final Builder stage(EnumValue<DeepstallStage> stage) {
             this.stage = stage;
+            return this;
+        }
+
+        /**
+         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         */
+        public final Builder stage(DeepstallStage entry) {
+            this.stage = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         */
+        public final Builder stage(Enum... flags) {
+            this.stage = EnumValue.create(flags);
             return this;
         }
 

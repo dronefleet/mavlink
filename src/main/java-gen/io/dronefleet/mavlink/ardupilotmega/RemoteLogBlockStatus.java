@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -21,10 +23,10 @@ public final class RemoteLogBlockStatus {
 
     private final long seqno;
 
-    private final MavRemoteLogDataBlockStatuses status;
+    private final EnumValue<MavRemoteLogDataBlockStatuses> status;
 
     private RemoteLogBlockStatus(int targetSystem, int targetComponent, long seqno,
-            MavRemoteLogDataBlockStatuses status) {
+            EnumValue<MavRemoteLogDataBlockStatuses> status) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.seqno = seqno;
@@ -77,9 +79,10 @@ public final class RemoteLogBlockStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavRemoteLogDataBlockStatuses.class
     )
-    public final MavRemoteLogDataBlockStatuses status() {
+    public final EnumValue<MavRemoteLogDataBlockStatuses> status() {
         return this.status;
     }
 
@@ -112,7 +115,7 @@ public final class RemoteLogBlockStatus {
 
         private long seqno;
 
-        private MavRemoteLogDataBlockStatuses status;
+        private EnumValue<MavRemoteLogDataBlockStatuses> status;
 
         /**
          * System ID 
@@ -155,10 +158,27 @@ public final class RemoteLogBlockStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavRemoteLogDataBlockStatuses.class
         )
-        public final Builder status(MavRemoteLogDataBlockStatuses status) {
+        public final Builder status(EnumValue<MavRemoteLogDataBlockStatuses> status) {
             this.status = status;
+            return this;
+        }
+
+        /**
+         * log data block status 
+         */
+        public final Builder status(MavRemoteLogDataBlockStatuses entry) {
+            this.status = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * log data block status 
+         */
+        public final Builder status(Enum... flags) {
+            this.status = EnumValue.create(flags);
             return this;
         }
 
