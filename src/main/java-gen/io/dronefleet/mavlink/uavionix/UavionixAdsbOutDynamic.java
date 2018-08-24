@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.uavionix;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public final class UavionixAdsbOutDynamic {
 
     private final int gpsalt;
 
-    private final UavionixAdsbOutDynamicGpsFix gpsfix;
+    private final EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix;
 
     private final int numsats;
 
@@ -42,17 +43,17 @@ public final class UavionixAdsbOutDynamic {
 
     private final int velew;
 
-    private final UavionixAdsbEmergencyStatus emergencystatus;
+    private final EnumValue<UavionixAdsbEmergencyStatus> emergencystatus;
 
-    private final EnumFlagSet<UavionixAdsbOutDynamicState> state;
+    private final EnumValue<UavionixAdsbOutDynamicState> state;
 
     private final int squawk;
 
     private UavionixAdsbOutDynamic(long utctime, int gpslat, int gpslon, int gpsalt,
-            UavionixAdsbOutDynamicGpsFix gpsfix, int numsats, int baroaltmsl, long accuracyhor,
-            int accuracyvert, int accuracyvel, int velvert, int velns, int velew,
-            UavionixAdsbEmergencyStatus emergencystatus,
-            EnumFlagSet<UavionixAdsbOutDynamicState> state, int squawk) {
+            EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix, int numsats, int baroaltmsl,
+            long accuracyhor, int accuracyvert, int accuracyvel, int velvert, int velns, int velew,
+            EnumValue<UavionixAdsbEmergencyStatus> emergencystatus,
+            EnumValue<UavionixAdsbOutDynamicState> state, int squawk) {
         this.utctime = utctime;
         this.gpslat = gpslat;
         this.gpslon = gpslon;
@@ -131,9 +132,10 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbOutDynamicGpsFix.class
     )
-    public final UavionixAdsbOutDynamicGpsFix gpsfix() {
+    public final EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix() {
         return this.gpsfix;
     }
 
@@ -235,9 +237,10 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbEmergencyStatus.class
     )
-    public final UavionixAdsbEmergencyStatus emergencystatus() {
+    public final EnumValue<UavionixAdsbEmergencyStatus> emergencystatus() {
         return this.emergencystatus;
     }
 
@@ -246,9 +249,10 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 2
+            unitSize = 2,
+            enumType = UavionixAdsbOutDynamicState.class
     )
-    public final EnumFlagSet<UavionixAdsbOutDynamicState> state() {
+    public final EnumValue<UavionixAdsbOutDynamicState> state() {
         return this.state;
     }
 
@@ -318,7 +322,7 @@ public final class UavionixAdsbOutDynamic {
 
         private int gpsalt;
 
-        private UavionixAdsbOutDynamicGpsFix gpsfix;
+        private EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix;
 
         private int numsats;
 
@@ -336,9 +340,9 @@ public final class UavionixAdsbOutDynamic {
 
         private int velew;
 
-        private UavionixAdsbEmergencyStatus emergencystatus;
+        private EnumValue<UavionixAdsbEmergencyStatus> emergencystatus;
 
-        private EnumFlagSet<UavionixAdsbOutDynamicState> state;
+        private EnumValue<UavionixAdsbOutDynamicState> state;
 
         private int squawk;
 
@@ -398,10 +402,27 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbOutDynamicGpsFix.class
         )
-        public final Builder gpsfix(UavionixAdsbOutDynamicGpsFix gpsfix) {
+        public final Builder gpsfix(EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix) {
             this.gpsfix = gpsfix;
+            return this;
+        }
+
+        /**
+         * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+         */
+        public final Builder gpsfix(UavionixAdsbOutDynamicGpsFix entry) {
+            this.gpsfix = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+         */
+        public final Builder gpsfix(Enum... flags) {
+            this.gpsfix = EnumValue.create(flags);
             return this;
         }
 
@@ -511,10 +532,28 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbEmergencyStatus.class
         )
-        public final Builder emergencystatus(UavionixAdsbEmergencyStatus emergencystatus) {
+        public final Builder emergencystatus(
+                EnumValue<UavionixAdsbEmergencyStatus> emergencystatus) {
             this.emergencystatus = emergencystatus;
+            return this;
+        }
+
+        /**
+         * Emergency status 
+         */
+        public final Builder emergencystatus(UavionixAdsbEmergencyStatus entry) {
+            this.emergencystatus = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Emergency status 
+         */
+        public final Builder emergencystatus(Enum... flags) {
+            this.emergencystatus = EnumValue.create(flags);
             return this;
         }
 
@@ -523,10 +562,27 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 2
+                unitSize = 2,
+                enumType = UavionixAdsbOutDynamicState.class
         )
-        public final Builder state(EnumFlagSet<UavionixAdsbOutDynamicState> state) {
+        public final Builder state(EnumValue<UavionixAdsbOutDynamicState> state) {
             this.state = state;
+            return this;
+        }
+
+        /**
+         * ADS-B transponder dynamic input state flags 
+         */
+        public final Builder state(UavionixAdsbOutDynamicState entry) {
+            this.state = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * ADS-B transponder dynamic input state flags 
+         */
+        public final Builder state(Enum... flags) {
+            this.state = EnumValue.create(flags);
             return this;
         }
 

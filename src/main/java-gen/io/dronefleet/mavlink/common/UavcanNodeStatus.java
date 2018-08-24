@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -22,16 +24,17 @@ public final class UavcanNodeStatus {
 
     private final long uptimeSec;
 
-    private final UavcanNodeHealth health;
+    private final EnumValue<UavcanNodeHealth> health;
 
-    private final UavcanNodeMode mode;
+    private final EnumValue<UavcanNodeMode> mode;
 
     private final int subMode;
 
     private final int vendorSpecificStatusCode;
 
-    private UavcanNodeStatus(BigInteger timeUsec, long uptimeSec, UavcanNodeHealth health,
-            UavcanNodeMode mode, int subMode, int vendorSpecificStatusCode) {
+    private UavcanNodeStatus(BigInteger timeUsec, long uptimeSec,
+            EnumValue<UavcanNodeHealth> health, EnumValue<UavcanNodeMode> mode, int subMode,
+            int vendorSpecificStatusCode) {
         this.timeUsec = timeUsec;
         this.uptimeSec = uptimeSec;
         this.health = health;
@@ -75,9 +78,10 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavcanNodeHealth.class
     )
-    public final UavcanNodeHealth health() {
+    public final EnumValue<UavcanNodeHealth> health() {
         return this.health;
     }
 
@@ -86,9 +90,10 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavcanNodeMode.class
     )
-    public final UavcanNodeMode mode() {
+    public final EnumValue<UavcanNodeMode> mode() {
         return this.mode;
     }
 
@@ -145,9 +150,9 @@ public final class UavcanNodeStatus {
 
         private long uptimeSec;
 
-        private UavcanNodeHealth health;
+        private EnumValue<UavcanNodeHealth> health;
 
-        private UavcanNodeMode mode;
+        private EnumValue<UavcanNodeMode> mode;
 
         private int subMode;
 
@@ -182,10 +187,27 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavcanNodeHealth.class
         )
-        public final Builder health(UavcanNodeHealth health) {
+        public final Builder health(EnumValue<UavcanNodeHealth> health) {
             this.health = health;
+            return this;
+        }
+
+        /**
+         * Generalized node health status. 
+         */
+        public final Builder health(UavcanNodeHealth entry) {
+            this.health = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Generalized node health status. 
+         */
+        public final Builder health(Enum... flags) {
+            this.health = EnumValue.create(flags);
             return this;
         }
 
@@ -194,10 +216,27 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavcanNodeMode.class
         )
-        public final Builder mode(UavcanNodeMode mode) {
+        public final Builder mode(EnumValue<UavcanNodeMode> mode) {
             this.mode = mode;
+            return this;
+        }
+
+        /**
+         * Generalized operating mode. 
+         */
+        public final Builder mode(UavcanNodeMode entry) {
+            this.mode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Generalized operating mode. 
+         */
+        public final Builder mode(Enum... flags) {
+            this.mode = EnumValue.create(flags);
             return this;
         }
 

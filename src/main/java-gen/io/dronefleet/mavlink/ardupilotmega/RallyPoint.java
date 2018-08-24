@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -34,10 +35,10 @@ public final class RallyPoint {
 
     private final int landDir;
 
-    private final EnumFlagSet<RallyFlags> flags;
+    private final EnumValue<RallyFlags> flags;
 
     private RallyPoint(int targetSystem, int targetComponent, int idx, int count, int lat, int lng,
-            int alt, int breakAlt, int landDir, EnumFlagSet<RallyFlags> flags) {
+            int alt, int breakAlt, int landDir, EnumValue<RallyFlags> flags) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.idx = idx;
@@ -166,9 +167,10 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            enumType = RallyFlags.class
     )
-    public final EnumFlagSet<RallyFlags> flags() {
+    public final EnumValue<RallyFlags> flags() {
         return this.flags;
     }
 
@@ -225,7 +227,7 @@ public final class RallyPoint {
 
         private int landDir;
 
-        private EnumFlagSet<RallyFlags> flags;
+        private EnumValue<RallyFlags> flags;
 
         /**
          * System ID 
@@ -344,10 +346,27 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                enumType = RallyFlags.class
         )
-        public final Builder flags(EnumFlagSet<RallyFlags> flags) {
+        public final Builder flags(EnumValue<RallyFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         */
+        public final Builder flags(RallyFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

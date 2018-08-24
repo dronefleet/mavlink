@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -21,7 +23,7 @@ public final class SafetySetAllowedArea {
 
     private final int targetComponent;
 
-    private final MavFrame frame;
+    private final EnumValue<MavFrame> frame;
 
     private final float p1x;
 
@@ -35,8 +37,8 @@ public final class SafetySetAllowedArea {
 
     private final float p2z;
 
-    private SafetySetAllowedArea(int targetSystem, int targetComponent, MavFrame frame, float p1x,
-            float p1y, float p1z, float p2x, float p2y, float p2z) {
+    private SafetySetAllowedArea(int targetSystem, int targetComponent, EnumValue<MavFrame> frame,
+            float p1x, float p1y, float p1z, float p2x, float p2y, float p2z) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.frame = frame;
@@ -84,9 +86,10 @@ public final class SafetySetAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame frame() {
+    public final EnumValue<MavFrame> frame() {
         return this.frame;
     }
 
@@ -193,7 +196,7 @@ public final class SafetySetAllowedArea {
 
         private int targetComponent;
 
-        private MavFrame frame;
+        private EnumValue<MavFrame> frame;
 
         private float p1x;
 
@@ -237,10 +240,29 @@ public final class SafetySetAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder frame(MavFrame frame) {
+        public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
+            return this;
+        }
+
+        /**
+         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
+         * axis up or local, right handed, Z axis down. 
+         */
+        public final Builder frame(MavFrame entry) {
+            this.frame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
+         * axis up or local, right handed, Z axis down. 
+         */
+        public final Builder frame(Enum... flags) {
+            this.frame = EnumValue.create(flags);
             return this;
         }
 

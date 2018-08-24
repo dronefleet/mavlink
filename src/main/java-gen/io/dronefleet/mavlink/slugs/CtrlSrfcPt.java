@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.slugs;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -18,9 +19,9 @@ import java.util.Objects;
 public final class CtrlSrfcPt {
     private final int target;
 
-    private final EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
+    private final EnumValue<ControlSurfaceFlag> bitfieldpt;
 
-    private CtrlSrfcPt(int target, EnumFlagSet<ControlSurfaceFlag> bitfieldpt) {
+    private CtrlSrfcPt(int target, EnumValue<ControlSurfaceFlag> bitfieldpt) {
         this.target = target;
         this.bitfieldpt = bitfieldpt;
     }
@@ -49,9 +50,10 @@ public final class CtrlSrfcPt {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            enumType = ControlSurfaceFlag.class
     )
-    public final EnumFlagSet<ControlSurfaceFlag> bitfieldpt() {
+    public final EnumValue<ControlSurfaceFlag> bitfieldpt() {
         return this.bitfieldpt;
     }
 
@@ -76,7 +78,7 @@ public final class CtrlSrfcPt {
     public static final class Builder {
         private int target;
 
-        private EnumFlagSet<ControlSurfaceFlag> bitfieldpt;
+        private EnumValue<ControlSurfaceFlag> bitfieldpt;
 
         /**
          * The system setting the commands 
@@ -95,10 +97,27 @@ public final class CtrlSrfcPt {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                enumType = ControlSurfaceFlag.class
         )
-        public final Builder bitfieldpt(EnumFlagSet<ControlSurfaceFlag> bitfieldpt) {
+        public final Builder bitfieldpt(EnumValue<ControlSurfaceFlag> bitfieldpt) {
             this.bitfieldpt = bitfieldpt;
+            return this;
+        }
+
+        /**
+         * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
+         */
+        public final Builder bitfieldpt(ControlSurfaceFlag entry) {
+            this.bitfieldpt = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
+         */
+        public final Builder bitfieldpt(Enum... flags) {
+            this.bitfieldpt = EnumValue.create(flags);
             return this;
         }
 

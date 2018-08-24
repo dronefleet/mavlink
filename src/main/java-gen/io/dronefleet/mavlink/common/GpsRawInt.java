@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -20,7 +22,7 @@ import java.util.Objects;
 public final class GpsRawInt {
     private final BigInteger timeUsec;
 
-    private final GpsFixType fixType;
+    private final EnumValue<GpsFixType> fixType;
 
     private final int lat;
 
@@ -48,8 +50,8 @@ public final class GpsRawInt {
 
     private final long hdgAcc;
 
-    private GpsRawInt(BigInteger timeUsec, GpsFixType fixType, int lat, int lon, int alt, int eph,
-            int epv, int vel, int cog, int satellitesVisible, int altEllipsoid, long hAcc,
+    private GpsRawInt(BigInteger timeUsec, EnumValue<GpsFixType> fixType, int lat, int lon, int alt,
+            int eph, int epv, int vel, int cog, int satellitesVisible, int altEllipsoid, long hAcc,
             long vAcc, long velAcc, long hdgAcc) {
         this.timeUsec = timeUsec;
         this.fixType = fixType;
@@ -92,9 +94,10 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = GpsFixType.class
     )
-    public final GpsFixType fixType() {
+    public final EnumValue<GpsFixType> fixType() {
         return this.fixType;
     }
 
@@ -299,7 +302,7 @@ public final class GpsRawInt {
     public static final class Builder {
         private BigInteger timeUsec;
 
-        private GpsFixType fixType;
+        private EnumValue<GpsFixType> fixType;
 
         private int lat;
 
@@ -344,10 +347,27 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = GpsFixType.class
         )
-        public final Builder fixType(GpsFixType fixType) {
+        public final Builder fixType(EnumValue<GpsFixType> fixType) {
             this.fixType = fixType;
+            return this;
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder fixType(GpsFixType entry) {
+            this.fixType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder fixType(Enum... flags) {
+            this.fixType = EnumValue.create(flags);
             return this;
         }
 

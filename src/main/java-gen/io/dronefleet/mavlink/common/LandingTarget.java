@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -22,7 +24,7 @@ public final class LandingTarget {
 
     private final int targetNum;
 
-    private final MavFrame frame;
+    private final EnumValue<MavFrame> frame;
 
     private final float angleX;
 
@@ -42,13 +44,13 @@ public final class LandingTarget {
 
     private final List<Float> q;
 
-    private final LandingTargetType type;
+    private final EnumValue<LandingTargetType> type;
 
     private final int positionValid;
 
-    private LandingTarget(BigInteger timeUsec, int targetNum, MavFrame frame, float angleX,
-            float angleY, float distance, float sizeX, float sizeY, float x, float y, float z,
-            List<Float> q, LandingTargetType type, int positionValid) {
+    private LandingTarget(BigInteger timeUsec, int targetNum, EnumValue<MavFrame> frame,
+            float angleX, float angleY, float distance, float sizeX, float sizeY, float x, float y,
+            float z, List<Float> q, EnumValue<LandingTargetType> type, int positionValid) {
         this.timeUsec = timeUsec;
         this.targetNum = targetNum;
         this.frame = frame;
@@ -101,9 +103,10 @@ public final class LandingTarget {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame frame() {
+    public final EnumValue<MavFrame> frame() {
         return this.frame;
     }
 
@@ -217,9 +220,10 @@ public final class LandingTarget {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
+            enumType = LandingTargetType.class,
             extension = true
     )
-    public final LandingTargetType type() {
+    public final EnumValue<LandingTargetType> type() {
         return this.type;
     }
 
@@ -283,7 +287,7 @@ public final class LandingTarget {
 
         private int targetNum;
 
-        private MavFrame frame;
+        private EnumValue<MavFrame> frame;
 
         private float angleX;
 
@@ -303,7 +307,7 @@ public final class LandingTarget {
 
         private List<Float> q;
 
-        private LandingTargetType type;
+        private EnumValue<LandingTargetType> type;
 
         private int positionValid;
 
@@ -337,10 +341,29 @@ public final class LandingTarget {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder frame(MavFrame frame) {
+        public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
+         * etc. 
+         */
+        public final Builder frame(MavFrame entry) {
+            this.frame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
+         * etc. 
+         */
+        public final Builder frame(Enum... flags) {
+            this.frame = EnumValue.create(flags);
             return this;
         }
 
@@ -463,10 +486,27 @@ public final class LandingTarget {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
+                enumType = LandingTargetType.class,
                 extension = true
         )
-        public final Builder type(LandingTargetType type) {
+        public final Builder type(EnumValue<LandingTargetType> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         */
+        public final Builder type(LandingTargetType entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 

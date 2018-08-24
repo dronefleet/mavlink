@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -22,7 +23,7 @@ public final class GpsInput {
 
     private final int gpsId;
 
-    private final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
+    private final EnumValue<GpsInputIgnoreFlags> ignoreFlags;
 
     private final long timeWeekMs;
 
@@ -54,7 +55,7 @@ public final class GpsInput {
 
     private final int satellitesVisible;
 
-    private GpsInput(BigInteger timeUsec, int gpsId, EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags,
+    private GpsInput(BigInteger timeUsec, int gpsId, EnumValue<GpsInputIgnoreFlags> ignoreFlags,
             long timeWeekMs, int timeWeek, int fixType, int lat, int lon, float alt, float hdop,
             float vdop, float vn, float ve, float vd, float speedAccuracy, float horizAccuracy,
             float vertAccuracy, int satellitesVisible) {
@@ -114,9 +115,10 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            enumType = GpsInputIgnoreFlags.class
     )
-    public final EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags() {
+    public final EnumValue<GpsInputIgnoreFlags> ignoreFlags() {
         return this.ignoreFlags;
     }
 
@@ -342,7 +344,7 @@ public final class GpsInput {
 
         private int gpsId;
 
-        private EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags;
+        private EnumValue<GpsInputIgnoreFlags> ignoreFlags;
 
         private long timeWeekMs;
 
@@ -404,10 +406,29 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                enumType = GpsInputIgnoreFlags.class
         )
-        public final Builder ignoreFlags(EnumFlagSet<GpsInputIgnoreFlags> ignoreFlags) {
+        public final Builder ignoreFlags(EnumValue<GpsInputIgnoreFlags> ignoreFlags) {
             this.ignoreFlags = ignoreFlags;
+            return this;
+        }
+
+        /**
+         * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GPS_INPUT_IGNORE_FLAGS} enum). All other fields 
+         * must be provided. 
+         */
+        public final Builder ignoreFlags(GpsInputIgnoreFlags entry) {
+            this.ignoreFlags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GPS_INPUT_IGNORE_FLAGS} enum). All other fields 
+         * must be provided. 
+         */
+        public final Builder ignoreFlags(Enum... flags) {
+            this.ignoreFlags = EnumValue.create(flags);
             return this;
         }
 

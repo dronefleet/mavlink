@@ -1,21 +1,17 @@
 package io.dronefleet.mavlink.serialization.payload.reflection;
 
-import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
-import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
-import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
+import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
+import io.dronefleet.mavlink.util.EnumValue;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -64,10 +60,8 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                                                 "accept a single parameter."));
 
                         try {
-                            if (Enum.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, enumValue(fieldType, data, field.signed()));
-                            } else if (EnumFlagSet.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, enumFlagSetValue((Class) ((ParameterizedType) (method.getParameters()[0].getParameterizedType())).getActualTypeArguments()[0], data));
+                            if (EnumValue.class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, enumValue(field.enumType(), data, field.signed()));
                             } else if (int.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, (int) integerValue(data, field.signed()));
                             } else if (long.class.isAssignableFrom(fieldType)) {
@@ -138,44 +132,9 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
         return new String(data, StandardCharsets.UTF_8);
     }
 
-    private Object enumValue(Class enumType, byte[] data, boolean signed) {
-        long value = integerValue(data, signed);
-        return Arrays.stream(enumType.getFields())
-                .filter(Field::isEnumConstant)
-                .filter(f -> f.isAnnotationPresent(MavlinkEntryInfo.class))
-                .filter(f -> f.getAnnotation(MavlinkEntryInfo.class).value() == value)
-                .map(f -> {
-                    try {
-                        return f.get(null);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                })
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(
-                        "enum " + enumType.getSimpleName() + " does not have an entry with value " + value));
-    }
-
-    private EnumFlagSet enumFlagSetValue(Class enumType, byte[] data) {
-        EnumFlagSet enumFlagSet = new EnumFlagSet();
-        long bitmask = integerValue(data, false);
-
-        Arrays.stream(enumType.getFields())
-                .filter(Field::isEnumConstant)
-                .filter(f -> f.isAnnotationPresent(MavlinkEntryInfo.class))
-                .filter(f -> (f.getAnnotation(MavlinkEntryInfo.class).value() & bitmask) > 0)
-                .map(f -> {
-                    try {
-                        return (Enum) f.get(null);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                })
-                .filter(Objects::nonNull)
-                .forEach(enumFlagSet::enable);
-        return enumFlagSet;
+    private Object enumValue(Class<?> enumType, byte[] data, boolean signed) {
+        return EnumValue.create(
+                (Class<? extends Enum>)enumType,
+                (int)integerValue(data, signed));
     }
 }

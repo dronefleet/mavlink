@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,12 +21,12 @@ public final class RemoteLogDataBlock {
 
     private final int targetComponent;
 
-    private final MavRemoteLogDataBlockCommands seqno;
+    private final EnumValue<MavRemoteLogDataBlockCommands> seqno;
 
     private final byte[] data;
 
     private RemoteLogDataBlock(int targetSystem, int targetComponent,
-            MavRemoteLogDataBlockCommands seqno, byte[] data) {
+            EnumValue<MavRemoteLogDataBlockCommands> seqno, byte[] data) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.seqno = seqno;
@@ -66,9 +68,10 @@ public final class RemoteLogDataBlock {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            enumType = MavRemoteLogDataBlockCommands.class
     )
-    public final MavRemoteLogDataBlockCommands seqno() {
+    public final EnumValue<MavRemoteLogDataBlockCommands> seqno() {
         return this.seqno;
     }
 
@@ -111,7 +114,7 @@ public final class RemoteLogDataBlock {
 
         private int targetComponent;
 
-        private MavRemoteLogDataBlockCommands seqno;
+        private EnumValue<MavRemoteLogDataBlockCommands> seqno;
 
         private byte[] data;
 
@@ -144,10 +147,27 @@ public final class RemoteLogDataBlock {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                enumType = MavRemoteLogDataBlockCommands.class
         )
-        public final Builder seqno(MavRemoteLogDataBlockCommands seqno) {
+        public final Builder seqno(EnumValue<MavRemoteLogDataBlockCommands> seqno) {
             this.seqno = seqno;
+            return this;
+        }
+
+        /**
+         * log data block sequence number 
+         */
+        public final Builder seqno(MavRemoteLogDataBlockCommands entry) {
+            this.seqno = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * log data block sequence number 
+         */
+        public final Builder seqno(Enum... flags) {
+            this.seqno = EnumValue.create(flags);
             return this;
         }
 

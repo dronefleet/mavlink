@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,7 +17,7 @@ import java.util.Objects;
         crc = 98
 )
 public final class PidTuning {
-    private final PidTuningAxis axis;
+    private final EnumValue<PidTuningAxis> axis;
 
     private final float desired;
 
@@ -29,8 +31,8 @@ public final class PidTuning {
 
     private final float d;
 
-    private PidTuning(PidTuningAxis axis, float desired, float achieved, float ff, float p, float i,
-            float d) {
+    private PidTuning(EnumValue<PidTuningAxis> axis, float desired, float achieved, float ff,
+            float p, float i, float d) {
         this.axis = axis;
         this.desired = desired;
         this.achieved = achieved;
@@ -53,9 +55,10 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = PidTuningAxis.class
     )
-    public final PidTuningAxis axis() {
+    public final EnumValue<PidTuningAxis> axis() {
         return this.axis;
     }
 
@@ -154,7 +157,7 @@ public final class PidTuning {
     }
 
     public static final class Builder {
-        private PidTuningAxis axis;
+        private EnumValue<PidTuningAxis> axis;
 
         private float desired;
 
@@ -173,10 +176,27 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = PidTuningAxis.class
         )
-        public final Builder axis(PidTuningAxis axis) {
+        public final Builder axis(EnumValue<PidTuningAxis> axis) {
             this.axis = axis;
+            return this;
+        }
+
+        /**
+         * axis 
+         */
+        public final Builder axis(PidTuningAxis entry) {
+            this.axis = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * axis 
+         */
+        public final Builder axis(Enum... flags) {
+            this.axis = EnumValue.create(flags);
             return this;
         }
 

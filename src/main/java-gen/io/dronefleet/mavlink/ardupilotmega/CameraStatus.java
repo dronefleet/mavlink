@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -24,7 +26,7 @@ public final class CameraStatus {
 
     private final int imgIdx;
 
-    private final CameraStatusTypes eventId;
+    private final EnumValue<CameraStatusTypes> eventId;
 
     private final float p1;
 
@@ -35,7 +37,7 @@ public final class CameraStatus {
     private final float p4;
 
     private CameraStatus(BigInteger timeUsec, int targetSystem, int camIdx, int imgIdx,
-            CameraStatusTypes eventId, float p1, float p2, float p3, float p4) {
+            EnumValue<CameraStatusTypes> eventId, float p1, float p2, float p3, float p4) {
         this.timeUsec = timeUsec;
         this.targetSystem = targetSystem;
         this.camIdx = camIdx;
@@ -104,9 +106,10 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            enumType = CameraStatusTypes.class
     )
-    public final CameraStatusTypes eventId() {
+    public final EnumValue<CameraStatusTypes> eventId() {
         return this.eventId;
     }
 
@@ -195,7 +198,7 @@ public final class CameraStatus {
 
         private int imgIdx;
 
-        private CameraStatusTypes eventId;
+        private EnumValue<CameraStatusTypes> eventId;
 
         private float p1;
 
@@ -258,10 +261,27 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                enumType = CameraStatusTypes.class
         )
-        public final Builder eventId(CameraStatusTypes eventId) {
+        public final Builder eventId(EnumValue<CameraStatusTypes> eventId) {
             this.eventId = eventId;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         */
+        public final Builder eventId(CameraStatusTypes entry) {
+            this.eventId = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         */
+        public final Builder eventId(Enum... flags) {
+            this.eventId = EnumValue.create(flags);
             return this;
         }
 

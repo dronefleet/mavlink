@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -17,9 +19,9 @@ import java.util.Objects;
 public final class CameraSettings {
     private final long timeBootMs;
 
-    private final CameraMode modeId;
+    private final EnumValue<CameraMode> modeId;
 
-    private CameraSettings(long timeBootMs, CameraMode modeId) {
+    private CameraSettings(long timeBootMs, EnumValue<CameraMode> modeId) {
         this.timeBootMs = timeBootMs;
         this.modeId = modeId;
     }
@@ -48,9 +50,10 @@ public final class CameraSettings {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = CameraMode.class
     )
-    public final CameraMode modeId() {
+    public final EnumValue<CameraMode> modeId() {
         return this.modeId;
     }
 
@@ -75,7 +78,7 @@ public final class CameraSettings {
     public static final class Builder {
         private long timeBootMs;
 
-        private CameraMode modeId;
+        private EnumValue<CameraMode> modeId;
 
         /**
          * Timestamp (milliseconds since system boot) 
@@ -94,10 +97,27 @@ public final class CameraSettings {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = CameraMode.class
         )
-        public final Builder modeId(CameraMode modeId) {
+        public final Builder modeId(EnumValue<CameraMode> modeId) {
             this.modeId = modeId;
+            return this;
+        }
+
+        /**
+         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         */
+        public final Builder modeId(CameraMode entry) {
+            this.modeId = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         */
+        public final Builder modeId(Enum... flags) {
+            this.modeId = EnumValue.create(flags);
             return this;
         }
 

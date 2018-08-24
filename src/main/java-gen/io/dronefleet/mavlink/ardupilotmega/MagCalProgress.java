@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,7 +21,7 @@ public final class MagCalProgress {
 
     private final int calMask;
 
-    private final MagCalStatus calStatus;
+    private final EnumValue<MagCalStatus> calStatus;
 
     private final int attempt;
 
@@ -33,9 +35,9 @@ public final class MagCalProgress {
 
     private final float directionZ;
 
-    private MagCalProgress(int compassId, int calMask, MagCalStatus calStatus, int attempt,
-            int completionPct, byte[] completionMask, float directionX, float directionY,
-            float directionZ) {
+    private MagCalProgress(int compassId, int calMask, EnumValue<MagCalStatus> calStatus,
+            int attempt, int completionPct, byte[] completionMask, float directionX,
+            float directionY, float directionZ) {
         this.compassId = compassId;
         this.calMask = calMask;
         this.calStatus = calStatus;
@@ -82,9 +84,10 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MagCalStatus.class
     )
-    public final MagCalStatus calStatus() {
+    public final EnumValue<MagCalStatus> calStatus() {
         return this.calStatus;
     }
 
@@ -192,7 +195,7 @@ public final class MagCalProgress {
 
         private int calMask;
 
-        private MagCalStatus calStatus;
+        private EnumValue<MagCalStatus> calStatus;
 
         private int attempt;
 
@@ -235,10 +238,27 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MagCalStatus.class
         )
-        public final Builder calStatus(MagCalStatus calStatus) {
+        public final Builder calStatus(EnumValue<MagCalStatus> calStatus) {
             this.calStatus = calStatus;
+            return this;
+        }
+
+        /**
+         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         */
+        public final Builder calStatus(MagCalStatus entry) {
+            this.calStatus = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         */
+        public final Builder calStatus(Enum... flags) {
+            this.calStatus = EnumValue.create(flags);
             return this;
         }
 

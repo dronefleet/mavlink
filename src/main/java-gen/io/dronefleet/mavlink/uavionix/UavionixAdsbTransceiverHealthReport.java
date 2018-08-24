@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.uavionix;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -16,9 +17,9 @@ import java.util.Objects;
         crc = 4
 )
 public final class UavionixAdsbTransceiverHealthReport {
-    private final EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
+    private final EnumValue<UavionixAdsbRfHealth> rfhealth;
 
-    private UavionixAdsbTransceiverHealthReport(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
+    private UavionixAdsbTransceiverHealthReport(EnumValue<UavionixAdsbRfHealth> rfhealth) {
         this.rfhealth = rfhealth;
     }
 
@@ -35,9 +36,10 @@ public final class UavionixAdsbTransceiverHealthReport {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = UavionixAdsbRfHealth.class
     )
-    public final EnumFlagSet<UavionixAdsbRfHealth> rfhealth() {
+    public final EnumValue<UavionixAdsbRfHealth> rfhealth() {
         return this.rfhealth;
     }
 
@@ -58,17 +60,34 @@ public final class UavionixAdsbTransceiverHealthReport {
     }
 
     public static final class Builder {
-        private EnumFlagSet<UavionixAdsbRfHealth> rfhealth;
+        private EnumValue<UavionixAdsbRfHealth> rfhealth;
 
         /**
          * ADS-B transponder messages 
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = UavionixAdsbRfHealth.class
         )
-        public final Builder rfhealth(EnumFlagSet<UavionixAdsbRfHealth> rfhealth) {
+        public final Builder rfhealth(EnumValue<UavionixAdsbRfHealth> rfhealth) {
             this.rfhealth = rfhealth;
+            return this;
+        }
+
+        /**
+         * ADS-B transponder messages 
+         */
+        public final Builder rfhealth(UavionixAdsbRfHealth entry) {
+            this.rfhealth = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * ADS-B transponder messages 
+         */
+        public final Builder rfhealth(Enum... flags) {
+            this.rfhealth = EnumValue.create(flags);
             return this;
         }
 

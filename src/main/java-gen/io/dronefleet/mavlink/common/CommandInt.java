@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -20,9 +22,9 @@ public final class CommandInt {
 
     private final int targetComponent;
 
-    private final MavFrame frame;
+    private final EnumValue<MavFrame> frame;
 
-    private final MavCmd command;
+    private final EnumValue<MavCmd> command;
 
     private final int current;
 
@@ -42,9 +44,9 @@ public final class CommandInt {
 
     private final float z;
 
-    private CommandInt(int targetSystem, int targetComponent, MavFrame frame, MavCmd command,
-            int current, int autocontinue, float param1, float param2, float param3, float param4,
-            int x, int y, float z) {
+    private CommandInt(int targetSystem, int targetComponent, EnumValue<MavFrame> frame,
+            EnumValue<MavCmd> command, int current, int autocontinue, float param1, float param2,
+            float param3, float param4, int x, int y, float z) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.frame = frame;
@@ -95,9 +97,10 @@ public final class CommandInt {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame frame() {
+    public final EnumValue<MavFrame> frame() {
         return this.frame;
     }
 
@@ -106,9 +109,10 @@ public final class CommandInt {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            enumType = MavCmd.class
     )
-    public final MavCmd command() {
+    public final EnumValue<MavCmd> command() {
         return this.command;
     }
 
@@ -258,9 +262,9 @@ public final class CommandInt {
 
         private int targetComponent;
 
-        private MavFrame frame;
+        private EnumValue<MavFrame> frame;
 
-        private MavCmd command;
+        private EnumValue<MavCmd> command;
 
         private int current;
 
@@ -309,10 +313,27 @@ public final class CommandInt {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder frame(MavFrame frame) {
+        public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
+            return this;
+        }
+
+        /**
+         * The coordinate system of the COMMAND, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        public final Builder frame(MavFrame entry) {
+            this.frame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The coordinate system of the COMMAND, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        public final Builder frame(Enum... flags) {
+            this.frame = EnumValue.create(flags);
             return this;
         }
 
@@ -321,10 +342,27 @@ public final class CommandInt {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                enumType = MavCmd.class
         )
-        public final Builder command(MavCmd command) {
+        public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
+            return this;
+        }
+
+        /**
+         * The scheduled action for the mission item, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        public final Builder command(MavCmd entry) {
+            this.command = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The scheduled action for the mission item, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        public final Builder command(Enum... flags) {
+            this.command = EnumValue.create(flags);
             return this;
         }
 

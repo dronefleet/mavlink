@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -17,7 +18,7 @@ import java.util.Objects;
         crc = 178
 )
 public final class AutopilotVersion {
-    private final EnumFlagSet<MavProtocolCapability> capabilities;
+    private final EnumValue<MavProtocolCapability> capabilities;
 
     private final long flightSwVersion;
 
@@ -41,7 +42,7 @@ public final class AutopilotVersion {
 
     private final byte[] uid2;
 
-    private AutopilotVersion(EnumFlagSet<MavProtocolCapability> capabilities, long flightSwVersion,
+    private AutopilotVersion(EnumValue<MavProtocolCapability> capabilities, long flightSwVersion,
             long middlewareSwVersion, long osSwVersion, long boardVersion,
             byte[] flightCustomVersion, byte[] middlewareCustomVersion, byte[] osCustomVersion,
             int vendorId, int productId, BigInteger uid, byte[] uid2) {
@@ -72,9 +73,10 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            enumType = MavProtocolCapability.class
     )
-    public final EnumFlagSet<MavProtocolCapability> capabilities() {
+    public final EnumValue<MavProtocolCapability> capabilities() {
         return this.capabilities;
     }
 
@@ -250,7 +252,7 @@ public final class AutopilotVersion {
     }
 
     public static final class Builder {
-        private EnumFlagSet<MavProtocolCapability> capabilities;
+        private EnumValue<MavProtocolCapability> capabilities;
 
         private long flightSwVersion;
 
@@ -279,10 +281,27 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                enumType = MavProtocolCapability.class
         )
-        public final Builder capabilities(EnumFlagSet<MavProtocolCapability> capabilities) {
+        public final Builder capabilities(EnumValue<MavProtocolCapability> capabilities) {
             this.capabilities = capabilities;
+            return this;
+        }
+
+        /**
+         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         */
+        public final Builder capabilities(MavProtocolCapability entry) {
+            this.capabilities = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         */
+        public final Builder capabilities(Enum... flags) {
+            this.capabilities = EnumValue.create(flags);
             return this;
         }
 

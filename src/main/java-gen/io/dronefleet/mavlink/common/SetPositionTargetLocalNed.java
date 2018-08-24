@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -22,7 +24,7 @@ public final class SetPositionTargetLocalNed {
 
     private final int targetComponent;
 
-    private final MavFrame coordinateFrame;
+    private final EnumValue<MavFrame> coordinateFrame;
 
     private final int typeMask;
 
@@ -49,8 +51,8 @@ public final class SetPositionTargetLocalNed {
     private final float yawRate;
 
     private SetPositionTargetLocalNed(long timeBootMs, int targetSystem, int targetComponent,
-            MavFrame coordinateFrame, int typeMask, float x, float y, float z, float vx, float vy,
-            float vz, float afx, float afy, float afz, float yaw, float yawRate) {
+            EnumValue<MavFrame> coordinateFrame, int typeMask, float x, float y, float z, float vx,
+            float vy, float vz, float afx, float afy, float afz, float yaw, float yawRate) {
         this.timeBootMs = timeBootMs;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
@@ -116,9 +118,10 @@ public final class SetPositionTargetLocalNed {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame coordinateFrame() {
+    public final EnumValue<MavFrame> coordinateFrame() {
         return this.coordinateFrame;
     }
 
@@ -311,7 +314,7 @@ public final class SetPositionTargetLocalNed {
 
         private int targetComponent;
 
-        private MavFrame coordinateFrame;
+        private EnumValue<MavFrame> coordinateFrame;
 
         private int typeMask;
 
@@ -379,10 +382,29 @@ public final class SetPositionTargetLocalNed {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder coordinateFrame(MavFrame coordinateFrame) {
+        public final Builder coordinateFrame(EnumValue<MavFrame> coordinateFrame) {
             this.coordinateFrame = coordinateFrame;
+            return this;
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+         * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+         */
+        public final Builder coordinateFrame(MavFrame entry) {
+            this.coordinateFrame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+         * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+         */
+        public final Builder coordinateFrame(Enum... flags) {
+            this.coordinateFrame = EnumValue.create(flags);
             return this;
         }
 

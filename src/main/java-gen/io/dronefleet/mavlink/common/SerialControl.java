@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,9 +20,9 @@ import java.util.Objects;
         crc = 220
 )
 public final class SerialControl {
-    private final SerialControlDev device;
+    private final EnumValue<SerialControlDev> device;
 
-    private final EnumFlagSet<SerialControlFlag> flags;
+    private final EnumValue<SerialControlFlag> flags;
 
     private final int timeout;
 
@@ -31,7 +32,7 @@ public final class SerialControl {
 
     private final byte[] data;
 
-    private SerialControl(SerialControlDev device, EnumFlagSet<SerialControlFlag> flags,
+    private SerialControl(EnumValue<SerialControlDev> device, EnumValue<SerialControlFlag> flags,
             int timeout, long baudrate, int count, byte[] data) {
         this.device = device;
         this.flags = flags;
@@ -54,9 +55,10 @@ public final class SerialControl {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = SerialControlDev.class
     )
-    public final SerialControlDev device() {
+    public final EnumValue<SerialControlDev> device() {
         return this.device;
     }
 
@@ -65,9 +67,10 @@ public final class SerialControl {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = SerialControlFlag.class
     )
-    public final EnumFlagSet<SerialControlFlag> flags() {
+    public final EnumValue<SerialControlFlag> flags() {
         return this.flags;
     }
 
@@ -143,9 +146,9 @@ public final class SerialControl {
     }
 
     public static final class Builder {
-        private SerialControlDev device;
+        private EnumValue<SerialControlDev> device;
 
-        private EnumFlagSet<SerialControlFlag> flags;
+        private EnumValue<SerialControlFlag> flags;
 
         private int timeout;
 
@@ -160,10 +163,27 @@ public final class SerialControl {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = SerialControlDev.class
         )
-        public final Builder device(SerialControlDev device) {
+        public final Builder device(EnumValue<SerialControlDev> device) {
             this.device = device;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         */
+        public final Builder device(SerialControlDev entry) {
+            this.device = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         */
+        public final Builder device(Enum... flags) {
+            this.device = EnumValue.create(flags);
             return this;
         }
 
@@ -172,10 +192,27 @@ public final class SerialControl {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = SerialControlFlag.class
         )
-        public final Builder flags(EnumFlagSet<SerialControlFlag> flags) {
+        public final Builder flags(EnumValue<SerialControlFlag> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         */
+        public final Builder flags(SerialControlFlag entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

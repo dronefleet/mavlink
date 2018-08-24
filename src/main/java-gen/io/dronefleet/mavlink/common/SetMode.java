@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -19,11 +21,11 @@ import java.util.Objects;
 public final class SetMode {
     private final int targetSystem;
 
-    private final MavMode baseMode;
+    private final EnumValue<MavMode> baseMode;
 
     private final long customMode;
 
-    private SetMode(int targetSystem, MavMode baseMode, long customMode) {
+    private SetMode(int targetSystem, EnumValue<MavMode> baseMode, long customMode) {
         this.targetSystem = targetSystem;
         this.baseMode = baseMode;
         this.customMode = customMode;
@@ -53,9 +55,10 @@ public final class SetMode {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavMode.class
     )
-    public final MavMode baseMode() {
+    public final EnumValue<MavMode> baseMode() {
         return this.baseMode;
     }
 
@@ -93,7 +96,7 @@ public final class SetMode {
     public static final class Builder {
         private int targetSystem;
 
-        private MavMode baseMode;
+        private EnumValue<MavMode> baseMode;
 
         private long customMode;
 
@@ -114,10 +117,27 @@ public final class SetMode {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavMode.class
         )
-        public final Builder baseMode(MavMode baseMode) {
+        public final Builder baseMode(EnumValue<MavMode> baseMode) {
             this.baseMode = baseMode;
+            return this;
+        }
+
+        /**
+         * The new base mode 
+         */
+        public final Builder baseMode(MavMode entry) {
+            this.baseMode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The new base mode 
+         */
+        public final Builder baseMode(Enum... flags) {
+            this.baseMode = EnumValue.create(flags);
             return this;
         }
 

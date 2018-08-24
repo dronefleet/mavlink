@@ -31,6 +31,22 @@ public class MavlinkReflection {
                 .map(f -> f.getAnnotation(MavlinkEntryInfo.class));
     }
 
+    public static <T extends Enum> Optional<T> getEntryByValue(Class<T> enumType, int value) {
+        return Arrays.stream(enumType.getFields())
+                .filter(Field::isEnumConstant)
+                .filter(f -> f.isAnnotationPresent(MavlinkEntryInfo.class))
+                .filter(f -> f.getAnnotation(MavlinkEntryInfo.class).value() == value)
+                .map(f -> {
+                    try {
+                        return f.get(null);
+                    } catch (IllegalAccessException e) {
+                        throw new IllegalStateException(e);
+                    }
+                })
+                .map(enumType::cast)
+                .findFirst();
+    }
+
     public static boolean isMavlinkMessage(Object o) {
         return getMessageInfo(o).isPresent();
     }

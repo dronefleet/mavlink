@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -20,9 +21,9 @@ public final class PowerStatus {
 
     private final int vservo;
 
-    private final EnumFlagSet<MavPowerStatus> flags;
+    private final EnumValue<MavPowerStatus> flags;
 
-    private PowerStatus(int vcc, int vservo, EnumFlagSet<MavPowerStatus> flags) {
+    private PowerStatus(int vcc, int vservo, EnumValue<MavPowerStatus> flags) {
         this.vcc = vcc;
         this.vservo = vservo;
         this.flags = flags;
@@ -63,9 +64,10 @@ public final class PowerStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            enumType = MavPowerStatus.class
     )
-    public final EnumFlagSet<MavPowerStatus> flags() {
+    public final EnumValue<MavPowerStatus> flags() {
         return this.flags;
     }
 
@@ -94,7 +96,7 @@ public final class PowerStatus {
 
         private int vservo;
 
-        private EnumFlagSet<MavPowerStatus> flags;
+        private EnumValue<MavPowerStatus> flags;
 
         /**
          * 5V rail voltage in millivolts 
@@ -125,10 +127,27 @@ public final class PowerStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                enumType = MavPowerStatus.class
         )
-        public final Builder flags(EnumFlagSet<MavPowerStatus> flags) {
+        public final Builder flags(EnumValue<MavPowerStatus> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         */
+        public final Builder flags(MavPowerStatus entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

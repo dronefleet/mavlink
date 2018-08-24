@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
@@ -19,9 +21,9 @@ import java.util.Objects;
 public final class BatteryStatus {
     private final int id;
 
-    private final MavBatteryFunction batteryFunction;
+    private final EnumValue<MavBatteryFunction> batteryFunction;
 
-    private final MavBatteryType type;
+    private final EnumValue<MavBatteryType> type;
 
     private final int temperature;
 
@@ -37,12 +39,12 @@ public final class BatteryStatus {
 
     private final int timeRemaining;
 
-    private final MavBatteryChargeState chargeState;
+    private final EnumValue<MavBatteryChargeState> chargeState;
 
-    private BatteryStatus(int id, MavBatteryFunction batteryFunction, MavBatteryType type,
-            int temperature, List<Integer> voltages, int currentBattery, int currentConsumed,
-            int energyConsumed, int batteryRemaining, int timeRemaining,
-            MavBatteryChargeState chargeState) {
+    private BatteryStatus(int id, EnumValue<MavBatteryFunction> batteryFunction,
+            EnumValue<MavBatteryType> type, int temperature, List<Integer> voltages,
+            int currentBattery, int currentConsumed, int energyConsumed, int batteryRemaining,
+            int timeRemaining, EnumValue<MavBatteryChargeState> chargeState) {
         this.id = id;
         this.batteryFunction = batteryFunction;
         this.type = type;
@@ -80,9 +82,10 @@ public final class BatteryStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavBatteryFunction.class
     )
-    public final MavBatteryFunction batteryFunction() {
+    public final EnumValue<MavBatteryFunction> batteryFunction() {
         return this.batteryFunction;
     }
 
@@ -91,9 +94,10 @@ public final class BatteryStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavBatteryType.class
     )
-    public final MavBatteryType type() {
+    public final EnumValue<MavBatteryType> type() {
         return this.type;
     }
 
@@ -194,9 +198,10 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 1,
+            enumType = MavBatteryChargeState.class,
             extension = true
     )
-    public final MavBatteryChargeState chargeState() {
+    public final EnumValue<MavBatteryChargeState> chargeState() {
         return this.chargeState;
     }
 
@@ -239,9 +244,9 @@ public final class BatteryStatus {
     public static final class Builder {
         private int id;
 
-        private MavBatteryFunction batteryFunction;
+        private EnumValue<MavBatteryFunction> batteryFunction;
 
-        private MavBatteryType type;
+        private EnumValue<MavBatteryType> type;
 
         private int temperature;
 
@@ -257,7 +262,7 @@ public final class BatteryStatus {
 
         private int timeRemaining;
 
-        private MavBatteryChargeState chargeState;
+        private EnumValue<MavBatteryChargeState> chargeState;
 
         /**
          * Battery ID 
@@ -276,10 +281,27 @@ public final class BatteryStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavBatteryFunction.class
         )
-        public final Builder batteryFunction(MavBatteryFunction batteryFunction) {
+        public final Builder batteryFunction(EnumValue<MavBatteryFunction> batteryFunction) {
             this.batteryFunction = batteryFunction;
+            return this;
+        }
+
+        /**
+         * Function of the battery 
+         */
+        public final Builder batteryFunction(MavBatteryFunction entry) {
+            this.batteryFunction = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Function of the battery 
+         */
+        public final Builder batteryFunction(Enum... flags) {
+            this.batteryFunction = EnumValue.create(flags);
             return this;
         }
 
@@ -288,10 +310,27 @@ public final class BatteryStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavBatteryType.class
         )
-        public final Builder type(MavBatteryType type) {
+        public final Builder type(EnumValue<MavBatteryType> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * Type (chemistry) of the battery 
+         */
+        public final Builder type(MavBatteryType entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type (chemistry) of the battery 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 
@@ -399,10 +438,27 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 1,
+                enumType = MavBatteryChargeState.class,
                 extension = true
         )
-        public final Builder chargeState(MavBatteryChargeState chargeState) {
+        public final Builder chargeState(EnumValue<MavBatteryChargeState> chargeState) {
             this.chargeState = chargeState;
+            return this;
+        }
+
+        /**
+         * State for extent of discharge, provided by autopilot for warning or external reactions 
+         */
+        public final Builder chargeState(MavBatteryChargeState entry) {
+            this.chargeState = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * State for extent of discharge, provided by autopilot for warning or external reactions 
+         */
+        public final Builder chargeState(Enum... flags) {
+            this.chargeState = EnumValue.create(flags);
             return this;
         }
 

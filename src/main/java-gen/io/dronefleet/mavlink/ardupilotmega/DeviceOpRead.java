@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -22,7 +24,7 @@ public final class DeviceOpRead {
 
     private final long requestId;
 
-    private final DeviceOpBustype bustype;
+    private final EnumValue<DeviceOpBustype> bustype;
 
     private final int bus;
 
@@ -35,7 +37,7 @@ public final class DeviceOpRead {
     private final int count;
 
     private DeviceOpRead(int targetSystem, int targetComponent, long requestId,
-            DeviceOpBustype bustype, int bus, int address, String busname, int regstart,
+            EnumValue<DeviceOpBustype> bustype, int bus, int address, String busname, int regstart,
             int count) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
@@ -94,9 +96,10 @@ public final class DeviceOpRead {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = DeviceOpBustype.class
     )
-    public final DeviceOpBustype bustype() {
+    public final EnumValue<DeviceOpBustype> bustype() {
         return this.bustype;
     }
 
@@ -195,7 +198,7 @@ public final class DeviceOpRead {
 
         private long requestId;
 
-        private DeviceOpBustype bustype;
+        private EnumValue<DeviceOpBustype> bustype;
 
         private int bus;
 
@@ -248,10 +251,27 @@ public final class DeviceOpRead {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = DeviceOpBustype.class
         )
-        public final Builder bustype(DeviceOpBustype bustype) {
+        public final Builder bustype(EnumValue<DeviceOpBustype> bustype) {
             this.bustype = bustype;
+            return this;
+        }
+
+        /**
+         * The bus type 
+         */
+        public final Builder bustype(DeviceOpBustype entry) {
+            this.bustype = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The bus type 
+         */
+        public final Builder bustype(Enum... flags) {
+            this.bustype = EnumValue.create(flags);
             return this;
         }
 

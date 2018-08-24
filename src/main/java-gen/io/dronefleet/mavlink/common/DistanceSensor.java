@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -23,16 +25,17 @@ public final class DistanceSensor {
 
     private final int currentDistance;
 
-    private final MavDistanceSensor type;
+    private final EnumValue<MavDistanceSensor> type;
 
     private final int id;
 
-    private final MavSensorOrientation orientation;
+    private final EnumValue<MavSensorOrientation> orientation;
 
     private final int covariance;
 
     private DistanceSensor(long timeBootMs, int minDistance, int maxDistance, int currentDistance,
-            MavDistanceSensor type, int id, MavSensorOrientation orientation, int covariance) {
+            EnumValue<MavDistanceSensor> type, int id, EnumValue<MavSensorOrientation> orientation,
+            int covariance) {
         this.timeBootMs = timeBootMs;
         this.minDistance = minDistance;
         this.maxDistance = maxDistance;
@@ -100,9 +103,10 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavDistanceSensor.class
     )
-    public final MavDistanceSensor type() {
+    public final EnumValue<MavDistanceSensor> type() {
         return this.type;
     }
 
@@ -125,9 +129,10 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavSensorOrientation.class
     )
-    public final MavSensorOrientation orientation() {
+    public final EnumValue<MavSensorOrientation> orientation() {
         return this.orientation;
     }
 
@@ -181,11 +186,11 @@ public final class DistanceSensor {
 
         private int currentDistance;
 
-        private MavDistanceSensor type;
+        private EnumValue<MavDistanceSensor> type;
 
         private int id;
 
-        private MavSensorOrientation orientation;
+        private EnumValue<MavSensorOrientation> orientation;
 
         private int covariance;
 
@@ -242,10 +247,27 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavDistanceSensor.class
         )
-        public final Builder type(MavDistanceSensor type) {
+        public final Builder type(EnumValue<MavDistanceSensor> type) {
             this.type = type;
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
+         */
+        public final Builder type(MavDistanceSensor entry) {
+            this.type = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
+         */
+        public final Builder type(Enum... flags) {
+            this.type = EnumValue.create(flags);
             return this;
         }
 
@@ -269,10 +291,33 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavSensorOrientation.class
         )
-        public final Builder orientation(MavSensorOrientation orientation) {
+        public final Builder orientation(EnumValue<MavSensorOrientation> orientation) {
             this.orientation = orientation;
+            return this;
+        }
+
+        /**
+         * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MAV_SENSOR_ORIENTATION} enum. downward-facing: 
+         * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
+         * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
+         * right-facing: ROTATION_YAW_270 
+         */
+        public final Builder orientation(MavSensorOrientation entry) {
+            this.orientation = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MAV_SENSOR_ORIENTATION} enum. downward-facing: 
+         * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
+         * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
+         * right-facing: ROTATION_YAW_270 
+         */
+        public final Builder orientation(Enum... flags) {
+            this.orientation = EnumValue.create(flags);
             return this;
         }
 

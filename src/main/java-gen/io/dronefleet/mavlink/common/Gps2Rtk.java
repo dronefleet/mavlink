@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -29,7 +31,7 @@ public final class Gps2Rtk {
 
     private final int nsats;
 
-    private final RtkBaselineCoordinateSystem baselineCoordsType;
+    private final EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType;
 
     private final int baselineAMm;
 
@@ -42,8 +44,9 @@ public final class Gps2Rtk {
     private final int iarNumHypotheses;
 
     private Gps2Rtk(long timeLastBaselineMs, int rtkReceiverId, int wn, long tow, int rtkHealth,
-            int rtkRate, int nsats, RtkBaselineCoordinateSystem baselineCoordsType, int baselineAMm,
-            int baselineBMm, int baselineCMm, long accuracy, int iarNumHypotheses) {
+            int rtkRate, int nsats, EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType,
+            int baselineAMm, int baselineBMm, int baselineCMm, long accuracy,
+            int iarNumHypotheses) {
         this.timeLastBaselineMs = timeLastBaselineMs;
         this.rtkReceiverId = rtkReceiverId;
         this.wn = wn;
@@ -149,9 +152,10 @@ public final class Gps2Rtk {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            enumType = RtkBaselineCoordinateSystem.class
     )
-    public final RtkBaselineCoordinateSystem baselineCoordsType() {
+    public final EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType() {
         return this.baselineCoordsType;
     }
 
@@ -269,7 +273,7 @@ public final class Gps2Rtk {
 
         private int nsats;
 
-        private RtkBaselineCoordinateSystem baselineCoordsType;
+        private EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType;
 
         private int baselineAMm;
 
@@ -370,10 +374,28 @@ public final class Gps2Rtk {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                enumType = RtkBaselineCoordinateSystem.class
         )
-        public final Builder baselineCoordsType(RtkBaselineCoordinateSystem baselineCoordsType) {
+        public final Builder baselineCoordsType(
+                EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType) {
             this.baselineCoordsType = baselineCoordsType;
+            return this;
+        }
+
+        /**
+         * Coordinate system of baseline 
+         */
+        public final Builder baselineCoordsType(RtkBaselineCoordinateSystem entry) {
+            this.baselineCoordsType = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Coordinate system of baseline 
+         */
+        public final Builder baselineCoordsType(Enum... flags) {
+            this.baselineCoordsType = EnumValue.create(flags);
             return this;
         }
 

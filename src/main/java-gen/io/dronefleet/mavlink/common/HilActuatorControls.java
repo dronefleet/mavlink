@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -23,11 +25,11 @@ public final class HilActuatorControls {
 
     private final List<Float> controls;
 
-    private final MavMode mode;
+    private final EnumValue<MavMode> mode;
 
     private final BigInteger flags;
 
-    private HilActuatorControls(BigInteger timeUsec, List<Float> controls, MavMode mode,
+    private HilActuatorControls(BigInteger timeUsec, List<Float> controls, EnumValue<MavMode> mode,
             BigInteger flags) {
         this.timeUsec = timeUsec;
         this.controls = controls;
@@ -71,9 +73,10 @@ public final class HilActuatorControls {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavMode.class
     )
-    public final MavMode mode() {
+    public final EnumValue<MavMode> mode() {
         return this.mode;
     }
 
@@ -115,7 +118,7 @@ public final class HilActuatorControls {
 
         private List<Float> controls;
 
-        private MavMode mode;
+        private EnumValue<MavMode> mode;
 
         private BigInteger flags;
 
@@ -149,10 +152,27 @@ public final class HilActuatorControls {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavMode.class
         )
-        public final Builder mode(MavMode mode) {
+        public final Builder mode(EnumValue<MavMode> mode) {
             this.mode = mode;
+            return this;
+        }
+
+        /**
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         */
+        public final Builder mode(MavMode entry) {
+            this.mode = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         */
+        public final Builder mode(Enum... flags) {
+            this.mode = EnumValue.create(flags);
             return this;
         }
 

@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,11 +17,12 @@ import java.util.Objects;
         crc = 130
 )
 public final class ExtendedSysState {
-    private final MavVtolState vtolState;
+    private final EnumValue<MavVtolState> vtolState;
 
-    private final MavLandedState landedState;
+    private final EnumValue<MavLandedState> landedState;
 
-    private ExtendedSysState(MavVtolState vtolState, MavLandedState landedState) {
+    private ExtendedSysState(EnumValue<MavVtolState> vtolState,
+            EnumValue<MavLandedState> landedState) {
         this.vtolState = vtolState;
         this.landedState = landedState;
     }
@@ -38,9 +41,10 @@ public final class ExtendedSysState {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavVtolState.class
     )
-    public final MavVtolState vtolState() {
+    public final EnumValue<MavVtolState> vtolState() {
         return this.vtolState;
     }
 
@@ -49,9 +53,10 @@ public final class ExtendedSysState {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavLandedState.class
     )
-    public final MavLandedState landedState() {
+    public final EnumValue<MavLandedState> landedState() {
         return this.landedState;
     }
 
@@ -74,9 +79,9 @@ public final class ExtendedSysState {
     }
 
     public static final class Builder {
-        private MavVtolState vtolState;
+        private EnumValue<MavVtolState> vtolState;
 
-        private MavLandedState landedState;
+        private EnumValue<MavLandedState> landedState;
 
         /**
          * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
@@ -84,10 +89,29 @@ public final class ExtendedSysState {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavVtolState.class
         )
-        public final Builder vtolState(MavVtolState vtolState) {
+        public final Builder vtolState(EnumValue<MavVtolState> vtolState) {
             this.vtolState = vtolState;
+            return this;
+        }
+
+        /**
+         * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
+         * configuration. 
+         */
+        public final Builder vtolState(MavVtolState entry) {
+            this.vtolState = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
+         * configuration. 
+         */
+        public final Builder vtolState(Enum... flags) {
+            this.vtolState = EnumValue.create(flags);
             return this;
         }
 
@@ -96,10 +120,27 @@ public final class ExtendedSysState {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavLandedState.class
         )
-        public final Builder landedState(MavLandedState landedState) {
+        public final Builder landedState(EnumValue<MavLandedState> landedState) {
             this.landedState = landedState;
+            return this;
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(MavLandedState entry) {
+            this.landedState = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(Enum... flags) {
+            this.landedState = EnumValue.create(flags);
             return this;
         }
 

@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -23,7 +25,7 @@ public final class SetPositionTargetGlobalInt {
 
     private final int targetComponent;
 
-    private final MavFrame coordinateFrame;
+    private final EnumValue<MavFrame> coordinateFrame;
 
     private final int typeMask;
 
@@ -50,8 +52,9 @@ public final class SetPositionTargetGlobalInt {
     private final float yawRate;
 
     private SetPositionTargetGlobalInt(long timeBootMs, int targetSystem, int targetComponent,
-            MavFrame coordinateFrame, int typeMask, int latInt, int lonInt, float alt, float vx,
-            float vy, float vz, float afx, float afy, float afz, float yaw, float yawRate) {
+            EnumValue<MavFrame> coordinateFrame, int typeMask, int latInt, int lonInt, float alt,
+            float vx, float vy, float vz, float afx, float afy, float afz, float yaw,
+            float yawRate) {
         this.timeBootMs = timeBootMs;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
@@ -119,9 +122,10 @@ public final class SetPositionTargetGlobalInt {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavFrame.class
     )
-    public final MavFrame coordinateFrame() {
+    public final EnumValue<MavFrame> coordinateFrame() {
         return this.coordinateFrame;
     }
 
@@ -317,7 +321,7 @@ public final class SetPositionTargetGlobalInt {
 
         private int targetComponent;
 
-        private MavFrame coordinateFrame;
+        private EnumValue<MavFrame> coordinateFrame;
 
         private int typeMask;
 
@@ -387,10 +391,29 @@ public final class SetPositionTargetGlobalInt {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavFrame.class
         )
-        public final Builder coordinateFrame(MavFrame coordinateFrame) {
+        public final Builder coordinateFrame(EnumValue<MavFrame> coordinateFrame) {
             this.coordinateFrame = coordinateFrame;
+            return this;
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, 
+         * MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11 
+         */
+        public final Builder coordinateFrame(MavFrame entry) {
+            this.coordinateFrame = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, 
+         * MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11 
+         */
+        public final Builder coordinateFrame(Enum... flags) {
+            this.coordinateFrame = EnumValue.create(flags);
             return this;
         }
 

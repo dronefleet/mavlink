@@ -3,6 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.util.Objects;
@@ -15,13 +17,13 @@ import java.util.Objects;
         crc = 81
 )
 public final class Collision {
-    private final MavCollisionSrc src;
+    private final EnumValue<MavCollisionSrc> src;
 
     private final long id;
 
-    private final MavCollisionAction action;
+    private final EnumValue<MavCollisionAction> action;
 
-    private final MavCollisionThreatLevel threatLevel;
+    private final EnumValue<MavCollisionThreatLevel> threatLevel;
 
     private final float timeToMinimumDelta;
 
@@ -29,8 +31,8 @@ public final class Collision {
 
     private final float horizontalMinimumDelta;
 
-    private Collision(MavCollisionSrc src, long id, MavCollisionAction action,
-            MavCollisionThreatLevel threatLevel, float timeToMinimumDelta,
+    private Collision(EnumValue<MavCollisionSrc> src, long id, EnumValue<MavCollisionAction> action,
+            EnumValue<MavCollisionThreatLevel> threatLevel, float timeToMinimumDelta,
             float altitudeMinimumDelta, float horizontalMinimumDelta) {
         this.src = src;
         this.id = id;
@@ -54,9 +56,10 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavCollisionSrc.class
     )
-    public final MavCollisionSrc src() {
+    public final EnumValue<MavCollisionSrc> src() {
         return this.src;
     }
 
@@ -76,9 +79,10 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavCollisionAction.class
     )
-    public final MavCollisionAction action() {
+    public final EnumValue<MavCollisionAction> action() {
         return this.action;
     }
 
@@ -87,9 +91,10 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            enumType = MavCollisionThreatLevel.class
     )
-    public final MavCollisionThreatLevel threatLevel() {
+    public final EnumValue<MavCollisionThreatLevel> threatLevel() {
         return this.threatLevel;
     }
 
@@ -155,13 +160,13 @@ public final class Collision {
     }
 
     public static final class Builder {
-        private MavCollisionSrc src;
+        private EnumValue<MavCollisionSrc> src;
 
         private long id;
 
-        private MavCollisionAction action;
+        private EnumValue<MavCollisionAction> action;
 
-        private MavCollisionThreatLevel threatLevel;
+        private EnumValue<MavCollisionThreatLevel> threatLevel;
 
         private float timeToMinimumDelta;
 
@@ -174,10 +179,27 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavCollisionSrc.class
         )
-        public final Builder src(MavCollisionSrc src) {
+        public final Builder src(EnumValue<MavCollisionSrc> src) {
             this.src = src;
+            return this;
+        }
+
+        /**
+         * Collision data source 
+         */
+        public final Builder src(MavCollisionSrc entry) {
+            this.src = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Collision data source 
+         */
+        public final Builder src(Enum... flags) {
+            this.src = EnumValue.create(flags);
             return this;
         }
 
@@ -198,10 +220,27 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavCollisionAction.class
         )
-        public final Builder action(MavCollisionAction action) {
+        public final Builder action(EnumValue<MavCollisionAction> action) {
             this.action = action;
+            return this;
+        }
+
+        /**
+         * Action that is being taken to avoid this collision 
+         */
+        public final Builder action(MavCollisionAction entry) {
+            this.action = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Action that is being taken to avoid this collision 
+         */
+        public final Builder action(Enum... flags) {
+            this.action = EnumValue.create(flags);
             return this;
         }
 
@@ -210,10 +249,27 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                enumType = MavCollisionThreatLevel.class
         )
-        public final Builder threatLevel(MavCollisionThreatLevel threatLevel) {
+        public final Builder threatLevel(EnumValue<MavCollisionThreatLevel> threatLevel) {
             this.threatLevel = threatLevel;
+            return this;
+        }
+
+        /**
+         * How concerned the aircraft is about this collision 
+         */
+        public final Builder threatLevel(MavCollisionThreatLevel entry) {
+            this.threatLevel = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * How concerned the aircraft is about this collision 
+         */
+        public final Builder threatLevel(Enum... flags) {
+            this.threatLevel = EnumValue.create(flags);
             return this;
         }
 

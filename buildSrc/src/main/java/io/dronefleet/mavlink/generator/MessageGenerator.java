@@ -5,6 +5,7 @@ import com.squareup.javapoet.*;
 import javax.lang.model.element.Modifier;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MessageGenerator {
 
@@ -89,7 +90,9 @@ public class MessageGenerator {
                         .map(FieldGenerator::generateMutableMember)
                         .collect(Collectors.toList()))
                 .addMethods(fields.stream()
-                        .map(f -> f.generateSetter(builderClassName()))
+                        .flatMap(f -> Stream.concat(
+                                Stream.of(f.generateSetter(builderClassName())),
+                                f.generateConvenienceSetters(builderClassName()).stream()))
                         .collect(Collectors.toList()))
                 .addMethod(MethodSpec.methodBuilder("build")
                         .addModifiers(Modifier.PUBLIC, Modifier.FINAL)

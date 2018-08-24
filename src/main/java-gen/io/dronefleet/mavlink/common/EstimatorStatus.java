@@ -3,7 +3,8 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumFlagSet;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.math.BigInteger;
@@ -27,7 +28,7 @@ import java.util.Objects;
 public final class EstimatorStatus {
     private final BigInteger timeUsec;
 
-    private final EnumFlagSet<EstimatorStatusFlags> flags;
+    private final EnumValue<EstimatorStatusFlags> flags;
 
     private final float velRatio;
 
@@ -45,7 +46,7 @@ public final class EstimatorStatus {
 
     private final float posVertAccuracy;
 
-    private EstimatorStatus(BigInteger timeUsec, EnumFlagSet<EstimatorStatusFlags> flags,
+    private EstimatorStatus(BigInteger timeUsec, EnumValue<EstimatorStatusFlags> flags,
             float velRatio, float posHorizRatio, float posVertRatio, float magRatio,
             float haglRatio, float tasRatio, float posHorizAccuracy, float posVertAccuracy) {
         this.timeUsec = timeUsec;
@@ -85,9 +86,10 @@ public final class EstimatorStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            enumType = EstimatorStatusFlags.class
     )
-    public final EnumFlagSet<EstimatorStatusFlags> flags() {
+    public final EnumValue<EstimatorStatusFlags> flags() {
         return this.flags;
     }
 
@@ -216,7 +218,7 @@ public final class EstimatorStatus {
     public static final class Builder {
         private BigInteger timeUsec;
 
-        private EnumFlagSet<EstimatorStatusFlags> flags;
+        private EnumValue<EstimatorStatusFlags> flags;
 
         private float velRatio;
 
@@ -252,10 +254,29 @@ public final class EstimatorStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                enumType = EstimatorStatusFlags.class
         )
-        public final Builder flags(EnumFlagSet<EstimatorStatusFlags> flags) {
+        public final Builder flags(EnumValue<EstimatorStatusFlags> flags) {
             this.flags = flags;
+            return this;
+        }
+
+        /**
+         * Integer bitmask indicating which EKF outputs are valid. See definition for 
+         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         */
+        public final Builder flags(EstimatorStatusFlags entry) {
+            this.flags = EnumValue.of(entry);
+            return this;
+        }
+
+        /**
+         * Integer bitmask indicating which EKF outputs are valid. See definition for 
+         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         */
+        public final Builder flags(Enum... flags) {
+            this.flags = EnumValue.create(flags);
             return this;
         }
 

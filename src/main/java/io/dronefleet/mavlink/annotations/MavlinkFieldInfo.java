@@ -28,5 +28,6 @@ public @interface MavlinkFieldInfo {
     int unitSize();
     boolean signed() default false;
     int arraySize() default 0;
+    Class<?> enumType() default void.class;
     boolean extension() default false;
 }
