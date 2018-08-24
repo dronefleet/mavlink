@@ -3,10 +3,7 @@ package io.dronefleet.mavlink.serialization.payload.reflection;
 
 import io.dronefleet.mavlink.common.CommandLong;
 import io.dronefleet.mavlink.common.MavCmd;
-import io.dronefleet.mavlink.util.EnumValue;
 import org.junit.Test;
-
-import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 
