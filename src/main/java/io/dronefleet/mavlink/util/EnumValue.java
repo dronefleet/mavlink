@@ -79,4 +79,12 @@ public class EnumValue<T extends Enum> {
         result = 31 * result + (entry != null ? entry.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "EnumValue{" +
+                "value=" + value +
+                ", entry=" + entry +
+                '}';
+    }
 }
