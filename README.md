@@ -27,7 +27,7 @@ with Mavlink devices.
 
 ## Get it
 
-Maven Central coordinates are `io.dronefleet.mavlink:mavlink:1.0.4`
+Maven Central coordinates are `io.dronefleet.mavlink:mavlink:1.0.5`
 
 ## Examples
 
