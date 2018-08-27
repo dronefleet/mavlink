@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -274,6 +275,24 @@ public final class PositionTargetLocalNed {
         result = 31 * result + Objects.hashCode(yaw);
         result = 31 * result + Objects.hashCode(yawRate);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PositionTargetLocalNed{timeBootMs=" + timeBootMs
+                 + ", coordinateFrame=" + coordinateFrame
+                 + ", typeMask=" + typeMask
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", afx=" + afx
+                 + ", afy=" + afy
+                 + ", afz=" + afz
+                 + ", yaw=" + yaw
+                 + ", yawRate=" + yawRate + "}";
     }
 
     public static final class Builder {

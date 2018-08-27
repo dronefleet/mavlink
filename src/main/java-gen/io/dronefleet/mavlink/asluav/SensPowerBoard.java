@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -234,6 +235,22 @@ public final class SensPowerBoard {
         result = 31 * result + Objects.hashCode(pwrBrdExtAmp);
         result = 31 * result + Objects.hashCode(pwrBrdAuxAmp);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensPowerBoard{timestamp=" + timestamp
+                 + ", pwrBrdStatus=" + pwrBrdStatus
+                 + ", pwrBrdLedStatus=" + pwrBrdLedStatus
+                 + ", pwrBrdSystemVolt=" + pwrBrdSystemVolt
+                 + ", pwrBrdServoVolt=" + pwrBrdServoVolt
+                 + ", pwrBrdDigitalVolt=" + pwrBrdDigitalVolt
+                 + ", pwrBrdMotLAmp=" + pwrBrdMotLAmp
+                 + ", pwrBrdMotRAmp=" + pwrBrdMotRAmp
+                 + ", pwrBrdAnalogAmp=" + pwrBrdAnalogAmp
+                 + ", pwrBrdDigitalAmp=" + pwrBrdDigitalAmp
+                 + ", pwrBrdExtAmp=" + pwrBrdExtAmp
+                 + ", pwrBrdAuxAmp=" + pwrBrdAuxAmp + "}";
     }
 
     public static final class Builder {

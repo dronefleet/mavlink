@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -496,6 +497,37 @@ public final class SerialUdbExtraF2A {
         result = 31 * result + Objects.hashCode(sueSvs);
         result = 31 * result + Objects.hashCode(sueHdop);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF2A{sueTime=" + sueTime
+                 + ", sueStatus=" + sueStatus
+                 + ", sueLatitude=" + sueLatitude
+                 + ", sueLongitude=" + sueLongitude
+                 + ", sueAltitude=" + sueAltitude
+                 + ", sueWaypointIndex=" + sueWaypointIndex
+                 + ", sueRmat0=" + sueRmat0
+                 + ", sueRmat1=" + sueRmat1
+                 + ", sueRmat2=" + sueRmat2
+                 + ", sueRmat3=" + sueRmat3
+                 + ", sueRmat4=" + sueRmat4
+                 + ", sueRmat5=" + sueRmat5
+                 + ", sueRmat6=" + sueRmat6
+                 + ", sueRmat7=" + sueRmat7
+                 + ", sueRmat8=" + sueRmat8
+                 + ", sueCog=" + sueCog
+                 + ", sueSog=" + sueSog
+                 + ", sueCpuLoad=" + sueCpuLoad
+                 + ", sueAirSpeed3dimu=" + sueAirSpeed3dimu
+                 + ", sueEstimatedWind0=" + sueEstimatedWind0
+                 + ", sueEstimatedWind1=" + sueEstimatedWind1
+                 + ", sueEstimatedWind2=" + sueEstimatedWind2
+                 + ", sueMagfieldearth0=" + sueMagfieldearth0
+                 + ", sueMagfieldearth1=" + sueMagfieldearth1
+                 + ", sueMagfieldearth2=" + sueMagfieldearth2
+                 + ", sueSvs=" + sueSvs
+                 + ", sueHdop=" + sueHdop + "}";
     }
 
     public static final class Builder {

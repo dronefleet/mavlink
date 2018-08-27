@@ -8,6 +8,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -107,6 +108,14 @@ public final class FenceStatus {
         result = 31 * result + Objects.hashCode(breachType);
         result = 31 * result + Objects.hashCode(breachTime);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FenceStatus{breachStatus=" + breachStatus
+                 + ", breachCount=" + breachCount
+                 + ", breachType=" + breachType
+                 + ", breachTime=" + breachTime + "}";
     }
 
     public static final class Builder {

@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -124,6 +125,15 @@ public final class VisionSpeedEstimate {
         result = 31 * result + Objects.hashCode(z);
         result = 31 * result + Objects.hashCode(covariance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "VisionSpeedEstimate{usec=" + usec
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", covariance=" + covariance + "}";
     }
 
     public static final class Builder {

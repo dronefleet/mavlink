@@ -7,6 +7,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -197,6 +198,19 @@ public final class AqEscTelemetry {
         result = 31 * result + Objects.hashCode(data0);
         result = 31 * result + Objects.hashCode(data1);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AqEscTelemetry{timeBootMs=" + timeBootMs
+                 + ", seq=" + seq
+                 + ", numMotors=" + numMotors
+                 + ", numInSeq=" + numInSeq
+                 + ", escid=" + escid
+                 + ", statusAge=" + statusAge
+                 + ", dataVersion=" + dataVersion
+                 + ", data0=" + data0
+                 + ", data1=" + data1 + "}";
     }
 
     public static final class Builder {

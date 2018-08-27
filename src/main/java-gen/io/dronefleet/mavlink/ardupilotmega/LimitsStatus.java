@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -190,6 +191,19 @@ public final class LimitsStatus {
         result = 31 * result + Objects.hashCode(modsRequired);
         result = 31 * result + Objects.hashCode(modsTriggered);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LimitsStatus{limitsState=" + limitsState
+                 + ", lastTrigger=" + lastTrigger
+                 + ", lastAction=" + lastAction
+                 + ", lastRecovery=" + lastRecovery
+                 + ", lastClear=" + lastClear
+                 + ", breachCount=" + breachCount
+                 + ", modsEnabled=" + modsEnabled
+                 + ", modsRequired=" + modsRequired
+                 + ", modsTriggered=" + modsTriggered + "}";
     }
 
     public static final class Builder {

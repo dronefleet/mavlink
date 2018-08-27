@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -151,6 +152,17 @@ public final class IsrLocation {
         result = 31 * result + Objects.hashCode(option2);
         result = 31 * result + Objects.hashCode(option3);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "IsrLocation{target=" + target
+                 + ", latitude=" + latitude
+                 + ", longitude=" + longitude
+                 + ", height=" + height
+                 + ", option1=" + option1
+                 + ", option2=" + option2
+                 + ", option3=" + option3 + "}";
     }
 
     public static final class Builder {

@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -272,6 +273,24 @@ public final class CameraFeedback {
         result = 31 * result + Objects.hashCode(flags);
         result = 31 * result + Objects.hashCode(completedCaptures);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CameraFeedback{timeUsec=" + timeUsec
+                 + ", targetSystem=" + targetSystem
+                 + ", camIdx=" + camIdx
+                 + ", imgIdx=" + imgIdx
+                 + ", lat=" + lat
+                 + ", lng=" + lng
+                 + ", altMsl=" + altMsl
+                 + ", altRel=" + altRel
+                 + ", roll=" + roll
+                 + ", pitch=" + pitch
+                 + ", yaw=" + yaw
+                 + ", focLen=" + focLen
+                 + ", flags=" + flags
+                 + ", completedCaptures=" + completedCaptures + "}";
     }
 
     public static final class Builder {

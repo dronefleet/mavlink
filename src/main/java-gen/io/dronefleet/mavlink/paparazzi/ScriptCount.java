@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -87,6 +88,13 @@ public final class ScriptCount {
         result = 31 * result + Objects.hashCode(targetComponent);
         result = 31 * result + Objects.hashCode(count);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ScriptCount{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", count=" + count + "}";
     }
 
     public static final class Builder {

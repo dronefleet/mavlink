@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -226,6 +227,21 @@ public final class FollowTarget {
         result = 31 * result + Objects.hashCode(positionCov);
         result = 31 * result + Objects.hashCode(customState);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FollowTarget{timestamp=" + timestamp
+                 + ", estCapabilities=" + estCapabilities
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", vel=" + vel
+                 + ", acc=" + acc
+                 + ", attitudeQ=" + attitudeQ
+                 + ", rates=" + rates
+                 + ", positionCov=" + positionCov
+                 + ", customState=" + customState + "}";
     }
 
     public static final class Builder {

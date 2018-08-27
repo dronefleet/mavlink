@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -319,6 +320,27 @@ public final class ControlSystemState {
         result = 31 * result + Objects.hashCode(pitchRate);
         result = 31 * result + Objects.hashCode(yawRate);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ControlSystemState{timeUsec=" + timeUsec
+                 + ", xAcc=" + xAcc
+                 + ", yAcc=" + yAcc
+                 + ", zAcc=" + zAcc
+                 + ", xVel=" + xVel
+                 + ", yVel=" + yVel
+                 + ", zVel=" + zVel
+                 + ", xPos=" + xPos
+                 + ", yPos=" + yPos
+                 + ", zPos=" + zPos
+                 + ", airspeed=" + airspeed
+                 + ", velVariance=" + velVariance
+                 + ", posVariance=" + posVariance
+                 + ", q=" + q
+                 + ", rollRate=" + rollRate
+                 + ", pitchRate=" + pitchRate
+                 + ", yawRate=" + yawRate + "}";
     }
 
     public static final class Builder {

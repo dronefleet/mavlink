@@ -116,6 +116,14 @@ public final class ParamRequestRead {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamRequestRead{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", paramId=" + paramId
+                 + ", paramIndex=" + paramIndex + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

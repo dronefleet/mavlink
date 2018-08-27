@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -184,6 +185,19 @@ public final class StorageInformation {
         result = 31 * result + Objects.hashCode(readSpeed);
         result = 31 * result + Objects.hashCode(writeSpeed);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "StorageInformation{timeBootMs=" + timeBootMs
+                 + ", storageId=" + storageId
+                 + ", storageCount=" + storageCount
+                 + ", status=" + status
+                 + ", totalCapacity=" + totalCapacity
+                 + ", usedCapacity=" + usedCapacity
+                 + ", availableCapacity=" + availableCapacity
+                 + ", readSpeed=" + readSpeed
+                 + ", writeSpeed=" + writeSpeed + "}";
     }
 
     public static final class Builder {

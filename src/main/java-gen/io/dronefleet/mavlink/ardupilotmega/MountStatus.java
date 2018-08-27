@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -122,6 +123,15 @@ public final class MountStatus {
         result = 31 * result + Objects.hashCode(pointingB);
         result = 31 * result + Objects.hashCode(pointingC);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MountStatus{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", pointingA=" + pointingA
+                 + ", pointingB=" + pointingB
+                 + ", pointingC=" + pointingC + "}";
     }
 
     public static final class Builder {

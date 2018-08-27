@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -134,6 +135,16 @@ public final class ApAdc {
         result = 31 * result + Objects.hashCode(adc5);
         result = 31 * result + Objects.hashCode(adc6);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ApAdc{adc1=" + adc1
+                 + ", adc2=" + adc2
+                 + ", adc3=" + adc3
+                 + ", adc4=" + adc4
+                 + ", adc5=" + adc5
+                 + ", adc6=" + adc6 + "}";
     }
 
     public static final class Builder {

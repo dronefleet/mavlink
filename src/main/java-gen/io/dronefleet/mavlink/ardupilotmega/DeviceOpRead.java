@@ -191,6 +191,19 @@ public final class DeviceOpRead {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "DeviceOpRead{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", requestId=" + requestId
+                 + ", bustype=" + bustype
+                 + ", bus=" + bus
+                 + ", address=" + address
+                 + ", busname=" + busname
+                 + ", regstart=" + regstart
+                 + ", count=" + count + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

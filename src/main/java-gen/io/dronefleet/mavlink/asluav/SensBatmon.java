@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -283,6 +284,25 @@ public final class SensBatmon {
         result = 31 * result + Objects.hashCode(cellvoltage5);
         result = 31 * result + Objects.hashCode(cellvoltage6);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensBatmon{batmonTimestamp=" + batmonTimestamp
+                 + ", temperature=" + temperature
+                 + ", voltage=" + voltage
+                 + ", current=" + current
+                 + ", soc=" + soc
+                 + ", batterystatus=" + batterystatus
+                 + ", serialnumber=" + serialnumber
+                 + ", safetystatus=" + safetystatus
+                 + ", operationstatus=" + operationstatus
+                 + ", cellvoltage1=" + cellvoltage1
+                 + ", cellvoltage2=" + cellvoltage2
+                 + ", cellvoltage3=" + cellvoltage3
+                 + ", cellvoltage4=" + cellvoltage4
+                 + ", cellvoltage5=" + cellvoltage5
+                 + ", cellvoltage6=" + cellvoltage6 + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -218,6 +219,21 @@ public final class RcChannelsRaw {
         result = 31 * result + Objects.hashCode(chan8Raw);
         result = 31 * result + Objects.hashCode(rssi);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "RcChannelsRaw{timeBootMs=" + timeBootMs
+                 + ", port=" + port
+                 + ", chan1Raw=" + chan1Raw
+                 + ", chan2Raw=" + chan2Raw
+                 + ", chan3Raw=" + chan3Raw
+                 + ", chan4Raw=" + chan4Raw
+                 + ", chan5Raw=" + chan5Raw
+                 + ", chan6Raw=" + chan6Raw
+                 + ", chan7Raw=" + chan7Raw
+                 + ", chan8Raw=" + chan8Raw
+                 + ", rssi=" + rssi + "}";
     }
 
     public static final class Builder {

@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -111,6 +112,14 @@ public final class HilActuatorControls {
         result = 31 * result + Objects.hashCode(mode);
         result = 31 * result + Objects.hashCode(flags);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilActuatorControls{timeUsec=" + timeUsec
+                 + ", controls=" + controls
+                 + ", mode=" + mode
+                 + ", flags=" + flags + "}";
     }
 
     public static final class Builder {

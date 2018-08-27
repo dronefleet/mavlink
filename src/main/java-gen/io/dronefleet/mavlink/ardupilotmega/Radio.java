@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -151,6 +152,17 @@ public final class Radio {
         result = 31 * result + Objects.hashCode(rxerrors);
         result = 31 * result + Objects.hashCode(fixed);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Radio{rssi=" + rssi
+                 + ", remrssi=" + remrssi
+                 + ", txbuf=" + txbuf
+                 + ", noise=" + noise
+                 + ", remnoise=" + remnoise
+                 + ", rxerrors=" + rxerrors
+                 + ", fixed=" + fixed + "}";
     }
 
     public static final class Builder {

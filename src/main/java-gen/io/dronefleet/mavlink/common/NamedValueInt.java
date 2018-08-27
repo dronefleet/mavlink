@@ -92,6 +92,13 @@ public final class NamedValueInt {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "NamedValueInt{timeBootMs=" + timeBootMs
+                 + ", name=" + name
+                 + ", value=" + value + "}";
+    }
+
     public static final class Builder {
         private long timeBootMs;
 

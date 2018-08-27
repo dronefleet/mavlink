@@ -132,6 +132,15 @@ public final class ParamExtSet {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamExtSet{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", paramId=" + paramId
+                 + ", paramValue=" + paramValue
+                 + ", paramType=" + paramType + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

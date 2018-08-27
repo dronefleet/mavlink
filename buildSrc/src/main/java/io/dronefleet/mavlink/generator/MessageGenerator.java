@@ -136,6 +136,23 @@ public class MessageGenerator {
                 .build();
     }
 
+    public MethodSpec generateToString() {
+        CodeBlock.Builder toStringCode = CodeBlock.builder();
+        String stmt = fields.stream()
+                .map(f -> f.getNameCamelCase() + "=\" + " + f.getNameCamelCase())
+                .collect(Collectors.joining(
+                        "\n + \", ",
+                        "return \"" + getClassName().simpleName() + "{",
+                        " + \"}\""));
+        toStringCode.addStatement(stmt);
+        return MethodSpec.methodBuilder("toString")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override.class)
+                .addCode(toStringCode.build())
+                .returns(String.class)
+                .build();
+    }
+
     public TypeSpec generate() {
         return TypeSpec.classBuilder(className)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -168,6 +185,7 @@ public class MessageGenerator {
                         .build())
                 .addMethod(generateEquals())
                 .addMethod(generateHashCode())
+                .addMethod(generateToString())
                 .build();
     }
 }

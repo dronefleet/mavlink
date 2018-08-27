@@ -208,6 +208,20 @@ public final class DeviceOpWrite {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "DeviceOpWrite{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", requestId=" + requestId
+                 + ", bustype=" + bustype
+                 + ", bus=" + bus
+                 + ", address=" + address
+                 + ", busname=" + busname
+                 + ", regstart=" + regstart
+                 + ", count=" + count
+                 + ", data=" + data + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

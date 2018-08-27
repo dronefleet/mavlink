@@ -111,6 +111,14 @@ public final class ParamExtRequestRead {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamExtRequestRead{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", paramId=" + paramId
+                 + ", paramIndex=" + paramIndex + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

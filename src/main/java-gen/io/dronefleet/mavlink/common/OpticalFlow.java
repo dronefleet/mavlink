@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -204,6 +205,20 @@ public final class OpticalFlow {
         result = 31 * result + Objects.hashCode(flowRateX);
         result = 31 * result + Objects.hashCode(flowRateY);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "OpticalFlow{timeUsec=" + timeUsec
+                 + ", sensorId=" + sensorId
+                 + ", flowX=" + flowX
+                 + ", flowY=" + flowY
+                 + ", flowCompMX=" + flowCompMX
+                 + ", flowCompMY=" + flowCompMY
+                 + ", quality=" + quality
+                 + ", groundDistance=" + groundDistance
+                 + ", flowRateX=" + flowRateX
+                 + ", flowRateY=" + flowRateY + "}";
     }
 
     public static final class Builder {

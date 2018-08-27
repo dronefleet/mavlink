@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -240,6 +241,22 @@ public final class Gps2Raw {
         result = 31 * result + Objects.hashCode(dgpsNumch);
         result = 31 * result + Objects.hashCode(dgpsAge);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Gps2Raw{timeUsec=" + timeUsec
+                 + ", fixType=" + fixType
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", eph=" + eph
+                 + ", epv=" + epv
+                 + ", vel=" + vel
+                 + ", cog=" + cog
+                 + ", satellitesVisible=" + satellitesVisible
+                 + ", dgpsNumch=" + dgpsNumch
+                 + ", dgpsAge=" + dgpsAge + "}";
     }
 
     public static final class Builder {

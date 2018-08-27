@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -308,6 +309,26 @@ public final class HilState {
         result = 31 * result + Objects.hashCode(yacc);
         result = 31 * result + Objects.hashCode(zacc);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilState{timeUsec=" + timeUsec
+                 + ", roll=" + roll
+                 + ", pitch=" + pitch
+                 + ", yaw=" + yaw
+                 + ", rollspeed=" + rollspeed
+                 + ", pitchspeed=" + pitchspeed
+                 + ", yawspeed=" + yawspeed
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", xacc=" + xacc
+                 + ", yacc=" + yacc
+                 + ", zacc=" + zacc + "}";
     }
 
     public static final class Builder {

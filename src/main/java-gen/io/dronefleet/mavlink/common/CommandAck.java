@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -147,6 +148,16 @@ public final class CommandAck {
         result = 31 * result + Objects.hashCode(targetSystem);
         result = 31 * result + Objects.hashCode(targetComponent);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CommandAck{command=" + command
+                 + ", result=" + result
+                 + ", progress=" + progress
+                 + ", resultParam2=" + resultParam2
+                 + ", targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent + "}";
     }
 
     public static final class Builder {

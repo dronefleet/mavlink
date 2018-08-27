@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -337,6 +338,28 @@ public final class GpsInput {
         result = 31 * result + Objects.hashCode(vertAccuracy);
         result = 31 * result + Objects.hashCode(satellitesVisible);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GpsInput{timeUsec=" + timeUsec
+                 + ", gpsId=" + gpsId
+                 + ", ignoreFlags=" + ignoreFlags
+                 + ", timeWeekMs=" + timeWeekMs
+                 + ", timeWeek=" + timeWeek
+                 + ", fixType=" + fixType
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", hdop=" + hdop
+                 + ", vdop=" + vdop
+                 + ", vn=" + vn
+                 + ", ve=" + ve
+                 + ", vd=" + vd
+                 + ", speedAccuracy=" + speedAccuracy
+                 + ", horizAccuracy=" + horizAccuracy
+                 + ", vertAccuracy=" + vertAccuracy
+                 + ", satellitesVisible=" + satellitesVisible + "}";
     }
 
     public static final class Builder {

@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -241,6 +242,22 @@ public final class LocalPositionNedCov {
         result = 31 * result + Objects.hashCode(az);
         result = 31 * result + Objects.hashCode(covariance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LocalPositionNedCov{timeUsec=" + timeUsec
+                 + ", estimatorType=" + estimatorType
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", ax=" + ax
+                 + ", ay=" + ay
+                 + ", az=" + az
+                 + ", covariance=" + covariance + "}";
     }
 
     public static final class Builder {

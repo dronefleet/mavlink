@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -87,6 +88,13 @@ public final class Meminfo {
         result = 31 * result + Objects.hashCode(freemem);
         result = 31 * result + Objects.hashCode(freemem32);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Meminfo{brkval=" + brkval
+                 + ", freemem=" + freemem
+                 + ", freemem32=" + freemem32 + "}";
     }
 
     public static final class Builder {

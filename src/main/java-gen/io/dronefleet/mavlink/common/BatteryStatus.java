@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -239,6 +240,21 @@ public final class BatteryStatus {
         result = 31 * result + Objects.hashCode(timeRemaining);
         result = 31 * result + Objects.hashCode(chargeState);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BatteryStatus{id=" + id
+                 + ", batteryFunction=" + batteryFunction
+                 + ", type=" + type
+                 + ", temperature=" + temperature
+                 + ", voltages=" + voltages
+                 + ", currentBattery=" + currentBattery
+                 + ", currentConsumed=" + currentConsumed
+                 + ", energyConsumed=" + energyConsumed
+                 + ", batteryRemaining=" + batteryRemaining
+                 + ", timeRemaining=" + timeRemaining
+                 + ", chargeState=" + chargeState + "}";
     }
 
     public static final class Builder {

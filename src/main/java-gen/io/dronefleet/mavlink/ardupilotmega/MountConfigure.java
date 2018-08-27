@@ -8,6 +8,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -139,6 +140,16 @@ public final class MountConfigure {
         result = 31 * result + Objects.hashCode(stabPitch);
         result = 31 * result + Objects.hashCode(stabYaw);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MountConfigure{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", mountMode=" + mountMode
+                 + ", stabRoll=" + stabRoll
+                 + ", stabPitch=" + stabPitch
+                 + ", stabYaw=" + stabYaw + "}";
     }
 
     public static final class Builder {

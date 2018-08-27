@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -215,6 +216,21 @@ public final class AslctrlDebug {
         result = 31 * result + Objects.hashCode(f7);
         result = 31 * result + Objects.hashCode(f8);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AslctrlDebug{i321=" + i321
+                 + ", i81=" + i81
+                 + ", i82=" + i82
+                 + ", f1=" + f1
+                 + ", f2=" + f2
+                 + ", f3=" + f3
+                 + ", f4=" + f4
+                 + ", f5=" + f5
+                 + ", f6=" + f6
+                 + ", f7=" + f7
+                 + ", f8=" + f8 + "}";
     }
 
     public static final class Builder {

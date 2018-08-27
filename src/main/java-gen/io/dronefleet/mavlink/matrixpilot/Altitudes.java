@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -157,6 +158,17 @@ public final class Altitudes {
         result = 31 * result + Objects.hashCode(altRangeFinder);
         result = 31 * result + Objects.hashCode(altExtra);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Altitudes{timeBootMs=" + timeBootMs
+                 + ", altGps=" + altGps
+                 + ", altImu=" + altImu
+                 + ", altBarometric=" + altBarometric
+                 + ", altOpticalFlow=" + altOpticalFlow
+                 + ", altRangeFinder=" + altRangeFinder
+                 + ", altExtra=" + altExtra + "}";
     }
 
     public static final class Builder {

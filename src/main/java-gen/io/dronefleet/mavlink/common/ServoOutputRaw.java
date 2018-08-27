@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -340,6 +341,28 @@ public final class ServoOutputRaw {
         result = 31 * result + Objects.hashCode(servo15Raw);
         result = 31 * result + Objects.hashCode(servo16Raw);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ServoOutputRaw{timeUsec=" + timeUsec
+                 + ", port=" + port
+                 + ", servo1Raw=" + servo1Raw
+                 + ", servo2Raw=" + servo2Raw
+                 + ", servo3Raw=" + servo3Raw
+                 + ", servo4Raw=" + servo4Raw
+                 + ", servo5Raw=" + servo5Raw
+                 + ", servo6Raw=" + servo6Raw
+                 + ", servo7Raw=" + servo7Raw
+                 + ", servo8Raw=" + servo8Raw
+                 + ", servo9Raw=" + servo9Raw
+                 + ", servo10Raw=" + servo10Raw
+                 + ", servo11Raw=" + servo11Raw
+                 + ", servo12Raw=" + servo12Raw
+                 + ", servo13Raw=" + servo13Raw
+                 + ", servo14Raw=" + servo14Raw
+                 + ", servo15Raw=" + servo15Raw
+                 + ", servo16Raw=" + servo16Raw + "}";
     }
 
     public static final class Builder {

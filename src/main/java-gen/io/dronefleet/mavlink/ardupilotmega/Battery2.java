@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -72,6 +73,12 @@ public final class Battery2 {
         result = 31 * result + Objects.hashCode(voltage);
         result = 31 * result + Objects.hashCode(currentBattery);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Battery2{voltage=" + voltage
+                 + ", currentBattery=" + currentBattery + "}";
     }
 
     public static final class Builder {

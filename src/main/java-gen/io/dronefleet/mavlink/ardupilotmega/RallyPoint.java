@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -206,6 +207,20 @@ public final class RallyPoint {
         result = 31 * result + Objects.hashCode(landDir);
         result = 31 * result + Objects.hashCode(flags);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "RallyPoint{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", idx=" + idx
+                 + ", count=" + count
+                 + ", lat=" + lat
+                 + ", lng=" + lng
+                 + ", alt=" + alt
+                 + ", breakAlt=" + breakAlt
+                 + ", landDir=" + landDir
+                 + ", flags=" + flags + "}";
     }
 
     public static final class Builder {

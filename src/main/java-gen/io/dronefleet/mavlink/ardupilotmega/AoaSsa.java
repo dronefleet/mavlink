@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -87,6 +88,13 @@ public final class AoaSsa {
         result = 31 * result + Objects.hashCode(aoa);
         result = 31 * result + Objects.hashCode(ssa);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AoaSsa{timeUsec=" + timeUsec
+                 + ", aoa=" + aoa
+                 + ", ssa=" + ssa + "}";
     }
 
     public static final class Builder {

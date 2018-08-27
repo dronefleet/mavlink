@@ -90,6 +90,13 @@ public final class PlayTune {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "PlayTune{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", tune=" + tune + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

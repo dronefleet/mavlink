@@ -123,6 +123,15 @@ public final class DebugVect {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "DebugVect{name=" + name
+                 + ", timeUsec=" + timeUsec
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z + "}";
+    }
+
     public static final class Builder {
         private String name;
 

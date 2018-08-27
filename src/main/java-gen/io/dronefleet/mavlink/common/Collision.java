@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -157,6 +158,17 @@ public final class Collision {
         result = 31 * result + Objects.hashCode(altitudeMinimumDelta);
         result = 31 * result + Objects.hashCode(horizontalMinimumDelta);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Collision{src=" + src
+                 + ", id=" + id
+                 + ", action=" + action
+                 + ", threatLevel=" + threatLevel
+                 + ", timeToMinimumDelta=" + timeToMinimumDelta
+                 + ", altitudeMinimumDelta=" + altitudeMinimumDelta
+                 + ", horizontalMinimumDelta=" + horizontalMinimumDelta + "}";
     }
 
     public static final class Builder {

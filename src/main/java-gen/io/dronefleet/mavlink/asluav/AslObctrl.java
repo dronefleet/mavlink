@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -168,6 +169,18 @@ public final class AslObctrl {
         result = 31 * result + Objects.hashCode(urud);
         result = 31 * result + Objects.hashCode(obctrlStatus);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AslObctrl{timestamp=" + timestamp
+                 + ", uelev=" + uelev
+                 + ", uthrot=" + uthrot
+                 + ", uthrot2=" + uthrot2
+                 + ", uaill=" + uaill
+                 + ", uailr=" + uailr
+                 + ", urud=" + urud
+                 + ", obctrlStatus=" + obctrlStatus + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -443,6 +444,35 @@ public final class AslctrlData {
         result = 31 * result + Objects.hashCode(uail);
         result = 31 * result + Objects.hashCode(urud);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AslctrlData{timestamp=" + timestamp
+                 + ", aslctrlMode=" + aslctrlMode
+                 + ", h=" + h
+                 + ", href=" + href
+                 + ", hrefT=" + hrefT
+                 + ", pitchangle=" + pitchangle
+                 + ", pitchangleref=" + pitchangleref
+                 + ", q=" + q
+                 + ", qref=" + qref
+                 + ", uelev=" + uelev
+                 + ", uthrot=" + uthrot
+                 + ", uthrot2=" + uthrot2
+                 + ", nz=" + nz
+                 + ", airspeedref=" + airspeedref
+                 + ", spoilersengaged=" + spoilersengaged
+                 + ", yawangle=" + yawangle
+                 + ", yawangleref=" + yawangleref
+                 + ", rollangle=" + rollangle
+                 + ", rollangleref=" + rollangleref
+                 + ", p=" + p
+                 + ", pref=" + pref
+                 + ", r=" + r
+                 + ", rref=" + rref
+                 + ", uail=" + uail
+                 + ", urud=" + urud + "}";
     }
 
     public static final class Builder {

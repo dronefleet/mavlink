@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -168,6 +169,18 @@ public final class AttitudeQuaternion {
         result = 31 * result + Objects.hashCode(pitchspeed);
         result = 31 * result + Objects.hashCode(yawspeed);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AttitudeQuaternion{timeBootMs=" + timeBootMs
+                 + ", q1=" + q1
+                 + ", q2=" + q2
+                 + ", q3=" + q3
+                 + ", q4=" + q4
+                 + ", rollspeed=" + rollspeed
+                 + ", pitchspeed=" + pitchspeed
+                 + ", yawspeed=" + yawspeed + "}";
     }
 
     public static final class Builder {

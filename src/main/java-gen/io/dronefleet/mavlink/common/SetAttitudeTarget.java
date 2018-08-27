@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -190,6 +191,19 @@ public final class SetAttitudeTarget {
         result = 31 * result + Objects.hashCode(bodyYawRate);
         result = 31 * result + Objects.hashCode(thrust);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SetAttitudeTarget{timeBootMs=" + timeBootMs
+                 + ", targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", typeMask=" + typeMask
+                 + ", q=" + q
+                 + ", bodyRollRate=" + bodyRollRate
+                 + ", bodyPitchRate=" + bodyPitchRate
+                 + ", bodyYawRate=" + bodyYawRate
+                 + ", thrust=" + thrust + "}";
     }
 
     public static final class Builder {

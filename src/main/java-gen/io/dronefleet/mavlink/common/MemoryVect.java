@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -108,6 +109,14 @@ public final class MemoryVect {
         result = 31 * result + Objects.hashCode(type);
         result = 31 * result + Objects.hashCode(value);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MemoryVect{address=" + address
+                 + ", ver=" + ver
+                 + ", type=" + type
+                 + ", value=" + value + "}";
     }
 
     public static final class Builder {

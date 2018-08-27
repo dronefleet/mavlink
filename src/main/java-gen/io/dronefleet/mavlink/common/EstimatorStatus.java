@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -213,6 +214,20 @@ public final class EstimatorStatus {
         result = 31 * result + Objects.hashCode(posHorizAccuracy);
         result = 31 * result + Objects.hashCode(posVertAccuracy);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EstimatorStatus{timeUsec=" + timeUsec
+                 + ", flags=" + flags
+                 + ", velRatio=" + velRatio
+                 + ", posHorizRatio=" + posHorizRatio
+                 + ", posVertRatio=" + posVertRatio
+                 + ", magRatio=" + magRatio
+                 + ", haglRatio=" + haglRatio
+                 + ", tasRatio=" + tasRatio
+                 + ", posHorizAccuracy=" + posHorizAccuracy
+                 + ", posVertAccuracy=" + posVertAccuracy + "}";
     }
 
     public static final class Builder {

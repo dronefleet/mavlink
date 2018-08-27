@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -267,6 +268,24 @@ public final class MagCalReport {
         result = 31 * result + Objects.hashCode(offdiagY);
         result = 31 * result + Objects.hashCode(offdiagZ);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MagCalReport{compassId=" + compassId
+                 + ", calMask=" + calMask
+                 + ", calStatus=" + calStatus
+                 + ", autosaved=" + autosaved
+                 + ", fitness=" + fitness
+                 + ", ofsX=" + ofsX
+                 + ", ofsY=" + ofsY
+                 + ", ofsZ=" + ofsZ
+                 + ", diagX=" + diagX
+                 + ", diagY=" + diagY
+                 + ", diagZ=" + diagZ
+                 + ", offdiagX=" + offdiagX
+                 + ", offdiagY=" + offdiagY
+                 + ", offdiagZ=" + offdiagZ + "}";
     }
 
     public static final class Builder {

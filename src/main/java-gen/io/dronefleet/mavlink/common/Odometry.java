@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -295,6 +296,25 @@ public final class Odometry {
         result = 31 * result + Objects.hashCode(poseCovariance);
         result = 31 * result + Objects.hashCode(twistCovariance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Odometry{timeUsec=" + timeUsec
+                 + ", frameId=" + frameId
+                 + ", childFrameId=" + childFrameId
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", q=" + q
+                 + ", vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", rollspeed=" + rollspeed
+                 + ", pitchspeed=" + pitchspeed
+                 + ", yawspeed=" + yawspeed
+                 + ", poseCovariance=" + poseCovariance
+                 + ", twistCovariance=" + twistCovariance + "}";
     }
 
     public static final class Builder {

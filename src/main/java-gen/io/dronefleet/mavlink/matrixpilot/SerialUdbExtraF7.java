@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -135,6 +136,16 @@ public final class SerialUdbExtraF7 {
         result = 31 * result + Objects.hashCode(sueRudderBoost);
         result = 31 * result + Objects.hashCode(sueRtlPitchDown);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF7{sueYawkpRudder=" + sueYawkpRudder
+                 + ", sueYawkdRudder=" + sueYawkdRudder
+                 + ", sueRollkpRudder=" + sueRollkpRudder
+                 + ", sueRollkdRudder=" + sueRollkdRudder
+                 + ", sueRudderBoost=" + sueRudderBoost
+                 + ", sueRtlPitchDown=" + sueRtlPitchDown + "}";
     }
 
     public static final class Builder {

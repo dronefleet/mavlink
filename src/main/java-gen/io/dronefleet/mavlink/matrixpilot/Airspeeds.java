@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -157,6 +158,17 @@ public final class Airspeeds {
         result = 31 * result + Objects.hashCode(aoa);
         result = 31 * result + Objects.hashCode(aoy);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Airspeeds{timeBootMs=" + timeBootMs
+                 + ", airspeedImu=" + airspeedImu
+                 + ", airspeedPitot=" + airspeedPitot
+                 + ", airspeedHotWire=" + airspeedHotWire
+                 + ", airspeedUltrasonic=" + airspeedUltrasonic
+                 + ", aoa=" + aoa
+                 + ", aoy=" + aoy + "}";
     }
 
     public static final class Builder {

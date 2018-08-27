@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -267,6 +268,24 @@ public final class HilRcInputsRaw {
         result = 31 * result + Objects.hashCode(chan12Raw);
         result = 31 * result + Objects.hashCode(rssi);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilRcInputsRaw{timeUsec=" + timeUsec
+                 + ", chan1Raw=" + chan1Raw
+                 + ", chan2Raw=" + chan2Raw
+                 + ", chan3Raw=" + chan3Raw
+                 + ", chan4Raw=" + chan4Raw
+                 + ", chan5Raw=" + chan5Raw
+                 + ", chan6Raw=" + chan6Raw
+                 + ", chan7Raw=" + chan7Raw
+                 + ", chan8Raw=" + chan8Raw
+                 + ", chan9Raw=" + chan9Raw
+                 + ", chan10Raw=" + chan10Raw
+                 + ", chan11Raw=" + chan11Raw
+                 + ", chan12Raw=" + chan12Raw
+                 + ", rssi=" + rssi + "}";
     }
 
     public static final class Builder {

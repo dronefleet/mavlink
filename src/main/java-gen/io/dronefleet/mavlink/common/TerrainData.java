@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -125,6 +126,15 @@ public final class TerrainData {
         result = 31 * result + Objects.hashCode(gridbit);
         result = 31 * result + Objects.hashCode(data);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TerrainData{lat=" + lat
+                 + ", lon=" + lon
+                 + ", gridSpacing=" + gridSpacing
+                 + ", gridbit=" + gridbit
+                 + ", data=" + data + "}";
     }
 
     public static final class Builder {

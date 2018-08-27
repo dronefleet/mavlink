@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -104,6 +105,14 @@ public final class SensorDiag {
         result = 31 * result + Objects.hashCode(int1);
         result = 31 * result + Objects.hashCode(char1);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorDiag{float1=" + float1
+                 + ", float2=" + float2
+                 + ", int1=" + int1
+                 + ", char1=" + char1 + "}";
     }
 
     public static final class Builder {

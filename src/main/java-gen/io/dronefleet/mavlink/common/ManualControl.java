@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -150,6 +151,16 @@ public final class ManualControl {
         result = 31 * result + Objects.hashCode(r);
         result = 31 * result + Objects.hashCode(buttons);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ManualControl{target=" + target
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", r=" + r
+                 + ", buttons=" + buttons + "}";
     }
 
     public static final class Builder {

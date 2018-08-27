@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -184,6 +185,19 @@ public final class WindCov {
         result = 31 * result + Objects.hashCode(horizAccuracy);
         result = 31 * result + Objects.hashCode(vertAccuracy);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "WindCov{timeUsec=" + timeUsec
+                 + ", windX=" + windX
+                 + ", windY=" + windY
+                 + ", windZ=" + windZ
+                 + ", varHoriz=" + varHoriz
+                 + ", varVert=" + varVert
+                 + ", windAlt=" + windAlt
+                 + ", horizAccuracy=" + horizAccuracy
+                 + ", vertAccuracy=" + vertAccuracy + "}";
     }
 
     public static final class Builder {

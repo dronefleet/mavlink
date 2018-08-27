@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -141,6 +142,16 @@ public final class AttitudeQuaternionCov {
         result = 31 * result + Objects.hashCode(yawspeed);
         result = 31 * result + Objects.hashCode(covariance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AttitudeQuaternionCov{timeUsec=" + timeUsec
+                 + ", q=" + q
+                 + ", rollspeed=" + rollspeed
+                 + ", pitchspeed=" + pitchspeed
+                 + ", yawspeed=" + yawspeed
+                 + ", covariance=" + covariance + "}";
     }
 
     public static final class Builder {

@@ -197,6 +197,19 @@ public final class UavcanNodeInfo {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "UavcanNodeInfo{timeUsec=" + timeUsec
+                 + ", uptimeSec=" + uptimeSec
+                 + ", name=" + name
+                 + ", hwVersionMajor=" + hwVersionMajor
+                 + ", hwVersionMinor=" + hwVersionMinor
+                 + ", hwUniqueId=" + hwUniqueId
+                 + ", swVersionMajor=" + swVersionMajor
+                 + ", swVersionMinor=" + swVersionMinor
+                 + ", swVcsCommit=" + swVcsCommit + "}";
+    }
+
     public static final class Builder {
         private BigInteger timeUsec;
 

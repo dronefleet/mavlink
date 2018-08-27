@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -88,6 +89,13 @@ public final class PtzStatus {
         result = 31 * result + Objects.hashCode(pan);
         result = 31 * result + Objects.hashCode(tilt);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PtzStatus{zoom=" + zoom
+                 + ", pan=" + pan
+                 + ", tilt=" + tilt + "}";
     }
 
     public static final class Builder {

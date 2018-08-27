@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -92,6 +93,13 @@ public final class GoproHeartbeat {
         result = 31 * result + Objects.hashCode(captureMode);
         result = 31 * result + Objects.hashCode(flags);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GoproHeartbeat{status=" + status
+                 + ", captureMode=" + captureMode
+                 + ", flags=" + flags + "}";
     }
 
     public static final class Builder {

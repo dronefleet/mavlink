@@ -259,6 +259,23 @@ public final class CameraInformation {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "CameraInformation{timeBootMs=" + timeBootMs
+                 + ", vendorName=" + vendorName
+                 + ", modelName=" + modelName
+                 + ", firmwareVersion=" + firmwareVersion
+                 + ", focalLength=" + focalLength
+                 + ", sensorSizeH=" + sensorSizeH
+                 + ", sensorSizeV=" + sensorSizeV
+                 + ", resolutionH=" + resolutionH
+                 + ", resolutionV=" + resolutionV
+                 + ", lensId=" + lensId
+                 + ", flags=" + flags
+                 + ", camDefinitionVersion=" + camDefinitionVersion
+                 + ", camDefinitionUri=" + camDefinitionUri + "}";
+    }
+
     public static final class Builder {
         private long timeBootMs;
 

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -72,6 +73,12 @@ public final class SystemTime {
         result = 31 * result + Objects.hashCode(timeUnixUsec);
         result = 31 * result + Objects.hashCode(timeBootMs);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SystemTime{timeUnixUsec=" + timeUnixUsec
+                 + ", timeBootMs=" + timeBootMs + "}";
     }
 
     public static final class Builder {

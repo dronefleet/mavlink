@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -444,6 +445,35 @@ public final class FwSoaringData {
         result = 31 * result + Objects.hashCode(controlmode);
         result = 31 * result + Objects.hashCode(valid);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FwSoaringData{timestamp=" + timestamp
+                 + ", timestampmodechanged=" + timestampmodechanged
+                 + ", xw=" + xw
+                 + ", xr=" + xr
+                 + ", xlat=" + xlat
+                 + ", xlon=" + xlon
+                 + ", varw=" + varw
+                 + ", varr=" + varr
+                 + ", varlat=" + varlat
+                 + ", varlon=" + varlon
+                 + ", loiterradius=" + loiterradius
+                 + ", loiterdirection=" + loiterdirection
+                 + ", disttosoarpoint=" + disttosoarpoint
+                 + ", vsinkexp=" + vsinkexp
+                 + ", z1Localupdraftspeed=" + z1Localupdraftspeed
+                 + ", z2Deltaroll=" + z2Deltaroll
+                 + ", z1Exp=" + z1Exp
+                 + ", z2Exp=" + z2Exp
+                 + ", thermalgsnorth=" + thermalgsnorth
+                 + ", thermalgseast=" + thermalgseast
+                 + ", tseDot=" + tseDot
+                 + ", debugvar1=" + debugvar1
+                 + ", debugvar2=" + debugvar2
+                 + ", controlmode=" + controlmode
+                 + ", valid=" + valid + "}";
     }
 
     public static final class Builder {

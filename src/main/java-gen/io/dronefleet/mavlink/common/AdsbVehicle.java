@@ -262,6 +262,23 @@ public final class AdsbVehicle {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "AdsbVehicle{icaoAddress=" + icaoAddress
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", altitudeType=" + altitudeType
+                 + ", altitude=" + altitude
+                 + ", heading=" + heading
+                 + ", horVelocity=" + horVelocity
+                 + ", verVelocity=" + verVelocity
+                 + ", callsign=" + callsign
+                 + ", emitterType=" + emitterType
+                 + ", tslc=" + tslc
+                 + ", flags=" + flags
+                 + ", squawk=" + squawk + "}";
+    }
+
     public static final class Builder {
         private long icaoAddress;
 

@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -154,6 +155,17 @@ public final class PidTuning {
         result = 31 * result + Objects.hashCode(i);
         result = 31 * result + Objects.hashCode(d);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PidTuning{axis=" + axis
+                 + ", desired=" + desired
+                 + ", achieved=" + achieved
+                 + ", ff=" + ff
+                 + ", p=" + p
+                 + ", i=" + i
+                 + ", d=" + d + "}";
     }
 
     public static final class Builder {

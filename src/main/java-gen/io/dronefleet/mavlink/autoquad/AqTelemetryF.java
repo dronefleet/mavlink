@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -377,6 +378,31 @@ public final class AqTelemetryF {
         result = 31 * result + Objects.hashCode(value19);
         result = 31 * result + Objects.hashCode(value20);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AqTelemetryF{index=" + index
+                 + ", value1=" + value1
+                 + ", value2=" + value2
+                 + ", value3=" + value3
+                 + ", value4=" + value4
+                 + ", value5=" + value5
+                 + ", value6=" + value6
+                 + ", value7=" + value7
+                 + ", value8=" + value8
+                 + ", value9=" + value9
+                 + ", value10=" + value10
+                 + ", value11=" + value11
+                 + ", value12=" + value12
+                 + ", value13=" + value13
+                 + ", value14=" + value14
+                 + ", value15=" + value15
+                 + ", value16=" + value16
+                 + ", value17=" + value17
+                 + ", value18=" + value18
+                 + ", value19=" + value19
+                 + ", value20=" + value20 + "}";
     }
 
     public static final class Builder {

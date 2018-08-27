@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -73,6 +74,12 @@ public final class MessageInterval {
         result = 31 * result + Objects.hashCode(messageId);
         result = 31 * result + Objects.hashCode(intervalUs);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageInterval{messageId=" + messageId
+                 + ", intervalUs=" + intervalUs + "}";
     }
 
     public static final class Builder {

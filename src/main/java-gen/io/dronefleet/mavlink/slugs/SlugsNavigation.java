@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -199,6 +200,20 @@ public final class SlugsNavigation {
         result = 31 * result + Objects.hashCode(towp);
         result = 31 * result + Objects.hashCode(hC);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SlugsNavigation{uM=" + uM
+                 + ", phiC=" + phiC
+                 + ", thetaC=" + thetaC
+                 + ", psidotC=" + psidotC
+                 + ", ayBody=" + ayBody
+                 + ", totaldist=" + totaldist
+                 + ", dist2go=" + dist2go
+                 + ", fromwp=" + fromwp
+                 + ", towp=" + towp
+                 + ", hC=" + hC + "}";
     }
 
     public static final class Builder {

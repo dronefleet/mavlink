@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -152,6 +153,17 @@ public final class EkfExt {
         result = 31 * result + Objects.hashCode(beta);
         result = 31 * result + Objects.hashCode(alpha);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EkfExt{timestamp=" + timestamp
+                 + ", windspeed=" + windspeed
+                 + ", winddir=" + winddir
+                 + ", windz=" + windz
+                 + ", airspeed=" + airspeed
+                 + ", beta=" + beta
+                 + ", alpha=" + alpha + "}";
     }
 
     public static final class Builder {

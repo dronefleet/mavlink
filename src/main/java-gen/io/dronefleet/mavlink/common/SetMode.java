@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -91,6 +92,13 @@ public final class SetMode {
         result = 31 * result + Objects.hashCode(baseMode);
         result = 31 * result + Objects.hashCode(customMode);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SetMode{targetSystem=" + targetSystem
+                 + ", baseMode=" + baseMode
+                 + ", customMode=" + customMode + "}";
     }
 
     public static final class Builder {

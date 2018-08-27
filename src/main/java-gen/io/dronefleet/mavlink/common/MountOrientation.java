@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -120,6 +121,15 @@ public final class MountOrientation {
         result = 31 * result + Objects.hashCode(yaw);
         result = 31 * result + Objects.hashCode(yawAbsolute);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MountOrientation{timeBootMs=" + timeBootMs
+                 + ", roll=" + roll
+                 + ", pitch=" + pitch
+                 + ", yaw=" + yaw
+                 + ", yawAbsolute=" + yawAbsolute + "}";
     }
 
     public static final class Builder {

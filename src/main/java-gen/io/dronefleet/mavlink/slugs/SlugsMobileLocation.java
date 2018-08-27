@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -87,6 +88,13 @@ public final class SlugsMobileLocation {
         result = 31 * result + Objects.hashCode(latitude);
         result = 31 * result + Objects.hashCode(longitude);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SlugsMobileLocation{target=" + target
+                 + ", latitude=" + latitude
+                 + ", longitude=" + longitude + "}";
     }
 
     public static final class Builder {

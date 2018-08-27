@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -155,6 +156,17 @@ public final class FlexifunctionBufferFunction {
         result = 31 * result + Objects.hashCode(dataSize);
         result = 31 * result + Objects.hashCode(data);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FlexifunctionBufferFunction{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", funcIndex=" + funcIndex
+                 + ", funcCount=" + funcCount
+                 + ", dataAddress=" + dataAddress
+                 + ", dataSize=" + dataSize
+                 + ", data=" + data + "}";
     }
 
     public static final class Builder {

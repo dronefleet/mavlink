@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -256,6 +257,23 @@ public final class Gps2Rtk {
         result = 31 * result + Objects.hashCode(accuracy);
         result = 31 * result + Objects.hashCode(iarNumHypotheses);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Gps2Rtk{timeLastBaselineMs=" + timeLastBaselineMs
+                 + ", rtkReceiverId=" + rtkReceiverId
+                 + ", wn=" + wn
+                 + ", tow=" + tow
+                 + ", rtkHealth=" + rtkHealth
+                 + ", rtkRate=" + rtkRate
+                 + ", nsats=" + nsats
+                 + ", baselineCoordsType=" + baselineCoordsType
+                 + ", baselineAMm=" + baselineAMm
+                 + ", baselineBMm=" + baselineBMm
+                 + ", baselineCMm=" + baselineCMm
+                 + ", accuracy=" + accuracy
+                 + ", iarNumHypotheses=" + iarNumHypotheses + "}";
     }
 
     public static final class Builder {

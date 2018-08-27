@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -72,6 +73,12 @@ public final class Timesync {
         result = 31 * result + Objects.hashCode(tc1);
         result = 31 * result + Objects.hashCode(ts1);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Timesync{tc1=" + tc1
+                 + ", ts1=" + ts1 + "}";
     }
 
     public static final class Builder {

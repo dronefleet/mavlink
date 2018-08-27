@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -152,6 +153,17 @@ public final class SerialUdbExtraF8 {
         result = 31 * result + Objects.hashCode(sueAltHoldPitchMax);
         result = 31 * result + Objects.hashCode(sueAltHoldPitchHigh);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF8{sueHeightTargetMax=" + sueHeightTargetMax
+                 + ", sueHeightTargetMin=" + sueHeightTargetMin
+                 + ", sueAltHoldThrottleMin=" + sueAltHoldThrottleMin
+                 + ", sueAltHoldThrottleMax=" + sueAltHoldThrottleMax
+                 + ", sueAltHoldPitchMin=" + sueAltHoldPitchMin
+                 + ", sueAltHoldPitchMax=" + sueAltHoldPitchMax
+                 + ", sueAltHoldPitchHigh=" + sueAltHoldPitchHigh + "}";
     }
 
     public static final class Builder {

@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -311,6 +312,26 @@ public final class HilStateQuaternion {
         result = 31 * result + Objects.hashCode(yacc);
         result = 31 * result + Objects.hashCode(zacc);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilStateQuaternion{timeUsec=" + timeUsec
+                 + ", attitudeQuaternion=" + attitudeQuaternion
+                 + ", rollspeed=" + rollspeed
+                 + ", pitchspeed=" + pitchspeed
+                 + ", yawspeed=" + yawspeed
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", indAirspeed=" + indAirspeed
+                 + ", trueAirspeed=" + trueAirspeed
+                 + ", xacc=" + xacc
+                 + ", yacc=" + yacc
+                 + ", zacc=" + zacc + "}";
     }
 
     public static final class Builder {

@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -126,6 +127,15 @@ public final class VisionPositionDelta {
         result = 31 * result + Objects.hashCode(positionDelta);
         result = 31 * result + Objects.hashCode(confidence);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "VisionPositionDelta{timeUsec=" + timeUsec
+                 + ", timeDeltaUsec=" + timeDeltaUsec
+                 + ", angleDelta=" + angleDelta
+                 + ", positionDelta=" + positionDelta
+                 + ", confidence=" + confidence + "}";
     }
 
     public static final class Builder {

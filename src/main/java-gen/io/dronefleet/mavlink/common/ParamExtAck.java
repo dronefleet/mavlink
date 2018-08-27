@@ -114,6 +114,14 @@ public final class ParamExtAck {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamExtAck{paramId=" + paramId
+                 + ", paramValue=" + paramValue
+                 + ", paramType=" + paramType
+                 + ", paramResult=" + paramResult + "}";
+    }
+
     public static final class Builder {
         private String paramId;
 

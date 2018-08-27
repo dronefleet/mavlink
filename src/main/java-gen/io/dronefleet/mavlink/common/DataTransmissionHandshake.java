@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -153,6 +154,17 @@ public final class DataTransmissionHandshake {
         result = 31 * result + Objects.hashCode(payload);
         result = 31 * result + Objects.hashCode(jpgQuality);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "DataTransmissionHandshake{type=" + type
+                 + ", size=" + size
+                 + ", width=" + width
+                 + ", height=" + height
+                 + ", packets=" + packets
+                 + ", payload=" + payload
+                 + ", jpgQuality=" + jpgQuality + "}";
     }
 
     public static final class Builder {

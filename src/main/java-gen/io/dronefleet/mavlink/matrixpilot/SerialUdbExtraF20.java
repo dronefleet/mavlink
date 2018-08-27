@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -262,6 +263,23 @@ public final class SerialUdbExtraF20 {
         result = 31 * result + Objects.hashCode(sueTrimValueInput11);
         result = 31 * result + Objects.hashCode(sueTrimValueInput12);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF20{sueNumberOfInputs=" + sueNumberOfInputs
+                 + ", sueTrimValueInput1=" + sueTrimValueInput1
+                 + ", sueTrimValueInput2=" + sueTrimValueInput2
+                 + ", sueTrimValueInput3=" + sueTrimValueInput3
+                 + ", sueTrimValueInput4=" + sueTrimValueInput4
+                 + ", sueTrimValueInput5=" + sueTrimValueInput5
+                 + ", sueTrimValueInput6=" + sueTrimValueInput6
+                 + ", sueTrimValueInput7=" + sueTrimValueInput7
+                 + ", sueTrimValueInput8=" + sueTrimValueInput8
+                 + ", sueTrimValueInput9=" + sueTrimValueInput9
+                 + ", sueTrimValueInput10=" + sueTrimValueInput10
+                 + ", sueTrimValueInput11=" + sueTrimValueInput11
+                 + ", sueTrimValueInput12=" + sueTrimValueInput12 + "}";
     }
 
     public static final class Builder {

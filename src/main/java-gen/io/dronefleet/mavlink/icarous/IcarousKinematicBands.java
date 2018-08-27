@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -306,6 +307,26 @@ public final class IcarousKinematicBands {
         result = 31 * result + Objects.hashCode(min5);
         result = 31 * result + Objects.hashCode(max5);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "IcarousKinematicBands{numbands=" + numbands
+                 + ", type1=" + type1
+                 + ", min1=" + min1
+                 + ", max1=" + max1
+                 + ", type2=" + type2
+                 + ", min2=" + min2
+                 + ", max2=" + max2
+                 + ", type3=" + type3
+                 + ", min3=" + min3
+                 + ", max3=" + max3
+                 + ", type4=" + type4
+                 + ", min4=" + min4
+                 + ", max4=" + max4
+                 + ", type5=" + type5
+                 + ", min5=" + min5
+                 + ", max5=" + max5 + "}";
     }
 
     public static final class Builder {

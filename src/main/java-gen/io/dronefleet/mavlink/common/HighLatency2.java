@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -490,6 +491,37 @@ public final class HighLatency2 {
         result = 31 * result + Objects.hashCode(custom1);
         result = 31 * result + Objects.hashCode(custom2);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HighLatency2{timestamp=" + timestamp
+                 + ", type=" + type
+                 + ", autopilot=" + autopilot
+                 + ", customMode=" + customMode
+                 + ", latitude=" + latitude
+                 + ", longitude=" + longitude
+                 + ", altitude=" + altitude
+                 + ", targetAltitude=" + targetAltitude
+                 + ", heading=" + heading
+                 + ", targetHeading=" + targetHeading
+                 + ", targetDistance=" + targetDistance
+                 + ", throttle=" + throttle
+                 + ", airspeed=" + airspeed
+                 + ", airspeedSp=" + airspeedSp
+                 + ", groundspeed=" + groundspeed
+                 + ", windspeed=" + windspeed
+                 + ", windHeading=" + windHeading
+                 + ", eph=" + eph
+                 + ", epv=" + epv
+                 + ", temperatureAir=" + temperatureAir
+                 + ", climbRate=" + climbRate
+                 + ", battery=" + battery
+                 + ", wpNum=" + wpNum
+                 + ", failureFlags=" + failureFlags
+                 + ", custom0=" + custom0
+                 + ", custom1=" + custom1
+                 + ", custom2=" + custom2 + "}";
     }
 
     public static final class Builder {

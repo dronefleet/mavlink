@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -92,6 +93,13 @@ public final class GoproGetResponse {
         result = 31 * result + Objects.hashCode(status);
         result = 31 * result + Objects.hashCode(value);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GoproGetResponse{cmdId=" + cmdId
+                 + ", status=" + status
+                 + ", value=" + value + "}";
     }
 
     public static final class Builder {

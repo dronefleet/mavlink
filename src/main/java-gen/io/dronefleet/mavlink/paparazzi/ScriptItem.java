@@ -107,6 +107,14 @@ public final class ScriptItem {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ScriptItem{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", seq=" + seq
+                 + ", name=" + name + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -135,6 +136,16 @@ public final class CompassmotStatus {
         result = 31 * result + Objects.hashCode(compensationy);
         result = 31 * result + Objects.hashCode(compensationz);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CompassmotStatus{throttle=" + throttle
+                 + ", current=" + current
+                 + ", interference=" + interference
+                 + ", compensationx=" + compensationx
+                 + ", compensationy=" + compensationy
+                 + ", compensationz=" + compensationz + "}";
     }
 
     public static final class Builder {

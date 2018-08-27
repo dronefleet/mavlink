@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -88,6 +89,13 @@ public final class MissionSetCurrent {
         result = 31 * result + Objects.hashCode(targetComponent);
         result = 31 * result + Objects.hashCode(seq);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MissionSetCurrent{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", seq=" + seq + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -142,6 +143,16 @@ public final class SerialUdbExtraF22 {
         result = 31 * result + Objects.hashCode(sueGyroYAtCalibration);
         result = 31 * result + Objects.hashCode(sueGyroZAtCalibration);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF22{sueAccelXAtCalibration=" + sueAccelXAtCalibration
+                 + ", sueAccelYAtCalibration=" + sueAccelYAtCalibration
+                 + ", sueAccelZAtCalibration=" + sueAccelZAtCalibration
+                 + ", sueGyroXAtCalibration=" + sueGyroXAtCalibration
+                 + ", sueGyroYAtCalibration=" + sueGyroYAtCalibration
+                 + ", sueGyroZAtCalibration=" + sueGyroZAtCalibration + "}";
     }
 
     public static final class Builder {

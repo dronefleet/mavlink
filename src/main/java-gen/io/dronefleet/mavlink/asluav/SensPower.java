@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -103,6 +104,14 @@ public final class SensPower {
         result = 31 * result + Objects.hashCode(adc121Cs1Amp);
         result = 31 * result + Objects.hashCode(adc121Cs2Amp);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensPower{adc121VspbVolt=" + adc121VspbVolt
+                 + ", adc121CspbAmp=" + adc121CspbAmp
+                 + ", adc121Cs1Amp=" + adc121Cs1Amp
+                 + ", adc121Cs2Amp=" + adc121Cs2Amp + "}";
     }
 
     public static final class Builder {

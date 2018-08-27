@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -311,6 +312,26 @@ public final class UavionixAdsbOutDynamic {
         result = 31 * result + Objects.hashCode(state);
         result = 31 * result + Objects.hashCode(squawk);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UavionixAdsbOutDynamic{utctime=" + utctime
+                 + ", gpslat=" + gpslat
+                 + ", gpslon=" + gpslon
+                 + ", gpsalt=" + gpsalt
+                 + ", gpsfix=" + gpsfix
+                 + ", numsats=" + numsats
+                 + ", baroaltmsl=" + baroaltmsl
+                 + ", accuracyhor=" + accuracyhor
+                 + ", accuracyvert=" + accuracyvert
+                 + ", accuracyvel=" + accuracyvel
+                 + ", velvert=" + velvert
+                 + ", velns=" + velns
+                 + ", velew=" + velew
+                 + ", emergencystatus=" + emergencystatus
+                 + ", state=" + state
+                 + ", squawk=" + squawk + "}";
     }
 
     public static final class Builder {

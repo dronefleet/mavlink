@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -273,6 +274,23 @@ public final class SysStatus {
         result = 31 * result + Objects.hashCode(errorsCount3);
         result = 31 * result + Objects.hashCode(errorsCount4);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SysStatus{onboardControlSensorsPresent=" + onboardControlSensorsPresent
+                 + ", onboardControlSensorsEnabled=" + onboardControlSensorsEnabled
+                 + ", onboardControlSensorsHealth=" + onboardControlSensorsHealth
+                 + ", load=" + load
+                 + ", voltageBattery=" + voltageBattery
+                 + ", currentBattery=" + currentBattery
+                 + ", batteryRemaining=" + batteryRemaining
+                 + ", dropRateComm=" + dropRateComm
+                 + ", errorsComm=" + errorsComm
+                 + ", errorsCount1=" + errorsCount1
+                 + ", errorsCount2=" + errorsCount2
+                 + ", errorsCount3=" + errorsCount3
+                 + ", errorsCount4=" + errorsCount4 + "}";
     }
 
     public static final class Builder {

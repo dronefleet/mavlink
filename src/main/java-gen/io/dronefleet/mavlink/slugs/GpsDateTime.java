@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -231,6 +232,22 @@ public final class GpsDateTime {
         result = 31 * result + Objects.hashCode(sigusedmask);
         result = 31 * result + Objects.hashCode(percentused);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GpsDateTime{year=" + year
+                 + ", month=" + month
+                 + ", day=" + day
+                 + ", hour=" + hour
+                 + ", min=" + min
+                 + ", sec=" + sec
+                 + ", clockstat=" + clockstat
+                 + ", vissat=" + vissat
+                 + ", usesat=" + usesat
+                 + ", gppgl=" + gppgl
+                 + ", sigusedmask=" + sigusedmask
+                 + ", percentused=" + percentused + "}";
     }
 
     public static final class Builder {

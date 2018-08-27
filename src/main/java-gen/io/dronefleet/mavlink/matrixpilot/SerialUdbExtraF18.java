@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -119,6 +120,15 @@ public final class SerialUdbExtraF18 {
         result = 31 * result + Objects.hashCode(elevatorTrimInverted);
         result = 31 * result + Objects.hashCode(referenceSpeed);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF18{angleOfAttackNormal=" + angleOfAttackNormal
+                 + ", angleOfAttackInverted=" + angleOfAttackInverted
+                 + ", elevatorTrimNormal=" + elevatorTrimNormal
+                 + ", elevatorTrimInverted=" + elevatorTrimInverted
+                 + ", referenceSpeed=" + referenceSpeed + "}";
     }
 
     public static final class Builder {

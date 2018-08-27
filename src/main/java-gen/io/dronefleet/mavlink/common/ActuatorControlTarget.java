@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -94,6 +95,13 @@ public final class ActuatorControlTarget {
         result = 31 * result + Objects.hashCode(groupMlx);
         result = 31 * result + Objects.hashCode(controls);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ActuatorControlTarget{timeUsec=" + timeUsec
+                 + ", groupMlx=" + groupMlx
+                 + ", controls=" + controls + "}";
     }
 
     public static final class Builder {

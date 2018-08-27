@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -108,6 +109,14 @@ public final class GpsGlobalOrigin {
         result = 31 * result + Objects.hashCode(altitude);
         result = 31 * result + Objects.hashCode(timeUsec);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GpsGlobalOrigin{latitude=" + latitude
+                 + ", longitude=" + longitude
+                 + ", altitude=" + altitude
+                 + ", timeUsec=" + timeUsec + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -118,6 +119,15 @@ public final class LogRequestData {
         result = 31 * result + Objects.hashCode(ofs);
         result = 31 * result + Objects.hashCode(count);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LogRequestData{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", id=" + id
+                 + ", ofs=" + ofs
+                 + ", count=" + count + "}";
     }
 
     public static final class Builder {

@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -255,6 +256,23 @@ public final class CommandInt {
         result = 31 * result + Objects.hashCode(y);
         result = 31 * result + Objects.hashCode(z);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CommandInt{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", frame=" + frame
+                 + ", command=" + command
+                 + ", current=" + current
+                 + ", autocontinue=" + autocontinue
+                 + ", param1=" + param1
+                 + ", param2=" + param2
+                 + ", param3=" + param3
+                 + ", param4=" + param4
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z + "}";
     }
 
     public static final class Builder {

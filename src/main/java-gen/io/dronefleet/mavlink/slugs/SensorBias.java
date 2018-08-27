@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -135,6 +136,16 @@ public final class SensorBias {
         result = 31 * result + Objects.hashCode(gybias);
         result = 31 * result + Objects.hashCode(gzbias);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorBias{axbias=" + axbias
+                 + ", aybias=" + aybias
+                 + ", azbias=" + azbias
+                 + ", gxbias=" + gxbias
+                 + ", gybias=" + gybias
+                 + ", gzbias=" + gzbias + "}";
     }
 
     public static final class Builder {

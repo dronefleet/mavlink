@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -169,6 +170,18 @@ public final class SensorpodStatus {
         result = 31 * result + Objects.hashCode(cpuTemp);
         result = 31 * result + Objects.hashCode(freeSpace);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorpodStatus{timestamp=" + timestamp
+                 + ", visensorRate1=" + visensorRate1
+                 + ", visensorRate2=" + visensorRate2
+                 + ", visensorRate3=" + visensorRate3
+                 + ", visensorRate4=" + visensorRate4
+                 + ", recordingNodesCount=" + recordingNodesCount
+                 + ", cpuTemp=" + cpuTemp
+                 + ", freeSpace=" + freeSpace + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -129,6 +130,15 @@ public final class V2Extension {
         result = 31 * result + Objects.hashCode(messageType);
         result = 31 * result + Objects.hashCode(payload);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "V2Extension{targetNetwork=" + targetNetwork
+                 + ", targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", messageType=" + messageType
+                 + ", payload=" + payload + "}";
     }
 
     public static final class Builder {

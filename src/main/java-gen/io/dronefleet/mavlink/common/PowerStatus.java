@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -89,6 +90,13 @@ public final class PowerStatus {
         result = 31 * result + Objects.hashCode(vservo);
         result = 31 * result + Objects.hashCode(flags);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PowerStatus{vcc=" + vcc
+                 + ", vservo=" + vservo
+                 + ", flags=" + flags + "}";
     }
 
     public static final class Builder {

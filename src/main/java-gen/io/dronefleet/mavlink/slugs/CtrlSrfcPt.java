@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -73,6 +74,12 @@ public final class CtrlSrfcPt {
         result = 31 * result + Objects.hashCode(target);
         result = 31 * result + Objects.hashCode(bitfieldpt);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CtrlSrfcPt{target=" + target
+                 + ", bitfieldpt=" + bitfieldpt + "}";
     }
 
     public static final class Builder {

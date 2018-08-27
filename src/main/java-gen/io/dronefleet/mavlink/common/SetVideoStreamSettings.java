@@ -188,6 +188,19 @@ public final class SetVideoStreamSettings {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "SetVideoStreamSettings{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", cameraId=" + cameraId
+                 + ", framerate=" + framerate
+                 + ", resolutionH=" + resolutionH
+                 + ", resolutionV=" + resolutionV
+                 + ", bitrate=" + bitrate
+                 + ", rotation=" + rotation
+                 + ", uri=" + uri + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

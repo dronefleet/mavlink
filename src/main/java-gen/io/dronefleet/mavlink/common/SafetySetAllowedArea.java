@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -189,6 +190,19 @@ public final class SafetySetAllowedArea {
         result = 31 * result + Objects.hashCode(p2y);
         result = 31 * result + Objects.hashCode(p2z);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SafetySetAllowedArea{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", frame=" + frame
+                 + ", p1x=" + p1x
+                 + ", p1y=" + p1y
+                 + ", p1z=" + p1z
+                 + ", p2x=" + p2x
+                 + ", p2y=" + p2y
+                 + ", p2z=" + p2z + "}";
     }
 
     public static final class Builder {

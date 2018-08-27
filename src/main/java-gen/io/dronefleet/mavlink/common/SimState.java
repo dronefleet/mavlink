@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -377,6 +378,31 @@ public final class SimState {
         result = 31 * result + Objects.hashCode(ve);
         result = 31 * result + Objects.hashCode(vd);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SimState{q1=" + q1
+                 + ", q2=" + q2
+                 + ", q3=" + q3
+                 + ", q4=" + q4
+                 + ", roll=" + roll
+                 + ", pitch=" + pitch
+                 + ", yaw=" + yaw
+                 + ", xacc=" + xacc
+                 + ", yacc=" + yacc
+                 + ", zacc=" + zacc
+                 + ", xgyro=" + xgyro
+                 + ", ygyro=" + ygyro
+                 + ", zgyro=" + zgyro
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", stdDevHorz=" + stdDevHorz
+                 + ", stdDevVert=" + stdDevVert
+                 + ", vn=" + vn
+                 + ", ve=" + ve
+                 + ", vd=" + vd + "}";
     }
 
     public static final class Builder {

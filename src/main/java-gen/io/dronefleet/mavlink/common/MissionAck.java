@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -109,6 +110,14 @@ public final class MissionAck {
         result = 31 * result + Objects.hashCode(type);
         result = 31 * result + Objects.hashCode(missionType);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MissionAck{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", type=" + type
+                 + ", missionType=" + missionType + "}";
     }
 
     public static final class Builder {

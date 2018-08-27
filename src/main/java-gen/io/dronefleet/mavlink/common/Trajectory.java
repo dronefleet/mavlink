@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -181,6 +182,18 @@ public final class Trajectory {
         result = 31 * result + Objects.hashCode(point5);
         result = 31 * result + Objects.hashCode(pointValid);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Trajectory{timeUsec=" + timeUsec
+                 + ", type=" + type
+                 + ", point1=" + point1
+                 + ", point2=" + point2
+                 + ", point3=" + point3
+                 + ", point4=" + point4
+                 + ", point5=" + point5
+                 + ", pointValid=" + pointValid + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -898,6 +899,60 @@ public final class SerialUdbExtraF2B {
         result = 31 * result + Objects.hashCode(sueDesiredHeight);
         result = 31 * result + Objects.hashCode(sueMemoryStackFree);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF2B{sueTime=" + sueTime
+                 + ", suePwmInput1=" + suePwmInput1
+                 + ", suePwmInput2=" + suePwmInput2
+                 + ", suePwmInput3=" + suePwmInput3
+                 + ", suePwmInput4=" + suePwmInput4
+                 + ", suePwmInput5=" + suePwmInput5
+                 + ", suePwmInput6=" + suePwmInput6
+                 + ", suePwmInput7=" + suePwmInput7
+                 + ", suePwmInput8=" + suePwmInput8
+                 + ", suePwmInput9=" + suePwmInput9
+                 + ", suePwmInput10=" + suePwmInput10
+                 + ", suePwmInput11=" + suePwmInput11
+                 + ", suePwmInput12=" + suePwmInput12
+                 + ", suePwmOutput1=" + suePwmOutput1
+                 + ", suePwmOutput2=" + suePwmOutput2
+                 + ", suePwmOutput3=" + suePwmOutput3
+                 + ", suePwmOutput4=" + suePwmOutput4
+                 + ", suePwmOutput5=" + suePwmOutput5
+                 + ", suePwmOutput6=" + suePwmOutput6
+                 + ", suePwmOutput7=" + suePwmOutput7
+                 + ", suePwmOutput8=" + suePwmOutput8
+                 + ", suePwmOutput9=" + suePwmOutput9
+                 + ", suePwmOutput10=" + suePwmOutput10
+                 + ", suePwmOutput11=" + suePwmOutput11
+                 + ", suePwmOutput12=" + suePwmOutput12
+                 + ", sueImuLocationX=" + sueImuLocationX
+                 + ", sueImuLocationY=" + sueImuLocationY
+                 + ", sueImuLocationZ=" + sueImuLocationZ
+                 + ", sueLocationErrorEarthX=" + sueLocationErrorEarthX
+                 + ", sueLocationErrorEarthY=" + sueLocationErrorEarthY
+                 + ", sueLocationErrorEarthZ=" + sueLocationErrorEarthZ
+                 + ", sueFlags=" + sueFlags
+                 + ", sueOscFails=" + sueOscFails
+                 + ", sueImuVelocityX=" + sueImuVelocityX
+                 + ", sueImuVelocityY=" + sueImuVelocityY
+                 + ", sueImuVelocityZ=" + sueImuVelocityZ
+                 + ", sueWaypointGoalX=" + sueWaypointGoalX
+                 + ", sueWaypointGoalY=" + sueWaypointGoalY
+                 + ", sueWaypointGoalZ=" + sueWaypointGoalZ
+                 + ", sueAeroX=" + sueAeroX
+                 + ", sueAeroY=" + sueAeroY
+                 + ", sueAeroZ=" + sueAeroZ
+                 + ", sueBaromTemp=" + sueBaromTemp
+                 + ", sueBaromPress=" + sueBaromPress
+                 + ", sueBaromAlt=" + sueBaromAlt
+                 + ", sueBatVolt=" + sueBatVolt
+                 + ", sueBatAmp=" + sueBatAmp
+                 + ", sueBatAmpHours=" + sueBatAmpHours
+                 + ", sueDesiredHeight=" + sueDesiredHeight
+                 + ", sueMemoryStackFree=" + sueMemoryStackFree + "}";
     }
 
     public static final class Builder {

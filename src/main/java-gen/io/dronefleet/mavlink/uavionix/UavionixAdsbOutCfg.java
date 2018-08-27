@@ -184,6 +184,18 @@ public final class UavionixAdsbOutCfg {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "UavionixAdsbOutCfg{icao=" + icao
+                 + ", callsign=" + callsign
+                 + ", emittertype=" + emittertype
+                 + ", aircraftsize=" + aircraftsize
+                 + ", gpsoffsetlat=" + gpsoffsetlat
+                 + ", gpsoffsetlon=" + gpsoffsetlon
+                 + ", stallspeed=" + stallspeed
+                 + ", rfselect=" + rfselect + "}";
+    }
+
     public static final class Builder {
         private long icao;
 

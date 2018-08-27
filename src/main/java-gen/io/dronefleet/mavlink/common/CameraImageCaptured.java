@@ -231,6 +231,21 @@ public final class CameraImageCaptured {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "CameraImageCaptured{timeBootMs=" + timeBootMs
+                 + ", timeUtc=" + timeUtc
+                 + ", cameraId=" + cameraId
+                 + ", lat=" + lat
+                 + ", lon=" + lon
+                 + ", alt=" + alt
+                 + ", relativeAlt=" + relativeAlt
+                 + ", q=" + q
+                 + ", imageIndex=" + imageIndex
+                 + ", captureResult=" + captureResult
+                 + ", fileUrl=" + fileUrl + "}";
+    }
+
     public static final class Builder {
         private long timeBootMs;
 

@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -146,6 +147,16 @@ public final class ObstacleDistance {
         result = 31 * result + Objects.hashCode(minDistance);
         result = 31 * result + Objects.hashCode(maxDistance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ObstacleDistance{timeUsec=" + timeUsec
+                 + ", sensorType=" + sensorType
+                 + ", distances=" + distances
+                 + ", increment=" + increment
+                 + ", minDistance=" + minDistance
+                 + ", maxDistance=" + maxDistance + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -136,6 +137,16 @@ public final class LedControl {
         result = 31 * result + Objects.hashCode(customLen);
         result = 31 * result + Objects.hashCode(customBytes);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LedControl{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", instance=" + instance
+                 + ", pattern=" + pattern
+                 + ", customLen=" + customLen
+                 + ", customBytes=" + customBytes + "}";
     }
 
     public static final class Builder {

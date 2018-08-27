@@ -195,6 +195,19 @@ public final class ParamMapRc {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamMapRc{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", paramId=" + paramId
+                 + ", paramIndex=" + paramIndex
+                 + ", parameterRcChannelIndex=" + parameterRcChannelIndex
+                 + ", paramValue0=" + paramValue0
+                 + ", scale=" + scale
+                 + ", paramValueMin=" + paramValueMin
+                 + ", paramValueMax=" + paramValueMax + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

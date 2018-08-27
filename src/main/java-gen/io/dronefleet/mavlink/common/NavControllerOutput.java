@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -169,6 +170,18 @@ public final class NavControllerOutput {
         result = 31 * result + Objects.hashCode(aspdError);
         result = 31 * result + Objects.hashCode(xtrackError);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "NavControllerOutput{navRoll=" + navRoll
+                 + ", navPitch=" + navPitch
+                 + ", navBearing=" + navBearing
+                 + ", targetBearing=" + targetBearing
+                 + ", wpDist=" + wpDist
+                 + ", altError=" + altError
+                 + ", aspdError=" + aspdError
+                 + ", xtrackError=" + xtrackError + "}";
     }
 
     public static final class Builder {

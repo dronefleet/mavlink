@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -249,6 +250,23 @@ public final class SensMppt {
         result = 31 * result + Objects.hashCode(mppt3Pwm);
         result = 31 * result + Objects.hashCode(mppt3Status);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensMppt{mpptTimestamp=" + mpptTimestamp
+                 + ", mppt1Volt=" + mppt1Volt
+                 + ", mppt1Amp=" + mppt1Amp
+                 + ", mppt1Pwm=" + mppt1Pwm
+                 + ", mppt1Status=" + mppt1Status
+                 + ", mppt2Volt=" + mppt2Volt
+                 + ", mppt2Amp=" + mppt2Amp
+                 + ", mppt2Pwm=" + mppt2Pwm
+                 + ", mppt2Status=" + mppt2Status
+                 + ", mppt3Volt=" + mppt3Volt
+                 + ", mppt3Amp=" + mppt3Amp
+                 + ", mppt3Pwm=" + mppt3Pwm
+                 + ", mppt3Status=" + mppt3Status + "}";
     }
 
     public static final class Builder {

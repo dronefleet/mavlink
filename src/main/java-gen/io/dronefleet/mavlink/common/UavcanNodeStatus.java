@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -143,6 +144,16 @@ public final class UavcanNodeStatus {
         result = 31 * result + Objects.hashCode(subMode);
         result = 31 * result + Objects.hashCode(vendorSpecificStatusCode);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UavcanNodeStatus{timeUsec=" + timeUsec
+                 + ", uptimeSec=" + uptimeSec
+                 + ", health=" + health
+                 + ", mode=" + mode
+                 + ", subMode=" + subMode
+                 + ", vendorSpecificStatusCode=" + vendorSpecificStatusCode + "}";
     }
 
     public static final class Builder {

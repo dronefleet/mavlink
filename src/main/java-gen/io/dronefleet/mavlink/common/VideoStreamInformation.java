@@ -171,6 +171,18 @@ public final class VideoStreamInformation {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "VideoStreamInformation{cameraId=" + cameraId
+                 + ", status=" + status
+                 + ", framerate=" + framerate
+                 + ", resolutionH=" + resolutionH
+                 + ", resolutionV=" + resolutionV
+                 + ", bitrate=" + bitrate
+                 + ", rotation=" + rotation
+                 + ", uri=" + uri + "}";
+    }
+
     public static final class Builder {
         private int cameraId;
 

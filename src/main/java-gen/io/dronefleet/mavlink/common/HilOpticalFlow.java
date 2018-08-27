@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -239,6 +240,22 @@ public final class HilOpticalFlow {
         result = 31 * result + Objects.hashCode(timeDeltaDistanceUs);
         result = 31 * result + Objects.hashCode(distance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilOpticalFlow{timeUsec=" + timeUsec
+                 + ", sensorId=" + sensorId
+                 + ", integrationTimeUs=" + integrationTimeUs
+                 + ", integratedX=" + integratedX
+                 + ", integratedY=" + integratedY
+                 + ", integratedXgyro=" + integratedXgyro
+                 + ", integratedYgyro=" + integratedYgyro
+                 + ", integratedZgyro=" + integratedZgyro
+                 + ", temperature=" + temperature
+                 + ", quality=" + quality
+                 + ", timeDeltaDistanceUs=" + timeDeltaDistanceUs
+                 + ", distance=" + distance + "}";
     }
 
     public static final class Builder {

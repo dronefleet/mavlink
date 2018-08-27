@@ -80,6 +80,12 @@ public final class Statustext {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Statustext{severity=" + severity
+                 + ", text=" + text + "}";
+    }
+
     public static final class Builder {
         private EnumValue<MavSeverity> severity;
 

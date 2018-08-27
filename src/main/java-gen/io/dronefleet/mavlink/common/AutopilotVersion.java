@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -249,6 +250,22 @@ public final class AutopilotVersion {
         result = 31 * result + Objects.hashCode(uid);
         result = 31 * result + Objects.hashCode(uid2);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AutopilotVersion{capabilities=" + capabilities
+                 + ", flightSwVersion=" + flightSwVersion
+                 + ", middlewareSwVersion=" + middlewareSwVersion
+                 + ", osSwVersion=" + osSwVersion
+                 + ", boardVersion=" + boardVersion
+                 + ", flightCustomVersion=" + flightCustomVersion
+                 + ", middlewareCustomVersion=" + middlewareCustomVersion
+                 + ", osCustomVersion=" + osCustomVersion
+                 + ", vendorId=" + vendorId
+                 + ", productId=" + productId
+                 + ", uid=" + uid
+                 + ", uid2=" + uid2 + "}";
     }
 
     public static final class Builder {

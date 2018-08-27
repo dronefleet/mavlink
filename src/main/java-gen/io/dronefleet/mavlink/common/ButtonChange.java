@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -86,6 +87,13 @@ public final class ButtonChange {
         result = 31 * result + Objects.hashCode(lastChangeMs);
         result = 31 * result + Objects.hashCode(state);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ButtonChange{timeBootMs=" + timeBootMs
+                 + ", lastChangeMs=" + lastChangeMs
+                 + ", state=" + state + "}";
     }
 
     public static final class Builder {

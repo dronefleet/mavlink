@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -86,6 +87,13 @@ public final class SerialUdbExtraF17 {
         result = 31 * result + Objects.hashCode(sueTurnRateNav);
         result = 31 * result + Objects.hashCode(sueTurnRateFbw);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SerialUdbExtraF17{sueFeedForward=" + sueFeedForward
+                 + ", sueTurnRateNav=" + sueTurnRateNav
+                 + ", sueTurnRateFbw=" + sueTurnRateFbw + "}";
     }
 
     public static final class Builder {

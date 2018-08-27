@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -165,6 +166,17 @@ public final class Altitude {
         result = 31 * result + Objects.hashCode(altitudeTerrain);
         result = 31 * result + Objects.hashCode(bottomClearance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Altitude{timeUsec=" + timeUsec
+                 + ", altitudeMonotonic=" + altitudeMonotonic
+                 + ", altitudeAmsl=" + altitudeAmsl
+                 + ", altitudeLocal=" + altitudeLocal
+                 + ", altitudeRelative=" + altitudeRelative
+                 + ", altitudeTerrain=" + altitudeTerrain
+                 + ", bottomClearance=" + bottomClearance + "}";
     }
 
     public static final class Builder {

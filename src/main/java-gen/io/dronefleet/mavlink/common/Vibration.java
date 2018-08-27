@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -152,6 +153,17 @@ public final class Vibration {
         result = 31 * result + Objects.hashCode(clipping1);
         result = 31 * result + Objects.hashCode(clipping2);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Vibration{timeUsec=" + timeUsec
+                 + ", vibrationX=" + vibrationX
+                 + ", vibrationY=" + vibrationY
+                 + ", vibrationZ=" + vibrationZ
+                 + ", clipping0=" + clipping0
+                 + ", clipping1=" + clipping1
+                 + ", clipping2=" + clipping2 + "}";
     }
 
     public static final class Builder {

@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -217,6 +218,21 @@ public final class DigicamConfigure {
         result = 31 * result + Objects.hashCode(extraParam);
         result = 31 * result + Objects.hashCode(extraValue);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "DigicamConfigure{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", mode=" + mode
+                 + ", shutterSpeed=" + shutterSpeed
+                 + ", aperture=" + aperture
+                 + ", iso=" + iso
+                 + ", exposureType=" + exposureType
+                 + ", commandId=" + commandId
+                 + ", engineCutOff=" + engineCutOff
+                 + ", extraParam=" + extraParam
+                 + ", extraValue=" + extraValue + "}";
     }
 
     public static final class Builder {

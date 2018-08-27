@@ -75,6 +75,12 @@ public final class WifiConfigAp {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "WifiConfigAp{ssid=" + ssid
+                 + ", password=" + password + "}";
+    }
+
     public static final class Builder {
         private String ssid;
 

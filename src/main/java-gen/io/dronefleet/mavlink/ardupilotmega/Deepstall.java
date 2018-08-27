@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -209,6 +210,20 @@ public final class Deepstall {
         result = 31 * result + Objects.hashCode(crossTrackError);
         result = 31 * result + Objects.hashCode(stage);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Deepstall{landingLat=" + landingLat
+                 + ", landingLon=" + landingLon
+                 + ", pathLat=" + pathLat
+                 + ", pathLon=" + pathLon
+                 + ", arcEntryLat=" + arcEntryLat
+                 + ", arcEntryLon=" + arcEntryLon
+                 + ", altitude=" + altitude
+                 + ", expectedTravelDistance=" + expectedTravelDistance
+                 + ", crossTrackError=" + crossTrackError
+                 + ", stage=" + stage + "}";
     }
 
     public static final class Builder {

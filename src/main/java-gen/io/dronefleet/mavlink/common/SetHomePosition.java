@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -256,6 +257,22 @@ public final class SetHomePosition {
         result = 31 * result + Objects.hashCode(approachZ);
         result = 31 * result + Objects.hashCode(timeUsec);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SetHomePosition{targetSystem=" + targetSystem
+                 + ", latitude=" + latitude
+                 + ", longitude=" + longitude
+                 + ", altitude=" + altitude
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", q=" + q
+                 + ", approachX=" + approachX
+                 + ", approachY=" + approachY
+                 + ", approachZ=" + approachZ
+                 + ", timeUsec=" + timeUsec + "}";
     }
 
     public static final class Builder {

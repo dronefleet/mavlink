@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -151,6 +152,17 @@ public final class NovatelDiag {
         result = 31 * result + Objects.hashCode(possolage);
         result = 31 * result + Objects.hashCode(csfails);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "NovatelDiag{timestatus=" + timestatus
+                 + ", receiverstatus=" + receiverstatus
+                 + ", solstatus=" + solstatus
+                 + ", postype=" + postype
+                 + ", veltype=" + veltype
+                 + ", possolage=" + possolage
+                 + ", csfails=" + csfails + "}";
     }
 
     public static final class Builder {

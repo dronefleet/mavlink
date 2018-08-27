@@ -110,6 +110,14 @@ public final class ChangeOperatorControl {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ChangeOperatorControl{targetSystem=" + targetSystem
+                 + ", controlRequest=" + controlRequest
+                 + ", version=" + version
+                 + ", passkey=" + passkey + "}";
+    }
+
     public static final class Builder {
         private int targetSystem;
 

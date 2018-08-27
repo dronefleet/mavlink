@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -138,6 +139,16 @@ public final class Diagnostic {
         result = 31 * result + Objects.hashCode(diagsh2);
         result = 31 * result + Objects.hashCode(diagsh3);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnostic{diagfl1=" + diagfl1
+                 + ", diagfl2=" + diagfl2
+                 + ", diagfl3=" + diagfl3
+                 + ", diagsh1=" + diagsh1
+                 + ", diagsh2=" + diagsh2
+                 + ", diagsh3=" + diagsh3 + "}";
     }
 
     public static final class Builder {

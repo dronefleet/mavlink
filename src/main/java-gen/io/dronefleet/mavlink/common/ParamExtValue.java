@@ -131,6 +131,15 @@ public final class ParamExtValue {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ParamExtValue{paramId=" + paramId
+                 + ", paramValue=" + paramValue
+                 + ", paramType=" + paramType
+                 + ", paramCount=" + paramCount
+                 + ", paramIndex=" + paramIndex + "}";
+    }
+
     public static final class Builder {
         private String paramId;
 

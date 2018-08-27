@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -156,6 +157,17 @@ public final class EkfStatusReport {
         result = 31 * result + Objects.hashCode(terrainAltVariance);
         result = 31 * result + Objects.hashCode(airspeedVariance);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EkfStatusReport{flags=" + flags
+                 + ", velocityVariance=" + velocityVariance
+                 + ", posHorizVariance=" + posHorizVariance
+                 + ", posVertVariance=" + posVertVariance
+                 + ", compassVariance=" + compassVariance
+                 + ", terrainAltVariance=" + terrainAltVariance
+                 + ", airspeedVariance=" + airspeedVariance + "}";
     }
 
     public static final class Builder {

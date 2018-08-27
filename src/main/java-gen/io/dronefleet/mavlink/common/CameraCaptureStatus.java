@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -136,6 +137,16 @@ public final class CameraCaptureStatus {
         result = 31 * result + Objects.hashCode(recordingTimeMs);
         result = 31 * result + Objects.hashCode(availableCapacity);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CameraCaptureStatus{timeBootMs=" + timeBootMs
+                 + ", imageStatus=" + imageStatus
+                 + ", videoStatus=" + videoStatus
+                 + ", imageInterval=" + imageInterval
+                 + ", recordingTimeMs=" + recordingTimeMs
+                 + ", availableCapacity=" + availableCapacity + "}";
     }
 
     public static final class Builder {

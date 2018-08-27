@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -102,6 +103,14 @@ public final class ControlSurface {
         result = 31 * result + Objects.hashCode(mcontrol);
         result = 31 * result + Objects.hashCode(bcontrol);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ControlSurface{target=" + target
+                 + ", idsurface=" + idsurface
+                 + ", mcontrol=" + mcontrol
+                 + ", bcontrol=" + bcontrol + "}";
     }
 
     public static final class Builder {

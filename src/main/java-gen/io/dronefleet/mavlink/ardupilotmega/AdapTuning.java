@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -251,6 +252,23 @@ public final class AdapTuning {
         result = 31 * result + Objects.hashCode(fDot);
         result = 31 * result + Objects.hashCode(u);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AdapTuning{axis=" + axis
+                 + ", desired=" + desired
+                 + ", achieved=" + achieved
+                 + ", error=" + error
+                 + ", theta=" + theta
+                 + ", omega=" + omega
+                 + ", sigma=" + sigma
+                 + ", thetaDot=" + thetaDot
+                 + ", omegaDot=" + omegaDot
+                 + ", sigmaDot=" + sigmaDot
+                 + ", f=" + f
+                 + ", fDot=" + fDot
+                 + ", u=" + u + "}";
     }
 
     public static final class Builder {

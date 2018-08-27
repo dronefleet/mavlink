@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -153,6 +154,17 @@ public final class LocalPositionNedSystemGlobalOffset {
         result = 31 * result + Objects.hashCode(pitch);
         result = 31 * result + Objects.hashCode(yaw);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LocalPositionNedSystemGlobalOffset{timeBootMs=" + timeBootMs
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", roll=" + roll
+                 + ", pitch=" + pitch
+                 + ", yaw=" + yaw + "}";
     }
 
     public static final class Builder {

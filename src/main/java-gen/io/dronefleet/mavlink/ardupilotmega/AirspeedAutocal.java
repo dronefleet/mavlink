@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -232,6 +233,22 @@ public final class AirspeedAutocal {
         result = 31 * result + Objects.hashCode(pby);
         result = 31 * result + Objects.hashCode(pcz);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AirspeedAutocal{vx=" + vx
+                 + ", vy=" + vy
+                 + ", vz=" + vz
+                 + ", diffPressure=" + diffPressure
+                 + ", eas2tas=" + eas2tas
+                 + ", ratio=" + ratio
+                 + ", stateX=" + stateX
+                 + ", stateY=" + stateY
+                 + ", stateZ=" + stateZ
+                 + ", pax=" + pax
+                 + ", pby=" + pby
+                 + ", pcz=" + pcz + "}";
     }
 
     public static final class Builder {

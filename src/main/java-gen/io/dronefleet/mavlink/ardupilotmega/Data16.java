@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -87,6 +88,13 @@ public final class Data16 {
         result = 31 * result + Objects.hashCode(len);
         result = 31 * result + Objects.hashCode(data);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Data16{type=" + type
+                 + ", len=" + len
+                 + ", data=" + data + "}";
     }
 
     public static final class Builder {

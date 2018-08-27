@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.util.Objects;
 
 /**
@@ -238,6 +239,22 @@ public final class SensorOffsets {
         result = 31 * result + Objects.hashCode(accelCalY);
         result = 31 * result + Objects.hashCode(accelCalZ);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorOffsets{magOfsX=" + magOfsX
+                 + ", magOfsY=" + magOfsY
+                 + ", magOfsZ=" + magOfsZ
+                 + ", magDeclination=" + magDeclination
+                 + ", rawPress=" + rawPress
+                 + ", rawTemp=" + rawTemp
+                 + ", gyroCalX=" + gyroCalX
+                 + ", gyroCalY=" + gyroCalY
+                 + ", gyroCalZ=" + gyroCalZ
+                 + ", accelCalX=" + accelCalX
+                 + ", accelCalY=" + accelCalY
+                 + ", accelCalZ=" + accelCalZ + "}";
     }
 
     public static final class Builder {

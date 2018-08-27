@@ -5,6 +5,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -282,6 +283,25 @@ public final class HilSensor {
         result = 31 * result + Objects.hashCode(temperature);
         result = 31 * result + Objects.hashCode(fieldsUpdated);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilSensor{timeUsec=" + timeUsec
+                 + ", xacc=" + xacc
+                 + ", yacc=" + yacc
+                 + ", zacc=" + zacc
+                 + ", xgyro=" + xgyro
+                 + ", ygyro=" + ygyro
+                 + ", zgyro=" + zgyro
+                 + ", xmag=" + xmag
+                 + ", ymag=" + ymag
+                 + ", zmag=" + zmag
+                 + ", absPressure=" + absPressure
+                 + ", diffPressure=" + diffPressure
+                 + ", pressureAlt=" + pressureAlt
+                 + ", temperature=" + temperature
+                 + ", fieldsUpdated=" + fieldsUpdated + "}";
     }
 
     public static final class Builder {

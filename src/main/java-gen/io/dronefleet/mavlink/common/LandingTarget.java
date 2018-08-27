@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
@@ -280,6 +281,24 @@ public final class LandingTarget {
         result = 31 * result + Objects.hashCode(type);
         result = 31 * result + Objects.hashCode(positionValid);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "LandingTarget{timeUsec=" + timeUsec
+                 + ", targetNum=" + targetNum
+                 + ", frame=" + frame
+                 + ", angleX=" + angleX
+                 + ", angleY=" + angleY
+                 + ", distance=" + distance
+                 + ", sizeX=" + sizeX
+                 + ", sizeY=" + sizeY
+                 + ", x=" + x
+                 + ", y=" + y
+                 + ", z=" + z
+                 + ", q=" + q
+                 + ", type=" + type
+                 + ", positionValid=" + positionValid + "}";
     }
 
     public static final class Builder {

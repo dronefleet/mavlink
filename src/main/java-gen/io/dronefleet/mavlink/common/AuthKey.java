@@ -59,6 +59,11 @@ public final class AuthKey {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "AuthKey{key=" + key + "}";
+    }
+
     public static final class Builder {
         private String key;
 

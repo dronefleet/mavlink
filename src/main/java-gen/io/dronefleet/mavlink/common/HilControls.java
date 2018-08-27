@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
 
@@ -220,6 +221,21 @@ public final class HilControls {
         result = 31 * result + Objects.hashCode(mode);
         result = 31 * result + Objects.hashCode(navMode);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "HilControls{timeUsec=" + timeUsec
+                 + ", rollAilerons=" + rollAilerons
+                 + ", pitchElevator=" + pitchElevator
+                 + ", yawRudder=" + yawRudder
+                 + ", throttle=" + throttle
+                 + ", aux1=" + aux1
+                 + ", aux2=" + aux2
+                 + ", aux3=" + aux3
+                 + ", aux4=" + aux4
+                 + ", mode=" + mode
+                 + ", navMode=" + navMode + "}";
     }
 
     public static final class Builder {
