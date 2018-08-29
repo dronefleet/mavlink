@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -272,16 +273,21 @@ public final class DistanceSensor {
          * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
          */
         public final Builder type(MavDistanceSensor entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.MavDistanceSensor MAV_DISTANCE_SENSOR} enum. 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**
@@ -319,8 +325,7 @@ public final class DistanceSensor {
          * right-facing: ROTATION_YAW_270 
          */
         public final Builder orientation(MavSensorOrientation entry) {
-            this.orientation = EnumValue.of(entry);
-            return this;
+            return orientation(EnumValue.of(entry));
         }
 
         /**
@@ -330,8 +335,17 @@ public final class DistanceSensor {
          * right-facing: ROTATION_YAW_270 
          */
         public final Builder orientation(Enum... flags) {
-            this.orientation = EnumValue.create(flags);
-            return this;
+            return orientation(EnumValue.create(flags));
+        }
+
+        /**
+         * Direction the sensor faces from {@link io.dronefleet.mavlink.common.MavSensorOrientation MAV_SENSOR_ORIENTATION} enum. downward-facing: 
+         * ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: 
+         * ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, 
+         * right-facing: ROTATION_YAW_270 
+         */
+        public final Builder orientation(Collection<Enum> flags) {
+            return orientation(EnumValue.create(flags));
         }
 
         /**

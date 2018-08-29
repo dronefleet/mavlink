@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -242,16 +243,21 @@ public final class Trajectory {
          * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
          */
         public final Builder type(MavTrajectoryRepresentation entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Waypoints, Bezier etc. see {@link io.dronefleet.mavlink.common.MavTrajectoryRepresentation MAV_TRAJECTORY_REPRESENTATION} 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**

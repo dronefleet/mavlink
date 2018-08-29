@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -486,16 +487,21 @@ public final class CameraFeedback {
          * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
          */
         public final Builder flags(CameraFeedbackFlags entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         /**

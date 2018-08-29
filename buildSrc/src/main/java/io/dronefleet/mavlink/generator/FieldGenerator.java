@@ -4,10 +4,7 @@ import com.squareup.javapoet.*;
 
 import javax.lang.model.element.Modifier;
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class FieldGenerator implements Comparable<FieldGenerator> {
     private static final ClassName MAVLINK_MESSAGE_FIELD = ClassName.get(
@@ -153,8 +150,7 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
                             .addJavadoc(javadoc())
                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                             .addParameter(enumType(), "entry")
-                            .addStatement("this.$1N = $2T.of($3N)", nameCamelCase, ENUM_VALUE, "entry")
-                            .addStatement("return this")
+                            .addStatement("return $1N($2T.of($3N))", nameCamelCase, ENUM_VALUE, "entry")
                             .returns(className)
                             .build(),
 
@@ -163,8 +159,15 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
                             .addJavadoc(javadoc())
                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                             .addParameter(Enum[].class, "flags")
-                            .addStatement("this.$1N = $2T.create(flags)", nameCamelCase, ENUM_VALUE)
-                            .addStatement("return this")
+                            .addStatement("return $1N($2T.create(flags))", nameCamelCase, ENUM_VALUE)
+                            .returns(className)
+                            .build(),
+
+                    MethodSpec.methodBuilder(nameCamelCase)
+                            .addJavadoc(javadoc())
+                            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                            .addParameter(ParameterizedTypeName.get(Collection.class, Enum.class), "flags")
+                            .addStatement("return $1N($2T.create(flags))", nameCamelCase, ENUM_VALUE)
                             .returns(className)
                             .build()
             );

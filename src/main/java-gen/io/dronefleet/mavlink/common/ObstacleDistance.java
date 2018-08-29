@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -201,16 +202,21 @@ public final class ObstacleDistance {
          * Class id of the distance sensor type. 
          */
         public final Builder sensorType(MavDistanceSensor entry) {
-            this.sensorType = EnumValue.of(entry);
-            return this;
+            return sensorType(EnumValue.of(entry));
         }
 
         /**
          * Class id of the distance sensor type. 
          */
         public final Builder sensorType(Enum... flags) {
-            this.sensorType = EnumValue.create(flags);
-            return this;
+            return sensorType(EnumValue.create(flags));
+        }
+
+        /**
+         * Class id of the distance sensor type. 
+         */
+        public final Builder sensorType(Collection<Enum> flags) {
+            return sensorType(EnumValue.create(flags));
         }
 
         /**

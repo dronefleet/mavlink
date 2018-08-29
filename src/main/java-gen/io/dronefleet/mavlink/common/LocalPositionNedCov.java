@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -314,16 +315,21 @@ public final class LocalPositionNedCov {
          * Class id of the estimator this estimate originated from. 
          */
         public final Builder estimatorType(MavEstimatorType entry) {
-            this.estimatorType = EnumValue.of(entry);
-            return this;
+            return estimatorType(EnumValue.of(entry));
         }
 
         /**
          * Class id of the estimator this estimate originated from. 
          */
         public final Builder estimatorType(Enum... flags) {
-            this.estimatorType = EnumValue.create(flags);
-            return this;
+            return estimatorType(EnumValue.create(flags));
+        }
+
+        /**
+         * Class id of the estimator this estimate originated from. 
+         */
+        public final Builder estimatorType(Collection<Enum> flags) {
+            return estimatorType(EnumValue.create(flags));
         }
 
         /**

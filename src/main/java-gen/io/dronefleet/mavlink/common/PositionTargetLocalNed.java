@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -355,8 +356,7 @@ public final class PositionTargetLocalNed {
          * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
          */
         public final Builder coordinateFrame(MavFrame entry) {
-            this.coordinateFrame = EnumValue.of(entry);
-            return this;
+            return coordinateFrame(EnumValue.of(entry));
         }
 
         /**
@@ -364,8 +364,15 @@ public final class PositionTargetLocalNed {
          * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
          */
         public final Builder coordinateFrame(Enum... flags) {
-            this.coordinateFrame = EnumValue.create(flags);
-            return this;
+            return coordinateFrame(EnumValue.create(flags));
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, 
+         * MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9 
+         */
+        public final Builder coordinateFrame(Collection<Enum> flags) {
+            return coordinateFrame(EnumValue.create(flags));
         }
 
         /**

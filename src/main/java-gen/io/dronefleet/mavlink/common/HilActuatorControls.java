@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -173,16 +174,21 @@ public final class HilActuatorControls {
          * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
          */
         public final Builder mode(MavMode entry) {
-            this.mode = EnumValue.of(entry);
-            return this;
+            return mode(EnumValue.of(entry));
         }
 
         /**
          * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
          */
         public final Builder mode(Enum... flags) {
-            this.mode = EnumValue.create(flags);
-            return this;
+            return mode(EnumValue.create(flags));
+        }
+
+        /**
+         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         */
+        public final Builder mode(Collection<Enum> flags) {
+            return mode(EnumValue.create(flags));
         }
 
         /**

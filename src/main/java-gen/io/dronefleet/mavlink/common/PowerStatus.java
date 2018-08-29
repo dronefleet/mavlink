@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -147,16 +148,21 @@ public final class PowerStatus {
          * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
          */
         public final Builder flags(MavPowerStatus entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
          * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         public final PowerStatus build() {

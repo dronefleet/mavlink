@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -196,16 +197,21 @@ public final class ParamExtValue {
          * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
          */
         public final Builder paramType(MavParamExtType entry) {
-            this.paramType = EnumValue.of(entry);
-            return this;
+            return paramType(EnumValue.of(entry));
         }
 
         /**
          * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
          */
         public final Builder paramType(Enum... flags) {
-            this.paramType = EnumValue.create(flags);
-            return this;
+            return paramType(EnumValue.create(flags));
+        }
+
+        /**
+         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         */
+        public final Builder paramType(Collection<Enum> flags) {
+            return paramType(EnumValue.create(flags));
         }
 
         /**

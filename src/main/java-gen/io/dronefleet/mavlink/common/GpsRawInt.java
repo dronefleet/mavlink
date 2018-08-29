@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -379,16 +380,21 @@ public final class GpsRawInt {
          * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
          */
         public final Builder fixType(GpsFixType entry) {
-            this.fixType = EnumValue.of(entry);
-            return this;
+            return fixType(EnumValue.of(entry));
         }
 
         /**
          * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
          */
         public final Builder fixType(Enum... flags) {
-            this.fixType = EnumValue.create(flags);
-            return this;
+            return fixType(EnumValue.create(flags));
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder fixType(Collection<Enum> flags) {
+            return fixType(EnumValue.create(flags));
         }
 
         /**

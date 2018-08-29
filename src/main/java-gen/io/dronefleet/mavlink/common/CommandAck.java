@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -190,16 +191,21 @@ public final class CommandAck {
          * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
          */
         public final Builder command(MavCmd entry) {
-            this.command = EnumValue.of(entry);
-            return this;
+            return command(EnumValue.of(entry));
         }
 
         /**
          * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
          */
         public final Builder command(Enum... flags) {
-            this.command = EnumValue.create(flags);
-            return this;
+            return command(EnumValue.create(flags));
+        }
+
+        /**
+         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         */
+        public final Builder command(Collection<Enum> flags) {
+            return command(EnumValue.create(flags));
         }
 
         /**
@@ -219,16 +225,21 @@ public final class CommandAck {
          * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
          */
         public final Builder result(MavResult entry) {
-            this.result = EnumValue.of(entry);
-            return this;
+            return result(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
          */
         public final Builder result(Enum... flags) {
-            this.result = EnumValue.create(flags);
-            return this;
+            return result(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         */
+        public final Builder result(Collection<Enum> flags) {
+            return result(EnumValue.create(flags));
         }
 
         /**

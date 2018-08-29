@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -210,16 +211,21 @@ public final class UavcanNodeStatus {
          * Generalized node health status. 
          */
         public final Builder health(UavcanNodeHealth entry) {
-            this.health = EnumValue.of(entry);
-            return this;
+            return health(EnumValue.of(entry));
         }
 
         /**
          * Generalized node health status. 
          */
         public final Builder health(Enum... flags) {
-            this.health = EnumValue.create(flags);
-            return this;
+            return health(EnumValue.create(flags));
+        }
+
+        /**
+         * Generalized node health status. 
+         */
+        public final Builder health(Collection<Enum> flags) {
+            return health(EnumValue.create(flags));
         }
 
         /**
@@ -239,16 +245,21 @@ public final class UavcanNodeStatus {
          * Generalized operating mode. 
          */
         public final Builder mode(UavcanNodeMode entry) {
-            this.mode = EnumValue.of(entry);
-            return this;
+            return mode(EnumValue.of(entry));
         }
 
         /**
          * Generalized operating mode. 
          */
         public final Builder mode(Enum... flags) {
-            this.mode = EnumValue.create(flags);
-            return this;
+            return mode(EnumValue.create(flags));
+        }
+
+        /**
+         * Generalized operating mode. 
+         */
+        public final Builder mode(Collection<Enum> flags) {
+            return mode(EnumValue.create(flags));
         }
 
         /**

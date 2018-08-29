@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -179,16 +180,21 @@ public final class RemoteLogBlockStatus {
          * log data block status 
          */
         public final Builder status(MavRemoteLogDataBlockStatuses entry) {
-            this.status = EnumValue.of(entry);
-            return this;
+            return status(EnumValue.of(entry));
         }
 
         /**
          * log data block status 
          */
         public final Builder status(Enum... flags) {
-            this.status = EnumValue.create(flags);
-            return this;
+            return status(EnumValue.create(flags));
+        }
+
+        /**
+         * log data block status 
+         */
+        public final Builder status(Collection<Enum> flags) {
+            return status(EnumValue.create(flags));
         }
 
         public final RemoteLogBlockStatus build() {

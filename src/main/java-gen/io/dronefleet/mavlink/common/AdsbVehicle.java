@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -361,16 +362,21 @@ public final class AdsbVehicle {
          * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
          */
         public final Builder altitudeType(AdsbAltitudeType entry) {
-            this.altitudeType = EnumValue.of(entry);
-            return this;
+            return altitudeType(EnumValue.of(entry));
         }
 
         /**
          * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
          */
         public final Builder altitudeType(Enum... flags) {
-            this.altitudeType = EnumValue.create(flags);
-            return this;
+            return altitudeType(EnumValue.create(flags));
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         */
+        public final Builder altitudeType(Collection<Enum> flags) {
+            return altitudeType(EnumValue.create(flags));
         }
 
         /**
@@ -453,16 +459,21 @@ public final class AdsbVehicle {
          * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
          */
         public final Builder emitterType(AdsbEmitterType entry) {
-            this.emitterType = EnumValue.of(entry);
-            return this;
+            return emitterType(EnumValue.of(entry));
         }
 
         /**
          * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
          */
         public final Builder emitterType(Enum... flags) {
-            this.emitterType = EnumValue.create(flags);
-            return this;
+            return emitterType(EnumValue.create(flags));
+        }
+
+        /**
+         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emitterType(Collection<Enum> flags) {
+            return emitterType(EnumValue.create(flags));
         }
 
         /**
@@ -494,16 +505,21 @@ public final class AdsbVehicle {
          * Flags to indicate various statuses including valid data fields 
          */
         public final Builder flags(AdsbFlags entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
          * Flags to indicate various statuses including valid data fields 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * Flags to indicate various statuses including valid data fields 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         /**

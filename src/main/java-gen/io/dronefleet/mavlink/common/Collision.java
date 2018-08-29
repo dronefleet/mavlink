@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -203,16 +204,21 @@ public final class Collision {
          * Collision data source 
          */
         public final Builder src(MavCollisionSrc entry) {
-            this.src = EnumValue.of(entry);
-            return this;
+            return src(EnumValue.of(entry));
         }
 
         /**
          * Collision data source 
          */
         public final Builder src(Enum... flags) {
-            this.src = EnumValue.create(flags);
-            return this;
+            return src(EnumValue.create(flags));
+        }
+
+        /**
+         * Collision data source 
+         */
+        public final Builder src(Collection<Enum> flags) {
+            return src(EnumValue.create(flags));
         }
 
         /**
@@ -244,16 +250,21 @@ public final class Collision {
          * Action that is being taken to avoid this collision 
          */
         public final Builder action(MavCollisionAction entry) {
-            this.action = EnumValue.of(entry);
-            return this;
+            return action(EnumValue.of(entry));
         }
 
         /**
          * Action that is being taken to avoid this collision 
          */
         public final Builder action(Enum... flags) {
-            this.action = EnumValue.create(flags);
-            return this;
+            return action(EnumValue.create(flags));
+        }
+
+        /**
+         * Action that is being taken to avoid this collision 
+         */
+        public final Builder action(Collection<Enum> flags) {
+            return action(EnumValue.create(flags));
         }
 
         /**
@@ -273,16 +284,21 @@ public final class Collision {
          * How concerned the aircraft is about this collision 
          */
         public final Builder threatLevel(MavCollisionThreatLevel entry) {
-            this.threatLevel = EnumValue.of(entry);
-            return this;
+            return threatLevel(EnumValue.of(entry));
         }
 
         /**
          * How concerned the aircraft is about this collision 
          */
         public final Builder threatLevel(Enum... flags) {
-            this.threatLevel = EnumValue.create(flags);
-            return this;
+            return threatLevel(EnumValue.create(flags));
+        }
+
+        /**
+         * How concerned the aircraft is about this collision 
+         */
+        public final Builder threatLevel(Collection<Enum> flags) {
+            return threatLevel(EnumValue.create(flags));
         }
 
         /**

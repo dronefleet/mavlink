@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -170,16 +171,21 @@ public final class MissionAck {
          * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
          */
         public final Builder type(MavMissionResult entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**
@@ -200,16 +206,21 @@ public final class MissionAck {
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(MavMissionType entry) {
-            this.missionType = EnumValue.of(entry);
-            return this;
+            return missionType(EnumValue.of(entry));
         }
 
         /**
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(Enum... flags) {
-            this.missionType = EnumValue.create(flags);
-            return this;
+            return missionType(EnumValue.create(flags));
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(Collection<Enum> flags) {
+            return missionType(EnumValue.create(flags));
         }
 
         public final MissionAck build() {

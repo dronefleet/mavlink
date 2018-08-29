@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -362,8 +363,7 @@ public final class PositionTargetGlobalInt {
          * MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11 
          */
         public final Builder coordinateFrame(MavFrame entry) {
-            this.coordinateFrame = EnumValue.of(entry);
-            return this;
+            return coordinateFrame(EnumValue.of(entry));
         }
 
         /**
@@ -371,8 +371,15 @@ public final class PositionTargetGlobalInt {
          * MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11 
          */
         public final Builder coordinateFrame(Enum... flags) {
-            this.coordinateFrame = EnumValue.create(flags);
-            return this;
+            return coordinateFrame(EnumValue.create(flags));
+        }
+
+        /**
+         * Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, 
+         * MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11 
+         */
+        public final Builder coordinateFrame(Collection<Enum> flags) {
+            return coordinateFrame(EnumValue.create(flags));
         }
 
         /**

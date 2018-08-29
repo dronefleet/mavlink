@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -242,16 +243,21 @@ public final class LimitsStatus {
          * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
          */
         public final Builder limitsState(LimitsState entry) {
-            this.limitsState = EnumValue.of(entry);
-            return this;
+            return limitsState(EnumValue.of(entry));
         }
 
         /**
          * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
          */
         public final Builder limitsState(Enum... flags) {
-            this.limitsState = EnumValue.create(flags);
-            return this;
+            return limitsState(EnumValue.create(flags));
+        }
+
+        /**
+         * state of AP_Limits, (see enum LimitState, {@link io.dronefleet.mavlink.ardupilotmega.LimitsState LIMITS_STATE}) 
+         */
+        public final Builder limitsState(Collection<Enum> flags) {
+            return limitsState(EnumValue.create(flags));
         }
 
         /**
@@ -331,16 +337,21 @@ public final class LimitsStatus {
          * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsEnabled(LimitModule entry) {
-            this.modsEnabled = EnumValue.of(entry);
-            return this;
+            return modsEnabled(EnumValue.of(entry));
         }
 
         /**
          * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsEnabled(Enum... flags) {
-            this.modsEnabled = EnumValue.create(flags);
-            return this;
+            return modsEnabled(EnumValue.create(flags));
+        }
+
+        /**
+         * AP_Limit_Module bitfield of enabled modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsEnabled(Collection<Enum> flags) {
+            return modsEnabled(EnumValue.create(flags));
         }
 
         /**
@@ -360,16 +371,21 @@ public final class LimitsStatus {
          * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsRequired(LimitModule entry) {
-            this.modsRequired = EnumValue.of(entry);
-            return this;
+            return modsRequired(EnumValue.of(entry));
         }
 
         /**
          * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsRequired(Enum... flags) {
-            this.modsRequired = EnumValue.create(flags);
-            return this;
+            return modsRequired(EnumValue.create(flags));
+        }
+
+        /**
+         * AP_Limit_Module bitfield of required modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsRequired(Collection<Enum> flags) {
+            return modsRequired(EnumValue.create(flags));
         }
 
         /**
@@ -389,16 +405,21 @@ public final class LimitsStatus {
          * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsTriggered(LimitModule entry) {
-            this.modsTriggered = EnumValue.of(entry);
-            return this;
+            return modsTriggered(EnumValue.of(entry));
         }
 
         /**
          * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
          */
         public final Builder modsTriggered(Enum... flags) {
-            this.modsTriggered = EnumValue.create(flags);
-            return this;
+            return modsTriggered(EnumValue.create(flags));
+        }
+
+        /**
+         * AP_Limit_Module bitfield of triggered modules, (see enum moduleid or {@link io.dronefleet.mavlink.ardupilotmega.LimitModule LIMIT_MODULE}) 
+         */
+        public final Builder modsTriggered(Collection<Enum> flags) {
+            return modsTriggered(EnumValue.create(flags));
         }
 
         public final LimitsStatus build() {

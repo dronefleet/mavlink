@@ -9,6 +9,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -168,16 +169,21 @@ public final class FenceStatus {
          * last breach type (see FENCE_BREACH_* enum) 
          */
         public final Builder breachType(FenceBreach entry) {
-            this.breachType = EnumValue.of(entry);
-            return this;
+            return breachType(EnumValue.of(entry));
         }
 
         /**
          * last breach type (see FENCE_BREACH_* enum) 
          */
         public final Builder breachType(Enum... flags) {
-            this.breachType = EnumValue.create(flags);
-            return this;
+            return breachType(EnumValue.create(flags));
+        }
+
+        /**
+         * last breach type (see FENCE_BREACH_* enum) 
+         */
+        public final Builder breachType(Collection<Enum> flags) {
+            return breachType(EnumValue.create(flags));
         }
 
         /**

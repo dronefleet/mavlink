@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -85,16 +86,21 @@ public final class UavionixAdsbTransceiverHealthReport {
          * ADS-B transponder messages 
          */
         public final Builder rfhealth(UavionixAdsbRfHealth entry) {
-            this.rfhealth = EnumValue.of(entry);
-            return this;
+            return rfhealth(EnumValue.of(entry));
         }
 
         /**
          * ADS-B transponder messages 
          */
         public final Builder rfhealth(Enum... flags) {
-            this.rfhealth = EnumValue.create(flags);
-            return this;
+            return rfhealth(EnumValue.create(flags));
+        }
+
+        /**
+         * ADS-B transponder messages 
+         */
+        public final Builder rfhealth(Collection<Enum> flags) {
+            return rfhealth(EnumValue.create(flags));
         }
 
         public final UavionixAdsbTransceiverHealthReport build() {

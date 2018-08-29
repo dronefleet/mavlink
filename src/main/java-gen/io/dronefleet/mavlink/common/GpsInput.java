@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -442,8 +443,7 @@ public final class GpsInput {
          * must be provided. 
          */
         public final Builder ignoreFlags(GpsInputIgnoreFlags entry) {
-            this.ignoreFlags = EnumValue.of(entry);
-            return this;
+            return ignoreFlags(EnumValue.of(entry));
         }
 
         /**
@@ -451,8 +451,15 @@ public final class GpsInput {
          * must be provided. 
          */
         public final Builder ignoreFlags(Enum... flags) {
-            this.ignoreFlags = EnumValue.create(flags);
-            return this;
+            return ignoreFlags(EnumValue.create(flags));
+        }
+
+        /**
+         * Flags indicating which fields to ignore (see {@link io.dronefleet.mavlink.common.GpsInputIgnoreFlags GPS_INPUT_IGNORE_FLAGS} enum). All other fields 
+         * must be provided. 
+         */
+        public final Builder ignoreFlags(Collection<Enum> flags) {
+            return ignoreFlags(EnumValue.create(flags));
         }
 
         /**

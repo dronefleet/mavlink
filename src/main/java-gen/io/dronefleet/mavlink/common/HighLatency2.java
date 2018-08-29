@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -608,16 +609,21 @@ public final class HighLatency2 {
          * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
          */
         public final Builder type(MavType entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**
@@ -637,16 +643,21 @@ public final class HighLatency2 {
          * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
          */
         public final Builder autopilot(MavAutopilot entry) {
-            this.autopilot = EnumValue.of(entry);
-            return this;
+            return autopilot(EnumValue.of(entry));
         }
 
         /**
          * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
          */
         public final Builder autopilot(Enum... flags) {
-            this.autopilot = EnumValue.create(flags);
-            return this;
+            return autopilot(EnumValue.create(flags));
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(Collection<Enum> flags) {
+            return autopilot(EnumValue.create(flags));
         }
 
         /**
@@ -913,16 +924,21 @@ public final class HighLatency2 {
          * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
          */
         public final Builder failureFlags(HlFailureFlag entry) {
-            this.failureFlags = EnumValue.of(entry);
-            return this;
+            return failureFlags(EnumValue.of(entry));
         }
 
         /**
          * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
          */
         public final Builder failureFlags(Enum... flags) {
-            this.failureFlags = EnumValue.create(flags);
-            return this;
+            return failureFlags(EnumValue.create(flags));
+        }
+
+        /**
+         * Indicates failures as defined in {@link io.dronefleet.mavlink.common.HlFailureFlag HL_FAILURE_FLAG} ENUM. 
+         */
+        public final Builder failureFlags(Collection<Enum> flags) {
+            return failureFlags(EnumValue.create(flags));
         }
 
         /**

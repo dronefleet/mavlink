@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -405,16 +406,21 @@ public final class GpsRtk {
          * Coordinate system of baseline 
          */
         public final Builder baselineCoordsType(RtkBaselineCoordinateSystem entry) {
-            this.baselineCoordsType = EnumValue.of(entry);
-            return this;
+            return baselineCoordsType(EnumValue.of(entry));
         }
 
         /**
          * Coordinate system of baseline 
          */
         public final Builder baselineCoordsType(Enum... flags) {
-            this.baselineCoordsType = EnumValue.create(flags);
-            return this;
+            return baselineCoordsType(EnumValue.create(flags));
+        }
+
+        /**
+         * Coordinate system of baseline 
+         */
+        public final Builder baselineCoordsType(Collection<Enum> flags) {
+            return baselineCoordsType(EnumValue.create(flags));
         }
 
         /**

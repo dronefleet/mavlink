@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -109,8 +110,7 @@ public final class ExtendedSysState {
          * configuration. 
          */
         public final Builder vtolState(MavVtolState entry) {
-            this.vtolState = EnumValue.of(entry);
-            return this;
+            return vtolState(EnumValue.of(entry));
         }
 
         /**
@@ -118,8 +118,15 @@ public final class ExtendedSysState {
          * configuration. 
          */
         public final Builder vtolState(Enum... flags) {
-            this.vtolState = EnumValue.create(flags);
-            return this;
+            return vtolState(EnumValue.create(flags));
+        }
+
+        /**
+         * The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL 
+         * configuration. 
+         */
+        public final Builder vtolState(Collection<Enum> flags) {
+            return vtolState(EnumValue.create(flags));
         }
 
         /**
@@ -139,16 +146,21 @@ public final class ExtendedSysState {
          * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
          */
         public final Builder landedState(MavLandedState entry) {
-            this.landedState = EnumValue.of(entry);
-            return this;
+            return landedState(EnumValue.of(entry));
         }
 
         /**
          * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
          */
         public final Builder landedState(Enum... flags) {
-            this.landedState = EnumValue.create(flags);
-            return this;
+            return landedState(EnumValue.create(flags));
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(Collection<Enum> flags) {
+            return landedState(EnumValue.create(flags));
         }
 
         public final ExtendedSysState build() {

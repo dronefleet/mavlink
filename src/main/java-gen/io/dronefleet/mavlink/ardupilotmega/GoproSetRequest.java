@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -168,16 +169,21 @@ public final class GoproSetRequest {
          * Command ID 
          */
         public final Builder cmdId(GoproCommand entry) {
-            this.cmdId = EnumValue.of(entry);
-            return this;
+            return cmdId(EnumValue.of(entry));
         }
 
         /**
          * Command ID 
          */
         public final Builder cmdId(Enum... flags) {
-            this.cmdId = EnumValue.create(flags);
-            return this;
+            return cmdId(EnumValue.create(flags));
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(Collection<Enum> flags) {
+            return cmdId(EnumValue.create(flags));
         }
 
         /**

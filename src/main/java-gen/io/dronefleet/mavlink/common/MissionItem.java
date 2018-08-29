@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -396,16 +397,21 @@ public final class MissionItem {
          * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
          */
         public final Builder frame(MavFrame entry) {
-            this.frame = EnumValue.of(entry);
-            return this;
+            return frame(EnumValue.of(entry));
         }
 
         /**
          * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
          */
         public final Builder frame(Enum... flags) {
-            this.frame = EnumValue.create(flags);
-            return this;
+            return frame(EnumValue.create(flags));
+        }
+
+        /**
+         * The coordinate system of the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum 
+         */
+        public final Builder frame(Collection<Enum> flags) {
+            return frame(EnumValue.create(flags));
         }
 
         /**
@@ -425,16 +431,21 @@ public final class MissionItem {
          * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         public final Builder command(MavCmd entry) {
-            this.command = EnumValue.of(entry);
-            return this;
+            return command(EnumValue.of(entry));
         }
 
         /**
          * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         public final Builder command(Enum... flags) {
-            this.command = EnumValue.create(flags);
-            return this;
+            return command(EnumValue.create(flags));
+        }
+
+        /**
+         * The scheduled action for the waypoint, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
+         */
+        public final Builder command(Collection<Enum> flags) {
+            return command(EnumValue.create(flags));
         }
 
         /**
@@ -563,16 +574,21 @@ public final class MissionItem {
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(MavMissionType entry) {
-            this.missionType = EnumValue.of(entry);
-            return this;
+            return missionType(EnumValue.of(entry));
         }
 
         /**
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(Enum... flags) {
-            this.missionType = EnumValue.create(flags);
-            return this;
+            return missionType(EnumValue.create(flags));
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(Collection<Enum> flags) {
+            return missionType(EnumValue.create(flags));
         }
 
         public final MissionItem build() {

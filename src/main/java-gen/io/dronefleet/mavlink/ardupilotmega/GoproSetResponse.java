@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -105,16 +106,21 @@ public final class GoproSetResponse {
          * Command ID 
          */
         public final Builder cmdId(GoproCommand entry) {
-            this.cmdId = EnumValue.of(entry);
-            return this;
+            return cmdId(EnumValue.of(entry));
         }
 
         /**
          * Command ID 
          */
         public final Builder cmdId(Enum... flags) {
-            this.cmdId = EnumValue.create(flags);
-            return this;
+            return cmdId(EnumValue.create(flags));
+        }
+
+        /**
+         * Command ID 
+         */
+        public final Builder cmdId(Collection<Enum> flags) {
+            return cmdId(EnumValue.create(flags));
         }
 
         /**
@@ -134,16 +140,21 @@ public final class GoproSetResponse {
          * Status 
          */
         public final Builder status(GoproRequestStatus entry) {
-            this.status = EnumValue.of(entry);
-            return this;
+            return status(EnumValue.of(entry));
         }
 
         /**
          * Status 
          */
         public final Builder status(Enum... flags) {
-            this.status = EnumValue.create(flags);
-            return this;
+            return status(EnumValue.create(flags));
+        }
+
+        /**
+         * Status 
+         */
+        public final Builder status(Collection<Enum> flags) {
+            return status(EnumValue.create(flags));
         }
 
         public final GoproSetResponse build() {

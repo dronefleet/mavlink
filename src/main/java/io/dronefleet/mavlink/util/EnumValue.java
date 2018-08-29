@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.util;
 import io.dronefleet.mavlink.util.reflection.MavlinkReflection;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 
 public class EnumValue<T extends Enum> {
@@ -13,11 +14,14 @@ public class EnumValue<T extends Enum> {
     }
 
     public static <T extends Enum> EnumValue<T> create(Enum... flags) {
-        return create(
-                Arrays.stream(flags)
-                        .mapToInt(MavlinkReflection::getEnumValue)
-                        .reduce((bitmask, value) -> bitmask | value)
-                        .orElse(0));
+        return create(Arrays.asList(flags));
+    }
+
+    public static <T extends Enum> EnumValue<T> create(Collection<Enum> flags) {
+        return create(flags.stream()
+                .mapToInt(MavlinkReflection::getEnumValue)
+                .reduce((bitmask, value) -> bitmask | value)
+                .orElse(0));
     }
 
     public static <T extends Enum> EnumValue<T> create(int value) {

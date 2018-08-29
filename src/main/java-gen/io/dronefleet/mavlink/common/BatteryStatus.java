@@ -9,6 +9,7 @@ import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -309,16 +310,21 @@ public final class BatteryStatus {
          * Function of the battery 
          */
         public final Builder batteryFunction(MavBatteryFunction entry) {
-            this.batteryFunction = EnumValue.of(entry);
-            return this;
+            return batteryFunction(EnumValue.of(entry));
         }
 
         /**
          * Function of the battery 
          */
         public final Builder batteryFunction(Enum... flags) {
-            this.batteryFunction = EnumValue.create(flags);
-            return this;
+            return batteryFunction(EnumValue.create(flags));
+        }
+
+        /**
+         * Function of the battery 
+         */
+        public final Builder batteryFunction(Collection<Enum> flags) {
+            return batteryFunction(EnumValue.create(flags));
         }
 
         /**
@@ -338,16 +344,21 @@ public final class BatteryStatus {
          * Type (chemistry) of the battery 
          */
         public final Builder type(MavBatteryType entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * Type (chemistry) of the battery 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type (chemistry) of the battery 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**
@@ -466,16 +477,21 @@ public final class BatteryStatus {
          * State for extent of discharge, provided by autopilot for warning or external reactions 
          */
         public final Builder chargeState(MavBatteryChargeState entry) {
-            this.chargeState = EnumValue.of(entry);
-            return this;
+            return chargeState(EnumValue.of(entry));
         }
 
         /**
          * State for extent of discharge, provided by autopilot for warning or external reactions 
          */
         public final Builder chargeState(Enum... flags) {
-            this.chargeState = EnumValue.create(flags);
-            return this;
+            return chargeState(EnumValue.create(flags));
+        }
+
+        /**
+         * State for extent of discharge, provided by autopilot for warning or external reactions 
+         */
+        public final Builder chargeState(Collection<Enum> flags) {
+            return chargeState(EnumValue.create(flags));
         }
 
         public final BatteryStatus build() {

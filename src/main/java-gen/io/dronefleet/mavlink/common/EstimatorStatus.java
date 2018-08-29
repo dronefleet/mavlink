@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -282,8 +283,7 @@ public final class EstimatorStatus {
          * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
          */
         public final Builder flags(EstimatorStatusFlags entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
@@ -291,8 +291,15 @@ public final class EstimatorStatus {
          * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * Integer bitmask indicating which EKF outputs are valid. See definition for 
+         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         /**

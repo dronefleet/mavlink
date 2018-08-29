@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -116,16 +117,21 @@ public final class CameraSettings {
          * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
          */
         public final Builder modeId(CameraMode entry) {
-            this.modeId = EnumValue.of(entry);
-            return this;
+            return modeId(EnumValue.of(entry));
         }
 
         /**
          * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
          */
         public final Builder modeId(Enum... flags) {
-            this.modeId = EnumValue.create(flags);
-            return this;
+            return modeId(EnumValue.create(flags));
+        }
+
+        /**
+         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         */
+        public final Builder modeId(Collection<Enum> flags) {
+            return modeId(EnumValue.create(flags));
         }
 
         public final CameraSettings build() {

@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -168,16 +169,21 @@ public final class RemoteLogDataBlock {
          * log data block sequence number 
          */
         public final Builder seqno(MavRemoteLogDataBlockCommands entry) {
-            this.seqno = EnumValue.of(entry);
-            return this;
+            return seqno(EnumValue.of(entry));
         }
 
         /**
          * log data block sequence number 
          */
         public final Builder seqno(Enum... flags) {
-            this.seqno = EnumValue.create(flags);
-            return this;
+            return seqno(EnumValue.create(flags));
+        }
+
+        /**
+         * log data block sequence number 
+         */
+        public final Builder seqno(Collection<Enum> flags) {
+            return seqno(EnumValue.create(flags));
         }
 
         /**

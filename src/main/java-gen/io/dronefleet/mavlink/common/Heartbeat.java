@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -188,16 +189,21 @@ public final class Heartbeat {
          * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
          */
         public final Builder type(MavType entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**
@@ -217,16 +223,21 @@ public final class Heartbeat {
          * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
          */
         public final Builder autopilot(MavAutopilot entry) {
-            this.autopilot = EnumValue.of(entry);
-            return this;
+            return autopilot(EnumValue.of(entry));
         }
 
         /**
          * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
          */
         public final Builder autopilot(Enum... flags) {
-            this.autopilot = EnumValue.create(flags);
-            return this;
+            return autopilot(EnumValue.create(flags));
+        }
+
+        /**
+         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         */
+        public final Builder autopilot(Collection<Enum> flags) {
+            return autopilot(EnumValue.create(flags));
         }
 
         /**
@@ -246,16 +257,21 @@ public final class Heartbeat {
          * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
          */
         public final Builder baseMode(MavModeFlag entry) {
-            this.baseMode = EnumValue.of(entry);
-            return this;
+            return baseMode(EnumValue.of(entry));
         }
 
         /**
          * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
          */
         public final Builder baseMode(Enum... flags) {
-            this.baseMode = EnumValue.create(flags);
-            return this;
+            return baseMode(EnumValue.create(flags));
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         */
+        public final Builder baseMode(Collection<Enum> flags) {
+            return baseMode(EnumValue.create(flags));
         }
 
         /**
@@ -287,16 +303,21 @@ public final class Heartbeat {
          * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
          */
         public final Builder systemStatus(MavState entry) {
-            this.systemStatus = EnumValue.of(entry);
-            return this;
+            return systemStatus(EnumValue.of(entry));
         }
 
         /**
          * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
          */
         public final Builder systemStatus(Enum... flags) {
-            this.systemStatus = EnumValue.create(flags);
-            return this;
+            return systemStatus(EnumValue.create(flags));
+        }
+
+        /**
+         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         */
+        public final Builder systemStatus(Collection<Enum> flags) {
+            return systemStatus(EnumValue.create(flags));
         }
 
         /**

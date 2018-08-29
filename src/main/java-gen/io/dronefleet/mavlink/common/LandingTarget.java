@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -373,8 +374,7 @@ public final class LandingTarget {
          * etc. 
          */
         public final Builder frame(MavFrame entry) {
-            this.frame = EnumValue.of(entry);
-            return this;
+            return frame(EnumValue.of(entry));
         }
 
         /**
@@ -382,8 +382,15 @@ public final class LandingTarget {
          * etc. 
          */
         public final Builder frame(Enum... flags) {
-            this.frame = EnumValue.create(flags);
-            return this;
+            return frame(EnumValue.create(flags));
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
+         * etc. 
+         */
+        public final Builder frame(Collection<Enum> flags) {
+            return frame(EnumValue.create(flags));
         }
 
         /**
@@ -517,16 +524,21 @@ public final class LandingTarget {
          * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
          */
         public final Builder type(LandingTargetType entry) {
-            this.type = EnumValue.of(entry);
-            return this;
+            return type(EnumValue.of(entry));
         }
 
         /**
          * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
          */
         public final Builder type(Enum... flags) {
-            this.type = EnumValue.create(flags);
-            return this;
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
         }
 
         /**

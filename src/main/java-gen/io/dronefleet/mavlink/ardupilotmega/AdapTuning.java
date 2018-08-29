@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -315,16 +316,21 @@ public final class AdapTuning {
          * axis 
          */
         public final Builder axis(PidTuningAxis entry) {
-            this.axis = EnumValue.of(entry);
-            return this;
+            return axis(EnumValue.of(entry));
         }
 
         /**
          * axis 
          */
         public final Builder axis(Enum... flags) {
-            this.axis = EnumValue.create(flags);
-            return this;
+            return axis(EnumValue.create(flags));
+        }
+
+        /**
+         * axis 
+         */
+        public final Builder axis(Collection<Enum> flags) {
+            return axis(EnumValue.create(flags));
         }
 
         /**

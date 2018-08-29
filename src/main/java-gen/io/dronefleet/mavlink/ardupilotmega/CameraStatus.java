@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -287,16 +288,21 @@ public final class CameraStatus {
          * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
          */
         public final Builder eventId(CameraStatusTypes entry) {
-            this.eventId = EnumValue.of(entry);
-            return this;
+            return eventId(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
          */
         public final Builder eventId(Enum... flags) {
-            this.eventId = EnumValue.create(flags);
-            return this;
+            return eventId(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         */
+        public final Builder eventId(Collection<Enum> flags) {
+            return eventId(EnumValue.create(flags));
         }
 
         /**

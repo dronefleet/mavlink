@@ -10,6 +10,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -377,16 +378,21 @@ public final class Odometry {
          * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
          */
         public final Builder frameId(MavFrame entry) {
-            this.frameId = EnumValue.of(entry);
-            return this;
+            return frameId(EnumValue.of(entry));
         }
 
         /**
          * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
          */
         public final Builder frameId(Enum... flags) {
-            this.frameId = EnumValue.create(flags);
-            return this;
+            return frameId(EnumValue.create(flags));
+        }
+
+        /**
+         * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         */
+        public final Builder frameId(Collection<Enum> flags) {
+            return frameId(EnumValue.create(flags));
         }
 
         /**
@@ -408,8 +414,7 @@ public final class Odometry {
          * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
          */
         public final Builder childFrameId(MavFrame entry) {
-            this.childFrameId = EnumValue.of(entry);
-            return this;
+            return childFrameId(EnumValue.of(entry));
         }
 
         /**
@@ -417,8 +422,15 @@ public final class Odometry {
          * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
          */
         public final Builder childFrameId(Enum... flags) {
-            this.childFrameId = EnumValue.create(flags);
-            return this;
+            return childFrameId(EnumValue.create(flags));
+        }
+
+        /**
+         * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
+         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         */
+        public final Builder childFrameId(Collection<Enum> flags) {
+            return childFrameId(EnumValue.create(flags));
         }
 
         /**

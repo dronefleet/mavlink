@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -340,8 +341,7 @@ public final class SysStatus {
          * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsPresent(MavSysStatusSensor entry) {
-            this.onboardControlSensorsPresent = EnumValue.of(entry);
-            return this;
+            return onboardControlSensorsPresent(EnumValue.of(entry));
         }
 
         /**
@@ -349,8 +349,15 @@ public final class SysStatus {
          * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsPresent(Enum... flags) {
-            this.onboardControlSensorsPresent = EnumValue.create(flags);
-            return this;
+            return onboardControlSensorsPresent(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsPresent(Collection<Enum> flags) {
+            return onboardControlSensorsPresent(EnumValue.create(flags));
         }
 
         /**
@@ -373,8 +380,7 @@ public final class SysStatus {
          * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsEnabled(MavSysStatusSensor entry) {
-            this.onboardControlSensorsEnabled = EnumValue.of(entry);
-            return this;
+            return onboardControlSensorsEnabled(EnumValue.of(entry));
         }
 
         /**
@@ -382,8 +388,15 @@ public final class SysStatus {
          * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsEnabled(Enum... flags) {
-            this.onboardControlSensorsEnabled = EnumValue.create(flags);
-            return this;
+            return onboardControlSensorsEnabled(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsEnabled(Collection<Enum> flags) {
+            return onboardControlSensorsEnabled(EnumValue.create(flags));
         }
 
         /**
@@ -406,8 +419,7 @@ public final class SysStatus {
          * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsHealth(MavSysStatusSensor entry) {
-            this.onboardControlSensorsHealth = EnumValue.of(entry);
-            return this;
+            return onboardControlSensorsHealth(EnumValue.of(entry));
         }
 
         /**
@@ -415,8 +427,15 @@ public final class SysStatus {
          * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
          */
         public final Builder onboardControlSensorsHealth(Enum... flags) {
-            this.onboardControlSensorsHealth = EnumValue.create(flags);
-            return this;
+            return onboardControlSensorsHealth(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmask showing which onboard controllers and sensors are operational or have an error: Value 
+         * of 0: not enabled. Value of 1: enabled. Indices defined by ENUM {@link io.dronefleet.mavlink.common.MavSysStatusSensor MAV_SYS_STATUS_SENSOR} 
+         */
+        public final Builder onboardControlSensorsHealth(Collection<Enum> flags) {
+            return onboardControlSensorsHealth(EnumValue.create(flags));
         }
 
         /**

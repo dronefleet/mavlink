@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -296,16 +297,21 @@ public final class DeviceOpWrite {
          * The bus type 
          */
         public final Builder bustype(DeviceOpBustype entry) {
-            this.bustype = EnumValue.of(entry);
-            return this;
+            return bustype(EnumValue.of(entry));
         }
 
         /**
          * The bus type 
          */
         public final Builder bustype(Enum... flags) {
-            this.bustype = EnumValue.create(flags);
-            return this;
+            return bustype(EnumValue.create(flags));
+        }
+
+        /**
+         * The bus type 
+         */
+        public final Builder bustype(Collection<Enum> flags) {
+            return bustype(EnumValue.create(flags));
         }
 
         /**

@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -443,16 +444,21 @@ public final class CameraInformation {
          * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
          */
         public final Builder flags(CameraCapFlags entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
          * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         /**

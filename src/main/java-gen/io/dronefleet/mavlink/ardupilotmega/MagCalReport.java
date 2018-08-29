@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -358,16 +359,21 @@ public final class MagCalReport {
          * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
          */
         public final Builder calStatus(MagCalStatus entry) {
-            this.calStatus = EnumValue.of(entry);
-            return this;
+            return calStatus(EnumValue.of(entry));
         }
 
         /**
          * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
          */
         public final Builder calStatus(Enum... flags) {
-            this.calStatus = EnumValue.create(flags);
-            return this;
+            return calStatus(EnumValue.create(flags));
+        }
+
+        /**
+         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         */
+        public final Builder calStatus(Collection<Enum> flags) {
+            return calStatus(EnumValue.create(flags));
         }
 
         /**

@@ -9,6 +9,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -206,16 +207,21 @@ public final class MountConfigure {
          * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
          */
         public final Builder mountMode(MavMountMode entry) {
-            this.mountMode = EnumValue.of(entry);
-            return this;
+            return mountMode(EnumValue.of(entry));
         }
 
         /**
          * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
          */
         public final Builder mountMode(Enum... flags) {
-            this.mountMode = EnumValue.create(flags);
-            return this;
+            return mountMode(EnumValue.create(flags));
+        }
+
+        /**
+         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         */
+        public final Builder mountMode(Collection<Enum> flags) {
+            return mountMode(EnumValue.create(flags));
         }
 
         /**

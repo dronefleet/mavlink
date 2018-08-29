@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -203,8 +204,7 @@ public final class SafetyAllowedArea {
          * axis up or local, right handed, Z axis down. 
          */
         public final Builder frame(MavFrame entry) {
-            this.frame = EnumValue.of(entry);
-            return this;
+            return frame(EnumValue.of(entry));
         }
 
         /**
@@ -212,8 +212,15 @@ public final class SafetyAllowedArea {
          * axis up or local, right handed, Z axis down. 
          */
         public final Builder frame(Enum... flags) {
-            this.frame = EnumValue.create(flags);
-            return this;
+            return frame(EnumValue.create(flags));
+        }
+
+        /**
+         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
+         * axis up or local, right handed, Z axis down. 
+         */
+        public final Builder frame(Collection<Enum> flags) {
+            return frame(EnumValue.create(flags));
         }
 
         /**

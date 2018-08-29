@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -541,16 +542,21 @@ public final class HighLatency {
          * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum. 
          */
         public final Builder baseMode(MavModeFlag entry) {
-            this.baseMode = EnumValue.of(entry);
-            return this;
+            return baseMode(EnumValue.of(entry));
         }
 
         /**
          * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum. 
          */
         public final Builder baseMode(Enum... flags) {
-            this.baseMode = EnumValue.create(flags);
-            return this;
+            return baseMode(EnumValue.create(flags));
+        }
+
+        /**
+         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum. 
+         */
+        public final Builder baseMode(Collection<Enum> flags) {
+            return baseMode(EnumValue.create(flags));
         }
 
         /**
@@ -582,16 +588,21 @@ public final class HighLatency {
          * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
          */
         public final Builder landedState(MavLandedState entry) {
-            this.landedState = EnumValue.of(entry);
-            return this;
+            return landedState(EnumValue.of(entry));
         }
 
         /**
          * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
          */
         public final Builder landedState(Enum... flags) {
-            this.landedState = EnumValue.create(flags);
-            return this;
+            return landedState(EnumValue.create(flags));
+        }
+
+        /**
+         * The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown. 
+         */
+        public final Builder landedState(Collection<Enum> flags) {
+            return landedState(EnumValue.create(flags));
         }
 
         /**
@@ -788,16 +799,21 @@ public final class HighLatency {
          * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
          */
         public final Builder gpsFixType(GpsFixType entry) {
-            this.gpsFixType = EnumValue.of(entry);
-            return this;
+            return gpsFixType(EnumValue.of(entry));
         }
 
         /**
          * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
          */
         public final Builder gpsFixType(Enum... flags) {
-            this.gpsFixType = EnumValue.create(flags);
-            return this;
+            return gpsFixType(EnumValue.create(flags));
+        }
+
+        /**
+         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         */
+        public final Builder gpsFixType(Collection<Enum> flags) {
+            return gpsFixType(EnumValue.create(flags));
         }
 
         /**

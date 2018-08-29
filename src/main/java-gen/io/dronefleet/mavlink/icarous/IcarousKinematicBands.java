@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -392,16 +393,21 @@ public final class IcarousKinematicBands {
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type1(IcarousTrackBandTypes entry) {
-            this.type1 = EnumValue.of(entry);
-            return this;
+            return type1(EnumValue.of(entry));
         }
 
         /**
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type1(Enum... flags) {
-            this.type1 = EnumValue.create(flags);
-            return this;
+            return type1(EnumValue.create(flags));
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type1(Collection<Enum> flags) {
+            return type1(EnumValue.create(flags));
         }
 
         /**
@@ -445,16 +451,21 @@ public final class IcarousKinematicBands {
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type2(IcarousTrackBandTypes entry) {
-            this.type2 = EnumValue.of(entry);
-            return this;
+            return type2(EnumValue.of(entry));
         }
 
         /**
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type2(Enum... flags) {
-            this.type2 = EnumValue.create(flags);
-            return this;
+            return type2(EnumValue.create(flags));
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type2(Collection<Enum> flags) {
+            return type2(EnumValue.create(flags));
         }
 
         /**
@@ -498,16 +509,21 @@ public final class IcarousKinematicBands {
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type3(IcarousTrackBandTypes entry) {
-            this.type3 = EnumValue.of(entry);
-            return this;
+            return type3(EnumValue.of(entry));
         }
 
         /**
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type3(Enum... flags) {
-            this.type3 = EnumValue.create(flags);
-            return this;
+            return type3(EnumValue.create(flags));
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type3(Collection<Enum> flags) {
+            return type3(EnumValue.create(flags));
         }
 
         /**
@@ -551,16 +567,21 @@ public final class IcarousKinematicBands {
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type4(IcarousTrackBandTypes entry) {
-            this.type4 = EnumValue.of(entry);
-            return this;
+            return type4(EnumValue.of(entry));
         }
 
         /**
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type4(Enum... flags) {
-            this.type4 = EnumValue.create(flags);
-            return this;
+            return type4(EnumValue.create(flags));
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type4(Collection<Enum> flags) {
+            return type4(EnumValue.create(flags));
         }
 
         /**
@@ -604,16 +625,21 @@ public final class IcarousKinematicBands {
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type5(IcarousTrackBandTypes entry) {
-            this.type5 = EnumValue.of(entry);
-            return this;
+            return type5(EnumValue.of(entry));
         }
 
         /**
          * See the TRACK_BAND_TYPES enum. 
          */
         public final Builder type5(Enum... flags) {
-            this.type5 = EnumValue.create(flags);
-            return this;
+            return type5(EnumValue.create(flags));
+        }
+
+        /**
+         * See the TRACK_BAND_TYPES enum. 
+         */
+        public final Builder type5(Collection<Enum> flags) {
+            return type5(EnumValue.create(flags));
         }
 
         /**

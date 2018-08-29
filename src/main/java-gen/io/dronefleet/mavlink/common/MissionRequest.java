@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -183,16 +184,21 @@ public final class MissionRequest {
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(MavMissionType entry) {
-            this.missionType = EnumValue.of(entry);
-            return this;
+            return missionType(EnumValue.of(entry));
         }
 
         /**
          * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
          */
         public final Builder missionType(Enum... flags) {
-            this.missionType = EnumValue.create(flags);
-            return this;
+            return missionType(EnumValue.create(flags));
+        }
+
+        /**
+         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         */
+        public final Builder missionType(Collection<Enum> flags) {
+            return missionType(EnumValue.create(flags));
         }
 
         public final MissionRequest build() {

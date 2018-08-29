@@ -9,6 +9,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -255,16 +256,21 @@ public final class UavionixAdsbOutCfg {
          * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
          */
         public final Builder emittertype(AdsbEmitterType entry) {
-            this.emittertype = EnumValue.of(entry);
-            return this;
+            return emittertype(EnumValue.of(entry));
         }
 
         /**
          * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
          */
         public final Builder emittertype(Enum... flags) {
-            this.emittertype = EnumValue.create(flags);
-            return this;
+            return emittertype(EnumValue.create(flags));
+        }
+
+        /**
+         * Transmitting vehicle type. See {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         */
+        public final Builder emittertype(Collection<Enum> flags) {
+            return emittertype(EnumValue.create(flags));
         }
 
         /**
@@ -284,16 +290,21 @@ public final class UavionixAdsbOutCfg {
          * Aircraft length and width encoding (table 2-35 of DO-282B) 
          */
         public final Builder aircraftsize(UavionixAdsbOutCfgAircraftSize entry) {
-            this.aircraftsize = EnumValue.of(entry);
-            return this;
+            return aircraftsize(EnumValue.of(entry));
         }
 
         /**
          * Aircraft length and width encoding (table 2-35 of DO-282B) 
          */
         public final Builder aircraftsize(Enum... flags) {
-            this.aircraftsize = EnumValue.create(flags);
-            return this;
+            return aircraftsize(EnumValue.create(flags));
+        }
+
+        /**
+         * Aircraft length and width encoding (table 2-35 of DO-282B) 
+         */
+        public final Builder aircraftsize(Collection<Enum> flags) {
+            return aircraftsize(EnumValue.create(flags));
         }
 
         /**
@@ -313,16 +324,21 @@ public final class UavionixAdsbOutCfg {
          * GPS antenna lateral offset (table 2-36 of DO-282B) 
          */
         public final Builder gpsoffsetlat(UavionixAdsbOutCfgGpsOffsetLat entry) {
-            this.gpsoffsetlat = EnumValue.of(entry);
-            return this;
+            return gpsoffsetlat(EnumValue.of(entry));
         }
 
         /**
          * GPS antenna lateral offset (table 2-36 of DO-282B) 
          */
         public final Builder gpsoffsetlat(Enum... flags) {
-            this.gpsoffsetlat = EnumValue.create(flags);
-            return this;
+            return gpsoffsetlat(EnumValue.create(flags));
+        }
+
+        /**
+         * GPS antenna lateral offset (table 2-36 of DO-282B) 
+         */
+        public final Builder gpsoffsetlat(Collection<Enum> flags) {
+            return gpsoffsetlat(EnumValue.create(flags));
         }
 
         /**
@@ -344,8 +360,7 @@ public final class UavionixAdsbOutCfg {
          * and add one] (table 2-37 DO-282B) 
          */
         public final Builder gpsoffsetlon(UavionixAdsbOutCfgGpsOffsetLon entry) {
-            this.gpsoffsetlon = EnumValue.of(entry);
-            return this;
+            return gpsoffsetlon(EnumValue.of(entry));
         }
 
         /**
@@ -353,8 +368,15 @@ public final class UavionixAdsbOutCfg {
          * and add one] (table 2-37 DO-282B) 
          */
         public final Builder gpsoffsetlon(Enum... flags) {
-            this.gpsoffsetlon = EnumValue.create(flags);
-            return this;
+            return gpsoffsetlon(EnumValue.create(flags));
+        }
+
+        /**
+         * GPS antenna longitudinal offset from nose [if non-zero, take position (in meters) divide by 2 
+         * and add one] (table 2-37 DO-282B) 
+         */
+        public final Builder gpsoffsetlon(Collection<Enum> flags) {
+            return gpsoffsetlon(EnumValue.create(flags));
         }
 
         /**
@@ -386,16 +408,21 @@ public final class UavionixAdsbOutCfg {
          * ADS-B transponder reciever and transmit enable flags 
          */
         public final Builder rfselect(UavionixAdsbOutRfSelect entry) {
-            this.rfselect = EnumValue.of(entry);
-            return this;
+            return rfselect(EnumValue.of(entry));
         }
 
         /**
          * ADS-B transponder reciever and transmit enable flags 
          */
         public final Builder rfselect(Enum... flags) {
-            this.rfselect = EnumValue.create(flags);
-            return this;
+            return rfselect(EnumValue.create(flags));
+        }
+
+        /**
+         * ADS-B transponder reciever and transmit enable flags 
+         */
+        public final Builder rfselect(Collection<Enum> flags) {
+            return rfselect(EnumValue.create(flags));
         }
 
         public final UavionixAdsbOutCfg build() {

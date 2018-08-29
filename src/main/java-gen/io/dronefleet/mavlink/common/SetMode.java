@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -137,16 +138,21 @@ public final class SetMode {
          * The new base mode 
          */
         public final Builder baseMode(MavMode entry) {
-            this.baseMode = EnumValue.of(entry);
-            return this;
+            return baseMode(EnumValue.of(entry));
         }
 
         /**
          * The new base mode 
          */
         public final Builder baseMode(Enum... flags) {
-            this.baseMode = EnumValue.create(flags);
-            return this;
+            return baseMode(EnumValue.create(flags));
+        }
+
+        /**
+         * The new base mode 
+         */
+        public final Builder baseMode(Collection<Enum> flags) {
+            return baseMode(EnumValue.create(flags));
         }
 
         /**

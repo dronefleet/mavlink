@@ -9,6 +9,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -310,16 +311,21 @@ public final class AutopilotVersion {
          * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
          */
         public final Builder capabilities(MavProtocolCapability entry) {
-            this.capabilities = EnumValue.of(entry);
-            return this;
+            return capabilities(EnumValue.of(entry));
         }
 
         /**
          * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
          */
         public final Builder capabilities(Enum... flags) {
-            this.capabilities = EnumValue.create(flags);
-            return this;
+            return capabilities(EnumValue.create(flags));
+        }
+
+        /**
+         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         */
+        public final Builder capabilities(Collection<Enum> flags) {
+            return capabilities(EnumValue.create(flags));
         }
 
         /**

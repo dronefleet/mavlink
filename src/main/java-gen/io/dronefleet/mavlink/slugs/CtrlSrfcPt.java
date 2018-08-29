@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -116,16 +117,21 @@ public final class CtrlSrfcPt {
          * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
          */
         public final Builder bitfieldpt(ControlSurfaceFlag entry) {
-            this.bitfieldpt = EnumValue.of(entry);
-            return this;
+            return bitfieldpt(EnumValue.of(entry));
         }
 
         /**
          * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
          */
         public final Builder bitfieldpt(Enum... flags) {
-            this.bitfieldpt = EnumValue.create(flags);
-            return this;
+            return bitfieldpt(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitfield containing the passthrough configuration, see {@link io.dronefleet.mavlink.slugs.ControlSurfaceFlag CONTROL_SURFACE_FLAG} ENUM. 
+         */
+        public final Builder bitfieldpt(Collection<Enum> flags) {
+            return bitfieldpt(EnumValue.create(flags));
         }
 
         public final CtrlSrfcPt build() {

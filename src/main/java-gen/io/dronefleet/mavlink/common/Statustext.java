@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -108,16 +109,21 @@ public final class Statustext {
          * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
          */
         public final Builder severity(MavSeverity entry) {
-            this.severity = EnumValue.of(entry);
-            return this;
+            return severity(EnumValue.of(entry));
         }
 
         /**
          * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
          */
         public final Builder severity(Enum... flags) {
-            this.severity = EnumValue.create(flags);
-            return this;
+            return severity(EnumValue.create(flags));
+        }
+
+        /**
+         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+         */
+        public final Builder severity(Collection<Enum> flags) {
+            return severity(EnumValue.create(flags));
         }
 
         /**

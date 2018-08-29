@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -435,16 +436,21 @@ public final class UavionixAdsbOutDynamic {
          * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
          */
         public final Builder gpsfix(UavionixAdsbOutDynamicGpsFix entry) {
-            this.gpsfix = EnumValue.of(entry);
-            return this;
+            return gpsfix(EnumValue.of(entry));
         }
 
         /**
          * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
          */
         public final Builder gpsfix(Enum... flags) {
-            this.gpsfix = EnumValue.create(flags);
-            return this;
+            return gpsfix(EnumValue.create(flags));
+        }
+
+        /**
+         * 0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK 
+         */
+        public final Builder gpsfix(Collection<Enum> flags) {
+            return gpsfix(EnumValue.create(flags));
         }
 
         /**
@@ -566,16 +572,21 @@ public final class UavionixAdsbOutDynamic {
          * Emergency status 
          */
         public final Builder emergencystatus(UavionixAdsbEmergencyStatus entry) {
-            this.emergencystatus = EnumValue.of(entry);
-            return this;
+            return emergencystatus(EnumValue.of(entry));
         }
 
         /**
          * Emergency status 
          */
         public final Builder emergencystatus(Enum... flags) {
-            this.emergencystatus = EnumValue.create(flags);
-            return this;
+            return emergencystatus(EnumValue.create(flags));
+        }
+
+        /**
+         * Emergency status 
+         */
+        public final Builder emergencystatus(Collection<Enum> flags) {
+            return emergencystatus(EnumValue.create(flags));
         }
 
         /**
@@ -595,16 +606,21 @@ public final class UavionixAdsbOutDynamic {
          * ADS-B transponder dynamic input state flags 
          */
         public final Builder state(UavionixAdsbOutDynamicState entry) {
-            this.state = EnumValue.of(entry);
-            return this;
+            return state(EnumValue.of(entry));
         }
 
         /**
          * ADS-B transponder dynamic input state flags 
          */
         public final Builder state(Enum... flags) {
-            this.state = EnumValue.create(flags);
-            return this;
+            return state(EnumValue.create(flags));
+        }
+
+        /**
+         * ADS-B transponder dynamic input state flags 
+         */
+        public final Builder state(Collection<Enum> flags) {
+            return state(EnumValue.create(flags));
         }
 
         /**

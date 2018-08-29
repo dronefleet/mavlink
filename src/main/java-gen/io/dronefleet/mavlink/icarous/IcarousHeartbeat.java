@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -85,16 +86,21 @@ public final class IcarousHeartbeat {
          * See the FMS_STATE enum. 
          */
         public final Builder status(IcarousFmsState entry) {
-            this.status = EnumValue.of(entry);
-            return this;
+            return status(EnumValue.of(entry));
         }
 
         /**
          * See the FMS_STATE enum. 
          */
         public final Builder status(Enum... flags) {
-            this.status = EnumValue.create(flags);
-            return this;
+            return status(EnumValue.create(flags));
+        }
+
+        /**
+         * See the FMS_STATE enum. 
+         */
+        public final Builder status(Collection<Enum> flags) {
+            return status(EnumValue.create(flags));
         }
 
         public final IcarousHeartbeat build() {

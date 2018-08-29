@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -378,16 +379,21 @@ public final class Deepstall {
          * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
          */
         public final Builder stage(DeepstallStage entry) {
-            this.stage = EnumValue.of(entry);
-            return this;
+            return stage(EnumValue.of(entry));
         }
 
         /**
          * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
          */
         public final Builder stage(Enum... flags) {
-            this.stage = EnumValue.create(flags);
-            return this;
+            return stage(EnumValue.create(flags));
+        }
+
+        /**
+         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         */
+        public final Builder stage(Collection<Enum> flags) {
+            return stage(EnumValue.create(flags));
         }
 
         public final Deepstall build() {

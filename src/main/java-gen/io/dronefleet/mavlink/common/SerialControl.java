@@ -8,6 +8,7 @@ import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -186,16 +187,21 @@ public final class SerialControl {
          * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
          */
         public final Builder device(SerialControlDev entry) {
-            this.device = EnumValue.of(entry);
-            return this;
+            return device(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
          */
         public final Builder device(Enum... flags) {
-            this.device = EnumValue.create(flags);
-            return this;
+            return device(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         */
+        public final Builder device(Collection<Enum> flags) {
+            return device(EnumValue.create(flags));
         }
 
         /**
@@ -215,16 +221,21 @@ public final class SerialControl {
          * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
          */
         public final Builder flags(SerialControlFlag entry) {
-            this.flags = EnumValue.of(entry);
-            return this;
+            return flags(EnumValue.of(entry));
         }
 
         /**
          * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
          */
         public final Builder flags(Enum... flags) {
-            this.flags = EnumValue.create(flags);
-            return this;
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
         }
 
         /**
