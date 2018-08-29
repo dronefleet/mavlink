@@ -47,8 +47,8 @@ public class EnumValue<T extends Enum> {
         return value;
     }
 
-    public Optional<T> entry() {
-        return Optional.ofNullable(entry);
+    public T entry() {
+        return entry;
     }
 
     public boolean flagsEnabled(Enum... flags) {
