@@ -317,8 +317,6 @@ public class MavlinkConnection {
                     message2.getOriginSystemId(),
                     message2.getOriginComponentId(),
                     messageInfo.id(),
-                    message2.getTargetSystemId(),
-                    message2.getTargetComponentId(),
                     messageInfo.crc(),
                     serializedPayload);
 
