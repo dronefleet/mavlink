@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 180,
-        crc = 146
+        crc = 146,
+        description = "Mid Level commands sent from the GS to the autopilot. These are only sent when being operated in mid-level commands mode from the ground."
 )
 public final class MidLvlCmds {
     private final int target;
@@ -45,7 +46,8 @@ public final class MidLvlCmds {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system setting the commands"
     )
     public final int target() {
         return this.target;
@@ -56,7 +58,8 @@ public final class MidLvlCmds {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Altitude"
     )
     public final float hcommand() {
         return this.hcommand;
@@ -67,7 +70,8 @@ public final class MidLvlCmds {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Airspeed"
     )
     public final float ucommand() {
         return this.ucommand;
@@ -78,7 +82,8 @@ public final class MidLvlCmds {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Turnrate"
     )
     public final float rcommand() {
         return this.rcommand;
@@ -128,7 +133,8 @@ public final class MidLvlCmds {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system setting the commands"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -140,7 +146,8 @@ public final class MidLvlCmds {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Altitude"
         )
         public final Builder hcommand(float hcommand) {
             this.hcommand = hcommand;
@@ -152,7 +159,8 @@ public final class MidLvlCmds {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Airspeed"
         )
         public final Builder ucommand(float ucommand) {
             this.ucommand = ucommand;
@@ -164,7 +172,8 @@ public final class MidLvlCmds {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Turnrate"
         )
         public final Builder rcommand(float rcommand) {
             this.rcommand = rcommand;

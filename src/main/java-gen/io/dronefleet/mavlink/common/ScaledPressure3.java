@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 143,
-        crc = 131
+        crc = 131,
+        description = "Barometer readings for 3rd barometer"
 )
 public final class ScaledPressure3 {
     private final long timeBootMs;
@@ -44,7 +45,8 @@ public final class ScaledPressure3 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -55,7 +57,8 @@ public final class ScaledPressure3 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Absolute pressure (hectopascal)"
     )
     public final float pressAbs() {
         return this.pressAbs;
@@ -66,7 +69,8 @@ public final class ScaledPressure3 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Differential pressure 1 (hectopascal)"
     )
     public final float pressDiff() {
         return this.pressDiff;
@@ -78,7 +82,8 @@ public final class ScaledPressure3 {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Temperature measurement (0.01 degrees celsius)"
     )
     public final int temperature() {
         return this.temperature;
@@ -128,7 +133,8 @@ public final class ScaledPressure3 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -140,7 +146,8 @@ public final class ScaledPressure3 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Absolute pressure (hectopascal)"
         )
         public final Builder pressAbs(float pressAbs) {
             this.pressAbs = pressAbs;
@@ -152,7 +159,8 @@ public final class ScaledPressure3 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Differential pressure 1 (hectopascal)"
         )
         public final Builder pressDiff(float pressDiff) {
             this.pressDiff = pressDiff;
@@ -165,7 +173,8 @@ public final class ScaledPressure3 {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Temperature measurement (0.01 degrees celsius)"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;

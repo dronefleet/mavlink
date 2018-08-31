@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 269,
-        crc = 58
+        crc = 58,
+        description = "WIP: Information about video stream"
 )
 public final class VideoStreamInformation {
     private final int cameraId;
@@ -57,7 +58,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Camera ID (1 for first, 2 for second, etc.)"
     )
     public final int cameraId() {
         return this.cameraId;
@@ -68,7 +70,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Current status of video streaming (0: not running, 1: in progress)"
     )
     public final int status() {
         return this.status;
@@ -79,7 +82,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Frames per second"
     )
     public final float framerate() {
         return this.framerate;
@@ -90,7 +94,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Resolution horizontal in pixels"
     )
     public final int resolutionH() {
         return this.resolutionH;
@@ -101,7 +106,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            description = "Resolution vertical in pixels"
     )
     public final int resolutionV() {
         return this.resolutionV;
@@ -112,7 +118,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Bit rate in bits per second"
     )
     public final long bitrate() {
         return this.bitrate;
@@ -123,7 +130,8 @@ public final class VideoStreamInformation {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "Video image rotation clockwise"
     )
     public final int rotation() {
         return this.rotation;
@@ -135,7 +143,8 @@ public final class VideoStreamInformation {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            arraySize = 230
+            arraySize = 230,
+            description = "Video stream URI"
     )
     public final String uri() {
         return this.uri;
@@ -205,7 +214,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Camera ID (1 for first, 2 for second, etc.)"
         )
         public final Builder cameraId(int cameraId) {
             this.cameraId = cameraId;
@@ -217,7 +227,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Current status of video streaming (0: not running, 1: in progress)"
         )
         public final Builder status(int status) {
             this.status = status;
@@ -229,7 +240,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Frames per second"
         )
         public final Builder framerate(float framerate) {
             this.framerate = framerate;
@@ -241,7 +253,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Resolution horizontal in pixels"
         )
         public final Builder resolutionH(int resolutionH) {
             this.resolutionH = resolutionH;
@@ -253,7 +266,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                description = "Resolution vertical in pixels"
         )
         public final Builder resolutionV(int resolutionV) {
             this.resolutionV = resolutionV;
@@ -265,7 +279,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Bit rate in bits per second"
         )
         public final Builder bitrate(long bitrate) {
             this.bitrate = bitrate;
@@ -277,7 +292,8 @@ public final class VideoStreamInformation {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "Video image rotation clockwise"
         )
         public final Builder rotation(int rotation) {
             this.rotation = rotation;
@@ -290,7 +306,8 @@ public final class VideoStreamInformation {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                arraySize = 230
+                arraySize = 230,
+                description = "Video stream URI"
         )
         public final Builder uri(String uri) {
             this.uri = uri;

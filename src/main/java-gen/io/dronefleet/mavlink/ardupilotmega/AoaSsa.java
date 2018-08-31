@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 11020,
-        crc = 205
+        crc = 205,
+        description = "Angle of Attack and Side Slip Angle"
 )
 public final class AoaSsa {
     private final BigInteger timeUsec;
@@ -42,7 +43,8 @@ public final class AoaSsa {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -53,7 +55,8 @@ public final class AoaSsa {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angle of Attack (degrees)"
     )
     public final float aoa() {
         return this.aoa;
@@ -64,7 +67,8 @@ public final class AoaSsa {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Side Slip Angle (degrees)"
     )
     public final float ssa() {
         return this.ssa;
@@ -109,7 +113,8 @@ public final class AoaSsa {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -121,7 +126,8 @@ public final class AoaSsa {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angle of Attack (degrees)"
         )
         public final Builder aoa(float aoa) {
             this.aoa = aoa;
@@ -133,7 +139,8 @@ public final class AoaSsa {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Side Slip Angle (degrees)"
         )
         public final Builder ssa(float ssa) {
             this.ssa = ssa;

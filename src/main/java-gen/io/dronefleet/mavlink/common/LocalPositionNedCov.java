@@ -20,7 +20,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 64,
-        crc = 191
+        crc = 191,
+        description = "The filtered local position (e.g. fused computer vision and accelerometers). Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)"
 )
 public final class LocalPositionNedCov {
     private final BigInteger timeUsec;
@@ -77,7 +78,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since system boot or since UNIX epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -89,7 +91,8 @@ public final class LocalPositionNedCov {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavEstimatorType.class
+            enumType = MavEstimatorType.class,
+            description = "Class id of the estimator this estimate originated from."
     )
     public final EnumValue<MavEstimatorType> estimatorType() {
         return this.estimatorType;
@@ -100,7 +103,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Position"
     )
     public final float x() {
         return this.x;
@@ -111,7 +115,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Position"
     )
     public final float y() {
         return this.y;
@@ -122,7 +127,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Position"
     )
     public final float z() {
         return this.z;
@@ -133,7 +139,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Speed (m/s)"
     )
     public final float vx() {
         return this.vx;
@@ -144,7 +151,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Speed (m/s)"
     )
     public final float vy() {
         return this.vy;
@@ -155,7 +163,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Speed (m/s)"
     )
     public final float vz() {
         return this.vz;
@@ -166,7 +175,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Acceleration (m/s^2)"
     )
     public final float ax() {
         return this.ax;
@@ -177,7 +187,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Acceleration (m/s^2)"
     )
     public final float ay() {
         return this.ay;
@@ -188,7 +199,8 @@ public final class LocalPositionNedCov {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Acceleration (m/s^2)"
     )
     public final float az() {
         return this.az;
@@ -201,7 +213,8 @@ public final class LocalPositionNedCov {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            arraySize = 45
+            arraySize = 45,
+            description = "Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)"
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -291,7 +304,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since system boot or since UNIX epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -304,7 +318,8 @@ public final class LocalPositionNedCov {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavEstimatorType.class
+                enumType = MavEstimatorType.class,
+                description = "Class id of the estimator this estimate originated from."
         )
         public final Builder estimatorType(EnumValue<MavEstimatorType> estimatorType) {
             this.estimatorType = estimatorType;
@@ -337,7 +352,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Position"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -349,7 +365,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Position"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -361,7 +378,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Position"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -373,7 +391,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Speed (m/s)"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -385,7 +404,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Speed (m/s)"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -397,7 +417,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Speed (m/s)"
         )
         public final Builder vz(float vz) {
             this.vz = vz;
@@ -409,7 +430,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Acceleration (m/s^2)"
         )
         public final Builder ax(float ax) {
             this.ax = ax;
@@ -421,7 +443,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Acceleration (m/s^2)"
         )
         public final Builder ay(float ay) {
             this.ay = ay;
@@ -433,7 +456,8 @@ public final class LocalPositionNedCov {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Acceleration (m/s^2)"
         )
         public final Builder az(float az) {
             this.az = az;
@@ -447,7 +471,8 @@ public final class LocalPositionNedCov {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                arraySize = 45
+                arraySize = 45,
+                description = "Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)"
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

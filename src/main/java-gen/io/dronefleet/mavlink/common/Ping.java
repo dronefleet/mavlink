@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 4,
-        crc = 237
+        crc = 237,
+        description = "A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections."
 )
 public final class Ping {
     private final BigInteger timeUsec;
@@ -46,7 +47,8 @@ public final class Ping {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -57,7 +59,8 @@ public final class Ping {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "PING sequence"
     )
     public final long seq() {
         return this.seq;
@@ -69,7 +72,8 @@ public final class Ping {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -81,7 +85,8 @@ public final class Ping {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -131,7 +136,8 @@ public final class Ping {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -143,7 +149,8 @@ public final class Ping {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "PING sequence"
         )
         public final Builder seq(long seq) {
             this.seq = seq;
@@ -156,7 +163,8 @@ public final class Ping {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -169,7 +177,8 @@ public final class Ping {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;

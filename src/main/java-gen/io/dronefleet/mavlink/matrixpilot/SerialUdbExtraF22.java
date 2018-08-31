@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 188,
-        crc = 91
+        crc = 91,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F22 format"
 )
 public final class SerialUdbExtraF22 {
     private final int sueAccelXAtCalibration;
@@ -53,7 +54,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE X accelerometer at calibration time"
     )
     public final int sueAccelXAtCalibration() {
         return this.sueAccelXAtCalibration;
@@ -65,7 +67,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Y accelerometer at calibration time"
     )
     public final int sueAccelYAtCalibration() {
         return this.sueAccelYAtCalibration;
@@ -77,7 +80,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Z accelerometer at calibration time"
     )
     public final int sueAccelZAtCalibration() {
         return this.sueAccelZAtCalibration;
@@ -89,7 +93,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE X gyro at calibration time"
     )
     public final int sueGyroXAtCalibration() {
         return this.sueGyroXAtCalibration;
@@ -101,7 +106,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Y gyro at calibration time"
     )
     public final int sueGyroYAtCalibration() {
         return this.sueGyroYAtCalibration;
@@ -113,7 +119,8 @@ public final class SerialUdbExtraF22 {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Z gyro at calibration time"
     )
     public final int sueGyroZAtCalibration() {
         return this.sueGyroZAtCalibration;
@@ -174,7 +181,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE X accelerometer at calibration time"
         )
         public final Builder sueAccelXAtCalibration(int sueAccelXAtCalibration) {
             this.sueAccelXAtCalibration = sueAccelXAtCalibration;
@@ -187,7 +195,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Y accelerometer at calibration time"
         )
         public final Builder sueAccelYAtCalibration(int sueAccelYAtCalibration) {
             this.sueAccelYAtCalibration = sueAccelYAtCalibration;
@@ -200,7 +209,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Z accelerometer at calibration time"
         )
         public final Builder sueAccelZAtCalibration(int sueAccelZAtCalibration) {
             this.sueAccelZAtCalibration = sueAccelZAtCalibration;
@@ -213,7 +223,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE X gyro at calibration time"
         )
         public final Builder sueGyroXAtCalibration(int sueGyroXAtCalibration) {
             this.sueGyroXAtCalibration = sueGyroXAtCalibration;
@@ -226,7 +237,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Y gyro at calibration time"
         )
         public final Builder sueGyroYAtCalibration(int sueGyroYAtCalibration) {
             this.sueGyroYAtCalibration = sueGyroYAtCalibration;
@@ -239,7 +251,8 @@ public final class SerialUdbExtraF22 {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Z gyro at calibration time"
         )
         public final Builder sueGyroZAtCalibration(int sueGyroZAtCalibration) {
             this.sueGyroZAtCalibration = sueGyroZAtCalibration;

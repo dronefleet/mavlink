@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 122,
-        crc = 203
+        crc = 203,
+        description = "Stop log transfer and resume normal logging"
 )
 public final class LogRequestEnd {
     private final int targetSystem;
@@ -38,7 +39,8 @@ public final class LogRequestEnd {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -49,7 +51,8 @@ public final class LogRequestEnd {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -89,7 +92,8 @@ public final class LogRequestEnd {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -101,7 +105,8 @@ public final class LogRequestEnd {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;

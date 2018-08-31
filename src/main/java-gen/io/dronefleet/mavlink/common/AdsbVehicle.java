@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 246,
-        crc = 184
+        crc = 184,
+        description = "The location and information of an ADSB vehicle"
 )
 public final class AdsbVehicle {
     private final long icaoAddress;
@@ -77,7 +78,8 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "ICAO address"
     )
     public final long icaoAddress() {
         return this.icaoAddress;
@@ -89,7 +91,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude, expressed as degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -101,7 +104,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude, expressed as degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -113,7 +117,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = AdsbAltitudeType.class
+            enumType = AdsbAltitudeType.class,
+            description = "Type from ADSB_ALTITUDE_TYPE enum"
     )
     public final EnumValue<AdsbAltitudeType> altitudeType() {
         return this.altitudeType;
@@ -125,7 +130,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude(ASL) in millimeters"
     )
     public final int altitude() {
         return this.altitude;
@@ -136,7 +142,8 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "Course over ground in centidegrees"
     )
     public final int heading() {
         return this.heading;
@@ -147,7 +154,8 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "The horizontal velocity in centimeters/second"
     )
     public final int horVelocity() {
         return this.horVelocity;
@@ -159,7 +167,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "The vertical velocity in centimeters/second, positive is up"
     )
     public final int verVelocity() {
         return this.verVelocity;
@@ -171,7 +180,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            arraySize = 9
+            arraySize = 9,
+            description = "The callsign, 8+null"
     )
     public final String callsign() {
         return this.callsign;
@@ -183,7 +193,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            enumType = AdsbEmitterType.class
+            enumType = AdsbEmitterType.class,
+            description = "Type from ADSB_EMITTER_TYPE enum"
     )
     public final EnumValue<AdsbEmitterType> emitterType() {
         return this.emitterType;
@@ -194,7 +205,8 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 1
+            unitSize = 1,
+            description = "Time since last communication in seconds"
     )
     public final int tslc() {
         return this.tslc;
@@ -206,7 +218,8 @@ public final class AdsbVehicle {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            enumType = AdsbFlags.class
+            enumType = AdsbFlags.class,
+            description = "Flags to indicate various statuses including valid data fields"
     )
     public final EnumValue<AdsbFlags> flags() {
         return this.flags;
@@ -217,7 +230,8 @@ public final class AdsbVehicle {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 2
+            unitSize = 2,
+            description = "Squawk code"
     )
     public final int squawk() {
         return this.squawk;
@@ -312,7 +326,8 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "ICAO address"
         )
         public final Builder icaoAddress(long icaoAddress) {
             this.icaoAddress = icaoAddress;
@@ -325,7 +340,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude, expressed as degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -338,7 +354,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude, expressed as degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -351,7 +368,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = AdsbAltitudeType.class
+                enumType = AdsbAltitudeType.class,
+                description = "Type from ADSB_ALTITUDE_TYPE enum"
         )
         public final Builder altitudeType(EnumValue<AdsbAltitudeType> altitudeType) {
             this.altitudeType = altitudeType;
@@ -385,7 +403,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude(ASL) in millimeters"
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -397,7 +416,8 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "Course over ground in centidegrees"
         )
         public final Builder heading(int heading) {
             this.heading = heading;
@@ -409,7 +429,8 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "The horizontal velocity in centimeters/second"
         )
         public final Builder horVelocity(int horVelocity) {
             this.horVelocity = horVelocity;
@@ -422,7 +443,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "The vertical velocity in centimeters/second, positive is up"
         )
         public final Builder verVelocity(int verVelocity) {
             this.verVelocity = verVelocity;
@@ -435,7 +457,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                arraySize = 9
+                arraySize = 9,
+                description = "The callsign, 8+null"
         )
         public final Builder callsign(String callsign) {
             this.callsign = callsign;
@@ -448,7 +471,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                enumType = AdsbEmitterType.class
+                enumType = AdsbEmitterType.class,
+                description = "Type from ADSB_EMITTER_TYPE enum"
         )
         public final Builder emitterType(EnumValue<AdsbEmitterType> emitterType) {
             this.emitterType = emitterType;
@@ -481,7 +505,8 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 1
+                unitSize = 1,
+                description = "Time since last communication in seconds"
         )
         public final Builder tslc(int tslc) {
             this.tslc = tslc;
@@ -494,7 +519,8 @@ public final class AdsbVehicle {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                enumType = AdsbFlags.class
+                enumType = AdsbFlags.class,
+                description = "Flags to indicate various statuses including valid data fields"
         )
         public final Builder flags(EnumValue<AdsbFlags> flags) {
             this.flags = flags;
@@ -527,7 +553,8 @@ public final class AdsbVehicle {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 2
+                unitSize = 2,
+                description = "Squawk code"
         )
         public final Builder squawk(int squawk) {
             this.squawk = squawk;

@@ -24,7 +24,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 242,
-        crc = 104
+        crc = 104,
+        description = "This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitely set by the operator before or after. The position the system will return to and land on. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector."
 )
 public final class HomePosition {
     private final int latitude;
@@ -78,7 +79,8 @@ public final class HomePosition {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int latitude() {
         return this.latitude;
@@ -90,7 +92,8 @@ public final class HomePosition {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84, in degrees * 1E7"
     )
     public final int longitude() {
         return this.longitude;
@@ -102,7 +105,8 @@ public final class HomePosition {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude (AMSL), in meters * 1000 (positive for up)"
     )
     public final int altitude() {
         return this.altitude;
@@ -113,7 +117,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local X position of this position in the local coordinate frame"
     )
     public final float x() {
         return this.x;
@@ -124,7 +129,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local Y position of this position in the local coordinate frame"
     )
     public final float y() {
         return this.y;
@@ -135,7 +141,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local Z position of this position in the local coordinate frame"
     )
     public final float z() {
         return this.z;
@@ -148,7 +155,8 @@ public final class HomePosition {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground"
     )
     public final List<Float> q() {
         return this.q;
@@ -162,7 +170,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
     )
     public final float approachX() {
         return this.approachX;
@@ -176,7 +185,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
     )
     public final float approachY() {
         return this.approachY;
@@ -190,7 +200,8 @@ public final class HomePosition {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
     )
     public final float approachZ() {
         return this.approachZ;
@@ -202,7 +213,8 @@ public final class HomePosition {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 8,
-            extension = true
+            extension = true,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -288,7 +300,8 @@ public final class HomePosition {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -301,7 +314,8 @@ public final class HomePosition {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84, in degrees * 1E7"
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -314,7 +328,8 @@ public final class HomePosition {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude (AMSL), in meters * 1000 (positive for up)"
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -326,7 +341,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local X position of this position in the local coordinate frame"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -338,7 +354,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local Y position of this position in the local coordinate frame"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -350,7 +367,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local Z position of this position in the local coordinate frame"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -364,7 +382,8 @@ public final class HomePosition {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -379,7 +398,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
         )
         public final Builder approachX(float approachX) {
             this.approachX = approachX;
@@ -394,7 +414,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
         )
         public final Builder approachY(float approachY) {
             this.approachY = approachY;
@@ -409,7 +430,8 @@ public final class HomePosition {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone."
         )
         public final Builder approachZ(float approachZ) {
             this.approachZ = approachZ;
@@ -422,7 +444,8 @@ public final class HomePosition {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 8,
-                extension = true
+                extension = true,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 139,
-        crc = 168
+        crc = 168,
+        description = "Set the vehicle attitude and body angular rates."
 )
 public final class SetActuatorControlTarget {
     private final BigInteger timeUsec;
@@ -51,7 +52,8 @@ public final class SetActuatorControlTarget {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -63,7 +65,8 @@ public final class SetActuatorControlTarget {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Actuator group. The \"_mlx\" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances."
     )
     public final int groupMlx() {
         return this.groupMlx;
@@ -74,7 +77,8 @@ public final class SetActuatorControlTarget {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -85,7 +89,8 @@ public final class SetActuatorControlTarget {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -100,7 +105,8 @@ public final class SetActuatorControlTarget {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            arraySize = 8
+            arraySize = 8,
+            description = "Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs."
     )
     public final List<Float> controls() {
         return this.controls;
@@ -155,7 +161,8 @@ public final class SetActuatorControlTarget {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -168,7 +175,8 @@ public final class SetActuatorControlTarget {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Actuator group. The \"_mlx\" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances."
         )
         public final Builder groupMlx(int groupMlx) {
             this.groupMlx = groupMlx;
@@ -180,7 +188,8 @@ public final class SetActuatorControlTarget {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -192,7 +201,8 @@ public final class SetActuatorControlTarget {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -208,7 +218,8 @@ public final class SetActuatorControlTarget {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                arraySize = 8
+                arraySize = 8,
+                description = "Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs."
         )
         public final Builder controls(List<Float> controls) {
             this.controls = controls;

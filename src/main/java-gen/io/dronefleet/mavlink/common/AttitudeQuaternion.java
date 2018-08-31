@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 31,
-        crc = 246
+        crc = 246,
+        description = "The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0)."
 )
 public final class AttitudeQuaternion {
     private final long timeBootMs;
@@ -58,7 +59,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -69,7 +71,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Quaternion component 1, w (1 in null-rotation)"
     )
     public final float q1() {
         return this.q1;
@@ -80,7 +83,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Quaternion component 2, x (0 in null-rotation)"
     )
     public final float q2() {
         return this.q2;
@@ -91,7 +95,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Quaternion component 3, y (0 in null-rotation)"
     )
     public final float q3() {
         return this.q3;
@@ -102,7 +107,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Quaternion component 4, z (0 in null-rotation)"
     )
     public final float q4() {
         return this.q4;
@@ -113,7 +119,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angular speed (rad/s)"
     )
     public final float rollspeed() {
         return this.rollspeed;
@@ -124,7 +131,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angular speed (rad/s)"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
@@ -135,7 +143,8 @@ public final class AttitudeQuaternion {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angular speed (rad/s)"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -205,7 +214,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -217,7 +227,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Quaternion component 1, w (1 in null-rotation)"
         )
         public final Builder q1(float q1) {
             this.q1 = q1;
@@ -229,7 +240,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Quaternion component 2, x (0 in null-rotation)"
         )
         public final Builder q2(float q2) {
             this.q2 = q2;
@@ -241,7 +253,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Quaternion component 3, y (0 in null-rotation)"
         )
         public final Builder q3(float q3) {
             this.q3 = q3;
@@ -253,7 +266,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Quaternion component 4, z (0 in null-rotation)"
         )
         public final Builder q4(float q4) {
             this.q4 = q4;
@@ -265,7 +279,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angular speed (rad/s)"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -277,7 +292,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angular speed (rad/s)"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -289,7 +305,8 @@ public final class AttitudeQuaternion {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angular speed (rad/s)"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;

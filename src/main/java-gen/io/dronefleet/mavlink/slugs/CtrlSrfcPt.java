@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 181,
-        crc = 104
+        crc = 104,
+        description = "This message sets the control surfaces for selective passthrough mode."
 )
 public final class CtrlSrfcPt {
     private final int target;
@@ -41,7 +42,8 @@ public final class CtrlSrfcPt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system setting the commands"
     )
     public final int target() {
         return this.target;
@@ -53,7 +55,8 @@ public final class CtrlSrfcPt {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            enumType = ControlSurfaceFlag.class
+            enumType = ControlSurfaceFlag.class,
+            description = "Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM."
     )
     public final EnumValue<ControlSurfaceFlag> bitfieldpt() {
         return this.bitfieldpt;
@@ -93,7 +96,8 @@ public final class CtrlSrfcPt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system setting the commands"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -106,7 +110,8 @@ public final class CtrlSrfcPt {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                enumType = ControlSurfaceFlag.class
+                enumType = ControlSurfaceFlag.class,
+                description = "Bitfield containing the passthrough configuration, see CONTROL_SURFACE_FLAG ENUM."
         )
         public final Builder bitfieldpt(EnumValue<ControlSurfaceFlag> bitfieldpt) {
             this.bitfieldpt = bitfieldpt;

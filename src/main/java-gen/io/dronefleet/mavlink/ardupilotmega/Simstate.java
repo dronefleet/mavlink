@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 164,
-        crc = 154
+        crc = 154,
+        description = "Status of simulation environment, if used"
 )
 public final class Simstate {
     private final float roll;
@@ -66,7 +67,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angle (rad)"
     )
     public final float roll() {
         return this.roll;
@@ -77,7 +79,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angle (rad)"
     )
     public final float pitch() {
         return this.pitch;
@@ -88,7 +91,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angle (rad)"
     )
     public final float yaw() {
         return this.yaw;
@@ -99,7 +103,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "X acceleration m/s/s"
     )
     public final float xacc() {
         return this.xacc;
@@ -110,7 +115,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y acceleration m/s/s"
     )
     public final float yacc() {
         return this.yacc;
@@ -121,7 +127,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z acceleration m/s/s"
     )
     public final float zacc() {
         return this.zacc;
@@ -132,7 +139,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around X axis rad/s"
     )
     public final float xgyro() {
         return this.xgyro;
@@ -143,7 +151,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around Y axis rad/s"
     )
     public final float ygyro() {
         return this.ygyro;
@@ -154,7 +163,8 @@ public final class Simstate {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around Z axis rad/s"
     )
     public final float zgyro() {
         return this.zgyro;
@@ -166,7 +176,8 @@ public final class Simstate {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -178,7 +189,8 @@ public final class Simstate {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude in degrees * 1E7"
     )
     public final int lng() {
         return this.lng;
@@ -263,7 +275,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angle (rad)"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -275,7 +288,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angle (rad)"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -287,7 +301,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angle (rad)"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -299,7 +314,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "X acceleration m/s/s"
         )
         public final Builder xacc(float xacc) {
             this.xacc = xacc;
@@ -311,7 +327,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y acceleration m/s/s"
         )
         public final Builder yacc(float yacc) {
             this.yacc = yacc;
@@ -323,7 +340,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z acceleration m/s/s"
         )
         public final Builder zacc(float zacc) {
             this.zacc = zacc;
@@ -335,7 +353,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around X axis rad/s"
         )
         public final Builder xgyro(float xgyro) {
             this.xgyro = xgyro;
@@ -347,7 +366,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around Y axis rad/s"
         )
         public final Builder ygyro(float ygyro) {
             this.ygyro = ygyro;
@@ -359,7 +379,8 @@ public final class Simstate {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around Z axis rad/s"
         )
         public final Builder zgyro(float zgyro) {
             this.zgyro = zgyro;
@@ -372,7 +393,8 @@ public final class Simstate {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -385,7 +407,8 @@ public final class Simstate {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude in degrees * 1E7"
         )
         public final Builder lng(int lng) {
             this.lng = lng;

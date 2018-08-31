@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 175,
-        crc = 171
+        crc = 171,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F7: format"
 )
 public final class SerialUdbExtraF7 {
     private final float sueYawkpRudder;
@@ -51,7 +52,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation"
     )
     public final float sueYawkpRudder() {
         return this.sueYawkpRudder;
@@ -62,7 +64,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB YAWKD_RUDDER Gain for Rate control of navigation"
     )
     public final float sueYawkdRudder() {
         return this.sueYawkdRudder;
@@ -73,7 +76,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization"
     )
     public final float sueRollkpRudder() {
         return this.sueRollkpRudder;
@@ -84,7 +88,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization"
     )
     public final float sueRollkdRudder() {
         return this.sueRollkdRudder;
@@ -95,7 +100,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized"
     )
     public final float sueRudderBoost() {
         return this.sueRudderBoost;
@@ -106,7 +112,8 @@ public final class SerialUdbExtraF7 {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Return To Landing - Angle to Pitch Plane Down"
     )
     public final float sueRtlPitchDown() {
         return this.sueRtlPitchDown;
@@ -166,7 +173,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation"
         )
         public final Builder sueYawkpRudder(float sueYawkpRudder) {
             this.sueYawkpRudder = sueYawkpRudder;
@@ -178,7 +186,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB YAWKD_RUDDER Gain for Rate control of navigation"
         )
         public final Builder sueYawkdRudder(float sueYawkdRudder) {
             this.sueYawkdRudder = sueYawkdRudder;
@@ -190,7 +199,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra ROLLKP_RUDDER Gain for Proportional control of roll stabilization"
         )
         public final Builder sueRollkpRudder(float sueRollkpRudder) {
             this.sueRollkpRudder = sueRollkpRudder;
@@ -202,7 +212,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra ROLLKD_RUDDER Gain for Rate control of roll stabilization"
         )
         public final Builder sueRollkdRudder(float sueRollkdRudder) {
             this.sueRollkdRudder = sueRollkdRudder;
@@ -214,7 +225,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "SERIAL UDB EXTRA Rudder Boost Gain to Manual Control when stabilized"
         )
         public final Builder sueRudderBoost(float sueRudderBoost) {
             this.sueRudderBoost = sueRudderBoost;
@@ -226,7 +238,8 @@ public final class SerialUdbExtraF7 {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Return To Landing - Angle to Pitch Plane Down"
         )
         public final Builder sueRtlPitchDown(float sueRtlPitchDown) {
             this.sueRtlPitchDown = sueRtlPitchDown;

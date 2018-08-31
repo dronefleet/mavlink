@@ -20,7 +20,18 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 152,
-        crc = 115
+        crc = 115,
+        description = "Sends ESC32 telemetry data for up to 4 motors. Multiple messages may be sent in sequence when system has > 4 motors. Data is described as follows: \n"
+                        + "\t\t\t\t// unsigned int state :   3;\n"
+                        + "\t\t\t    // unsigned int vin :\t  12;  // x 100\n"
+                        + "\t\t\t    // unsigned int amps :\t  14;  // x 100\n"
+                        + "\t\t\t    // unsigned int rpm :\t  15;\n"
+                        + "\t\t\t    // unsigned int duty :\t  8;   // x (255/100)\n"
+                        + "\t\t\t    // - Data Version 2 -\n"
+                        + "\t\t\t    //     unsigned int errors :    9;   // Bad detects error count\n"
+                        + "\t\t\t    // - Data Version 3 -\n"
+                        + "\t\t\t    //     unsigned int temp   :    9;   // (Deg C + 32) * 4\n"
+                        + "\t\t\t    // unsigned int errCode : 3;"
 )
 public final class AqEscTelemetry {
     private final long timeBootMs;
@@ -67,7 +78,8 @@ public final class AqEscTelemetry {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp of the component clock since boot time in ms."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -78,7 +90,8 @@ public final class AqEscTelemetry {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc)."
     )
     public final int seq() {
         return this.seq;
@@ -89,7 +102,8 @@ public final class AqEscTelemetry {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Total number of active ESCs/motors on the system."
     )
     public final int numMotors() {
         return this.numMotors;
@@ -101,7 +115,8 @@ public final class AqEscTelemetry {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of active ESCs in this sequence (1 through this many array members will be populated with data)"
     )
     public final int numInSeq() {
         return this.numInSeq;
@@ -113,7 +128,8 @@ public final class AqEscTelemetry {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            arraySize = 4
+            arraySize = 4,
+            description = "ESC/Motor ID"
     )
     public final byte[] escid() {
         return this.escid;
@@ -126,7 +142,8 @@ public final class AqEscTelemetry {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            arraySize = 4
+            arraySize = 4,
+            description = "Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no data."
     )
     public final List<Integer> statusAge() {
         return this.statusAge;
@@ -138,7 +155,8 @@ public final class AqEscTelemetry {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            arraySize = 4
+            arraySize = 4,
+            description = "Version of data structure (determines contents)."
     )
     public final byte[] dataVersion() {
         return this.dataVersion;
@@ -150,7 +168,8 @@ public final class AqEscTelemetry {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Data bits 1-32 for each ESC."
     )
     public final List<Long> data0() {
         return this.data0;
@@ -162,7 +181,8 @@ public final class AqEscTelemetry {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Data bits 33-64 for each ESC."
     )
     public final List<Long> data1() {
         return this.data1;
@@ -237,7 +257,8 @@ public final class AqEscTelemetry {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp of the component clock since boot time in ms."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -249,7 +270,8 @@ public final class AqEscTelemetry {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Sequence number of message (first set of 4 motors is #1, next 4 is #2, etc)."
         )
         public final Builder seq(int seq) {
             this.seq = seq;
@@ -261,7 +283,8 @@ public final class AqEscTelemetry {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Total number of active ESCs/motors on the system."
         )
         public final Builder numMotors(int numMotors) {
             this.numMotors = numMotors;
@@ -274,7 +297,8 @@ public final class AqEscTelemetry {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of active ESCs in this sequence (1 through this many array members will be populated with data)"
         )
         public final Builder numInSeq(int numInSeq) {
             this.numInSeq = numInSeq;
@@ -287,7 +311,8 @@ public final class AqEscTelemetry {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                arraySize = 4
+                arraySize = 4,
+                description = "ESC/Motor ID"
         )
         public final Builder escid(byte[] escid) {
             this.escid = escid;
@@ -301,7 +326,8 @@ public final class AqEscTelemetry {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                arraySize = 4
+                arraySize = 4,
+                description = "Age of each ESC telemetry reading in ms compared to boot time. A value of 0xFFFF means timeout/no data."
         )
         public final Builder statusAge(List<Integer> statusAge) {
             this.statusAge = statusAge;
@@ -314,7 +340,8 @@ public final class AqEscTelemetry {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                arraySize = 4
+                arraySize = 4,
+                description = "Version of data structure (determines contents)."
         )
         public final Builder dataVersion(byte[] dataVersion) {
             this.dataVersion = dataVersion;
@@ -327,7 +354,8 @@ public final class AqEscTelemetry {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Data bits 1-32 for each ESC."
         )
         public final Builder data0(List<Long> data0) {
             this.data0 = data0;
@@ -340,7 +368,8 @@ public final class AqEscTelemetry {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Data bits 33-64 for each ESC."
         )
         public final Builder data1(List<Long> data1) {
             this.data1 = data1;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 11001,
-        crc = 15
+        crc = 15,
+        description = "Read registers reply"
 )
 public final class DeviceOpReadReply {
     private final long requestId;
@@ -47,7 +48,8 @@ public final class DeviceOpReadReply {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "request ID - copied from request"
     )
     public final long requestId() {
         return this.requestId;
@@ -58,7 +60,8 @@ public final class DeviceOpReadReply {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "0 for success, anything else is failure code"
     )
     public final int result() {
         return this.result;
@@ -69,7 +72,8 @@ public final class DeviceOpReadReply {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "starting register"
     )
     public final int regstart() {
         return this.regstart;
@@ -80,7 +84,8 @@ public final class DeviceOpReadReply {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "count of bytes read"
     )
     public final int count() {
         return this.count;
@@ -92,7 +97,8 @@ public final class DeviceOpReadReply {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            arraySize = 128
+            arraySize = 128,
+            description = "reply data"
     )
     public final byte[] data() {
         return this.data;
@@ -147,7 +153,8 @@ public final class DeviceOpReadReply {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "request ID - copied from request"
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -159,7 +166,8 @@ public final class DeviceOpReadReply {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "0 for success, anything else is failure code"
         )
         public final Builder result(int result) {
             this.result = result;
@@ -171,7 +179,8 @@ public final class DeviceOpReadReply {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "starting register"
         )
         public final Builder regstart(int regstart) {
             this.regstart = regstart;
@@ -183,7 +192,8 @@ public final class DeviceOpReadReply {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "count of bytes read"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -196,7 +206,8 @@ public final class DeviceOpReadReply {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                arraySize = 128
+                arraySize = 128,
+                description = "reply data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 244,
-        crc = 95
+        crc = 95,
+        description = "The interval between messages for a particular MAVLink message ID. This interface replaces DATA_STREAM"
 )
 public final class MessageInterval {
     private final int messageId;
@@ -39,7 +40,8 @@ public final class MessageInterval {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "The ID of the requested MAVLink message. v1.0 is limited to 254 messages."
     )
     public final int messageId() {
         return this.messageId;
@@ -52,7 +54,8 @@ public final class MessageInterval {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "The interval between two messages, in microseconds. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
     )
     public final int intervalUs() {
         return this.intervalUs;
@@ -92,7 +95,8 @@ public final class MessageInterval {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "The ID of the requested MAVLink message. v1.0 is limited to 254 messages."
         )
         public final Builder messageId(int messageId) {
             this.messageId = messageId;
@@ -106,7 +110,8 @@ public final class MessageInterval {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "The interval between two messages, in microseconds. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
         )
         public final Builder intervalUs(int intervalUs) {
             this.intervalUs = intervalUs;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 123,
-        crc = 250
+        crc = 250,
+        description = "data for injecting into the onboard GPS (used for DGPS)"
 )
 public final class GpsInjectData {
     private final int targetSystem;
@@ -44,7 +45,8 @@ public final class GpsInjectData {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -55,7 +57,8 @@ public final class GpsInjectData {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -66,7 +69,8 @@ public final class GpsInjectData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "data length"
     )
     public final int len() {
         return this.len;
@@ -78,7 +82,8 @@ public final class GpsInjectData {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 110
+            arraySize = 110,
+            description = "raw data (110 is enough for 12 satellites of RTCMv2)"
     )
     public final byte[] data() {
         return this.data;
@@ -128,7 +133,8 @@ public final class GpsInjectData {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -140,7 +146,8 @@ public final class GpsInjectData {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -152,7 +159,8 @@ public final class GpsInjectData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "data length"
         )
         public final Builder len(int len) {
             this.len = len;
@@ -165,7 +173,8 @@ public final class GpsInjectData {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 110
+                arraySize = 110,
+                description = "raw data (110 is enough for 12 satellites of RTCMv2)"
         )
         public final Builder data(byte[] data) {
             this.data = data;

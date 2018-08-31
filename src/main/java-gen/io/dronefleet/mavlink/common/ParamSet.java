@@ -21,7 +21,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 23,
-        crc = 168
+        crc = 168,
+        description = "Set a parameter value TEMPORARILY to RAM. It will be reset to default on system reboot. Send the ACTION MAV_ACTION_STORAGE_WRITE to PERMANENTLY write the RAM contents to EEPROM. IMPORTANT: The receiving component should acknowledge the new parameter value by sending a param_value message to all communication partners. This will also ensure that multiple GCS all have an up-to-date list of all parameters. If the sending GCS did not receive a PARAM_VALUE message within its timeout time, it should re-send the PARAM_SET message."
 )
 public final class ParamSet {
     private final int targetSystem;
@@ -56,7 +57,8 @@ public final class ParamSet {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -67,7 +69,8 @@ public final class ParamSet {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -81,7 +84,8 @@ public final class ParamSet {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -92,7 +96,8 @@ public final class ParamSet {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Onboard parameter value"
     )
     public final float paramValue() {
         return this.paramValue;
@@ -104,7 +109,8 @@ public final class ParamSet {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = MavParamType.class
+            enumType = MavParamType.class,
+            description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
     )
     public final EnumValue<MavParamType> paramType() {
         return this.paramType;
@@ -159,7 +165,8 @@ public final class ParamSet {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -171,7 +178,8 @@ public final class ParamSet {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -186,7 +194,8 @@ public final class ParamSet {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -198,7 +207,8 @@ public final class ParamSet {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Onboard parameter value"
         )
         public final Builder paramValue(float paramValue) {
             this.paramValue = paramValue;
@@ -211,7 +221,8 @@ public final class ParamSet {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = MavParamType.class
+                enumType = MavParamType.class,
+                description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
         )
         public final Builder paramType(EnumValue<MavParamType> paramType) {
             this.paramType = paramType;

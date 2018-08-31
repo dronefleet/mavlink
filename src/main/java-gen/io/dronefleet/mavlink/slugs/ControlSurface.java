@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 185,
-        crc = 113
+        crc = 113,
+        description = "Control for surface; pending and order to origin."
 )
 public final class ControlSurface {
     private final int target;
@@ -44,7 +45,8 @@ public final class ControlSurface {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system setting the commands"
     )
     public final int target() {
         return this.target;
@@ -55,7 +57,8 @@ public final class ControlSurface {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder"
     )
     public final int idsurface() {
         return this.idsurface;
@@ -66,7 +69,8 @@ public final class ControlSurface {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pending"
     )
     public final float mcontrol() {
         return this.mcontrol;
@@ -77,7 +81,8 @@ public final class ControlSurface {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Order to origin"
     )
     public final float bcontrol() {
         return this.bcontrol;
@@ -127,7 +132,8 @@ public final class ControlSurface {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system setting the commands"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -139,7 +145,8 @@ public final class ControlSurface {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "ID control surface send 0: throttle 1: aileron 2: elevator 3: rudder"
         )
         public final Builder idsurface(int idsurface) {
             this.idsurface = idsurface;
@@ -151,7 +158,8 @@ public final class ControlSurface {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pending"
         )
         public final Builder mcontrol(float mcontrol) {
             this.mcontrol = mcontrol;
@@ -163,7 +171,8 @@ public final class ControlSurface {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Order to origin"
         )
         public final Builder bcontrol(float bcontrol) {
             this.bcontrol = bcontrol;

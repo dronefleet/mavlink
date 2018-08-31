@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 100,
-        crc = 175
+        crc = 175,
+        description = "Optical flow from a flow sensor (e.g. optical mouse sensor)"
 )
 public final class OpticalFlow {
     private final BigInteger timeUsec;
@@ -64,7 +65,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (UNIX)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -75,7 +77,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Sensor ID"
     )
     public final int sensorId() {
         return this.sensorId;
@@ -87,7 +90,8 @@ public final class OpticalFlow {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Flow in pixels * 10 in x-sensor direction (dezi-pixels)"
     )
     public final int flowX() {
         return this.flowX;
@@ -99,7 +103,8 @@ public final class OpticalFlow {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Flow in pixels * 10 in y-sensor direction (dezi-pixels)"
     )
     public final int flowY() {
         return this.flowY;
@@ -110,7 +115,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Flow in meters in x-sensor direction, angular-speed compensated"
     )
     public final float flowCompMX() {
         return this.flowCompMX;
@@ -121,7 +127,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Flow in meters in y-sensor direction, angular-speed compensated"
     )
     public final float flowCompMY() {
         return this.flowCompMY;
@@ -132,7 +139,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Optical flow quality / confidence. 0: bad, 255: maximum quality"
     )
     public final int quality() {
         return this.quality;
@@ -143,7 +151,8 @@ public final class OpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Ground distance in meters. Positive value: distance known. Negative value: Unknown distance"
     )
     public final float groundDistance() {
         return this.groundDistance;
@@ -155,7 +164,8 @@ public final class OpticalFlow {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Flow rate in radians/second about X axis"
     )
     public final float flowRateX() {
         return this.flowRateX;
@@ -167,7 +177,8 @@ public final class OpticalFlow {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Flow rate in radians/second about Y axis"
     )
     public final float flowRateY() {
         return this.flowRateY;
@@ -247,7 +258,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (UNIX)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -259,7 +271,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Sensor ID"
         )
         public final Builder sensorId(int sensorId) {
             this.sensorId = sensorId;
@@ -272,7 +285,8 @@ public final class OpticalFlow {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Flow in pixels * 10 in x-sensor direction (dezi-pixels)"
         )
         public final Builder flowX(int flowX) {
             this.flowX = flowX;
@@ -285,7 +299,8 @@ public final class OpticalFlow {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Flow in pixels * 10 in y-sensor direction (dezi-pixels)"
         )
         public final Builder flowY(int flowY) {
             this.flowY = flowY;
@@ -297,7 +312,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Flow in meters in x-sensor direction, angular-speed compensated"
         )
         public final Builder flowCompMX(float flowCompMX) {
             this.flowCompMX = flowCompMX;
@@ -309,7 +325,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Flow in meters in y-sensor direction, angular-speed compensated"
         )
         public final Builder flowCompMY(float flowCompMY) {
             this.flowCompMY = flowCompMY;
@@ -321,7 +338,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Optical flow quality / confidence. 0: bad, 255: maximum quality"
         )
         public final Builder quality(int quality) {
             this.quality = quality;
@@ -333,7 +351,8 @@ public final class OpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Ground distance in meters. Positive value: distance known. Negative value: Unknown distance"
         )
         public final Builder groundDistance(float groundDistance) {
             this.groundDistance = groundDistance;
@@ -346,7 +365,8 @@ public final class OpticalFlow {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Flow rate in radians/second about X axis"
         )
         public final Builder flowRateX(float flowRateX) {
             this.flowRateX = flowRateX;
@@ -359,7 +379,8 @@ public final class OpticalFlow {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Flow rate in radians/second about Y axis"
         )
         public final Builder flowRateY(float flowRateY) {
             this.flowRateY = flowRateY;

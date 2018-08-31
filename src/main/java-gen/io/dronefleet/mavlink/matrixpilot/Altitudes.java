@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 181,
-        crc = 55
+        crc = 55,
+        description = "The altitude measured by sensors and IMU"
 )
 public final class Altitudes {
     private final long timeBootMs;
@@ -54,7 +55,8 @@ public final class Altitudes {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -66,7 +68,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "GPS altitude in meters, expressed as * 1000 (millimeters), above MSL"
     )
     public final int altGps() {
         return this.altGps;
@@ -78,7 +81,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "IMU altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int altImu() {
         return this.altImu;
@@ -90,7 +94,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "barometeric altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int altBarometric() {
         return this.altBarometric;
@@ -102,7 +107,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int altOpticalFlow() {
         return this.altOpticalFlow;
@@ -114,7 +120,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int altRangeFinder() {
         return this.altRangeFinder;
@@ -126,7 +133,8 @@ public final class Altitudes {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Extra altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int altExtra() {
         return this.altExtra;
@@ -191,7 +199,8 @@ public final class Altitudes {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -204,7 +213,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "GPS altitude in meters, expressed as * 1000 (millimeters), above MSL"
         )
         public final Builder altGps(int altGps) {
             this.altGps = altGps;
@@ -217,7 +227,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "IMU altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altImu(int altImu) {
             this.altImu = altImu;
@@ -230,7 +241,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "barometeric altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altBarometric(int altBarometric) {
             this.altBarometric = altBarometric;
@@ -243,7 +255,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altOpticalFlow(int altOpticalFlow) {
             this.altOpticalFlow = altOpticalFlow;
@@ -256,7 +269,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altRangeFinder(int altRangeFinder) {
             this.altRangeFinder = altRangeFinder;
@@ -269,7 +283,8 @@ public final class Altitudes {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Extra altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altExtra(int altExtra) {
             this.altExtra = altExtra;

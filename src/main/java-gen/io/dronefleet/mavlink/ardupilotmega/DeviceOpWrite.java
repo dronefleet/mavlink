@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 11002,
-        crc = 234
+        crc = 234,
+        description = "Write registers for a device"
 )
 public final class DeviceOpWrite {
     private final int targetSystem;
@@ -67,7 +68,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -78,7 +80,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -89,7 +92,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "request ID - copied to reply"
     )
     public final long requestId() {
         return this.requestId;
@@ -101,7 +105,8 @@ public final class DeviceOpWrite {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = DeviceOpBustype.class
+            enumType = DeviceOpBustype.class,
+            description = "The bus type"
     )
     public final EnumValue<DeviceOpBustype> bustype() {
         return this.bustype;
@@ -112,7 +117,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Bus number"
     )
     public final int bus() {
         return this.bus;
@@ -123,7 +129,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Bus address"
     )
     public final int address() {
         return this.address;
@@ -135,7 +142,8 @@ public final class DeviceOpWrite {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            arraySize = 40
+            arraySize = 40,
+            description = "Name of device on bus (for SPI)"
     )
     public final String busname() {
         return this.busname;
@@ -146,7 +154,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "First register to write"
     )
     public final int regstart() {
         return this.regstart;
@@ -157,7 +166,8 @@ public final class DeviceOpWrite {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "count of registers to write"
     )
     public final int count() {
         return this.count;
@@ -169,7 +179,8 @@ public final class DeviceOpWrite {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            arraySize = 128
+            arraySize = 128,
+            description = "write data"
     )
     public final byte[] data() {
         return this.data;
@@ -249,7 +260,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -261,7 +273,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -273,7 +286,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "request ID - copied to reply"
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -286,7 +300,8 @@ public final class DeviceOpWrite {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = DeviceOpBustype.class
+                enumType = DeviceOpBustype.class,
+                description = "The bus type"
         )
         public final Builder bustype(EnumValue<DeviceOpBustype> bustype) {
             this.bustype = bustype;
@@ -319,7 +334,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Bus number"
         )
         public final Builder bus(int bus) {
             this.bus = bus;
@@ -331,7 +347,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Bus address"
         )
         public final Builder address(int address) {
             this.address = address;
@@ -344,7 +361,8 @@ public final class DeviceOpWrite {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                arraySize = 40
+                arraySize = 40,
+                description = "Name of device on bus (for SPI)"
         )
         public final Builder busname(String busname) {
             this.busname = busname;
@@ -356,7 +374,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "First register to write"
         )
         public final Builder regstart(int regstart) {
             this.regstart = regstart;
@@ -368,7 +387,8 @@ public final class DeviceOpWrite {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "count of registers to write"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -381,7 +401,8 @@ public final class DeviceOpWrite {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                arraySize = 128
+                arraySize = 128,
+                description = "write data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

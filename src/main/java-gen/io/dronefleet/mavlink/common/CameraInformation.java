@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 259,
-        crc = 92
+        crc = 92,
+        description = "Information about a camera"
 )
 public final class CameraInformation {
     private final long timeBootMs;
@@ -77,7 +78,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -89,7 +91,8 @@ public final class CameraInformation {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 32
+            arraySize = 32,
+            description = "Name of the camera vendor"
     )
     public final byte[] vendorName() {
         return this.vendorName;
@@ -101,7 +104,8 @@ public final class CameraInformation {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 32
+            arraySize = 32,
+            description = "Name of the camera model"
     )
     public final byte[] modelName() {
         return this.modelName;
@@ -113,7 +117,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
     )
     public final long firmwareVersion() {
         return this.firmwareVersion;
@@ -124,7 +129,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Focal length in mm"
     )
     public final float focalLength() {
         return this.focalLength;
@@ -135,7 +141,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Image sensor size horizontal in mm"
     )
     public final float sensorSizeH() {
         return this.sensorSizeH;
@@ -146,7 +153,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Image sensor size vertical in mm"
     )
     public final float sensorSizeV() {
         return this.sensorSizeV;
@@ -157,7 +165,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 2
+            unitSize = 2,
+            description = "Image resolution in pixels horizontal"
     )
     public final int resolutionH() {
         return this.resolutionH;
@@ -168,7 +177,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "Image resolution in pixels vertical"
     )
     public final int resolutionV() {
         return this.resolutionV;
@@ -179,7 +189,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "Reserved for a lens ID"
     )
     public final int lensId() {
         return this.lensId;
@@ -191,7 +202,8 @@ public final class CameraInformation {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            enumType = CameraCapFlags.class
+            enumType = CameraCapFlags.class,
+            description = "CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities."
     )
     public final EnumValue<CameraCapFlags> flags() {
         return this.flags;
@@ -202,7 +214,8 @@ public final class CameraInformation {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 2
+            unitSize = 2,
+            description = "Camera definition version (iteration)"
     )
     public final int camDefinitionVersion() {
         return this.camDefinitionVersion;
@@ -214,7 +227,8 @@ public final class CameraInformation {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 1,
-            arraySize = 140
+            arraySize = 140,
+            description = "Camera definition URI (if any, otherwise only basic functions will be available)."
     )
     public final String camDefinitionUri() {
         return this.camDefinitionUri;
@@ -309,7 +323,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -322,7 +337,8 @@ public final class CameraInformation {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 32
+                arraySize = 32,
+                description = "Name of the camera vendor"
         )
         public final Builder vendorName(byte[] vendorName) {
             this.vendorName = vendorName;
@@ -335,7 +351,8 @@ public final class CameraInformation {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 32
+                arraySize = 32,
+                description = "Name of the camera model"
         )
         public final Builder modelName(byte[] modelName) {
             this.modelName = modelName;
@@ -348,7 +365,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Version of the camera firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
         )
         public final Builder firmwareVersion(long firmwareVersion) {
             this.firmwareVersion = firmwareVersion;
@@ -360,7 +378,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Focal length in mm"
         )
         public final Builder focalLength(float focalLength) {
             this.focalLength = focalLength;
@@ -372,7 +391,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Image sensor size horizontal in mm"
         )
         public final Builder sensorSizeH(float sensorSizeH) {
             this.sensorSizeH = sensorSizeH;
@@ -384,7 +404,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Image sensor size vertical in mm"
         )
         public final Builder sensorSizeV(float sensorSizeV) {
             this.sensorSizeV = sensorSizeV;
@@ -396,7 +417,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 2
+                unitSize = 2,
+                description = "Image resolution in pixels horizontal"
         )
         public final Builder resolutionH(int resolutionH) {
             this.resolutionH = resolutionH;
@@ -408,7 +430,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "Image resolution in pixels vertical"
         )
         public final Builder resolutionV(int resolutionV) {
             this.resolutionV = resolutionV;
@@ -420,7 +443,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "Reserved for a lens ID"
         )
         public final Builder lensId(int lensId) {
             this.lensId = lensId;
@@ -433,7 +457,8 @@ public final class CameraInformation {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                enumType = CameraCapFlags.class
+                enumType = CameraCapFlags.class,
+                description = "CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities."
         )
         public final Builder flags(EnumValue<CameraCapFlags> flags) {
             this.flags = flags;
@@ -466,7 +491,8 @@ public final class CameraInformation {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 2
+                unitSize = 2,
+                description = "Camera definition version (iteration)"
         )
         public final Builder camDefinitionVersion(int camDefinitionVersion) {
             this.camDefinitionVersion = camDefinitionVersion;
@@ -479,7 +505,8 @@ public final class CameraInformation {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 1,
-                arraySize = 140
+                arraySize = 140,
+                description = "Camera definition URI (if any, otherwise only basic functions will be available)."
         )
         public final Builder camDefinitionUri(String camDefinitionUri) {
             this.camDefinitionUri = camDefinitionUri;

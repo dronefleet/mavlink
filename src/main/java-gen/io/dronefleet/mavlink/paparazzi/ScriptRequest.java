@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 181,
-        crc = 129
+        crc = 129,
+        description = "Request script item with the sequence number seq. The response of the system to this message should be a SCRIPT_ITEM message."
 )
 public final class ScriptRequest {
     private final int targetSystem;
@@ -42,7 +43,8 @@ public final class ScriptRequest {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -53,7 +55,8 @@ public final class ScriptRequest {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -64,7 +67,8 @@ public final class ScriptRequest {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -109,7 +113,8 @@ public final class ScriptRequest {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -121,7 +126,8 @@ public final class ScriptRequest {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -133,7 +139,8 @@ public final class ScriptRequest {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;

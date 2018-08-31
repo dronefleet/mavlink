@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 186,
-        crc = 144
+        crc = 144,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F20 format"
 )
 public final class SerialUdbExtraF20 {
     private final int sueNumberOfInputs;
@@ -75,7 +76,8 @@ public final class SerialUdbExtraF20 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE Number of Input Channels"
     )
     public final int sueNumberOfInputs() {
         return this.sueNumberOfInputs;
@@ -87,7 +89,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 1"
     )
     public final int sueTrimValueInput1() {
         return this.sueTrimValueInput1;
@@ -99,7 +102,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 2"
     )
     public final int sueTrimValueInput2() {
         return this.sueTrimValueInput2;
@@ -111,7 +115,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 3"
     )
     public final int sueTrimValueInput3() {
         return this.sueTrimValueInput3;
@@ -123,7 +128,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 4"
     )
     public final int sueTrimValueInput4() {
         return this.sueTrimValueInput4;
@@ -135,7 +141,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 5"
     )
     public final int sueTrimValueInput5() {
         return this.sueTrimValueInput5;
@@ -147,7 +154,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 6"
     )
     public final int sueTrimValueInput6() {
         return this.sueTrimValueInput6;
@@ -159,7 +167,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 7"
     )
     public final int sueTrimValueInput7() {
         return this.sueTrimValueInput7;
@@ -171,7 +180,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 8"
     )
     public final int sueTrimValueInput8() {
         return this.sueTrimValueInput8;
@@ -183,7 +193,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 9"
     )
     public final int sueTrimValueInput9() {
         return this.sueTrimValueInput9;
@@ -195,7 +206,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 10"
     )
     public final int sueTrimValueInput10() {
         return this.sueTrimValueInput10;
@@ -207,7 +219,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 11"
     )
     public final int sueTrimValueInput11() {
         return this.sueTrimValueInput11;
@@ -219,7 +232,8 @@ public final class SerialUdbExtraF20 {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE UDB PWM Trim Value on Input 12"
     )
     public final int sueTrimValueInput12() {
         return this.sueTrimValueInput12;
@@ -314,7 +328,8 @@ public final class SerialUdbExtraF20 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE Number of Input Channels"
         )
         public final Builder sueNumberOfInputs(int sueNumberOfInputs) {
             this.sueNumberOfInputs = sueNumberOfInputs;
@@ -327,7 +342,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 1"
         )
         public final Builder sueTrimValueInput1(int sueTrimValueInput1) {
             this.sueTrimValueInput1 = sueTrimValueInput1;
@@ -340,7 +356,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 2"
         )
         public final Builder sueTrimValueInput2(int sueTrimValueInput2) {
             this.sueTrimValueInput2 = sueTrimValueInput2;
@@ -353,7 +370,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 3"
         )
         public final Builder sueTrimValueInput3(int sueTrimValueInput3) {
             this.sueTrimValueInput3 = sueTrimValueInput3;
@@ -366,7 +384,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 4"
         )
         public final Builder sueTrimValueInput4(int sueTrimValueInput4) {
             this.sueTrimValueInput4 = sueTrimValueInput4;
@@ -379,7 +398,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 5"
         )
         public final Builder sueTrimValueInput5(int sueTrimValueInput5) {
             this.sueTrimValueInput5 = sueTrimValueInput5;
@@ -392,7 +412,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 6"
         )
         public final Builder sueTrimValueInput6(int sueTrimValueInput6) {
             this.sueTrimValueInput6 = sueTrimValueInput6;
@@ -405,7 +426,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 7"
         )
         public final Builder sueTrimValueInput7(int sueTrimValueInput7) {
             this.sueTrimValueInput7 = sueTrimValueInput7;
@@ -418,7 +440,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 8"
         )
         public final Builder sueTrimValueInput8(int sueTrimValueInput8) {
             this.sueTrimValueInput8 = sueTrimValueInput8;
@@ -431,7 +454,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 9"
         )
         public final Builder sueTrimValueInput9(int sueTrimValueInput9) {
             this.sueTrimValueInput9 = sueTrimValueInput9;
@@ -444,7 +468,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 10"
         )
         public final Builder sueTrimValueInput10(int sueTrimValueInput10) {
             this.sueTrimValueInput10 = sueTrimValueInput10;
@@ -457,7 +482,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 11"
         )
         public final Builder sueTrimValueInput11(int sueTrimValueInput11) {
             this.sueTrimValueInput11 = sueTrimValueInput11;
@@ -470,7 +496,8 @@ public final class SerialUdbExtraF20 {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE UDB PWM Trim Value on Input 12"
         )
         public final Builder sueTrimValueInput12(int sueTrimValueInput12) {
             this.sueTrimValueInput12 = sueTrimValueInput12;

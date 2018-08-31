@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 173,
-        crc = 54
+        crc = 54,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F5: format"
 )
 public final class SerialUdbExtraF5 {
     private final float sueYawkpAileron;
@@ -45,7 +46,8 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB YAWKP_AILERON Gain for Proporional control of navigation"
     )
     public final float sueYawkpAileron() {
         return this.sueYawkpAileron;
@@ -56,7 +58,8 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB YAWKD_AILERON Gain for Rate control of navigation"
     )
     public final float sueYawkdAileron() {
         return this.sueYawkdAileron;
@@ -67,7 +70,8 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization"
     )
     public final float sueRollkp() {
         return this.sueRollkp;
@@ -78,7 +82,8 @@ public final class SerialUdbExtraF5 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization"
     )
     public final float sueRollkd() {
         return this.sueRollkd;
@@ -128,7 +133,8 @@ public final class SerialUdbExtraF5 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB YAWKP_AILERON Gain for Proporional control of navigation"
         )
         public final Builder sueYawkpAileron(float sueYawkpAileron) {
             this.sueYawkpAileron = sueYawkpAileron;
@@ -140,7 +146,8 @@ public final class SerialUdbExtraF5 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB YAWKD_AILERON Gain for Rate control of navigation"
         )
         public final Builder sueYawkdAileron(float sueYawkdAileron) {
             this.sueYawkdAileron = sueYawkdAileron;
@@ -152,7 +159,8 @@ public final class SerialUdbExtraF5 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra ROLLKP Gain for Proportional control of roll stabilization"
         )
         public final Builder sueRollkp(float sueRollkp) {
             this.sueRollkp = sueRollkp;
@@ -164,7 +172,8 @@ public final class SerialUdbExtraF5 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra ROLLKD Gain for Rate control of roll stabilization"
         )
         public final Builder sueRollkd(float sueRollkd) {
             this.sueRollkd = sueRollkd;

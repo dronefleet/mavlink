@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 194,
-        crc = 51
+        crc = 51,
+        description = "This contains the status of the GPS readings"
 )
 public final class StatusGps {
     private final int csfails;
@@ -54,7 +55,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Number of times checksum has failed"
     )
     public final int csfails() {
         return this.csfails;
@@ -66,7 +68,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a"
     )
     public final int gpsquality() {
         return this.gpsquality;
@@ -77,7 +80,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Indicates if GN, GL or GP messages are being received"
     )
     public final int msgstype() {
         return this.msgstype;
@@ -88,7 +92,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "A = data valid, V = data invalid"
     )
     public final int posstatus() {
         return this.posstatus;
@@ -99,7 +104,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Magnetic variation"
     )
     public final float magvar() {
         return this.magvar;
@@ -112,7 +118,8 @@ public final class StatusGps {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course"
     )
     public final int magdir() {
         return this.magdir;
@@ -124,7 +131,8 @@ public final class StatusGps {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid"
     )
     public final int modeind() {
         return this.modeind;
@@ -189,7 +197,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Number of times checksum has failed"
         )
         public final Builder csfails(int csfails) {
             this.csfails = csfails;
@@ -202,7 +211,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "The quality indicator, 0=fix not available or invalid, 1=GPS fix, 2=C/A differential GPS, 6=Dead reckoning mode, 7=Manual input mode (fixed position), 8=Simulator mode, 9= WAAS a"
         )
         public final Builder gpsquality(int gpsquality) {
             this.gpsquality = gpsquality;
@@ -214,7 +224,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Indicates if GN, GL or GP messages are being received"
         )
         public final Builder msgstype(int msgstype) {
             this.msgstype = msgstype;
@@ -226,7 +237,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "A = data valid, V = data invalid"
         )
         public final Builder posstatus(int posstatus) {
             this.posstatus = posstatus;
@@ -238,7 +250,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Magnetic variation"
         )
         public final Builder magvar(float magvar) {
             this.magvar = magvar;
@@ -252,7 +265,8 @@ public final class StatusGps {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Magnetic variation direction E/W. Easterly variation (E) subtracts from True course and Westerly variation (W) adds to True course"
         )
         public final Builder magdir(int magdir) {
             this.magdir = magdir;
@@ -265,7 +279,8 @@ public final class StatusGps {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Positioning system mode indicator. A - Autonomous;D-Differential; E-Estimated (dead reckoning) mode;M-Manual input; N-Data not valid"
         )
         public final Builder modeind(int modeind) {
             this.modeind = modeind;

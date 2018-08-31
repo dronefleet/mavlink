@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 249,
-        crc = 204
+        crc = 204,
+        description = "Send raw controller memory. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output."
 )
 public final class MemoryVect {
     private final int address;
@@ -47,7 +48,8 @@ public final class MemoryVect {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Starting address of the debug variables"
     )
     public final int address() {
         return this.address;
@@ -58,7 +60,8 @@ public final class MemoryVect {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below"
     )
     public final int ver() {
         return this.ver;
@@ -70,7 +73,8 @@ public final class MemoryVect {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14"
     )
     public final int type() {
         return this.type;
@@ -83,7 +87,8 @@ public final class MemoryVect {
             position = 4,
             unitSize = 1,
             arraySize = 32,
-            signed = true
+            signed = true,
+            description = "Memory contents at specified address"
     )
     public final List<Integer> value() {
         return this.value;
@@ -133,7 +138,8 @@ public final class MemoryVect {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Starting address of the debug variables"
         )
         public final Builder address(int address) {
             this.address = address;
@@ -145,7 +151,8 @@ public final class MemoryVect {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below"
         )
         public final Builder ver(int ver) {
             this.ver = ver;
@@ -158,7 +165,8 @@ public final class MemoryVect {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14"
         )
         public final Builder type(int type) {
             this.type = type;
@@ -172,7 +180,8 @@ public final class MemoryVect {
                 position = 4,
                 unitSize = 1,
                 arraySize = 32,
-                signed = true
+                signed = true,
+                description = "Memory contents at specified address"
         )
         public final Builder value(List<Integer> value) {
             this.value = value;

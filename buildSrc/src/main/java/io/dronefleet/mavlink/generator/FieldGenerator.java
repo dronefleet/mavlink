@@ -110,6 +110,10 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
             builder.addMember("extension", "$L", true);
         }
 
+        if (description != null && !description.trim().isEmpty()) {
+            builder.addMember("description", "$S", description);
+        }
+
         return builder.build();
     }
 

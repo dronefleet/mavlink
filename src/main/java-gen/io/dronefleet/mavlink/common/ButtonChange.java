@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 257,
-        crc = 131
+        crc = 131,
+        description = "Report button state change"
 )
 public final class ButtonChange {
     private final long timeBootMs;
@@ -41,7 +42,8 @@ public final class ButtonChange {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -52,7 +54,8 @@ public final class ButtonChange {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time of last change of button state"
     )
     public final long lastChangeMs() {
         return this.lastChangeMs;
@@ -63,7 +66,8 @@ public final class ButtonChange {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Bitmap state of buttons"
     )
     public final int state() {
         return this.state;
@@ -108,7 +112,8 @@ public final class ButtonChange {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -120,7 +125,8 @@ public final class ButtonChange {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time of last change of button state"
         )
         public final Builder lastChangeMs(long lastChangeMs) {
             this.lastChangeMs = lastChangeMs;
@@ -132,7 +138,8 @@ public final class ButtonChange {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Bitmap state of buttons"
         )
         public final Builder state(int state) {
             this.state = state;

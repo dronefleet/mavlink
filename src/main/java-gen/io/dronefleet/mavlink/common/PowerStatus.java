@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 125,
-        crc = 203
+        crc = 203,
+        description = "Power supply status"
 )
 public final class PowerStatus {
     private final int vcc;
@@ -44,7 +45,8 @@ public final class PowerStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "5V rail voltage in millivolts"
     )
     public final int vcc() {
         return this.vcc;
@@ -55,7 +57,8 @@ public final class PowerStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "servo rail voltage in millivolts"
     )
     public final int vservo() {
         return this.vservo;
@@ -67,7 +70,8 @@ public final class PowerStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            enumType = MavPowerStatus.class
+            enumType = MavPowerStatus.class,
+            description = "power supply status flags (see MAV_POWER_STATUS enum)"
     )
     public final EnumValue<MavPowerStatus> flags() {
         return this.flags;
@@ -112,7 +116,8 @@ public final class PowerStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "5V rail voltage in millivolts"
         )
         public final Builder vcc(int vcc) {
             this.vcc = vcc;
@@ -124,7 +129,8 @@ public final class PowerStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "servo rail voltage in millivolts"
         )
         public final Builder vservo(int vservo) {
             this.vservo = vservo;
@@ -137,7 +143,8 @@ public final class PowerStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                enumType = MavPowerStatus.class
+                enumType = MavPowerStatus.class,
+                description = "power supply status flags (see MAV_POWER_STATUS enum)"
         )
         public final Builder flags(EnumValue<MavPowerStatus> flags) {
             this.flags = flags;

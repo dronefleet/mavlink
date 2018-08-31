@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 181,
-        crc = 174
+        crc = 174,
+        description = "Deprecated. Use BATTERY_STATUS instead. 2nd Battery status"
 )
 public final class Battery2 {
     private final int voltage;
@@ -38,7 +39,8 @@ public final class Battery2 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "voltage in millivolts"
     )
     public final int voltage() {
         return this.voltage;
@@ -51,7 +53,8 @@ public final class Battery2 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
     )
     public final int currentBattery() {
         return this.currentBattery;
@@ -91,7 +94,8 @@ public final class Battery2 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "voltage in millivolts"
         )
         public final Builder voltage(int voltage) {
             this.voltage = voltage;
@@ -105,7 +109,8 @@ public final class Battery2 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
         )
         public final Builder currentBattery(int currentBattery) {
             this.currentBattery = currentBattery;

@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 197,
-        crc = 39
+        crc = 39,
+        description = "The boot message indicates that a system is starting. The onboard software version allows to keep track of onboard soft/firmware revisions. This message allows the sensor and control MCUs to communicate version numbers on startup."
 )
 public final class Boot {
     private final long version;
@@ -37,7 +38,8 @@ public final class Boot {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "The onboard software version"
     )
     public final long version() {
         return this.version;
@@ -72,7 +74,8 @@ public final class Boot {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "The onboard software version"
         )
         public final Builder version(long version) {
             this.version = version;

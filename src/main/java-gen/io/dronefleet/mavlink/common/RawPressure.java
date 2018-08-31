@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 28,
-        crc = 67
+        crc = 67,
+        description = "The RAW pressure readings for the typical setup of one absolute pressure and one differential pressure sensor. The sensor values should be the raw, UNSCALED ADC values."
 )
 public final class RawPressure {
     private final BigInteger timeUsec;
@@ -50,7 +51,8 @@ public final class RawPressure {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -62,7 +64,8 @@ public final class RawPressure {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Absolute pressure (raw)"
     )
     public final int pressAbs() {
         return this.pressAbs;
@@ -74,7 +77,8 @@ public final class RawPressure {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Differential pressure 1 (raw, 0 if nonexistant)"
     )
     public final int pressDiff1() {
         return this.pressDiff1;
@@ -86,7 +90,8 @@ public final class RawPressure {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Differential pressure 2 (raw, 0 if nonexistant)"
     )
     public final int pressDiff2() {
         return this.pressDiff2;
@@ -98,7 +103,8 @@ public final class RawPressure {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Raw Temperature measurement (raw)"
     )
     public final int temperature() {
         return this.temperature;
@@ -153,7 +159,8 @@ public final class RawPressure {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -166,7 +173,8 @@ public final class RawPressure {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Absolute pressure (raw)"
         )
         public final Builder pressAbs(int pressAbs) {
             this.pressAbs = pressAbs;
@@ -179,7 +187,8 @@ public final class RawPressure {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Differential pressure 1 (raw, 0 if nonexistant)"
         )
         public final Builder pressDiff1(int pressDiff1) {
             this.pressDiff1 = pressDiff1;
@@ -192,7 +201,8 @@ public final class RawPressure {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Differential pressure 2 (raw, 0 if nonexistant)"
         )
         public final Builder pressDiff2(int pressDiff2) {
             this.pressDiff2 = pressDiff2;
@@ -205,7 +215,8 @@ public final class RawPressure {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Raw Temperature measurement (raw)"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;

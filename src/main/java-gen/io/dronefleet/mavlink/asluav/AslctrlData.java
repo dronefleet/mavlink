@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 203,
-        crc = 172
+        crc = 172,
+        description = "ASL-fixed-wing controller data"
 )
 public final class AslctrlData {
     private final BigInteger timestamp;
@@ -112,7 +113,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -123,7 +125,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "ASLCTRL control-mode (manual, stabilized, auto, etc...)"
     )
     public final int aslctrlMode() {
         return this.aslctrlMode;
@@ -134,7 +137,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "See sourcecode for a description of these values..."
     )
     public final float h() {
         return this.h;
@@ -167,7 +171,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angle"
     )
     public final float pitchangle() {
         return this.pitchangle;
@@ -178,7 +183,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angle reference"
     )
     public final float pitchangleref() {
         return this.pitchangleref;
@@ -255,7 +261,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "Airspeed reference"
     )
     public final float airspeedref() {
         return this.airspeedref;
@@ -277,7 +284,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angle"
     )
     public final float yawangle() {
         return this.yawangle;
@@ -288,7 +296,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angle reference"
     )
     public final float yawangleref() {
         return this.yawangleref;
@@ -299,7 +308,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angle"
     )
     public final float rollangle() {
         return this.rollangle;
@@ -310,7 +320,8 @@ public final class AslctrlData {
      */
     @MavlinkFieldInfo(
             position = 19,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angle reference"
     )
     public final float rollangleref() {
         return this.rollangleref;
@@ -531,7 +542,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -543,7 +555,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "ASLCTRL control-mode (manual, stabilized, auto, etc...)"
         )
         public final Builder aslctrlMode(int aslctrlMode) {
             this.aslctrlMode = aslctrlMode;
@@ -555,7 +568,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "See sourcecode for a description of these values..."
         )
         public final Builder h(float h) {
             this.h = h;
@@ -591,7 +605,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angle"
         )
         public final Builder pitchangle(float pitchangle) {
             this.pitchangle = pitchangle;
@@ -603,7 +618,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angle reference"
         )
         public final Builder pitchangleref(float pitchangleref) {
             this.pitchangleref = pitchangleref;
@@ -687,7 +703,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "Airspeed reference"
         )
         public final Builder airspeedref(float airspeedref) {
             this.airspeedref = airspeedref;
@@ -711,7 +728,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angle"
         )
         public final Builder yawangle(float yawangle) {
             this.yawangle = yawangle;
@@ -723,7 +741,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angle reference"
         )
         public final Builder yawangleref(float yawangleref) {
             this.yawangleref = yawangleref;
@@ -735,7 +754,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angle"
         )
         public final Builder rollangle(float rollangle) {
             this.rollangle = rollangle;
@@ -747,7 +767,8 @@ public final class AslctrlData {
          */
         @MavlinkFieldInfo(
                 position = 19,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angle reference"
         )
         public final Builder rollangleref(float rollangleref) {
             this.rollangleref = rollangleref;

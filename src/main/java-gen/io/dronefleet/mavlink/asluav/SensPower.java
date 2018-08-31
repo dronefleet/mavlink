@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 201,
-        crc = 218
+        crc = 218,
+        description = "Voltage and current sensor data"
 )
 public final class SensPower {
     private final float adc121VspbVolt;
@@ -45,7 +46,8 @@ public final class SensPower {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board voltage sensor reading"
     )
     public final float adc121VspbVolt() {
         return this.adc121VspbVolt;
@@ -56,7 +58,8 @@ public final class SensPower {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board current sensor reading"
     )
     public final float adc121CspbAmp() {
         return this.adc121CspbAmp;
@@ -67,7 +70,8 @@ public final class SensPower {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Board current sensor 1 reading"
     )
     public final float adc121Cs1Amp() {
         return this.adc121Cs1Amp;
@@ -78,7 +82,8 @@ public final class SensPower {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Board current sensor 2 reading"
     )
     public final float adc121Cs2Amp() {
         return this.adc121Cs2Amp;
@@ -128,7 +133,8 @@ public final class SensPower {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board voltage sensor reading"
         )
         public final Builder adc121VspbVolt(float adc121VspbVolt) {
             this.adc121VspbVolt = adc121VspbVolt;
@@ -140,7 +146,8 @@ public final class SensPower {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board current sensor reading"
         )
         public final Builder adc121CspbAmp(float adc121CspbAmp) {
             this.adc121CspbAmp = adc121CspbAmp;
@@ -152,7 +159,8 @@ public final class SensPower {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Board current sensor 1 reading"
         )
         public final Builder adc121Cs1Amp(float adc121Cs1Amp) {
             this.adc121Cs1Amp = adc121Cs1Amp;
@@ -164,7 +172,8 @@ public final class SensPower {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Board current sensor 2 reading"
         )
         public final Builder adc121Cs2Amp(float adc121Cs2Amp) {
             this.adc121Cs2Amp = adc121Cs2Amp;

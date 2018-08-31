@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 69,
-        crc = 243
+        crc = 243,
+        description = "This message provides an API for manually controlling the vehicle using standard joystick axes nomenclature, along with a joystick-like input device. Unused axes can be disabled an buttons are also transmit as boolean values of their"
 )
 public final class ManualControl {
     private final int target;
@@ -52,7 +53,8 @@ public final class ManualControl {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system to be controlled."
     )
     public final int target() {
         return this.target;
@@ -66,7 +68,8 @@ public final class ManualControl {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle."
     )
     public final int x() {
         return this.x;
@@ -80,7 +83,8 @@ public final class ManualControl {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle."
     )
     public final int y() {
         return this.y;
@@ -95,7 +99,8 @@ public final class ManualControl {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust."
     )
     public final int z() {
         return this.z;
@@ -109,7 +114,8 @@ public final class ManualControl {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 1000 and clockwise being -1000, and the yaw of a vehicle."
     )
     public final int r() {
         return this.r;
@@ -121,7 +127,8 @@ public final class ManualControl {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1."
     )
     public final int buttons() {
         return this.buttons;
@@ -181,7 +188,8 @@ public final class ManualControl {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system to be controlled."
         )
         public final Builder target(int target) {
             this.target = target;
@@ -196,7 +204,8 @@ public final class ManualControl {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle."
         )
         public final Builder x(int x) {
             this.x = x;
@@ -211,7 +220,8 @@ public final class ManualControl {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle."
         )
         public final Builder y(int y) {
             this.y = y;
@@ -227,7 +237,8 @@ public final class ManualControl {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust."
         )
         public final Builder z(int z) {
             this.z = z;
@@ -242,7 +253,8 @@ public final class ManualControl {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 1000 and clockwise being -1000, and the yaw of a vehicle."
         )
         public final Builder r(int r) {
             this.r = r;
@@ -255,7 +267,8 @@ public final class ManualControl {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1."
         )
         public final Builder buttons(int buttons) {
             this.buttons = buttons;

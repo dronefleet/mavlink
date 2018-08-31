@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 258,
-        crc = 187
+        crc = 187,
+        description = "Control vehicle tone generation (buzzer)"
 )
 public final class PlayTune {
     private final int targetSystem;
@@ -41,7 +42,8 @@ public final class PlayTune {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -52,7 +54,8 @@ public final class PlayTune {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -64,7 +67,8 @@ public final class PlayTune {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 30
+            arraySize = 30,
+            description = "tune in board specific format"
     )
     public final String tune() {
         return this.tune;
@@ -109,7 +113,8 @@ public final class PlayTune {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -121,7 +126,8 @@ public final class PlayTune {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -134,7 +140,8 @@ public final class PlayTune {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 30
+                arraySize = 30,
+                description = "tune in board specific format"
         )
         public final Builder tune(String tune) {
             this.tune = tune;

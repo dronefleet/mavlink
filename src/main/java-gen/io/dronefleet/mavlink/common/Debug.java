@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 254,
-        crc = 46
+        crc = 46,
+        description = "Send a debug value. The index is used to discriminate between values. These values show up in the plot of QGroundControl as DEBUG N."
 )
 public final class Debug {
     private final long timeBootMs;
@@ -42,7 +43,8 @@ public final class Debug {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -53,7 +55,8 @@ public final class Debug {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "index of debug variable"
     )
     public final int ind() {
         return this.ind;
@@ -64,7 +67,8 @@ public final class Debug {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "DEBUG value"
     )
     public final float value() {
         return this.value;
@@ -109,7 +113,8 @@ public final class Debug {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -121,7 +126,8 @@ public final class Debug {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "index of debug variable"
         )
         public final Builder ind(int ind) {
             this.ind = ind;
@@ -133,7 +139,8 @@ public final class Debug {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "DEBUG value"
         )
         public final Builder value(float value) {
             this.value = value;

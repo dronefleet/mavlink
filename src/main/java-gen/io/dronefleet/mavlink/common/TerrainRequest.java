@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 133,
-        crc = 6
+        crc = 6,
+        description = "Request for terrain data and terrain status"
 )
 public final class TerrainRequest {
     private final int lat;
@@ -46,7 +47,8 @@ public final class TerrainRequest {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude of SW corner of first grid (degrees *10^7)"
     )
     public final int lat() {
         return this.lat;
@@ -58,7 +60,8 @@ public final class TerrainRequest {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude of SW corner of first grid (in degrees *10^7)"
     )
     public final int lon() {
         return this.lon;
@@ -69,7 +72,8 @@ public final class TerrainRequest {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Grid spacing in meters"
     )
     public final int gridSpacing() {
         return this.gridSpacing;
@@ -80,7 +84,8 @@ public final class TerrainRequest {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 8
+            unitSize = 8,
+            description = "Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)"
     )
     public final BigInteger mask() {
         return this.mask;
@@ -131,7 +136,8 @@ public final class TerrainRequest {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude of SW corner of first grid (degrees *10^7)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -144,7 +150,8 @@ public final class TerrainRequest {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude of SW corner of first grid (in degrees *10^7)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -156,7 +163,8 @@ public final class TerrainRequest {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Grid spacing in meters"
         )
         public final Builder gridSpacing(int gridSpacing) {
             this.gridSpacing = gridSpacing;
@@ -168,7 +176,8 @@ public final class TerrainRequest {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 8
+                unitSize = 8,
+                description = "Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)"
         )
         public final Builder mask(BigInteger mask) {
             this.mask = mask;

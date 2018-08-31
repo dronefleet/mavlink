@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 138,
-        crc = 109
+        crc = 109,
+        description = "Motion capture attitude and position"
 )
 public final class AttPosMocap {
     private final BigInteger timeUsec;
@@ -54,7 +55,8 @@ public final class AttPosMocap {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -66,7 +68,8 @@ public final class AttPosMocap {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)"
     )
     public final List<Float> q() {
         return this.q;
@@ -77,7 +80,8 @@ public final class AttPosMocap {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "X position in meters (NED)"
     )
     public final float x() {
         return this.x;
@@ -88,7 +92,8 @@ public final class AttPosMocap {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y position in meters (NED)"
     )
     public final float y() {
         return this.y;
@@ -99,7 +104,8 @@ public final class AttPosMocap {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z position in meters (NED)"
     )
     public final float z() {
         return this.z;
@@ -113,7 +119,8 @@ public final class AttPosMocap {
             position = 7,
             unitSize = 4,
             arraySize = 21,
-            extension = true
+            extension = true,
+            description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -173,7 +180,8 @@ public final class AttPosMocap {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -186,7 +194,8 @@ public final class AttPosMocap {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -198,7 +207,8 @@ public final class AttPosMocap {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "X position in meters (NED)"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -210,7 +220,8 @@ public final class AttPosMocap {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y position in meters (NED)"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -222,7 +233,8 @@ public final class AttPosMocap {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z position in meters (NED)"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -237,7 +249,8 @@ public final class AttPosMocap {
                 position = 7,
                 unitSize = 4,
                 arraySize = 21,
-                extension = true
+                extension = true,
+                description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

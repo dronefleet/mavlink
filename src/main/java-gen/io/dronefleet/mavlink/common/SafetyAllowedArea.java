@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 55,
-        crc = 3
+        crc = 3,
+        description = "Read out the safety zone the MAV currently assumes."
 )
 public final class SafetyAllowedArea {
     private final EnumValue<MavFrame> frame;
@@ -59,7 +60,8 @@ public final class SafetyAllowedArea {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavFrame.class
+            enumType = MavFrame.class,
+            description = "Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
     )
     public final EnumValue<MavFrame> frame() {
         return this.frame;
@@ -70,7 +72,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "x position 1 / Latitude 1"
     )
     public final float p1x() {
         return this.p1x;
@@ -81,7 +84,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "y position 1 / Longitude 1"
     )
     public final float p1y() {
         return this.p1y;
@@ -92,7 +96,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "z position 1 / Altitude 1"
     )
     public final float p1z() {
         return this.p1z;
@@ -103,7 +108,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "x position 2 / Latitude 2"
     )
     public final float p2x() {
         return this.p2x;
@@ -114,7 +120,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "y position 2 / Longitude 2"
     )
     public final float p2y() {
         return this.p2y;
@@ -125,7 +132,8 @@ public final class SafetyAllowedArea {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "z position 2 / Altitude 2"
     )
     public final float p2z() {
         return this.p2z;
@@ -192,7 +200,8 @@ public final class SafetyAllowedArea {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavFrame.class
+                enumType = MavFrame.class,
+                description = "Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
         )
         public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
@@ -228,7 +237,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "x position 1 / Latitude 1"
         )
         public final Builder p1x(float p1x) {
             this.p1x = p1x;
@@ -240,7 +250,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "y position 1 / Longitude 1"
         )
         public final Builder p1y(float p1y) {
             this.p1y = p1y;
@@ -252,7 +263,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "z position 1 / Altitude 1"
         )
         public final Builder p1z(float p1z) {
             this.p1z = p1z;
@@ -264,7 +276,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "x position 2 / Latitude 2"
         )
         public final Builder p2x(float p2x) {
             this.p2x = p2x;
@@ -276,7 +289,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "y position 2 / Longitude 2"
         )
         public final Builder p2y(float p2y) {
             this.p2y = p2y;
@@ -288,7 +302,8 @@ public final class SafetyAllowedArea {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "z position 2 / Altitude 2"
         )
         public final Builder p2z(float p2z) {
             this.p2z = p2z;

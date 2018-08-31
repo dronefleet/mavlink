@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 185,
-        crc = 186
+        crc = 186,
+        description = "Send Status of each log block that autopilot board might have sent"
 )
 public final class RemoteLogBlockStatus {
     private final int targetSystem;
@@ -48,7 +49,8 @@ public final class RemoteLogBlockStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -59,7 +61,8 @@ public final class RemoteLogBlockStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -70,7 +73,8 @@ public final class RemoteLogBlockStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "log data block sequence number"
     )
     public final long seqno() {
         return this.seqno;
@@ -82,7 +86,8 @@ public final class RemoteLogBlockStatus {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = MavRemoteLogDataBlockStatuses.class
+            enumType = MavRemoteLogDataBlockStatuses.class,
+            description = "log data block status"
     )
     public final EnumValue<MavRemoteLogDataBlockStatuses> status() {
         return this.status;
@@ -132,7 +137,8 @@ public final class RemoteLogBlockStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -144,7 +150,8 @@ public final class RemoteLogBlockStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -156,7 +163,8 @@ public final class RemoteLogBlockStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "log data block sequence number"
         )
         public final Builder seqno(long seqno) {
             this.seqno = seqno;
@@ -169,7 +177,8 @@ public final class RemoteLogBlockStatus {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = MavRemoteLogDataBlockStatuses.class
+                enumType = MavRemoteLogDataBlockStatuses.class,
+                description = "log data block status"
         )
         public final Builder status(EnumValue<MavRemoteLogDataBlockStatuses> status) {
             this.status = status;

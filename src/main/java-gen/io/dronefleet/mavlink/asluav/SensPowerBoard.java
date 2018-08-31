@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 212,
-        crc = 222
+        crc = 222,
+        description = "Monitoring of power board status"
 )
 public final class SensPowerBoard {
     private final BigInteger timestamp;
@@ -72,7 +73,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -83,7 +85,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Power board status register"
     )
     public final int pwrBrdStatus() {
         return this.pwrBrdStatus;
@@ -94,7 +97,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Power board leds status"
     )
     public final int pwrBrdLedStatus() {
         return this.pwrBrdLedStatus;
@@ -105,7 +109,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board system voltage"
     )
     public final float pwrBrdSystemVolt() {
         return this.pwrBrdSystemVolt;
@@ -116,7 +121,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board servo voltage"
     )
     public final float pwrBrdServoVolt() {
         return this.pwrBrdServoVolt;
@@ -127,7 +133,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board digital voltage"
     )
     public final float pwrBrdDigitalVolt() {
         return this.pwrBrdDigitalVolt;
@@ -138,7 +145,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board left motor current sensor"
     )
     public final float pwrBrdMotLAmp() {
         return this.pwrBrdMotLAmp;
@@ -149,7 +157,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board right motor current sensor"
     )
     public final float pwrBrdMotRAmp() {
         return this.pwrBrdMotRAmp;
@@ -160,7 +169,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board analog current sensor"
     )
     public final float pwrBrdAnalogAmp() {
         return this.pwrBrdAnalogAmp;
@@ -171,7 +181,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board digital current sensor"
     )
     public final float pwrBrdDigitalAmp() {
         return this.pwrBrdDigitalAmp;
@@ -182,7 +193,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board extension current sensor"
     )
     public final float pwrBrdExtAmp() {
         return this.pwrBrdExtAmp;
@@ -193,7 +205,8 @@ public final class SensPowerBoard {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Power board aux current sensor"
     )
     public final float pwrBrdAuxAmp() {
         return this.pwrBrdAuxAmp;
@@ -283,7 +296,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -295,7 +309,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Power board status register"
         )
         public final Builder pwrBrdStatus(int pwrBrdStatus) {
             this.pwrBrdStatus = pwrBrdStatus;
@@ -307,7 +322,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Power board leds status"
         )
         public final Builder pwrBrdLedStatus(int pwrBrdLedStatus) {
             this.pwrBrdLedStatus = pwrBrdLedStatus;
@@ -319,7 +335,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board system voltage"
         )
         public final Builder pwrBrdSystemVolt(float pwrBrdSystemVolt) {
             this.pwrBrdSystemVolt = pwrBrdSystemVolt;
@@ -331,7 +348,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board servo voltage"
         )
         public final Builder pwrBrdServoVolt(float pwrBrdServoVolt) {
             this.pwrBrdServoVolt = pwrBrdServoVolt;
@@ -343,7 +361,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board digital voltage"
         )
         public final Builder pwrBrdDigitalVolt(float pwrBrdDigitalVolt) {
             this.pwrBrdDigitalVolt = pwrBrdDigitalVolt;
@@ -355,7 +374,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board left motor current sensor"
         )
         public final Builder pwrBrdMotLAmp(float pwrBrdMotLAmp) {
             this.pwrBrdMotLAmp = pwrBrdMotLAmp;
@@ -367,7 +387,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board right motor current sensor"
         )
         public final Builder pwrBrdMotRAmp(float pwrBrdMotRAmp) {
             this.pwrBrdMotRAmp = pwrBrdMotRAmp;
@@ -379,7 +400,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board analog current sensor"
         )
         public final Builder pwrBrdAnalogAmp(float pwrBrdAnalogAmp) {
             this.pwrBrdAnalogAmp = pwrBrdAnalogAmp;
@@ -391,7 +413,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board digital current sensor"
         )
         public final Builder pwrBrdDigitalAmp(float pwrBrdDigitalAmp) {
             this.pwrBrdDigitalAmp = pwrBrdDigitalAmp;
@@ -403,7 +426,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board extension current sensor"
         )
         public final Builder pwrBrdExtAmp(float pwrBrdExtAmp) {
             this.pwrBrdExtAmp = pwrBrdExtAmp;
@@ -415,7 +439,8 @@ public final class SensPowerBoard {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Power board aux current sensor"
         )
         public final Builder pwrBrdAuxAmp(float pwrBrdAuxAmp) {
             this.pwrBrdAuxAmp = pwrBrdAuxAmp;

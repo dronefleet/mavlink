@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 41,
-        crc = 28
+        crc = 28,
+        description = "Set the mission item with sequence number seq as current item. This means that the MAV will continue to this mission item on the shortest path (not following the mission items in-between)."
 )
 public final class MissionSetCurrent {
     private final int targetSystem;
@@ -43,7 +44,8 @@ public final class MissionSetCurrent {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -54,7 +56,8 @@ public final class MissionSetCurrent {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -65,7 +68,8 @@ public final class MissionSetCurrent {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -110,7 +114,8 @@ public final class MissionSetCurrent {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -122,7 +127,8 @@ public final class MissionSetCurrent {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -134,7 +140,8 @@ public final class MissionSetCurrent {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;

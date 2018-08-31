@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 217,
-        crc = 202
+        crc = 202,
+        description = "Response from a GOPRO_COMMAND get request"
 )
 public final class GoproGetResponse {
     private final EnumValue<GoproCommand> cmdId;
@@ -46,7 +47,8 @@ public final class GoproGetResponse {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = GoproCommand.class
+            enumType = GoproCommand.class,
+            description = "Command ID"
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
@@ -58,7 +60,8 @@ public final class GoproGetResponse {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = GoproRequestStatus.class
+            enumType = GoproRequestStatus.class,
+            description = "Status"
     )
     public final EnumValue<GoproRequestStatus> status() {
         return this.status;
@@ -70,7 +73,8 @@ public final class GoproGetResponse {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 4
+            arraySize = 4,
+            description = "Value"
     )
     public final byte[] value() {
         return this.value;
@@ -116,7 +120,8 @@ public final class GoproGetResponse {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = GoproCommand.class
+                enumType = GoproCommand.class,
+                description = "Command ID"
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -150,7 +155,8 @@ public final class GoproGetResponse {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = GoproRequestStatus.class
+                enumType = GoproRequestStatus.class,
+                description = "Status"
         )
         public final Builder status(EnumValue<GoproRequestStatus> status) {
             this.status = status;
@@ -184,7 +190,8 @@ public final class GoproGetResponse {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 4
+                arraySize = 4,
+                description = "Value"
         )
         public final Builder value(byte[] value) {
             this.value = value;

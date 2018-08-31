@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 187,
-        crc = 134
+        crc = 134,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F21 format"
 )
 public final class SerialUdbExtraF21 {
     private final int sueAccelXOffset;
@@ -52,7 +53,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE X accelerometer offset"
     )
     public final int sueAccelXOffset() {
         return this.sueAccelXOffset;
@@ -64,7 +66,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Y accelerometer offset"
     )
     public final int sueAccelYOffset() {
         return this.sueAccelYOffset;
@@ -76,7 +79,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Z accelerometer offset"
     )
     public final int sueAccelZOffset() {
         return this.sueAccelZOffset;
@@ -88,7 +92,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE X gyro offset"
     )
     public final int sueGyroXOffset() {
         return this.sueGyroXOffset;
@@ -100,7 +105,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Y gyro offset"
     )
     public final int sueGyroYOffset() {
         return this.sueGyroYOffset;
@@ -112,7 +118,8 @@ public final class SerialUdbExtraF21 {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE Z gyro offset"
     )
     public final int sueGyroZOffset() {
         return this.sueGyroZOffset;
@@ -173,7 +180,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE X accelerometer offset"
         )
         public final Builder sueAccelXOffset(int sueAccelXOffset) {
             this.sueAccelXOffset = sueAccelXOffset;
@@ -186,7 +194,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Y accelerometer offset"
         )
         public final Builder sueAccelYOffset(int sueAccelYOffset) {
             this.sueAccelYOffset = sueAccelYOffset;
@@ -199,7 +208,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Z accelerometer offset"
         )
         public final Builder sueAccelZOffset(int sueAccelZOffset) {
             this.sueAccelZOffset = sueAccelZOffset;
@@ -212,7 +222,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE X gyro offset"
         )
         public final Builder sueGyroXOffset(int sueGyroXOffset) {
             this.sueGyroXOffset = sueGyroXOffset;
@@ -225,7 +236,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Y gyro offset"
         )
         public final Builder sueGyroYOffset(int sueGyroYOffset) {
             this.sueGyroYOffset = sueGyroYOffset;
@@ -238,7 +250,8 @@ public final class SerialUdbExtraF21 {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE Z gyro offset"
         )
         public final Builder sueGyroZOffset(int sueGyroZOffset) {
             this.sueGyroZOffset = sueGyroZOffset;

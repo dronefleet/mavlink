@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 89,
-        crc = 231
+        crc = 231,
+        description = "The offset in X, Y, Z and yaw between the LOCAL_POSITION_NED messages of MAV X and the global coordinate frame in NED coordinates. Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)"
 )
 public final class LocalPositionNedSystemGlobalOffset {
     private final long timeBootMs;
@@ -56,7 +57,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -67,7 +69,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Position"
     )
     public final float x() {
         return this.x;
@@ -78,7 +81,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Position"
     )
     public final float y() {
         return this.y;
@@ -89,7 +93,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Position"
     )
     public final float z() {
         return this.z;
@@ -100,7 +105,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll"
     )
     public final float roll() {
         return this.roll;
@@ -111,7 +117,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch"
     )
     public final float pitch() {
         return this.pitch;
@@ -122,7 +129,8 @@ public final class LocalPositionNedSystemGlobalOffset {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw"
     )
     public final float yaw() {
         return this.yaw;
@@ -187,7 +195,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -199,7 +208,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Position"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -211,7 +221,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Position"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -223,7 +234,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Position"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -235,7 +247,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -247,7 +260,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -259,7 +273,8 @@ public final class LocalPositionNedSystemGlobalOffset {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;

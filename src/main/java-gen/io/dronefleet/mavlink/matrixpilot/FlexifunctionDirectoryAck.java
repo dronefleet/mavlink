@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 156,
-        crc = 218
+        crc = 218,
+        description = "Acknowldge sucess or failure of a flexifunction command"
 )
 public final class FlexifunctionDirectoryAck {
     private final int targetSystem;
@@ -51,7 +52,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -62,7 +64,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -73,7 +76,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "0=inputs, 1=outputs"
     )
     public final int directoryType() {
         return this.directoryType;
@@ -84,7 +88,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "index of first directory entry to write"
     )
     public final int startIndex() {
         return this.startIndex;
@@ -95,7 +100,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "count of directory entries to write"
     )
     public final int count() {
         return this.count;
@@ -106,7 +112,8 @@ public final class FlexifunctionDirectoryAck {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "result of acknowledge, 0=fail, 1=good"
     )
     public final int result() {
         return this.result;
@@ -166,7 +173,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -178,7 +186,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -190,7 +199,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "0=inputs, 1=outputs"
         )
         public final Builder directoryType(int directoryType) {
             this.directoryType = directoryType;
@@ -202,7 +212,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "index of first directory entry to write"
         )
         public final Builder startIndex(int startIndex) {
             this.startIndex = startIndex;
@@ -214,7 +225,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "count of directory entries to write"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -226,7 +238,8 @@ public final class FlexifunctionDirectoryAck {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "result of acknowledge, 0=fail, 1=good"
         )
         public final Builder result(int result) {
             this.result = result;

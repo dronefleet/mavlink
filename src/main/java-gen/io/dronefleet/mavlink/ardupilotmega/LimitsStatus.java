@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 167,
-        crc = 144
+        crc = 144,
+        description = "Status of AP_Limits. Sent in extended status stream when AP_Limits is enabled"
 )
 public final class LimitsStatus {
     private final EnumValue<LimitsState> limitsState;
@@ -65,7 +66,8 @@ public final class LimitsStatus {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = LimitsState.class
+            enumType = LimitsState.class,
+            description = "state of AP_Limits, (see enum LimitState, LIMITS_STATE)"
     )
     public final EnumValue<LimitsState> limitsState() {
         return this.limitsState;
@@ -76,7 +78,8 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "time of last breach in milliseconds since boot"
     )
     public final long lastTrigger() {
         return this.lastTrigger;
@@ -87,7 +90,8 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "time of last recovery action in milliseconds since boot"
     )
     public final long lastAction() {
         return this.lastAction;
@@ -98,7 +102,8 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "time of last successful recovery in milliseconds since boot"
     )
     public final long lastRecovery() {
         return this.lastRecovery;
@@ -109,7 +114,8 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "time of last all-clear in milliseconds since boot"
     )
     public final long lastClear() {
         return this.lastClear;
@@ -120,7 +126,8 @@ public final class LimitsStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "number of fence breaches"
     )
     public final int breachCount() {
         return this.breachCount;
@@ -132,7 +139,8 @@ public final class LimitsStatus {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            enumType = LimitModule.class
+            enumType = LimitModule.class,
+            description = "AP_Limit_Module bitfield of enabled modules, (see enum moduleid or LIMIT_MODULE)"
     )
     public final EnumValue<LimitModule> modsEnabled() {
         return this.modsEnabled;
@@ -144,7 +152,8 @@ public final class LimitsStatus {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            enumType = LimitModule.class
+            enumType = LimitModule.class,
+            description = "AP_Limit_Module bitfield of required modules, (see enum moduleid or LIMIT_MODULE)"
     )
     public final EnumValue<LimitModule> modsRequired() {
         return this.modsRequired;
@@ -156,7 +165,8 @@ public final class LimitsStatus {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            enumType = LimitModule.class
+            enumType = LimitModule.class,
+            description = "AP_Limit_Module bitfield of triggered modules, (see enum moduleid or LIMIT_MODULE)"
     )
     public final EnumValue<LimitModule> modsTriggered() {
         return this.modsTriggered;
@@ -232,7 +242,8 @@ public final class LimitsStatus {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = LimitsState.class
+                enumType = LimitsState.class,
+                description = "state of AP_Limits, (see enum LimitState, LIMITS_STATE)"
         )
         public final Builder limitsState(EnumValue<LimitsState> limitsState) {
             this.limitsState = limitsState;
@@ -265,7 +276,8 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "time of last breach in milliseconds since boot"
         )
         public final Builder lastTrigger(long lastTrigger) {
             this.lastTrigger = lastTrigger;
@@ -277,7 +289,8 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "time of last recovery action in milliseconds since boot"
         )
         public final Builder lastAction(long lastAction) {
             this.lastAction = lastAction;
@@ -289,7 +302,8 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "time of last successful recovery in milliseconds since boot"
         )
         public final Builder lastRecovery(long lastRecovery) {
             this.lastRecovery = lastRecovery;
@@ -301,7 +315,8 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "time of last all-clear in milliseconds since boot"
         )
         public final Builder lastClear(long lastClear) {
             this.lastClear = lastClear;
@@ -313,7 +328,8 @@ public final class LimitsStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "number of fence breaches"
         )
         public final Builder breachCount(int breachCount) {
             this.breachCount = breachCount;
@@ -326,7 +342,8 @@ public final class LimitsStatus {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                enumType = LimitModule.class
+                enumType = LimitModule.class,
+                description = "AP_Limit_Module bitfield of enabled modules, (see enum moduleid or LIMIT_MODULE)"
         )
         public final Builder modsEnabled(EnumValue<LimitModule> modsEnabled) {
             this.modsEnabled = modsEnabled;
@@ -360,7 +377,8 @@ public final class LimitsStatus {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                enumType = LimitModule.class
+                enumType = LimitModule.class,
+                description = "AP_Limit_Module bitfield of required modules, (see enum moduleid or LIMIT_MODULE)"
         )
         public final Builder modsRequired(EnumValue<LimitModule> modsRequired) {
             this.modsRequired = modsRequired;
@@ -394,7 +412,8 @@ public final class LimitsStatus {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                enumType = LimitModule.class
+                enumType = LimitModule.class,
+                description = "AP_Limit_Module bitfield of triggered modules, (see enum moduleid or LIMIT_MODULE)"
         )
         public final Builder modsTriggered(EnumValue<LimitModule> modsTriggered) {
             this.modsTriggered = modsTriggered;

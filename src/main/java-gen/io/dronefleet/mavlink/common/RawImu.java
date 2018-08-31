@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 27,
-        crc = 144
+        crc = 144,
+        description = "The RAW IMU readings for the usual 9DOF sensor setup. This message should always contain the true raw values without any scaling to allow data capture and system debugging."
 )
 public final class RawImu {
     private final BigInteger timeUsec;
@@ -65,7 +66,8 @@ public final class RawImu {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -77,7 +79,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "X acceleration (raw)"
     )
     public final int xacc() {
         return this.xacc;
@@ -89,7 +92,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Y acceleration (raw)"
     )
     public final int yacc() {
         return this.yacc;
@@ -101,7 +105,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Z acceleration (raw)"
     )
     public final int zacc() {
         return this.zacc;
@@ -113,7 +118,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Angular speed around X axis (raw)"
     )
     public final int xgyro() {
         return this.xgyro;
@@ -125,7 +131,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Angular speed around Y axis (raw)"
     )
     public final int ygyro() {
         return this.ygyro;
@@ -137,7 +144,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Angular speed around Z axis (raw)"
     )
     public final int zgyro() {
         return this.zgyro;
@@ -149,7 +157,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "X Magnetic field (raw)"
     )
     public final int xmag() {
         return this.xmag;
@@ -161,7 +170,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Y Magnetic field (raw)"
     )
     public final int ymag() {
         return this.ymag;
@@ -173,7 +183,8 @@ public final class RawImu {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Z Magnetic field (raw)"
     )
     public final int zmag() {
         return this.zmag;
@@ -253,7 +264,8 @@ public final class RawImu {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -266,7 +278,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "X acceleration (raw)"
         )
         public final Builder xacc(int xacc) {
             this.xacc = xacc;
@@ -279,7 +292,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Y acceleration (raw)"
         )
         public final Builder yacc(int yacc) {
             this.yacc = yacc;
@@ -292,7 +306,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Z acceleration (raw)"
         )
         public final Builder zacc(int zacc) {
             this.zacc = zacc;
@@ -305,7 +320,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Angular speed around X axis (raw)"
         )
         public final Builder xgyro(int xgyro) {
             this.xgyro = xgyro;
@@ -318,7 +334,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Angular speed around Y axis (raw)"
         )
         public final Builder ygyro(int ygyro) {
             this.ygyro = ygyro;
@@ -331,7 +348,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Angular speed around Z axis (raw)"
         )
         public final Builder zgyro(int zgyro) {
             this.zgyro = zgyro;
@@ -344,7 +362,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "X Magnetic field (raw)"
         )
         public final Builder xmag(int xmag) {
             this.xmag = xmag;
@@ -357,7 +376,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Y Magnetic field (raw)"
         )
         public final Builder ymag(int ymag) {
             this.ymag = ymag;
@@ -370,7 +390,8 @@ public final class RawImu {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Z Magnetic field (raw)"
         )
         public final Builder zmag(int zmag) {
             this.zmag = zmag;

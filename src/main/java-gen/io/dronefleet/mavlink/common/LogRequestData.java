@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 119,
-        crc = 116
+        crc = 116,
+        description = "Request a chunk of a log"
 )
 public final class LogRequestData {
     private final int targetSystem;
@@ -47,7 +48,8 @@ public final class LogRequestData {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -58,7 +60,8 @@ public final class LogRequestData {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -69,7 +72,8 @@ public final class LogRequestData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Log id (from LOG_ENTRY reply)"
     )
     public final int id() {
         return this.id;
@@ -80,7 +84,8 @@ public final class LogRequestData {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Offset into the log"
     )
     public final long ofs() {
         return this.ofs;
@@ -91,7 +96,8 @@ public final class LogRequestData {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Number of bytes"
     )
     public final long count() {
         return this.count;
@@ -146,7 +152,8 @@ public final class LogRequestData {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -158,7 +165,8 @@ public final class LogRequestData {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -170,7 +178,8 @@ public final class LogRequestData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Log id (from LOG_ENTRY reply)"
         )
         public final Builder id(int id) {
             this.id = id;
@@ -182,7 +191,8 @@ public final class LogRequestData {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Offset into the log"
         )
         public final Builder ofs(long ofs) {
             this.ofs = ofs;
@@ -194,7 +204,8 @@ public final class LogRequestData {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Number of bytes"
         )
         public final Builder count(long count) {
             this.count = count;

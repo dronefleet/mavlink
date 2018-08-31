@@ -16,7 +16,9 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 113,
-        crc = 124
+        crc = 124,
+        description = "The global position, as returned by the Global Positioning System (GPS). This is\n"
+                        + "                 NOT the global position estimate of the sytem, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate."
 )
 public final class HilGps {
     private final BigInteger timeUsec;
@@ -75,7 +77,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -87,7 +90,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix."
     )
     public final int fixType() {
         return this.fixType;
@@ -99,7 +103,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -111,7 +116,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84), in degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -123,7 +129,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
     )
     public final int alt() {
         return this.alt;
@@ -134,7 +141,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535"
     )
     public final int eph() {
         return this.eph;
@@ -145,7 +153,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535"
     )
     public final int epv() {
         return this.epv;
@@ -156,7 +165,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS ground speed in cm/s. If unknown, set to: 65535"
     )
     public final int vel() {
         return this.vel;
@@ -168,7 +178,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "GPS velocity in cm/s in NORTH direction in earth-fixed NED frame"
     )
     public final int vn() {
         return this.vn;
@@ -180,7 +191,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "GPS velocity in cm/s in EAST direction in earth-fixed NED frame"
     )
     public final int ve() {
         return this.ve;
@@ -192,7 +204,8 @@ public final class HilGps {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "GPS velocity in cm/s in DOWN direction in earth-fixed NED frame"
     )
     public final int vd() {
         return this.vd;
@@ -204,7 +217,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 2
+            unitSize = 2,
+            description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 65535"
     )
     public final int cog() {
         return this.cog;
@@ -215,7 +229,8 @@ public final class HilGps {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible. If unknown, set to 255"
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
@@ -310,7 +325,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -323,7 +339,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix."
         )
         public final Builder fixType(int fixType) {
             this.fixType = fixType;
@@ -336,7 +353,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -349,7 +367,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84), in degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -362,7 +381,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -374,7 +394,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535"
         )
         public final Builder eph(int eph) {
             this.eph = eph;
@@ -386,7 +407,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535"
         )
         public final Builder epv(int epv) {
             this.epv = epv;
@@ -398,7 +420,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS ground speed in cm/s. If unknown, set to: 65535"
         )
         public final Builder vel(int vel) {
             this.vel = vel;
@@ -411,7 +434,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "GPS velocity in cm/s in NORTH direction in earth-fixed NED frame"
         )
         public final Builder vn(int vn) {
             this.vn = vn;
@@ -424,7 +448,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "GPS velocity in cm/s in EAST direction in earth-fixed NED frame"
         )
         public final Builder ve(int ve) {
             this.ve = ve;
@@ -437,7 +462,8 @@ public final class HilGps {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "GPS velocity in cm/s in DOWN direction in earth-fixed NED frame"
         )
         public final Builder vd(int vd) {
             this.vd = vd;
@@ -450,7 +476,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 2
+                unitSize = 2,
+                description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 65535"
         )
         public final Builder cog(int cog) {
             this.cog = cog;
@@ -462,7 +489,8 @@ public final class HilGps {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible. If unknown, set to 255"
         )
         public final Builder satellitesVisible(int satellitesVisible) {
             this.satellitesVisible = satellitesVisible;

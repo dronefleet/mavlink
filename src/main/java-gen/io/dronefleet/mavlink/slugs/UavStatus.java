@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 193,
-        crc = 160
+        crc = 160,
+        description = "Transmits the actual status values UAV in flight"
 )
 public final class UavStatus {
     private final int target;
@@ -51,7 +52,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The ID system reporting the action"
     )
     public final int target() {
         return this.target;
@@ -62,7 +64,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Latitude UAV"
     )
     public final float latitude() {
         return this.latitude;
@@ -73,7 +76,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Longitude UAV"
     )
     public final float longitude() {
         return this.longitude;
@@ -84,7 +88,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude UAV"
     )
     public final float altitude() {
         return this.altitude;
@@ -95,7 +100,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Speed UAV"
     )
     public final float speed() {
         return this.speed;
@@ -106,7 +112,8 @@ public final class UavStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Course UAV"
     )
     public final float course() {
         return this.course;
@@ -166,7 +173,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The ID system reporting the action"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -178,7 +186,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Latitude UAV"
         )
         public final Builder latitude(float latitude) {
             this.latitude = latitude;
@@ -190,7 +199,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Longitude UAV"
         )
         public final Builder longitude(float longitude) {
             this.longitude = longitude;
@@ -202,7 +212,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude UAV"
         )
         public final Builder altitude(float altitude) {
             this.altitude = altitude;
@@ -214,7 +225,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Speed UAV"
         )
         public final Builder speed(float speed) {
             this.speed = speed;
@@ -226,7 +238,8 @@ public final class UavStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Course UAV"
         )
         public final Builder course(float course) {
             this.course = course;

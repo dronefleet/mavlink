@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 219,
-        crc = 162
+        crc = 162,
+        description = "Response from a GOPRO_COMMAND set request"
 )
 public final class GoproSetResponse {
     private final EnumValue<GoproCommand> cmdId;
@@ -42,7 +43,8 @@ public final class GoproSetResponse {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = GoproCommand.class
+            enumType = GoproCommand.class,
+            description = "Command ID"
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
@@ -54,7 +56,8 @@ public final class GoproSetResponse {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = GoproRequestStatus.class
+            enumType = GoproRequestStatus.class,
+            description = "Status"
     )
     public final EnumValue<GoproRequestStatus> status() {
         return this.status;
@@ -95,7 +98,8 @@ public final class GoproSetResponse {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = GoproCommand.class
+                enumType = GoproCommand.class,
+                description = "Command ID"
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -129,7 +133,8 @@ public final class GoproSetResponse {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = GoproRequestStatus.class
+                enumType = GoproRequestStatus.class,
+                description = "Status"
         )
         public final Builder status(EnumValue<GoproRequestStatus> status) {
             this.status = status;

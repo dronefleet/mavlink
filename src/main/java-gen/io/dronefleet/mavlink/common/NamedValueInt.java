@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 252,
-        crc = 44
+        crc = 44,
+        description = "Send a key-value pair as integer. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output."
 )
 public final class NamedValueInt {
     private final long timeBootMs;
@@ -42,7 +43,8 @@ public final class NamedValueInt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -54,7 +56,8 @@ public final class NamedValueInt {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 10
+            arraySize = 10,
+            description = "Name of the debug variable"
     )
     public final String name() {
         return this.name;
@@ -66,7 +69,8 @@ public final class NamedValueInt {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Signed integer value"
     )
     public final int value() {
         return this.value;
@@ -111,7 +115,8 @@ public final class NamedValueInt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -124,7 +129,8 @@ public final class NamedValueInt {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 10
+                arraySize = 10,
+                description = "Name of the debug variable"
         )
         public final Builder name(String name) {
             this.name = name;
@@ -137,7 +143,8 @@ public final class NamedValueInt {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Signed integer value"
         )
         public final Builder value(int value) {
             this.value = value;

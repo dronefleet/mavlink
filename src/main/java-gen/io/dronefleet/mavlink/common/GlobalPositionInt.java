@@ -15,7 +15,9 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 33,
-        crc = 104
+        crc = 104,
+        description = "The filtered global position (e.g. fused GPS and accelerometers). The position is in GPS-frame (right-handed, Z-up). It\n"
+                        + "               is designed as scaled integer message since the resolution of float is not sufficient."
 )
 public final class GlobalPositionInt {
     private final long timeBootMs;
@@ -62,7 +64,8 @@ public final class GlobalPositionInt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -74,7 +77,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude, expressed as degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -86,7 +90,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude, expressed as degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -99,7 +104,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually all GPS modules provide the AMSL as well)"
     )
     public final int alt() {
         return this.alt;
@@ -111,7 +117,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
     )
     public final int relativeAlt() {
         return this.relativeAlt;
@@ -123,7 +130,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Ground X Speed (Latitude, positive north), expressed as m/s * 100"
     )
     public final int vx() {
         return this.vx;
@@ -135,7 +143,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Ground Y Speed (Longitude, positive east), expressed as m/s * 100"
     )
     public final int vy() {
         return this.vy;
@@ -147,7 +156,8 @@ public final class GlobalPositionInt {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Ground Z Speed (Altitude, positive down), expressed as m/s * 100"
     )
     public final int vz() {
         return this.vz;
@@ -159,7 +169,8 @@ public final class GlobalPositionInt {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
     )
     public final int hdg() {
         return this.hdg;
@@ -234,7 +245,8 @@ public final class GlobalPositionInt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -247,7 +259,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude, expressed as degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -260,7 +273,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude, expressed as degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -274,7 +288,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually all GPS modules provide the AMSL as well)"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -287,7 +302,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder relativeAlt(int relativeAlt) {
             this.relativeAlt = relativeAlt;
@@ -300,7 +316,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Ground X Speed (Latitude, positive north), expressed as m/s * 100"
         )
         public final Builder vx(int vx) {
             this.vx = vx;
@@ -313,7 +330,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Ground Y Speed (Longitude, positive east), expressed as m/s * 100"
         )
         public final Builder vy(int vy) {
             this.vy = vy;
@@ -326,7 +344,8 @@ public final class GlobalPositionInt {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Ground Z Speed (Altitude, positive down), expressed as m/s * 100"
         )
         public final Builder vz(int vz) {
             this.vz = vz;
@@ -339,7 +358,8 @@ public final class GlobalPositionInt {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
         )
         public final Builder hdg(int hdg) {
             this.hdg = hdg;

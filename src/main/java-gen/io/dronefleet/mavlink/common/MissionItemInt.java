@@ -19,7 +19,9 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 73,
-        crc = 38
+        crc = 38,
+        description = "Message encoding a mission item. This message is emitted to announce\n"
+                        + "                the presence of a mission item and to set a mission item on the system. The mission item can be either in x, y, z meters (type: LOCAL) or x:lat, y:lon, z:altitude. Local frame is Z-down, right handed (NED), global frame is Z-up, right handed (ENU). See also https://mavlink.io/en/protocol/mission.html."
 )
 public final class MissionItemInt {
     private final int targetSystem;
@@ -86,7 +88,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -97,7 +100,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -109,7 +113,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4)."
     )
     public final int seq() {
         return this.seq;
@@ -121,7 +126,8 @@ public final class MissionItemInt {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = MavFrame.class
+            enumType = MavFrame.class,
+            description = "The coordinate system of the waypoint, as defined by MAV_FRAME enum"
     )
     public final EnumValue<MavFrame> frame() {
         return this.frame;
@@ -133,7 +139,8 @@ public final class MissionItemInt {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            enumType = MavCmd.class
+            enumType = MavCmd.class,
+            description = "The scheduled action for the waypoint, as defined by MAV_CMD enum"
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
@@ -144,7 +151,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "false:0, true:1"
     )
     public final int current() {
         return this.current;
@@ -155,7 +163,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "autocontinue to next wp"
     )
     public final int autocontinue() {
         return this.autocontinue;
@@ -166,7 +175,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "PARAM1, see MAV_CMD enum"
     )
     public final float param1() {
         return this.param1;
@@ -177,7 +187,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "PARAM2, see MAV_CMD enum"
     )
     public final float param2() {
         return this.param2;
@@ -188,7 +199,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "PARAM3, see MAV_CMD enum"
     )
     public final float param3() {
         return this.param3;
@@ -199,7 +211,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "PARAM4, see MAV_CMD enum"
     )
     public final float param4() {
         return this.param4;
@@ -211,7 +224,8 @@ public final class MissionItemInt {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7"
     )
     public final int x() {
         return this.x;
@@ -223,7 +237,8 @@ public final class MissionItemInt {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7"
     )
     public final int y() {
         return this.y;
@@ -234,7 +249,8 @@ public final class MissionItemInt {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame."
     )
     public final float z() {
         return this.z;
@@ -247,7 +263,8 @@ public final class MissionItemInt {
             position = 16,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -352,7 +369,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -364,7 +382,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -377,7 +396,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4)."
         )
         public final Builder seq(int seq) {
             this.seq = seq;
@@ -390,7 +410,8 @@ public final class MissionItemInt {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = MavFrame.class
+                enumType = MavFrame.class,
+                description = "The coordinate system of the waypoint, as defined by MAV_FRAME enum"
         )
         public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
@@ -424,7 +445,8 @@ public final class MissionItemInt {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                enumType = MavCmd.class
+                enumType = MavCmd.class,
+                description = "The scheduled action for the waypoint, as defined by MAV_CMD enum"
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -457,7 +479,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "false:0, true:1"
         )
         public final Builder current(int current) {
             this.current = current;
@@ -469,7 +492,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "autocontinue to next wp"
         )
         public final Builder autocontinue(int autocontinue) {
             this.autocontinue = autocontinue;
@@ -481,7 +505,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "PARAM1, see MAV_CMD enum"
         )
         public final Builder param1(float param1) {
             this.param1 = param1;
@@ -493,7 +518,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "PARAM2, see MAV_CMD enum"
         )
         public final Builder param2(float param2) {
             this.param2 = param2;
@@ -505,7 +531,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "PARAM3, see MAV_CMD enum"
         )
         public final Builder param3(float param3) {
             this.param3 = param3;
@@ -517,7 +544,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "PARAM4, see MAV_CMD enum"
         )
         public final Builder param4(float param4) {
             this.param4 = param4;
@@ -530,7 +558,8 @@ public final class MissionItemInt {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7"
         )
         public final Builder x(int x) {
             this.x = x;
@@ -543,7 +572,8 @@ public final class MissionItemInt {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7"
         )
         public final Builder y(int y) {
             this.y = y;
@@ -555,7 +585,8 @@ public final class MissionItemInt {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame."
         )
         public final Builder z(float z) {
             this.z = z;
@@ -569,7 +600,8 @@ public final class MissionItemInt {
                 position = 16,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

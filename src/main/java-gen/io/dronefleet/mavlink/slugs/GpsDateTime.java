@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 179,
-        crc = 132
+        crc = 132,
+        description = "Pilot console PWM messges."
 )
 public final class GpsDateTime {
     private final int year;
@@ -69,7 +70,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Year reported by Gps"
     )
     public final int year() {
         return this.year;
@@ -80,7 +82,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Month reported by Gps"
     )
     public final int month() {
         return this.month;
@@ -91,7 +94,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Day reported by Gps"
     )
     public final int day() {
         return this.day;
@@ -102,7 +106,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Hour reported by Gps"
     )
     public final int hour() {
         return this.hour;
@@ -113,7 +118,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Min reported by Gps"
     )
     public final int min() {
         return this.min;
@@ -124,7 +130,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Sec reported by Gps"
     )
     public final int sec() {
         return this.sec;
@@ -135,7 +142,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Clock Status. See table 47 page 211 OEMStar Manual"
     )
     public final int clockstat() {
         return this.clockstat;
@@ -146,7 +154,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Visible satellites reported by Gps"
     )
     public final int vissat() {
         return this.vissat;
@@ -157,7 +166,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "Used satellites in Solution"
     )
     public final int usesat() {
         return this.usesat;
@@ -168,7 +178,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "GPS+GLONASS satellites in Solution"
     )
     public final int gppgl() {
         return this.gppgl;
@@ -179,7 +190,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 1
+            unitSize = 1,
+            description = "GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)"
     )
     public final int sigusedmask() {
         return this.sigusedmask;
@@ -190,7 +202,8 @@ public final class GpsDateTime {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 1
+            unitSize = 1,
+            description = "Percent used GPS"
     )
     public final int percentused() {
         return this.percentused;
@@ -280,7 +293,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Year reported by Gps"
         )
         public final Builder year(int year) {
             this.year = year;
@@ -292,7 +306,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Month reported by Gps"
         )
         public final Builder month(int month) {
             this.month = month;
@@ -304,7 +319,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Day reported by Gps"
         )
         public final Builder day(int day) {
             this.day = day;
@@ -316,7 +332,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Hour reported by Gps"
         )
         public final Builder hour(int hour) {
             this.hour = hour;
@@ -328,7 +345,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Min reported by Gps"
         )
         public final Builder min(int min) {
             this.min = min;
@@ -340,7 +358,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Sec reported by Gps"
         )
         public final Builder sec(int sec) {
             this.sec = sec;
@@ -352,7 +371,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Clock Status. See table 47 page 211 OEMStar Manual"
         )
         public final Builder clockstat(int clockstat) {
             this.clockstat = clockstat;
@@ -364,7 +384,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Visible satellites reported by Gps"
         )
         public final Builder vissat(int vissat) {
             this.vissat = vissat;
@@ -376,7 +397,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "Used satellites in Solution"
         )
         public final Builder usesat(int usesat) {
             this.usesat = usesat;
@@ -388,7 +410,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "GPS+GLONASS satellites in Solution"
         )
         public final Builder gppgl(int gppgl) {
             this.gppgl = gppgl;
@@ -400,7 +423,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 1
+                unitSize = 1,
+                description = "GPS and GLONASS usage mask (bit 0 GPS_used? bit_4 GLONASS_used?)"
         )
         public final Builder sigusedmask(int sigusedmask) {
             this.sigusedmask = sigusedmask;
@@ -412,7 +436,8 @@ public final class GpsDateTime {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 1
+                unitSize = 1,
+                description = "Percent used GPS"
         )
         public final Builder percentused(int percentused) {
             this.percentused = percentused;

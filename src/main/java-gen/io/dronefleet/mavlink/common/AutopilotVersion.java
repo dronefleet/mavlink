@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 148,
-        crc = 178
+        crc = 178,
+        description = "Version and capability of autopilot software"
 )
 public final class AutopilotVersion {
     private final EnumValue<MavProtocolCapability> capabilities;
@@ -76,7 +77,8 @@ public final class AutopilotVersion {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            enumType = MavProtocolCapability.class
+            enumType = MavProtocolCapability.class,
+            description = "bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)"
     )
     public final EnumValue<MavProtocolCapability> capabilities() {
         return this.capabilities;
@@ -87,7 +89,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Firmware version number"
     )
     public final long flightSwVersion() {
         return this.flightSwVersion;
@@ -98,7 +101,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Middleware version number"
     )
     public final long middlewareSwVersion() {
         return this.middlewareSwVersion;
@@ -109,7 +113,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Operating system version number"
     )
     public final long osSwVersion() {
         return this.osSwVersion;
@@ -120,7 +125,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "HW / board version (last 8 bytes should be silicon ID, if any)"
     )
     public final long boardVersion() {
         return this.boardVersion;
@@ -134,7 +140,8 @@ public final class AutopilotVersion {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
     )
     public final byte[] flightCustomVersion() {
         return this.flightCustomVersion;
@@ -148,7 +155,8 @@ public final class AutopilotVersion {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
     )
     public final byte[] middlewareCustomVersion() {
         return this.middlewareCustomVersion;
@@ -162,7 +170,8 @@ public final class AutopilotVersion {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
     )
     public final byte[] osCustomVersion() {
         return this.osCustomVersion;
@@ -173,7 +182,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "ID of the board vendor"
     )
     public final int vendorId() {
         return this.vendorId;
@@ -184,7 +194,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 2
+            unitSize = 2,
+            description = "ID of the product"
     )
     public final int productId() {
         return this.productId;
@@ -195,7 +206,8 @@ public final class AutopilotVersion {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 8
+            unitSize = 8,
+            description = "UID if provided by hardware (see uid2)"
     )
     public final BigInteger uid() {
         return this.uid;
@@ -209,7 +221,8 @@ public final class AutopilotVersion {
             position = 13,
             unitSize = 1,
             arraySize = 18,
-            extension = true
+            extension = true,
+            description = "UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)"
     )
     public final byte[] uid2() {
         return this.uid2;
@@ -300,7 +313,8 @@ public final class AutopilotVersion {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                enumType = MavProtocolCapability.class
+                enumType = MavProtocolCapability.class,
+                description = "bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)"
         )
         public final Builder capabilities(EnumValue<MavProtocolCapability> capabilities) {
             this.capabilities = capabilities;
@@ -333,7 +347,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Firmware version number"
         )
         public final Builder flightSwVersion(long flightSwVersion) {
             this.flightSwVersion = flightSwVersion;
@@ -345,7 +360,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Middleware version number"
         )
         public final Builder middlewareSwVersion(long middlewareSwVersion) {
             this.middlewareSwVersion = middlewareSwVersion;
@@ -357,7 +373,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Operating system version number"
         )
         public final Builder osSwVersion(long osSwVersion) {
             this.osSwVersion = osSwVersion;
@@ -369,7 +386,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "HW / board version (last 8 bytes should be silicon ID, if any)"
         )
         public final Builder boardVersion(long boardVersion) {
             this.boardVersion = boardVersion;
@@ -384,7 +402,8 @@ public final class AutopilotVersion {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
         )
         public final Builder flightCustomVersion(byte[] flightCustomVersion) {
             this.flightCustomVersion = flightCustomVersion;
@@ -399,7 +418,8 @@ public final class AutopilotVersion {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
         )
         public final Builder middlewareCustomVersion(byte[] middlewareCustomVersion) {
             this.middlewareCustomVersion = middlewareCustomVersion;
@@ -414,7 +434,8 @@ public final class AutopilotVersion {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases."
         )
         public final Builder osCustomVersion(byte[] osCustomVersion) {
             this.osCustomVersion = osCustomVersion;
@@ -426,7 +447,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "ID of the board vendor"
         )
         public final Builder vendorId(int vendorId) {
             this.vendorId = vendorId;
@@ -438,7 +460,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 2
+                unitSize = 2,
+                description = "ID of the product"
         )
         public final Builder productId(int productId) {
             this.productId = productId;
@@ -450,7 +473,8 @@ public final class AutopilotVersion {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 8
+                unitSize = 8,
+                description = "UID if provided by hardware (see uid2)"
         )
         public final Builder uid(BigInteger uid) {
             this.uid = uid;
@@ -465,7 +489,8 @@ public final class AutopilotVersion {
                 position = 13,
                 unitSize = 1,
                 arraySize = 18,
-                extension = true
+                extension = true,
+                description = "UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)"
         )
         public final Builder uid2(byte[] uid2) {
             this.uid2 = uid2;

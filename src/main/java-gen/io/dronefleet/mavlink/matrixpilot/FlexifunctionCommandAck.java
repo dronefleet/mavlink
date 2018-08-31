@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 158,
-        crc = 208
+        crc = 208,
+        description = "Acknowldge sucess or failure of a flexifunction command"
 )
 public final class FlexifunctionCommandAck {
     private final int commandType;
@@ -38,7 +39,8 @@ public final class FlexifunctionCommandAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Command acknowledged"
     )
     public final int commandType() {
         return this.commandType;
@@ -49,7 +51,8 @@ public final class FlexifunctionCommandAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "result of acknowledge"
     )
     public final int result() {
         return this.result;
@@ -89,7 +92,8 @@ public final class FlexifunctionCommandAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Command acknowledged"
         )
         public final Builder commandType(int commandType) {
             this.commandType = commandType;
@@ -101,7 +105,8 @@ public final class FlexifunctionCommandAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "result of acknowledge"
         )
         public final Builder result(int result) {
             this.result = result;

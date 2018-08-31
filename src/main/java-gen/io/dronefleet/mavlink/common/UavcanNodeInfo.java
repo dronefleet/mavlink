@@ -20,7 +20,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 311,
-        crc = 95
+        crc = 95,
+        description = "General information describing a particular UAVCAN node. Please refer to the definition of the UAVCAN service \"uavcan.protocol.GetNodeInfo\" for the background information. This message should be emitted by the system whenever a new node appears online, or an existing node reboots. Additionally, it can be emitted upon request from the other end of the MAVLink channel (see MAV_CMD_UAVCAN_GET_NODE_INFO). It is also not prohibited to emit this message unconditionally at a low frequency. The UAVCAN specification is available at http://uavcan.org."
 )
 public final class UavcanNodeInfo {
     private final BigInteger timeUsec;
@@ -68,7 +69,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -79,7 +81,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "The number of seconds since the start-up of the node."
     )
     public final long uptimeSec() {
         return this.uptimeSec;
@@ -91,7 +94,8 @@ public final class UavcanNodeInfo {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 80
+            arraySize = 80,
+            description = "Node name string. For example, \"sapog.px4.io\"."
     )
     public final String name() {
         return this.name;
@@ -102,7 +106,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Hardware major version number."
     )
     public final int hwVersionMajor() {
         return this.hwVersionMajor;
@@ -113,7 +118,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Hardware minor version number."
     )
     public final int hwVersionMinor() {
         return this.hwVersionMinor;
@@ -125,7 +131,8 @@ public final class UavcanNodeInfo {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Hardware unique 128-bit ID."
     )
     public final byte[] hwUniqueId() {
         return this.hwUniqueId;
@@ -136,7 +143,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Software major version number."
     )
     public final int swVersionMajor() {
         return this.swVersionMajor;
@@ -147,7 +155,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Software minor version number."
     )
     public final int swVersionMinor() {
         return this.swVersionMinor;
@@ -159,7 +168,8 @@ public final class UavcanNodeInfo {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown."
     )
     public final long swVcsCommit() {
         return this.swVcsCommit;
@@ -234,7 +244,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -246,7 +257,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "The number of seconds since the start-up of the node."
         )
         public final Builder uptimeSec(long uptimeSec) {
             this.uptimeSec = uptimeSec;
@@ -259,7 +271,8 @@ public final class UavcanNodeInfo {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 80
+                arraySize = 80,
+                description = "Node name string. For example, \"sapog.px4.io\"."
         )
         public final Builder name(String name) {
             this.name = name;
@@ -271,7 +284,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Hardware major version number."
         )
         public final Builder hwVersionMajor(int hwVersionMajor) {
             this.hwVersionMajor = hwVersionMajor;
@@ -283,7 +297,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Hardware minor version number."
         )
         public final Builder hwVersionMinor(int hwVersionMinor) {
             this.hwVersionMinor = hwVersionMinor;
@@ -296,7 +311,8 @@ public final class UavcanNodeInfo {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Hardware unique 128-bit ID."
         )
         public final Builder hwUniqueId(byte[] hwUniqueId) {
             this.hwUniqueId = hwUniqueId;
@@ -308,7 +324,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Software major version number."
         )
         public final Builder swVersionMajor(int swVersionMajor) {
             this.swVersionMajor = swVersionMajor;
@@ -320,7 +337,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Software minor version number."
         )
         public final Builder swVersionMinor(int swVersionMinor) {
             this.swVersionMinor = swVersionMinor;
@@ -333,7 +351,8 @@ public final class UavcanNodeInfo {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown."
         )
         public final Builder swVcsCommit(long swVcsCommit) {
             this.swVcsCommit = swVcsCommit;

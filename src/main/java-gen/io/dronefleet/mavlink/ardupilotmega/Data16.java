@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 169,
-        crc = 234
+        crc = 234,
+        description = "Data packet, size 16"
 )
 public final class Data16 {
     private final int type;
@@ -41,7 +42,8 @@ public final class Data16 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "data type"
     )
     public final int type() {
         return this.type;
@@ -52,7 +54,8 @@ public final class Data16 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "data length"
     )
     public final int len() {
         return this.len;
@@ -64,7 +67,8 @@ public final class Data16 {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "raw data"
     )
     public final byte[] data() {
         return this.data;
@@ -109,7 +113,8 @@ public final class Data16 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "data type"
         )
         public final Builder type(int type) {
             this.type = type;
@@ -121,7 +126,8 @@ public final class Data16 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "data length"
         )
         public final Builder len(int len) {
             this.len = len;
@@ -134,7 +140,8 @@ public final class Data16 {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "raw data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

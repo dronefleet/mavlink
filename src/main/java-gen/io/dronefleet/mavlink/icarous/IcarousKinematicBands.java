@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 42001,
-        crc = 239
+        crc = 239,
+        description = "Kinematic multi bands (track) output from Daidalus"
 )
 public final class IcarousKinematicBands {
     private final int numbands;
@@ -88,7 +89,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Number of track bands"
     )
     public final int numbands() {
         return this.numbands;
@@ -100,7 +102,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = IcarousTrackBandTypes.class
+            enumType = IcarousTrackBandTypes.class,
+            description = "See the TRACK_BAND_TYPES enum."
     )
     public final EnumValue<IcarousTrackBandTypes> type1() {
         return this.type1;
@@ -111,7 +114,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "min angle (degrees)"
     )
     public final float min1() {
         return this.min1;
@@ -122,7 +126,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "max angle (degrees)"
     )
     public final float max1() {
         return this.max1;
@@ -134,7 +139,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = IcarousTrackBandTypes.class
+            enumType = IcarousTrackBandTypes.class,
+            description = "See the TRACK_BAND_TYPES enum."
     )
     public final EnumValue<IcarousTrackBandTypes> type2() {
         return this.type2;
@@ -145,7 +151,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "min angle (degrees)"
     )
     public final float min2() {
         return this.min2;
@@ -156,7 +163,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "max angle (degrees)"
     )
     public final float max2() {
         return this.max2;
@@ -168,7 +176,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            enumType = IcarousTrackBandTypes.class
+            enumType = IcarousTrackBandTypes.class,
+            description = "See the TRACK_BAND_TYPES enum."
     )
     public final EnumValue<IcarousTrackBandTypes> type3() {
         return this.type3;
@@ -179,7 +188,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "min angle (degrees)"
     )
     public final float min3() {
         return this.min3;
@@ -190,7 +200,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "max angle (degrees)"
     )
     public final float max3() {
         return this.max3;
@@ -202,7 +213,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 1,
-            enumType = IcarousTrackBandTypes.class
+            enumType = IcarousTrackBandTypes.class,
+            description = "See the TRACK_BAND_TYPES enum."
     )
     public final EnumValue<IcarousTrackBandTypes> type4() {
         return this.type4;
@@ -213,7 +225,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "min angle (degrees)"
     )
     public final float min4() {
         return this.min4;
@@ -224,7 +237,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "max angle (degrees)"
     )
     public final float max4() {
         return this.max4;
@@ -236,7 +250,8 @@ public final class IcarousKinematicBands {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
-            enumType = IcarousTrackBandTypes.class
+            enumType = IcarousTrackBandTypes.class,
+            description = "See the TRACK_BAND_TYPES enum."
     )
     public final EnumValue<IcarousTrackBandTypes> type5() {
         return this.type5;
@@ -247,7 +262,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 4
+            unitSize = 4,
+            description = "min angle (degrees)"
     )
     public final float min5() {
         return this.min5;
@@ -258,7 +274,8 @@ public final class IcarousKinematicBands {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "max angle (degrees)"
     )
     public final float max5() {
         return this.max5;
@@ -369,7 +386,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Number of track bands"
         )
         public final Builder numbands(int numbands) {
             this.numbands = numbands;
@@ -382,7 +400,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = IcarousTrackBandTypes.class
+                enumType = IcarousTrackBandTypes.class,
+                description = "See the TRACK_BAND_TYPES enum."
         )
         public final Builder type1(EnumValue<IcarousTrackBandTypes> type1) {
             this.type1 = type1;
@@ -415,7 +434,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "min angle (degrees)"
         )
         public final Builder min1(float min1) {
             this.min1 = min1;
@@ -427,7 +447,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "max angle (degrees)"
         )
         public final Builder max1(float max1) {
             this.max1 = max1;
@@ -440,7 +461,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = IcarousTrackBandTypes.class
+                enumType = IcarousTrackBandTypes.class,
+                description = "See the TRACK_BAND_TYPES enum."
         )
         public final Builder type2(EnumValue<IcarousTrackBandTypes> type2) {
             this.type2 = type2;
@@ -473,7 +495,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "min angle (degrees)"
         )
         public final Builder min2(float min2) {
             this.min2 = min2;
@@ -485,7 +508,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "max angle (degrees)"
         )
         public final Builder max2(float max2) {
             this.max2 = max2;
@@ -498,7 +522,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                enumType = IcarousTrackBandTypes.class
+                enumType = IcarousTrackBandTypes.class,
+                description = "See the TRACK_BAND_TYPES enum."
         )
         public final Builder type3(EnumValue<IcarousTrackBandTypes> type3) {
             this.type3 = type3;
@@ -531,7 +556,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "min angle (degrees)"
         )
         public final Builder min3(float min3) {
             this.min3 = min3;
@@ -543,7 +569,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "max angle (degrees)"
         )
         public final Builder max3(float max3) {
             this.max3 = max3;
@@ -556,7 +583,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 1,
-                enumType = IcarousTrackBandTypes.class
+                enumType = IcarousTrackBandTypes.class,
+                description = "See the TRACK_BAND_TYPES enum."
         )
         public final Builder type4(EnumValue<IcarousTrackBandTypes> type4) {
             this.type4 = type4;
@@ -589,7 +617,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "min angle (degrees)"
         )
         public final Builder min4(float min4) {
             this.min4 = min4;
@@ -601,7 +630,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "max angle (degrees)"
         )
         public final Builder max4(float max4) {
             this.max4 = max4;
@@ -614,7 +644,8 @@ public final class IcarousKinematicBands {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
-                enumType = IcarousTrackBandTypes.class
+                enumType = IcarousTrackBandTypes.class,
+                description = "See the TRACK_BAND_TYPES enum."
         )
         public final Builder type5(EnumValue<IcarousTrackBandTypes> type5) {
             this.type5 = type5;
@@ -647,7 +678,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 4
+                unitSize = 4,
+                description = "min angle (degrees)"
         )
         public final Builder min5(float min5) {
             this.min5 = min5;
@@ -659,7 +691,8 @@ public final class IcarousKinematicBands {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "max angle (degrees)"
         )
         public final Builder max5(float max5) {
             this.max5 = max5;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 320,
-        crc = 243
+        crc = 243,
+        description = "Request to read the value of a parameter with the either the param_id string id or param_index."
 )
 public final class ParamExtRequestRead {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class ParamExtRequestRead {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class ParamExtRequestRead {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -70,7 +73,8 @@ public final class ParamExtRequestRead {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -83,7 +87,8 @@ public final class ParamExtRequestRead {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be ignored)"
     )
     public final int paramIndex() {
         return this.paramIndex;
@@ -133,7 +138,8 @@ public final class ParamExtRequestRead {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -145,7 +151,8 @@ public final class ParamExtRequestRead {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -160,7 +167,8 @@ public final class ParamExtRequestRead {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -174,7 +182,8 @@ public final class ParamExtRequestRead {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be ignored)"
         )
         public final Builder paramIndex(int paramIndex) {
             this.paramIndex = paramIndex;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 208,
-        crc = 175
+        crc = 175,
+        description = "Atmospheric sensors (temperature, humidity, ...)"
 )
 public final class SensAtmos {
     private final float tempambient;
@@ -38,7 +39,8 @@ public final class SensAtmos {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Ambient temperature"
     )
     public final float tempambient() {
         return this.tempambient;
@@ -49,7 +51,8 @@ public final class SensAtmos {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Relative humidity"
     )
     public final float humidity() {
         return this.humidity;
@@ -89,7 +92,8 @@ public final class SensAtmos {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Ambient temperature"
         )
         public final Builder tempambient(float tempambient) {
             this.tempambient = tempambient;
@@ -101,7 +105,8 @@ public final class SensAtmos {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Relative humidity"
         )
         public final Builder humidity(float humidity) {
             this.humidity = humidity;

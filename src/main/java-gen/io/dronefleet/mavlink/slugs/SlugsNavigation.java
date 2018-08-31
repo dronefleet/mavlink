@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 176,
-        crc = 228
+        crc = 228,
+        description = "Data used in the navigation algorithm."
 )
 public final class SlugsNavigation {
     private final float uM;
@@ -63,7 +64,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Measured Airspeed prior to the nav filter"
     )
     public final float uM() {
         return this.uM;
@@ -74,7 +76,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Roll"
     )
     public final float phiC() {
         return this.phiC;
@@ -85,7 +88,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Pitch"
     )
     public final float thetaC() {
         return this.thetaC;
@@ -96,7 +100,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Commanded Turn rate"
     )
     public final float psidotC() {
         return this.psidotC;
@@ -107,7 +112,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y component of the body acceleration"
     )
     public final float ayBody() {
         return this.ayBody;
@@ -118,7 +124,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Total Distance to Run on this leg of Navigation"
     )
     public final float totaldist() {
         return this.totaldist;
@@ -129,7 +136,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Remaining distance to Run on this leg of Navigation"
     )
     public final float dist2go() {
         return this.dist2go;
@@ -140,7 +148,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Origin WP"
     )
     public final int fromwp() {
         return this.fromwp;
@@ -151,7 +160,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "Destination WP"
     )
     public final int towp() {
         return this.towp;
@@ -162,7 +172,8 @@ public final class SlugsNavigation {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 2
+            unitSize = 2,
+            description = "Commanded altitude"
     )
     public final int hC() {
         return this.hC;
@@ -242,7 +253,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Measured Airspeed prior to the nav filter"
         )
         public final Builder uM(float uM) {
             this.uM = uM;
@@ -254,7 +266,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Roll"
         )
         public final Builder phiC(float phiC) {
             this.phiC = phiC;
@@ -266,7 +279,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Pitch"
         )
         public final Builder thetaC(float thetaC) {
             this.thetaC = thetaC;
@@ -278,7 +292,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Commanded Turn rate"
         )
         public final Builder psidotC(float psidotC) {
             this.psidotC = psidotC;
@@ -290,7 +305,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y component of the body acceleration"
         )
         public final Builder ayBody(float ayBody) {
             this.ayBody = ayBody;
@@ -302,7 +318,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Total Distance to Run on this leg of Navigation"
         )
         public final Builder totaldist(float totaldist) {
             this.totaldist = totaldist;
@@ -314,7 +331,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Remaining distance to Run on this leg of Navigation"
         )
         public final Builder dist2go(float dist2go) {
             this.dist2go = dist2go;
@@ -326,7 +344,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Origin WP"
         )
         public final Builder fromwp(int fromwp) {
             this.fromwp = fromwp;
@@ -338,7 +357,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "Destination WP"
         )
         public final Builder towp(int towp) {
             this.towp = towp;
@@ -350,7 +370,8 @@ public final class SlugsNavigation {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 2
+                unitSize = 2,
+                description = "Commanded altitude"
         )
         public final Builder hC(int hC) {
             this.hC = hC;

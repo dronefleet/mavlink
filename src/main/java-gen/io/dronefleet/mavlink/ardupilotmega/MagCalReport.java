@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 192,
-        crc = 36
+        crc = 36,
+        description = "Reports results of completed compass calibration. Sent until MAG_CAL_ACK received."
 )
 public final class MagCalReport {
     private final int compassId;
@@ -79,7 +80,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Compass being calibrated"
     )
     public final int compassId() {
         return this.compassId;
@@ -90,7 +92,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Bitmask of compasses being calibrated"
     )
     public final int calMask() {
         return this.calMask;
@@ -102,7 +105,8 @@ public final class MagCalReport {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MagCalStatus.class
+            enumType = MagCalStatus.class,
+            description = "Status (see MAG_CAL_STATUS enum)"
     )
     public final EnumValue<MagCalStatus> calStatus() {
         return this.calStatus;
@@ -113,7 +117,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters"
     )
     public final int autosaved() {
         return this.autosaved;
@@ -124,7 +129,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "RMS milligauss residuals"
     )
     public final float fitness() {
         return this.fitness;
@@ -135,7 +141,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "X offset"
     )
     public final float ofsX() {
         return this.ofsX;
@@ -146,7 +153,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y offset"
     )
     public final float ofsY() {
         return this.ofsY;
@@ -157,7 +165,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z offset"
     )
     public final float ofsZ() {
         return this.ofsZ;
@@ -168,7 +177,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "X diagonal (matrix 11)"
     )
     public final float diagX() {
         return this.diagX;
@@ -179,7 +189,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y diagonal (matrix 22)"
     )
     public final float diagY() {
         return this.diagY;
@@ -190,7 +201,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z diagonal (matrix 33)"
     )
     public final float diagZ() {
         return this.diagZ;
@@ -201,7 +213,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "X off-diagonal (matrix 12 and 21)"
     )
     public final float offdiagX() {
         return this.offdiagX;
@@ -212,7 +225,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y off-diagonal (matrix 13 and 31)"
     )
     public final float offdiagY() {
         return this.offdiagY;
@@ -223,7 +237,8 @@ public final class MagCalReport {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z off-diagonal (matrix 32 and 23)"
     )
     public final float offdiagZ() {
         return this.offdiagZ;
@@ -323,7 +338,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Compass being calibrated"
         )
         public final Builder compassId(int compassId) {
             this.compassId = compassId;
@@ -335,7 +351,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Bitmask of compasses being calibrated"
         )
         public final Builder calMask(int calMask) {
             this.calMask = calMask;
@@ -348,7 +365,8 @@ public final class MagCalReport {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MagCalStatus.class
+                enumType = MagCalStatus.class,
+                description = "Status (see MAG_CAL_STATUS enum)"
         )
         public final Builder calStatus(EnumValue<MagCalStatus> calStatus) {
             this.calStatus = calStatus;
@@ -381,7 +399,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters"
         )
         public final Builder autosaved(int autosaved) {
             this.autosaved = autosaved;
@@ -393,7 +412,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "RMS milligauss residuals"
         )
         public final Builder fitness(float fitness) {
             this.fitness = fitness;
@@ -405,7 +425,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "X offset"
         )
         public final Builder ofsX(float ofsX) {
             this.ofsX = ofsX;
@@ -417,7 +438,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y offset"
         )
         public final Builder ofsY(float ofsY) {
             this.ofsY = ofsY;
@@ -429,7 +451,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z offset"
         )
         public final Builder ofsZ(float ofsZ) {
             this.ofsZ = ofsZ;
@@ -441,7 +464,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "X diagonal (matrix 11)"
         )
         public final Builder diagX(float diagX) {
             this.diagX = diagX;
@@ -453,7 +477,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y diagonal (matrix 22)"
         )
         public final Builder diagY(float diagY) {
             this.diagY = diagY;
@@ -465,7 +490,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z diagonal (matrix 33)"
         )
         public final Builder diagZ(float diagZ) {
             this.diagZ = diagZ;
@@ -477,7 +503,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "X off-diagonal (matrix 12 and 21)"
         )
         public final Builder offdiagX(float offdiagX) {
             this.offdiagX = offdiagX;
@@ -489,7 +516,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y off-diagonal (matrix 13 and 31)"
         )
         public final Builder offdiagY(float offdiagY) {
             this.offdiagY = offdiagY;
@@ -501,7 +529,8 @@ public final class MagCalReport {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z off-diagonal (matrix 32 and 23)"
         )
         public final Builder offdiagZ(float offdiagZ) {
             this.offdiagZ = offdiagZ;

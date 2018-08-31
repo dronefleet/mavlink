@@ -19,7 +19,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 323,
-        crc = 78
+        crc = 78,
+        description = "Set a parameter value. In order to deal with message loss (and retransmission of PARAM_EXT_SET), when setting a parameter value and the new value is the same as the current value, you will immediately get a PARAM_ACK_ACCEPTED response. If the current state is PARAM_ACK_IN_PROGRESS, you will accordingly receive a PARAM_ACK_IN_PROGRESS in response."
 )
 public final class ParamExtSet {
     private final int targetSystem;
@@ -54,7 +55,8 @@ public final class ParamExtSet {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -65,7 +67,8 @@ public final class ParamExtSet {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -79,7 +82,8 @@ public final class ParamExtSet {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -91,7 +95,8 @@ public final class ParamExtSet {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 128
+            arraySize = 128,
+            description = "Parameter value"
     )
     public final String paramValue() {
         return this.paramValue;
@@ -103,7 +108,8 @@ public final class ParamExtSet {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = MavParamExtType.class
+            enumType = MavParamExtType.class,
+            description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
     )
     public final EnumValue<MavParamExtType> paramType() {
         return this.paramType;
@@ -158,7 +164,8 @@ public final class ParamExtSet {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -170,7 +177,8 @@ public final class ParamExtSet {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -185,7 +193,8 @@ public final class ParamExtSet {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -198,7 +207,8 @@ public final class ParamExtSet {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 128
+                arraySize = 128,
+                description = "Parameter value"
         )
         public final Builder paramValue(String paramValue) {
             this.paramValue = paramValue;
@@ -211,7 +221,8 @@ public final class ParamExtSet {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = MavParamExtType.class
+                enumType = MavParamExtType.class,
+                description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
         )
         public final Builder paramType(EnumValue<MavParamExtType> paramType) {
             this.paramType = paramType;

@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 32,
-        crc = 185
+        crc = 185,
+        description = "The filtered local position (e.g. fused computer vision and accelerometers). Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)"
 )
 public final class LocalPositionNed {
     private final long timeBootMs;
@@ -55,7 +56,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -66,7 +68,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Position"
     )
     public final float x() {
         return this.x;
@@ -77,7 +80,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Position"
     )
     public final float y() {
         return this.y;
@@ -88,7 +92,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Position"
     )
     public final float z() {
         return this.z;
@@ -99,7 +104,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Speed"
     )
     public final float vx() {
         return this.vx;
@@ -110,7 +116,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Speed"
     )
     public final float vy() {
         return this.vy;
@@ -121,7 +128,8 @@ public final class LocalPositionNed {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Speed"
     )
     public final float vz() {
         return this.vz;
@@ -186,7 +194,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -198,7 +207,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Position"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -210,7 +220,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Position"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -222,7 +233,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Position"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -234,7 +246,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Speed"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -246,7 +259,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Speed"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -258,7 +272,8 @@ public final class LocalPositionNed {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Speed"
         )
         public final Builder vz(float vz) {
             this.vz = vz;

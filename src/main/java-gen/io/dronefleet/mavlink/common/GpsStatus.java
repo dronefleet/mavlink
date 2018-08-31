@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 25,
-        crc = 23
+        crc = 23,
+        description = "The positioning status, as reported by GPS. This message is intended to display status information about each satellite visible to the receiver. See message GLOBAL_POSITION for the global position estimate. This message can contain information for up to 20 satellites."
 )
 public final class GpsStatus {
     private final int satellitesVisible;
@@ -53,7 +54,8 @@ public final class GpsStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible"
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
@@ -65,7 +67,8 @@ public final class GpsStatus {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "Global satellite ID"
     )
     public final byte[] satellitePrn() {
         return this.satellitePrn;
@@ -77,7 +80,8 @@ public final class GpsStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "0: Satellite not used, 1: used for localization"
     )
     public final byte[] satelliteUsed() {
         return this.satelliteUsed;
@@ -89,7 +93,8 @@ public final class GpsStatus {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "Elevation (0: right on top of receiver, 90: on the horizon) of satellite"
     )
     public final byte[] satelliteElevation() {
         return this.satelliteElevation;
@@ -101,7 +106,8 @@ public final class GpsStatus {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "Direction of satellite, 0: 0 deg, 255: 360 deg."
     )
     public final byte[] satelliteAzimuth() {
         return this.satelliteAzimuth;
@@ -113,7 +119,8 @@ public final class GpsStatus {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "Signal to noise ratio of satellite"
     )
     public final byte[] satelliteSnr() {
         return this.satelliteSnr;
@@ -173,7 +180,8 @@ public final class GpsStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible"
         )
         public final Builder satellitesVisible(int satellitesVisible) {
             this.satellitesVisible = satellitesVisible;
@@ -186,7 +194,8 @@ public final class GpsStatus {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "Global satellite ID"
         )
         public final Builder satellitePrn(byte[] satellitePrn) {
             this.satellitePrn = satellitePrn;
@@ -199,7 +208,8 @@ public final class GpsStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "0: Satellite not used, 1: used for localization"
         )
         public final Builder satelliteUsed(byte[] satelliteUsed) {
             this.satelliteUsed = satelliteUsed;
@@ -212,7 +222,8 @@ public final class GpsStatus {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "Elevation (0: right on top of receiver, 90: on the horizon) of satellite"
         )
         public final Builder satelliteElevation(byte[] satelliteElevation) {
             this.satelliteElevation = satelliteElevation;
@@ -225,7 +236,8 @@ public final class GpsStatus {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "Direction of satellite, 0: 0 deg, 255: 360 deg."
         )
         public final Builder satelliteAzimuth(byte[] satelliteAzimuth) {
             this.satelliteAzimuth = satelliteAzimuth;
@@ -238,7 +250,8 @@ public final class GpsStatus {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "Signal to noise ratio of satellite"
         )
         public final Builder satelliteSnr(byte[] satelliteSnr) {
             this.satelliteSnr = satelliteSnr;

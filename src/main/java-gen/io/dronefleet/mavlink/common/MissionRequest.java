@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 40,
-        crc = 230
+        crc = 230,
+        description = "Request the information of the mission item with the sequence number seq. The response of the system to this message should be a MISSION_ITEM message. https://mavlink.io/en/protocol/mission.html"
 )
 public final class MissionRequest {
     private final int targetSystem;
@@ -50,7 +51,8 @@ public final class MissionRequest {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -61,7 +63,8 @@ public final class MissionRequest {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -72,7 +75,8 @@ public final class MissionRequest {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -85,7 +89,8 @@ public final class MissionRequest {
             position = 5,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -135,7 +140,8 @@ public final class MissionRequest {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -147,7 +153,8 @@ public final class MissionRequest {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -159,7 +166,8 @@ public final class MissionRequest {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;
@@ -173,7 +181,8 @@ public final class MissionRequest {
                 position = 5,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

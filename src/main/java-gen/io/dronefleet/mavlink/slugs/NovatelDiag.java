@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 195,
-        crc = 59
+        crc = 59,
+        description = "Transmits the diagnostics data from the Novatel OEMStar GPS"
 )
 public final class NovatelDiag {
     private final int timestatus;
@@ -54,7 +55,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The Time Status. See Table 8 page 27 Novatel OEMStar Manual"
     )
     public final int timestatus() {
         return this.timestatus;
@@ -65,7 +67,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Status Bitfield. See table 69 page 350 Novatel OEMstar Manual"
     )
     public final long receiverstatus() {
         return this.receiverstatus;
@@ -76,7 +79,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "solution Status. See table 44 page 197"
     )
     public final int solstatus() {
         return this.solstatus;
@@ -87,7 +91,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "position type. See table 43 page 196"
     )
     public final int postype() {
         return this.postype;
@@ -98,7 +103,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "velocity type. See table 43 page 196"
     )
     public final int veltype() {
         return this.veltype;
@@ -109,7 +115,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Age of the position solution"
     )
     public final float possolage() {
         return this.possolage;
@@ -120,7 +127,8 @@ public final class NovatelDiag {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "Times the CRC has failed since boot"
     )
     public final int csfails() {
         return this.csfails;
@@ -185,7 +193,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The Time Status. See Table 8 page 27 Novatel OEMStar Manual"
         )
         public final Builder timestatus(int timestatus) {
             this.timestatus = timestatus;
@@ -197,7 +206,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Status Bitfield. See table 69 page 350 Novatel OEMstar Manual"
         )
         public final Builder receiverstatus(long receiverstatus) {
             this.receiverstatus = receiverstatus;
@@ -209,7 +219,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "solution Status. See table 44 page 197"
         )
         public final Builder solstatus(int solstatus) {
             this.solstatus = solstatus;
@@ -221,7 +232,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "position type. See table 43 page 196"
         )
         public final Builder postype(int postype) {
             this.postype = postype;
@@ -233,7 +245,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "velocity type. See table 43 page 196"
         )
         public final Builder veltype(int veltype) {
             this.veltype = veltype;
@@ -245,7 +258,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Age of the position solution"
         )
         public final Builder possolage(float possolage) {
             this.possolage = possolage;
@@ -257,7 +271,8 @@ public final class NovatelDiag {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "Times the CRC has failed since boot"
         )
         public final Builder csfails(int csfails) {
             this.csfails = csfails;

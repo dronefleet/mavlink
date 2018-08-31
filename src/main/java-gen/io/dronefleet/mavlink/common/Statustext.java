@@ -19,7 +19,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 253,
-        crc = 83
+        crc = 83,
+        description = "Status text message. These messages are printed in yellow in the COMM console of QGroundControl. WARNING: They consume quite some bandwidth, so use only for important status and error messages. If implemented wisely, these messages are buffered on the MCU and sent only at a limited rate (e.g. 10 Hz)."
 )
 public final class Statustext {
     private final EnumValue<MavSeverity> severity;
@@ -45,7 +46,8 @@ public final class Statustext {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavSeverity.class
+            enumType = MavSeverity.class,
+            description = "Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY."
     )
     public final EnumValue<MavSeverity> severity() {
         return this.severity;
@@ -57,7 +59,8 @@ public final class Statustext {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 50
+            arraySize = 50,
+            description = "Status text message, without null termination character"
     )
     public final String text() {
         return this.text;
@@ -98,7 +101,8 @@ public final class Statustext {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavSeverity.class
+                enumType = MavSeverity.class,
+                description = "Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY."
         )
         public final Builder severity(EnumValue<MavSeverity> severity) {
             this.severity = severity;
@@ -132,7 +136,8 @@ public final class Statustext {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 50
+                arraySize = 50,
+                description = "Status text message, without null termination character"
         )
         public final Builder text(String text) {
             this.text = text;

@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 43,
-        crc = 132
+        crc = 132,
+        description = "Request the overall list of mission items from the system/component."
 )
 public final class MissionRequestList {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class MissionRequestList {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class MissionRequestList {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -69,7 +72,8 @@ public final class MissionRequestList {
             position = 4,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -114,7 +118,8 @@ public final class MissionRequestList {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -126,7 +131,8 @@ public final class MissionRequestList {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -140,7 +146,8 @@ public final class MissionRequestList {
                 position = 4,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

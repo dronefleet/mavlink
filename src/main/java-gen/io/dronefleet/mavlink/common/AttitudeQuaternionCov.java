@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 61,
-        crc = 167
+        crc = 167,
+        description = "The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0)."
 )
 public final class AttitudeQuaternionCov {
     private final BigInteger timeUsec;
@@ -55,7 +56,8 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since system boot or since UNIX epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -67,7 +69,8 @@ public final class AttitudeQuaternionCov {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)"
     )
     public final List<Float> q() {
         return this.q;
@@ -78,7 +81,8 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angular speed (rad/s)"
     )
     public final float rollspeed() {
         return this.rollspeed;
@@ -89,7 +93,8 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angular speed (rad/s)"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
@@ -100,7 +105,8 @@ public final class AttitudeQuaternionCov {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angular speed (rad/s)"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -112,7 +118,8 @@ public final class AttitudeQuaternionCov {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            arraySize = 9
+            arraySize = 9,
+            description = "Attitude covariance"
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -172,7 +179,8 @@ public final class AttitudeQuaternionCov {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since system boot or since UNIX epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -185,7 +193,8 @@ public final class AttitudeQuaternionCov {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -197,7 +206,8 @@ public final class AttitudeQuaternionCov {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angular speed (rad/s)"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -209,7 +219,8 @@ public final class AttitudeQuaternionCov {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angular speed (rad/s)"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -221,7 +232,8 @@ public final class AttitudeQuaternionCov {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angular speed (rad/s)"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;
@@ -234,7 +246,8 @@ public final class AttitudeQuaternionCov {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                arraySize = 9
+                arraySize = 9,
+                description = "Attitude covariance"
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 153,
-        crc = 109
+        crc = 109,
+        description = "Flexifunction type and parameters for component at function index from buffer"
 )
 public final class FlexifunctionBufferFunctionAck {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class FlexifunctionBufferFunctionAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class FlexifunctionBufferFunctionAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -67,7 +70,8 @@ public final class FlexifunctionBufferFunctionAck {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Function index"
     )
     public final int funcIndex() {
         return this.funcIndex;
@@ -78,7 +82,8 @@ public final class FlexifunctionBufferFunctionAck {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "result of acknowledge, 0=fail, 1=good"
     )
     public final int result() {
         return this.result;
@@ -128,7 +133,8 @@ public final class FlexifunctionBufferFunctionAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -140,7 +146,8 @@ public final class FlexifunctionBufferFunctionAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -152,7 +159,8 @@ public final class FlexifunctionBufferFunctionAck {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Function index"
         )
         public final Builder funcIndex(int funcIndex) {
             this.funcIndex = funcIndex;
@@ -164,7 +172,8 @@ public final class FlexifunctionBufferFunctionAck {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "result of acknowledge, 0=fail, 1=good"
         )
         public final Builder result(int result) {
             this.result = result;

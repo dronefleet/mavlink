@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 179,
-        crc = 189
+        crc = 189,
+        description = "Camera Event"
 )
 public final class CameraStatus {
     private final BigInteger timeUsec;
@@ -64,7 +65,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Image timestamp (microseconds since UNIX epoch, according to camera clock)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -75,7 +77,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -86,7 +89,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Camera ID"
     )
     public final int camIdx() {
         return this.camIdx;
@@ -97,7 +101,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Image index"
     )
     public final int imgIdx() {
         return this.imgIdx;
@@ -109,7 +114,8 @@ public final class CameraStatus {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = CameraStatusTypes.class
+            enumType = CameraStatusTypes.class,
+            description = "See CAMERA_STATUS_TYPES enum for definition of the bitmask"
     )
     public final EnumValue<CameraStatusTypes> eventId() {
         return this.eventId;
@@ -120,7 +126,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 1 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
     )
     public final float p1() {
         return this.p1;
@@ -131,7 +138,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 2 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
     )
     public final float p2() {
         return this.p2;
@@ -142,7 +150,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 3 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
     )
     public final float p3() {
         return this.p3;
@@ -153,7 +162,8 @@ public final class CameraStatus {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 4 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
     )
     public final float p4() {
         return this.p4;
@@ -228,7 +238,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Image timestamp (microseconds since UNIX epoch, according to camera clock)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -240,7 +251,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -252,7 +264,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Camera ID"
         )
         public final Builder camIdx(int camIdx) {
             this.camIdx = camIdx;
@@ -264,7 +277,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Image index"
         )
         public final Builder imgIdx(int imgIdx) {
             this.imgIdx = imgIdx;
@@ -277,7 +291,8 @@ public final class CameraStatus {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = CameraStatusTypes.class
+                enumType = CameraStatusTypes.class,
+                description = "See CAMERA_STATUS_TYPES enum for definition of the bitmask"
         )
         public final Builder eventId(EnumValue<CameraStatusTypes> eventId) {
             this.eventId = eventId;
@@ -310,7 +325,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 1 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
         )
         public final Builder p1(float p1) {
             this.p1 = p1;
@@ -322,7 +338,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 2 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
         )
         public final Builder p2(float p2) {
             this.p2 = p2;
@@ -334,7 +351,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 3 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
         )
         public final Builder p3(float p3) {
             this.p3 = p3;
@@ -346,7 +364,8 @@ public final class CameraStatus {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 4 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
         )
         public final Builder p4(float p4) {
             this.p4 = p4;

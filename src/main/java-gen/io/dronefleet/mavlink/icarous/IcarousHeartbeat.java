@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 42000,
-        crc = 227
+        crc = 227,
+        description = "ICAROUS heartbeat"
 )
 public final class IcarousHeartbeat {
     private final EnumValue<IcarousFmsState> status;
@@ -39,7 +40,8 @@ public final class IcarousHeartbeat {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = IcarousFmsState.class
+            enumType = IcarousFmsState.class,
+            description = "See the FMS_STATE enum."
     )
     public final EnumValue<IcarousFmsState> status() {
         return this.status;
@@ -75,7 +77,8 @@ public final class IcarousHeartbeat {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = IcarousFmsState.class
+                enumType = IcarousFmsState.class,
+                description = "See the FMS_STATE enum."
         )
         public final Builder status(EnumValue<IcarousFmsState> status) {
             this.status = status;

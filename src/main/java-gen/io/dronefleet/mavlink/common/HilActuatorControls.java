@@ -20,7 +20,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 93,
-        crc = 47
+        crc = 47,
+        description = "Sent from autopilot to simulation. Hardware in the loop control outputs (replacement for HIL_CONTROLS)"
 )
 public final class HilActuatorControls {
     private final BigInteger timeUsec;
@@ -52,7 +53,8 @@ public final class HilActuatorControls {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -64,7 +66,8 @@ public final class HilActuatorControls {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            arraySize = 16
+            arraySize = 16,
+            description = "Control outputs -1 .. 1. Channel assignment depends on the simulated hardware."
     )
     public final List<Float> controls() {
         return this.controls;
@@ -76,7 +79,8 @@ public final class HilActuatorControls {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavMode.class
+            enumType = MavMode.class,
+            description = "System mode (MAV_MODE), includes arming state."
     )
     public final EnumValue<MavMode> mode() {
         return this.mode;
@@ -87,7 +91,8 @@ public final class HilActuatorControls {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 8
+            unitSize = 8,
+            description = "Flags as bitfield, reserved for future use."
     )
     public final BigInteger flags() {
         return this.flags;
@@ -137,7 +142,8 @@ public final class HilActuatorControls {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -150,7 +156,8 @@ public final class HilActuatorControls {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                arraySize = 16
+                arraySize = 16,
+                description = "Control outputs -1 .. 1. Channel assignment depends on the simulated hardware."
         )
         public final Builder controls(List<Float> controls) {
             this.controls = controls;
@@ -163,7 +170,8 @@ public final class HilActuatorControls {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavMode.class
+                enumType = MavMode.class,
+                description = "System mode (MAV_MODE), includes arming state."
         )
         public final Builder mode(EnumValue<MavMode> mode) {
             this.mode = mode;
@@ -196,7 +204,8 @@ public final class HilActuatorControls {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 8
+                unitSize = 8,
+                description = "Flags as bitfield, reserved for future use."
         )
         public final Builder flags(BigInteger flags) {
             this.flags = flags;

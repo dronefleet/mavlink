@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 202,
-        crc = 231
+        crc = 231,
+        description = "Maximum Power Point Tracker (MPPT) sensor data for solar module power performance tracking"
 )
 public final class SensMppt {
     private final BigInteger mpptTimestamp;
@@ -74,7 +75,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "MPPT last timestamp"
     )
     public final BigInteger mpptTimestamp() {
         return this.mpptTimestamp;
@@ -85,7 +87,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT1 voltage"
     )
     public final float mppt1Volt() {
         return this.mppt1Volt;
@@ -96,7 +99,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT1 current"
     )
     public final float mppt1Amp() {
         return this.mppt1Amp;
@@ -107,7 +111,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "MPPT1 pwm"
     )
     public final int mppt1Pwm() {
         return this.mppt1Pwm;
@@ -118,7 +123,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "MPPT1 status"
     )
     public final int mppt1Status() {
         return this.mppt1Status;
@@ -129,7 +135,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT2 voltage"
     )
     public final float mppt2Volt() {
         return this.mppt2Volt;
@@ -140,7 +147,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT2 current"
     )
     public final float mppt2Amp() {
         return this.mppt2Amp;
@@ -151,7 +159,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 2
+            unitSize = 2,
+            description = "MPPT2 pwm"
     )
     public final int mppt2Pwm() {
         return this.mppt2Pwm;
@@ -162,7 +171,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "MPPT2 status"
     )
     public final int mppt2Status() {
         return this.mppt2Status;
@@ -173,7 +183,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT3 voltage"
     )
     public final float mppt3Volt() {
         return this.mppt3Volt;
@@ -184,7 +195,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "MPPT3 current"
     )
     public final float mppt3Amp() {
         return this.mppt3Amp;
@@ -195,7 +207,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 2
+            unitSize = 2,
+            description = "MPPT3 pwm"
     )
     public final int mppt3Pwm() {
         return this.mppt3Pwm;
@@ -206,7 +219,8 @@ public final class SensMppt {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 1
+            unitSize = 1,
+            description = "MPPT3 status"
     )
     public final int mppt3Status() {
         return this.mppt3Status;
@@ -301,7 +315,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "MPPT last timestamp"
         )
         public final Builder mpptTimestamp(BigInteger mpptTimestamp) {
             this.mpptTimestamp = mpptTimestamp;
@@ -313,7 +328,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT1 voltage"
         )
         public final Builder mppt1Volt(float mppt1Volt) {
             this.mppt1Volt = mppt1Volt;
@@ -325,7 +341,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT1 current"
         )
         public final Builder mppt1Amp(float mppt1Amp) {
             this.mppt1Amp = mppt1Amp;
@@ -337,7 +354,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "MPPT1 pwm"
         )
         public final Builder mppt1Pwm(int mppt1Pwm) {
             this.mppt1Pwm = mppt1Pwm;
@@ -349,7 +367,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "MPPT1 status"
         )
         public final Builder mppt1Status(int mppt1Status) {
             this.mppt1Status = mppt1Status;
@@ -361,7 +380,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT2 voltage"
         )
         public final Builder mppt2Volt(float mppt2Volt) {
             this.mppt2Volt = mppt2Volt;
@@ -373,7 +393,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT2 current"
         )
         public final Builder mppt2Amp(float mppt2Amp) {
             this.mppt2Amp = mppt2Amp;
@@ -385,7 +406,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 2
+                unitSize = 2,
+                description = "MPPT2 pwm"
         )
         public final Builder mppt2Pwm(int mppt2Pwm) {
             this.mppt2Pwm = mppt2Pwm;
@@ -397,7 +419,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "MPPT2 status"
         )
         public final Builder mppt2Status(int mppt2Status) {
             this.mppt2Status = mppt2Status;
@@ -409,7 +432,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT3 voltage"
         )
         public final Builder mppt3Volt(float mppt3Volt) {
             this.mppt3Volt = mppt3Volt;
@@ -421,7 +445,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "MPPT3 current"
         )
         public final Builder mppt3Amp(float mppt3Amp) {
             this.mppt3Amp = mppt3Amp;
@@ -433,7 +458,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 2
+                unitSize = 2,
+                description = "MPPT3 pwm"
         )
         public final Builder mppt3Pwm(int mppt3Pwm) {
             this.mppt3Pwm = mppt3Pwm;
@@ -445,7 +471,8 @@ public final class SensMppt {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 1
+                unitSize = 1,
+                description = "MPPT3 status"
         )
         public final Builder mppt3Status(int mppt3Status) {
             this.mppt3Status = mppt3Status;

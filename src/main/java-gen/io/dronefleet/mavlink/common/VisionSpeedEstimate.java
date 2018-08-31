@@ -51,7 +51,8 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkFieldInfo(
             position = 0,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
     )
     public final BigInteger usec() {
         return this.usec;
@@ -62,7 +63,8 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Global X speed"
     )
     public final float x() {
         return this.x;
@@ -73,7 +75,8 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Global Y speed"
     )
     public final float y() {
         return this.y;
@@ -84,7 +87,8 @@ public final class VisionSpeedEstimate {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Global Z speed"
     )
     public final float z() {
         return this.z;
@@ -97,7 +101,8 @@ public final class VisionSpeedEstimate {
             position = 5,
             unitSize = 4,
             arraySize = 9,
-            extension = true
+            extension = true,
+            description = "Linear velocity covariance matrix (1st three entries - 1st row, etc.)"
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -152,7 +157,8 @@ public final class VisionSpeedEstimate {
          */
         @MavlinkFieldInfo(
                 position = 0,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
         )
         public final Builder usec(BigInteger usec) {
             this.usec = usec;
@@ -164,7 +170,8 @@ public final class VisionSpeedEstimate {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Global X speed"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -176,7 +183,8 @@ public final class VisionSpeedEstimate {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Global Y speed"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -188,7 +196,8 @@ public final class VisionSpeedEstimate {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Global Z speed"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -202,7 +211,8 @@ public final class VisionSpeedEstimate {
                 position = 5,
                 unitSize = 4,
                 arraySize = 9,
-                extension = true
+                extension = true,
+                description = "Linear velocity covariance matrix (1st three entries - 1st row, etc.)"
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

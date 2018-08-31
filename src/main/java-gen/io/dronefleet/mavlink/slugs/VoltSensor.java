@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 191,
-        crc = 17
+        crc = 17,
+        description = "Transmits the readings from the voltage and current sensors"
 )
 public final class VoltSensor {
     private final int r2type;
@@ -41,7 +42,8 @@ public final class VoltSensor {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM"
     )
     public final int r2type() {
         return this.r2type;
@@ -52,7 +54,8 @@ public final class VoltSensor {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V"
     )
     public final int voltage() {
         return this.voltage;
@@ -64,7 +67,8 @@ public final class VoltSensor {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value"
     )
     public final int reading2() {
         return this.reading2;
@@ -109,7 +113,8 @@ public final class VoltSensor {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "It is the value of reading 2: 0 - Current, 1 - Foreward Sonar, 2 - Back Sonar, 3 - RPM"
         )
         public final Builder r2type(int r2type) {
             this.r2type = r2type;
@@ -121,7 +126,8 @@ public final class VoltSensor {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "Voltage in uS of PWM. 0 uS = 0V, 20 uS = 21.5V"
         )
         public final Builder voltage(int voltage) {
             this.voltage = voltage;
@@ -134,7 +140,8 @@ public final class VoltSensor {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Depends on the value of r2Type (0) Current consumption in uS of PWM, 20 uS = 90Amp (1) Distance in cm (2) Distance in cm (3) Absolute value"
         )
         public final Builder reading2(int reading2) {
             this.reading2 = reading2;

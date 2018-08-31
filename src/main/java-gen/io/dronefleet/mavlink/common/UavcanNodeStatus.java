@@ -19,7 +19,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 310,
-        crc = 28
+        crc = 28,
+        description = "General status information of an UAVCAN node. Please refer to the definition of the UAVCAN message \"uavcan.protocol.NodeStatus\" for the background information. The UAVCAN specification is available at http://uavcan.org."
 )
 public final class UavcanNodeStatus {
     private final BigInteger timeUsec;
@@ -58,7 +59,8 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -69,7 +71,8 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "The number of seconds since the start-up of the node."
     )
     public final long uptimeSec() {
         return this.uptimeSec;
@@ -81,7 +84,8 @@ public final class UavcanNodeStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = UavcanNodeHealth.class
+            enumType = UavcanNodeHealth.class,
+            description = "Generalized node health status."
     )
     public final EnumValue<UavcanNodeHealth> health() {
         return this.health;
@@ -93,7 +97,8 @@ public final class UavcanNodeStatus {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = UavcanNodeMode.class
+            enumType = UavcanNodeMode.class,
+            description = "Generalized operating mode."
     )
     public final EnumValue<UavcanNodeMode> mode() {
         return this.mode;
@@ -104,7 +109,8 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Not used currently."
     )
     public final int subMode() {
         return this.subMode;
@@ -115,7 +121,8 @@ public final class UavcanNodeStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "Vendor-specific status information."
     )
     public final int vendorSpecificStatusCode() {
         return this.vendorSpecificStatusCode;
@@ -175,7 +182,8 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -187,7 +195,8 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "The number of seconds since the start-up of the node."
         )
         public final Builder uptimeSec(long uptimeSec) {
             this.uptimeSec = uptimeSec;
@@ -200,7 +209,8 @@ public final class UavcanNodeStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = UavcanNodeHealth.class
+                enumType = UavcanNodeHealth.class,
+                description = "Generalized node health status."
         )
         public final Builder health(EnumValue<UavcanNodeHealth> health) {
             this.health = health;
@@ -234,7 +244,8 @@ public final class UavcanNodeStatus {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = UavcanNodeMode.class
+                enumType = UavcanNodeMode.class,
+                description = "Generalized operating mode."
         )
         public final Builder mode(EnumValue<UavcanNodeMode> mode) {
             this.mode = mode;
@@ -267,7 +278,8 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Not used currently."
         )
         public final Builder subMode(int subMode) {
             this.subMode = subMode;
@@ -279,7 +291,8 @@ public final class UavcanNodeStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "Vendor-specific status information."
         )
         public final Builder vendorSpecificStatusCode(int vendorSpecificStatusCode) {
             this.vendorSpecificStatusCode = vendorSpecificStatusCode;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 196,
-        crc = 129
+        crc = 129,
+        description = "Diagnostic data Sensor MCU"
 )
 public final class SensorDiag {
     private final float float1;
@@ -44,7 +45,8 @@ public final class SensorDiag {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Float field 1"
     )
     public final float float1() {
         return this.float1;
@@ -55,7 +57,8 @@ public final class SensorDiag {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Float field 2"
     )
     public final float float2() {
         return this.float2;
@@ -67,7 +70,8 @@ public final class SensorDiag {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Int 16 field 1"
     )
     public final int int1() {
         return this.int1;
@@ -79,7 +83,8 @@ public final class SensorDiag {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Int 8 field 1"
     )
     public final int char1() {
         return this.char1;
@@ -129,7 +134,8 @@ public final class SensorDiag {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Float field 1"
         )
         public final Builder float1(float float1) {
             this.float1 = float1;
@@ -141,7 +147,8 @@ public final class SensorDiag {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Float field 2"
         )
         public final Builder float2(float float2) {
             this.float2 = float2;
@@ -154,7 +161,8 @@ public final class SensorDiag {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Int 16 field 1"
         )
         public final Builder int1(int int1) {
             this.int1 = int1;
@@ -167,7 +175,8 @@ public final class SensorDiag {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Int 8 field 1"
         )
         public final Builder char1(int char1) {
             this.char1 = char1;

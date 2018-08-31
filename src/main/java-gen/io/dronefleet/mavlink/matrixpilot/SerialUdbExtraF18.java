@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 184,
-        crc = 41
+        crc = 41,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F18 format"
 )
 public final class SerialUdbExtraF18 {
     private final float angleOfAttackNormal;
@@ -48,7 +49,8 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Angle of Attack Normal"
     )
     public final float angleOfAttackNormal() {
         return this.angleOfAttackNormal;
@@ -59,7 +61,8 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Angle of Attack Inverted"
     )
     public final float angleOfAttackInverted() {
         return this.angleOfAttackInverted;
@@ -70,7 +73,8 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Elevator Trim Normal"
     )
     public final float elevatorTrimNormal() {
         return this.elevatorTrimNormal;
@@ -81,7 +85,8 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Elevator Trim Inverted"
     )
     public final float elevatorTrimInverted() {
         return this.elevatorTrimInverted;
@@ -92,7 +97,8 @@ public final class SerialUdbExtraF18 {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE reference_speed"
     )
     public final float referenceSpeed() {
         return this.referenceSpeed;
@@ -147,7 +153,8 @@ public final class SerialUdbExtraF18 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Angle of Attack Normal"
         )
         public final Builder angleOfAttackNormal(float angleOfAttackNormal) {
             this.angleOfAttackNormal = angleOfAttackNormal;
@@ -159,7 +166,8 @@ public final class SerialUdbExtraF18 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Angle of Attack Inverted"
         )
         public final Builder angleOfAttackInverted(float angleOfAttackInverted) {
             this.angleOfAttackInverted = angleOfAttackInverted;
@@ -171,7 +179,8 @@ public final class SerialUdbExtraF18 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Elevator Trim Normal"
         )
         public final Builder elevatorTrimNormal(float elevatorTrimNormal) {
             this.elevatorTrimNormal = elevatorTrimNormal;
@@ -183,7 +192,8 @@ public final class SerialUdbExtraF18 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Elevator Trim Inverted"
         )
         public final Builder elevatorTrimInverted(float elevatorTrimInverted) {
             this.elevatorTrimInverted = elevatorTrimInverted;
@@ -195,7 +205,8 @@ public final class SerialUdbExtraF18 {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE reference_speed"
         )
         public final Builder referenceSpeed(float referenceSpeed) {
             this.referenceSpeed = referenceSpeed;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 170,
-        crc = 103
+        crc = 103,
+        description = "Backwards compatible MAVLink version of SERIAL_UDB_EXTRA - F2: Format Part A"
 )
 public final class SerialUdbExtraF2A {
     private final long sueTime;
@@ -118,7 +119,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Time"
     )
     public final long sueTime() {
         return this.sueTime;
@@ -129,7 +131,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Status"
     )
     public final int sueStatus() {
         return this.sueStatus;
@@ -141,7 +144,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Latitude"
     )
     public final int sueLatitude() {
         return this.sueLatitude;
@@ -153,7 +157,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Longitude"
     )
     public final int sueLongitude() {
         return this.sueLongitude;
@@ -165,7 +170,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Altitude"
     )
     public final int sueAltitude() {
         return this.sueAltitude;
@@ -176,7 +182,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "Serial UDB Extra Waypoint Index"
     )
     public final int sueWaypointIndex() {
         return this.sueWaypointIndex;
@@ -188,7 +195,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 0"
     )
     public final int sueRmat0() {
         return this.sueRmat0;
@@ -200,7 +208,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 1"
     )
     public final int sueRmat1() {
         return this.sueRmat1;
@@ -212,7 +221,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 2"
     )
     public final int sueRmat2() {
         return this.sueRmat2;
@@ -224,7 +234,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 3"
     )
     public final int sueRmat3() {
         return this.sueRmat3;
@@ -236,7 +247,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 4"
     )
     public final int sueRmat4() {
         return this.sueRmat4;
@@ -248,7 +260,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 5"
     )
     public final int sueRmat5() {
         return this.sueRmat5;
@@ -260,7 +273,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 6"
     )
     public final int sueRmat6() {
         return this.sueRmat6;
@@ -272,7 +286,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 7"
     )
     public final int sueRmat7() {
         return this.sueRmat7;
@@ -284,7 +299,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Rmat 8"
     )
     public final int sueRmat8() {
         return this.sueRmat8;
@@ -295,7 +311,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 2
+            unitSize = 2,
+            description = "Serial UDB Extra GPS Course Over Ground"
     )
     public final int sueCog() {
         return this.sueCog;
@@ -307,7 +324,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 17,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Speed Over Ground"
     )
     public final int sueSog() {
         return this.sueSog;
@@ -318,7 +336,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 2
+            unitSize = 2,
+            description = "Serial UDB Extra CPU Load"
     )
     public final int sueCpuLoad() {
         return this.sueCpuLoad;
@@ -329,7 +348,8 @@ public final class SerialUdbExtraF2A {
      */
     @MavlinkFieldInfo(
             position = 19,
-            unitSize = 2
+            unitSize = 2,
+            description = "Serial UDB Extra 3D IMU Air Speed"
     )
     public final int sueAirSpeed3dimu() {
         return this.sueAirSpeed3dimu;
@@ -341,7 +361,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Estimated Wind 0"
     )
     public final int sueEstimatedWind0() {
         return this.sueEstimatedWind0;
@@ -353,7 +374,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Estimated Wind 1"
     )
     public final int sueEstimatedWind1() {
         return this.sueEstimatedWind1;
@@ -365,7 +387,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 22,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Estimated Wind 2"
     )
     public final int sueEstimatedWind2() {
         return this.sueEstimatedWind2;
@@ -377,7 +400,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 23,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Magnetic Field Earth 0"
     )
     public final int sueMagfieldearth0() {
         return this.sueMagfieldearth0;
@@ -389,7 +413,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 24,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Magnetic Field Earth 1"
     )
     public final int sueMagfieldearth1() {
         return this.sueMagfieldearth1;
@@ -401,7 +426,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 25,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Magnetic Field Earth 2"
     )
     public final int sueMagfieldearth2() {
         return this.sueMagfieldearth2;
@@ -413,7 +439,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 26,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Number of Sattelites in View"
     )
     public final int sueSvs() {
         return this.sueSvs;
@@ -425,7 +452,8 @@ public final class SerialUdbExtraF2A {
     @MavlinkFieldInfo(
             position = 27,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra GPS Horizontal Dilution of Precision"
     )
     public final int sueHdop() {
         return this.sueHdop;
@@ -590,7 +618,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Time"
         )
         public final Builder sueTime(long sueTime) {
             this.sueTime = sueTime;
@@ -602,7 +631,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Status"
         )
         public final Builder sueStatus(int sueStatus) {
             this.sueStatus = sueStatus;
@@ -615,7 +645,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Latitude"
         )
         public final Builder sueLatitude(int sueLatitude) {
             this.sueLatitude = sueLatitude;
@@ -628,7 +659,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Longitude"
         )
         public final Builder sueLongitude(int sueLongitude) {
             this.sueLongitude = sueLongitude;
@@ -641,7 +673,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Altitude"
         )
         public final Builder sueAltitude(int sueAltitude) {
             this.sueAltitude = sueAltitude;
@@ -653,7 +686,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "Serial UDB Extra Waypoint Index"
         )
         public final Builder sueWaypointIndex(int sueWaypointIndex) {
             this.sueWaypointIndex = sueWaypointIndex;
@@ -666,7 +700,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 0"
         )
         public final Builder sueRmat0(int sueRmat0) {
             this.sueRmat0 = sueRmat0;
@@ -679,7 +714,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 1"
         )
         public final Builder sueRmat1(int sueRmat1) {
             this.sueRmat1 = sueRmat1;
@@ -692,7 +728,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 2"
         )
         public final Builder sueRmat2(int sueRmat2) {
             this.sueRmat2 = sueRmat2;
@@ -705,7 +742,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 3"
         )
         public final Builder sueRmat3(int sueRmat3) {
             this.sueRmat3 = sueRmat3;
@@ -718,7 +756,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 4"
         )
         public final Builder sueRmat4(int sueRmat4) {
             this.sueRmat4 = sueRmat4;
@@ -731,7 +770,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 5"
         )
         public final Builder sueRmat5(int sueRmat5) {
             this.sueRmat5 = sueRmat5;
@@ -744,7 +784,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 6"
         )
         public final Builder sueRmat6(int sueRmat6) {
             this.sueRmat6 = sueRmat6;
@@ -757,7 +798,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 7"
         )
         public final Builder sueRmat7(int sueRmat7) {
             this.sueRmat7 = sueRmat7;
@@ -770,7 +812,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Rmat 8"
         )
         public final Builder sueRmat8(int sueRmat8) {
             this.sueRmat8 = sueRmat8;
@@ -782,7 +825,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 2
+                unitSize = 2,
+                description = "Serial UDB Extra GPS Course Over Ground"
         )
         public final Builder sueCog(int sueCog) {
             this.sueCog = sueCog;
@@ -795,7 +839,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 17,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Speed Over Ground"
         )
         public final Builder sueSog(int sueSog) {
             this.sueSog = sueSog;
@@ -807,7 +852,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 2
+                unitSize = 2,
+                description = "Serial UDB Extra CPU Load"
         )
         public final Builder sueCpuLoad(int sueCpuLoad) {
             this.sueCpuLoad = sueCpuLoad;
@@ -819,7 +865,8 @@ public final class SerialUdbExtraF2A {
          */
         @MavlinkFieldInfo(
                 position = 19,
-                unitSize = 2
+                unitSize = 2,
+                description = "Serial UDB Extra 3D IMU Air Speed"
         )
         public final Builder sueAirSpeed3dimu(int sueAirSpeed3dimu) {
             this.sueAirSpeed3dimu = sueAirSpeed3dimu;
@@ -832,7 +879,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Estimated Wind 0"
         )
         public final Builder sueEstimatedWind0(int sueEstimatedWind0) {
             this.sueEstimatedWind0 = sueEstimatedWind0;
@@ -845,7 +893,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Estimated Wind 1"
         )
         public final Builder sueEstimatedWind1(int sueEstimatedWind1) {
             this.sueEstimatedWind1 = sueEstimatedWind1;
@@ -858,7 +907,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 22,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Estimated Wind 2"
         )
         public final Builder sueEstimatedWind2(int sueEstimatedWind2) {
             this.sueEstimatedWind2 = sueEstimatedWind2;
@@ -871,7 +921,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 23,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Magnetic Field Earth 0"
         )
         public final Builder sueMagfieldearth0(int sueMagfieldearth0) {
             this.sueMagfieldearth0 = sueMagfieldearth0;
@@ -884,7 +935,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 24,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Magnetic Field Earth 1"
         )
         public final Builder sueMagfieldearth1(int sueMagfieldearth1) {
             this.sueMagfieldearth1 = sueMagfieldearth1;
@@ -897,7 +949,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 25,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Magnetic Field Earth 2"
         )
         public final Builder sueMagfieldearth2(int sueMagfieldearth2) {
             this.sueMagfieldearth2 = sueMagfieldearth2;
@@ -910,7 +963,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 26,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Number of Sattelites in View"
         )
         public final Builder sueSvs(int sueSvs) {
             this.sueSvs = sueSvs;
@@ -923,7 +977,8 @@ public final class SerialUdbExtraF2A {
         @MavlinkFieldInfo(
                 position = 27,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra GPS Horizontal Dilution of Precision"
         )
         public final Builder sueHdop(int sueHdop) {
             this.sueHdop = sueHdop;

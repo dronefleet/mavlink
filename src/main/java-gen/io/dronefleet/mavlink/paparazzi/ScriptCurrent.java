@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 184,
-        crc = 40
+        crc = 40,
+        description = "This message informs about the currently active SCRIPT."
 )
 public final class ScriptCurrent {
     private final int seq;
@@ -35,7 +36,8 @@ public final class ScriptCurrent {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Active Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -70,7 +72,8 @@ public final class ScriptCurrent {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Active Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;

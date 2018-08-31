@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 160,
-        crc = 78
+        crc = 78,
+        description = "A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS"
 )
 public final class FencePoint {
     private final int targetSystem;
@@ -51,7 +52,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -62,7 +64,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -73,7 +76,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "point index (first point is 1, 0 is for return point)"
     )
     public final int idx() {
         return this.idx;
@@ -84,7 +88,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "total number of points (for sanity checking)"
     )
     public final int count() {
         return this.count;
@@ -95,7 +100,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Latitude of point"
     )
     public final float lat() {
         return this.lat;
@@ -106,7 +112,8 @@ public final class FencePoint {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Longitude of point"
     )
     public final float lng() {
         return this.lng;
@@ -166,7 +173,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -178,7 +186,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -190,7 +199,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "point index (first point is 1, 0 is for return point)"
         )
         public final Builder idx(int idx) {
             this.idx = idx;
@@ -202,7 +212,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "total number of points (for sanity checking)"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -214,7 +225,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Latitude of point"
         )
         public final Builder lat(float lat) {
             this.lat = lat;
@@ -226,7 +238,8 @@ public final class FencePoint {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Longitude of point"
         )
         public final Builder lng(float lng) {
             this.lng = lng;

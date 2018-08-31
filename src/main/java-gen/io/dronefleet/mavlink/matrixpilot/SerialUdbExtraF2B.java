@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 171,
-        crc = 245
+        crc = 245,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA - F2: Part B"
 )
 public final class SerialUdbExtraF2B {
     private final long sueTime;
@@ -194,7 +195,8 @@ public final class SerialUdbExtraF2B {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Time"
     )
     public final long sueTime() {
         return this.sueTime;
@@ -206,7 +208,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 1"
     )
     public final int suePwmInput1() {
         return this.suePwmInput1;
@@ -218,7 +221,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 2"
     )
     public final int suePwmInput2() {
         return this.suePwmInput2;
@@ -230,7 +234,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 3"
     )
     public final int suePwmInput3() {
         return this.suePwmInput3;
@@ -242,7 +247,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 4"
     )
     public final int suePwmInput4() {
         return this.suePwmInput4;
@@ -254,7 +260,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 5"
     )
     public final int suePwmInput5() {
         return this.suePwmInput5;
@@ -266,7 +273,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 6"
     )
     public final int suePwmInput6() {
         return this.suePwmInput6;
@@ -278,7 +286,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 7"
     )
     public final int suePwmInput7() {
         return this.suePwmInput7;
@@ -290,7 +299,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 8"
     )
     public final int suePwmInput8() {
         return this.suePwmInput8;
@@ -302,7 +312,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 9"
     )
     public final int suePwmInput9() {
         return this.suePwmInput9;
@@ -314,7 +325,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 10"
     )
     public final int suePwmInput10() {
         return this.suePwmInput10;
@@ -326,7 +338,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 11"
     )
     public final int suePwmInput11() {
         return this.suePwmInput11;
@@ -338,7 +351,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Input Channel 12"
     )
     public final int suePwmInput12() {
         return this.suePwmInput12;
@@ -350,7 +364,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 1"
     )
     public final int suePwmOutput1() {
         return this.suePwmOutput1;
@@ -362,7 +377,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 2"
     )
     public final int suePwmOutput2() {
         return this.suePwmOutput2;
@@ -374,7 +390,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 3"
     )
     public final int suePwmOutput3() {
         return this.suePwmOutput3;
@@ -386,7 +403,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 17,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 4"
     )
     public final int suePwmOutput4() {
         return this.suePwmOutput4;
@@ -398,7 +416,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 18,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 5"
     )
     public final int suePwmOutput5() {
         return this.suePwmOutput5;
@@ -410,7 +429,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 19,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 6"
     )
     public final int suePwmOutput6() {
         return this.suePwmOutput6;
@@ -422,7 +442,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 7"
     )
     public final int suePwmOutput7() {
         return this.suePwmOutput7;
@@ -434,7 +455,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 8"
     )
     public final int suePwmOutput8() {
         return this.suePwmOutput8;
@@ -446,7 +468,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 22,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 9"
     )
     public final int suePwmOutput9() {
         return this.suePwmOutput9;
@@ -458,7 +481,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 23,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 10"
     )
     public final int suePwmOutput10() {
         return this.suePwmOutput10;
@@ -470,7 +494,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 24,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 11"
     )
     public final int suePwmOutput11() {
         return this.suePwmOutput11;
@@ -482,7 +507,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 25,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra PWM Output Channel 12"
     )
     public final int suePwmOutput12() {
         return this.suePwmOutput12;
@@ -494,7 +520,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 26,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Location X"
     )
     public final int sueImuLocationX() {
         return this.sueImuLocationX;
@@ -506,7 +533,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 27,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Location Y"
     )
     public final int sueImuLocationY() {
         return this.sueImuLocationY;
@@ -518,7 +546,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 28,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Location Z"
     )
     public final int sueImuLocationZ() {
         return this.sueImuLocationZ;
@@ -530,7 +559,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 29,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Location Error Earth X"
     )
     public final int sueLocationErrorEarthX() {
         return this.sueLocationErrorEarthX;
@@ -542,7 +572,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 30,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Location Error Earth Y"
     )
     public final int sueLocationErrorEarthY() {
         return this.sueLocationErrorEarthY;
@@ -554,7 +585,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 31,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Location Error Earth Z"
     )
     public final int sueLocationErrorEarthZ() {
         return this.sueLocationErrorEarthZ;
@@ -565,7 +597,8 @@ public final class SerialUdbExtraF2B {
      */
     @MavlinkFieldInfo(
             position = 32,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Status Flags"
     )
     public final long sueFlags() {
         return this.sueFlags;
@@ -577,7 +610,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 33,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Oscillator Failure Count"
     )
     public final int sueOscFails() {
         return this.sueOscFails;
@@ -589,7 +623,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 34,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Velocity X"
     )
     public final int sueImuVelocityX() {
         return this.sueImuVelocityX;
@@ -601,7 +636,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 35,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Velocity Y"
     )
     public final int sueImuVelocityY() {
         return this.sueImuVelocityY;
@@ -613,7 +649,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 36,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra IMU Velocity Z"
     )
     public final int sueImuVelocityZ() {
         return this.sueImuVelocityZ;
@@ -625,7 +662,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 37,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Current Waypoint Goal X"
     )
     public final int sueWaypointGoalX() {
         return this.sueWaypointGoalX;
@@ -637,7 +675,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 38,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Current Waypoint Goal Y"
     )
     public final int sueWaypointGoalY() {
         return this.sueWaypointGoalY;
@@ -649,7 +688,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 39,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Current Waypoint Goal Z"
     )
     public final int sueWaypointGoalZ() {
         return this.sueWaypointGoalZ;
@@ -661,7 +701,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 40,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Aeroforce in UDB X Axis"
     )
     public final int sueAeroX() {
         return this.sueAeroX;
@@ -673,7 +714,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 41,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Aeroforce in UDB Y Axis"
     )
     public final int sueAeroY() {
         return this.sueAeroY;
@@ -685,7 +727,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 42,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Aeroforce in UDB Z axis"
     )
     public final int sueAeroZ() {
         return this.sueAeroZ;
@@ -697,7 +740,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 43,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE barometer temperature"
     )
     public final int sueBaromTemp() {
         return this.sueBaromTemp;
@@ -709,7 +753,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 44,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "SUE barometer pressure"
     )
     public final int sueBaromPress() {
         return this.sueBaromPress;
@@ -721,7 +766,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 45,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "SUE barometer altitude"
     )
     public final int sueBaromAlt() {
         return this.sueBaromAlt;
@@ -733,7 +779,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 46,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE battery voltage"
     )
     public final int sueBatVolt() {
         return this.sueBatVolt;
@@ -745,7 +792,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 47,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE battery current"
     )
     public final int sueBatAmp() {
         return this.sueBatAmp;
@@ -757,7 +805,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 48,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "SUE battery milli amp hours used"
     )
     public final int sueBatAmpHours() {
         return this.sueBatAmpHours;
@@ -769,7 +818,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 49,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Sue autopilot desired height"
     )
     public final int sueDesiredHeight() {
         return this.sueDesiredHeight;
@@ -781,7 +831,8 @@ public final class SerialUdbExtraF2B {
     @MavlinkFieldInfo(
             position = 50,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra Stack Memory Free"
     )
     public final int sueMemoryStackFree() {
         return this.sueMemoryStackFree;
@@ -1061,7 +1112,8 @@ public final class SerialUdbExtraF2B {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Time"
         )
         public final Builder sueTime(long sueTime) {
             this.sueTime = sueTime;
@@ -1074,7 +1126,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 1"
         )
         public final Builder suePwmInput1(int suePwmInput1) {
             this.suePwmInput1 = suePwmInput1;
@@ -1087,7 +1140,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 2"
         )
         public final Builder suePwmInput2(int suePwmInput2) {
             this.suePwmInput2 = suePwmInput2;
@@ -1100,7 +1154,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 3"
         )
         public final Builder suePwmInput3(int suePwmInput3) {
             this.suePwmInput3 = suePwmInput3;
@@ -1113,7 +1168,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 4"
         )
         public final Builder suePwmInput4(int suePwmInput4) {
             this.suePwmInput4 = suePwmInput4;
@@ -1126,7 +1182,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 5"
         )
         public final Builder suePwmInput5(int suePwmInput5) {
             this.suePwmInput5 = suePwmInput5;
@@ -1139,7 +1196,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 6"
         )
         public final Builder suePwmInput6(int suePwmInput6) {
             this.suePwmInput6 = suePwmInput6;
@@ -1152,7 +1210,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 7"
         )
         public final Builder suePwmInput7(int suePwmInput7) {
             this.suePwmInput7 = suePwmInput7;
@@ -1165,7 +1224,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 8"
         )
         public final Builder suePwmInput8(int suePwmInput8) {
             this.suePwmInput8 = suePwmInput8;
@@ -1178,7 +1238,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 9"
         )
         public final Builder suePwmInput9(int suePwmInput9) {
             this.suePwmInput9 = suePwmInput9;
@@ -1191,7 +1252,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 10"
         )
         public final Builder suePwmInput10(int suePwmInput10) {
             this.suePwmInput10 = suePwmInput10;
@@ -1204,7 +1266,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 11"
         )
         public final Builder suePwmInput11(int suePwmInput11) {
             this.suePwmInput11 = suePwmInput11;
@@ -1217,7 +1280,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Input Channel 12"
         )
         public final Builder suePwmInput12(int suePwmInput12) {
             this.suePwmInput12 = suePwmInput12;
@@ -1230,7 +1294,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 1"
         )
         public final Builder suePwmOutput1(int suePwmOutput1) {
             this.suePwmOutput1 = suePwmOutput1;
@@ -1243,7 +1308,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 2"
         )
         public final Builder suePwmOutput2(int suePwmOutput2) {
             this.suePwmOutput2 = suePwmOutput2;
@@ -1256,7 +1322,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 3"
         )
         public final Builder suePwmOutput3(int suePwmOutput3) {
             this.suePwmOutput3 = suePwmOutput3;
@@ -1269,7 +1336,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 17,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 4"
         )
         public final Builder suePwmOutput4(int suePwmOutput4) {
             this.suePwmOutput4 = suePwmOutput4;
@@ -1282,7 +1350,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 18,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 5"
         )
         public final Builder suePwmOutput5(int suePwmOutput5) {
             this.suePwmOutput5 = suePwmOutput5;
@@ -1295,7 +1364,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 19,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 6"
         )
         public final Builder suePwmOutput6(int suePwmOutput6) {
             this.suePwmOutput6 = suePwmOutput6;
@@ -1308,7 +1378,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 7"
         )
         public final Builder suePwmOutput7(int suePwmOutput7) {
             this.suePwmOutput7 = suePwmOutput7;
@@ -1321,7 +1392,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 8"
         )
         public final Builder suePwmOutput8(int suePwmOutput8) {
             this.suePwmOutput8 = suePwmOutput8;
@@ -1334,7 +1406,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 22,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 9"
         )
         public final Builder suePwmOutput9(int suePwmOutput9) {
             this.suePwmOutput9 = suePwmOutput9;
@@ -1347,7 +1420,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 23,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 10"
         )
         public final Builder suePwmOutput10(int suePwmOutput10) {
             this.suePwmOutput10 = suePwmOutput10;
@@ -1360,7 +1434,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 24,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 11"
         )
         public final Builder suePwmOutput11(int suePwmOutput11) {
             this.suePwmOutput11 = suePwmOutput11;
@@ -1373,7 +1448,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 25,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra PWM Output Channel 12"
         )
         public final Builder suePwmOutput12(int suePwmOutput12) {
             this.suePwmOutput12 = suePwmOutput12;
@@ -1386,7 +1462,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 26,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Location X"
         )
         public final Builder sueImuLocationX(int sueImuLocationX) {
             this.sueImuLocationX = sueImuLocationX;
@@ -1399,7 +1476,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 27,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Location Y"
         )
         public final Builder sueImuLocationY(int sueImuLocationY) {
             this.sueImuLocationY = sueImuLocationY;
@@ -1412,7 +1490,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 28,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Location Z"
         )
         public final Builder sueImuLocationZ(int sueImuLocationZ) {
             this.sueImuLocationZ = sueImuLocationZ;
@@ -1425,7 +1504,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 29,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Location Error Earth X"
         )
         public final Builder sueLocationErrorEarthX(int sueLocationErrorEarthX) {
             this.sueLocationErrorEarthX = sueLocationErrorEarthX;
@@ -1438,7 +1518,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 30,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Location Error Earth Y"
         )
         public final Builder sueLocationErrorEarthY(int sueLocationErrorEarthY) {
             this.sueLocationErrorEarthY = sueLocationErrorEarthY;
@@ -1451,7 +1532,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 31,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Location Error Earth Z"
         )
         public final Builder sueLocationErrorEarthZ(int sueLocationErrorEarthZ) {
             this.sueLocationErrorEarthZ = sueLocationErrorEarthZ;
@@ -1463,7 +1545,8 @@ public final class SerialUdbExtraF2B {
          */
         @MavlinkFieldInfo(
                 position = 32,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Status Flags"
         )
         public final Builder sueFlags(long sueFlags) {
             this.sueFlags = sueFlags;
@@ -1476,7 +1559,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 33,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Oscillator Failure Count"
         )
         public final Builder sueOscFails(int sueOscFails) {
             this.sueOscFails = sueOscFails;
@@ -1489,7 +1573,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 34,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Velocity X"
         )
         public final Builder sueImuVelocityX(int sueImuVelocityX) {
             this.sueImuVelocityX = sueImuVelocityX;
@@ -1502,7 +1587,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 35,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Velocity Y"
         )
         public final Builder sueImuVelocityY(int sueImuVelocityY) {
             this.sueImuVelocityY = sueImuVelocityY;
@@ -1515,7 +1601,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 36,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra IMU Velocity Z"
         )
         public final Builder sueImuVelocityZ(int sueImuVelocityZ) {
             this.sueImuVelocityZ = sueImuVelocityZ;
@@ -1528,7 +1615,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 37,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Current Waypoint Goal X"
         )
         public final Builder sueWaypointGoalX(int sueWaypointGoalX) {
             this.sueWaypointGoalX = sueWaypointGoalX;
@@ -1541,7 +1629,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 38,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Current Waypoint Goal Y"
         )
         public final Builder sueWaypointGoalY(int sueWaypointGoalY) {
             this.sueWaypointGoalY = sueWaypointGoalY;
@@ -1554,7 +1643,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 39,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Current Waypoint Goal Z"
         )
         public final Builder sueWaypointGoalZ(int sueWaypointGoalZ) {
             this.sueWaypointGoalZ = sueWaypointGoalZ;
@@ -1567,7 +1657,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 40,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Aeroforce in UDB X Axis"
         )
         public final Builder sueAeroX(int sueAeroX) {
             this.sueAeroX = sueAeroX;
@@ -1580,7 +1671,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 41,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Aeroforce in UDB Y Axis"
         )
         public final Builder sueAeroY(int sueAeroY) {
             this.sueAeroY = sueAeroY;
@@ -1593,7 +1685,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 42,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Aeroforce in UDB Z axis"
         )
         public final Builder sueAeroZ(int sueAeroZ) {
             this.sueAeroZ = sueAeroZ;
@@ -1606,7 +1699,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 43,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE barometer temperature"
         )
         public final Builder sueBaromTemp(int sueBaromTemp) {
             this.sueBaromTemp = sueBaromTemp;
@@ -1619,7 +1713,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 44,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "SUE barometer pressure"
         )
         public final Builder sueBaromPress(int sueBaromPress) {
             this.sueBaromPress = sueBaromPress;
@@ -1632,7 +1727,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 45,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "SUE barometer altitude"
         )
         public final Builder sueBaromAlt(int sueBaromAlt) {
             this.sueBaromAlt = sueBaromAlt;
@@ -1645,7 +1741,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 46,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE battery voltage"
         )
         public final Builder sueBatVolt(int sueBatVolt) {
             this.sueBatVolt = sueBatVolt;
@@ -1658,7 +1755,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 47,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE battery current"
         )
         public final Builder sueBatAmp(int sueBatAmp) {
             this.sueBatAmp = sueBatAmp;
@@ -1671,7 +1769,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 48,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "SUE battery milli amp hours used"
         )
         public final Builder sueBatAmpHours(int sueBatAmpHours) {
             this.sueBatAmpHours = sueBatAmpHours;
@@ -1684,7 +1783,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 49,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Sue autopilot desired height"
         )
         public final Builder sueDesiredHeight(int sueDesiredHeight) {
             this.sueDesiredHeight = sueDesiredHeight;
@@ -1697,7 +1797,8 @@ public final class SerialUdbExtraF2B {
         @MavlinkFieldInfo(
                 position = 50,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra Stack Memory Free"
         )
         public final Builder sueMemoryStackFree(int sueMemoryStackFree) {
             this.sueMemoryStackFree = sueMemoryStackFree;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 74,
-        crc = 20
+        crc = 20,
+        description = "Metrics typically displayed on a HUD for fixed wing aircraft"
 )
 public final class VfrHud {
     private final float airspeed;
@@ -51,7 +52,8 @@ public final class VfrHud {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Current airspeed in m/s"
     )
     public final float airspeed() {
         return this.airspeed;
@@ -62,7 +64,8 @@ public final class VfrHud {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Current ground speed in m/s"
     )
     public final float groundspeed() {
         return this.groundspeed;
@@ -74,7 +77,8 @@ public final class VfrHud {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Current heading in degrees, in compass units (0..360, 0=north)"
     )
     public final int heading() {
         return this.heading;
@@ -85,7 +89,8 @@ public final class VfrHud {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Current throttle setting in integer percent, 0 to 100"
     )
     public final int throttle() {
         return this.throttle;
@@ -96,7 +101,8 @@ public final class VfrHud {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Current altitude (MSL), in meters"
     )
     public final float alt() {
         return this.alt;
@@ -107,7 +113,8 @@ public final class VfrHud {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Current climb rate in meters/second"
     )
     public final float climb() {
         return this.climb;
@@ -167,7 +174,8 @@ public final class VfrHud {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Current airspeed in m/s"
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;
@@ -179,7 +187,8 @@ public final class VfrHud {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Current ground speed in m/s"
         )
         public final Builder groundspeed(float groundspeed) {
             this.groundspeed = groundspeed;
@@ -192,7 +201,8 @@ public final class VfrHud {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Current heading in degrees, in compass units (0..360, 0=north)"
         )
         public final Builder heading(int heading) {
             this.heading = heading;
@@ -204,7 +214,8 @@ public final class VfrHud {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Current throttle setting in integer percent, 0 to 100"
         )
         public final Builder throttle(int throttle) {
             this.throttle = throttle;
@@ -216,7 +227,8 @@ public final class VfrHud {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Current altitude (MSL), in meters"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -228,7 +240,8 @@ public final class VfrHud {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Current climb rate in meters/second"
         )
         public final Builder climb(float climb) {
             this.climb = climb;

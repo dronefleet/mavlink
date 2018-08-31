@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 267,
-        crc = 35
+        crc = 35,
+        description = "A message containing logged data which requires a LOGGING_ACK to be sent back"
 )
 public final class LoggingDataAcked {
     private final int targetSystem;
@@ -51,7 +52,8 @@ public final class LoggingDataAcked {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "system ID of the target"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -62,7 +64,8 @@ public final class LoggingDataAcked {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "component ID of the target"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -73,7 +76,8 @@ public final class LoggingDataAcked {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "sequence number (can wrap)"
     )
     public final int sequence() {
         return this.sequence;
@@ -84,7 +88,8 @@ public final class LoggingDataAcked {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "data length"
     )
     public final int length() {
         return this.length;
@@ -96,7 +101,8 @@ public final class LoggingDataAcked {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists)."
     )
     public final int firstMessageOffset() {
         return this.firstMessageOffset;
@@ -108,7 +114,8 @@ public final class LoggingDataAcked {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 249
+            arraySize = 249,
+            description = "logged data"
     )
     public final byte[] data() {
         return this.data;
@@ -168,7 +175,8 @@ public final class LoggingDataAcked {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "system ID of the target"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -180,7 +188,8 @@ public final class LoggingDataAcked {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "component ID of the target"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -192,7 +201,8 @@ public final class LoggingDataAcked {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "sequence number (can wrap)"
         )
         public final Builder sequence(int sequence) {
             this.sequence = sequence;
@@ -204,7 +214,8 @@ public final class LoggingDataAcked {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "data length"
         )
         public final Builder length(int length) {
             this.length = length;
@@ -217,7 +228,8 @@ public final class LoggingDataAcked {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists)."
         )
         public final Builder firstMessageOffset(int firstMessageOffset) {
             this.firstMessageOffset = firstMessageOffset;
@@ -230,7 +242,8 @@ public final class LoggingDataAcked {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 249
+                arraySize = 249,
+                description = "logged data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

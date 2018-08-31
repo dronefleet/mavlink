@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 153,
-        crc = 188
+        crc = 188,
+        description = "raw ADC output"
 )
 public final class ApAdc {
     private final int adc1;
@@ -50,7 +51,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 1"
     )
     public final int adc1() {
         return this.adc1;
@@ -61,7 +63,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 2"
     )
     public final int adc2() {
         return this.adc2;
@@ -72,7 +75,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 3"
     )
     public final int adc3() {
         return this.adc3;
@@ -83,7 +87,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 4"
     )
     public final int adc4() {
         return this.adc4;
@@ -94,7 +99,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 5"
     )
     public final int adc5() {
         return this.adc5;
@@ -105,7 +111,8 @@ public final class ApAdc {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "ADC output 6"
     )
     public final int adc6() {
         return this.adc6;
@@ -165,7 +172,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 1"
         )
         public final Builder adc1(int adc1) {
             this.adc1 = adc1;
@@ -177,7 +185,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 2"
         )
         public final Builder adc2(int adc2) {
             this.adc2 = adc2;
@@ -189,7 +198,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 3"
         )
         public final Builder adc3(int adc3) {
             this.adc3 = adc3;
@@ -201,7 +211,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 4"
         )
         public final Builder adc4(int adc4) {
             this.adc4 = adc4;
@@ -213,7 +224,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 5"
         )
         public final Builder adc5(int adc5) {
             this.adc5 = adc5;
@@ -225,7 +237,8 @@ public final class ApAdc {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "ADC output 6"
         )
         public final Builder adc6(int adc6) {
             this.adc6 = adc6;

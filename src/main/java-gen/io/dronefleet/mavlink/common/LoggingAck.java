@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 268,
-        crc = 14
+        crc = 14,
+        description = "An ack for a LOGGING_DATA_ACKED message"
 )
 public final class LoggingAck {
     private final int targetSystem;
@@ -41,7 +42,8 @@ public final class LoggingAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "system ID of the target"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -52,7 +54,8 @@ public final class LoggingAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "component ID of the target"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -63,7 +66,8 @@ public final class LoggingAck {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "sequence number (must match the one in LOGGING_DATA_ACKED)"
     )
     public final int sequence() {
         return this.sequence;
@@ -108,7 +112,8 @@ public final class LoggingAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "system ID of the target"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -120,7 +125,8 @@ public final class LoggingAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "component ID of the target"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -132,7 +138,8 @@ public final class LoggingAck {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "sequence number (must match the one in LOGGING_DATA_ACKED)"
         )
         public final Builder sequence(int sequence) {
             this.sequence = sequence;

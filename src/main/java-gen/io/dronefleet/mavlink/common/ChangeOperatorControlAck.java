@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 6,
-        crc = 104
+        crc = 104,
+        description = "Accept / deny control of this MAV"
 )
 public final class ChangeOperatorControlAck {
     private final int gcsSystemId;
@@ -41,7 +42,8 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "ID of the GCS this message"
     )
     public final int gcsSystemId() {
         return this.gcsSystemId;
@@ -52,7 +54,8 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: request control of this MAV, 1: Release control of this MAV"
     )
     public final int controlRequest() {
         return this.controlRequest;
@@ -64,7 +67,8 @@ public final class ChangeOperatorControlAck {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: Already under control"
     )
     public final int ack() {
         return this.ack;
@@ -109,7 +113,8 @@ public final class ChangeOperatorControlAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "ID of the GCS this message"
         )
         public final Builder gcsSystemId(int gcsSystemId) {
             this.gcsSystemId = gcsSystemId;
@@ -121,7 +126,8 @@ public final class ChangeOperatorControlAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: request control of this MAV, 1: Release control of this MAV"
         )
         public final Builder controlRequest(int controlRequest) {
             this.controlRequest = controlRequest;
@@ -134,7 +140,8 @@ public final class ChangeOperatorControlAck {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: Already under control"
         )
         public final Builder ack(int ack) {
             this.ack = ack;

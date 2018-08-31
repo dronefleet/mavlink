@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 262,
-        crc = 12
+        crc = 12,
+        description = "Information about the status of a capture"
 )
 public final class CameraCaptureStatus {
     private final long timeBootMs;
@@ -51,7 +52,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -63,7 +65,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)"
     )
     public final int imageStatus() {
         return this.imageStatus;
@@ -74,7 +77,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Current status of video capturing (0: idle, 1: capture in progress)"
     )
     public final int videoStatus() {
         return this.videoStatus;
@@ -85,7 +89,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Image capture interval in seconds"
     )
     public final float imageInterval() {
         return this.imageInterval;
@@ -96,7 +101,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time in milliseconds since recording started"
     )
     public final long recordingTimeMs() {
         return this.recordingTimeMs;
@@ -107,7 +113,8 @@ public final class CameraCaptureStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Available storage capacity in MiB"
     )
     public final float availableCapacity() {
         return this.availableCapacity;
@@ -167,7 +174,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -180,7 +188,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Current status of image capturing (0: idle, 1: capture in progress, 2: interval set but idle, 3: interval set and capture in progress)"
         )
         public final Builder imageStatus(int imageStatus) {
             this.imageStatus = imageStatus;
@@ -192,7 +201,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Current status of video capturing (0: idle, 1: capture in progress)"
         )
         public final Builder videoStatus(int videoStatus) {
             this.videoStatus = videoStatus;
@@ -204,7 +214,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Image capture interval in seconds"
         )
         public final Builder imageInterval(float imageInterval) {
             this.imageInterval = imageInterval;
@@ -216,7 +227,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time in milliseconds since recording started"
         )
         public final Builder recordingTimeMs(long recordingTimeMs) {
             this.recordingTimeMs = recordingTimeMs;
@@ -228,7 +240,8 @@ public final class CameraCaptureStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Available storage capacity in MiB"
         )
         public final Builder availableCapacity(float availableCapacity) {
             this.availableCapacity = availableCapacity;

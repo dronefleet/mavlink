@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 205,
-        crc = 97
+        crc = 97,
+        description = "Extended state information for ASLUAVs"
 )
 public final class AsluavStatus {
     private final int ledStatus;
@@ -44,7 +45,8 @@ public final class AsluavStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Status of the position-indicator LEDs"
     )
     public final int ledStatus() {
         return this.ledStatus;
@@ -55,7 +57,8 @@ public final class AsluavStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Status of the IRIDIUM satellite communication system"
     )
     public final int satcomStatus() {
         return this.satcomStatus;
@@ -67,7 +70,8 @@ public final class AsluavStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "Status vector for up to 8 servos"
     )
     public final byte[] servoStatus() {
         return this.servoStatus;
@@ -78,7 +82,8 @@ public final class AsluavStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Motor RPM"
     )
     public final float motorRpm() {
         return this.motorRpm;
@@ -128,7 +133,8 @@ public final class AsluavStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Status of the position-indicator LEDs"
         )
         public final Builder ledStatus(int ledStatus) {
             this.ledStatus = ledStatus;
@@ -140,7 +146,8 @@ public final class AsluavStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Status of the IRIDIUM satellite communication system"
         )
         public final Builder satcomStatus(int satcomStatus) {
             this.satcomStatus = satcomStatus;
@@ -153,7 +160,8 @@ public final class AsluavStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "Status vector for up to 8 servos"
         )
         public final Builder servoStatus(byte[] servoStatus) {
             this.servoStatus = servoStatus;
@@ -165,7 +173,8 @@ public final class AsluavStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Motor RPM"
         )
         public final Builder motorRpm(float motorRpm) {
             this.motorRpm = motorRpm;

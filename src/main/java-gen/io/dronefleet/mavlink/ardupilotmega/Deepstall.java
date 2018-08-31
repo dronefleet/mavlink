@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 195,
-        crc = 120
+        crc = 120,
+        description = "Deepstall path planning"
 )
 public final class Deepstall {
     private final int landingLat;
@@ -68,7 +69,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Landing latitude (deg * 1E7)"
     )
     public final int landingLat() {
         return this.landingLat;
@@ -80,7 +82,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Landing longitude (deg * 1E7)"
     )
     public final int landingLon() {
         return this.landingLon;
@@ -92,7 +95,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Final heading start point, latitude (deg * 1E7)"
     )
     public final int pathLat() {
         return this.pathLat;
@@ -104,7 +108,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Final heading start point, longitude (deg * 1E7)"
     )
     public final int pathLon() {
         return this.pathLon;
@@ -116,7 +121,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Arc entry point, latitude (deg * 1E7)"
     )
     public final int arcEntryLat() {
         return this.arcEntryLat;
@@ -128,7 +134,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Arc entry point, longitude (deg * 1E7)"
     )
     public final int arcEntryLon() {
         return this.arcEntryLon;
@@ -139,7 +146,8 @@ public final class Deepstall {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude (meters)"
     )
     public final float altitude() {
         return this.altitude;
@@ -150,7 +158,8 @@ public final class Deepstall {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Distance the aircraft expects to travel during the deepstall"
     )
     public final float expectedTravelDistance() {
         return this.expectedTravelDistance;
@@ -161,7 +170,8 @@ public final class Deepstall {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND)"
     )
     public final float crossTrackError() {
         return this.crossTrackError;
@@ -173,7 +183,8 @@ public final class Deepstall {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            enumType = DeepstallStage.class
+            enumType = DeepstallStage.class,
+            description = "Deepstall stage, see enum MAV_DEEPSTALL_STAGE"
     )
     public final EnumValue<DeepstallStage> stage() {
         return this.stage;
@@ -254,7 +265,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Landing latitude (deg * 1E7)"
         )
         public final Builder landingLat(int landingLat) {
             this.landingLat = landingLat;
@@ -267,7 +279,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Landing longitude (deg * 1E7)"
         )
         public final Builder landingLon(int landingLon) {
             this.landingLon = landingLon;
@@ -280,7 +293,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Final heading start point, latitude (deg * 1E7)"
         )
         public final Builder pathLat(int pathLat) {
             this.pathLat = pathLat;
@@ -293,7 +307,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Final heading start point, longitude (deg * 1E7)"
         )
         public final Builder pathLon(int pathLon) {
             this.pathLon = pathLon;
@@ -306,7 +321,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Arc entry point, latitude (deg * 1E7)"
         )
         public final Builder arcEntryLat(int arcEntryLat) {
             this.arcEntryLat = arcEntryLat;
@@ -319,7 +335,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Arc entry point, longitude (deg * 1E7)"
         )
         public final Builder arcEntryLon(int arcEntryLon) {
             this.arcEntryLon = arcEntryLon;
@@ -331,7 +348,8 @@ public final class Deepstall {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude (meters)"
         )
         public final Builder altitude(float altitude) {
             this.altitude = altitude;
@@ -343,7 +361,8 @@ public final class Deepstall {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Distance the aircraft expects to travel during the deepstall"
         )
         public final Builder expectedTravelDistance(float expectedTravelDistance) {
             this.expectedTravelDistance = expectedTravelDistance;
@@ -355,7 +374,8 @@ public final class Deepstall {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND)"
         )
         public final Builder crossTrackError(float crossTrackError) {
             this.crossTrackError = crossTrackError;
@@ -368,7 +388,8 @@ public final class Deepstall {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                enumType = DeepstallStage.class
+                enumType = DeepstallStage.class,
+                description = "Deepstall stage, see enum MAV_DEEPSTALL_STAGE"
         )
         public final Builder stage(EnumValue<DeepstallStage> stage) {
             this.stage = stage;

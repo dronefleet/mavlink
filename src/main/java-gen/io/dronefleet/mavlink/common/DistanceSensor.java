@@ -61,7 +61,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 0,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time since system boot"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -72,7 +73,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Minimum distance the sensor can measure in centimeters"
     )
     public final int minDistance() {
         return this.minDistance;
@@ -83,7 +85,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "Maximum distance the sensor can measure in centimeters"
     )
     public final int maxDistance() {
         return this.maxDistance;
@@ -94,7 +97,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Current distance reading"
     )
     public final int currentDistance() {
         return this.currentDistance;
@@ -106,7 +110,8 @@ public final class DistanceSensor {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = MavDistanceSensor.class
+            enumType = MavDistanceSensor.class,
+            description = "Type from MAV_DISTANCE_SENSOR enum."
     )
     public final EnumValue<MavDistanceSensor> type() {
         return this.type;
@@ -117,7 +122,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Onboard ID of the sensor"
     )
     public final int id() {
         return this.id;
@@ -132,7 +138,8 @@ public final class DistanceSensor {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            enumType = MavSensorOrientation.class
+            enumType = MavSensorOrientation.class,
+            description = "Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270"
     )
     public final EnumValue<MavSensorOrientation> orientation() {
         return this.orientation;
@@ -143,7 +150,8 @@ public final class DistanceSensor {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Measurement covariance in centimeters, 0 for unknown / invalid readings"
     )
     public final int covariance() {
         return this.covariance;
@@ -213,7 +221,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 0,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time since system boot"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -225,7 +234,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Minimum distance the sensor can measure in centimeters"
         )
         public final Builder minDistance(int minDistance) {
             this.minDistance = minDistance;
@@ -237,7 +247,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "Maximum distance the sensor can measure in centimeters"
         )
         public final Builder maxDistance(int maxDistance) {
             this.maxDistance = maxDistance;
@@ -249,7 +260,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Current distance reading"
         )
         public final Builder currentDistance(int currentDistance) {
             this.currentDistance = currentDistance;
@@ -262,7 +274,8 @@ public final class DistanceSensor {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = MavDistanceSensor.class
+                enumType = MavDistanceSensor.class,
+                description = "Type from MAV_DISTANCE_SENSOR enum."
         )
         public final Builder type(EnumValue<MavDistanceSensor> type) {
             this.type = type;
@@ -295,7 +308,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Onboard ID of the sensor"
         )
         public final Builder id(int id) {
             this.id = id;
@@ -311,7 +325,8 @@ public final class DistanceSensor {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                enumType = MavSensorOrientation.class
+                enumType = MavSensorOrientation.class,
+                description = "Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270"
         )
         public final Builder orientation(EnumValue<MavSensorOrientation> orientation) {
             this.orientation = orientation;
@@ -353,7 +368,8 @@ public final class DistanceSensor {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Measurement covariance in centimeters, 0 for unknown / invalid readings"
         )
         public final Builder covariance(int covariance) {
             this.covariance = covariance;

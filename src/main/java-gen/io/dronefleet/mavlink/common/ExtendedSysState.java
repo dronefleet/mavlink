@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 245,
-        crc = 130
+        crc = 130,
+        description = "Provides state for additional features"
 )
 public final class ExtendedSysState {
     private final EnumValue<MavVtolState> vtolState;
@@ -44,7 +45,8 @@ public final class ExtendedSysState {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavVtolState.class
+            enumType = MavVtolState.class,
+            description = "The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration."
     )
     public final EnumValue<MavVtolState> vtolState() {
         return this.vtolState;
@@ -56,7 +58,8 @@ public final class ExtendedSysState {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavLandedState.class
+            enumType = MavLandedState.class,
+            description = "The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown."
     )
     public final EnumValue<MavLandedState> landedState() {
         return this.landedState;
@@ -98,7 +101,8 @@ public final class ExtendedSysState {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavVtolState.class
+                enumType = MavVtolState.class,
+                description = "The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration."
         )
         public final Builder vtolState(EnumValue<MavVtolState> vtolState) {
             this.vtolState = vtolState;
@@ -135,7 +139,8 @@ public final class ExtendedSysState {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavLandedState.class
+                enumType = MavLandedState.class,
+                description = "The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown."
         )
         public final Builder landedState(EnumValue<MavLandedState> landedState) {
             this.landedState = landedState;

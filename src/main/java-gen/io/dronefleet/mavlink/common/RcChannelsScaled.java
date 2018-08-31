@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 34,
-        crc = 237
+        crc = 237,
+        description = "The scaled values of the RC channels received. (-100%) -10000, (0%) 0, (100%) 10000. Channels that are inactive should be set to UINT16_MAX."
 )
 public final class RcChannelsScaled {
     private final long timeBootMs;
@@ -68,7 +69,8 @@ public final class RcChannelsScaled {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -80,7 +82,8 @@ public final class RcChannelsScaled {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos."
     )
     public final int port() {
         return this.port;
@@ -92,7 +95,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan1Scaled() {
         return this.chan1Scaled;
@@ -104,7 +108,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan2Scaled() {
         return this.chan2Scaled;
@@ -116,7 +121,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan3Scaled() {
         return this.chan3Scaled;
@@ -128,7 +134,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan4Scaled() {
         return this.chan4Scaled;
@@ -140,7 +147,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan5Scaled() {
         return this.chan5Scaled;
@@ -152,7 +160,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan6Scaled() {
         return this.chan6Scaled;
@@ -164,7 +173,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan7Scaled() {
         return this.chan7Scaled;
@@ -176,7 +186,8 @@ public final class RcChannelsScaled {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
     )
     public final int chan8Scaled() {
         return this.chan8Scaled;
@@ -187,7 +198,8 @@ public final class RcChannelsScaled {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 1
+            unitSize = 1,
+            description = "Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
@@ -272,7 +284,8 @@ public final class RcChannelsScaled {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -285,7 +298,8 @@ public final class RcChannelsScaled {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos."
         )
         public final Builder port(int port) {
             this.port = port;
@@ -298,7 +312,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan1Scaled(int chan1Scaled) {
             this.chan1Scaled = chan1Scaled;
@@ -311,7 +326,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan2Scaled(int chan2Scaled) {
             this.chan2Scaled = chan2Scaled;
@@ -324,7 +340,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan3Scaled(int chan3Scaled) {
             this.chan3Scaled = chan3Scaled;
@@ -337,7 +354,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan4Scaled(int chan4Scaled) {
             this.chan4Scaled = chan4Scaled;
@@ -350,7 +368,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan5Scaled(int chan5Scaled) {
             this.chan5Scaled = chan5Scaled;
@@ -363,7 +382,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan6Scaled(int chan6Scaled) {
             this.chan6Scaled = chan6Scaled;
@@ -376,7 +396,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan7Scaled(int chan7Scaled) {
             this.chan7Scaled = chan7Scaled;
@@ -389,7 +410,8 @@ public final class RcChannelsScaled {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX."
         )
         public final Builder chan8Scaled(int chan8Scaled) {
             this.chan8Scaled = chan8Scaled;
@@ -401,7 +423,8 @@ public final class RcChannelsScaled {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 1
+                unitSize = 1,
+                description = "Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;

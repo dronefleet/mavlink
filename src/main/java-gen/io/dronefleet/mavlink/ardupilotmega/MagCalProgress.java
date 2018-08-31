@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 191,
-        crc = 92
+        crc = 92,
+        description = "Reports progress of compass calibration."
 )
 public final class MagCalProgress {
     private final int compassId;
@@ -64,7 +65,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Compass being calibrated"
     )
     public final int compassId() {
         return this.compassId;
@@ -75,7 +77,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Bitmask of compasses being calibrated"
     )
     public final int calMask() {
         return this.calMask;
@@ -87,7 +90,8 @@ public final class MagCalProgress {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MagCalStatus.class
+            enumType = MagCalStatus.class,
+            description = "Status (see MAG_CAL_STATUS enum)"
     )
     public final EnumValue<MagCalStatus> calStatus() {
         return this.calStatus;
@@ -98,7 +102,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Attempt number"
     )
     public final int attempt() {
         return this.attempt;
@@ -109,7 +114,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Completion percentage"
     )
     public final int completionPct() {
         return this.completionPct;
@@ -121,7 +127,8 @@ public final class MagCalProgress {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 10
+            arraySize = 10,
+            description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)"
     )
     public final byte[] completionMask() {
         return this.completionMask;
@@ -132,7 +139,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Body frame direction vector for display"
     )
     public final float directionX() {
         return this.directionX;
@@ -143,7 +151,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Body frame direction vector for display"
     )
     public final float directionY() {
         return this.directionY;
@@ -154,7 +163,8 @@ public final class MagCalProgress {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Body frame direction vector for display"
     )
     public final float directionZ() {
         return this.directionZ;
@@ -229,7 +239,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Compass being calibrated"
         )
         public final Builder compassId(int compassId) {
             this.compassId = compassId;
@@ -241,7 +252,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Bitmask of compasses being calibrated"
         )
         public final Builder calMask(int calMask) {
             this.calMask = calMask;
@@ -254,7 +266,8 @@ public final class MagCalProgress {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MagCalStatus.class
+                enumType = MagCalStatus.class,
+                description = "Status (see MAG_CAL_STATUS enum)"
         )
         public final Builder calStatus(EnumValue<MagCalStatus> calStatus) {
             this.calStatus = calStatus;
@@ -287,7 +300,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Attempt number"
         )
         public final Builder attempt(int attempt) {
             this.attempt = attempt;
@@ -299,7 +313,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Completion percentage"
         )
         public final Builder completionPct(int completionPct) {
             this.completionPct = completionPct;
@@ -312,7 +327,8 @@ public final class MagCalProgress {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 10
+                arraySize = 10,
+                description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)"
         )
         public final Builder completionMask(byte[] completionMask) {
             this.completionMask = completionMask;
@@ -324,7 +340,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Body frame direction vector for display"
         )
         public final Builder directionX(float directionX) {
             this.directionX = directionX;
@@ -336,7 +353,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Body frame direction vector for display"
         )
         public final Builder directionY(float directionY) {
             this.directionY = directionY;
@@ -348,7 +366,8 @@ public final class MagCalProgress {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Body frame direction vector for display"
         )
         public final Builder directionZ(float directionZ) {
             this.directionZ = directionZ;

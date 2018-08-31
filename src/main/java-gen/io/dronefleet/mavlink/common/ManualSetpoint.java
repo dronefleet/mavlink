@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 81,
-        crc = 106
+        crc = 106,
+        description = "Setpoint in roll, pitch, yaw and thrust from the operator"
 )
 public final class ManualSetpoint {
     private final long timeBootMs;
@@ -54,7 +55,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp in milliseconds since system boot"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -65,7 +67,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Desired roll rate in radians per second"
     )
     public final float roll() {
         return this.roll;
@@ -76,7 +79,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Desired pitch rate in radians per second"
     )
     public final float pitch() {
         return this.pitch;
@@ -87,7 +91,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Desired yaw rate in radians per second"
     )
     public final float yaw() {
         return this.yaw;
@@ -98,7 +103,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Collective thrust, normalized to 0 .. 1"
     )
     public final float thrust() {
         return this.thrust;
@@ -109,7 +115,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Flight mode switch position, 0.. 255"
     )
     public final int modeSwitch() {
         return this.modeSwitch;
@@ -120,7 +127,8 @@ public final class ManualSetpoint {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Override mode switch position, 0.. 255"
     )
     public final int manualOverrideSwitch() {
         return this.manualOverrideSwitch;
@@ -185,7 +193,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp in milliseconds since system boot"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -197,7 +206,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Desired roll rate in radians per second"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -209,7 +219,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Desired pitch rate in radians per second"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -221,7 +232,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Desired yaw rate in radians per second"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -233,7 +245,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Collective thrust, normalized to 0 .. 1"
         )
         public final Builder thrust(float thrust) {
             this.thrust = thrust;
@@ -245,7 +258,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Flight mode switch position, 0.. 255"
         )
         public final Builder modeSwitch(int modeSwitch) {
             this.modeSwitch = modeSwitch;
@@ -257,7 +271,8 @@ public final class ManualSetpoint {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Override mode switch position, 0.. 255"
         )
         public final Builder manualOverrideSwitch(int manualOverrideSwitch) {
             this.manualOverrideSwitch = manualOverrideSwitch;

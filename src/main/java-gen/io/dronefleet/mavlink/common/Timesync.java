@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 111,
-        crc = 34
+        crc = 34,
+        description = "Time synchronization message."
 )
 public final class Timesync {
     private final long tc1;
@@ -39,7 +40,8 @@ public final class Timesync {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            signed = true
+            signed = true,
+            description = "Time sync timestamp 1"
     )
     public final long tc1() {
         return this.tc1;
@@ -51,7 +53,8 @@ public final class Timesync {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 8,
-            signed = true
+            signed = true,
+            description = "Time sync timestamp 2"
     )
     public final long ts1() {
         return this.ts1;
@@ -92,7 +95,8 @@ public final class Timesync {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                signed = true
+                signed = true,
+                description = "Time sync timestamp 1"
         )
         public final Builder tc1(long tc1) {
             this.tc1 = tc1;
@@ -105,7 +109,8 @@ public final class Timesync {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 8,
-                signed = true
+                signed = true,
+                description = "Time sync timestamp 2"
         )
         public final Builder ts1(long ts1) {
             this.ts1 = ts1;

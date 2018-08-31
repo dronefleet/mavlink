@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 0,
-        crc = 50
+        crc = 50,
+        description = "The heartbeat message shows that a system is present and responding. The type of the MAV and Autopilot hardware allow the receiving system to treat further messages from this system appropriate (e.g. by laying out the user interface based on the autopilot)."
 )
 public final class Heartbeat {
     private final EnumValue<MavType> type;
@@ -58,7 +59,8 @@ public final class Heartbeat {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavType.class
+            enumType = MavType.class,
+            description = "Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)"
     )
     public final EnumValue<MavType> type() {
         return this.type;
@@ -70,7 +72,8 @@ public final class Heartbeat {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavAutopilot.class
+            enumType = MavAutopilot.class,
+            description = "Autopilot type / class. defined in MAV_AUTOPILOT ENUM"
     )
     public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
@@ -82,7 +85,8 @@ public final class Heartbeat {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavModeFlag.class
+            enumType = MavModeFlag.class,
+            description = "System mode bitfield, as defined by MAV_MODE_FLAG enum"
     )
     public final EnumValue<MavModeFlag> baseMode() {
         return this.baseMode;
@@ -93,7 +97,8 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "A bitfield for use for autopilot-specific flags"
     )
     public final long customMode() {
         return this.customMode;
@@ -105,7 +110,8 @@ public final class Heartbeat {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = MavState.class
+            enumType = MavState.class,
+            description = "System status flag, as defined by MAV_STATE enum"
     )
     public final EnumValue<MavState> systemStatus() {
         return this.systemStatus;
@@ -117,7 +123,8 @@ public final class Heartbeat {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version"
     )
     public final int mavlinkVersion() {
         return this.mavlinkVersion;
@@ -178,7 +185,8 @@ public final class Heartbeat {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavType.class
+                enumType = MavType.class,
+                description = "Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)"
         )
         public final Builder type(EnumValue<MavType> type) {
             this.type = type;
@@ -212,7 +220,8 @@ public final class Heartbeat {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavAutopilot.class
+                enumType = MavAutopilot.class,
+                description = "Autopilot type / class. defined in MAV_AUTOPILOT ENUM"
         )
         public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
@@ -246,7 +255,8 @@ public final class Heartbeat {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavModeFlag.class
+                enumType = MavModeFlag.class,
+                description = "System mode bitfield, as defined by MAV_MODE_FLAG enum"
         )
         public final Builder baseMode(EnumValue<MavModeFlag> baseMode) {
             this.baseMode = baseMode;
@@ -279,7 +289,8 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "A bitfield for use for autopilot-specific flags"
         )
         public final Builder customMode(long customMode) {
             this.customMode = customMode;
@@ -292,7 +303,8 @@ public final class Heartbeat {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = MavState.class
+                enumType = MavState.class,
+                description = "System status flag, as defined by MAV_STATE enum"
         )
         public final Builder systemStatus(EnumValue<MavState> systemStatus) {
             this.systemStatus = systemStatus;
@@ -326,7 +338,8 @@ public final class Heartbeat {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version"
         )
         public final Builder mavlinkVersion(int mavlinkVersion) {
             this.mavlinkVersion = mavlinkVersion;

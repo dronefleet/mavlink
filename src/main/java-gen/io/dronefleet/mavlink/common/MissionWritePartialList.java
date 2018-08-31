@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 38,
-        crc = 9
+        crc = 9,
+        description = "This message is sent to the MAV to write a partial list. If start index == end index, only one item will be transmitted / updated. If the start index is NOT 0 and above the current list size, this request should be REJECTED!"
 )
 public final class MissionWritePartialList {
     private final int targetSystem;
@@ -53,7 +54,8 @@ public final class MissionWritePartialList {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -64,7 +66,8 @@ public final class MissionWritePartialList {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -76,7 +79,8 @@ public final class MissionWritePartialList {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Start index, 0 by default and smaller / equal to the largest index of the current onboard list."
     )
     public final int startIndex() {
         return this.startIndex;
@@ -88,7 +92,8 @@ public final class MissionWritePartialList {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "End index, equal or greater than start index."
     )
     public final int endIndex() {
         return this.endIndex;
@@ -101,7 +106,8 @@ public final class MissionWritePartialList {
             position = 6,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -156,7 +162,8 @@ public final class MissionWritePartialList {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -168,7 +175,8 @@ public final class MissionWritePartialList {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -181,7 +189,8 @@ public final class MissionWritePartialList {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Start index, 0 by default and smaller / equal to the largest index of the current onboard list."
         )
         public final Builder startIndex(int startIndex) {
             this.startIndex = startIndex;
@@ -194,7 +203,8 @@ public final class MissionWritePartialList {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "End index, equal or greater than start index."
         )
         public final Builder endIndex(int endIndex) {
             this.endIndex = endIndex;
@@ -208,7 +218,8 @@ public final class MissionWritePartialList {
                 position = 6,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

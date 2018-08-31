@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 110,
-        crc = 84
+        crc = 84,
+        description = "File transfer message"
 )
 public final class FileTransferProtocol {
     private final int targetNetwork;
@@ -45,7 +46,8 @@ public final class FileTransferProtocol {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Network ID (0 for broadcast)"
     )
     public final int targetNetwork() {
         return this.targetNetwork;
@@ -56,7 +58,8 @@ public final class FileTransferProtocol {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID (0 for broadcast)"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -67,7 +70,8 @@ public final class FileTransferProtocol {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID (0 for broadcast)"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -82,7 +86,8 @@ public final class FileTransferProtocol {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 251
+            arraySize = 251,
+            description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
     )
     public final byte[] payload() {
         return this.payload;
@@ -132,7 +137,8 @@ public final class FileTransferProtocol {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Network ID (0 for broadcast)"
         )
         public final Builder targetNetwork(int targetNetwork) {
             this.targetNetwork = targetNetwork;
@@ -144,7 +150,8 @@ public final class FileTransferProtocol {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID (0 for broadcast)"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -156,7 +163,8 @@ public final class FileTransferProtocol {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID (0 for broadcast)"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -172,7 +180,8 @@ public final class FileTransferProtocol {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 251
+                arraySize = 251,
+                description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
         )
         public final Builder payload(byte[] payload) {
             this.payload = payload;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 184,
-        crc = 45
+        crc = 45,
+        description = "Orders generated to the SLUGS camera mount."
 )
 public final class SlugsCameraOrder {
     private final int target;
@@ -47,7 +48,8 @@ public final class SlugsCameraOrder {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system reporting the action"
     )
     public final int target() {
         return this.target;
@@ -59,7 +61,8 @@ public final class SlugsCameraOrder {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Order the mount to pan: -1 left, 0 No pan motion, +1 right"
     )
     public final int pan() {
         return this.pan;
@@ -71,7 +74,8 @@ public final class SlugsCameraOrder {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Order the mount to tilt: -1 down, 0 No tilt motion, +1 up"
     )
     public final int tilt() {
         return this.tilt;
@@ -83,7 +87,8 @@ public final class SlugsCameraOrder {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Order the zoom values 0 to 10"
     )
     public final int zoom() {
         return this.zoom;
@@ -96,7 +101,8 @@ public final class SlugsCameraOrder {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored"
     )
     public final int movehome() {
         return this.movehome;
@@ -151,7 +157,8 @@ public final class SlugsCameraOrder {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system reporting the action"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -164,7 +171,8 @@ public final class SlugsCameraOrder {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Order the mount to pan: -1 left, 0 No pan motion, +1 right"
         )
         public final Builder pan(int pan) {
             this.pan = pan;
@@ -177,7 +185,8 @@ public final class SlugsCameraOrder {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Order the mount to tilt: -1 down, 0 No tilt motion, +1 up"
         )
         public final Builder tilt(int tilt) {
             this.tilt = tilt;
@@ -190,7 +199,8 @@ public final class SlugsCameraOrder {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Order the zoom values 0 to 10"
         )
         public final Builder zoom(int zoom) {
             this.zoom = zoom;
@@ -204,7 +214,8 @@ public final class SlugsCameraOrder {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Orders the camera mount to move home. The other fields are ignored when this field is set. 1: move home, 0 ignored"
         )
         public final Builder movehome(int movehome) {
             this.movehome = movehome;

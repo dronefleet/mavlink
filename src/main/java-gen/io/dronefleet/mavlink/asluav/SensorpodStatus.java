@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 211,
-        crc = 54
+        crc = 54,
+        description = "Monitoring of sensorpod status"
 )
 public final class SensorpodStatus {
     private final BigInteger timestamp;
@@ -59,7 +60,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp in linuxtime (since 1.1.1970)"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -70,7 +72,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Rate of ROS topic 1"
     )
     public final int visensorRate1() {
         return this.visensorRate1;
@@ -81,7 +84,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Rate of ROS topic 2"
     )
     public final int visensorRate2() {
         return this.visensorRate2;
@@ -92,7 +96,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Rate of ROS topic 3"
     )
     public final int visensorRate3() {
         return this.visensorRate3;
@@ -103,7 +108,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Rate of ROS topic 4"
     )
     public final int visensorRate4() {
         return this.visensorRate4;
@@ -114,7 +120,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of recording nodes"
     )
     public final int recordingNodesCount() {
         return this.recordingNodesCount;
@@ -125,7 +132,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Temperature of sensorpod CPU in"
     )
     public final int cpuTemp() {
         return this.cpuTemp;
@@ -136,7 +144,8 @@ public final class SensorpodStatus {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 2
+            unitSize = 2,
+            description = "Free space available in recordings directory in [Gb] * 1e2"
     )
     public final int freeSpace() {
         return this.freeSpace;
@@ -206,7 +215,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp in linuxtime (since 1.1.1970)"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -218,7 +228,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Rate of ROS topic 1"
         )
         public final Builder visensorRate1(int visensorRate1) {
             this.visensorRate1 = visensorRate1;
@@ -230,7 +241,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Rate of ROS topic 2"
         )
         public final Builder visensorRate2(int visensorRate2) {
             this.visensorRate2 = visensorRate2;
@@ -242,7 +254,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Rate of ROS topic 3"
         )
         public final Builder visensorRate3(int visensorRate3) {
             this.visensorRate3 = visensorRate3;
@@ -254,7 +267,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Rate of ROS topic 4"
         )
         public final Builder visensorRate4(int visensorRate4) {
             this.visensorRate4 = visensorRate4;
@@ -266,7 +280,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of recording nodes"
         )
         public final Builder recordingNodesCount(int recordingNodesCount) {
             this.recordingNodesCount = recordingNodesCount;
@@ -278,7 +293,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Temperature of sensorpod CPU in"
         )
         public final Builder cpuTemp(int cpuTemp) {
             this.cpuTemp = cpuTemp;
@@ -290,7 +306,8 @@ public final class SensorpodStatus {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 2
+                unitSize = 2,
+                description = "Free space available in recordings directory in [Gb] * 1e2"
         )
         public final Builder freeSpace(int freeSpace) {
             this.freeSpace = freeSpace;

@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 194,
-        crc = 98
+        crc = 98,
+        description = "PID tuning information"
 )
 public final class PidTuning {
     private final EnumValue<PidTuningAxis> axis;
@@ -58,7 +59,8 @@ public final class PidTuning {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = PidTuningAxis.class
+            enumType = PidTuningAxis.class,
+            description = "axis"
     )
     public final EnumValue<PidTuningAxis> axis() {
         return this.axis;
@@ -69,7 +71,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "desired rate (degrees/s)"
     )
     public final float desired() {
         return this.desired;
@@ -80,7 +83,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "achieved rate (degrees/s)"
     )
     public final float achieved() {
         return this.achieved;
@@ -91,7 +95,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "FF component"
     )
     public final float ff() {
         return this.ff;
@@ -102,7 +107,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "P component"
     )
     public final float p() {
         return this.p;
@@ -113,7 +119,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "I component"
     )
     public final float i() {
         return this.i;
@@ -124,7 +131,8 @@ public final class PidTuning {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "D component"
     )
     public final float d() {
         return this.d;
@@ -190,7 +198,8 @@ public final class PidTuning {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = PidTuningAxis.class
+                enumType = PidTuningAxis.class,
+                description = "axis"
         )
         public final Builder axis(EnumValue<PidTuningAxis> axis) {
             this.axis = axis;
@@ -223,7 +232,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "desired rate (degrees/s)"
         )
         public final Builder desired(float desired) {
             this.desired = desired;
@@ -235,7 +245,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "achieved rate (degrees/s)"
         )
         public final Builder achieved(float achieved) {
             this.achieved = achieved;
@@ -247,7 +258,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "FF component"
         )
         public final Builder ff(float ff) {
             this.ff = ff;
@@ -259,7 +271,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "P component"
         )
         public final Builder p(float p) {
             this.p = p;
@@ -271,7 +284,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "I component"
         )
         public final Builder i(float i) {
             this.i = i;
@@ -283,7 +297,8 @@ public final class PidTuning {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "D component"
         )
         public final Builder d(float d) {
             this.d = d;

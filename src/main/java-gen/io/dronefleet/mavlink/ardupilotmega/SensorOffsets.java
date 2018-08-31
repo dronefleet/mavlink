@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 150,
-        crc = 134
+        crc = 134,
+        description = "Offsets and calibrations values for hardware sensors. This makes it easier to debug the calibration process."
 )
 public final class SensorOffsets {
     private final int magOfsX;
@@ -72,7 +73,8 @@ public final class SensorOffsets {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer X offset"
     )
     public final int magOfsX() {
         return this.magOfsX;
@@ -84,7 +86,8 @@ public final class SensorOffsets {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer Y offset"
     )
     public final int magOfsY() {
         return this.magOfsY;
@@ -96,7 +99,8 @@ public final class SensorOffsets {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer Z offset"
     )
     public final int magOfsZ() {
         return this.magOfsZ;
@@ -107,7 +111,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "magnetic declination (radians)"
     )
     public final float magDeclination() {
         return this.magDeclination;
@@ -119,7 +124,8 @@ public final class SensorOffsets {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "raw pressure from barometer"
     )
     public final int rawPress() {
         return this.rawPress;
@@ -131,7 +137,8 @@ public final class SensorOffsets {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "raw temperature from barometer"
     )
     public final int rawTemp() {
         return this.rawTemp;
@@ -142,7 +149,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "gyro X calibration"
     )
     public final float gyroCalX() {
         return this.gyroCalX;
@@ -153,7 +161,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "gyro Y calibration"
     )
     public final float gyroCalY() {
         return this.gyroCalY;
@@ -164,7 +173,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "gyro Z calibration"
     )
     public final float gyroCalZ() {
         return this.gyroCalZ;
@@ -175,7 +185,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "accel X calibration"
     )
     public final float accelCalX() {
         return this.accelCalX;
@@ -186,7 +197,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "accel Y calibration"
     )
     public final float accelCalY() {
         return this.accelCalY;
@@ -197,7 +209,8 @@ public final class SensorOffsets {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "accel Z calibration"
     )
     public final float accelCalZ() {
         return this.accelCalZ;
@@ -288,7 +301,8 @@ public final class SensorOffsets {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer X offset"
         )
         public final Builder magOfsX(int magOfsX) {
             this.magOfsX = magOfsX;
@@ -301,7 +315,8 @@ public final class SensorOffsets {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer Y offset"
         )
         public final Builder magOfsY(int magOfsY) {
             this.magOfsY = magOfsY;
@@ -314,7 +329,8 @@ public final class SensorOffsets {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer Z offset"
         )
         public final Builder magOfsZ(int magOfsZ) {
             this.magOfsZ = magOfsZ;
@@ -326,7 +342,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "magnetic declination (radians)"
         )
         public final Builder magDeclination(float magDeclination) {
             this.magDeclination = magDeclination;
@@ -339,7 +356,8 @@ public final class SensorOffsets {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "raw pressure from barometer"
         )
         public final Builder rawPress(int rawPress) {
             this.rawPress = rawPress;
@@ -352,7 +370,8 @@ public final class SensorOffsets {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "raw temperature from barometer"
         )
         public final Builder rawTemp(int rawTemp) {
             this.rawTemp = rawTemp;
@@ -364,7 +383,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "gyro X calibration"
         )
         public final Builder gyroCalX(float gyroCalX) {
             this.gyroCalX = gyroCalX;
@@ -376,7 +396,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "gyro Y calibration"
         )
         public final Builder gyroCalY(float gyroCalY) {
             this.gyroCalY = gyroCalY;
@@ -388,7 +409,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "gyro Z calibration"
         )
         public final Builder gyroCalZ(float gyroCalZ) {
             this.gyroCalZ = gyroCalZ;
@@ -400,7 +422,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "accel X calibration"
         )
         public final Builder accelCalX(float accelCalX) {
             this.accelCalX = accelCalX;
@@ -412,7 +435,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "accel Y calibration"
         )
         public final Builder accelCalY(float accelCalY) {
             this.accelCalY = accelCalY;
@@ -424,7 +448,8 @@ public final class SensorOffsets {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "accel Z calibration"
         )
         public final Builder accelCalZ(float accelCalZ) {
             this.accelCalZ = accelCalZ;

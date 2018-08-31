@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 154,
-        crc = 84
+        crc = 84,
+        description = "Configure on-board Camera Control System."
 )
 public final class DigicamConfigure {
     private final int targetSystem;
@@ -67,7 +68,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -78,7 +80,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -89,7 +92,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore)"
     )
     public final int mode() {
         return this.mode;
@@ -100,7 +104,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)"
     )
     public final int shutterSpeed() {
         return this.shutterSpeed;
@@ -111,7 +116,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)"
     )
     public final int aperture() {
         return this.aperture;
@@ -122,7 +128,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)"
     )
     public final int iso() {
         return this.iso;
@@ -133,7 +140,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Exposure type enumeration from 1 to N (0 means ignore)"
     )
     public final int exposureType() {
         return this.exposureType;
@@ -145,7 +153,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
     )
     public final int commandId() {
         return this.commandId;
@@ -156,7 +165,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)"
     )
     public final int engineCutOff() {
         return this.engineCutOff;
@@ -167,7 +177,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "Extra parameters enumeration (0 means ignore)"
     )
     public final int extraParam() {
         return this.extraParam;
@@ -178,7 +189,8 @@ public final class DigicamConfigure {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Correspondent value to given extra_param"
     )
     public final float extraValue() {
         return this.extraValue;
@@ -263,7 +275,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -275,7 +288,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -287,7 +301,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore)"
         )
         public final Builder mode(int mode) {
             this.mode = mode;
@@ -299,7 +314,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)"
         )
         public final Builder shutterSpeed(int shutterSpeed) {
             this.shutterSpeed = shutterSpeed;
@@ -311,7 +327,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)"
         )
         public final Builder aperture(int aperture) {
             this.aperture = aperture;
@@ -323,7 +340,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)"
         )
         public final Builder iso(int iso) {
             this.iso = iso;
@@ -335,7 +353,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Exposure type enumeration from 1 to N (0 means ignore)"
         )
         public final Builder exposureType(int exposureType) {
             this.exposureType = exposureType;
@@ -348,7 +367,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
         )
         public final Builder commandId(int commandId) {
             this.commandId = commandId;
@@ -360,7 +380,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)"
         )
         public final Builder engineCutOff(int engineCutOff) {
             this.engineCutOff = engineCutOff;
@@ -372,7 +393,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "Extra parameters enumeration (0 means ignore)"
         )
         public final Builder extraParam(int extraParam) {
             this.extraParam = extraParam;
@@ -384,7 +406,8 @@ public final class DigicamConfigure {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Correspondent value to given extra_param"
         )
         public final Builder extraValue(float extraValue) {
             this.extraValue = extraValue;

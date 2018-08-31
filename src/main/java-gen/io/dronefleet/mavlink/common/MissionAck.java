@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 47,
-        crc = 153
+        crc = 153,
+        description = "Ack message during waypoint handling. The type field states if this message is a positive ack (type=0) or if an error happened (type=non-zero)."
 )
 public final class MissionAck {
     private final int targetSystem;
@@ -49,7 +50,8 @@ public final class MissionAck {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -60,7 +62,8 @@ public final class MissionAck {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -72,7 +75,8 @@ public final class MissionAck {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavMissionResult.class
+            enumType = MavMissionResult.class,
+            description = "See MAV_MISSION_RESULT enum"
     )
     public final EnumValue<MavMissionResult> type() {
         return this.type;
@@ -85,7 +89,8 @@ public final class MissionAck {
             position = 5,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -135,7 +140,8 @@ public final class MissionAck {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -147,7 +153,8 @@ public final class MissionAck {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -160,7 +167,8 @@ public final class MissionAck {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavMissionResult.class
+                enumType = MavMissionResult.class,
+                description = "See MAV_MISSION_RESULT enum"
         )
         public final Builder type(EnumValue<MavMissionResult> type) {
             this.type = type;
@@ -195,7 +203,8 @@ public final class MissionAck {
                 position = 5,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

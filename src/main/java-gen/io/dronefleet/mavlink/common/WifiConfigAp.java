@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 299,
-        crc = 19
+        crc = 19,
+        description = "Configure AP SSID and Password."
 )
 public final class WifiConfigAp {
     private final String ssid;
@@ -39,7 +40,8 @@ public final class WifiConfigAp {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 32
+            arraySize = 32,
+            description = "Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged."
     )
     public final String ssid() {
         return this.ssid;
@@ -51,7 +53,8 @@ public final class WifiConfigAp {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 64
+            arraySize = 64,
+            description = "Password. Leave it blank for an open AP."
     )
     public final String password() {
         return this.password;
@@ -92,7 +95,8 @@ public final class WifiConfigAp {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 32
+                arraySize = 32,
+                description = "Name of Wi-Fi network (SSID). Leave it blank to leave it unchanged."
         )
         public final Builder ssid(String ssid) {
             this.ssid = ssid;
@@ -105,7 +109,8 @@ public final class WifiConfigAp {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 64
+                arraySize = 64,
+                description = "Password. Leave it blank for an open AP."
         )
         public final Builder password(String password) {
             this.password = password;

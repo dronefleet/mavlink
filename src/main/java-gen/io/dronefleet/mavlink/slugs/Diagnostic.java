@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 173,
-        crc = 2
+        crc = 2,
+        description = "Configurable diagnostic messages."
 )
 public final class Diagnostic {
     private final float diagfl1;
@@ -51,7 +52,8 @@ public final class Diagnostic {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Diagnostic float 1"
     )
     public final float diagfl1() {
         return this.diagfl1;
@@ -62,7 +64,8 @@ public final class Diagnostic {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Diagnostic float 2"
     )
     public final float diagfl2() {
         return this.diagfl2;
@@ -73,7 +76,8 @@ public final class Diagnostic {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Diagnostic float 3"
     )
     public final float diagfl3() {
         return this.diagfl3;
@@ -85,7 +89,8 @@ public final class Diagnostic {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Diagnostic short 1"
     )
     public final int diagsh1() {
         return this.diagsh1;
@@ -97,7 +102,8 @@ public final class Diagnostic {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Diagnostic short 2"
     )
     public final int diagsh2() {
         return this.diagsh2;
@@ -109,7 +115,8 @@ public final class Diagnostic {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Diagnostic short 3"
     )
     public final int diagsh3() {
         return this.diagsh3;
@@ -169,7 +176,8 @@ public final class Diagnostic {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Diagnostic float 1"
         )
         public final Builder diagfl1(float diagfl1) {
             this.diagfl1 = diagfl1;
@@ -181,7 +189,8 @@ public final class Diagnostic {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Diagnostic float 2"
         )
         public final Builder diagfl2(float diagfl2) {
             this.diagfl2 = diagfl2;
@@ -193,7 +202,8 @@ public final class Diagnostic {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Diagnostic float 3"
         )
         public final Builder diagfl3(float diagfl3) {
             this.diagfl3 = diagfl3;
@@ -206,7 +216,8 @@ public final class Diagnostic {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Diagnostic short 1"
         )
         public final Builder diagsh1(int diagsh1) {
             this.diagsh1 = diagsh1;
@@ -219,7 +230,8 @@ public final class Diagnostic {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Diagnostic short 2"
         )
         public final Builder diagsh2(int diagsh2) {
             this.diagsh2 = diagsh2;
@@ -232,7 +244,8 @@ public final class Diagnostic {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Diagnostic short 3"
         )
         public final Builder diagsh3(int diagsh3) {
             this.diagsh3 = diagsh3;

@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 300,
-        crc = 217
+        crc = 217,
+        description = "WIP: Version and capability of protocol version. This message is the response to REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly."
 )
 public final class ProtocolVersion {
     private final int version;
@@ -52,7 +53,8 @@ public final class ProtocolVersion {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc."
     )
     public final int version() {
         return this.version;
@@ -63,7 +65,8 @@ public final class ProtocolVersion {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "Minimum MAVLink version supported"
     )
     public final int minVersion() {
         return this.minVersion;
@@ -74,7 +77,8 @@ public final class ProtocolVersion {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Maximum MAVLink version supported (set to the same value as version by default)"
     )
     public final int maxVersion() {
         return this.maxVersion;
@@ -86,7 +90,8 @@ public final class ProtocolVersion {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "The first 8 bytes (not characters printed in hex!) of the git hash."
     )
     public final byte[] specVersionHash() {
         return this.specVersionHash;
@@ -98,7 +103,8 @@ public final class ProtocolVersion {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            arraySize = 8
+            arraySize = 8,
+            description = "The first 8 bytes (not characters printed in hex!) of the git hash."
     )
     public final byte[] libraryVersionHash() {
         return this.libraryVersionHash;
@@ -153,7 +159,8 @@ public final class ProtocolVersion {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc."
         )
         public final Builder version(int version) {
             this.version = version;
@@ -165,7 +172,8 @@ public final class ProtocolVersion {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "Minimum MAVLink version supported"
         )
         public final Builder minVersion(int minVersion) {
             this.minVersion = minVersion;
@@ -177,7 +185,8 @@ public final class ProtocolVersion {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Maximum MAVLink version supported (set to the same value as version by default)"
         )
         public final Builder maxVersion(int maxVersion) {
             this.maxVersion = maxVersion;
@@ -190,7 +199,8 @@ public final class ProtocolVersion {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "The first 8 bytes (not characters printed in hex!) of the git hash."
         )
         public final Builder specVersionHash(byte[] specVersionHash) {
             this.specVersionHash = specVersionHash;
@@ -203,7 +213,8 @@ public final class ProtocolVersion {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                arraySize = 8
+                arraySize = 8,
+                description = "The first 8 bytes (not characters printed in hex!) of the git hash."
         )
         public final Builder libraryVersionHash(byte[] libraryVersionHash) {
             this.libraryVersionHash = libraryVersionHash;

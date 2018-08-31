@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 49,
-        crc = 39
+        crc = 39,
+        description = "Once the MAV sets a new GPS-Local correspondence, this message announces the origin (0,0,0) position"
 )
 public final class GpsGlobalOrigin {
     private final int latitude;
@@ -47,7 +48,8 @@ public final class GpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int latitude() {
         return this.latitude;
@@ -59,7 +61,8 @@ public final class GpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84), in degrees * 1E7"
     )
     public final int longitude() {
         return this.longitude;
@@ -71,7 +74,8 @@ public final class GpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude (AMSL), in meters * 1000 (positive for up)"
     )
     public final int altitude() {
         return this.altitude;
@@ -83,7 +87,8 @@ public final class GpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 8,
-            extension = true
+            extension = true,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -134,7 +139,8 @@ public final class GpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -147,7 +153,8 @@ public final class GpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84), in degrees * 1E7"
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -160,7 +167,8 @@ public final class GpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude (AMSL), in meters * 1000 (positive for up)"
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -173,7 +181,8 @@ public final class GpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 8,
-                extension = true
+                extension = true,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

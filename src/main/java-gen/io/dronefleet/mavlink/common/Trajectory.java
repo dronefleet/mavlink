@@ -20,7 +20,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 332,
-        crc = 131
+        crc = 131,
+        description = "WORK IN PROGRESS! DO NOT DEPLOY! Message to describe a trajectory in the local frame. Supported trajectory types are enumerated in MAV_TRAJECTORY_REPRESENTATION"
 )
 public final class Trajectory {
     private final BigInteger timeUsec;
@@ -65,7 +66,8 @@ public final class Trajectory {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since system boot or since UNIX epoch)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -77,7 +79,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavTrajectoryRepresentation.class
+            enumType = MavTrajectoryRepresentation.class,
+            description = "Waypoints, Bezier etc. see MAV_TRAJECTORY_REPRESENTATION"
     )
     public final EnumValue<MavTrajectoryRepresentation> type() {
         return this.type;
@@ -89,7 +92,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            arraySize = 11
+            arraySize = 11,
+            description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
     )
     public final List<Float> point1() {
         return this.point1;
@@ -101,7 +105,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            arraySize = 11
+            arraySize = 11,
+            description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
     )
     public final List<Float> point2() {
         return this.point2;
@@ -113,7 +118,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            arraySize = 11
+            arraySize = 11,
+            description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
     )
     public final List<Float> point3() {
         return this.point3;
@@ -125,7 +131,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            arraySize = 11
+            arraySize = 11,
+            description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
     )
     public final List<Float> point4() {
         return this.point4;
@@ -137,7 +144,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            arraySize = 11
+            arraySize = 11,
+            description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
     )
     public final List<Float> point5() {
         return this.point5;
@@ -149,7 +157,8 @@ public final class Trajectory {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            arraySize = 5
+            arraySize = 5,
+            description = "States if respective point is valid (boolean)"
     )
     public final byte[] pointValid() {
         return this.pointValid;
@@ -219,7 +228,8 @@ public final class Trajectory {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since system boot or since UNIX epoch)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -232,7 +242,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavTrajectoryRepresentation.class
+                enumType = MavTrajectoryRepresentation.class,
+                description = "Waypoints, Bezier etc. see MAV_TRAJECTORY_REPRESENTATION"
         )
         public final Builder type(EnumValue<MavTrajectoryRepresentation> type) {
             this.type = type;
@@ -266,7 +277,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                arraySize = 11
+                arraySize = 11,
+                description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
         )
         public final Builder point1(List<Float> point1) {
             this.point1 = point1;
@@ -279,7 +291,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                arraySize = 11
+                arraySize = 11,
+                description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
         )
         public final Builder point2(List<Float> point2) {
             this.point2 = point2;
@@ -292,7 +305,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                arraySize = 11
+                arraySize = 11,
+                description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
         )
         public final Builder point3(List<Float> point3) {
             this.point3 = point3;
@@ -305,7 +319,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                arraySize = 11
+                arraySize = 11,
+                description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
         )
         public final Builder point4(List<Float> point4) {
             this.point4 = point4;
@@ -318,7 +333,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                arraySize = 11
+                arraySize = 11,
+                description = "Depending on the type (see MAV_TRAJECTORY_REPRESENTATION)"
         )
         public final Builder point5(List<Float> point5) {
             this.point5 = point5;
@@ -331,7 +347,8 @@ public final class Trajectory {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                arraySize = 5
+                arraySize = 5,
+                description = "States if respective point is valid (boolean)"
         )
         public final Builder pointValid(byte[] pointValid) {
             this.pointValid = pointValid;

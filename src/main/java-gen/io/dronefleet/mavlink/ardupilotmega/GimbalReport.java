@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 200,
-        crc = 134
+        crc = 134,
+        description = "3 axis gimbal mesuraments"
 )
 public final class GimbalReport {
     private final int targetSystem;
@@ -70,7 +71,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -81,7 +83,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -92,7 +95,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time since last update (seconds)"
     )
     public final float deltaTime() {
         return this.deltaTime;
@@ -103,7 +107,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta angle X (radians)"
     )
     public final float deltaAngleX() {
         return this.deltaAngleX;
@@ -114,7 +119,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta angle Y (radians)"
     )
     public final float deltaAngleY() {
         return this.deltaAngleY;
@@ -125,7 +131,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta angle X (radians)"
     )
     public final float deltaAngleZ() {
         return this.deltaAngleZ;
@@ -136,7 +143,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta velocity X (m/s)"
     )
     public final float deltaVelocityX() {
         return this.deltaVelocityX;
@@ -147,7 +155,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta velocity Y (m/s)"
     )
     public final float deltaVelocityY() {
         return this.deltaVelocityY;
@@ -158,7 +167,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Delta velocity Z (m/s)"
     )
     public final float deltaVelocityZ() {
         return this.deltaVelocityZ;
@@ -169,7 +179,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Joint ROLL (radians)"
     )
     public final float jointRoll() {
         return this.jointRoll;
@@ -180,7 +191,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Joint EL (radians)"
     )
     public final float jointEl() {
         return this.jointEl;
@@ -191,7 +203,8 @@ public final class GimbalReport {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Joint AZ (radians)"
     )
     public final float jointAz() {
         return this.jointAz;
@@ -281,7 +294,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -293,7 +307,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -305,7 +320,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time since last update (seconds)"
         )
         public final Builder deltaTime(float deltaTime) {
             this.deltaTime = deltaTime;
@@ -317,7 +333,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta angle X (radians)"
         )
         public final Builder deltaAngleX(float deltaAngleX) {
             this.deltaAngleX = deltaAngleX;
@@ -329,7 +346,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta angle Y (radians)"
         )
         public final Builder deltaAngleY(float deltaAngleY) {
             this.deltaAngleY = deltaAngleY;
@@ -341,7 +359,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta angle X (radians)"
         )
         public final Builder deltaAngleZ(float deltaAngleZ) {
             this.deltaAngleZ = deltaAngleZ;
@@ -353,7 +372,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta velocity X (m/s)"
         )
         public final Builder deltaVelocityX(float deltaVelocityX) {
             this.deltaVelocityX = deltaVelocityX;
@@ -365,7 +385,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta velocity Y (m/s)"
         )
         public final Builder deltaVelocityY(float deltaVelocityY) {
             this.deltaVelocityY = deltaVelocityY;
@@ -377,7 +398,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Delta velocity Z (m/s)"
         )
         public final Builder deltaVelocityZ(float deltaVelocityZ) {
             this.deltaVelocityZ = deltaVelocityZ;
@@ -389,7 +411,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Joint ROLL (radians)"
         )
         public final Builder jointRoll(float jointRoll) {
             this.jointRoll = jointRoll;
@@ -401,7 +424,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Joint EL (radians)"
         )
         public final Builder jointEl(float jointEl) {
             this.jointEl = jointEl;
@@ -413,7 +437,8 @@ public final class GimbalReport {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Joint AZ (radians)"
         )
         public final Builder jointAz(float jointAz) {
             this.jointAz = jointAz;

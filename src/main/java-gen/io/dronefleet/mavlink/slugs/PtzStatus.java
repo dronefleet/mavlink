@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 192,
-        crc = 187
+        crc = 187,
+        description = "Transmits the actual Pan, Tilt and Zoom values of the camera unit"
 )
 public final class PtzStatus {
     private final int zoom;
@@ -41,7 +42,8 @@ public final class PtzStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The actual Zoom Value"
     )
     public final int zoom() {
         return this.zoom;
@@ -53,7 +55,8 @@ public final class PtzStatus {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "The Pan value in 10ths of degree"
     )
     public final int pan() {
         return this.pan;
@@ -65,7 +68,8 @@ public final class PtzStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "The Tilt value in 10ths of degree"
     )
     public final int tilt() {
         return this.tilt;
@@ -110,7 +114,8 @@ public final class PtzStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The actual Zoom Value"
         )
         public final Builder zoom(int zoom) {
             this.zoom = zoom;
@@ -123,7 +128,8 @@ public final class PtzStatus {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "The Pan value in 10ths of degree"
         )
         public final Builder pan(int pan) {
             this.pan = pan;
@@ -136,7 +142,8 @@ public final class PtzStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "The Tilt value in 10ths of degree"
         )
         public final Builder tilt(int tilt) {
             this.tilt = tilt;

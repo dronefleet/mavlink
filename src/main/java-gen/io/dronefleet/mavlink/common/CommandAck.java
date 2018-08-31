@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 77,
-        crc = 143
+        crc = 143,
+        description = "Report status of a command. Includes feedback whether the command was executed."
 )
 public final class CommandAck {
     private final EnumValue<MavCmd> command;
@@ -55,7 +56,8 @@ public final class CommandAck {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            enumType = MavCmd.class
+            enumType = MavCmd.class,
+            description = "Command ID, as defined by MAV_CMD enum."
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
@@ -67,7 +69,8 @@ public final class CommandAck {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavResult.class
+            enumType = MavResult.class,
+            description = "See MAV_RESULT enum"
     )
     public final EnumValue<MavResult> result() {
         return this.result;
@@ -81,7 +84,8 @@ public final class CommandAck {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            extension = true
+            extension = true,
+            description = "WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS."
     )
     public final int progress() {
         return this.progress;
@@ -95,7 +99,8 @@ public final class CommandAck {
             position = 5,
             unitSize = 4,
             signed = true,
-            extension = true
+            extension = true,
+            description = "WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
     )
     public final int resultParam2() {
         return this.resultParam2;
@@ -107,7 +112,8 @@ public final class CommandAck {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            extension = true
+            extension = true,
+            description = "WIP: System which requested the command to be executed"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -119,7 +125,8 @@ public final class CommandAck {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            extension = true
+            extension = true,
+            description = "WIP: Component which requested the command to be executed"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -180,7 +187,8 @@ public final class CommandAck {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                enumType = MavCmd.class
+                enumType = MavCmd.class,
+                description = "Command ID, as defined by MAV_CMD enum."
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -214,7 +222,8 @@ public final class CommandAck {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavResult.class
+                enumType = MavResult.class,
+                description = "See MAV_RESULT enum"
         )
         public final Builder result(EnumValue<MavResult> result) {
             this.result = result;
@@ -250,7 +259,8 @@ public final class CommandAck {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                extension = true
+                extension = true,
+                description = "WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS."
         )
         public final Builder progress(int progress) {
             this.progress = progress;
@@ -265,7 +275,8 @@ public final class CommandAck {
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                extension = true
+                extension = true,
+                description = "WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
         )
         public final Builder resultParam2(int resultParam2) {
             this.resultParam2 = resultParam2;
@@ -278,7 +289,8 @@ public final class CommandAck {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                extension = true
+                extension = true,
+                description = "WIP: System which requested the command to be executed"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -291,7 +303,8 @@ public final class CommandAck {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                extension = true
+                extension = true,
+                description = "WIP: Component which requested the command to be executed"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;

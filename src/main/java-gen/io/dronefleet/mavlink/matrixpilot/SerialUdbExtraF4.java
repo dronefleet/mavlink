@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 172,
-        crc = 191
+        crc = 191,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F4: format"
 )
 public final class SerialUdbExtraF4 {
     private final int sueRollStabilizationAilerons;
@@ -65,7 +66,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Roll Stabilization with Ailerons Enabled"
     )
     public final int sueRollStabilizationAilerons() {
         return this.sueRollStabilizationAilerons;
@@ -76,7 +78,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Roll Stabilization with Rudder Enabled"
     )
     public final int sueRollStabilizationRudder() {
         return this.sueRollStabilizationRudder;
@@ -87,7 +90,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Pitch Stabilization Enabled"
     )
     public final int suePitchStabilization() {
         return this.suePitchStabilization;
@@ -98,7 +102,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Yaw Stabilization using Rudder Enabled"
     )
     public final int sueYawStabilizationRudder() {
         return this.sueYawStabilizationRudder;
@@ -109,7 +114,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Yaw Stabilization using Ailerons Enabled"
     )
     public final int sueYawStabilizationAileron() {
         return this.sueYawStabilizationAileron;
@@ -120,7 +126,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Navigation with Ailerons Enabled"
     )
     public final int sueAileronNavigation() {
         return this.sueAileronNavigation;
@@ -131,7 +138,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Navigation with Rudder Enabled"
     )
     public final int sueRudderNavigation() {
         return this.sueRudderNavigation;
@@ -142,7 +150,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Type of Alitude Hold when in Stabilized Mode"
     )
     public final int sueAltitudeholdStabilized() {
         return this.sueAltitudeholdStabilized;
@@ -153,7 +162,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Type of Alitude Hold when in Waypoint Mode"
     )
     public final int sueAltitudeholdWaypoint() {
         return this.sueAltitudeholdWaypoint;
@@ -164,7 +174,8 @@ public final class SerialUdbExtraF4 {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "Serial UDB Extra Firmware racing mode enabled"
     )
     public final int sueRacingMode() {
         return this.sueRacingMode;
@@ -244,7 +255,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Roll Stabilization with Ailerons Enabled"
         )
         public final Builder sueRollStabilizationAilerons(int sueRollStabilizationAilerons) {
             this.sueRollStabilizationAilerons = sueRollStabilizationAilerons;
@@ -256,7 +268,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Roll Stabilization with Rudder Enabled"
         )
         public final Builder sueRollStabilizationRudder(int sueRollStabilizationRudder) {
             this.sueRollStabilizationRudder = sueRollStabilizationRudder;
@@ -268,7 +281,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Pitch Stabilization Enabled"
         )
         public final Builder suePitchStabilization(int suePitchStabilization) {
             this.suePitchStabilization = suePitchStabilization;
@@ -280,7 +294,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Yaw Stabilization using Rudder Enabled"
         )
         public final Builder sueYawStabilizationRudder(int sueYawStabilizationRudder) {
             this.sueYawStabilizationRudder = sueYawStabilizationRudder;
@@ -292,7 +307,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Yaw Stabilization using Ailerons Enabled"
         )
         public final Builder sueYawStabilizationAileron(int sueYawStabilizationAileron) {
             this.sueYawStabilizationAileron = sueYawStabilizationAileron;
@@ -304,7 +320,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Navigation with Ailerons Enabled"
         )
         public final Builder sueAileronNavigation(int sueAileronNavigation) {
             this.sueAileronNavigation = sueAileronNavigation;
@@ -316,7 +333,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Navigation with Rudder Enabled"
         )
         public final Builder sueRudderNavigation(int sueRudderNavigation) {
             this.sueRudderNavigation = sueRudderNavigation;
@@ -328,7 +346,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Type of Alitude Hold when in Stabilized Mode"
         )
         public final Builder sueAltitudeholdStabilized(int sueAltitudeholdStabilized) {
             this.sueAltitudeholdStabilized = sueAltitudeholdStabilized;
@@ -340,7 +359,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Type of Alitude Hold when in Waypoint Mode"
         )
         public final Builder sueAltitudeholdWaypoint(int sueAltitudeholdWaypoint) {
             this.sueAltitudeholdWaypoint = sueAltitudeholdWaypoint;
@@ -352,7 +372,8 @@ public final class SerialUdbExtraF4 {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "Serial UDB Extra Firmware racing mode enabled"
         )
         public final Builder sueRacingMode(int sueRacingMode) {
             this.sueRacingMode = sueRacingMode;

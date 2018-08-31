@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 218,
-        crc = 17
+        crc = 17,
+        description = "Request to set a GOPRO_COMMAND with a desired"
 )
 public final class GoproSetRequest {
     private final int targetSystem;
@@ -48,7 +49,8 @@ public final class GoproSetRequest {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -59,7 +61,8 @@ public final class GoproSetRequest {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -71,7 +74,8 @@ public final class GoproSetRequest {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = GoproCommand.class
+            enumType = GoproCommand.class,
+            description = "Command ID"
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
@@ -83,7 +87,8 @@ public final class GoproSetRequest {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 4
+            arraySize = 4,
+            description = "Value"
     )
     public final byte[] value() {
         return this.value;
@@ -133,7 +138,8 @@ public final class GoproSetRequest {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -145,7 +151,8 @@ public final class GoproSetRequest {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -158,7 +165,8 @@ public final class GoproSetRequest {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = GoproCommand.class
+                enumType = GoproCommand.class,
+                description = "Command ID"
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -192,7 +200,8 @@ public final class GoproSetRequest {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 4
+                arraySize = 4,
+                description = "Value"
         )
         public final Builder value(byte[] value) {
             this.value = value;

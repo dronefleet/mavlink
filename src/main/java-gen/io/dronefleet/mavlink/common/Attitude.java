@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 30,
-        crc = 39
+        crc = 39,
+        description = "The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right)."
 )
 public final class Attitude {
     private final long timeBootMs;
@@ -54,7 +55,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -65,7 +67,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angle (rad, -pi..+pi)"
     )
     public final float roll() {
         return this.roll;
@@ -76,7 +79,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angle (rad, -pi..+pi)"
     )
     public final float pitch() {
         return this.pitch;
@@ -87,7 +91,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angle (rad, -pi..+pi)"
     )
     public final float yaw() {
         return this.yaw;
@@ -98,7 +103,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angular speed (rad/s)"
     )
     public final float rollspeed() {
         return this.rollspeed;
@@ -109,7 +115,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angular speed (rad/s)"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
@@ -120,7 +127,8 @@ public final class Attitude {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angular speed (rad/s)"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -185,7 +193,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -197,7 +206,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angle (rad, -pi..+pi)"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -209,7 +219,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angle (rad, -pi..+pi)"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -221,7 +232,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angle (rad, -pi..+pi)"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -233,7 +245,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angular speed (rad/s)"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -245,7 +258,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angular speed (rad/s)"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -257,7 +271,8 @@ public final class Attitude {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angular speed (rad/s)"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;

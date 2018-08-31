@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 10002,
-        crc = 186
+        crc = 186,
+        description = "Dynamic data used to generate ADS-B out transponder data (send at 5Hz)"
 )
 public final class UavionixAdsbOutDynamic {
     private final long utctime;
@@ -87,7 +88,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX"
     )
     public final long utctime() {
         return this.utctime;
@@ -99,7 +101,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX"
     )
     public final int gpslat() {
         return this.gpslat;
@@ -111,7 +114,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX"
     )
     public final int gpslon() {
         return this.gpslon;
@@ -123,7 +127,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX"
     )
     public final int gpsalt() {
         return this.gpsalt;
@@ -135,7 +140,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            enumType = UavionixAdsbOutDynamicGpsFix.class
+            enumType = UavionixAdsbOutDynamicGpsFix.class,
+            description = "0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK"
     )
     public final EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix() {
         return this.gpsfix;
@@ -146,7 +152,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible. If unknown set to UINT8_MAX"
     )
     public final int numsats() {
         return this.numsats;
@@ -159,7 +166,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
     )
     public final int baroaltmsl() {
         return this.baroaltmsl;
@@ -170,7 +178,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX"
     )
     public final long accuracyhor() {
         return this.accuracyhor;
@@ -181,7 +190,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "Vertical accuracy in cm. If unknown set to UINT16_MAX"
     )
     public final int accuracyvert() {
         return this.accuracyvert;
@@ -192,7 +202,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 2
+            unitSize = 2,
+            description = "Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX"
     )
     public final int accuracyvel() {
         return this.accuracyvel;
@@ -204,7 +215,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "GPS vertical speed in cm/s. If unknown set to INT16_MAX"
     )
     public final int velvert() {
         return this.velvert;
@@ -216,7 +228,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "North-South velocity over ground in cm/s North +ve. If unknown set to INT16_MAX"
     )
     public final int velns() {
         return this.velns;
@@ -228,7 +241,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "East-West velocity over ground in cm/s East +ve. If unknown set to INT16_MAX"
     )
     public final int velew() {
         return this.velew;
@@ -240,7 +254,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
-            enumType = UavionixAdsbEmergencyStatus.class
+            enumType = UavionixAdsbEmergencyStatus.class,
+            description = "Emergency status"
     )
     public final EnumValue<UavionixAdsbEmergencyStatus> emergencystatus() {
         return this.emergencystatus;
@@ -252,7 +267,8 @@ public final class UavionixAdsbOutDynamic {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            enumType = UavionixAdsbOutDynamicState.class
+            enumType = UavionixAdsbOutDynamicState.class,
+            description = "ADS-B transponder dynamic input state flags"
     )
     public final EnumValue<UavionixAdsbOutDynamicState> state() {
         return this.state;
@@ -263,7 +279,8 @@ public final class UavionixAdsbOutDynamic {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 2
+            unitSize = 2,
+            description = "Mode A code (typically 1200 [0x04B0] for VFR)"
     )
     public final int squawk() {
         return this.squawk;
@@ -373,7 +390,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "UTC time in seconds since GPS epoch (Jan 6, 1980). If unknown set to UINT32_MAX"
         )
         public final Builder utctime(long utctime) {
             this.utctime = utctime;
@@ -386,7 +404,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude WGS84 (deg * 1E7). If unknown set to INT32_MAX"
         )
         public final Builder gpslat(int gpslat) {
             this.gpslat = gpslat;
@@ -399,7 +418,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude WGS84 (deg * 1E7). If unknown set to INT32_MAX"
         )
         public final Builder gpslon(int gpslon) {
             this.gpslon = gpslon;
@@ -412,7 +432,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX"
         )
         public final Builder gpsalt(int gpsalt) {
             this.gpsalt = gpsalt;
@@ -425,7 +446,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                enumType = UavionixAdsbOutDynamicGpsFix.class
+                enumType = UavionixAdsbOutDynamicGpsFix.class,
+                description = "0-1: no fix, 2: 2D fix, 3: 3D fix, 4: DGPS, 5: RTK"
         )
         public final Builder gpsfix(EnumValue<UavionixAdsbOutDynamicGpsFix> gpsfix) {
             this.gpsfix = gpsfix;
@@ -458,7 +480,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible. If unknown set to UINT8_MAX"
         )
         public final Builder numsats(int numsats) {
             this.numsats = numsats;
@@ -472,7 +495,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
         )
         public final Builder baroaltmsl(int baroaltmsl) {
             this.baroaltmsl = baroaltmsl;
@@ -484,7 +508,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Horizontal accuracy in mm (m * 1E-3). If unknown set to UINT32_MAX"
         )
         public final Builder accuracyhor(long accuracyhor) {
             this.accuracyhor = accuracyhor;
@@ -496,7 +521,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "Vertical accuracy in cm. If unknown set to UINT16_MAX"
         )
         public final Builder accuracyvert(int accuracyvert) {
             this.accuracyvert = accuracyvert;
@@ -508,7 +534,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 2
+                unitSize = 2,
+                description = "Velocity accuracy in mm/s (m * 1E-3). If unknown set to UINT16_MAX"
         )
         public final Builder accuracyvel(int accuracyvel) {
             this.accuracyvel = accuracyvel;
@@ -521,7 +548,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "GPS vertical speed in cm/s. If unknown set to INT16_MAX"
         )
         public final Builder velvert(int velvert) {
             this.velvert = velvert;
@@ -534,7 +562,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "North-South velocity over ground in cm/s North +ve. If unknown set to INT16_MAX"
         )
         public final Builder velns(int velns) {
             this.velns = velns;
@@ -547,7 +576,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "East-West velocity over ground in cm/s East +ve. If unknown set to INT16_MAX"
         )
         public final Builder velew(int velew) {
             this.velew = velew;
@@ -560,7 +590,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
-                enumType = UavionixAdsbEmergencyStatus.class
+                enumType = UavionixAdsbEmergencyStatus.class,
+                description = "Emergency status"
         )
         public final Builder emergencystatus(
                 EnumValue<UavionixAdsbEmergencyStatus> emergencystatus) {
@@ -595,7 +626,8 @@ public final class UavionixAdsbOutDynamic {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                enumType = UavionixAdsbOutDynamicState.class
+                enumType = UavionixAdsbOutDynamicState.class,
+                description = "ADS-B transponder dynamic input state flags"
         )
         public final Builder state(EnumValue<UavionixAdsbOutDynamicState> state) {
             this.state = state;
@@ -628,7 +660,8 @@ public final class UavionixAdsbOutDynamic {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 2
+                unitSize = 2,
+                description = "Mode A code (typically 1200 [0x04B0] for VFR)"
         )
         public final Builder squawk(int squawk) {
             this.squawk = squawk;

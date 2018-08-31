@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 151,
-        crc = 219
+        crc = 219,
+        description = "Deprecated. Use MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS instead. Set the magnetometer offsets"
 )
 public final class SetMagOffsets {
     private final int targetSystem;
@@ -49,7 +50,8 @@ public final class SetMagOffsets {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -60,7 +62,8 @@ public final class SetMagOffsets {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -72,7 +75,8 @@ public final class SetMagOffsets {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer X offset"
     )
     public final int magOfsX() {
         return this.magOfsX;
@@ -84,7 +88,8 @@ public final class SetMagOffsets {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer Y offset"
     )
     public final int magOfsY() {
         return this.magOfsY;
@@ -96,7 +101,8 @@ public final class SetMagOffsets {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "magnetometer Z offset"
     )
     public final int magOfsZ() {
         return this.magOfsZ;
@@ -151,7 +157,8 @@ public final class SetMagOffsets {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -163,7 +170,8 @@ public final class SetMagOffsets {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -176,7 +184,8 @@ public final class SetMagOffsets {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer X offset"
         )
         public final Builder magOfsX(int magOfsX) {
             this.magOfsX = magOfsX;
@@ -189,7 +198,8 @@ public final class SetMagOffsets {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer Y offset"
         )
         public final Builder magOfsY(int magOfsY) {
             this.magOfsY = magOfsY;
@@ -202,7 +212,8 @@ public final class SetMagOffsets {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "magnetometer Z offset"
         )
         public final Builder magOfsZ(int magOfsZ) {
             this.magOfsZ = magOfsZ;

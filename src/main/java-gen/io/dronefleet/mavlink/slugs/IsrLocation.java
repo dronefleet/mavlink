@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 189,
-        crc = 246
+        crc = 246,
+        description = "Transmits the position of watch"
 )
 public final class IsrLocation {
     private final int target;
@@ -54,7 +55,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system reporting the action"
     )
     public final int target() {
         return this.target;
@@ -65,7 +67,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "ISR Latitude"
     )
     public final float latitude() {
         return this.latitude;
@@ -76,7 +79,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "ISR Longitude"
     )
     public final float longitude() {
         return this.longitude;
@@ -87,7 +91,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "ISR Height"
     )
     public final float height() {
         return this.height;
@@ -98,7 +103,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Option 1"
     )
     public final int option1() {
         return this.option1;
@@ -109,7 +115,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Option 2"
     )
     public final int option2() {
         return this.option2;
@@ -120,7 +127,8 @@ public final class IsrLocation {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Option 3"
     )
     public final int option3() {
         return this.option3;
@@ -185,7 +193,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system reporting the action"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -197,7 +206,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "ISR Latitude"
         )
         public final Builder latitude(float latitude) {
             this.latitude = latitude;
@@ -209,7 +219,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "ISR Longitude"
         )
         public final Builder longitude(float longitude) {
             this.longitude = longitude;
@@ -221,7 +232,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "ISR Height"
         )
         public final Builder height(float height) {
             this.height = height;
@@ -233,7 +245,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Option 1"
         )
         public final Builder option1(int option1) {
             this.option1 = option1;
@@ -245,7 +258,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Option 2"
         )
         public final Builder option2(int option2) {
             this.option2 = option2;
@@ -257,7 +271,8 @@ public final class IsrLocation {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Option 3"
         )
         public final Builder option3(int option3) {
             this.option3 = option3;

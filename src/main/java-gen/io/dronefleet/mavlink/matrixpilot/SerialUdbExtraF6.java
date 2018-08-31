@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 174,
-        crc = 54
+        crc = 54,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F6: format"
 )
 public final class SerialUdbExtraF6 {
     private final float suePitchgain;
@@ -48,7 +49,8 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra PITCHGAIN Proportional Control"
     )
     public final float suePitchgain() {
         return this.suePitchgain;
@@ -59,7 +61,8 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Pitch Rate Control"
     )
     public final float suePitchkd() {
         return this.suePitchkd;
@@ -70,7 +73,8 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Rudder to Elevator Mix"
     )
     public final float sueRudderElevMix() {
         return this.sueRudderElevMix;
@@ -81,7 +85,8 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Serial UDB Extra Roll to Elevator Mix"
     )
     public final float sueRollElevMix() {
         return this.sueRollElevMix;
@@ -92,7 +97,8 @@ public final class SerialUdbExtraF6 {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Gain For Boosting Manual Elevator control When Plane Stabilized"
     )
     public final float sueElevatorBoost() {
         return this.sueElevatorBoost;
@@ -147,7 +153,8 @@ public final class SerialUdbExtraF6 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra PITCHGAIN Proportional Control"
         )
         public final Builder suePitchgain(float suePitchgain) {
             this.suePitchgain = suePitchgain;
@@ -159,7 +166,8 @@ public final class SerialUdbExtraF6 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Pitch Rate Control"
         )
         public final Builder suePitchkd(float suePitchkd) {
             this.suePitchkd = suePitchkd;
@@ -171,7 +179,8 @@ public final class SerialUdbExtraF6 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Rudder to Elevator Mix"
         )
         public final Builder sueRudderElevMix(float sueRudderElevMix) {
             this.sueRudderElevMix = sueRudderElevMix;
@@ -183,7 +192,8 @@ public final class SerialUdbExtraF6 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Serial UDB Extra Roll to Elevator Mix"
         )
         public final Builder sueRollElevMix(float sueRollElevMix) {
             this.sueRollElevMix = sueRollElevMix;
@@ -195,7 +205,8 @@ public final class SerialUdbExtraF6 {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Gain For Boosting Manual Elevator control When Plane Stabilized"
         )
         public final Builder sueElevatorBoost(float sueElevatorBoost) {
             this.sueElevatorBoost = sueElevatorBoost;

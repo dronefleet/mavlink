@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 241,
-        crc = 90
+        crc = 90,
+        description = "Vibration levels and accelerometer clipping"
 )
 public final class Vibration {
     private final BigInteger timeUsec;
@@ -55,7 +56,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -66,7 +68,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Vibration levels on X-axis"
     )
     public final float vibrationX() {
         return this.vibrationX;
@@ -77,7 +80,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Vibration levels on Y-axis"
     )
     public final float vibrationY() {
         return this.vibrationY;
@@ -88,7 +92,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Vibration levels on Z-axis"
     )
     public final float vibrationZ() {
         return this.vibrationZ;
@@ -99,7 +104,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "first accelerometer clipping count"
     )
     public final long clipping0() {
         return this.clipping0;
@@ -110,7 +116,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "second accelerometer clipping count"
     )
     public final long clipping1() {
         return this.clipping1;
@@ -121,7 +128,8 @@ public final class Vibration {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "third accelerometer clipping count"
     )
     public final long clipping2() {
         return this.clipping2;
@@ -186,7 +194,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -198,7 +207,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Vibration levels on X-axis"
         )
         public final Builder vibrationX(float vibrationX) {
             this.vibrationX = vibrationX;
@@ -210,7 +220,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Vibration levels on Y-axis"
         )
         public final Builder vibrationY(float vibrationY) {
             this.vibrationY = vibrationY;
@@ -222,7 +233,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Vibration levels on Z-axis"
         )
         public final Builder vibrationZ(float vibrationZ) {
             this.vibrationZ = vibrationZ;
@@ -234,7 +246,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "first accelerometer clipping count"
         )
         public final Builder clipping0(long clipping0) {
             this.clipping0 = clipping0;
@@ -246,7 +259,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "second accelerometer clipping count"
         )
         public final Builder clipping1(long clipping1) {
             this.clipping1 = clipping1;
@@ -258,7 +272,8 @@ public final class Vibration {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "third accelerometer clipping count"
         )
         public final Builder clipping2(long clipping2) {
             this.clipping2 = clipping2;

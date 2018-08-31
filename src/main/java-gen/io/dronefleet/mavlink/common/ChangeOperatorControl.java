@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 5,
-        crc = 217
+        crc = 217,
+        description = "Request to control this MAV"
 )
 public final class ChangeOperatorControl {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class ChangeOperatorControl {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System the GCS requests control for"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class ChangeOperatorControl {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: request control of this MAV, 1: Release control of this MAV"
     )
     public final int controlRequest() {
         return this.controlRequest;
@@ -69,7 +72,8 @@ public final class ChangeOperatorControl {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch."
     )
     public final int version() {
         return this.version;
@@ -82,7 +86,8 @@ public final class ChangeOperatorControl {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 25
+            arraySize = 25,
+            description = "Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and \"!?,.-\""
     )
     public final String passkey() {
         return this.passkey;
@@ -132,7 +137,8 @@ public final class ChangeOperatorControl {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System the GCS requests control for"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -144,7 +150,8 @@ public final class ChangeOperatorControl {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: request control of this MAV, 1: Release control of this MAV"
         )
         public final Builder controlRequest(int controlRequest) {
             this.controlRequest = controlRequest;
@@ -158,7 +165,8 @@ public final class ChangeOperatorControl {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch."
         )
         public final Builder version(int version) {
             this.version = version;
@@ -172,7 +180,8 @@ public final class ChangeOperatorControl {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 25
+                arraySize = 25,
+                description = "Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and \"!?,.-\""
         )
         public final Builder passkey(String passkey) {
             this.passkey = passkey;

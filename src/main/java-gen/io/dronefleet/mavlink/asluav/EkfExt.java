@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 206,
-        crc = 64
+        crc = 64,
+        description = "Extended EKF state estimates for ASLUAVs"
 )
 public final class EkfExt {
     private final BigInteger timestamp;
@@ -55,7 +56,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Time since system start"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -66,7 +68,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Magnitude of wind velocity (in lateral inertial plane)"
     )
     public final float windspeed() {
         return this.windspeed;
@@ -77,7 +80,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Wind heading angle from North"
     )
     public final float winddir() {
         return this.winddir;
@@ -88,7 +92,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z (Down) component of inertial wind velocity"
     )
     public final float windz() {
         return this.windz;
@@ -99,7 +104,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Magnitude of air velocity"
     )
     public final float airspeed() {
         return this.airspeed;
@@ -110,7 +116,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Sideslip angle"
     )
     public final float beta() {
         return this.beta;
@@ -121,7 +128,8 @@ public final class EkfExt {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angle of attack"
     )
     public final float alpha() {
         return this.alpha;
@@ -186,7 +194,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Time since system start"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -198,7 +207,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Magnitude of wind velocity (in lateral inertial plane)"
         )
         public final Builder windspeed(float windspeed) {
             this.windspeed = windspeed;
@@ -210,7 +220,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Wind heading angle from North"
         )
         public final Builder winddir(float winddir) {
             this.winddir = winddir;
@@ -222,7 +233,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z (Down) component of inertial wind velocity"
         )
         public final Builder windz(float windz) {
             this.windz = windz;
@@ -234,7 +246,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Magnitude of air velocity"
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;
@@ -246,7 +259,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Sideslip angle"
         )
         public final Builder beta(float beta) {
             this.beta = beta;
@@ -258,7 +272,8 @@ public final class EkfExt {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angle of attack"
         )
         public final Builder alpha(float alpha) {
             this.alpha = alpha;

@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 186,
-        crc = 101
+        crc = 101,
+        description = "Transmits the last known position of the mobile GS to the UAV. Very relevant when Track Mobile is enabled"
 )
 public final class SlugsMobileLocation {
     private final int target;
@@ -42,7 +43,8 @@ public final class SlugsMobileLocation {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system reporting the action"
     )
     public final int target() {
         return this.target;
@@ -53,7 +55,8 @@ public final class SlugsMobileLocation {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Mobile Latitude"
     )
     public final float latitude() {
         return this.latitude;
@@ -64,7 +67,8 @@ public final class SlugsMobileLocation {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Mobile Longitude"
     )
     public final float longitude() {
         return this.longitude;
@@ -109,7 +113,8 @@ public final class SlugsMobileLocation {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system reporting the action"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -121,7 +126,8 @@ public final class SlugsMobileLocation {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Mobile Latitude"
         )
         public final Builder latitude(float latitude) {
             this.latitude = latitude;
@@ -133,7 +139,8 @@ public final class SlugsMobileLocation {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Mobile Longitude"
         )
         public final Builder longitude(float longitude) {
             this.longitude = longitude;

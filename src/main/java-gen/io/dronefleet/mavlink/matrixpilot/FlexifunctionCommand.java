@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 157,
-        crc = 133
+        crc = 133,
+        description = "Acknowldge sucess or failure of a flexifunction command"
 )
 public final class FlexifunctionCommand {
     private final int targetSystem;
@@ -41,7 +42,8 @@ public final class FlexifunctionCommand {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -52,7 +54,8 @@ public final class FlexifunctionCommand {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -63,7 +66,8 @@ public final class FlexifunctionCommand {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Flexifunction command type"
     )
     public final int commandType() {
         return this.commandType;
@@ -108,7 +112,8 @@ public final class FlexifunctionCommand {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -120,7 +125,8 @@ public final class FlexifunctionCommand {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -132,7 +138,8 @@ public final class FlexifunctionCommand {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Flexifunction command type"
         )
         public final Builder commandType(int commandType) {
             this.commandType = commandType;

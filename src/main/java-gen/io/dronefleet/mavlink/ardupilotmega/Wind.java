@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 168,
-        crc = 1
+        crc = 1,
+        description = "Wind estimation"
 )
 public final class Wind {
     private final float direction;
@@ -41,7 +42,8 @@ public final class Wind {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "wind direction that wind is coming from (degrees)"
     )
     public final float direction() {
         return this.direction;
@@ -52,7 +54,8 @@ public final class Wind {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "wind speed in ground plane (m/s)"
     )
     public final float speed() {
         return this.speed;
@@ -63,7 +66,8 @@ public final class Wind {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "vertical wind speed (m/s)"
     )
     public final float speedZ() {
         return this.speedZ;
@@ -108,7 +112,8 @@ public final class Wind {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "wind direction that wind is coming from (degrees)"
         )
         public final Builder direction(float direction) {
             this.direction = direction;
@@ -120,7 +125,8 @@ public final class Wind {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "wind speed in ground plane (m/s)"
         )
         public final Builder speed(float speed) {
             this.speed = speed;
@@ -132,7 +138,8 @@ public final class Wind {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "vertical wind speed (m/s)"
         )
         public final Builder speedZ(float speedZ) {
             this.speedZ = speedZ;

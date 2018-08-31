@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 207,
-        crc = 234
+        crc = 234,
+        description = "Off-board controls/commands for ASLUAVs"
 )
 public final class AslObctrl {
     private final BigInteger timestamp;
@@ -58,7 +59,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Time since system start"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -69,7 +71,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Elevator command [~]"
     )
     public final float uelev() {
         return this.uelev;
@@ -80,7 +83,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Throttle command [~]"
     )
     public final float uthrot() {
         return this.uthrot;
@@ -91,7 +95,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Throttle 2 command [~]"
     )
     public final float uthrot2() {
         return this.uthrot2;
@@ -102,7 +107,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Left aileron command [~]"
     )
     public final float uaill() {
         return this.uaill;
@@ -113,7 +119,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Right aileron command [~]"
     )
     public final float uailr() {
         return this.uailr;
@@ -124,7 +131,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Rudder command [~]"
     )
     public final float urud() {
         return this.urud;
@@ -135,7 +143,8 @@ public final class AslObctrl {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "Off-board computer status"
     )
     public final int obctrlStatus() {
         return this.obctrlStatus;
@@ -205,7 +214,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Time since system start"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -217,7 +227,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Elevator command [~]"
         )
         public final Builder uelev(float uelev) {
             this.uelev = uelev;
@@ -229,7 +240,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Throttle command [~]"
         )
         public final Builder uthrot(float uthrot) {
             this.uthrot = uthrot;
@@ -241,7 +253,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Throttle 2 command [~]"
         )
         public final Builder uthrot2(float uthrot2) {
             this.uthrot2 = uthrot2;
@@ -253,7 +266,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Left aileron command [~]"
         )
         public final Builder uaill(float uaill) {
             this.uaill = uaill;
@@ -265,7 +279,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Right aileron command [~]"
         )
         public final Builder uailr(float uailr) {
             this.uailr = uailr;
@@ -277,7 +292,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Rudder command [~]"
         )
         public final Builder urud(float urud) {
             this.urud = urud;
@@ -289,7 +305,8 @@ public final class AslObctrl {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "Off-board computer status"
         )
         public final Builder obctrlStatus(int obctrlStatus) {
             this.obctrlStatus = obctrlStatus;

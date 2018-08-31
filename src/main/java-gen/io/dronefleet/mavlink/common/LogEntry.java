@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 118,
-        crc = 56
+        crc = 56,
+        description = "Reply to LOG_REQUEST_LIST"
 )
 public final class LogEntry {
     private final int id;
@@ -47,7 +48,8 @@ public final class LogEntry {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Log id"
     )
     public final int id() {
         return this.id;
@@ -58,7 +60,8 @@ public final class LogEntry {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "Total number of logs"
     )
     public final int numLogs() {
         return this.numLogs;
@@ -69,7 +72,8 @@ public final class LogEntry {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "High log number"
     )
     public final int lastLogNum() {
         return this.lastLogNum;
@@ -80,7 +84,8 @@ public final class LogEntry {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "UTC timestamp of log in seconds since 1970, or 0 if not available"
     )
     public final long timeUtc() {
         return this.timeUtc;
@@ -91,7 +96,8 @@ public final class LogEntry {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Size of the log (may be approximate) in bytes"
     )
     public final long size() {
         return this.size;
@@ -146,7 +152,8 @@ public final class LogEntry {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Log id"
         )
         public final Builder id(int id) {
             this.id = id;
@@ -158,7 +165,8 @@ public final class LogEntry {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "Total number of logs"
         )
         public final Builder numLogs(int numLogs) {
             this.numLogs = numLogs;
@@ -170,7 +178,8 @@ public final class LogEntry {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "High log number"
         )
         public final Builder lastLogNum(int lastLogNum) {
             this.lastLogNum = lastLogNum;
@@ -182,7 +191,8 @@ public final class LogEntry {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "UTC timestamp of log in seconds since 1970, or 0 if not available"
         )
         public final Builder timeUtc(long timeUtc) {
             this.timeUtc = timeUtc;
@@ -194,7 +204,8 @@ public final class LogEntry {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Size of the log (may be approximate) in bytes"
         )
         public final Builder size(long size) {
             this.size = size;

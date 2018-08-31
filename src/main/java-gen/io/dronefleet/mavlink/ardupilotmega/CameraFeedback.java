@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 180,
-        crc = 52
+        crc = 52,
+        description = "Camera Capture Feedback"
 )
 public final class CameraFeedback {
     private final BigInteger timeUsec;
@@ -81,7 +82,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Image timestamp (microseconds since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -92,7 +94,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -103,7 +106,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Camera ID"
     )
     public final int camIdx() {
         return this.camIdx;
@@ -114,7 +118,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Image index"
     )
     public final int imgIdx() {
         return this.imgIdx;
@@ -126,7 +131,8 @@ public final class CameraFeedback {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude in (deg * 1E7)"
     )
     public final int lat() {
         return this.lat;
@@ -138,7 +144,8 @@ public final class CameraFeedback {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude in (deg * 1E7)"
     )
     public final int lng() {
         return this.lng;
@@ -149,7 +156,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude Absolute (meters AMSL)"
     )
     public final float altMsl() {
         return this.altMsl;
@@ -160,7 +168,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude Relative (meters above HOME location)"
     )
     public final float altRel() {
         return this.altRel;
@@ -171,7 +180,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Camera Roll angle (earth frame, degrees, +-180)"
     )
     public final float roll() {
         return this.roll;
@@ -182,7 +192,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Camera Pitch angle (earth frame, degrees, +-180)"
     )
     public final float pitch() {
         return this.pitch;
@@ -193,7 +204,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Camera Yaw (earth frame, degrees, 0-360, true)"
     )
     public final float yaw() {
         return this.yaw;
@@ -204,7 +216,8 @@ public final class CameraFeedback {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Focal Length (mm)"
     )
     public final float focLen() {
         return this.focLen;
@@ -216,7 +229,8 @@ public final class CameraFeedback {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 1,
-            enumType = CameraFeedbackFlags.class
+            enumType = CameraFeedbackFlags.class,
+            description = "See CAMERA_FEEDBACK_FLAGS enum for definition of the bitmask"
     )
     public final EnumValue<CameraFeedbackFlags> flags() {
         return this.flags;
@@ -228,7 +242,8 @@ public final class CameraFeedback {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            extension = true
+            extension = true,
+            description = "Completed image captures"
     )
     public final int completedCaptures() {
         return this.completedCaptures;
@@ -329,7 +344,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Image timestamp (microseconds since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -341,7 +357,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -353,7 +370,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Camera ID"
         )
         public final Builder camIdx(int camIdx) {
             this.camIdx = camIdx;
@@ -365,7 +383,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Image index"
         )
         public final Builder imgIdx(int imgIdx) {
             this.imgIdx = imgIdx;
@@ -378,7 +397,8 @@ public final class CameraFeedback {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude in (deg * 1E7)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -391,7 +411,8 @@ public final class CameraFeedback {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude in (deg * 1E7)"
         )
         public final Builder lng(int lng) {
             this.lng = lng;
@@ -403,7 +424,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude Absolute (meters AMSL)"
         )
         public final Builder altMsl(float altMsl) {
             this.altMsl = altMsl;
@@ -415,7 +437,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude Relative (meters above HOME location)"
         )
         public final Builder altRel(float altRel) {
             this.altRel = altRel;
@@ -427,7 +450,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Camera Roll angle (earth frame, degrees, +-180)"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -439,7 +463,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Camera Pitch angle (earth frame, degrees, +-180)"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -451,7 +476,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Camera Yaw (earth frame, degrees, 0-360, true)"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -463,7 +489,8 @@ public final class CameraFeedback {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Focal Length (mm)"
         )
         public final Builder focLen(float focLen) {
             this.focLen = focLen;
@@ -476,7 +503,8 @@ public final class CameraFeedback {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 1,
-                enumType = CameraFeedbackFlags.class
+                enumType = CameraFeedbackFlags.class,
+                description = "See CAMERA_FEEDBACK_FLAGS enum for definition of the bitmask"
         )
         public final Builder flags(EnumValue<CameraFeedbackFlags> flags) {
             this.flags = flags;
@@ -510,7 +538,8 @@ public final class CameraFeedback {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                extension = true
+                extension = true,
+                description = "Completed image captures"
         )
         public final Builder completedCaptures(int completedCaptures) {
             this.completedCaptures = completedCaptures;

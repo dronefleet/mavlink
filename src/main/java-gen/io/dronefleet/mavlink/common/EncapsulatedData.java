@@ -38,7 +38,8 @@ public final class EncapsulatedData {
      */
     @MavlinkFieldInfo(
             position = 0,
-            unitSize = 2
+            unitSize = 2,
+            description = "sequence number (starting with 0 on every transmission)"
     )
     public final int seqnr() {
         return this.seqnr;
@@ -50,7 +51,8 @@ public final class EncapsulatedData {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 253
+            arraySize = 253,
+            description = "image data bytes"
     )
     public final byte[] data() {
         return this.data;
@@ -90,7 +92,8 @@ public final class EncapsulatedData {
          */
         @MavlinkFieldInfo(
                 position = 0,
-                unitSize = 2
+                unitSize = 2,
+                description = "sequence number (starting with 0 on every transmission)"
         )
         public final Builder seqnr(int seqnr) {
             this.seqnr = seqnr;
@@ -103,7 +106,8 @@ public final class EncapsulatedData {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 253
+                arraySize = 253,
+                description = "image data bytes"
         )
         public final Builder data(byte[] data) {
             this.data = data;

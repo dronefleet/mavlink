@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 174,
-        crc = 167
+        crc = 167,
+        description = "Airspeed auto-calibration"
 )
 public final class AirspeedAutocal {
     private final float vx;
@@ -70,7 +71,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity north m/s"
     )
     public final float vx() {
         return this.vx;
@@ -81,7 +83,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity east m/s"
     )
     public final float vy() {
         return this.vy;
@@ -92,7 +95,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity down m/s"
     )
     public final float vz() {
         return this.vz;
@@ -103,7 +107,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Differential pressure pascals"
     )
     public final float diffPressure() {
         return this.diffPressure;
@@ -114,7 +119,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Estimated to true airspeed ratio"
     )
     public final float eas2tas() {
         return this.eas2tas;
@@ -125,7 +131,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Airspeed ratio"
     )
     public final float ratio() {
         return this.ratio;
@@ -136,7 +143,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF state x"
     )
     public final float stateX() {
         return this.stateX;
@@ -147,7 +155,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF state y"
     )
     public final float stateY() {
         return this.stateY;
@@ -158,7 +167,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF state z"
     )
     public final float stateZ() {
         return this.stateZ;
@@ -169,7 +179,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF Pax"
     )
     public final float pax() {
         return this.pax;
@@ -180,7 +191,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF Pby"
     )
     public final float pby() {
         return this.pby;
@@ -191,7 +203,8 @@ public final class AirspeedAutocal {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "EKF Pcz"
     )
     public final float pcz() {
         return this.pcz;
@@ -281,7 +294,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity north m/s"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -293,7 +307,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity east m/s"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -305,7 +320,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity down m/s"
         )
         public final Builder vz(float vz) {
             this.vz = vz;
@@ -317,7 +333,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Differential pressure pascals"
         )
         public final Builder diffPressure(float diffPressure) {
             this.diffPressure = diffPressure;
@@ -329,7 +346,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Estimated to true airspeed ratio"
         )
         public final Builder eas2tas(float eas2tas) {
             this.eas2tas = eas2tas;
@@ -341,7 +359,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Airspeed ratio"
         )
         public final Builder ratio(float ratio) {
             this.ratio = ratio;
@@ -353,7 +372,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF state x"
         )
         public final Builder stateX(float stateX) {
             this.stateX = stateX;
@@ -365,7 +385,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF state y"
         )
         public final Builder stateY(float stateY) {
             this.stateY = stateY;
@@ -377,7 +398,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF state z"
         )
         public final Builder stateZ(float stateZ) {
             this.stateZ = stateZ;
@@ -389,7 +411,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF Pax"
         )
         public final Builder pax(float pax) {
             this.pax = pax;
@@ -401,7 +424,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF Pby"
         )
         public final Builder pby(float pby) {
             this.pby = pby;
@@ -413,7 +437,8 @@ public final class AirspeedAutocal {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "EKF Pcz"
         )
         public final Builder pcz(float pcz) {
             this.pcz = pcz;

@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 2,
-        crc = 137
+        crc = 137,
+        description = "The system time is the time of the master clock, typically the computer clock of the main onboard computer."
 )
 public final class SystemTime {
     private final BigInteger timeUnixUsec;
@@ -40,7 +41,8 @@ public final class SystemTime {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp of the master clock in microseconds since UNIX epoch."
     )
     public final BigInteger timeUnixUsec() {
         return this.timeUnixUsec;
@@ -51,7 +53,8 @@ public final class SystemTime {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp of the component clock since boot time in milliseconds."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -91,7 +94,8 @@ public final class SystemTime {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp of the master clock in microseconds since UNIX epoch."
         )
         public final Builder timeUnixUsec(BigInteger timeUnixUsec) {
             this.timeUnixUsec = timeUnixUsec;
@@ -103,7 +107,8 @@ public final class SystemTime {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp of the component clock since boot time in milliseconds."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;

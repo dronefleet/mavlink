@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 7,
-        crc = 119
+        crc = 119,
+        description = "Emit an encrypted signature / key identifying this system. PLEASE NOTE: This protocol has been kept simple, so transmitting the key requires an encrypted channel for true safety."
 )
 public final class AuthKey {
     private final String key;
@@ -37,7 +38,8 @@ public final class AuthKey {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 32
+            arraySize = 32,
+            description = "key"
     )
     public final String key() {
         return this.key;
@@ -73,7 +75,8 @@ public final class AuthKey {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 32
+                arraySize = 32,
+                description = "key"
         )
         public final Builder key(String key) {
             this.key = key;

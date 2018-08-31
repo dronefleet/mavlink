@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 216,
-        crc = 50
+        crc = 50,
+        description = "Request a GOPRO_COMMAND response from the GoPro"
 )
 public final class GoproGetRequest {
     private final int targetSystem;
@@ -44,7 +45,8 @@ public final class GoproGetRequest {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -55,7 +57,8 @@ public final class GoproGetRequest {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -67,7 +70,8 @@ public final class GoproGetRequest {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = GoproCommand.class
+            enumType = GoproCommand.class,
+            description = "Command ID"
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
@@ -112,7 +116,8 @@ public final class GoproGetRequest {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -124,7 +129,8 @@ public final class GoproGetRequest {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -137,7 +143,8 @@ public final class GoproGetRequest {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = GoproCommand.class
+                enumType = GoproCommand.class,
+                description = "Command ID"
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;

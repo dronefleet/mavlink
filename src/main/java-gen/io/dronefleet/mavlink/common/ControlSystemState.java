@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 146,
-        crc = 103
+        crc = 103,
+        description = "The smoothed, monotonic system state used to feed the control loops of the system."
 )
 public final class ControlSystemState {
     private final BigInteger timeUsec;
@@ -89,7 +90,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -100,7 +102,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "X acceleration in body frame"
     )
     public final float xAcc() {
         return this.xAcc;
@@ -111,7 +114,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y acceleration in body frame"
     )
     public final float yAcc() {
         return this.yAcc;
@@ -122,7 +126,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z acceleration in body frame"
     )
     public final float zAcc() {
         return this.zAcc;
@@ -133,7 +138,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "X velocity in body frame"
     )
     public final float xVel() {
         return this.xVel;
@@ -144,7 +150,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y velocity in body frame"
     )
     public final float yVel() {
         return this.yVel;
@@ -155,7 +162,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z velocity in body frame"
     )
     public final float zVel() {
         return this.zVel;
@@ -166,7 +174,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "X position in local frame"
     )
     public final float xPos() {
         return this.xPos;
@@ -177,7 +186,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y position in local frame"
     )
     public final float yPos() {
         return this.yPos;
@@ -188,7 +198,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z position in local frame"
     )
     public final float zPos() {
         return this.zPos;
@@ -199,7 +210,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Airspeed, set to -1 if unknown"
     )
     public final float airspeed() {
         return this.airspeed;
@@ -211,7 +223,8 @@ public final class ControlSystemState {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "Variance of body velocity estimate"
     )
     public final List<Float> velVariance() {
         return this.velVariance;
@@ -223,7 +236,8 @@ public final class ControlSystemState {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "Variance in local position"
     )
     public final List<Float> posVariance() {
         return this.posVariance;
@@ -235,7 +249,8 @@ public final class ControlSystemState {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "The attitude, represented as Quaternion"
     )
     public final List<Float> q() {
         return this.q;
@@ -246,7 +261,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular rate in roll axis"
     )
     public final float rollRate() {
         return this.rollRate;
@@ -257,7 +273,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular rate in pitch axis"
     )
     public final float pitchRate() {
         return this.pitchRate;
@@ -268,7 +285,8 @@ public final class ControlSystemState {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular rate in yaw axis"
     )
     public final float yawRate() {
         return this.yawRate;
@@ -383,7 +401,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -395,7 +414,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "X acceleration in body frame"
         )
         public final Builder xAcc(float xAcc) {
             this.xAcc = xAcc;
@@ -407,7 +427,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y acceleration in body frame"
         )
         public final Builder yAcc(float yAcc) {
             this.yAcc = yAcc;
@@ -419,7 +440,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z acceleration in body frame"
         )
         public final Builder zAcc(float zAcc) {
             this.zAcc = zAcc;
@@ -431,7 +453,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "X velocity in body frame"
         )
         public final Builder xVel(float xVel) {
             this.xVel = xVel;
@@ -443,7 +466,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y velocity in body frame"
         )
         public final Builder yVel(float yVel) {
             this.yVel = yVel;
@@ -455,7 +479,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z velocity in body frame"
         )
         public final Builder zVel(float zVel) {
             this.zVel = zVel;
@@ -467,7 +492,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "X position in local frame"
         )
         public final Builder xPos(float xPos) {
             this.xPos = xPos;
@@ -479,7 +505,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y position in local frame"
         )
         public final Builder yPos(float yPos) {
             this.yPos = yPos;
@@ -491,7 +518,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z position in local frame"
         )
         public final Builder zPos(float zPos) {
             this.zPos = zPos;
@@ -503,7 +531,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Airspeed, set to -1 if unknown"
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;
@@ -516,7 +545,8 @@ public final class ControlSystemState {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "Variance of body velocity estimate"
         )
         public final Builder velVariance(List<Float> velVariance) {
             this.velVariance = velVariance;
@@ -529,7 +559,8 @@ public final class ControlSystemState {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "Variance in local position"
         )
         public final Builder posVariance(List<Float> posVariance) {
             this.posVariance = posVariance;
@@ -542,7 +573,8 @@ public final class ControlSystemState {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "The attitude, represented as Quaternion"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -554,7 +586,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular rate in roll axis"
         )
         public final Builder rollRate(float rollRate) {
             this.rollRate = rollRate;
@@ -566,7 +599,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular rate in pitch axis"
         )
         public final Builder pitchRate(float pitchRate) {
             this.pitchRate = pitchRate;
@@ -578,7 +612,8 @@ public final class ControlSystemState {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular rate in yaw axis"
         )
         public final Builder yawRate(float yawRate) {
             this.yawRate = yawRate;

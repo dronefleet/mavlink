@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 42,
-        crc = 28
+        crc = 28,
+        description = "Message that announces the sequence number of the current active mission item. The MAV will fly towards this mission item."
 )
 public final class MissionCurrent {
     private final int seq;
@@ -36,7 +37,8 @@ public final class MissionCurrent {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -71,7 +73,8 @@ public final class MissionCurrent {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;

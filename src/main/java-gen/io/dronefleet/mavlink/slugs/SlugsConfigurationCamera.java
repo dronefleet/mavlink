@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 188,
-        crc = 5
+        crc = 5,
+        description = "Control for camara."
 )
 public final class SlugsConfigurationCamera {
     private final int target;
@@ -41,7 +42,8 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The system setting the commands"
     )
     public final int target() {
         return this.target;
@@ -52,7 +54,8 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight"
     )
     public final int idorder() {
         return this.idorder;
@@ -63,7 +66,8 @@ public final class SlugsConfigurationCamera {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "1: up/on 2: down/off 3: auto/reset/no action"
     )
     public final int order() {
         return this.order;
@@ -108,7 +112,8 @@ public final class SlugsConfigurationCamera {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The system setting the commands"
         )
         public final Builder target(int target) {
             this.target = target;
@@ -120,7 +125,8 @@ public final class SlugsConfigurationCamera {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "ID 0: brightness 1: aperture 2: iris 3: ICR 4: backlight"
         )
         public final Builder idorder(int idorder) {
             this.idorder = idorder;
@@ -132,7 +138,8 @@ public final class SlugsConfigurationCamera {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "1: up/on 2: down/off 3: auto/reset/no action"
         )
         public final Builder order(int order) {
             this.order = order;

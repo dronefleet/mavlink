@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 147,
-        crc = 154
+        crc = 154,
+        description = "Battery information"
 )
 public final class BatteryStatus {
     private final int id;
@@ -73,7 +74,8 @@ public final class BatteryStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Battery ID"
     )
     public final int id() {
         return this.id;
@@ -85,7 +87,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavBatteryFunction.class
+            enumType = MavBatteryFunction.class,
+            description = "Function of the battery"
     )
     public final EnumValue<MavBatteryFunction> batteryFunction() {
         return this.batteryFunction;
@@ -97,7 +100,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavBatteryType.class
+            enumType = MavBatteryType.class,
+            description = "Type (chemistry) of the battery"
     )
     public final EnumValue<MavBatteryType> type() {
         return this.type;
@@ -109,7 +113,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temperature."
     )
     public final int temperature() {
         return this.temperature;
@@ -122,7 +127,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            arraySize = 10
+            arraySize = 10,
+            description = "Battery voltage of cells, in millivolts (1 = 1 millivolt). Cells above the valid cell count for this battery should have the UINT16_MAX value."
     )
     public final List<Integer> voltages() {
         return this.voltages;
@@ -135,7 +141,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
     )
     public final int currentBattery() {
         return this.currentBattery;
@@ -148,7 +155,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh consumption estimate"
     )
     public final int currentConsumed() {
         return this.currentConsumed;
@@ -161,7 +169,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Consumed energy, in HectoJoules (intergrated U*I*dt)  (1 = 100 Joule), -1: autopilot does not provide energy consumption estimate"
     )
     public final int energyConsumed() {
         return this.energyConsumed;
@@ -174,7 +183,8 @@ public final class BatteryStatus {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot does not estimate the remaining battery"
     )
     public final int batteryRemaining() {
         return this.batteryRemaining;
@@ -188,7 +198,8 @@ public final class BatteryStatus {
             position = 11,
             unitSize = 4,
             signed = true,
-            extension = true
+            extension = true,
+            description = "Remaining battery time, in seconds (1 = 1s = 0% energy left), 0: autopilot does not provide remaining battery time estimate"
     )
     public final int timeRemaining() {
         return this.timeRemaining;
@@ -201,7 +212,8 @@ public final class BatteryStatus {
             position = 12,
             unitSize = 1,
             enumType = MavBatteryChargeState.class,
-            extension = true
+            extension = true,
+            description = "State for extent of discharge, provided by autopilot for warning or external reactions"
     )
     public final EnumValue<MavBatteryChargeState> chargeState() {
         return this.chargeState;
@@ -286,7 +298,8 @@ public final class BatteryStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Battery ID"
         )
         public final Builder id(int id) {
             this.id = id;
@@ -299,7 +312,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavBatteryFunction.class
+                enumType = MavBatteryFunction.class,
+                description = "Function of the battery"
         )
         public final Builder batteryFunction(EnumValue<MavBatteryFunction> batteryFunction) {
             this.batteryFunction = batteryFunction;
@@ -333,7 +347,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavBatteryType.class
+                enumType = MavBatteryType.class,
+                description = "Type (chemistry) of the battery"
         )
         public final Builder type(EnumValue<MavBatteryType> type) {
             this.type = type;
@@ -367,7 +382,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temperature."
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;
@@ -381,7 +397,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                arraySize = 10
+                arraySize = 10,
+                description = "Battery voltage of cells, in millivolts (1 = 1 millivolt). Cells above the valid cell count for this battery should have the UINT16_MAX value."
         )
         public final Builder voltages(List<Integer> voltages) {
             this.voltages = voltages;
@@ -395,7 +412,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
         )
         public final Builder currentBattery(int currentBattery) {
             this.currentBattery = currentBattery;
@@ -409,7 +427,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh consumption estimate"
         )
         public final Builder currentConsumed(int currentConsumed) {
             this.currentConsumed = currentConsumed;
@@ -423,7 +442,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Consumed energy, in HectoJoules (intergrated U*I*dt)  (1 = 100 Joule), -1: autopilot does not provide energy consumption estimate"
         )
         public final Builder energyConsumed(int energyConsumed) {
             this.energyConsumed = energyConsumed;
@@ -437,7 +457,8 @@ public final class BatteryStatus {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot does not estimate the remaining battery"
         )
         public final Builder batteryRemaining(int batteryRemaining) {
             this.batteryRemaining = batteryRemaining;
@@ -452,7 +473,8 @@ public final class BatteryStatus {
                 position = 11,
                 unitSize = 4,
                 signed = true,
-                extension = true
+                extension = true,
+                description = "Remaining battery time, in seconds (1 = 1s = 0% energy left), 0: autopilot does not provide remaining battery time estimate"
         )
         public final Builder timeRemaining(int timeRemaining) {
             this.timeRemaining = timeRemaining;
@@ -466,7 +488,8 @@ public final class BatteryStatus {
                 position = 12,
                 unitSize = 1,
                 enumType = MavBatteryChargeState.class,
-                extension = true
+                extension = true,
+                description = "State for extent of discharge, provided by autopilot for warning or external reactions"
         )
         public final Builder chargeState(EnumValue<MavBatteryChargeState> chargeState) {
             this.chargeState = chargeState;

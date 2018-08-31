@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 324,
-        crc = 132
+        crc = 132,
+        description = "Response from a PARAM_EXT_SET message."
 )
 public final class ParamExtAck {
     private final String paramId;
@@ -51,7 +52,8 @@ public final class ParamExtAck {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -63,7 +65,8 @@ public final class ParamExtAck {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 128
+            arraySize = 128,
+            description = "Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)"
     )
     public final String paramValue() {
         return this.paramValue;
@@ -75,7 +78,8 @@ public final class ParamExtAck {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavParamExtType.class
+            enumType = MavParamExtType.class,
+            description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
     )
     public final EnumValue<MavParamExtType> paramType() {
         return this.paramType;
@@ -87,7 +91,8 @@ public final class ParamExtAck {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = ParamAck.class
+            enumType = ParamAck.class,
+            description = "Result code: see the PARAM_ACK enum for possible codes."
     )
     public final EnumValue<ParamAck> paramResult() {
         return this.paramResult;
@@ -140,7 +145,8 @@ public final class ParamExtAck {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -153,7 +159,8 @@ public final class ParamExtAck {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 128
+                arraySize = 128,
+                description = "Parameter value (new value if PARAM_ACK_ACCEPTED, current value otherwise)"
         )
         public final Builder paramValue(String paramValue) {
             this.paramValue = paramValue;
@@ -166,7 +173,8 @@ public final class ParamExtAck {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavParamExtType.class
+                enumType = MavParamExtType.class,
+                description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
         )
         public final Builder paramType(EnumValue<MavParamExtType> paramType) {
             this.paramType = paramType;
@@ -200,7 +208,8 @@ public final class ParamExtAck {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = ParamAck.class
+                enumType = ParamAck.class,
+                description = "Result code: see the PARAM_ACK enum for possible codes."
         )
         public final Builder paramResult(EnumValue<ParamAck> paramResult) {
             this.paramResult = paramResult;

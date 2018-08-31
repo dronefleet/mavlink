@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 234,
-        crc = 150
+        crc = 150,
+        description = "Message appropriate for high latency connections like Iridium"
 )
 public final class HighLatency {
     private final EnumValue<MavModeFlag> baseMode;
@@ -113,7 +114,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavModeFlag.class
+            enumType = MavModeFlag.class,
+            description = "System mode bitfield, as defined by MAV_MODE_FLAG enum."
     )
     public final EnumValue<MavModeFlag> baseMode() {
         return this.baseMode;
@@ -124,7 +126,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "A bitfield for use for autopilot-specific flags."
     )
     public final long customMode() {
         return this.customMode;
@@ -136,7 +139,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavLandedState.class
+            enumType = MavLandedState.class,
+            description = "The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown."
     )
     public final EnumValue<MavLandedState> landedState() {
         return this.landedState;
@@ -148,7 +152,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "roll (centidegrees)"
     )
     public final int roll() {
         return this.roll;
@@ -160,7 +165,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "pitch (centidegrees)"
     )
     public final int pitch() {
         return this.pitch;
@@ -171,7 +177,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "heading (centidegrees)"
     )
     public final int heading() {
         return this.heading;
@@ -183,7 +190,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "throttle (percentage)"
     )
     public final int throttle() {
         return this.throttle;
@@ -195,7 +203,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "heading setpoint (centidegrees)"
     )
     public final int headingSp() {
         return this.headingSp;
@@ -207,7 +216,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude, expressed as degrees * 1E7"
     )
     public final int latitude() {
         return this.latitude;
@@ -219,7 +229,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude, expressed as degrees * 1E7"
     )
     public final int longitude() {
         return this.longitude;
@@ -231,7 +242,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Altitude above mean sea level (meters)"
     )
     public final int altitudeAmsl() {
         return this.altitudeAmsl;
@@ -243,7 +255,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Altitude setpoint relative to the home position (meters)"
     )
     public final int altitudeSp() {
         return this.altitudeSp;
@@ -254,7 +267,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 1
+            unitSize = 1,
+            description = "airspeed (m/s)"
     )
     public final int airspeed() {
         return this.airspeed;
@@ -265,7 +279,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 1
+            unitSize = 1,
+            description = "airspeed setpoint (m/s)"
     )
     public final int airspeedSp() {
         return this.airspeedSp;
@@ -276,7 +291,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 1
+            unitSize = 1,
+            description = "groundspeed (m/s)"
     )
     public final int groundspeed() {
         return this.groundspeed;
@@ -288,7 +304,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "climb rate (m/s)"
     )
     public final int climbRate() {
         return this.climbRate;
@@ -299,7 +316,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible. If unknown, set to 255"
     )
     public final int gpsNsat() {
         return this.gpsNsat;
@@ -311,7 +329,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 18,
             unitSize = 1,
-            enumType = GpsFixType.class
+            enumType = GpsFixType.class,
+            description = "See the GPS_FIX_TYPE enum."
     )
     public final EnumValue<GpsFixType> gpsFixType() {
         return this.gpsFixType;
@@ -322,7 +341,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 19,
-            unitSize = 1
+            unitSize = 1,
+            description = "Remaining battery (percentage)"
     )
     public final int batteryRemaining() {
         return this.batteryRemaining;
@@ -334,7 +354,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Autopilot temperature (degrees C)"
     )
     public final int temperature() {
         return this.temperature;
@@ -346,7 +367,8 @@ public final class HighLatency {
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Air temperature (degrees C) from airspeed sensor"
     )
     public final int temperatureAir() {
         return this.temperatureAir;
@@ -358,7 +380,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 22,
-            unitSize = 1
+            unitSize = 1,
+            description = "failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)"
     )
     public final int failsafe() {
         return this.failsafe;
@@ -369,7 +392,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 23,
-            unitSize = 1
+            unitSize = 1,
+            description = "current waypoint number"
     )
     public final int wpNum() {
         return this.wpNum;
@@ -380,7 +404,8 @@ public final class HighLatency {
      */
     @MavlinkFieldInfo(
             position = 24,
-            unitSize = 2
+            unitSize = 2,
+            description = "distance to target (meters)"
     )
     public final int wpDistance() {
         return this.wpDistance;
@@ -531,7 +556,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavModeFlag.class
+                enumType = MavModeFlag.class,
+                description = "System mode bitfield, as defined by MAV_MODE_FLAG enum."
         )
         public final Builder baseMode(EnumValue<MavModeFlag> baseMode) {
             this.baseMode = baseMode;
@@ -564,7 +590,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "A bitfield for use for autopilot-specific flags."
         )
         public final Builder customMode(long customMode) {
             this.customMode = customMode;
@@ -577,7 +604,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavLandedState.class
+                enumType = MavLandedState.class,
+                description = "The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown."
         )
         public final Builder landedState(EnumValue<MavLandedState> landedState) {
             this.landedState = landedState;
@@ -611,7 +639,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "roll (centidegrees)"
         )
         public final Builder roll(int roll) {
             this.roll = roll;
@@ -624,7 +653,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "pitch (centidegrees)"
         )
         public final Builder pitch(int pitch) {
             this.pitch = pitch;
@@ -636,7 +666,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "heading (centidegrees)"
         )
         public final Builder heading(int heading) {
             this.heading = heading;
@@ -649,7 +680,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "throttle (percentage)"
         )
         public final Builder throttle(int throttle) {
             this.throttle = throttle;
@@ -662,7 +694,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "heading setpoint (centidegrees)"
         )
         public final Builder headingSp(int headingSp) {
             this.headingSp = headingSp;
@@ -675,7 +708,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude, expressed as degrees * 1E7"
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -688,7 +722,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude, expressed as degrees * 1E7"
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -701,7 +736,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Altitude above mean sea level (meters)"
         )
         public final Builder altitudeAmsl(int altitudeAmsl) {
             this.altitudeAmsl = altitudeAmsl;
@@ -714,7 +750,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Altitude setpoint relative to the home position (meters)"
         )
         public final Builder altitudeSp(int altitudeSp) {
             this.altitudeSp = altitudeSp;
@@ -726,7 +763,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 1
+                unitSize = 1,
+                description = "airspeed (m/s)"
         )
         public final Builder airspeed(int airspeed) {
             this.airspeed = airspeed;
@@ -738,7 +776,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 1
+                unitSize = 1,
+                description = "airspeed setpoint (m/s)"
         )
         public final Builder airspeedSp(int airspeedSp) {
             this.airspeedSp = airspeedSp;
@@ -750,7 +789,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 1
+                unitSize = 1,
+                description = "groundspeed (m/s)"
         )
         public final Builder groundspeed(int groundspeed) {
             this.groundspeed = groundspeed;
@@ -763,7 +803,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "climb rate (m/s)"
         )
         public final Builder climbRate(int climbRate) {
             this.climbRate = climbRate;
@@ -775,7 +816,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible. If unknown, set to 255"
         )
         public final Builder gpsNsat(int gpsNsat) {
             this.gpsNsat = gpsNsat;
@@ -788,7 +830,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 18,
                 unitSize = 1,
-                enumType = GpsFixType.class
+                enumType = GpsFixType.class,
+                description = "See the GPS_FIX_TYPE enum."
         )
         public final Builder gpsFixType(EnumValue<GpsFixType> gpsFixType) {
             this.gpsFixType = gpsFixType;
@@ -821,7 +864,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 19,
-                unitSize = 1
+                unitSize = 1,
+                description = "Remaining battery (percentage)"
         )
         public final Builder batteryRemaining(int batteryRemaining) {
             this.batteryRemaining = batteryRemaining;
@@ -834,7 +878,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Autopilot temperature (degrees C)"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;
@@ -847,7 +892,8 @@ public final class HighLatency {
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Air temperature (degrees C) from airspeed sensor"
         )
         public final Builder temperatureAir(int temperatureAir) {
             this.temperatureAir = temperatureAir;
@@ -860,7 +906,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 22,
-                unitSize = 1
+                unitSize = 1,
+                description = "failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)"
         )
         public final Builder failsafe(int failsafe) {
             this.failsafe = failsafe;
@@ -872,7 +919,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 23,
-                unitSize = 1
+                unitSize = 1,
+                description = "current waypoint number"
         )
         public final Builder wpNum(int wpNum) {
             this.wpNum = wpNum;
@@ -884,7 +932,8 @@ public final class HighLatency {
          */
         @MavlinkFieldInfo(
                 position = 24,
-                unitSize = 2
+                unitSize = 2,
+                description = "distance to target (meters)"
         )
         public final Builder wpDistance(int wpDistance) {
             this.wpDistance = wpDistance;

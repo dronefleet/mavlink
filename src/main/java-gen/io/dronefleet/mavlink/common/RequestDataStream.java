@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 66,
-        crc = 148
+        crc = 148,
+        description = "THIS INTERFACE IS DEPRECATED. USE SET_MESSAGE_INTERVAL INSTEAD."
 )
 public final class RequestDataStream {
     private final int targetSystem;
@@ -48,7 +49,8 @@ public final class RequestDataStream {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The target requested to send the message stream."
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -59,7 +61,8 @@ public final class RequestDataStream {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "The target requested to send the message stream."
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -70,7 +73,8 @@ public final class RequestDataStream {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "The ID of the requested data stream"
     )
     public final int reqStreamId() {
         return this.reqStreamId;
@@ -81,7 +85,8 @@ public final class RequestDataStream {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "The requested message rate"
     )
     public final int reqMessageRate() {
         return this.reqMessageRate;
@@ -92,7 +97,8 @@ public final class RequestDataStream {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "1 to start sending, 0 to stop sending."
     )
     public final int startStop() {
         return this.startStop;
@@ -147,7 +153,8 @@ public final class RequestDataStream {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The target requested to send the message stream."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -159,7 +166,8 @@ public final class RequestDataStream {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "The target requested to send the message stream."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -171,7 +179,8 @@ public final class RequestDataStream {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "The ID of the requested data stream"
         )
         public final Builder reqStreamId(int reqStreamId) {
             this.reqStreamId = reqStreamId;
@@ -183,7 +192,8 @@ public final class RequestDataStream {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "The requested message rate"
         )
         public final Builder reqMessageRate(int reqMessageRate) {
             this.reqMessageRate = reqMessageRate;
@@ -195,7 +205,8 @@ public final class RequestDataStream {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "1 to start sending, 0 to stop sending."
         )
         public final Builder startStop(int startStop) {
             this.startStop = startStop;

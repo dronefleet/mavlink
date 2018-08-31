@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 175,
-        crc = 138
+        crc = 138,
+        description = "A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS"
 )
 public final class RallyPoint {
     private final int targetSystem;
@@ -66,7 +67,8 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -77,7 +79,8 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -88,7 +91,8 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "point index (first point is 0)"
     )
     public final int idx() {
         return this.idx;
@@ -99,7 +103,8 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "total number of points (for sanity checking)"
     )
     public final int count() {
         return this.count;
@@ -111,7 +116,8 @@ public final class RallyPoint {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude of point in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -123,7 +129,8 @@ public final class RallyPoint {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude of point in degrees * 1E7"
     )
     public final int lng() {
         return this.lng;
@@ -135,7 +142,8 @@ public final class RallyPoint {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Transit / loiter altitude in meters relative to home"
     )
     public final int alt() {
         return this.alt;
@@ -147,7 +155,8 @@ public final class RallyPoint {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Break altitude in meters relative to home"
     )
     public final int breakAlt() {
         return this.breakAlt;
@@ -158,7 +167,8 @@ public final class RallyPoint {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "Heading to aim for when landing. In centi-degrees."
     )
     public final int landDir() {
         return this.landDir;
@@ -170,7 +180,8 @@ public final class RallyPoint {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            enumType = RallyFlags.class
+            enumType = RallyFlags.class,
+            description = "See RALLY_FLAGS enum for definition of the bitmask."
     )
     public final EnumValue<RallyFlags> flags() {
         return this.flags;
@@ -250,7 +261,8 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -262,7 +274,8 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -274,7 +287,8 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "point index (first point is 0)"
         )
         public final Builder idx(int idx) {
             this.idx = idx;
@@ -286,7 +300,8 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "total number of points (for sanity checking)"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -299,7 +314,8 @@ public final class RallyPoint {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude of point in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -312,7 +328,8 @@ public final class RallyPoint {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude of point in degrees * 1E7"
         )
         public final Builder lng(int lng) {
             this.lng = lng;
@@ -325,7 +342,8 @@ public final class RallyPoint {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Transit / loiter altitude in meters relative to home"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -338,7 +356,8 @@ public final class RallyPoint {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Break altitude in meters relative to home"
         )
         public final Builder breakAlt(int breakAlt) {
             this.breakAlt = breakAlt;
@@ -350,7 +369,8 @@ public final class RallyPoint {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "Heading to aim for when landing. In centi-degrees."
         )
         public final Builder landDir(int landDir) {
             this.landDir = landDir;
@@ -363,7 +383,8 @@ public final class RallyPoint {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                enumType = RallyFlags.class
+                enumType = RallyFlags.class,
+                description = "See RALLY_FLAGS enum for definition of the bitmask."
         )
         public final Builder flags(EnumValue<RallyFlags> flags) {
             this.flags = flags;

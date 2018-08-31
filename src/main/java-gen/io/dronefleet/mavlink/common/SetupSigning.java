@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 256,
-        crc = 71
+        crc = 71,
+        description = "Setup a MAVLink2 signing key. If called with secret_key of all zero and zero initial_timestamp will disable signing"
 )
 public final class SetupSigning {
     private final int targetSystem;
@@ -47,7 +48,8 @@ public final class SetupSigning {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "system id of the target"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -58,7 +60,8 @@ public final class SetupSigning {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "component ID of the target"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -70,7 +73,8 @@ public final class SetupSigning {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 32
+            arraySize = 32,
+            description = "signing key"
     )
     public final byte[] secretKey() {
         return this.secretKey;
@@ -81,7 +85,8 @@ public final class SetupSigning {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 8
+            unitSize = 8,
+            description = "initial timestamp"
     )
     public final BigInteger initialTimestamp() {
         return this.initialTimestamp;
@@ -131,7 +136,8 @@ public final class SetupSigning {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "system id of the target"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -143,7 +149,8 @@ public final class SetupSigning {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "component ID of the target"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -156,7 +163,8 @@ public final class SetupSigning {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 32
+                arraySize = 32,
+                description = "signing key"
         )
         public final Builder secretKey(byte[] secretKey) {
             this.secretKey = secretKey;
@@ -168,7 +176,8 @@ public final class SetupSigning {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 8
+                unitSize = 8,
+                description = "initial timestamp"
         )
         public final Builder initialTimestamp(BigInteger initialTimestamp) {
             this.initialTimestamp = initialTimestamp;

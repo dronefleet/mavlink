@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 67,
-        crc = 21
+        crc = 21,
+        description = "THIS INTERFACE IS DEPRECATED. USE MESSAGE_INTERVAL INSTEAD."
 )
 public final class DataStream {
     private final int streamId;
@@ -41,7 +42,8 @@ public final class DataStream {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "The ID of the requested data stream"
     )
     public final int streamId() {
         return this.streamId;
@@ -52,7 +54,8 @@ public final class DataStream {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "The message rate"
     )
     public final int messageRate() {
         return this.messageRate;
@@ -63,7 +66,8 @@ public final class DataStream {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "1 stream is enabled, 0 stream is stopped."
     )
     public final int onOff() {
         return this.onOff;
@@ -108,7 +112,8 @@ public final class DataStream {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "The ID of the requested data stream"
         )
         public final Builder streamId(int streamId) {
             this.streamId = streamId;
@@ -120,7 +125,8 @@ public final class DataStream {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "The message rate"
         )
         public final Builder messageRate(int messageRate) {
             this.messageRate = messageRate;
@@ -132,7 +138,8 @@ public final class DataStream {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "1 stream is enabled, 0 stream is stopped."
         )
         public final Builder onOff(int onOff) {
             this.onOff = onOff;

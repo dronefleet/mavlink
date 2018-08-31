@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 251,
-        crc = 170
+        crc = 170,
+        description = "Send a key-value pair as float. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output."
 )
 public final class NamedValueFloat {
     private final long timeBootMs;
@@ -42,7 +43,8 @@ public final class NamedValueFloat {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -54,7 +56,8 @@ public final class NamedValueFloat {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 10
+            arraySize = 10,
+            description = "Name of the debug variable"
     )
     public final String name() {
         return this.name;
@@ -65,7 +68,8 @@ public final class NamedValueFloat {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Floating point value"
     )
     public final float value() {
         return this.value;
@@ -110,7 +114,8 @@ public final class NamedValueFloat {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -123,7 +128,8 @@ public final class NamedValueFloat {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 10
+                arraySize = 10,
+                description = "Name of the debug variable"
         )
         public final Builder name(String name) {
             this.name = name;
@@ -135,7 +141,8 @@ public final class NamedValueFloat {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Floating point value"
         )
         public final Builder value(float value) {
             this.value = value;

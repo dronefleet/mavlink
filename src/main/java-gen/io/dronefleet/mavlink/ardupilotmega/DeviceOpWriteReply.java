@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 11003,
-        crc = 64
+        crc = 64,
+        description = "Write registers reply"
 )
 public final class DeviceOpWriteReply {
     private final long requestId;
@@ -38,7 +39,8 @@ public final class DeviceOpWriteReply {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "request ID - copied from request"
     )
     public final long requestId() {
         return this.requestId;
@@ -49,7 +51,8 @@ public final class DeviceOpWriteReply {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "0 for success, anything else is failure code"
     )
     public final int result() {
         return this.result;
@@ -89,7 +92,8 @@ public final class DeviceOpWriteReply {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "request ID - copied from request"
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -101,7 +105,8 @@ public final class DeviceOpWriteReply {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "0 for success, anything else is failure code"
         )
         public final Builder result(int result) {
             this.result = result;

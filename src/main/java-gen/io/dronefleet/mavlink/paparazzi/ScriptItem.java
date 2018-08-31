@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 180,
-        crc = 231
+        crc = 231,
+        description = "Message encoding a mission script item. This message is emitted upon a request for the next script item."
 )
 public final class ScriptItem {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class ScriptItem {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class ScriptItem {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -67,7 +70,8 @@ public final class ScriptItem {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Sequence"
     )
     public final int seq() {
         return this.seq;
@@ -79,7 +83,8 @@ public final class ScriptItem {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 50
+            arraySize = 50,
+            description = "The name of the mission script, NULL terminated."
     )
     public final String name() {
         return this.name;
@@ -129,7 +134,8 @@ public final class ScriptItem {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -141,7 +147,8 @@ public final class ScriptItem {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -153,7 +160,8 @@ public final class ScriptItem {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Sequence"
         )
         public final Builder seq(int seq) {
             this.seq = seq;
@@ -166,7 +174,8 @@ public final class ScriptItem {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 50
+                arraySize = 50,
+                description = "The name of the mission script, NULL terminated."
         )
         public final Builder name(String name) {
             this.name = name;

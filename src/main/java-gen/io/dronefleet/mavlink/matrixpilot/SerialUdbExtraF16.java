@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 180,
-        crc = 222
+        crc = 222,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F16 format"
 )
 public final class SerialUdbExtraF16 {
     private final byte[] sueIdLeadPilot;
@@ -39,7 +40,8 @@ public final class SerialUdbExtraF16 {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 40
+            arraySize = 40,
+            description = "Serial UDB Extra Name of Expected Lead Pilot"
     )
     public final byte[] sueIdLeadPilot() {
         return this.sueIdLeadPilot;
@@ -51,7 +53,8 @@ public final class SerialUdbExtraF16 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 70
+            arraySize = 70,
+            description = "Serial UDB Extra URL of Lead Pilot or Team"
     )
     public final byte[] sueIdDiyDronesUrl() {
         return this.sueIdDiyDronesUrl;
@@ -92,7 +95,8 @@ public final class SerialUdbExtraF16 {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 40
+                arraySize = 40,
+                description = "Serial UDB Extra Name of Expected Lead Pilot"
         )
         public final Builder sueIdLeadPilot(byte[] sueIdLeadPilot) {
             this.sueIdLeadPilot = sueIdLeadPilot;
@@ -105,7 +109,8 @@ public final class SerialUdbExtraF16 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 70
+                arraySize = 70,
+                description = "Serial UDB Extra URL of Lead Pilot or Team"
         )
         public final Builder sueIdDiyDronesUrl(byte[] sueIdDiyDronesUrl) {
             this.sueIdDiyDronesUrl = sueIdDiyDronesUrl;

@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 260,
-        crc = 146
+        crc = 146,
+        description = "Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS."
 )
 public final class CameraSettings {
     private final long timeBootMs;
@@ -41,7 +42,8 @@ public final class CameraSettings {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -53,7 +55,8 @@ public final class CameraSettings {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = CameraMode.class
+            enumType = CameraMode.class,
+            description = "Camera mode (CAMERA_MODE)"
     )
     public final EnumValue<CameraMode> modeId() {
         return this.modeId;
@@ -93,7 +96,8 @@ public final class CameraSettings {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -106,7 +110,8 @@ public final class CameraSettings {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = CameraMode.class
+                enumType = CameraMode.class,
+                description = "Camera mode (CAMERA_MODE)"
         )
         public final Builder modeId(EnumValue<CameraMode> modeId) {
             this.modeId = modeId;

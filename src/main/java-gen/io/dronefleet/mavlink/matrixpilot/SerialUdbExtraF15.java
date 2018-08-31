@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 179,
-        crc = 7
+        crc = 7,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F15 format"
 )
 public final class SerialUdbExtraF15 {
     private final byte[] sueIdVehicleModelName;
@@ -39,7 +40,8 @@ public final class SerialUdbExtraF15 {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 40
+            arraySize = 40,
+            description = "Serial UDB Extra Model Name Of Vehicle"
     )
     public final byte[] sueIdVehicleModelName() {
         return this.sueIdVehicleModelName;
@@ -51,7 +53,8 @@ public final class SerialUdbExtraF15 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            arraySize = 20
+            arraySize = 20,
+            description = "Serial UDB Extra Registraton Number of Vehicle"
     )
     public final byte[] sueIdVehicleRegistration() {
         return this.sueIdVehicleRegistration;
@@ -92,7 +95,8 @@ public final class SerialUdbExtraF15 {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 40
+                arraySize = 40,
+                description = "Serial UDB Extra Model Name Of Vehicle"
         )
         public final Builder sueIdVehicleModelName(byte[] sueIdVehicleModelName) {
             this.sueIdVehicleModelName = sueIdVehicleModelName;
@@ -105,7 +109,8 @@ public final class SerialUdbExtraF15 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                arraySize = 20
+                arraySize = 20,
+                description = "Serial UDB Extra Registraton Number of Vehicle"
         )
         public final Builder sueIdVehicleRegistration(byte[] sueIdVehicleRegistration) {
             this.sueIdVehicleRegistration = sueIdVehicleRegistration;

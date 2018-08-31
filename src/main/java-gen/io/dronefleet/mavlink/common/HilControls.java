@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 91,
-        crc = 63
+        crc = 63,
+        description = "Sent from autopilot to simulation. Hardware in the loop control outputs"
 )
 public final class HilControls {
     private final BigInteger timeUsec;
@@ -71,7 +72,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -82,7 +84,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Control output -1 .. 1"
     )
     public final float rollAilerons() {
         return this.rollAilerons;
@@ -93,7 +96,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Control output -1 .. 1"
     )
     public final float pitchElevator() {
         return this.pitchElevator;
@@ -104,7 +108,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Control output -1 .. 1"
     )
     public final float yawRudder() {
         return this.yawRudder;
@@ -115,7 +120,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Throttle 0 .. 1"
     )
     public final float throttle() {
         return this.throttle;
@@ -126,7 +132,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Aux 1, -1 .. 1"
     )
     public final float aux1() {
         return this.aux1;
@@ -137,7 +144,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Aux 2, -1 .. 1"
     )
     public final float aux2() {
         return this.aux2;
@@ -148,7 +156,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Aux 3, -1 .. 1"
     )
     public final float aux3() {
         return this.aux3;
@@ -159,7 +168,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Aux 4, -1 .. 1"
     )
     public final float aux4() {
         return this.aux4;
@@ -171,7 +181,8 @@ public final class HilControls {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            enumType = MavMode.class
+            enumType = MavMode.class,
+            description = "System mode (MAV_MODE)"
     )
     public final EnumValue<MavMode> mode() {
         return this.mode;
@@ -182,7 +193,8 @@ public final class HilControls {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 1
+            unitSize = 1,
+            description = "Navigation mode (MAV_NAV_MODE)"
     )
     public final int navMode() {
         return this.navMode;
@@ -267,7 +279,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -279,7 +292,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Control output -1 .. 1"
         )
         public final Builder rollAilerons(float rollAilerons) {
             this.rollAilerons = rollAilerons;
@@ -291,7 +305,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Control output -1 .. 1"
         )
         public final Builder pitchElevator(float pitchElevator) {
             this.pitchElevator = pitchElevator;
@@ -303,7 +318,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Control output -1 .. 1"
         )
         public final Builder yawRudder(float yawRudder) {
             this.yawRudder = yawRudder;
@@ -315,7 +331,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Throttle 0 .. 1"
         )
         public final Builder throttle(float throttle) {
             this.throttle = throttle;
@@ -327,7 +344,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Aux 1, -1 .. 1"
         )
         public final Builder aux1(float aux1) {
             this.aux1 = aux1;
@@ -339,7 +357,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Aux 2, -1 .. 1"
         )
         public final Builder aux2(float aux2) {
             this.aux2 = aux2;
@@ -351,7 +370,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Aux 3, -1 .. 1"
         )
         public final Builder aux3(float aux3) {
             this.aux3 = aux3;
@@ -363,7 +383,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Aux 4, -1 .. 1"
         )
         public final Builder aux4(float aux4) {
             this.aux4 = aux4;
@@ -376,7 +397,8 @@ public final class HilControls {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                enumType = MavMode.class
+                enumType = MavMode.class,
+                description = "System mode (MAV_MODE)"
         )
         public final Builder mode(EnumValue<MavMode> mode) {
             this.mode = mode;
@@ -409,7 +431,8 @@ public final class HilControls {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 1
+                unitSize = 1,
+                description = "Navigation mode (MAV_NAV_MODE)"
         )
         public final Builder navMode(int navMode) {
             this.navMode = navMode;

@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 247,
-        crc = 81
+        crc = 81,
+        description = "Information about a potential collision"
 )
 public final class Collision {
     private final EnumValue<MavCollisionSrc> src;
@@ -59,7 +60,8 @@ public final class Collision {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = MavCollisionSrc.class
+            enumType = MavCollisionSrc.class,
+            description = "Collision data source"
     )
     public final EnumValue<MavCollisionSrc> src() {
         return this.src;
@@ -70,7 +72,8 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Unique identifier, domain based on src field"
     )
     public final long id() {
         return this.id;
@@ -82,7 +85,8 @@ public final class Collision {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavCollisionAction.class
+            enumType = MavCollisionAction.class,
+            description = "Action that is being taken to avoid this collision"
     )
     public final EnumValue<MavCollisionAction> action() {
         return this.action;
@@ -94,7 +98,8 @@ public final class Collision {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            enumType = MavCollisionThreatLevel.class
+            enumType = MavCollisionThreatLevel.class,
+            description = "How concerned the aircraft is about this collision"
     )
     public final EnumValue<MavCollisionThreatLevel> threatLevel() {
         return this.threatLevel;
@@ -105,7 +110,8 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Estimated time until collision occurs (seconds)"
     )
     public final float timeToMinimumDelta() {
         return this.timeToMinimumDelta;
@@ -116,7 +122,8 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Closest vertical distance in meters between vehicle and object"
     )
     public final float altitudeMinimumDelta() {
         return this.altitudeMinimumDelta;
@@ -127,7 +134,8 @@ public final class Collision {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Closest horizontal distance in meteres between vehicle and object"
     )
     public final float horizontalMinimumDelta() {
         return this.horizontalMinimumDelta;
@@ -193,7 +201,8 @@ public final class Collision {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = MavCollisionSrc.class
+                enumType = MavCollisionSrc.class,
+                description = "Collision data source"
         )
         public final Builder src(EnumValue<MavCollisionSrc> src) {
             this.src = src;
@@ -226,7 +235,8 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Unique identifier, domain based on src field"
         )
         public final Builder id(long id) {
             this.id = id;
@@ -239,7 +249,8 @@ public final class Collision {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavCollisionAction.class
+                enumType = MavCollisionAction.class,
+                description = "Action that is being taken to avoid this collision"
         )
         public final Builder action(EnumValue<MavCollisionAction> action) {
             this.action = action;
@@ -273,7 +284,8 @@ public final class Collision {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                enumType = MavCollisionThreatLevel.class
+                enumType = MavCollisionThreatLevel.class,
+                description = "How concerned the aircraft is about this collision"
         )
         public final Builder threatLevel(EnumValue<MavCollisionThreatLevel> threatLevel) {
             this.threatLevel = threatLevel;
@@ -306,7 +318,8 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Estimated time until collision occurs (seconds)"
         )
         public final Builder timeToMinimumDelta(float timeToMinimumDelta) {
             this.timeToMinimumDelta = timeToMinimumDelta;
@@ -318,7 +331,8 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Closest vertical distance in meters between vehicle and object"
         )
         public final Builder altitudeMinimumDelta(float altitudeMinimumDelta) {
             this.altitudeMinimumDelta = altitudeMinimumDelta;
@@ -330,7 +344,8 @@ public final class Collision {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Closest horizontal distance in meteres between vehicle and object"
         )
         public final Builder horizontalMinimumDelta(float horizontalMinimumDelta) {
             this.horizontalMinimumDelta = horizontalMinimumDelta;

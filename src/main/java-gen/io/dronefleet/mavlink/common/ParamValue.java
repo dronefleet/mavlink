@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 22,
-        crc = 220
+        crc = 220,
+        description = "Emit the value of a onboard parameter. The inclusion of param_count and param_index in the message allows the recipient to keep track of received parameters and allows him to re-request missing parameters after a loss or timeout."
 )
 public final class ParamValue {
     private final String paramId;
@@ -56,7 +57,8 @@ public final class ParamValue {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -67,7 +69,8 @@ public final class ParamValue {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Onboard parameter value"
     )
     public final float paramValue() {
         return this.paramValue;
@@ -79,7 +82,8 @@ public final class ParamValue {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavParamType.class
+            enumType = MavParamType.class,
+            description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
     )
     public final EnumValue<MavParamType> paramType() {
         return this.paramType;
@@ -90,7 +94,8 @@ public final class ParamValue {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Total number of onboard parameters"
     )
     public final int paramCount() {
         return this.paramCount;
@@ -101,7 +106,8 @@ public final class ParamValue {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            description = "Index of this onboard parameter"
     )
     public final int paramIndex() {
         return this.paramIndex;
@@ -159,7 +165,8 @@ public final class ParamValue {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -171,7 +178,8 @@ public final class ParamValue {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Onboard parameter value"
         )
         public final Builder paramValue(float paramValue) {
             this.paramValue = paramValue;
@@ -184,7 +192,8 @@ public final class ParamValue {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavParamType.class
+                enumType = MavParamType.class,
+                description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
         )
         public final Builder paramType(EnumValue<MavParamType> paramType) {
             this.paramType = paramType;
@@ -217,7 +226,8 @@ public final class ParamValue {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Total number of onboard parameters"
         )
         public final Builder paramCount(int paramCount) {
             this.paramCount = paramCount;
@@ -229,7 +239,8 @@ public final class ParamValue {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                description = "Index of this onboard parameter"
         )
         public final Builder paramIndex(int paramIndex) {
             this.paramIndex = paramIndex;

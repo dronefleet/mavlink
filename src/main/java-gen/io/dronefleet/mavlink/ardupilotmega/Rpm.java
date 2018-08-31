@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 226,
-        crc = 207
+        crc = 207,
+        description = "RPM sensor output"
 )
 public final class Rpm {
     private final float rpm1;
@@ -38,7 +39,8 @@ public final class Rpm {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "RPM Sensor1"
     )
     public final float rpm1() {
         return this.rpm1;
@@ -49,7 +51,8 @@ public final class Rpm {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "RPM Sensor2"
     )
     public final float rpm2() {
         return this.rpm2;
@@ -89,7 +92,8 @@ public final class Rpm {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "RPM Sensor1"
         )
         public final Builder rpm1(float rpm1) {
             this.rpm1 = rpm1;
@@ -101,7 +105,8 @@ public final class Rpm {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "RPM Sensor2"
         )
         public final Builder rpm2(float rpm2) {
             this.rpm2 = rpm2;

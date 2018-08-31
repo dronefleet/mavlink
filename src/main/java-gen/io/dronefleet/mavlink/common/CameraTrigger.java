@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 112,
-        crc = 174
+        crc = 174,
+        description = "Camera-IMU triggering and synchronisation message."
 )
 public final class CameraTrigger {
     private final BigInteger timeUsec;
@@ -39,7 +40,8 @@ public final class CameraTrigger {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp for the image frame in microseconds"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -50,7 +52,8 @@ public final class CameraTrigger {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Image frame sequence"
     )
     public final long seq() {
         return this.seq;
@@ -90,7 +93,8 @@ public final class CameraTrigger {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp for the image frame in microseconds"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -102,7 +106,8 @@ public final class CameraTrigger {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Image frame sequence"
         )
         public final Builder seq(long seq) {
             this.seq = seq;

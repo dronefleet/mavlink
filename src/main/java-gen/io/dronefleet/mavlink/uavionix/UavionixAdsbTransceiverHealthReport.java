@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 10003,
-        crc = 4
+        crc = 4,
+        description = "Transceiver heartbeat with health report (updated every 10s)"
 )
 public final class UavionixAdsbTransceiverHealthReport {
     private final EnumValue<UavionixAdsbRfHealth> rfhealth;
@@ -39,7 +40,8 @@ public final class UavionixAdsbTransceiverHealthReport {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = UavionixAdsbRfHealth.class
+            enumType = UavionixAdsbRfHealth.class,
+            description = "ADS-B transponder messages"
     )
     public final EnumValue<UavionixAdsbRfHealth> rfhealth() {
         return this.rfhealth;
@@ -75,7 +77,8 @@ public final class UavionixAdsbTransceiverHealthReport {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = UavionixAdsbRfHealth.class
+                enumType = UavionixAdsbRfHealth.class,
+                description = "ADS-B transponder messages"
         )
         public final Builder rfhealth(EnumValue<UavionixAdsbRfHealth> rfhealth) {
             this.rfhealth = rfhealth;

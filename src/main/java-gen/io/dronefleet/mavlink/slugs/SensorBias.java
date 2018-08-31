@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 172,
-        crc = 168
+        crc = 168,
+        description = "Accelerometer and gyro biases."
 )
 public final class SensorBias {
     private final float axbias;
@@ -51,7 +52,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Accelerometer X bias"
     )
     public final float axbias() {
         return this.axbias;
@@ -62,7 +64,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Accelerometer Y bias"
     )
     public final float aybias() {
         return this.aybias;
@@ -73,7 +76,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Accelerometer Z bias"
     )
     public final float azbias() {
         return this.azbias;
@@ -84,7 +88,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Gyro X bias"
     )
     public final float gxbias() {
         return this.gxbias;
@@ -95,7 +100,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Gyro Y bias"
     )
     public final float gybias() {
         return this.gybias;
@@ -106,7 +112,8 @@ public final class SensorBias {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Gyro Z bias"
     )
     public final float gzbias() {
         return this.gzbias;
@@ -166,7 +173,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Accelerometer X bias"
         )
         public final Builder axbias(float axbias) {
             this.axbias = axbias;
@@ -178,7 +186,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Accelerometer Y bias"
         )
         public final Builder aybias(float aybias) {
             this.aybias = aybias;
@@ -190,7 +199,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Accelerometer Z bias"
         )
         public final Builder azbias(float azbias) {
             this.azbias = azbias;
@@ -202,7 +212,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Gyro X bias"
         )
         public final Builder gxbias(float gxbias) {
             this.gxbias = gxbias;
@@ -214,7 +225,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Gyro Y bias"
         )
         public final Builder gybias(float gybias) {
             this.gybias = gybias;
@@ -226,7 +238,8 @@ public final class SensorBias {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Gyro Z bias"
         )
         public final Builder gzbias(float gzbias) {
             this.gzbias = gzbias;

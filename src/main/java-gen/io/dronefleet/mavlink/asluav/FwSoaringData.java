@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 210,
-        crc = 20
+        crc = 20,
+        description = "Fixed-wing soaring (i.e. thermal seeking) data"
 )
 public final class FwSoaringData {
     private final BigInteger timestamp;
@@ -113,7 +114,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -124,7 +126,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp since last mode change"
     )
     public final BigInteger timestampmodechanged() {
         return this.timestampmodechanged;
@@ -135,7 +138,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal core updraft strength"
     )
     public final float xw() {
         return this.xw;
@@ -146,7 +150,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal radius"
     )
     public final float xr() {
         return this.xr;
@@ -157,7 +162,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal center latitude"
     )
     public final float xlat() {
         return this.xlat;
@@ -168,7 +174,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal center longitude"
     )
     public final float xlon() {
         return this.xlon;
@@ -179,7 +186,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Variance W"
     )
     public final float varw() {
         return this.varw;
@@ -190,7 +198,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Variance R"
     )
     public final float varr() {
         return this.varr;
@@ -201,7 +210,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Variance Lat"
     )
     public final float varlat() {
         return this.varlat;
@@ -212,7 +222,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Variance Lon"
     )
     public final float varlon() {
         return this.varlon;
@@ -223,7 +234,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Suggested loiter radius"
     )
     public final float loiterradius() {
         return this.loiterradius;
@@ -234,7 +246,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Suggested loiter direction"
     )
     public final float loiterdirection() {
         return this.loiterdirection;
@@ -245,7 +258,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "Distance to soar point"
     )
     public final float disttosoarpoint() {
         return this.disttosoarpoint;
@@ -256,7 +270,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "Expected sink rate at current airspeed, roll and throttle"
     )
     public final float vsinkexp() {
         return this.vsinkexp;
@@ -267,7 +282,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 4
+            unitSize = 4,
+            description = "Measurement / updraft speed at current/local airplane position"
     )
     public final float z1Localupdraftspeed() {
         return this.z1Localupdraftspeed;
@@ -278,7 +294,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "Measurement / roll angle tracking error"
     )
     public final float z2Deltaroll() {
         return this.z2Deltaroll;
@@ -289,7 +306,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 4
+            unitSize = 4,
+            description = "Expected measurement 1"
     )
     public final float z1Exp() {
         return this.z1Exp;
@@ -300,7 +318,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 4
+            unitSize = 4,
+            description = "Expected measurement 2"
     )
     public final float z2Exp() {
         return this.z2Exp;
@@ -311,7 +330,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 19,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal drift (from estimator prediction step only)"
     )
     public final float thermalgsnorth() {
         return this.thermalgsnorth;
@@ -322,7 +342,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 20,
-            unitSize = 4
+            unitSize = 4,
+            description = "Thermal drift (from estimator prediction step only)"
     )
     public final float thermalgseast() {
         return this.thermalgseast;
@@ -333,7 +354,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 21,
-            unitSize = 4
+            unitSize = 4,
+            description = "Total specific energy change (filtered)"
     )
     public final float tseDot() {
         return this.tseDot;
@@ -344,7 +366,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 22,
-            unitSize = 4
+            unitSize = 4,
+            description = "Debug variable 1"
     )
     public final float debugvar1() {
         return this.debugvar1;
@@ -355,7 +378,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 23,
-            unitSize = 4
+            unitSize = 4,
+            description = "Debug variable 2"
     )
     public final float debugvar2() {
         return this.debugvar2;
@@ -366,7 +390,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 24,
-            unitSize = 1
+            unitSize = 1,
+            description = "Control Mode [-]"
     )
     public final int controlmode() {
         return this.controlmode;
@@ -377,7 +402,8 @@ public final class FwSoaringData {
      */
     @MavlinkFieldInfo(
             position = 25,
-            unitSize = 1
+            unitSize = 1,
+            description = "Data valid [-]"
     )
     public final int valid() {
         return this.valid;
@@ -532,7 +558,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -544,7 +571,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp since last mode change"
         )
         public final Builder timestampmodechanged(BigInteger timestampmodechanged) {
             this.timestampmodechanged = timestampmodechanged;
@@ -556,7 +584,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal core updraft strength"
         )
         public final Builder xw(float xw) {
             this.xw = xw;
@@ -568,7 +597,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal radius"
         )
         public final Builder xr(float xr) {
             this.xr = xr;
@@ -580,7 +610,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal center latitude"
         )
         public final Builder xlat(float xlat) {
             this.xlat = xlat;
@@ -592,7 +623,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal center longitude"
         )
         public final Builder xlon(float xlon) {
             this.xlon = xlon;
@@ -604,7 +636,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Variance W"
         )
         public final Builder varw(float varw) {
             this.varw = varw;
@@ -616,7 +649,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Variance R"
         )
         public final Builder varr(float varr) {
             this.varr = varr;
@@ -628,7 +662,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Variance Lat"
         )
         public final Builder varlat(float varlat) {
             this.varlat = varlat;
@@ -640,7 +675,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Variance Lon"
         )
         public final Builder varlon(float varlon) {
             this.varlon = varlon;
@@ -652,7 +688,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Suggested loiter radius"
         )
         public final Builder loiterradius(float loiterradius) {
             this.loiterradius = loiterradius;
@@ -664,7 +701,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Suggested loiter direction"
         )
         public final Builder loiterdirection(float loiterdirection) {
             this.loiterdirection = loiterdirection;
@@ -676,7 +714,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "Distance to soar point"
         )
         public final Builder disttosoarpoint(float disttosoarpoint) {
             this.disttosoarpoint = disttosoarpoint;
@@ -688,7 +727,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "Expected sink rate at current airspeed, roll and throttle"
         )
         public final Builder vsinkexp(float vsinkexp) {
             this.vsinkexp = vsinkexp;
@@ -700,7 +740,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 4
+                unitSize = 4,
+                description = "Measurement / updraft speed at current/local airplane position"
         )
         public final Builder z1Localupdraftspeed(float z1Localupdraftspeed) {
             this.z1Localupdraftspeed = z1Localupdraftspeed;
@@ -712,7 +753,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "Measurement / roll angle tracking error"
         )
         public final Builder z2Deltaroll(float z2Deltaroll) {
             this.z2Deltaroll = z2Deltaroll;
@@ -724,7 +766,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 4
+                unitSize = 4,
+                description = "Expected measurement 1"
         )
         public final Builder z1Exp(float z1Exp) {
             this.z1Exp = z1Exp;
@@ -736,7 +779,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 4
+                unitSize = 4,
+                description = "Expected measurement 2"
         )
         public final Builder z2Exp(float z2Exp) {
             this.z2Exp = z2Exp;
@@ -748,7 +792,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 19,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal drift (from estimator prediction step only)"
         )
         public final Builder thermalgsnorth(float thermalgsnorth) {
             this.thermalgsnorth = thermalgsnorth;
@@ -760,7 +805,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 20,
-                unitSize = 4
+                unitSize = 4,
+                description = "Thermal drift (from estimator prediction step only)"
         )
         public final Builder thermalgseast(float thermalgseast) {
             this.thermalgseast = thermalgseast;
@@ -772,7 +818,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 21,
-                unitSize = 4
+                unitSize = 4,
+                description = "Total specific energy change (filtered)"
         )
         public final Builder tseDot(float tseDot) {
             this.tseDot = tseDot;
@@ -784,7 +831,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 22,
-                unitSize = 4
+                unitSize = 4,
+                description = "Debug variable 1"
         )
         public final Builder debugvar1(float debugvar1) {
             this.debugvar1 = debugvar1;
@@ -796,7 +844,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 23,
-                unitSize = 4
+                unitSize = 4,
+                description = "Debug variable 2"
         )
         public final Builder debugvar2(float debugvar2) {
             this.debugvar2 = debugvar2;
@@ -808,7 +857,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 24,
-                unitSize = 1
+                unitSize = 1,
+                description = "Control Mode [-]"
         )
         public final Builder controlmode(int controlmode) {
             this.controlmode = controlmode;
@@ -820,7 +870,8 @@ public final class FwSoaringData {
          */
         @MavlinkFieldInfo(
                 position = 25,
-                unitSize = 1
+                unitSize = 1,
+                description = "Data valid [-]"
         )
         public final Builder valid(int valid) {
             this.valid = valid;

@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 183,
-        crc = 186
+        crc = 186,
+        description = "This message is emitted as response to SCRIPT_REQUEST_LIST by the MAV to get the number of mission scripts."
 )
 public final class ScriptCount {
     private final int targetSystem;
@@ -42,7 +43,8 @@ public final class ScriptCount {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -53,7 +55,8 @@ public final class ScriptCount {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -64,7 +67,8 @@ public final class ScriptCount {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Number of script items in the sequence"
     )
     public final int count() {
         return this.count;
@@ -109,7 +113,8 @@ public final class ScriptCount {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -121,7 +126,8 @@ public final class ScriptCount {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -133,7 +139,8 @@ public final class ScriptCount {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Number of script items in the sequence"
         )
         public final Builder count(int count) {
             this.count = count;

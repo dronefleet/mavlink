@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 20,
-        crc = 214
+        crc = 214,
+        description = "Request to read the onboard parameter with the param_id string id. Onboard parameters are stored as key[const char*] -> value[float]. This allows to send a parameter to any other component (such as the GCS) without the need of previous knowledge of possible parameter names. Thus the same GCS can store different parameters for different autopilots. See also https://mavlink.io/en/protocol/parameter.html for a full documentation of QGroundControl and IMU code."
 )
 public final class ParamRequestRead {
     private final int targetSystem;
@@ -50,7 +51,8 @@ public final class ParamRequestRead {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -61,7 +63,8 @@ public final class ParamRequestRead {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -75,7 +78,8 @@ public final class ParamRequestRead {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 16
+            arraySize = 16,
+            description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
     )
     public final String paramId() {
         return this.paramId;
@@ -88,7 +92,8 @@ public final class ParamRequestRead {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)"
     )
     public final int paramIndex() {
         return this.paramIndex;
@@ -138,7 +143,8 @@ public final class ParamRequestRead {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -150,7 +156,8 @@ public final class ParamRequestRead {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -165,7 +172,8 @@ public final class ParamRequestRead {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 16
+                arraySize = 16,
+                description = "Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string"
         )
         public final Builder paramId(String paramId) {
             this.paramId = paramId;
@@ -179,7 +187,8 @@ public final class ParamRequestRead {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)"
         )
         public final Builder paramIndex(int paramIndex) {
             this.paramIndex = paramIndex;

@@ -77,10 +77,15 @@ public class MessageGenerator {
     }
 
     public AnnotationSpec annotation() {
-        return AnnotationSpec.builder(MAVLINK_MESSAGE_INFO)
+        AnnotationSpec.Builder annotation = AnnotationSpec.builder(MAVLINK_MESSAGE_INFO)
                 .addMember("id", "$L", id)
-                .addMember("crc", "$L", crc())
-                .build();
+                .addMember("crc", "$L", crc());
+
+        if (description != null && !description.trim().isEmpty()) {
+            annotation.addMember("description", "$S", description);
+        }
+
+        return annotation.build();
     }
 
     public TypeSpec generateBuilder() {

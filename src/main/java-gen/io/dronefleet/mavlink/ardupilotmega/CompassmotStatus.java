@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 177,
-        crc = 240
+        crc = 240,
+        description = "Status of compassmot calibration"
 )
 public final class CompassmotStatus {
     private final int throttle;
@@ -51,7 +52,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "throttle (percent*10)"
     )
     public final int throttle() {
         return this.throttle;
@@ -62,7 +64,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "current (Ampere)"
     )
     public final float current() {
         return this.current;
@@ -73,7 +76,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "interference (percent)"
     )
     public final int interference() {
         return this.interference;
@@ -84,7 +88,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Motor Compensation X"
     )
     public final float compensationx() {
         return this.compensationx;
@@ -95,7 +100,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Motor Compensation Y"
     )
     public final float compensationy() {
         return this.compensationy;
@@ -106,7 +112,8 @@ public final class CompassmotStatus {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Motor Compensation Z"
     )
     public final float compensationz() {
         return this.compensationz;
@@ -166,7 +173,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "throttle (percent*10)"
         )
         public final Builder throttle(int throttle) {
             this.throttle = throttle;
@@ -178,7 +186,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "current (Ampere)"
         )
         public final Builder current(float current) {
             this.current = current;
@@ -190,7 +199,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "interference (percent)"
         )
         public final Builder interference(int interference) {
             this.interference = interference;
@@ -202,7 +212,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Motor Compensation X"
         )
         public final Builder compensationx(float compensationx) {
             this.compensationx = compensationx;
@@ -214,7 +225,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Motor Compensation Y"
         )
         public final Builder compensationy(float compensationy) {
             this.compensationy = compensationy;
@@ -226,7 +238,8 @@ public final class CompassmotStatus {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Motor Compensation Z"
         )
         public final Builder compensationz(float compensationz) {
             this.compensationz = compensationz;

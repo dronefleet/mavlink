@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 177,
-        crc = 249
+        crc = 249,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F13: format"
 )
 public final class SerialUdbExtraF13 {
     private final int sueWeekNo;
@@ -45,7 +46,8 @@ public final class SerialUdbExtraF13 {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra GPS Week Number"
     )
     public final int sueWeekNo() {
         return this.sueWeekNo;
@@ -57,7 +59,8 @@ public final class SerialUdbExtraF13 {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra MP Origin Latitude"
     )
     public final int sueLatOrigin() {
         return this.sueLatOrigin;
@@ -69,7 +72,8 @@ public final class SerialUdbExtraF13 {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra MP Origin Longitude"
     )
     public final int sueLonOrigin() {
         return this.sueLonOrigin;
@@ -81,7 +85,8 @@ public final class SerialUdbExtraF13 {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Serial UDB Extra MP Origin Altitude Above Sea Level"
     )
     public final int sueAltOrigin() {
         return this.sueAltOrigin;
@@ -132,7 +137,8 @@ public final class SerialUdbExtraF13 {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra GPS Week Number"
         )
         public final Builder sueWeekNo(int sueWeekNo) {
             this.sueWeekNo = sueWeekNo;
@@ -145,7 +151,8 @@ public final class SerialUdbExtraF13 {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra MP Origin Latitude"
         )
         public final Builder sueLatOrigin(int sueLatOrigin) {
             this.sueLatOrigin = sueLatOrigin;
@@ -158,7 +165,8 @@ public final class SerialUdbExtraF13 {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra MP Origin Longitude"
         )
         public final Builder sueLonOrigin(int sueLonOrigin) {
             this.sueLonOrigin = sueLonOrigin;
@@ -171,7 +179,8 @@ public final class SerialUdbExtraF13 {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Serial UDB Extra MP Origin Altitude Above Sea Level"
         )
         public final Builder sueAltOrigin(int sueAltOrigin) {
             this.sueAltOrigin = sueAltOrigin;

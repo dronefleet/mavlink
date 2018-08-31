@@ -20,7 +20,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 331,
-        crc = 58
+        crc = 58,
+        description = "Odometry message to communicate odometry information with an external interface. Fits ROS REP 147 standard for aerial vehicles (http://www.ros.org/reps/rep-0147.html)."
 )
 public final class Odometry {
     private final BigInteger timeUsec;
@@ -87,7 +88,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since system boot or since UNIX epoch)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -99,7 +101,8 @@ public final class Odometry {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = MavFrame.class
+            enumType = MavFrame.class,
+            description = "Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum."
     )
     public final EnumValue<MavFrame> frameId() {
         return this.frameId;
@@ -112,7 +115,8 @@ public final class Odometry {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavFrame.class
+            enumType = MavFrame.class,
+            description = "Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum."
     )
     public final EnumValue<MavFrame> childFrameId() {
         return this.childFrameId;
@@ -123,7 +127,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "X Position"
     )
     public final float x() {
         return this.x;
@@ -134,7 +139,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y Position"
     )
     public final float y() {
         return this.y;
@@ -145,7 +151,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z Position"
     )
     public final float z() {
         return this.z;
@@ -157,7 +164,8 @@ public final class Odometry {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)"
     )
     public final List<Float> q() {
         return this.q;
@@ -168,7 +176,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "X linear speed"
     )
     public final float vx() {
         return this.vx;
@@ -179,7 +188,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y linear speed"
     )
     public final float vy() {
         return this.vy;
@@ -190,7 +200,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z linear speed"
     )
     public final float vz() {
         return this.vz;
@@ -201,7 +212,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Roll angular speed"
     )
     public final float rollspeed() {
         return this.rollspeed;
@@ -212,7 +224,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Pitch angular speed"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
@@ -223,7 +236,8 @@ public final class Odometry {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "Yaw angular speed"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -236,7 +250,8 @@ public final class Odometry {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            arraySize = 21
+            arraySize = 21,
+            description = "Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)"
     )
     public final List<Float> poseCovariance() {
         return this.poseCovariance;
@@ -249,7 +264,8 @@ public final class Odometry {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
-            arraySize = 21
+            arraySize = 21,
+            description = "Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)"
     )
     public final List<Float> twistCovariance() {
         return this.twistCovariance;
@@ -354,7 +370,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since system boot or since UNIX epoch)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -367,7 +384,8 @@ public final class Odometry {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = MavFrame.class
+                enumType = MavFrame.class,
+                description = "Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum."
         )
         public final Builder frameId(EnumValue<MavFrame> frameId) {
             this.frameId = frameId;
@@ -402,7 +420,8 @@ public final class Odometry {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavFrame.class
+                enumType = MavFrame.class,
+                description = "Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum."
         )
         public final Builder childFrameId(EnumValue<MavFrame> childFrameId) {
             this.childFrameId = childFrameId;
@@ -438,7 +457,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "X Position"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -450,7 +470,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y Position"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -462,7 +483,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z Position"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -475,7 +497,8 @@ public final class Odometry {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -487,7 +510,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "X linear speed"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -499,7 +523,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y linear speed"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -511,7 +536,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z linear speed"
         )
         public final Builder vz(float vz) {
             this.vz = vz;
@@ -523,7 +549,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Roll angular speed"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -535,7 +562,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Pitch angular speed"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -547,7 +575,8 @@ public final class Odometry {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "Yaw angular speed"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;
@@ -561,7 +590,8 @@ public final class Odometry {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                arraySize = 21
+                arraySize = 21,
+                description = "Pose (states: x, y, z, roll, pitch, yaw) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)"
         )
         public final Builder poseCovariance(List<Float> poseCovariance) {
             this.poseCovariance = poseCovariance;
@@ -575,7 +605,8 @@ public final class Odometry {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
-                arraySize = 21
+                arraySize = 21,
+                description = "Twist (states: vx, vy, vz, rollspeed, pitchspeed, yawspeed) covariance matrix upper right triangle (first six entries are the first ROW, next five entries are the second ROW, etc.)"
         )
         public final Builder twistCovariance(List<Float> twistCovariance) {
             this.twistCovariance = twistCovariance;

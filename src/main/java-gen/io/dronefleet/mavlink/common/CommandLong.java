@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 76,
-        crc = 152
+        crc = 152,
+        description = "Send a command with up to seven parameters to the MAV"
 )
 public final class CommandLong {
     private final int targetSystem;
@@ -70,7 +71,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System which should execute the command"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -81,7 +83,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component which should execute the command, 0 for all components"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -93,7 +96,8 @@ public final class CommandLong {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            enumType = MavCmd.class
+            enumType = MavCmd.class,
+            description = "Command ID, as defined by MAV_CMD enum."
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
@@ -105,7 +109,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)"
     )
     public final int confirmation() {
         return this.confirmation;
@@ -116,7 +121,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 1, as defined by MAV_CMD enum."
     )
     public final float param1() {
         return this.param1;
@@ -127,7 +133,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 2, as defined by MAV_CMD enum."
     )
     public final float param2() {
         return this.param2;
@@ -138,7 +145,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 3, as defined by MAV_CMD enum."
     )
     public final float param3() {
         return this.param3;
@@ -149,7 +157,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 4, as defined by MAV_CMD enum."
     )
     public final float param4() {
         return this.param4;
@@ -160,7 +169,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 5, as defined by MAV_CMD enum."
     )
     public final float param5() {
         return this.param5;
@@ -171,7 +181,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 6, as defined by MAV_CMD enum."
     )
     public final float param6() {
         return this.param6;
@@ -182,7 +193,8 @@ public final class CommandLong {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Parameter 7, as defined by MAV_CMD enum."
     )
     public final float param7() {
         return this.param7;
@@ -267,7 +279,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System which should execute the command"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -279,7 +292,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component which should execute the command, 0 for all components"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -292,7 +306,8 @@ public final class CommandLong {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                enumType = MavCmd.class
+                enumType = MavCmd.class,
+                description = "Command ID, as defined by MAV_CMD enum."
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -326,7 +341,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)"
         )
         public final Builder confirmation(int confirmation) {
             this.confirmation = confirmation;
@@ -338,7 +354,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 1, as defined by MAV_CMD enum."
         )
         public final Builder param1(float param1) {
             this.param1 = param1;
@@ -350,7 +367,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 2, as defined by MAV_CMD enum."
         )
         public final Builder param2(float param2) {
             this.param2 = param2;
@@ -362,7 +380,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 3, as defined by MAV_CMD enum."
         )
         public final Builder param3(float param3) {
             this.param3 = param3;
@@ -374,7 +393,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 4, as defined by MAV_CMD enum."
         )
         public final Builder param4(float param4) {
             this.param4 = param4;
@@ -386,7 +406,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 5, as defined by MAV_CMD enum."
         )
         public final Builder param5(float param5) {
             this.param5 = param5;
@@ -398,7 +419,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 6, as defined by MAV_CMD enum."
         )
         public final Builder param6(float param6) {
             this.param6 = param6;
@@ -410,7 +432,8 @@ public final class CommandLong {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Parameter 7, as defined by MAV_CMD enum."
         )
         public final Builder param7(float param7) {
             this.param7 = param7;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 170,
-        crc = 75
+        crc = 75,
+        description = "Sensor and DSC control loads."
 )
 public final class CpuLoad {
     private final int sensload;
@@ -41,7 +42,8 @@ public final class CpuLoad {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Sensor DSC Load"
     )
     public final int sensload() {
         return this.sensload;
@@ -52,7 +54,8 @@ public final class CpuLoad {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Control DSC Load"
     )
     public final int ctrlload() {
         return this.ctrlload;
@@ -63,7 +66,8 @@ public final class CpuLoad {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery Voltage"
     )
     public final int batvolt() {
         return this.batvolt;
@@ -108,7 +112,8 @@ public final class CpuLoad {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Sensor DSC Load"
         )
         public final Builder sensload(int sensload) {
             this.sensload = sensload;
@@ -120,7 +125,8 @@ public final class CpuLoad {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Control DSC Load"
         )
         public final Builder ctrlload(int ctrlload) {
             this.ctrlload = ctrlload;
@@ -132,7 +138,8 @@ public final class CpuLoad {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery Voltage"
         )
         public final Builder batvolt(int batvolt) {
             this.batvolt = batvolt;

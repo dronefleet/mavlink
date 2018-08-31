@@ -30,4 +30,5 @@ public @interface MavlinkFieldInfo {
     int arraySize() default 0;
     Class<?> enumType() default void.class;
     boolean extension() default false;
+    String description() default "No description provided";
 }

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 173,
-        crc = 83
+        crc = 83,
+        description = "Rangefinder reporting"
 )
 public final class Rangefinder {
     private final float distance;
@@ -38,7 +39,8 @@ public final class Rangefinder {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "distance in meters"
     )
     public final float distance() {
         return this.distance;
@@ -49,7 +51,8 @@ public final class Rangefinder {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "raw voltage if available, zero otherwise"
     )
     public final float voltage() {
         return this.voltage;
@@ -89,7 +92,8 @@ public final class Rangefinder {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "distance in meters"
         )
         public final Builder distance(float distance) {
             this.distance = distance;
@@ -101,7 +105,8 @@ public final class Rangefinder {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "raw voltage if available, zero otherwise"
         )
         public final Builder voltage(float voltage) {
             this.voltage = voltage;

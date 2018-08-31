@@ -17,7 +17,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 156,
-        crc = 19
+        crc = 19,
+        description = "Message to configure a camera mount, directional antenna, etc."
 )
 public final class MountConfigure {
     private final int targetSystem;
@@ -55,7 +56,8 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -66,7 +68,8 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -78,7 +81,8 @@ public final class MountConfigure {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavMountMode.class
+            enumType = MavMountMode.class,
+            description = "mount operating mode (see MAV_MOUNT_MODE enum)"
     )
     public final EnumValue<MavMountMode> mountMode() {
         return this.mountMode;
@@ -89,7 +93,8 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "(1 = yes, 0 = no)"
     )
     public final int stabRoll() {
         return this.stabRoll;
@@ -100,7 +105,8 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "(1 = yes, 0 = no)"
     )
     public final int stabPitch() {
         return this.stabPitch;
@@ -111,7 +117,8 @@ public final class MountConfigure {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "(1 = yes, 0 = no)"
     )
     public final int stabYaw() {
         return this.stabYaw;
@@ -171,7 +178,8 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -183,7 +191,8 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -196,7 +205,8 @@ public final class MountConfigure {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavMountMode.class
+                enumType = MavMountMode.class,
+                description = "mount operating mode (see MAV_MOUNT_MODE enum)"
         )
         public final Builder mountMode(EnumValue<MavMountMode> mountMode) {
             this.mountMode = mountMode;
@@ -229,7 +239,8 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "(1 = yes, 0 = no)"
         )
         public final Builder stabRoll(int stabRoll) {
             this.stabRoll = stabRoll;
@@ -241,7 +252,8 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "(1 = yes, 0 = no)"
         )
         public final Builder stabPitch(int stabPitch) {
             this.stabPitch = stabPitch;
@@ -253,7 +265,8 @@ public final class MountConfigure {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "(1 = yes, 0 = no)"
         )
         public final Builder stabYaw(int stabYaw) {
             this.stabYaw = stabYaw;

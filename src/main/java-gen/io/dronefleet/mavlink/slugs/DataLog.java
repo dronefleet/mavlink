@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 177,
-        crc = 167
+        crc = 167,
+        description = "Configurable data log probes to be used inside Simulink"
 )
 public final class DataLog {
     private final float fl1;
@@ -50,7 +51,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 1"
     )
     public final float fl1() {
         return this.fl1;
@@ -61,7 +63,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 2"
     )
     public final float fl2() {
         return this.fl2;
@@ -72,7 +75,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 3"
     )
     public final float fl3() {
         return this.fl3;
@@ -83,7 +87,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 4"
     )
     public final float fl4() {
         return this.fl4;
@@ -94,7 +99,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 5"
     )
     public final float fl5() {
         return this.fl5;
@@ -105,7 +111,8 @@ public final class DataLog {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Log value 6"
     )
     public final float fl6() {
         return this.fl6;
@@ -165,7 +172,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 1"
         )
         public final Builder fl1(float fl1) {
             this.fl1 = fl1;
@@ -177,7 +185,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 2"
         )
         public final Builder fl2(float fl2) {
             this.fl2 = fl2;
@@ -189,7 +198,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 3"
         )
         public final Builder fl3(float fl3) {
             this.fl3 = fl3;
@@ -201,7 +211,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 4"
         )
         public final Builder fl4(float fl4) {
             this.fl4 = fl4;
@@ -213,7 +224,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 5"
         )
         public final Builder fl5(float fl5) {
             this.fl5 = fl5;
@@ -225,7 +237,8 @@ public final class DataLog {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Log value 6"
         )
         public final Builder fl6(float fl6) {
             this.fl6 = fl6;

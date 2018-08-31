@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 165,
-        crc = 21
+        crc = 21,
+        description = "Status of key hardware"
 )
 public final class Hwstatus {
     private final int vcc;
@@ -38,7 +39,8 @@ public final class Hwstatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "board voltage (mV)"
     )
     public final int vcc() {
         return this.vcc;
@@ -49,7 +51,8 @@ public final class Hwstatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "I2C error count"
     )
     public final int i2cerr() {
         return this.i2cerr;
@@ -89,7 +92,8 @@ public final class Hwstatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "board voltage (mV)"
         )
         public final Builder vcc(int vcc) {
             this.vcc = vcc;
@@ -101,7 +105,8 @@ public final class Hwstatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "I2C error count"
         )
         public final Builder i2cerr(int i2cerr) {
             this.i2cerr = i2cerr;

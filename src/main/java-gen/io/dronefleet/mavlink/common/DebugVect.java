@@ -49,7 +49,8 @@ public final class DebugVect {
     @MavlinkFieldInfo(
             position = 0,
             unitSize = 1,
-            arraySize = 10
+            arraySize = 10,
+            description = "Name"
     )
     public final String name() {
         return this.name;
@@ -60,7 +61,8 @@ public final class DebugVect {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -71,7 +73,8 @@ public final class DebugVect {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "x"
     )
     public final float x() {
         return this.x;
@@ -82,7 +85,8 @@ public final class DebugVect {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "y"
     )
     public final float y() {
         return this.y;
@@ -93,7 +97,8 @@ public final class DebugVect {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "z"
     )
     public final float z() {
         return this.z;
@@ -149,7 +154,8 @@ public final class DebugVect {
         @MavlinkFieldInfo(
                 position = 0,
                 unitSize = 1,
-                arraySize = 10
+                arraySize = 10,
+                description = "Name"
         )
         public final Builder name(String name) {
             this.name = name;
@@ -161,7 +167,8 @@ public final class DebugVect {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -173,7 +180,8 @@ public final class DebugVect {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "x"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -185,7 +193,8 @@ public final class DebugVect {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "y"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -197,7 +206,8 @@ public final class DebugVect {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "z"
         )
         public final Builder z(float z) {
             this.z = z;

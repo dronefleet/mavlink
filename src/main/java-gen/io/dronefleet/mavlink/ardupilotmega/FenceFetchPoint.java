@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 161,
-        crc = 68
+        crc = 68,
+        description = "Request a current fence point from MAV"
 )
 public final class FenceFetchPoint {
     private final int targetSystem;
@@ -41,7 +42,8 @@ public final class FenceFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -52,7 +54,8 @@ public final class FenceFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -63,7 +66,8 @@ public final class FenceFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "point index (first point is 1, 0 is for return point)"
     )
     public final int idx() {
         return this.idx;
@@ -108,7 +112,8 @@ public final class FenceFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -120,7 +125,8 @@ public final class FenceFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -132,7 +138,8 @@ public final class FenceFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "point index (first point is 1, 0 is for return point)"
         )
         public final Builder idx(int idx) {
             this.idx = idx;

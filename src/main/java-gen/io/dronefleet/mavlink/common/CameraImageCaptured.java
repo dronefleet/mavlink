@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 263,
-        crc = 133
+        crc = 133,
+        description = "Information about a captured image"
 )
 public final class CameraImageCaptured {
     private final long timeBootMs;
@@ -70,7 +71,8 @@ public final class CameraImageCaptured {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -81,7 +83,8 @@ public final class CameraImageCaptured {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown."
     )
     public final BigInteger timeUtc() {
         return this.timeUtc;
@@ -92,7 +95,8 @@ public final class CameraImageCaptured {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Camera ID (1 for first, 2 for second, etc.)"
     )
     public final int cameraId() {
         return this.cameraId;
@@ -104,7 +108,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude, expressed as degrees * 1E7 where image was taken"
     )
     public final int lat() {
         return this.lat;
@@ -116,7 +121,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude, expressed as degrees * 1E7 where capture was taken"
     )
     public final int lon() {
         return this.lon;
@@ -128,7 +134,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken"
     )
     public final int alt() {
         return this.alt;
@@ -140,7 +147,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude above ground in meters, expressed as * 1E3 where image was taken"
     )
     public final int relativeAlt() {
         return this.relativeAlt;
@@ -152,7 +160,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)"
     )
     public final List<Float> q() {
         return this.q;
@@ -164,7 +173,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Zero based index of this image (image count since armed -1)"
     )
     public final int imageIndex() {
         return this.imageIndex;
@@ -176,7 +186,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            signed = true
+            signed = true,
+            description = "Boolean indicating success (1) or failure (0) while capturing this image."
     )
     public final int captureResult() {
         return this.captureResult;
@@ -189,7 +200,8 @@ public final class CameraImageCaptured {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 1,
-            arraySize = 205
+            arraySize = 205,
+            description = "URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface."
     )
     public final String fileUrl() {
         return this.fileUrl;
@@ -274,7 +286,8 @@ public final class CameraImageCaptured {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -286,7 +299,8 @@ public final class CameraImageCaptured {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown."
         )
         public final Builder timeUtc(BigInteger timeUtc) {
             this.timeUtc = timeUtc;
@@ -298,7 +312,8 @@ public final class CameraImageCaptured {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Camera ID (1 for first, 2 for second, etc.)"
         )
         public final Builder cameraId(int cameraId) {
             this.cameraId = cameraId;
@@ -311,7 +326,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude, expressed as degrees * 1E7 where image was taken"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -324,7 +340,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude, expressed as degrees * 1E7 where capture was taken"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -337,7 +354,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -350,7 +368,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude above ground in meters, expressed as * 1E3 where image was taken"
         )
         public final Builder relativeAlt(int relativeAlt) {
             this.relativeAlt = relativeAlt;
@@ -363,7 +382,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "Quaternion of camera orientation (w, x, y, z order, zero-rotation is 0, 0, 0, 0)"
         )
         public final Builder q(List<Float> q) {
             this.q = q;
@@ -376,7 +396,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Zero based index of this image (image count since armed -1)"
         )
         public final Builder imageIndex(int imageIndex) {
             this.imageIndex = imageIndex;
@@ -389,7 +410,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                signed = true
+                signed = true,
+                description = "Boolean indicating success (1) or failure (0) while capturing this image."
         )
         public final Builder captureResult(int captureResult) {
             this.captureResult = captureResult;
@@ -403,7 +425,8 @@ public final class CameraImageCaptured {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 1,
-                arraySize = 205
+                arraySize = 205,
+                description = "URL of image taken. Either local storage or http://foo.jpg if camera provides an HTTP interface."
         )
         public final Builder fileUrl(String fileUrl) {
             this.fileUrl = fileUrl;

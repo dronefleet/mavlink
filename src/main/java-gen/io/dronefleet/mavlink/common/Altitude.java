@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 141,
-        crc = 47
+        crc = 47,
+        description = "The current system altitude."
 )
 public final class Altitude {
     private final BigInteger timeUsec;
@@ -56,7 +57,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -71,7 +73,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights."
     )
     public final float altitudeMonotonic() {
         return this.altitudeMonotonic;
@@ -85,7 +88,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude."
     )
     public final float altitudeAmsl() {
         return this.altitudeAmsl;
@@ -97,7 +101,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive."
     )
     public final float altitudeLocal() {
         return this.altitudeLocal;
@@ -109,7 +114,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "This is the altitude above the home position. It resets on each change of the current home position."
     )
     public final float altitudeRelative() {
         return this.altitudeRelative;
@@ -121,7 +127,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values smaller than -1000 should be interpreted as unknown."
     )
     public final float altitudeTerrain() {
         return this.altitudeTerrain;
@@ -134,7 +141,8 @@ public final class Altitude {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available."
     )
     public final float bottomClearance() {
         return this.bottomClearance;
@@ -199,7 +207,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -215,7 +224,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights."
         )
         public final Builder altitudeMonotonic(float altitudeMonotonic) {
             this.altitudeMonotonic = altitudeMonotonic;
@@ -230,7 +240,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude."
         )
         public final Builder altitudeAmsl(float altitudeAmsl) {
             this.altitudeAmsl = altitudeAmsl;
@@ -243,7 +254,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive."
         )
         public final Builder altitudeLocal(float altitudeLocal) {
             this.altitudeLocal = altitudeLocal;
@@ -256,7 +268,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "This is the altitude above the home position. It resets on each change of the current home position."
         )
         public final Builder altitudeRelative(float altitudeRelative) {
             this.altitudeRelative = altitudeRelative;
@@ -269,7 +282,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values smaller than -1000 should be interpreted as unknown."
         )
         public final Builder altitudeTerrain(float altitudeTerrain) {
             this.altitudeTerrain = altitudeTerrain;
@@ -283,7 +297,8 @@ public final class Altitude {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available."
         )
         public final Builder bottomClearance(float bottomClearance) {
             this.bottomClearance = bottomClearance;

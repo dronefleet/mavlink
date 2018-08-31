@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 127,
-        crc = 25
+        crc = 25,
+        description = "RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting"
 )
 public final class GpsRtk {
     private final long timeLastBaselineMs;
@@ -77,7 +78,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time since boot of last baseline message received in ms."
     )
     public final long timeLastBaselineMs() {
         return this.timeLastBaselineMs;
@@ -88,7 +90,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Identification of connected RTK receiver."
     )
     public final int rtkReceiverId() {
         return this.rtkReceiverId;
@@ -99,7 +102,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS Week Number of last baseline"
     )
     public final int wn() {
         return this.wn;
@@ -110,7 +114,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS Time of Week of last baseline"
     )
     public final long tow() {
         return this.tow;
@@ -121,7 +126,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "GPS-specific health report for RTK data."
     )
     public final int rtkHealth() {
         return this.rtkHealth;
@@ -132,7 +138,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "Rate of baseline messages being received by GPS, in HZ"
     )
     public final int rtkRate() {
         return this.rtkRate;
@@ -143,7 +150,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "Current number of sats used for RTK calculation."
     )
     public final int nsats() {
         return this.nsats;
@@ -155,7 +163,8 @@ public final class GpsRtk {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            enumType = RtkBaselineCoordinateSystem.class
+            enumType = RtkBaselineCoordinateSystem.class,
+            description = "Coordinate system of baseline"
     )
     public final EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType() {
         return this.baselineCoordsType;
@@ -167,7 +176,8 @@ public final class GpsRtk {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Current baseline in ECEF x or NED north component in mm."
     )
     public final int baselineAMm() {
         return this.baselineAMm;
@@ -179,7 +189,8 @@ public final class GpsRtk {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Current baseline in ECEF y or NED east component in mm."
     )
     public final int baselineBMm() {
         return this.baselineBMm;
@@ -191,7 +202,8 @@ public final class GpsRtk {
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Current baseline in ECEF z or NED down component in mm."
     )
     public final int baselineCMm() {
         return this.baselineCMm;
@@ -202,7 +214,8 @@ public final class GpsRtk {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Current estimate of baseline accuracy."
     )
     public final long accuracy() {
         return this.accuracy;
@@ -214,7 +227,8 @@ public final class GpsRtk {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Current number of integer ambiguity hypotheses."
     )
     public final int iarNumHypotheses() {
         return this.iarNumHypotheses;
@@ -309,7 +323,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time since boot of last baseline message received in ms."
         )
         public final Builder timeLastBaselineMs(long timeLastBaselineMs) {
             this.timeLastBaselineMs = timeLastBaselineMs;
@@ -321,7 +336,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Identification of connected RTK receiver."
         )
         public final Builder rtkReceiverId(int rtkReceiverId) {
             this.rtkReceiverId = rtkReceiverId;
@@ -333,7 +349,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS Week Number of last baseline"
         )
         public final Builder wn(int wn) {
             this.wn = wn;
@@ -345,7 +362,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS Time of Week of last baseline"
         )
         public final Builder tow(long tow) {
             this.tow = tow;
@@ -357,7 +375,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "GPS-specific health report for RTK data."
         )
         public final Builder rtkHealth(int rtkHealth) {
             this.rtkHealth = rtkHealth;
@@ -369,7 +388,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "Rate of baseline messages being received by GPS, in HZ"
         )
         public final Builder rtkRate(int rtkRate) {
             this.rtkRate = rtkRate;
@@ -381,7 +401,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "Current number of sats used for RTK calculation."
         )
         public final Builder nsats(int nsats) {
             this.nsats = nsats;
@@ -394,7 +415,8 @@ public final class GpsRtk {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                enumType = RtkBaselineCoordinateSystem.class
+                enumType = RtkBaselineCoordinateSystem.class,
+                description = "Coordinate system of baseline"
         )
         public final Builder baselineCoordsType(
                 EnumValue<RtkBaselineCoordinateSystem> baselineCoordsType) {
@@ -429,7 +451,8 @@ public final class GpsRtk {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Current baseline in ECEF x or NED north component in mm."
         )
         public final Builder baselineAMm(int baselineAMm) {
             this.baselineAMm = baselineAMm;
@@ -442,7 +465,8 @@ public final class GpsRtk {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Current baseline in ECEF y or NED east component in mm."
         )
         public final Builder baselineBMm(int baselineBMm) {
             this.baselineBMm = baselineBMm;
@@ -455,7 +479,8 @@ public final class GpsRtk {
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Current baseline in ECEF z or NED down component in mm."
         )
         public final Builder baselineCMm(int baselineCMm) {
             this.baselineCMm = baselineCMm;
@@ -467,7 +492,8 @@ public final class GpsRtk {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Current estimate of baseline accuracy."
         )
         public final Builder accuracy(long accuracy) {
             this.accuracy = accuracy;
@@ -480,7 +506,8 @@ public final class GpsRtk {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Current number of integer ambiguity hypotheses."
         )
         public final Builder iarNumHypotheses(int iarNumHypotheses) {
             this.iarNumHypotheses = iarNumHypotheses;

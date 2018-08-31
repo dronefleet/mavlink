@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 142,
-        crc = 72
+        crc = 72,
+        description = "The autopilot is requesting a resource (file, binary, other type of data)"
 )
 public final class ResourceRequest {
     private final int requestId;
@@ -48,7 +49,8 @@ public final class ResourceRequest {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "Request ID. This ID should be re-used when sending back URI contents"
     )
     public final int requestId() {
         return this.requestId;
@@ -59,7 +61,8 @@ public final class ResourceRequest {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary"
     )
     public final int uriType() {
         return this.uriType;
@@ -72,7 +75,8 @@ public final class ResourceRequest {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            arraySize = 120
+            arraySize = 120,
+            description = "The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)"
     )
     public final byte[] uri() {
         return this.uri;
@@ -83,7 +87,8 @@ public final class ResourceRequest {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream."
     )
     public final int transferType() {
         return this.transferType;
@@ -96,7 +101,8 @@ public final class ResourceRequest {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            arraySize = 120
+            arraySize = 120,
+            description = "The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP)."
     )
     public final byte[] storage() {
         return this.storage;
@@ -151,7 +157,8 @@ public final class ResourceRequest {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "Request ID. This ID should be re-used when sending back URI contents"
         )
         public final Builder requestId(int requestId) {
             this.requestId = requestId;
@@ -163,7 +170,8 @@ public final class ResourceRequest {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary"
         )
         public final Builder uriType(int uriType) {
             this.uriType = uriType;
@@ -177,7 +185,8 @@ public final class ResourceRequest {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                arraySize = 120
+                arraySize = 120,
+                description = "The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)"
         )
         public final Builder uri(byte[] uri) {
             this.uri = uri;
@@ -189,7 +198,8 @@ public final class ResourceRequest {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream."
         )
         public final Builder transferType(int transferType) {
             this.transferType = transferType;
@@ -203,7 +213,8 @@ public final class ResourceRequest {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                arraySize = 120
+                arraySize = 120,
+                description = "The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP)."
         )
         public final Builder storage(byte[] storage) {
             this.storage = storage;

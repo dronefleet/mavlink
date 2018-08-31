@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 183,
-        crc = 175
+        crc = 175,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F17 format"
 )
 public final class SerialUdbExtraF17 {
     private final float sueFeedForward;
@@ -41,7 +42,8 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Feed Forward Gain"
     )
     public final float sueFeedForward() {
         return this.sueFeedForward;
@@ -52,7 +54,8 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Max Turn Rate when Navigating"
     )
     public final float sueTurnRateNav() {
         return this.sueTurnRateNav;
@@ -63,7 +66,8 @@ public final class SerialUdbExtraF17 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "SUE Max Turn Rate in Fly By Wire Mode"
     )
     public final float sueTurnRateFbw() {
         return this.sueTurnRateFbw;
@@ -108,7 +112,8 @@ public final class SerialUdbExtraF17 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Feed Forward Gain"
         )
         public final Builder sueFeedForward(float sueFeedForward) {
             this.sueFeedForward = sueFeedForward;
@@ -120,7 +125,8 @@ public final class SerialUdbExtraF17 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Max Turn Rate when Navigating"
         )
         public final Builder sueTurnRateNav(float sueTurnRateNav) {
             this.sueTurnRateNav = sueTurnRateNav;
@@ -132,7 +138,8 @@ public final class SerialUdbExtraF17 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "SUE Max Turn Rate in Fly By Wire Mode"
         )
         public final Builder sueTurnRateFbw(float sueTurnRateFbw) {
             this.sueTurnRateFbw = sueTurnRateFbw;

@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 37,
-        crc = 212
+        crc = 212,
+        description = "Request a partial list of mission items from the system/component. https://mavlink.io/en/protocol/mission.html. If start and end index are the same, just send one waypoint."
 )
 public final class MissionRequestPartialList {
     private final int targetSystem;
@@ -53,7 +54,8 @@ public final class MissionRequestPartialList {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -64,7 +66,8 @@ public final class MissionRequestPartialList {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -76,7 +79,8 @@ public final class MissionRequestPartialList {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Start index, 0 by default"
     )
     public final int startIndex() {
         return this.startIndex;
@@ -88,7 +92,8 @@ public final class MissionRequestPartialList {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "End index, -1 by default (-1: send list to end). Else a valid index of the list"
     )
     public final int endIndex() {
         return this.endIndex;
@@ -101,7 +106,8 @@ public final class MissionRequestPartialList {
             position = 6,
             unitSize = 1,
             enumType = MavMissionType.class,
-            extension = true
+            extension = true,
+            description = "Mission type, see MAV_MISSION_TYPE"
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -156,7 +162,8 @@ public final class MissionRequestPartialList {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -168,7 +175,8 @@ public final class MissionRequestPartialList {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -181,7 +189,8 @@ public final class MissionRequestPartialList {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Start index, 0 by default"
         )
         public final Builder startIndex(int startIndex) {
             this.startIndex = startIndex;
@@ -194,7 +203,8 @@ public final class MissionRequestPartialList {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "End index, -1 by default (-1: send list to end). Else a valid index of the list"
         )
         public final Builder endIndex(int endIndex) {
             this.endIndex = endIndex;
@@ -208,7 +218,8 @@ public final class MissionRequestPartialList {
                 position = 6,
                 unitSize = 1,
                 enumType = MavMissionType.class,
-                extension = true
+                extension = true,
+                description = "Mission type, see MAV_MISSION_TYPE"
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;

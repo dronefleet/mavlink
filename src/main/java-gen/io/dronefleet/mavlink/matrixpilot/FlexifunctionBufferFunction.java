@@ -15,7 +15,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 152,
-        crc = 101
+        crc = 101,
+        description = "Flexifunction type and parameters for component at function index from buffer"
 )
 public final class FlexifunctionBufferFunction {
     private final int targetSystem;
@@ -56,7 +57,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -67,7 +69,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -78,7 +81,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Function index"
     )
     public final int funcIndex() {
         return this.funcIndex;
@@ -89,7 +93,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Total count of functions"
     )
     public final int funcCount() {
         return this.funcCount;
@@ -100,7 +105,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            description = "Address in the flexifunction data, Set to 0xFFFF to use address in target memory"
     )
     public final int dataAddress() {
         return this.dataAddress;
@@ -111,7 +117,8 @@ public final class FlexifunctionBufferFunction {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "Size of the"
     )
     public final int dataSize() {
         return this.dataSize;
@@ -124,7 +131,8 @@ public final class FlexifunctionBufferFunction {
             position = 7,
             unitSize = 1,
             arraySize = 48,
-            signed = true
+            signed = true,
+            description = "Settings data"
     )
     public final List<Integer> data() {
         return this.data;
@@ -189,7 +197,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -201,7 +210,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -213,7 +223,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Function index"
         )
         public final Builder funcIndex(int funcIndex) {
             this.funcIndex = funcIndex;
@@ -225,7 +236,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Total count of functions"
         )
         public final Builder funcCount(int funcCount) {
             this.funcCount = funcCount;
@@ -237,7 +249,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                description = "Address in the flexifunction data, Set to 0xFFFF to use address in target memory"
         )
         public final Builder dataAddress(int dataAddress) {
             this.dataAddress = dataAddress;
@@ -249,7 +262,8 @@ public final class FlexifunctionBufferFunction {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "Size of the"
         )
         public final Builder dataSize(int dataSize) {
             this.dataSize = dataSize;
@@ -263,7 +277,8 @@ public final class FlexifunctionBufferFunction {
                 position = 7,
                 unitSize = 1,
                 arraySize = 48,
-                signed = true
+                signed = true,
+                description = "Settings data"
         )
         public final Builder data(List<Integer> data) {
             this.data = data;

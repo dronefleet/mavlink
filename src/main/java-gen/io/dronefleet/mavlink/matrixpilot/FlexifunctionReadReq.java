@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 151,
-        crc = 26
+        crc = 26,
+        description = "Reqest reading of flexifunction data"
 )
 public final class FlexifunctionReadReq {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class FlexifunctionReadReq {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class FlexifunctionReadReq {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -68,7 +71,8 @@ public final class FlexifunctionReadReq {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Type of flexifunction data requested"
     )
     public final int readReqType() {
         return this.readReqType;
@@ -80,7 +84,8 @@ public final class FlexifunctionReadReq {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "index into data where needed"
     )
     public final int dataIndex() {
         return this.dataIndex;
@@ -130,7 +135,8 @@ public final class FlexifunctionReadReq {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -142,7 +148,8 @@ public final class FlexifunctionReadReq {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -155,7 +162,8 @@ public final class FlexifunctionReadReq {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Type of flexifunction data requested"
         )
         public final Builder readReqType(int readReqType) {
             this.readReqType = readReqType;
@@ -168,7 +176,8 @@ public final class FlexifunctionReadReq {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "index into data where needed"
         )
         public final Builder dataIndex(int dataIndex) {
             this.dataIndex = dataIndex;

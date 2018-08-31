@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 209,
-        crc = 155
+        crc = 155,
+        description = "Battery pack monitoring data for Li-Ion batteries"
 )
 public final class SensBatmon {
     private final BigInteger batmonTimestamp;
@@ -81,7 +82,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Time since system start"
     )
     public final BigInteger batmonTimestamp() {
         return this.batmonTimestamp;
@@ -92,7 +94,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Battery pack temperature"
     )
     public final float temperature() {
         return this.temperature;
@@ -103,7 +106,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack voltage"
     )
     public final int voltage() {
         return this.voltage;
@@ -115,7 +119,8 @@ public final class SensBatmon {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Battery pack current"
     )
     public final int current() {
         return this.current;
@@ -126,7 +131,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "Battery pack state-of-charge"
     )
     public final int soc() {
         return this.soc;
@@ -137,7 +143,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery monitor status report bits in Hex"
     )
     public final int batterystatus() {
         return this.batterystatus;
@@ -148,7 +155,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery monitor serial number in Hex"
     )
     public final int serialnumber() {
         return this.serialnumber;
@@ -159,7 +167,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "Battery monitor safetystatus report bits in Hex"
     )
     public final long safetystatus() {
         return this.safetystatus;
@@ -170,7 +179,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Battery monitor operation status report bits in Hex"
     )
     public final long operationstatus() {
         return this.operationstatus;
@@ -181,7 +191,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 1 voltage"
     )
     public final int cellvoltage1() {
         return this.cellvoltage1;
@@ -192,7 +203,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 2 voltage"
     )
     public final int cellvoltage2() {
         return this.cellvoltage2;
@@ -203,7 +215,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 3 voltage"
     )
     public final int cellvoltage3() {
         return this.cellvoltage3;
@@ -214,7 +227,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 4 voltage"
     )
     public final int cellvoltage4() {
         return this.cellvoltage4;
@@ -225,7 +239,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 5 voltage"
     )
     public final int cellvoltage5() {
         return this.cellvoltage5;
@@ -236,7 +251,8 @@ public final class SensBatmon {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 2
+            unitSize = 2,
+            description = "Battery pack cell 6 voltage"
     )
     public final int cellvoltage6() {
         return this.cellvoltage6;
@@ -341,7 +357,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Time since system start"
         )
         public final Builder batmonTimestamp(BigInteger batmonTimestamp) {
             this.batmonTimestamp = batmonTimestamp;
@@ -353,7 +370,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Battery pack temperature"
         )
         public final Builder temperature(float temperature) {
             this.temperature = temperature;
@@ -365,7 +383,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack voltage"
         )
         public final Builder voltage(int voltage) {
             this.voltage = voltage;
@@ -378,7 +397,8 @@ public final class SensBatmon {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Battery pack current"
         )
         public final Builder current(int current) {
             this.current = current;
@@ -390,7 +410,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "Battery pack state-of-charge"
         )
         public final Builder soc(int soc) {
             this.soc = soc;
@@ -402,7 +423,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery monitor status report bits in Hex"
         )
         public final Builder batterystatus(int batterystatus) {
             this.batterystatus = batterystatus;
@@ -414,7 +436,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery monitor serial number in Hex"
         )
         public final Builder serialnumber(int serialnumber) {
             this.serialnumber = serialnumber;
@@ -426,7 +449,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "Battery monitor safetystatus report bits in Hex"
         )
         public final Builder safetystatus(long safetystatus) {
             this.safetystatus = safetystatus;
@@ -438,7 +462,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Battery monitor operation status report bits in Hex"
         )
         public final Builder operationstatus(long operationstatus) {
             this.operationstatus = operationstatus;
@@ -450,7 +475,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 1 voltage"
         )
         public final Builder cellvoltage1(int cellvoltage1) {
             this.cellvoltage1 = cellvoltage1;
@@ -462,7 +488,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 2 voltage"
         )
         public final Builder cellvoltage2(int cellvoltage2) {
             this.cellvoltage2 = cellvoltage2;
@@ -474,7 +501,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 3 voltage"
         )
         public final Builder cellvoltage3(int cellvoltage3) {
             this.cellvoltage3 = cellvoltage3;
@@ -486,7 +514,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 4 voltage"
         )
         public final Builder cellvoltage4(int cellvoltage4) {
             this.cellvoltage4 = cellvoltage4;
@@ -498,7 +527,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 5 voltage"
         )
         public final Builder cellvoltage5(int cellvoltage5) {
             this.cellvoltage5 = cellvoltage5;
@@ -510,7 +540,8 @@ public final class SensBatmon {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 2
+                unitSize = 2,
+                description = "Battery pack cell 6 voltage"
         )
         public final Builder cellvoltage6(int cellvoltage6) {
             this.cellvoltage6 = cellvoltage6;

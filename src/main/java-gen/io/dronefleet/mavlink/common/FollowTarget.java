@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 144,
-        crc = 127
+        crc = 127,
+        description = "current motion information from a designated system"
 )
 public final class FollowTarget {
     private final BigInteger timestamp;
@@ -70,7 +71,8 @@ public final class FollowTarget {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp in milliseconds since system boot"
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -81,7 +83,8 @@ public final class FollowTarget {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)"
     )
     public final int estCapabilities() {
         return this.estCapabilities;
@@ -93,7 +96,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -105,7 +109,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84), in degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -116,7 +121,8 @@ public final class FollowTarget {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "AMSL, in meters"
     )
     public final float alt() {
         return this.alt;
@@ -128,7 +134,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "target velocity (0,0,0) for unknown"
     )
     public final List<Float> vel() {
         return this.vel;
@@ -140,7 +147,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "linear target acceleration (0,0,0) for unknown"
     )
     public final List<Float> acc() {
         return this.acc;
@@ -152,7 +160,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            arraySize = 4
+            arraySize = 4,
+            description = "(1 0 0 0 for unknown)"
     )
     public final List<Float> attitudeQ() {
         return this.attitudeQ;
@@ -164,7 +173,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "(0 0 0 for unknown)"
     )
     public final List<Float> rates() {
         return this.rates;
@@ -176,7 +186,8 @@ public final class FollowTarget {
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            arraySize = 3
+            arraySize = 3,
+            description = "eph epv"
     )
     public final List<Float> positionCov() {
         return this.positionCov;
@@ -187,7 +198,8 @@ public final class FollowTarget {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 8
+            unitSize = 8,
+            description = "button states or switches of a tracker device"
     )
     public final BigInteger customState() {
         return this.customState;
@@ -272,7 +284,8 @@ public final class FollowTarget {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp in milliseconds since system boot"
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -284,7 +297,8 @@ public final class FollowTarget {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)"
         )
         public final Builder estCapabilities(int estCapabilities) {
             this.estCapabilities = estCapabilities;
@@ -297,7 +311,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -310,7 +325,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84), in degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -322,7 +338,8 @@ public final class FollowTarget {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "AMSL, in meters"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -335,7 +352,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "target velocity (0,0,0) for unknown"
         )
         public final Builder vel(List<Float> vel) {
             this.vel = vel;
@@ -348,7 +366,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "linear target acceleration (0,0,0) for unknown"
         )
         public final Builder acc(List<Float> acc) {
             this.acc = acc;
@@ -361,7 +380,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                arraySize = 4
+                arraySize = 4,
+                description = "(1 0 0 0 for unknown)"
         )
         public final Builder attitudeQ(List<Float> attitudeQ) {
             this.attitudeQ = attitudeQ;
@@ -374,7 +394,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "(0 0 0 for unknown)"
         )
         public final Builder rates(List<Float> rates) {
             this.rates = rates;
@@ -387,7 +408,8 @@ public final class FollowTarget {
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                arraySize = 3
+                arraySize = 3,
+                description = "eph epv"
         )
         public final Builder positionCov(List<Float> positionCov) {
             this.positionCov = positionCov;
@@ -399,7 +421,8 @@ public final class FollowTarget {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 8
+                unitSize = 8,
+                description = "button states or switches of a tracker device"
         )
         public final Builder customState(BigInteger customState) {
             this.customState = customState;

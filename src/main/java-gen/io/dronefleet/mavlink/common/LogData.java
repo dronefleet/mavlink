@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 120,
-        crc = 134
+        crc = 134,
+        description = "Reply to LOG_REQUEST_DATA"
 )
 public final class LogData {
     private final int id;
@@ -44,7 +45,8 @@ public final class LogData {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "Log id (from LOG_ENTRY reply)"
     )
     public final int id() {
         return this.id;
@@ -55,7 +57,8 @@ public final class LogData {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "Offset into the log"
     )
     public final long ofs() {
         return this.ofs;
@@ -66,7 +69,8 @@ public final class LogData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of bytes (zero for end of log)"
     )
     public final int count() {
         return this.count;
@@ -78,7 +82,8 @@ public final class LogData {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 90
+            arraySize = 90,
+            description = "log data"
     )
     public final byte[] data() {
         return this.data;
@@ -128,7 +133,8 @@ public final class LogData {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "Log id (from LOG_ENTRY reply)"
         )
         public final Builder id(int id) {
             this.id = id;
@@ -140,7 +146,8 @@ public final class LogData {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "Offset into the log"
         )
         public final Builder ofs(long ofs) {
             this.ofs = ofs;
@@ -152,7 +159,8 @@ public final class LogData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of bytes (zero for end of log)"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -165,7 +173,8 @@ public final class LogData {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 90
+                arraySize = 90,
+                description = "log data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

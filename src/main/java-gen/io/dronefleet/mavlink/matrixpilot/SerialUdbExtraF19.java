@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 185,
-        crc = 87
+        crc = 87,
+        description = "Backwards compatible version of SERIAL_UDB_EXTRA F19 format"
 )
 public final class SerialUdbExtraF19 {
     private final int sueAileronOutputChannel;
@@ -58,7 +59,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE aileron output channel"
     )
     public final int sueAileronOutputChannel() {
         return this.sueAileronOutputChannel;
@@ -69,7 +71,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE aileron reversed"
     )
     public final int sueAileronReversed() {
         return this.sueAileronReversed;
@@ -80,7 +83,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE elevator output channel"
     )
     public final int sueElevatorOutputChannel() {
         return this.sueElevatorOutputChannel;
@@ -91,7 +95,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE elevator reversed"
     )
     public final int sueElevatorReversed() {
         return this.sueElevatorReversed;
@@ -102,7 +107,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE throttle output channel"
     )
     public final int sueThrottleOutputChannel() {
         return this.sueThrottleOutputChannel;
@@ -113,7 +119,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE throttle reversed"
     )
     public final int sueThrottleReversed() {
         return this.sueThrottleReversed;
@@ -124,7 +131,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE rudder output channel"
     )
     public final int sueRudderOutputChannel() {
         return this.sueRudderOutputChannel;
@@ -135,7 +143,8 @@ public final class SerialUdbExtraF19 {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 1
+            unitSize = 1,
+            description = "SUE rudder reversed"
     )
     public final int sueRudderReversed() {
         return this.sueRudderReversed;
@@ -205,7 +214,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE aileron output channel"
         )
         public final Builder sueAileronOutputChannel(int sueAileronOutputChannel) {
             this.sueAileronOutputChannel = sueAileronOutputChannel;
@@ -217,7 +227,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE aileron reversed"
         )
         public final Builder sueAileronReversed(int sueAileronReversed) {
             this.sueAileronReversed = sueAileronReversed;
@@ -229,7 +240,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE elevator output channel"
         )
         public final Builder sueElevatorOutputChannel(int sueElevatorOutputChannel) {
             this.sueElevatorOutputChannel = sueElevatorOutputChannel;
@@ -241,7 +253,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE elevator reversed"
         )
         public final Builder sueElevatorReversed(int sueElevatorReversed) {
             this.sueElevatorReversed = sueElevatorReversed;
@@ -253,7 +266,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE throttle output channel"
         )
         public final Builder sueThrottleOutputChannel(int sueThrottleOutputChannel) {
             this.sueThrottleOutputChannel = sueThrottleOutputChannel;
@@ -265,7 +279,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE throttle reversed"
         )
         public final Builder sueThrottleReversed(int sueThrottleReversed) {
             this.sueThrottleReversed = sueThrottleReversed;
@@ -277,7 +292,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE rudder output channel"
         )
         public final Builder sueRudderOutputChannel(int sueRudderOutputChannel) {
             this.sueRudderOutputChannel = sueRudderOutputChannel;
@@ -289,7 +305,8 @@ public final class SerialUdbExtraF19 {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 1
+                unitSize = 1,
+                description = "SUE rudder reversed"
         )
         public final Builder sueRudderReversed(int sueRudderReversed) {
             this.sueRudderReversed = sueRudderReversed;

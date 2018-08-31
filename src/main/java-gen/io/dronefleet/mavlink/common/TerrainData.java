@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 134,
-        crc = 229
+        crc = 229,
+        description = "Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a TERRAIN_REQUEST"
 )
 public final class TerrainData {
     private final int lat;
@@ -51,7 +52,8 @@ public final class TerrainData {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude of SW corner of first grid (degrees *10^7)"
     )
     public final int lat() {
         return this.lat;
@@ -63,7 +65,8 @@ public final class TerrainData {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude of SW corner of first grid (in degrees *10^7)"
     )
     public final int lon() {
         return this.lon;
@@ -74,7 +77,8 @@ public final class TerrainData {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Grid spacing in meters"
     )
     public final int gridSpacing() {
         return this.gridSpacing;
@@ -85,7 +89,8 @@ public final class TerrainData {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 1
+            unitSize = 1,
+            description = "bit within the terrain request mask"
     )
     public final int gridbit() {
         return this.gridbit;
@@ -98,7 +103,8 @@ public final class TerrainData {
             position = 5,
             unitSize = 2,
             arraySize = 16,
-            signed = true
+            signed = true,
+            description = "Terrain data in meters AMSL"
     )
     public final List<Integer> data() {
         return this.data;
@@ -154,7 +160,8 @@ public final class TerrainData {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude of SW corner of first grid (degrees *10^7)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -167,7 +174,8 @@ public final class TerrainData {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude of SW corner of first grid (in degrees *10^7)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -179,7 +187,8 @@ public final class TerrainData {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Grid spacing in meters"
         )
         public final Builder gridSpacing(int gridSpacing) {
             this.gridSpacing = gridSpacing;
@@ -191,7 +200,8 @@ public final class TerrainData {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 1
+                unitSize = 1,
+                description = "bit within the terrain request mask"
         )
         public final Builder gridbit(int gridbit) {
             this.gridbit = gridbit;
@@ -205,7 +215,8 @@ public final class TerrainData {
                 position = 5,
                 unitSize = 2,
                 arraySize = 16,
-                signed = true
+                signed = true,
+                description = "Terrain data in meters AMSL"
         )
         public final Builder data(List<Integer> data) {
             this.data = data;

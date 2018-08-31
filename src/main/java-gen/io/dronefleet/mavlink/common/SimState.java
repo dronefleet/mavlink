@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 108,
-        crc = 32
+        crc = 32,
+        description = "Status of simulation environment, if used"
 )
 public final class SimState {
     private final float q1;
@@ -98,7 +99,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "True attitude quaternion component 1, w (1 in null-rotation)"
     )
     public final float q1() {
         return this.q1;
@@ -109,7 +111,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 4
+            unitSize = 4,
+            description = "True attitude quaternion component 2, x (0 in null-rotation)"
     )
     public final float q2() {
         return this.q2;
@@ -120,7 +123,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "True attitude quaternion component 3, y (0 in null-rotation)"
     )
     public final float q3() {
         return this.q3;
@@ -131,7 +135,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "True attitude quaternion component 4, z (0 in null-rotation)"
     )
     public final float q4() {
         return this.q4;
@@ -142,7 +147,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Attitude roll expressed as Euler angles, not recommended except for human-readable outputs"
     )
     public final float roll() {
         return this.roll;
@@ -153,7 +159,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs"
     )
     public final float pitch() {
         return this.pitch;
@@ -164,7 +171,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs"
     )
     public final float yaw() {
         return this.yaw;
@@ -175,7 +183,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "X acceleration m/s/s"
     )
     public final float xacc() {
         return this.xacc;
@@ -186,7 +195,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Y acceleration m/s/s"
     )
     public final float yacc() {
         return this.yacc;
@@ -197,7 +207,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "Z acceleration m/s/s"
     )
     public final float zacc() {
         return this.zacc;
@@ -208,7 +219,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around X axis rad/s"
     )
     public final float xgyro() {
         return this.xgyro;
@@ -219,7 +231,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around Y axis rad/s"
     )
     public final float ygyro() {
         return this.ygyro;
@@ -230,7 +243,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "Angular speed around Z axis rad/s"
     )
     public final float zgyro() {
         return this.zgyro;
@@ -241,7 +255,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "Latitude in degrees"
     )
     public final float lat() {
         return this.lat;
@@ -252,7 +267,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 4
+            unitSize = 4,
+            description = "Longitude in degrees"
     )
     public final float lon() {
         return this.lon;
@@ -263,7 +279,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude in meters"
     )
     public final float alt() {
         return this.alt;
@@ -274,7 +291,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 4
+            unitSize = 4,
+            description = "Horizontal position standard deviation"
     )
     public final float stdDevHorz() {
         return this.stdDevHorz;
@@ -285,7 +303,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 4
+            unitSize = 4,
+            description = "Vertical position standard deviation"
     )
     public final float stdDevVert() {
         return this.stdDevVert;
@@ -296,7 +315,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 19,
-            unitSize = 4
+            unitSize = 4,
+            description = "True velocity in m/s in NORTH direction in earth-fixed NED frame"
     )
     public final float vn() {
         return this.vn;
@@ -307,7 +327,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 20,
-            unitSize = 4
+            unitSize = 4,
+            description = "True velocity in m/s in EAST direction in earth-fixed NED frame"
     )
     public final float ve() {
         return this.ve;
@@ -318,7 +339,8 @@ public final class SimState {
      */
     @MavlinkFieldInfo(
             position = 21,
-            unitSize = 4
+            unitSize = 4,
+            description = "True velocity in m/s in DOWN direction in earth-fixed NED frame"
     )
     public final float vd() {
         return this.vd;
@@ -453,7 +475,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "True attitude quaternion component 1, w (1 in null-rotation)"
         )
         public final Builder q1(float q1) {
             this.q1 = q1;
@@ -465,7 +488,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 4
+                unitSize = 4,
+                description = "True attitude quaternion component 2, x (0 in null-rotation)"
         )
         public final Builder q2(float q2) {
             this.q2 = q2;
@@ -477,7 +501,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "True attitude quaternion component 3, y (0 in null-rotation)"
         )
         public final Builder q3(float q3) {
             this.q3 = q3;
@@ -489,7 +514,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "True attitude quaternion component 4, z (0 in null-rotation)"
         )
         public final Builder q4(float q4) {
             this.q4 = q4;
@@ -501,7 +527,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Attitude roll expressed as Euler angles, not recommended except for human-readable outputs"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -513,7 +540,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -525,7 +553,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -537,7 +566,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "X acceleration m/s/s"
         )
         public final Builder xacc(float xacc) {
             this.xacc = xacc;
@@ -549,7 +579,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Y acceleration m/s/s"
         )
         public final Builder yacc(float yacc) {
             this.yacc = yacc;
@@ -561,7 +592,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "Z acceleration m/s/s"
         )
         public final Builder zacc(float zacc) {
             this.zacc = zacc;
@@ -573,7 +605,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around X axis rad/s"
         )
         public final Builder xgyro(float xgyro) {
             this.xgyro = xgyro;
@@ -585,7 +618,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around Y axis rad/s"
         )
         public final Builder ygyro(float ygyro) {
             this.ygyro = ygyro;
@@ -597,7 +631,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "Angular speed around Z axis rad/s"
         )
         public final Builder zgyro(float zgyro) {
             this.zgyro = zgyro;
@@ -609,7 +644,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "Latitude in degrees"
         )
         public final Builder lat(float lat) {
             this.lat = lat;
@@ -621,7 +657,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 4
+                unitSize = 4,
+                description = "Longitude in degrees"
         )
         public final Builder lon(float lon) {
             this.lon = lon;
@@ -633,7 +670,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude in meters"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -645,7 +683,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 4
+                unitSize = 4,
+                description = "Horizontal position standard deviation"
         )
         public final Builder stdDevHorz(float stdDevHorz) {
             this.stdDevHorz = stdDevHorz;
@@ -657,7 +696,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 4
+                unitSize = 4,
+                description = "Vertical position standard deviation"
         )
         public final Builder stdDevVert(float stdDevVert) {
             this.stdDevVert = stdDevVert;
@@ -669,7 +709,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 19,
-                unitSize = 4
+                unitSize = 4,
+                description = "True velocity in m/s in NORTH direction in earth-fixed NED frame"
         )
         public final Builder vn(float vn) {
             this.vn = vn;
@@ -681,7 +722,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 20,
-                unitSize = 4
+                unitSize = 4,
+                description = "True velocity in m/s in EAST direction in earth-fixed NED frame"
         )
         public final Builder ve(float ve) {
             this.ve = ve;
@@ -693,7 +735,8 @@ public final class SimState {
          */
         @MavlinkFieldInfo(
                 position = 21,
-                unitSize = 4
+                unitSize = 4,
+                description = "True velocity in m/s in DOWN direction in earth-fixed NED frame"
         )
         public final Builder vd(float vd) {
             this.vd = vd;

@@ -19,7 +19,9 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 24,
-        crc = 24
+        crc = 24,
+        description = "The global position, as returned by the Global Positioning System (GPS). This is\n"
+                        + "                NOT the global position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate."
 )
 public final class GpsRawInt {
     private final BigInteger timeUsec;
@@ -85,7 +87,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -97,7 +100,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = GpsFixType.class
+            enumType = GpsFixType.class,
+            description = "See the GPS_FIX_TYPE enum."
     )
     public final EnumValue<GpsFixType> fixType() {
         return this.fixType;
@@ -109,7 +113,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84, EGM96 ellipsoid), in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -121,7 +126,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84, EGM96 ellipsoid), in degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -134,7 +140,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude (AMSL, NOT WGS84), in meters * 1000 (positive for up). Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude."
     )
     public final int alt() {
         return this.alt;
@@ -145,7 +152,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
     )
     public final int eph() {
         return this.eph;
@@ -156,7 +164,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
     )
     public final int epv() {
         return this.epv;
@@ -167,7 +176,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX"
     )
     public final int vel() {
         return this.vel;
@@ -179,7 +189,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 2
+            unitSize = 2,
+            description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
     )
     public final int cog() {
         return this.cog;
@@ -190,7 +201,8 @@ public final class GpsRawInt {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible. If unknown, set to 255"
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
@@ -203,7 +215,8 @@ public final class GpsRawInt {
             position = 12,
             unitSize = 4,
             signed = true,
-            extension = true
+            extension = true,
+            description = "Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up)."
     )
     public final int altEllipsoid() {
         return this.altEllipsoid;
@@ -215,7 +228,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Position uncertainty in meters * 1000 (positive for up)."
     )
     public final long hAcc() {
         return this.hAcc;
@@ -227,7 +241,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Altitude uncertainty in meters * 1000 (positive for up)."
     )
     public final long vAcc() {
         return this.vAcc;
@@ -239,7 +254,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Speed uncertainty in meters * 1000 (positive for up)."
     )
     public final long velAcc() {
         return this.velAcc;
@@ -251,7 +267,8 @@ public final class GpsRawInt {
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "Heading / track uncertainty in degrees * 1e5."
     )
     public final long hdgAcc() {
         return this.hdgAcc;
@@ -356,7 +373,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -369,7 +387,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = GpsFixType.class
+                enumType = GpsFixType.class,
+                description = "See the GPS_FIX_TYPE enum."
         )
         public final Builder fixType(EnumValue<GpsFixType> fixType) {
             this.fixType = fixType;
@@ -403,7 +422,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84, EGM96 ellipsoid), in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -416,7 +436,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84, EGM96 ellipsoid), in degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -430,7 +451,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude (AMSL, NOT WGS84), in meters * 1000 (positive for up). Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude."
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -442,7 +464,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
         )
         public final Builder eph(int eph) {
             this.eph = eph;
@@ -454,7 +477,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
         )
         public final Builder epv(int epv) {
             this.epv = epv;
@@ -466,7 +490,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX"
         )
         public final Builder vel(int vel) {
             this.vel = vel;
@@ -479,7 +504,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 2
+                unitSize = 2,
+                description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
         )
         public final Builder cog(int cog) {
             this.cog = cog;
@@ -491,7 +517,8 @@ public final class GpsRawInt {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible. If unknown, set to 255"
         )
         public final Builder satellitesVisible(int satellitesVisible) {
             this.satellitesVisible = satellitesVisible;
@@ -505,7 +532,8 @@ public final class GpsRawInt {
                 position = 12,
                 unitSize = 4,
                 signed = true,
-                extension = true
+                extension = true,
+                description = "Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up)."
         )
         public final Builder altEllipsoid(int altEllipsoid) {
             this.altEllipsoid = altEllipsoid;
@@ -518,7 +546,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Position uncertainty in meters * 1000 (positive for up)."
         )
         public final Builder hAcc(long hAcc) {
             this.hAcc = hAcc;
@@ -531,7 +560,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Altitude uncertainty in meters * 1000 (positive for up)."
         )
         public final Builder vAcc(long vAcc) {
             this.vAcc = vAcc;
@@ -544,7 +574,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Speed uncertainty in meters * 1000 (positive for up)."
         )
         public final Builder velAcc(long velAcc) {
             this.velAcc = velAcc;
@@ -557,7 +588,8 @@ public final class GpsRawInt {
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "Heading / track uncertainty in degrees * 1e5."
         )
         public final Builder hdgAcc(long hdgAcc) {
             this.hdgAcc = hdgAcc;

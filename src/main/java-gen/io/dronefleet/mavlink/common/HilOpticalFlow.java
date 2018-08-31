@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 114,
-        crc = 237
+        crc = 237,
+        description = "Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor)"
 )
 public final class HilOpticalFlow {
     private final BigInteger timeUsec;
@@ -72,7 +73,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -83,7 +85,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Sensor ID"
     )
     public final int sensorId() {
         return this.sensorId;
@@ -95,7 +98,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 4
+            unitSize = 4,
+            description = "Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
     )
     public final long integrationTimeUs() {
         return this.integrationTimeUs;
@@ -107,7 +111,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
     )
     public final float integratedX() {
         return this.integratedX;
@@ -119,7 +124,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 4
+            unitSize = 4,
+            description = "Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
     )
     public final float integratedY() {
         return this.integratedY;
@@ -130,7 +136,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4
+            unitSize = 4,
+            description = "RH rotation around X axis (rad)"
     )
     public final float integratedXgyro() {
         return this.integratedXgyro;
@@ -141,7 +148,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 7,
-            unitSize = 4
+            unitSize = 4,
+            description = "RH rotation around Y axis (rad)"
     )
     public final float integratedYgyro() {
         return this.integratedYgyro;
@@ -152,7 +160,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 8,
-            unitSize = 4
+            unitSize = 4,
+            description = "RH rotation around Z axis (rad)"
     )
     public final float integratedZgyro() {
         return this.integratedZgyro;
@@ -164,7 +173,8 @@ public final class HilOpticalFlow {
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Temperature * 100 in centi-degrees Celsius"
     )
     public final int temperature() {
         return this.temperature;
@@ -175,7 +185,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 1
+            unitSize = 1,
+            description = "Optical flow quality / confidence. 0: no valid flow, 255: maximum quality"
     )
     public final int quality() {
         return this.quality;
@@ -186,7 +197,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "Time in microseconds since the distance was sampled."
     )
     public final long timeDeltaDistanceUs() {
         return this.timeDeltaDistanceUs;
@@ -198,7 +210,8 @@ public final class HilOpticalFlow {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "Distance to the center of the flow field in meters. Positive value (including zero): distance known. Negative value: Unknown distance."
     )
     public final float distance() {
         return this.distance;
@@ -288,7 +301,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -300,7 +314,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Sensor ID"
         )
         public final Builder sensorId(int sensorId) {
             this.sensorId = sensorId;
@@ -313,7 +328,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 4
+                unitSize = 4,
+                description = "Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
         )
         public final Builder integrationTimeUs(long integrationTimeUs) {
             this.integrationTimeUs = integrationTimeUs;
@@ -326,7 +342,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
         )
         public final Builder integratedX(float integratedX) {
             this.integratedX = integratedX;
@@ -339,7 +356,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 4
+                unitSize = 4,
+                description = "Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
         )
         public final Builder integratedY(float integratedY) {
             this.integratedY = integratedY;
@@ -351,7 +369,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4
+                unitSize = 4,
+                description = "RH rotation around X axis (rad)"
         )
         public final Builder integratedXgyro(float integratedXgyro) {
             this.integratedXgyro = integratedXgyro;
@@ -363,7 +382,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 7,
-                unitSize = 4
+                unitSize = 4,
+                description = "RH rotation around Y axis (rad)"
         )
         public final Builder integratedYgyro(float integratedYgyro) {
             this.integratedYgyro = integratedYgyro;
@@ -375,7 +395,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 8,
-                unitSize = 4
+                unitSize = 4,
+                description = "RH rotation around Z axis (rad)"
         )
         public final Builder integratedZgyro(float integratedZgyro) {
             this.integratedZgyro = integratedZgyro;
@@ -388,7 +409,8 @@ public final class HilOpticalFlow {
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Temperature * 100 in centi-degrees Celsius"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;
@@ -400,7 +422,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 1
+                unitSize = 1,
+                description = "Optical flow quality / confidence. 0: no valid flow, 255: maximum quality"
         )
         public final Builder quality(int quality) {
             this.quality = quality;
@@ -412,7 +435,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "Time in microseconds since the distance was sampled."
         )
         public final Builder timeDeltaDistanceUs(long timeDeltaDistanceUs) {
             this.timeDeltaDistanceUs = timeDeltaDistanceUs;
@@ -425,7 +449,8 @@ public final class HilOpticalFlow {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "Distance to the center of the flow field in meters. Positive value (including zero): distance known. Negative value: Unknown distance."
         )
         public final Builder distance(float distance) {
             this.distance = distance;

@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 158,
-        crc = 134
+        crc = 134,
+        description = "Message with some status from APM to GCS about camera or antenna mount"
 )
 public final class MountStatus {
     private final int targetSystem;
@@ -48,7 +49,8 @@ public final class MountStatus {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -59,7 +61,8 @@ public final class MountStatus {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -71,7 +74,8 @@ public final class MountStatus {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "pitch(deg*100)"
     )
     public final int pointingA() {
         return this.pointingA;
@@ -83,7 +87,8 @@ public final class MountStatus {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "roll(deg*100)"
     )
     public final int pointingB() {
         return this.pointingB;
@@ -95,7 +100,8 @@ public final class MountStatus {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "yaw(deg*100)"
     )
     public final int pointingC() {
         return this.pointingC;
@@ -150,7 +156,8 @@ public final class MountStatus {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -162,7 +169,8 @@ public final class MountStatus {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -175,7 +183,8 @@ public final class MountStatus {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "pitch(deg*100)"
         )
         public final Builder pointingA(int pointingA) {
             this.pointingA = pointingA;
@@ -188,7 +197,8 @@ public final class MountStatus {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "roll(deg*100)"
         )
         public final Builder pointingB(int pointingB) {
             this.pointingB = pointingB;
@@ -201,7 +211,8 @@ public final class MountStatus {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "yaw(deg*100)"
         )
         public final Builder pointingC(int pointingC) {
             this.pointingC = pointingC;

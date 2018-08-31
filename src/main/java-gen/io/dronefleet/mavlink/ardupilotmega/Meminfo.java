@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 152,
-        crc = 208
+        crc = 208,
+        description = "state of APM memory"
 )
 public final class Meminfo {
     private final int brkval;
@@ -41,7 +42,8 @@ public final class Meminfo {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 2
+            unitSize = 2,
+            description = "heap top"
     )
     public final int brkval() {
         return this.brkval;
@@ -52,7 +54,8 @@ public final class Meminfo {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2
+            unitSize = 2,
+            description = "free memory"
     )
     public final int freemem() {
         return this.freemem;
@@ -64,7 +67,8 @@ public final class Meminfo {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            extension = true
+            extension = true,
+            description = "free memory (32 bit)"
     )
     public final long freemem32() {
         return this.freemem32;
@@ -109,7 +113,8 @@ public final class Meminfo {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 2
+                unitSize = 2,
+                description = "heap top"
         )
         public final Builder brkval(int brkval) {
             this.brkval = brkval;
@@ -121,7 +126,8 @@ public final class Meminfo {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 2
+                unitSize = 2,
+                description = "free memory"
         )
         public final Builder freemem(int freemem) {
             this.freemem = freemem;
@@ -134,7 +140,8 @@ public final class Meminfo {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                extension = true
+                extension = true,
+                description = "free memory (32 bit)"
         )
         public final Builder freemem32(long freemem32) {
             this.freemem32 = freemem32;

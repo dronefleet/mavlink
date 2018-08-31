@@ -19,7 +19,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 126,
-        crc = 220
+        crc = 220,
+        description = "Control a serial port. This can be used for raw access to an onboard serial peripheral such as a GPS or telemetry radio. It is designed to make it possible to update the devices firmware via MAVLink messages or change the devices settings. A message with zero bytes can be used to change just the baudrate."
 )
 public final class SerialControl {
     private final EnumValue<SerialControlDev> device;
@@ -58,7 +59,8 @@ public final class SerialControl {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = SerialControlDev.class
+            enumType = SerialControlDev.class,
+            description = "See SERIAL_CONTROL_DEV enum"
     )
     public final EnumValue<SerialControlDev> device() {
         return this.device;
@@ -70,7 +72,8 @@ public final class SerialControl {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = SerialControlFlag.class
+            enumType = SerialControlFlag.class,
+            description = "See SERIAL_CONTROL_FLAG enum"
     )
     public final EnumValue<SerialControlFlag> flags() {
         return this.flags;
@@ -81,7 +84,8 @@ public final class SerialControl {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "Timeout for reply data in milliseconds"
     )
     public final int timeout() {
         return this.timeout;
@@ -92,7 +96,8 @@ public final class SerialControl {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "Baudrate of transfer. Zero means no change."
     )
     public final long baudrate() {
         return this.baudrate;
@@ -103,7 +108,8 @@ public final class SerialControl {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 1
+            unitSize = 1,
+            description = "how many bytes in this transfer"
     )
     public final int count() {
         return this.count;
@@ -115,7 +121,8 @@ public final class SerialControl {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            arraySize = 70
+            arraySize = 70,
+            description = "serial data"
     )
     public final byte[] data() {
         return this.data;
@@ -176,7 +183,8 @@ public final class SerialControl {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = SerialControlDev.class
+                enumType = SerialControlDev.class,
+                description = "See SERIAL_CONTROL_DEV enum"
         )
         public final Builder device(EnumValue<SerialControlDev> device) {
             this.device = device;
@@ -210,7 +218,8 @@ public final class SerialControl {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = SerialControlFlag.class
+                enumType = SerialControlFlag.class,
+                description = "See SERIAL_CONTROL_FLAG enum"
         )
         public final Builder flags(EnumValue<SerialControlFlag> flags) {
             this.flags = flags;
@@ -243,7 +252,8 @@ public final class SerialControl {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "Timeout for reply data in milliseconds"
         )
         public final Builder timeout(int timeout) {
             this.timeout = timeout;
@@ -255,7 +265,8 @@ public final class SerialControl {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "Baudrate of transfer. Zero means no change."
         )
         public final Builder baudrate(long baudrate) {
             this.baudrate = baudrate;
@@ -267,7 +278,8 @@ public final class SerialControl {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 1
+                unitSize = 1,
+                description = "how many bytes in this transfer"
         )
         public final Builder count(int count) {
             this.count = count;
@@ -280,7 +292,8 @@ public final class SerialControl {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                arraySize = 70
+                arraySize = 70,
+                description = "serial data"
         )
         public final Builder data(byte[] data) {
             this.data = data;

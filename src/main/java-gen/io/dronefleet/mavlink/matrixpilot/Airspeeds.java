@@ -13,7 +13,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 182,
-        crc = 154
+        crc = 154,
+        description = "The airspeed measured by sensors and IMU"
 )
 public final class Airspeeds {
     private final long timeBootMs;
@@ -54,7 +55,8 @@ public final class Airspeeds {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 4
+            unitSize = 4,
+            description = "Timestamp (milliseconds since system boot)"
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -66,7 +68,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Airspeed estimate from IMU, cm/s"
     )
     public final int airspeedImu() {
         return this.airspeedImu;
@@ -78,7 +81,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Pitot measured forward airpseed, cm/s"
     )
     public final int airspeedPitot() {
         return this.airspeedPitot;
@@ -90,7 +94,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Hot wire anenometer measured airspeed, cm/s"
     )
     public final int airspeedHotWire() {
         return this.airspeedHotWire;
@@ -102,7 +107,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Ultrasonic measured airspeed, cm/s"
     )
     public final int airspeedUltrasonic() {
         return this.airspeedUltrasonic;
@@ -114,7 +120,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Angle of attack sensor, degrees * 10"
     )
     public final int aoa() {
         return this.aoa;
@@ -126,7 +133,8 @@ public final class Airspeeds {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            signed = true
+            signed = true,
+            description = "Yaw angle sensor, degrees * 10"
     )
     public final int aoy() {
         return this.aoy;
@@ -191,7 +199,8 @@ public final class Airspeeds {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 4
+                unitSize = 4,
+                description = "Timestamp (milliseconds since system boot)"
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -204,7 +213,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Airspeed estimate from IMU, cm/s"
         )
         public final Builder airspeedImu(int airspeedImu) {
             this.airspeedImu = airspeedImu;
@@ -217,7 +227,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Pitot measured forward airpseed, cm/s"
         )
         public final Builder airspeedPitot(int airspeedPitot) {
             this.airspeedPitot = airspeedPitot;
@@ -230,7 +241,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Hot wire anenometer measured airspeed, cm/s"
         )
         public final Builder airspeedHotWire(int airspeedHotWire) {
             this.airspeedHotWire = airspeedHotWire;
@@ -243,7 +255,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Ultrasonic measured airspeed, cm/s"
         )
         public final Builder airspeedUltrasonic(int airspeedUltrasonic) {
             this.airspeedUltrasonic = airspeedUltrasonic;
@@ -256,7 +269,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Angle of attack sensor, degrees * 10"
         )
         public final Builder aoa(int aoa) {
             this.aoa = aoa;
@@ -269,7 +283,8 @@ public final class Airspeeds {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                signed = true
+                signed = true,
+                description = "Yaw angle sensor, degrees * 10"
         )
         public final Builder aoy(int aoy) {
             this.aoy = aoy;

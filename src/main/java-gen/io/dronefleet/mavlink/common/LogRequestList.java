@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 117,
-        crc = 128
+        crc = 128,
+        description = "Request a list of available logs. On some systems calling this may stop on-board logging until LOG_REQUEST_END is called."
 )
 public final class LogRequestList {
     private final int targetSystem;
@@ -45,7 +46,8 @@ public final class LogRequestList {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -56,7 +58,8 @@ public final class LogRequestList {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -67,7 +70,8 @@ public final class LogRequestList {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 2
+            unitSize = 2,
+            description = "First log id (0 for first available)"
     )
     public final int start() {
         return this.start;
@@ -78,7 +82,8 @@ public final class LogRequestList {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 2
+            unitSize = 2,
+            description = "Last log id (0xffff for last available)"
     )
     public final int end() {
         return this.end;
@@ -128,7 +133,8 @@ public final class LogRequestList {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -140,7 +146,8 @@ public final class LogRequestList {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -152,7 +159,8 @@ public final class LogRequestList {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 2
+                unitSize = 2,
+                description = "First log id (0 for first available)"
         )
         public final Builder start(int start) {
             this.start = start;
@@ -164,7 +172,8 @@ public final class LogRequestList {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 2
+                unitSize = 2,
+                description = "Last log id (0xffff for last available)"
         )
         public final Builder end(int end) {
             this.end = end;

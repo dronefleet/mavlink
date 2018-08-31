@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 176,
-        crc = 234
+        crc = 234,
+        description = "Request a current rally point from MAV. MAV should respond with a RALLY_POINT message. MAV should not respond if the request is invalid."
 )
 public final class RallyFetchPoint {
     private final int targetSystem;
@@ -42,7 +43,8 @@ public final class RallyFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -53,7 +55,8 @@ public final class RallyFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "Component ID"
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -64,7 +67,8 @@ public final class RallyFetchPoint {
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1
+            unitSize = 1,
+            description = "point index (first point is 0)"
     )
     public final int idx() {
         return this.idx;
@@ -109,7 +113,8 @@ public final class RallyFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -121,7 +126,8 @@ public final class RallyFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "Component ID"
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -133,7 +139,8 @@ public final class RallyFetchPoint {
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1
+                unitSize = 1,
+                description = "point index (first point is 0)"
         )
         public final Builder idx(int idx) {
             this.idx = idx;

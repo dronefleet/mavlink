@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 135,
-        crc = 203
+        crc = 203,
+        description = "Request that the vehicle report terrain height at the given location. Used by GCS to check if vehicle has all terrain data needed for a mission."
 )
 public final class TerrainCheck {
     private final int lat;
@@ -40,7 +41,8 @@ public final class TerrainCheck {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (degrees *10^7)"
     )
     public final int lat() {
         return this.lat;
@@ -52,7 +54,8 @@ public final class TerrainCheck {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (degrees *10^7)"
     )
     public final int lon() {
         return this.lon;
@@ -93,7 +96,8 @@ public final class TerrainCheck {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (degrees *10^7)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -106,7 +110,8 @@ public final class TerrainCheck {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (degrees *10^7)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;

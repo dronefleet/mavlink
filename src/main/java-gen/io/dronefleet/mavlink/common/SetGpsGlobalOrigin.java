@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 48,
-        crc = 41
+        crc = 41,
+        description = "As local waypoints exist, the global waypoint reference allows to transform between the local coordinate frame and the global (GPS) coordinate frame. This can be necessary when e.g. in- and outdoor settings are connected and the MAV should move from in- to outdoor."
 )
 public final class SetGpsGlobalOrigin {
     private final int targetSystem;
@@ -51,7 +52,8 @@ public final class SetGpsGlobalOrigin {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 1
+            unitSize = 1,
+            description = "System ID"
     )
     public final int targetSystem() {
         return this.targetSystem;
@@ -63,7 +65,8 @@ public final class SetGpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int latitude() {
         return this.latitude;
@@ -75,7 +78,8 @@ public final class SetGpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84), in degrees * 1E7"
     )
     public final int longitude() {
         return this.longitude;
@@ -87,7 +91,8 @@ public final class SetGpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Altitude (AMSL), in meters * 1000 (positive for up)"
     )
     public final int altitude() {
         return this.altitude;
@@ -99,7 +104,8 @@ public final class SetGpsGlobalOrigin {
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 8,
-            extension = true
+            extension = true,
+            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -154,7 +160,8 @@ public final class SetGpsGlobalOrigin {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 1
+                unitSize = 1,
+                description = "System ID"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -167,7 +174,8 @@ public final class SetGpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -180,7 +188,8 @@ public final class SetGpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84), in degrees * 1E7"
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -193,7 +202,8 @@ public final class SetGpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Altitude (AMSL), in meters * 1000 (positive for up)"
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -206,7 +216,8 @@ public final class SetGpsGlobalOrigin {
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 8,
-                extension = true
+                extension = true,
+                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

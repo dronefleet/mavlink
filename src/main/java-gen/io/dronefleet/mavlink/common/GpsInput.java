@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 232,
-        crc = 151
+        crc = 151,
+        description = "GPS sensor input message.  This is a raw sensor value sent by the GPS. This is NOT the global position estimate of the sytem."
 )
 public final class GpsInput {
     private final BigInteger timeUsec;
@@ -94,7 +95,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 1,
-            unitSize = 8
+            unitSize = 8,
+            description = "Timestamp (micros since boot or Unix epoch)"
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -105,7 +107,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 1
+            unitSize = 1,
+            description = "ID of the GPS for multiple GPS inputs"
     )
     public final int gpsId() {
         return this.gpsId;
@@ -118,7 +121,8 @@ public final class GpsInput {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            enumType = GpsInputIgnoreFlags.class
+            enumType = GpsInputIgnoreFlags.class,
+            description = "Flags indicating which fields to ignore (see GPS_INPUT_IGNORE_FLAGS enum).  All other fields must be provided."
     )
     public final EnumValue<GpsInputIgnoreFlags> ignoreFlags() {
         return this.ignoreFlags;
@@ -129,7 +133,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 4,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS time (milliseconds from start of GPS week)"
     )
     public final long timeWeekMs() {
         return this.timeWeekMs;
@@ -140,7 +145,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 5,
-            unitSize = 2
+            unitSize = 2,
+            description = "GPS week number"
     )
     public final int timeWeek() {
         return this.timeWeek;
@@ -151,7 +157,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 1
+            unitSize = 1,
+            description = "0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK"
     )
     public final int fixType() {
         return this.fixType;
@@ -163,7 +170,8 @@ public final class GpsInput {
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Latitude (WGS84), in degrees * 1E7"
     )
     public final int lat() {
         return this.lat;
@@ -175,7 +183,8 @@ public final class GpsInput {
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            signed = true
+            signed = true,
+            description = "Longitude (WGS84), in degrees * 1E7"
     )
     public final int lon() {
         return this.lon;
@@ -186,7 +195,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 9,
-            unitSize = 4
+            unitSize = 4,
+            description = "Altitude (AMSL, not WGS84), in m (positive for up)"
     )
     public final float alt() {
         return this.alt;
@@ -197,7 +207,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 10,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS HDOP horizontal dilution of position in m"
     )
     public final float hdop() {
         return this.hdop;
@@ -208,7 +219,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 11,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS VDOP vertical dilution of position in m"
     )
     public final float vdop() {
         return this.vdop;
@@ -219,7 +231,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 12,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity in m/s in NORTH direction in earth-fixed NED frame"
     )
     public final float vn() {
         return this.vn;
@@ -230,7 +243,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 13,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity in m/s in EAST direction in earth-fixed NED frame"
     )
     public final float ve() {
         return this.ve;
@@ -241,7 +255,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 14,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS velocity in m/s in DOWN direction in earth-fixed NED frame"
     )
     public final float vd() {
         return this.vd;
@@ -252,7 +267,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 15,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS speed accuracy in m/s"
     )
     public final float speedAccuracy() {
         return this.speedAccuracy;
@@ -263,7 +279,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 16,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS horizontal accuracy in m"
     )
     public final float horizAccuracy() {
         return this.horizAccuracy;
@@ -274,7 +291,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 17,
-            unitSize = 4
+            unitSize = 4,
+            description = "GPS vertical accuracy in m"
     )
     public final float vertAccuracy() {
         return this.vertAccuracy;
@@ -285,7 +303,8 @@ public final class GpsInput {
      */
     @MavlinkFieldInfo(
             position = 18,
-            unitSize = 1
+            unitSize = 1,
+            description = "Number of satellites visible."
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
@@ -405,7 +424,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 1,
-                unitSize = 8
+                unitSize = 8,
+                description = "Timestamp (micros since boot or Unix epoch)"
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -417,7 +437,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 2,
-                unitSize = 1
+                unitSize = 1,
+                description = "ID of the GPS for multiple GPS inputs"
         )
         public final Builder gpsId(int gpsId) {
             this.gpsId = gpsId;
@@ -431,7 +452,8 @@ public final class GpsInput {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                enumType = GpsInputIgnoreFlags.class
+                enumType = GpsInputIgnoreFlags.class,
+                description = "Flags indicating which fields to ignore (see GPS_INPUT_IGNORE_FLAGS enum).  All other fields must be provided."
         )
         public final Builder ignoreFlags(EnumValue<GpsInputIgnoreFlags> ignoreFlags) {
             this.ignoreFlags = ignoreFlags;
@@ -467,7 +489,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 4,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS time (milliseconds from start of GPS week)"
         )
         public final Builder timeWeekMs(long timeWeekMs) {
             this.timeWeekMs = timeWeekMs;
@@ -479,7 +502,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 5,
-                unitSize = 2
+                unitSize = 2,
+                description = "GPS week number"
         )
         public final Builder timeWeek(int timeWeek) {
             this.timeWeek = timeWeek;
@@ -491,7 +515,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 1
+                unitSize = 1,
+                description = "0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK"
         )
         public final Builder fixType(int fixType) {
             this.fixType = fixType;
@@ -504,7 +529,8 @@ public final class GpsInput {
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Latitude (WGS84), in degrees * 1E7"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -517,7 +543,8 @@ public final class GpsInput {
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                signed = true
+                signed = true,
+                description = "Longitude (WGS84), in degrees * 1E7"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -529,7 +556,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 9,
-                unitSize = 4
+                unitSize = 4,
+                description = "Altitude (AMSL, not WGS84), in m (positive for up)"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -541,7 +569,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 10,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS HDOP horizontal dilution of position in m"
         )
         public final Builder hdop(float hdop) {
             this.hdop = hdop;
@@ -553,7 +582,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 11,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS VDOP vertical dilution of position in m"
         )
         public final Builder vdop(float vdop) {
             this.vdop = vdop;
@@ -565,7 +595,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 12,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity in m/s in NORTH direction in earth-fixed NED frame"
         )
         public final Builder vn(float vn) {
             this.vn = vn;
@@ -577,7 +608,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 13,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity in m/s in EAST direction in earth-fixed NED frame"
         )
         public final Builder ve(float ve) {
             this.ve = ve;
@@ -589,7 +621,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 14,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS velocity in m/s in DOWN direction in earth-fixed NED frame"
         )
         public final Builder vd(float vd) {
             this.vd = vd;
@@ -601,7 +634,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 15,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS speed accuracy in m/s"
         )
         public final Builder speedAccuracy(float speedAccuracy) {
             this.speedAccuracy = speedAccuracy;
@@ -613,7 +647,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 16,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS horizontal accuracy in m"
         )
         public final Builder horizAccuracy(float horizAccuracy) {
             this.horizAccuracy = horizAccuracy;
@@ -625,7 +660,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 17,
-                unitSize = 4
+                unitSize = 4,
+                description = "GPS vertical accuracy in m"
         )
         public final Builder vertAccuracy(float vertAccuracy) {
             this.vertAccuracy = vertAccuracy;
@@ -637,7 +673,8 @@ public final class GpsInput {
          */
         @MavlinkFieldInfo(
                 position = 18,
-                unitSize = 1
+                unitSize = 1,
+                description = "Number of satellites visible."
         )
         public final Builder satellitesVisible(int satellitesVisible) {
             this.satellitesVisible = satellitesVisible;

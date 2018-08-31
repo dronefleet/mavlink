@@ -16,7 +16,8 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 215,
-        crc = 101
+        crc = 101,
+        description = "Heartbeat from a HeroBus attached GoPro"
 )
 public final class GoproHeartbeat {
     private final EnumValue<GoproHeartbeatStatus> status;
@@ -46,7 +47,8 @@ public final class GoproHeartbeat {
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            enumType = GoproHeartbeatStatus.class
+            enumType = GoproHeartbeatStatus.class,
+            description = "Status"
     )
     public final EnumValue<GoproHeartbeatStatus> status() {
         return this.status;
@@ -58,7 +60,8 @@ public final class GoproHeartbeat {
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            enumType = GoproCaptureMode.class
+            enumType = GoproCaptureMode.class,
+            description = "Current capture mode"
     )
     public final EnumValue<GoproCaptureMode> captureMode() {
         return this.captureMode;
@@ -70,7 +73,8 @@ public final class GoproHeartbeat {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = GoproHeartbeatFlags.class
+            enumType = GoproHeartbeatFlags.class,
+            description = "additional status bits"
     )
     public final EnumValue<GoproHeartbeatFlags> flags() {
         return this.flags;
@@ -116,7 +120,8 @@ public final class GoproHeartbeat {
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                enumType = GoproHeartbeatStatus.class
+                enumType = GoproHeartbeatStatus.class,
+                description = "Status"
         )
         public final Builder status(EnumValue<GoproHeartbeatStatus> status) {
             this.status = status;
@@ -150,7 +155,8 @@ public final class GoproHeartbeat {
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                enumType = GoproCaptureMode.class
+                enumType = GoproCaptureMode.class,
+                description = "Current capture mode"
         )
         public final Builder captureMode(EnumValue<GoproCaptureMode> captureMode) {
             this.captureMode = captureMode;
@@ -184,7 +190,8 @@ public final class GoproHeartbeat {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = GoproHeartbeatFlags.class
+                enumType = GoproHeartbeatFlags.class,
+                description = "additional status bits"
         )
         public final Builder flags(EnumValue<GoproHeartbeatFlags> flags) {
             this.flags = flags;
