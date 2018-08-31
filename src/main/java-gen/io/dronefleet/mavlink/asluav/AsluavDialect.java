@@ -1,77 +1,41 @@
 package io.dronefleet.mavlink.asluav;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class AsluavDialect implements MavlinkDialect {
+public final class AsluavDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "asluav";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(201, SensPower.class)
+            .put(202, SensMppt.class)
+            .put(203, AslctrlData.class)
+            .put(204, AslctrlDebug.class)
+            .put(205, AsluavStatus.class)
+            .put(206, EkfExt.class)
+            .put(207, AslObctrl.class)
+            .put(208, SensAtmos.class)
+            .put(209, SensBatmon.class)
+            .put(210, FwSoaringData.class)
+            .put(211, SensorpodStatus.class)
+            .put(212, SensPowerBoard.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 201:
-            case 202:
-            case 203:
-            case 204:
-            case 205:
-            case 206:
-            case 207:
-            case 208:
-            case 209:
-            case 210:
-            case 211:
-            case 212:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 201: return SensPower.class;
-            case 202: return SensMppt.class;
-            case 203: return AslctrlData.class;
-            case 204: return AslctrlDebug.class;
-            case 205: return AsluavStatus.class;
-            case 206: return EkfExt.class;
-            case 207: return AslObctrl.class;
-            case 208: return SensAtmos.class;
-            case 209: return SensBatmon.class;
-            case 210: return FwSoaringData.class;
-            case 211: return SensorpodStatus.class;
-            case 212: return SensPowerBoard.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public AsluavDialect() {
+        super("asluav", dependencies, messages);
     }
 }

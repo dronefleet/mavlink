@@ -1,55 +1,29 @@
 package io.dronefleet.mavlink.icarous;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class IcarousDialect implements MavlinkDialect {
+public final class IcarousDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Collections.emptyList();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final String name() {
-        return "icarous";
-    }
+    private static final List<MavlinkDialect> dependencies = Collections.emptyList();
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 42000:
-            case 42001:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(42000, IcarousHeartbeat.class)
+            .put(42001, IcarousKinematicBands.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 42000: return IcarousHeartbeat.class;
-            case 42001: return IcarousKinematicBands.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public IcarousDialect() {
+        super("icarous", dependencies, messages);
     }
 }

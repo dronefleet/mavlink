@@ -1,59 +1,32 @@
 package io.dronefleet.mavlink.uavionix;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class UavionixDialect implements MavlinkDialect {
+public final class UavionixDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "uavionix";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(10001, UavionixAdsbOutCfg.class)
+            .put(10002, UavionixAdsbOutDynamic.class)
+            .put(10003, UavionixAdsbTransceiverHealthReport.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 10001:
-            case 10002:
-            case 10003:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 10001: return UavionixAdsbOutCfg.class;
-            case 10002: return UavionixAdsbOutDynamic.class;
-            case 10003: return UavionixAdsbTransceiverHealthReport.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public UavionixDialect() {
+        super("uavionix", dependencies, messages);
     }
 }

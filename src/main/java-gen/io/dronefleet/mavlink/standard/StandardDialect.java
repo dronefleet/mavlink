@@ -1,48 +1,28 @@
 package io.dronefleet.mavlink.standard;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class StandardDialect implements MavlinkDialect {
+public final class StandardDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "standard";
-    }
+    private static final Map<Integer, Class> messages = Collections.emptyMap();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public StandardDialect() {
+        super("standard", dependencies, messages);
     }
 }

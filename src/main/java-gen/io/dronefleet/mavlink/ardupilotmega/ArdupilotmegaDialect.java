@@ -1,171 +1,90 @@
 package io.dronefleet.mavlink.ardupilotmega;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
 import io.dronefleet.mavlink.icarous.IcarousDialect;
 import io.dronefleet.mavlink.uavionix.UavionixDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class ArdupilotmegaDialect implements MavlinkDialect {
+public final class ArdupilotmegaDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect(),
             new UavionixDialect(),
             new IcarousDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "ardupilotmega";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(150, SensorOffsets.class)
+            .put(151, SetMagOffsets.class)
+            .put(152, Meminfo.class)
+            .put(153, ApAdc.class)
+            .put(154, DigicamConfigure.class)
+            .put(155, DigicamControl.class)
+            .put(156, MountConfigure.class)
+            .put(157, MountControl.class)
+            .put(158, MountStatus.class)
+            .put(160, FencePoint.class)
+            .put(161, FenceFetchPoint.class)
+            .put(162, FenceStatus.class)
+            .put(163, Ahrs.class)
+            .put(164, Simstate.class)
+            .put(165, Hwstatus.class)
+            .put(166, Radio.class)
+            .put(167, LimitsStatus.class)
+            .put(168, Wind.class)
+            .put(169, Data16.class)
+            .put(170, Data32.class)
+            .put(171, Data64.class)
+            .put(172, Data96.class)
+            .put(173, Rangefinder.class)
+            .put(174, AirspeedAutocal.class)
+            .put(175, RallyPoint.class)
+            .put(176, RallyFetchPoint.class)
+            .put(177, CompassmotStatus.class)
+            .put(178, Ahrs2.class)
+            .put(179, CameraStatus.class)
+            .put(180, CameraFeedback.class)
+            .put(181, Battery2.class)
+            .put(182, Ahrs3.class)
+            .put(183, AutopilotVersionRequest.class)
+            .put(184, RemoteLogDataBlock.class)
+            .put(185, RemoteLogBlockStatus.class)
+            .put(186, LedControl.class)
+            .put(191, MagCalProgress.class)
+            .put(192, MagCalReport.class)
+            .put(193, EkfStatusReport.class)
+            .put(194, PidTuning.class)
+            .put(195, Deepstall.class)
+            .put(200, GimbalReport.class)
+            .put(201, GimbalControl.class)
+            .put(214, GimbalTorqueCmdReport.class)
+            .put(215, GoproHeartbeat.class)
+            .put(216, GoproGetRequest.class)
+            .put(217, GoproGetResponse.class)
+            .put(218, GoproSetRequest.class)
+            .put(219, GoproSetResponse.class)
+            .put(226, Rpm.class)
+            .put(11000, DeviceOpRead.class)
+            .put(11001, DeviceOpReadReply.class)
+            .put(11002, DeviceOpWrite.class)
+            .put(11003, DeviceOpWriteReply.class)
+            .put(11010, AdapTuning.class)
+            .put(11011, VisionPositionDelta.class)
+            .put(11020, AoaSsa.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 150:
-            case 151:
-            case 152:
-            case 153:
-            case 154:
-            case 155:
-            case 156:
-            case 157:
-            case 158:
-            case 160:
-            case 161:
-            case 162:
-            case 163:
-            case 164:
-            case 165:
-            case 166:
-            case 167:
-            case 168:
-            case 169:
-            case 170:
-            case 171:
-            case 172:
-            case 173:
-            case 174:
-            case 175:
-            case 176:
-            case 177:
-            case 178:
-            case 179:
-            case 180:
-            case 181:
-            case 182:
-            case 183:
-            case 184:
-            case 185:
-            case 186:
-            case 191:
-            case 192:
-            case 193:
-            case 194:
-            case 195:
-            case 200:
-            case 201:
-            case 214:
-            case 215:
-            case 216:
-            case 217:
-            case 218:
-            case 219:
-            case 226:
-            case 11000:
-            case 11001:
-            case 11002:
-            case 11003:
-            case 11010:
-            case 11011:
-            case 11020:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 150: return SensorOffsets.class;
-            case 151: return SetMagOffsets.class;
-            case 152: return Meminfo.class;
-            case 153: return ApAdc.class;
-            case 154: return DigicamConfigure.class;
-            case 155: return DigicamControl.class;
-            case 156: return MountConfigure.class;
-            case 157: return MountControl.class;
-            case 158: return MountStatus.class;
-            case 160: return FencePoint.class;
-            case 161: return FenceFetchPoint.class;
-            case 162: return FenceStatus.class;
-            case 163: return Ahrs.class;
-            case 164: return Simstate.class;
-            case 165: return Hwstatus.class;
-            case 166: return Radio.class;
-            case 167: return LimitsStatus.class;
-            case 168: return Wind.class;
-            case 169: return Data16.class;
-            case 170: return Data32.class;
-            case 171: return Data64.class;
-            case 172: return Data96.class;
-            case 173: return Rangefinder.class;
-            case 174: return AirspeedAutocal.class;
-            case 175: return RallyPoint.class;
-            case 176: return RallyFetchPoint.class;
-            case 177: return CompassmotStatus.class;
-            case 178: return Ahrs2.class;
-            case 179: return CameraStatus.class;
-            case 180: return CameraFeedback.class;
-            case 181: return Battery2.class;
-            case 182: return Ahrs3.class;
-            case 183: return AutopilotVersionRequest.class;
-            case 184: return RemoteLogDataBlock.class;
-            case 185: return RemoteLogBlockStatus.class;
-            case 186: return LedControl.class;
-            case 191: return MagCalProgress.class;
-            case 192: return MagCalReport.class;
-            case 193: return EkfStatusReport.class;
-            case 194: return PidTuning.class;
-            case 195: return Deepstall.class;
-            case 200: return GimbalReport.class;
-            case 201: return GimbalControl.class;
-            case 214: return GimbalTorqueCmdReport.class;
-            case 215: return GoproHeartbeat.class;
-            case 216: return GoproGetRequest.class;
-            case 217: return GoproGetResponse.class;
-            case 218: return GoproSetRequest.class;
-            case 219: return GoproSetResponse.class;
-            case 226: return Rpm.class;
-            case 11000: return DeviceOpRead.class;
-            case 11001: return DeviceOpReadReply.class;
-            case 11002: return DeviceOpWrite.class;
-            case 11003: return DeviceOpWriteReply.class;
-            case 11010: return AdapTuning.class;
-            case 11011: return VisionPositionDelta.class;
-            case 11020: return AoaSsa.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public ArdupilotmegaDialect() {
+        super("ardupilotmega", dependencies, messages);
     }
 }

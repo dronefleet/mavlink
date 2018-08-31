@@ -1,93 +1,49 @@
 package io.dronefleet.mavlink.slugs;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class SlugsDialect implements MavlinkDialect {
+public final class SlugsDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "slugs";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(170, CpuLoad.class)
+            .put(172, SensorBias.class)
+            .put(173, Diagnostic.class)
+            .put(176, SlugsNavigation.class)
+            .put(177, DataLog.class)
+            .put(179, GpsDateTime.class)
+            .put(180, MidLvlCmds.class)
+            .put(181, CtrlSrfcPt.class)
+            .put(184, SlugsCameraOrder.class)
+            .put(185, ControlSurface.class)
+            .put(186, SlugsMobileLocation.class)
+            .put(188, SlugsConfigurationCamera.class)
+            .put(189, IsrLocation.class)
+            .put(191, VoltSensor.class)
+            .put(192, PtzStatus.class)
+            .put(193, UavStatus.class)
+            .put(194, StatusGps.class)
+            .put(195, NovatelDiag.class)
+            .put(196, SensorDiag.class)
+            .put(197, Boot.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 170:
-            case 172:
-            case 173:
-            case 176:
-            case 177:
-            case 179:
-            case 180:
-            case 181:
-            case 184:
-            case 185:
-            case 186:
-            case 188:
-            case 189:
-            case 191:
-            case 192:
-            case 193:
-            case 194:
-            case 195:
-            case 196:
-            case 197:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 170: return CpuLoad.class;
-            case 172: return SensorBias.class;
-            case 173: return Diagnostic.class;
-            case 176: return SlugsNavigation.class;
-            case 177: return DataLog.class;
-            case 179: return GpsDateTime.class;
-            case 180: return MidLvlCmds.class;
-            case 181: return CtrlSrfcPt.class;
-            case 184: return SlugsCameraOrder.class;
-            case 185: return ControlSurface.class;
-            case 186: return SlugsMobileLocation.class;
-            case 188: return SlugsConfigurationCamera.class;
-            case 189: return IsrLocation.class;
-            case 191: return VoltSensor.class;
-            case 192: return PtzStatus.class;
-            case 193: return UavStatus.class;
-            case 194: return StatusGps.class;
-            case 195: return NovatelDiag.class;
-            case 196: return SensorDiag.class;
-            case 197: return Boot.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public SlugsDialect() {
+        super("slugs", dependencies, messages);
     }
 }

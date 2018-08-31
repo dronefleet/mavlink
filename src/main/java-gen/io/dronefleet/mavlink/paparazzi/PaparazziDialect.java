@@ -1,63 +1,34 @@
 package io.dronefleet.mavlink.paparazzi;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class PaparazziDialect implements MavlinkDialect {
+public final class PaparazziDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "paparazzi";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(180, ScriptItem.class)
+            .put(181, ScriptRequest.class)
+            .put(182, ScriptRequestList.class)
+            .put(183, ScriptCount.class)
+            .put(184, ScriptCurrent.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 180:
-            case 181:
-            case 182:
-            case 183:
-            case 184:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 180: return ScriptItem.class;
-            case 181: return ScriptRequest.class;
-            case 182: return ScriptRequestList.class;
-            case 183: return ScriptCount.class;
-            case 184: return ScriptCurrent.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public PaparazziDialect() {
+        super("paparazzi", dependencies, messages);
     }
 }

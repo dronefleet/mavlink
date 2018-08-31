@@ -1,5 +1,7 @@
 package io.dronefleet.mavlink;
 
+import java.util.List;
+
 /**
  * Serves as an index of a Mavlink dialect.
  */
@@ -25,4 +27,9 @@ public interface MavlinkDialect {
      *          or {@code false} otherwise.
      */
     boolean supports(int messageId);
+
+    /**
+     * Returns a list of all of the message types supported by this dialect.
+     */
+    List<Class> messageTypes();
 }

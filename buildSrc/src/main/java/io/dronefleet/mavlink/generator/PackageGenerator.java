@@ -16,6 +16,14 @@ public class PackageGenerator {
             "io.dronefleet.mavlink",
             "MavlinkDialect");
 
+    private static final ClassName ABSTRACT_MAVLINK_DIALECT = ClassName.get(
+            "io.dronefleet.mavlink",
+            "AbstractMavlinkDialect");
+
+    private static final ClassName UNMODIFIABLE_MAP_BUILDER = ClassName.get(
+            "io.dronefleet.mavlink.util",
+            "UnmodifiableMapBuilder");
+
     private final String xmlName;
     private final String packageName;
     private final List<PackageGenerator> dependencies;
@@ -128,83 +136,60 @@ public class PackageGenerator {
     }
 
     public TypeSpec generateDialect() {
-        String messageId = "messageId";
-        CodeBlock.Builder supportsCode = CodeBlock.builder();
-        if (messages.size() > 0) {
-            supportsCode.beginControlFlow("switch ($N)", messageId);
-            messages.stream()
-                    .map(MessageGenerator::getId)
-                    .forEach(id -> supportsCode.add("case $L:\n", id));
-            supportsCode.addStatement("$>return true$<");
-            supportsCode.endControlFlow();
-        }
-        supportsCode.addStatement("return dependencies.stream()\n" +
-                ".anyMatch(d -> d.supports($N))", messageId);
-
-        CodeBlock.Builder resolveCode = CodeBlock.builder();
-        if (messages.size() > 0) {
-            resolveCode.beginControlFlow("switch ($N)", messageId);
-            messages.forEach(m -> resolveCode.addStatement("case $L: return $T.class",
-                    m.getId(), m.getClassName()));
-            resolveCode.endControlFlow();
-        }
-        resolveCode.addStatement("return dependencies.stream()\n" +
-                ".map(d -> d.resolve($1N))\n" +
-                ".filter($2T::nonNull)\n" +
-                ".findFirst()\n" +
-                ".orElseThrow(() -> new $3T(getClass().getSimpleName() + $4S + $1N))",
-                messageId,
-                Objects.class,
-                IllegalArgumentException.class,
-                " does not support message of ID ");
-
         CodeBlock.Builder dependenciesInitializer = CodeBlock.builder();
         if (dependencies.size() == 0) {
             dependenciesInitializer.add("$T.emptyList()", Collections.class);
         } else {
-            dependenciesInitializer.add("$T.asList$>$>", Arrays.class);
+            dependenciesInitializer.add("$T.asList$>$>", ParameterizedTypeName.get(Arrays.class));
             dependenciesInitializer.add(
                     dependencies.stream()
-                            .map(pd -> CodeBlock.builder()
-                                    .add("new $T()", pd.dialectClassName())
+                            .map(dep -> CodeBlock.builder()
+                                    .add("new $T()", dep.dialectClassName())
                                     .build())
                             .collect(CodeBlock.joining(",\n", "(\n", ")")));
             dependenciesInitializer.add("$<$<");
         }
 
+        CodeBlock.Builder messageTypesInitializer = CodeBlock.builder();
+        if (messages.size() == 0) {
+            messageTypesInitializer.add("$T.emptyMap()", Collections.class);
+        } else {
+            messageTypesInitializer.add("new $T()\n$>$>", ParameterizedTypeName.get(
+                    UNMODIFIABLE_MAP_BUILDER,
+                    TypeName.get(Integer.class),
+                    TypeName.get(Class.class)));
+            messageTypesInitializer.add(
+                    messages.stream()
+                            .map(m -> CodeBlock.builder()
+                                    .add(".put($L, $T.class)", m.getId(), m.getClassName())
+                                    .build())
+                            .collect(CodeBlock.joining("\n", "", "\n.build()")));
+            messageTypesInitializer.add("$<$<");
+        }
+
         return TypeSpec.classBuilder(dialectClassName())
                 .addModifiers(Modifier.FINAL, Modifier.PUBLIC)
-                .addSuperinterface(MAVLINK_DIALECT)
+                .superclass(ABSTRACT_MAVLINK_DIALECT)
                 .addField(FieldSpec.builder(
-                        ParameterizedTypeName.get(
-                                ClassName.get(List.class), MAVLINK_DIALECT),
+                        ParameterizedTypeName.get(ClassName.get(List.class), MAVLINK_DIALECT),
                         "dependencies",
-                        Modifier.PRIVATE, Modifier.FINAL)
-                        .addJavadoc("A list of dialects that this dialect depends on.\n")
+                        Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                        .addJavadoc("A list of all of the dependencies of this dialect.\n")
                         .initializer(dependenciesInitializer.build())
                         .build())
-                .addMethod(MethodSpec.methodBuilder("name")
-                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                        .addJavadoc("{@inheritDoc}\n")
-                        .addAnnotation(Override.class)
-                        .addStatement("return $S", dialectName())
-                        .returns(String.class)
+                .addField(FieldSpec.builder(
+                        ParameterizedTypeName.get(Map.class, Integer.class, Class.class),
+                        "messages",
+                        Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                        .addJavadoc("A list of all message types supported by this dialect.\n")
+                        .initializer(messageTypesInitializer.build())
                         .build())
-                .addMethod(MethodSpec.methodBuilder("supports")
-                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                        .addJavadoc("{@inheritDoc}\n")
-                        .addAnnotation(Override.class)
-                        .addParameter(int.class, messageId)
-                        .addCode(supportsCode.build())
-                        .returns(boolean.class)
-                        .build())
-                .addMethod(MethodSpec.methodBuilder("resolve")
-                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                        .addJavadoc("{@inheritDoc}\n")
-                        .addAnnotation(Override.class)
-                        .addParameter(int.class, messageId)
-                        .addCode(resolveCode.build())
-                        .returns(Class.class)
+                .addMethod(MethodSpec.constructorBuilder()
+                        .addModifiers(Modifier.PUBLIC)
+                        .addStatement("super($S, $N, $N)",
+                                dialectName(),
+                                "dependencies",
+                                "messages")
                         .build())
                 .build();
     }

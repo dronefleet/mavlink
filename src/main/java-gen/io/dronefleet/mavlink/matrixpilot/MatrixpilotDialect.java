@@ -1,107 +1,56 @@
 package io.dronefleet.mavlink.matrixpilot;
 
+import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
+import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
-import java.lang.IllegalArgumentException;
-import java.lang.Override;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-public final class MatrixpilotDialect implements MavlinkDialect {
+public final class MatrixpilotDialect extends AbstractMavlinkDialect {
     /**
-     * A list of dialects that this dialect depends on.
+     * A list of all of the dependencies of this dialect.
      */
-    private final List<MavlinkDialect> dependencies = Arrays.asList(
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect());
 
     /**
-     * {@inheritDoc}
+     * A list of all message types supported by this dialect.
      */
-    @Override
-    public final String name() {
-        return "matrixpilot";
-    }
+    private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(150, FlexifunctionSet.class)
+            .put(151, FlexifunctionReadReq.class)
+            .put(152, FlexifunctionBufferFunction.class)
+            .put(153, FlexifunctionBufferFunctionAck.class)
+            .put(155, FlexifunctionDirectory.class)
+            .put(156, FlexifunctionDirectoryAck.class)
+            .put(157, FlexifunctionCommand.class)
+            .put(158, FlexifunctionCommandAck.class)
+            .put(170, SerialUdbExtraF2A.class)
+            .put(171, SerialUdbExtraF2B.class)
+            .put(172, SerialUdbExtraF4.class)
+            .put(173, SerialUdbExtraF5.class)
+            .put(174, SerialUdbExtraF6.class)
+            .put(175, SerialUdbExtraF7.class)
+            .put(176, SerialUdbExtraF8.class)
+            .put(177, SerialUdbExtraF13.class)
+            .put(178, SerialUdbExtraF14.class)
+            .put(179, SerialUdbExtraF15.class)
+            .put(180, SerialUdbExtraF16.class)
+            .put(181, Altitudes.class)
+            .put(182, Airspeeds.class)
+            .put(183, SerialUdbExtraF17.class)
+            .put(184, SerialUdbExtraF18.class)
+            .put(185, SerialUdbExtraF19.class)
+            .put(186, SerialUdbExtraF20.class)
+            .put(187, SerialUdbExtraF21.class)
+            .put(188, SerialUdbExtraF22.class)
+            .build();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final boolean supports(int messageId) {
-        switch (messageId) {
-            case 150:
-            case 151:
-            case 152:
-            case 153:
-            case 155:
-            case 156:
-            case 157:
-            case 158:
-            case 170:
-            case 171:
-            case 172:
-            case 173:
-            case 174:
-            case 175:
-            case 176:
-            case 177:
-            case 178:
-            case 179:
-            case 180:
-            case 181:
-            case 182:
-            case 183:
-            case 184:
-            case 185:
-            case 186:
-            case 187:
-            case 188:
-                return true;
-        }
-        return dependencies.stream()
-                .anyMatch(d -> d.supports(messageId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Class resolve(int messageId) {
-        switch (messageId) {
-            case 150: return FlexifunctionSet.class;
-            case 151: return FlexifunctionReadReq.class;
-            case 152: return FlexifunctionBufferFunction.class;
-            case 153: return FlexifunctionBufferFunctionAck.class;
-            case 155: return FlexifunctionDirectory.class;
-            case 156: return FlexifunctionDirectoryAck.class;
-            case 157: return FlexifunctionCommand.class;
-            case 158: return FlexifunctionCommandAck.class;
-            case 170: return SerialUdbExtraF2A.class;
-            case 171: return SerialUdbExtraF2B.class;
-            case 172: return SerialUdbExtraF4.class;
-            case 173: return SerialUdbExtraF5.class;
-            case 174: return SerialUdbExtraF6.class;
-            case 175: return SerialUdbExtraF7.class;
-            case 176: return SerialUdbExtraF8.class;
-            case 177: return SerialUdbExtraF13.class;
-            case 178: return SerialUdbExtraF14.class;
-            case 179: return SerialUdbExtraF15.class;
-            case 180: return SerialUdbExtraF16.class;
-            case 181: return Altitudes.class;
-            case 182: return Airspeeds.class;
-            case 183: return SerialUdbExtraF17.class;
-            case 184: return SerialUdbExtraF18.class;
-            case 185: return SerialUdbExtraF19.class;
-            case 186: return SerialUdbExtraF20.class;
-            case 187: return SerialUdbExtraF21.class;
-            case 188: return SerialUdbExtraF22.class;
-        }
-        return dependencies.stream()
-                .map(d -> d.resolve(messageId))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(getClass().getSimpleName() + " does not support message of ID " + messageId));
+    public MatrixpilotDialect() {
+        super("matrixpilot", dependencies, messages);
     }
 }
