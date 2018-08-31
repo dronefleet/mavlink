@@ -60,6 +60,7 @@ public class AbstractMavlinkDialect implements MavlinkDialect {
                 dependencies.stream()
                         .map(MavlinkDialect::messageTypes)
                         .flatMap(List::stream))
+                .distinct()
                 .collect(Collectors.toList());
     }
 }
