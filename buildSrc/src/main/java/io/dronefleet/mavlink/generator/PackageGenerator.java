@@ -140,7 +140,7 @@ public class PackageGenerator {
         if (dependencies.size() == 0) {
             dependenciesInitializer.add("$T.emptyList()", Collections.class);
         } else {
-            dependenciesInitializer.add("$T.asList$>$>", ParameterizedTypeName.get(Arrays.class));
+            dependenciesInitializer.add("$T.asList$>$>", Arrays.class);
             dependenciesInitializer.add(
                     dependencies.stream()
                             .map(dep -> CodeBlock.builder()
