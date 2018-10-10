@@ -275,7 +275,7 @@ public class MavlinkConnection {
             // for this system.
             if (payload instanceof Heartbeat) {
                 Heartbeat heartbeat = (Heartbeat) payload;
-                if (dialects.containsKey(heartbeat.autopilot().entry())) {
+                if (heartbeat.autopilot() != null && dialects.containsKey(heartbeat.autopilot().entry())) {
                     systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot().entry()));
                 }
             }
