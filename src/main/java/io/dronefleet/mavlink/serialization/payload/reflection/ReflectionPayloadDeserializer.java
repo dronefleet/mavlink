@@ -89,7 +89,7 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
     private long unsignedIntegerValue(byte[] data) {
         long value = 0;
         for (int i = 0; i < data.length; i++) {
-            value = value | ((data[i] & 0xff) << (i * 8));
+            value = value | ((long)((data[i] & 0xff)) << (i * 8));
         }
         return value;
     }
