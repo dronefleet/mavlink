@@ -109,8 +109,14 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+# Eclipse
+**/.settings
+**/.classpath
+**/.project
+**/.gitignore
 
 # GPG
 secring.gpg
 
 # End of https://www.gitignore.io/api/java,gradle,intellij+all
+/bin/
