@@ -9,21 +9,6 @@ import java.util.Comparator;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface MavlinkFieldInfo {
-    Comparator<MavlinkFieldInfo> WIRE_COMPARATOR = (a, b) -> {
-        if (a.extension() && !b.extension()) {
-            return 1;
-        }
-        if (!a.extension() && b.extension()) {
-            return -1;
-        }
-
-        if (!a.extension() && a.unitSize() != b.unitSize()) {
-            return b.unitSize() - a.unitSize();
-        }
-
-        return a.position() - b.position();
-    };
-
     int position();
     int unitSize();
     boolean signed() default false;

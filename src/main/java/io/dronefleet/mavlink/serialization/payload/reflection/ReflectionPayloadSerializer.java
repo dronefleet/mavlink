@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.util.EnumValue;
+import io.dronefleet.mavlink.util.WireFieldInfoComparator;
 import io.dronefleet.mavlink.util.reflection.MavlinkReflection;
 
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +17,8 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
+
+    private static final WireFieldInfoComparator wireComparator = new WireFieldInfoComparator();
 
     @Override
     public byte[] serialize(Object message) {
@@ -41,7 +44,7 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                 .sorted((a, b) -> {
                     MavlinkFieldInfo fa = a.getAnnotation(MavlinkFieldInfo.class);
                     MavlinkFieldInfo fb = b.getAnnotation(MavlinkFieldInfo.class);
-                    return MavlinkFieldInfo.WIRE_COMPARATOR.compare(fa, fb);
+                    return wireComparator.compare(fa, fb);
                 })
                 .forEach(m -> {
                     MavlinkFieldInfo field = m.getAnnotation(MavlinkFieldInfo.class);
