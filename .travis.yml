@@ -3,6 +3,9 @@ language: java
 before_install:
   - openssl aes-256-cbc -K $encrypted_1387655fa410_key -iv $encrypted_1387655fa410_iv -in secring.gpg.enc -out secring.gpg -d
 
+sudo: false
+dist: trusty
+
 deploy:
   provider: script
   script: ./gradlew uploadArchives
