@@ -31,6 +31,10 @@ class ByteArray {
         putLong(value, offset, 3);
     }
 
+    public long getInt48(int offset) {
+        return getLong(offset, 6);
+    }
+
     public void putInt48(long value, int offset) {
         putLong(value, offset, 6);
     }

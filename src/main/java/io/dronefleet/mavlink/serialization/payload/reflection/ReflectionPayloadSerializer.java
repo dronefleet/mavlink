@@ -10,6 +10,7 @@ import io.dronefleet.mavlink.util.WireFieldInfoComparator;
 import io.dronefleet.mavlink.util.reflection.MavlinkReflection;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
@@ -59,6 +60,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                                 write((Integer) fieldValue, payload, offset, length);
                             } else if (Long.class.isAssignableFrom(fieldType)) {
                                 write((Long) fieldValue, payload, offset, length);
+                            } else if (BigInteger.class.isAssignableFrom(fieldType)) {
+                                write((BigInteger) fieldValue, payload, offset, length);
                             } else if (Float.class.isAssignableFrom(fieldType)) {
                                 write((Float) fieldValue, payload, offset, length);
                             } else if (Double.class.isAssignableFrom(fieldType)) {
@@ -69,6 +72,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                                 write((EnumValue<? extends Enum>) fieldValue, payload, offset, length);
                             } else if (String.class.isAssignableFrom(fieldType)) {
                                 write((String) fieldValue, payload, offset, length);
+                            } else if (byte[].class.isAssignableFrom(fieldType)) {
+                                write((byte[]) fieldValue, payload, offset, length);
                             } else {
                                 throw new MavlinkSerializationException("unrecognized field type " + fieldType.getName());
                             }
@@ -85,6 +90,10 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
         for (int i = offset, shift=0; i < length; i++, shift++) {
             buffer[i] = (byte) ((value >> (shift*8)) & 0xff);
         }
+    }
+
+    private void write(BigInteger bigInt, byte[] buffer, int offset, int length) {
+        write(bigInt.longValue(), buffer, offset, length);
     }
 
     private void write(float value, byte[] buffer, int offset, int length) {
@@ -112,7 +121,10 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
     }
 
     private void write(String str, byte[] buffer, int offset, int length) {
-        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        write(str.getBytes(StandardCharsets.UTF_8), buffer, offset, length);
+    }
+
+    private void write(byte[] bytes, byte[] buffer, int offset, int length) {
         System.arraycopy(bytes, 0, buffer, offset, Math.min(length-offset, bytes.length));
     }
 }

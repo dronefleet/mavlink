@@ -2,7 +2,6 @@ package io.dronefleet.mavlink.protocol;
 
 import io.dronefleet.mavlink.protocol.validation.CrcX25;
 
-import java.security.DigestException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -11,6 +10,8 @@ public class MavlinkPacket {
 
     public static final int MAGIC_V1 = 0xFE;
     public static final int MAGIC_V2 = 0xFD;
+
+    public static final int INCOMPAT_FLAG_SIGNED = 0x01;
 
     public static MavlinkPacket create(
             int incompatibleFlags,
@@ -43,7 +44,6 @@ public class MavlinkPacket {
             int crcExtra,
             byte[] payload,
             byte[] signature) {
-
         if (signature == null) {
             signature = new byte[0];
         } else if (signature.length != 13) {
@@ -115,7 +115,7 @@ public class MavlinkPacket {
                 messageId,
                 payload,
                 crc.get(),
-                null,
+                new byte[0],
                 rawBytes);
     }
 
@@ -129,7 +129,6 @@ public class MavlinkPacket {
         int messageId = bytes.getInt8(5);
         byte[] payload = bytes.slice(6, payloadLength);
         int checksum = bytes.getInt16(6 + payloadLength);
-
         return new MavlinkPacket(
                 versionMarker,
                 -1,
@@ -140,7 +139,7 @@ public class MavlinkPacket {
                 messageId,
                 payload,
                 checksum,
-                null,
+                new byte[0],
                 rawBytes);
     }
 
@@ -156,8 +155,12 @@ public class MavlinkPacket {
         int messageId = bytes.getInt24(7);
         byte[] payload = bytes.slice(10, payloadLength);
         int checksum = bytes.getInt16(10 + payloadLength);
-        byte[] signature = bytes.slice(12 + payloadLength, 13);
-
+        byte[] signature;
+        if ((incompatibleFlags & INCOMPAT_FLAG_SIGNED) != 0) {
+            signature = bytes.slice(12 + payloadLength, 13);
+        } else {
+            signature = new byte[0];
+        }
         return new MavlinkPacket(
                 versionMarker,
                 incompatibleFlags,
@@ -259,11 +262,9 @@ public class MavlinkPacket {
             case MAGIC_V1:
                 crcX25.accumulate(getRawBytes(), 1, 6 + payload.length);
                 break;
-
             case MAGIC_V2:
                 crcX25.accumulate(getRawBytes(), 1, 10 + payload.length);
                 break;
-
             default:
                 throw new IllegalStateException(
                         "Unknown version marker: 0x" + Integer.toHexString(versionMarker));
@@ -273,25 +274,7 @@ public class MavlinkPacket {
     }
 
     public MavlinkPacket sign(int linkId, long timestamp, byte[] secretKey) {
-        byte[] signature = new byte[13];
-        ByteArray bytes = new ByteArray(signature);
-        bytes.putInt8(linkId, 0);
-        bytes.putInt48(timestamp, 1);
-
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            digest.digest(secretKey);
-            digest.digest(rawBytes, 1, 7);
-            digest.digest(payload);
-            digest.digest(rawBytes, 12 + payload.length, 2);
-            digest.digest(signature, 0, 7);
-            System.arraycopy(digest.digest(), 0, signature, 7, 6);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
-        } catch (DigestException e) {
-            throw new IllegalStateException("Failed generate signature for packet", e);
-        }
-
+        byte[] signature = generateSignature(linkId, timestamp, secretKey);
         byte[] rawBytes;
         if (this.signature.length == 0) {
             rawBytes = new byte[this.rawBytes.length + signature.length];
@@ -305,7 +288,7 @@ public class MavlinkPacket {
 
         return new MavlinkPacket(
                 versionMarker,
-                incompatibleFlags,
+                incompatibleFlags | INCOMPAT_FLAG_SIGNED,
                 compatibleFlags,
                 sequence,
                 systemId,
@@ -315,6 +298,47 @@ public class MavlinkPacket {
                 checksum,
                 signature,
                 rawBytes);
+    }
+
+    public boolean isSigned() {
+        return ((incompatibleFlags & INCOMPAT_FLAG_SIGNED) != 0);
+    }
+
+    public boolean validateSignature(int linkId, long timestamp, byte[] secretKey) {
+        if (versionMarker == MAGIC_V1) {
+            throw new IllegalStateException("mavlink1 packets do not support signatures");
+        }
+        return isSigned() && Arrays.equals(
+                signature,
+                generateSignature(linkId, timestamp, secretKey));
+    }
+
+    public int getSignedLinkId() {
+        return isSigned() ? (signature[0] & 0xFF) : -1;
+    }
+
+    public long getSignedTimestamp() {
+        ByteArray bytes = new ByteArray(signature);
+        return isSigned() ? bytes.getInt48(1) : -1;
+    }
+
+    private byte[] generateSignature(int linkId, long timestamp, byte[] secretKey) {
+        byte[] signature = new byte[13];
+        ByteArray bytes = new ByteArray(signature);
+        bytes.putInt8(linkId, 0);
+        bytes.putInt48(timestamp, 1);
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update(secretKey);
+            digest.update(rawBytes, 1, 9);
+            digest.update(payload);
+            digest.update(rawBytes, 10 + payload.length, 2);
+            digest.update(signature, 0, 7);
+            System.arraycopy(digest.digest(), 0, signature, 7, 6);
+            return signature;
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
+        }
     }
 
     @Override

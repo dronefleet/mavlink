@@ -110,7 +110,9 @@ public class MavlinkConnection {
                     out,
                     dialects,
                     new ReflectionPayloadDeserializer(),
-                    new ReflectionPayloadSerializer(), signingConfiguration, timeProvider);
+                    new ReflectionPayloadSerializer(),
+                    signingConfiguration,
+                    timeProvider);
         }
     }
 
