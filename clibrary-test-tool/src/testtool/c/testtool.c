@@ -16,7 +16,8 @@ mavlink_message_t parsePacket(JNIEnv *env, jbyteArray packet) {
     jbyte* packetBytes = (*env)->GetByteArrayElements(env, packet, NULL);
     jsize packetLength = (*env)->GetArrayLength(env, packet);
     int chan = 0;
-    for (int i = 0; i < packetLength; i++) {
+    int i;
+    for (i = 0; i < packetLength; i++) {
         uint8_t byte = packetBytes[i] & 0xff;
         uint8_t framingStatus = mavlink_frame_char(chan, byte, &msg, &status);
     }
