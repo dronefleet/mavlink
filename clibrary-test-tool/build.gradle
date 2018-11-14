@@ -17,6 +17,7 @@ model {
     components {
         testtool(NativeLibrarySpec) {
             binaries.all {
+                cCompiler.args '-std=c99'
                 cCompiler.args '-I', "${projectDir}/c_library_v2"
                 if (targetPlatform.operatingSystem.macOsX) {
                     cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
