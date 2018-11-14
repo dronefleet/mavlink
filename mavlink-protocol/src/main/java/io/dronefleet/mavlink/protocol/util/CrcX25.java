@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.protocol.validation;
+package io.dronefleet.mavlink.protocol.util;
 
 import java.nio.charset.StandardCharsets;
 

@@ -312,24 +312,33 @@ public class MavlinkConnection {
         MavlinkPacket packet;
         if (message instanceof Mavlink2Message) {
             Mavlink2Message message2 = (Mavlink2Message) message;
-            packet = MavlinkPacket.create(
-                    message2.getIncompatibleFlags(),
-                    message2.getCompatibleFlags(),
-                    sequence++,
-                    message2.getOriginSystemId(),
-                    message2.getOriginComponentId(),
-                    messageInfo.id(),
-                    messageInfo.crc(),
-                    serializedPayload);
-
             if (isSigningEnabled()) {
                 lastSignatureTimestamp = Math.max(
                         timeProvider.microsSince1stJan2015GMT() / 10,
                         lastSignatureTimestamp + 1);
-                packet = packet.sign(
-                        signingConfiguration.getLinkId(),
-                        lastSignatureTimestamp,
-                        signingConfiguration.getSecretKey());
+                packet = MavlinkPacket.create(
+                        message2.getIncompatibleFlags() | MavlinkPacket.INCOMPAT_FLAG_SIGNED,
+                        message2.getCompatibleFlags(),
+                        sequence++,
+                        message2.getOriginSystemId(),
+                        message2.getOriginComponentId(),
+                        messageInfo.id(),
+                        messageInfo.crc(),
+                        serializedPayload)
+                        .sign(
+                                signingConfiguration.getLinkId(),
+                                lastSignatureTimestamp,
+                                signingConfiguration.getSecretKey());
+            } else {
+                packet = MavlinkPacket.create(
+                        message2.getIncompatibleFlags(),
+                        message2.getCompatibleFlags(),
+                        sequence++,
+                        message2.getOriginSystemId(),
+                        message2.getOriginComponentId(),
+                        messageInfo.id(),
+                        messageInfo.crc(),
+                        serializedPayload);
             }
         } else {
             packet = MavlinkPacket.create(

@@ -1,6 +1,6 @@
 package io.dronefleet.mavlink.protocol;
 
-import io.dronefleet.mavlink.protocol.validation.CrcX25;
+import io.dronefleet.mavlink.protocol.util.CrcX25;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -274,6 +274,12 @@ public class MavlinkPacket {
     }
 
     public MavlinkPacket sign(int linkId, long timestamp, byte[] secretKey) {
+        if (versionMarker == MAGIC_V1) {
+            throw new IllegalStateException("mavlink1 packets do not support signatures");
+        }
+        if ((incompatibleFlags & INCOMPAT_FLAG_SIGNED) == 0) {
+            throw new IllegalStateException("signing flag not specified in incompatibility flags");
+        }
         byte[] signature = generateSignature(linkId, timestamp, secretKey);
         byte[] rawBytes;
         if (this.signature.length == 0) {
@@ -285,10 +291,9 @@ public class MavlinkPacket {
             System.arraycopy(this.rawBytes, 0, rawBytes, 0, this.rawBytes.length - signature.length);
             System.arraycopy(signature, 0, rawBytes, this.rawBytes.length - signature.length, signature.length);
         }
-
         return new MavlinkPacket(
                 versionMarker,
-                incompatibleFlags | INCOMPAT_FLAG_SIGNED,
+                incompatibleFlags,
                 compatibleFlags,
                 sequence,
                 systemId,
@@ -330,11 +335,10 @@ public class MavlinkPacket {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(secretKey);
-            digest.update(rawBytes, 1, 9);
-            digest.update(payload);
-            digest.update(rawBytes, 10 + payload.length, 2);
+            digest.update(rawBytes, 0, rawBytes.length - this.signature.length);
             digest.update(signature, 0, 7);
-            System.arraycopy(digest.digest(), 0, signature, 7, 6);
+            byte[] hash = digest.digest();
+            System.arraycopy(hash, 0, signature, 7, 6);
             return signature;
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
