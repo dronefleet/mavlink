@@ -40,6 +40,7 @@ Java_io_dronefleet_mavlink_testtool_CLibraryTestTool_signatureCheck(
     mavlink_signing_t signing;
     msg = parsePacket(env, packet);
     signing.link_id = linkId;
+    signing.timestamp = timestamp - 1;
     jbyte* secretKeyBytes = (*env)->GetByteArrayElements(env, secretKey, NULL);
     jsize secretKeySize = (*env)->GetArrayLength(env, secretKey);
     memcpy(signing.secret_key, secretKeyBytes, secretKeySize);
