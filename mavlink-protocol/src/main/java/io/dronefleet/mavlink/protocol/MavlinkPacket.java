@@ -30,7 +30,8 @@ public class MavlinkPacket {
         bytes.putInt16(crc, 10 + payload.length);
         byte[] signature = generateSignature(rawBytes, linkId, timestamp, secretKey);
         System.arraycopy(signature, 0, rawBytes, rawBytes.length - signature.length, signature.length);
-        return fromV2Bytes(rawBytes);
+        return new MavlinkPacket(MAGIC_V2, INCOMPAT_FLAG_SIGNED, 0, sequence, systemId,
+                componentId, messageId, payload, crc, signature, rawBytes);
     }
 
     public static MavlinkPacket createUnsignedMavlink2Packet(
@@ -49,7 +50,8 @@ public class MavlinkPacket {
         System.arraycopy(payload, 0, rawBytes, 10, payload.length);
         int crc = generateCrc(rawBytes, crcExtra);
         bytes.putInt16(crc, 10 + payload.length);
-        return fromV2Bytes(rawBytes);
+        return new MavlinkPacket(MAGIC_V2, 0, 0, sequence, systemId, componentId, messageId,
+                payload, crc, new byte[0], rawBytes);
     }
 
     public static MavlinkPacket createMavlink1Packet(
@@ -66,7 +68,8 @@ public class MavlinkPacket {
         System.arraycopy(payload, 0, rawBytes, 6, payload.length);
         int crc = generateCrc(rawBytes, crcExtra);
         bytes.putInt16(crc, 6 + payload.length);
-        return fromV1Bytes(rawBytes);
+        return new MavlinkPacket(MAGIC_V1, -1, -1, sequence, systemId, componentId, messageId,
+                payload, crc, new byte[0], rawBytes);
     }
 
     public static MavlinkPacket fromV1Bytes(byte[] rawBytes) {
