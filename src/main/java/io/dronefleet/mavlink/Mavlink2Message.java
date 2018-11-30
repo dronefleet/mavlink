@@ -1,89 +1,65 @@
 package io.dronefleet.mavlink;
 
+import io.dronefleet.mavlink.protocol.MavlinkPacket;
+
 /**
  * Represents a Mavlink2 message. See {@link MavlinkMessage} for the Mavlink1 message DTO.
- * @param <T>   The type of the payload of this message.
+ *
+ * @param <T> The type of the payload of this message.
  */
 public class Mavlink2Message<T> extends MavlinkMessage<T> {
 
-    /**
-     * A bitmask which must be understood.
-     */
-    private final int incompatibleFlags;
+    private final MavlinkPacket packet;
 
-    /**
-     * A bitmask of flags which may optionally be understood.
-     */
-    private final int compatibleFlags;
-
-    /**
-     * Constructs a new {@code Mavlink2Message} instance using the specified settings
-     * @param incompatibleFlags Flags which must be understood.
-     * @param compatibleFlags   Flags which may optionally be understood.
-     * @param originSystemId    The ID of the originating system.
-     * @param originComponentId The ID of the originating component.
-     * @param payload           The payload of this message.
-     */
-    public Mavlink2Message(
-            int incompatibleFlags,
-            int compatibleFlags,
-            int originSystemId,
-            int originComponentId,
-            T payload) {
-        super(originSystemId, originComponentId, payload);
-        this.incompatibleFlags = incompatibleFlags;
-        this.compatibleFlags = compatibleFlags;
+    Mavlink2Message(MavlinkPacket packet, T payload) {
+        super(packet, payload);
+        this.packet = packet;
     }
 
     /**
-     * Returns flags which must be understood.
+     * Returns {@code true} if this packet is signed, or {@code false} otherwise.
      */
-    public int getIncompatibleFlags() {
-        return incompatibleFlags;
+    public boolean isSigned() {
+        return packet.isSigned();
     }
 
     /**
-     * Returns flags which may optionally be understood.
+     * Validates this packet's signature, using its own link ID and timestamp.
+     *
+     * @param secretKey The secret key to use when validating the signature.
+     * @return {@code true} if the signature validation passed, or {@code false} otherwise.
      */
-    public int getCompatibleFlags() {
-        return compatibleFlags;
+    public boolean validateSignature(byte[] secretKey) {
+        return packet.validateSignature(
+                packet.getSignedLinkId(),
+                packet.getSignedTimestamp(),
+                secretKey);
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the timestamp of this packet's signature.
+     *
+     * @return The timestamp in this packet's signature, or {@code -1} if this packet
+     * is not signed.
      */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Mavlink2Message<?> that = (Mavlink2Message<?>) o;
-
-        if (incompatibleFlags != that.incompatibleFlags) return false;
-        if (compatibleFlags != that.compatibleFlags) return false;
-        return true;
+    public long getSignatureTimestamp() {
+        return packet.getSignedTimestamp();
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the link ID of this packet's signature.
+     *
+     * @return The link ID in this packet's signature, or {@code -1} if this packet
+     * is not signed.
      */
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + incompatibleFlags;
-        result = 31 * result + compatibleFlags;
-        return result;
+    public int getSignatureLinkId() {
+        return packet.getSignedLinkId();
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the complete signature of this message.
      */
-    @Override
-    public String toString() {
-        return "Mavlink2Message{" +
-                "incompatibleFlags=" + incompatibleFlags +
-                ", compatibleFlags=" + compatibleFlags +
-                "} " + super.toString();
+    public byte[] getSignature() {
+        return packet.getSignature();
     }
 }

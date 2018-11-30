@@ -240,11 +240,13 @@ public class MavlinkConnection {
                     }
                 }
 
-                //noinspection unchecked
-                return new MavlinkMessage(
-                        packet.getSystemId(),
-                        packet.getComponentId(),
-                        payload);
+                if (packet.isMavlink2()) {
+                    //noinspection unchecked
+                    return new Mavlink2Message(packet, payload);
+                } else {
+                    //noinspection unchecked
+                    return new MavlinkMessage(packet, payload);
+                }
             }
 
             throw new EOFException("End of stream");

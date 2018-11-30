@@ -240,6 +240,10 @@ public class MavlinkPacket {
         return rawBytes;
     }
 
+    public boolean isMavlink2() {
+        return versionMarker == MAGIC_V2;
+    }
+
     public boolean validateCrc(int crcExtra) {
         return generateCrc(rawBytes, crcExtra) == checksum;
     }

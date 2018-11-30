@@ -1,51 +1,42 @@
 package io.dronefleet.mavlink;
 
+import io.dronefleet.mavlink.protocol.MavlinkPacket;
+
 /**
  * Represents a Mavlink message. The contents of this class are sufficient for a Mavlink1 message.
  * See {@link Mavlink2Message} for the Mavlink2 message DTO, which inherits from this class.
- * @param <T>   The type of this message's payload.
+ *
+ * @param <T> The type of this message's payload.
  */
 public class MavlinkMessage<T> {
 
-    /**
-     * The ID of the system that originated this message.
-     */
-    private final int originSystemId;
-
-    /**
-     * The ID of the component which originated this message.
-     */
-    private final int originComponentId;
-
-    /**
-     * The payload of this message.
-     */
+    private final MavlinkPacket packet;
     private final T payload;
 
-    /**
-     * Constructs a new {@code MavlinkMessage} using the specified settings.
-     * @param originSystemId        The ID of the system that originated this message.
-     * @param originComponentId     The ID of the component that originated this message.
-     * @param payload               The payload of this message.
-     */
-    public MavlinkMessage(int originSystemId, int originComponentId, T payload) {
-        this.originSystemId = originSystemId;
-        this.originComponentId = originComponentId;
+    MavlinkMessage(MavlinkPacket packet, T payload) {
+        this.packet = packet;
         this.payload = payload;
+    }
+
+    /**
+     * Returns the sequence of this message.
+     */
+    public int getSequence() {
+        return packet.getSequence();
     }
 
     /**
      * Returns the ID of the system that originated this message.
      */
     public int getOriginSystemId() {
-        return originSystemId;
+        return packet.getSystemId();
     }
 
     /**
      * Returns the ID of the component that originated this message.
      */
     public int getOriginComponentId() {
-        return originComponentId;
+        return packet.getComponentId();
     }
 
     /**
@@ -56,8 +47,13 @@ public class MavlinkMessage<T> {
     }
 
     /**
-     * {@inheritDoc}
+     * Returns a copy of the original raw bytes of this message.
      */
+    public byte[] getRawBytes() {
+        return packet.getRawBytes()
+                .clone();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,30 +61,21 @@ public class MavlinkMessage<T> {
 
         MavlinkMessage<?> that = (MavlinkMessage<?>) o;
 
-        if (originSystemId != that.originSystemId) return false;
-        if (originComponentId != that.originComponentId) return false;
+        if (packet != null ? !packet.equals(that.packet) : that.packet != null) return false;
         return payload != null ? payload.equals(that.payload) : that.payload == null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
-        int result = originSystemId;
-        result = 31 * result + originComponentId;
+        int result = packet != null ? packet.hashCode() : 0;
         result = 31 * result + (payload != null ? payload.hashCode() : 0);
         return result;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return "MavlinkMessage{" +
-                "originSystemId=" + originSystemId +
-                ", originComponentId=" + originComponentId +
+                "packet=" + packet +
                 ", payload=" + payload +
                 '}';
     }
