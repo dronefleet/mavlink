@@ -14,6 +14,7 @@ import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadSerializer;
+import io.dronefleet.mavlink.signing.SigningConfiguration;
 import io.dronefleet.mavlink.slugs.SlugsDialect;
 import io.dronefleet.mavlink.util.TimeProvider;
 
@@ -23,6 +24,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * <p>Represents a Mavlink connection. This class is responsible for mid-to-low-level function of Mavlink communication.
@@ -172,6 +175,16 @@ public class MavlinkConnection {
      */
     private final TimeProvider timeProvider;
 
+    /**
+     * Locks calls to {@link #next()} to ensure no concurrent reads occur.
+     */
+    private final Lock readLock;
+
+    /**
+     * Locks write calls to ensure no concurrent writes.
+     */
+    private final Lock writeLock;
+
     MavlinkConnection(
             MavlinkPacketReader reader,
             OutputStream out,
@@ -186,6 +199,8 @@ public class MavlinkConnection {
         this.serializer = serializer;
         this.timeProvider = timeProvider;
         systemDialects = new HashMap<>();
+        readLock = new ReentrantLock();
+        writeLock = new ReentrantLock();
     }
 
     /**
@@ -210,93 +225,143 @@ public class MavlinkConnection {
      * @throws IOException  If there has been an error reading from the stream.
      */
     public MavlinkMessage next() throws IOException {
-        MavlinkPacket packet;
-        while ((packet = reader.next()) != null) {
-            // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
-            // or we don't support the dialect of its autopilot, then we use the common dialect.
-            MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
+        readLock.lock();
+        try {
+            MavlinkPacket packet;
+            while ((packet = reader.next()) != null) {
+                // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
+                // or we don't support the dialect of its autopilot, then we use the common dialect.
+                MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
 
-            // If the packet is not supported by the dialect, then we drop the packet and continue.
-            // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates
-            // information from underlying implementations that use the message protocol, we are unable to
-            // check if the packet is actually a valid one, despite not understanding it.
-            // So we have to assume that we might have received a corrupted packet, and instead, try again
-            // the at next byte rather than skipping the entire message. This means that if the message was
-            // actually valid, but simply not understood, we are going to spend N iterations for nothing for
-            // each packet, where N is the amount of bytes per packet.
-            // In other words, for the best performance, don't talk to MAVs who's dialects you do not support.
-            if (!dialect.supports(packet.getMessageId())) {
-                reader.drop();
-                continue;
-            }
-
-            // Get the message type and deserialize the payload.
-            Class<?> messageType = dialect.resolve(packet.getMessageId());
-            MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
-            if (!packet.validateCrc(messageInfo.crc())) {
-                // This packet did not pass CRC validation. It may be dropped.
-                reader.drop();
-                continue;
-            }
-            Object payload = deserializer.deserialize(packet.getPayload(), messageType);
-
-            // If we received a Heartbeat message, then we can use that in order to update the dialect
-            // for this system.
-            if (payload instanceof Heartbeat) {
-                Heartbeat heartbeat = (Heartbeat) payload;
-                if (dialects.containsKey(heartbeat.autopilot().entry())) {
-                    systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot().entry()));
+                // If the packet is not supported by the dialect, then we drop the packet and continue.
+                // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates
+                // information from underlying implementations that use the message protocol, we are unable to
+                // check if the packet is actually a valid one, despite not understanding it.
+                // So we have to assume that we might have received a corrupted packet, and instead, try again
+                // the at next byte rather than skipping the entire message. This means that if the message was
+                // actually valid, but simply not understood, we are going to spend N iterations for nothing for
+                // each packet, where N is the amount of bytes per packet.
+                // In other words, for the best performance, don't talk to MAVs who's dialects you do not support.
+                if (!dialect.supports(packet.getMessageId())) {
+                    reader.drop();
+                    continue;
                 }
+
+                // Get the message type and deserialize the payload.
+                Class<?> messageType = dialect.resolve(packet.getMessageId());
+                MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
+                if (!packet.validateCrc(messageInfo.crc())) {
+                    // This packet did not pass CRC validation. It may be dropped.
+                    reader.drop();
+                    continue;
+                }
+                Object payload = deserializer.deserialize(packet.getPayload(), messageType);
+
+                // If we received a Heartbeat message, then we can use that in order to update the dialect
+                // for this system.
+                if (payload instanceof Heartbeat) {
+                    Heartbeat heartbeat = (Heartbeat) payload;
+                    if (dialects.containsKey(heartbeat.autopilot().entry())) {
+                        systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot().entry()));
+                    }
+                }
+
+                //noinspection unchecked
+                return new MavlinkMessage(
+                        packet.getSystemId(),
+                        packet.getComponentId(),
+                        payload);
             }
 
-            //noinspection unchecked
-            return new MavlinkMessage(
-                    packet.getSystemId(),
-                    packet.getComponentId(),
-                    payload);
+            throw new EOFException("End of stream");
+        } finally {
+            readLock.unlock();
         }
-
-        throw new EOFException("End of stream");
     }
 
     /**
-     * Sends the specified message to the output stream of this connection.
+     * Sends a Mavlink 1 message using the specified settings.
      *
-     * @param message The message to send. The specified message could be either a {@link MavlinkMessage mavlink1 message}
-     *                or a {@link Mavlink2Message mavlink2 message}.
+     * @param systemId    The system ID that originated this message.
+     * @param componentId The component ID that originated this message.
+     * @param payload     The payload to send.
+     * @throws IOException if an I/O error occurs.
      */
-    public synchronized void send(MavlinkMessage message) throws IOException {
-        Object payload = message.getPayload();
-        Class<?> payloadType = payload.getClass();
-
-        if (!payloadType.isAnnotationPresent(MavlinkMessageInfo.class)) {
-            throw new MavlinkSerializationException(payloadType.getName() + " is not annotated with @MavlinkMessageInfo");
-        }
-
-        MavlinkMessageInfo messageInfo = payloadType.getAnnotation(MavlinkMessageInfo.class);
-        byte[] serializedPayload = serializer.serialize(message.getPayload());
-
-        MavlinkPacket packet;
-        if (message instanceof Mavlink2Message) {
-            Mavlink2Message message2 = (Mavlink2Message) message;
-            packet = MavlinkPacket.createUnsignedMavlink2Packet(
+    public void send1(int systemId, int componentId, Object payload) throws IOException {
+        MavlinkMessageInfo messageInfo = payload.getClass()
+                .getAnnotation(MavlinkMessageInfo.class);
+        byte[] serializedPayload = serializer.serialize(payload);
+        writeLock.lock();
+        try {
+            send(MavlinkPacket.createMavlink1Packet(
                     sequence++,
-                    message2.getOriginSystemId(),
-                    message2.getOriginComponentId(),
+                    systemId,
+                    componentId,
                     messageInfo.id(),
                     messageInfo.crc(),
-                    serializedPayload);
-        } else {
-            packet = MavlinkPacket.createMavlink1Packet(
+                    serializedPayload));
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
+    /**
+     * Sends an unsigned Mavlink 2 message using the specified settings.
+     *
+     * @param systemId    The system ID that originated this message.
+     * @param componentId The component ID that originated this message.
+     * @param payload     The payload to send.
+     * @throws IOException if an I/O error occurs.
+     */
+    public void send2(int systemId, int componentId, Object payload) throws IOException {
+        MavlinkMessageInfo messageInfo = payload.getClass()
+                .getAnnotation(MavlinkMessageInfo.class);
+        byte[] serializedPayload = serializer.serialize(payload);
+        writeLock.lock();
+        try {
+            send(MavlinkPacket.createUnsignedMavlink2Packet(
                     sequence++,
-                    message.getOriginSystemId(),
-                    message.getOriginComponentId(),
+                    systemId,
+                    componentId,
                     messageInfo.id(),
                     messageInfo.crc(),
-                    serializedPayload);
+                    serializedPayload));
+        } finally {
+            writeLock.unlock();
         }
+    }
 
-        send(packet);
+    /**
+     * Sends a signed Mavlink 2 message using the specified settings.
+     *
+     * @param systemId             The system ID that originated this message.
+     * @param componentId          The component ID that originated this message.
+     * @param payload              The payload to send.
+     * @param signingConfiguration The configuration to use in order to produce a signature.
+     * @throws IOException if an I/O error occurs.
+     */
+    public void send2(int systemId, int componentId, Object payload,
+                      SigningConfiguration signingConfiguration) throws IOException {
+        MavlinkMessageInfo messageInfo = payload.getClass()
+                .getAnnotation(MavlinkMessageInfo.class);
+        byte[] serializedPayload = serializer.serialize(payload);
+        writeLock.lock();
+        try {
+            send(MavlinkPacket.createSignedMavlink2Packet(
+                    sequence++,
+                    systemId,
+                    componentId,
+                    messageInfo.id(),
+                    messageInfo.crc(),
+                    serializedPayload,
+                    signingConfiguration.getLinkId(),
+                    Math.max(
+                            timeProvider.microsSince1stJan2015GMT(),
+                            signingConfiguration.getTimestamp()),
+                    signingConfiguration.getSecretKey()));
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     /**
