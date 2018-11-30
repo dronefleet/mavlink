@@ -316,23 +316,18 @@ public class MavlinkConnection {
                 lastSignatureTimestamp = Math.max(
                         timeProvider.microsSince1stJan2015GMT() / 10,
                         lastSignatureTimestamp + 1);
-                packet = MavlinkPacket.create(
-                        message2.getIncompatibleFlags() | MavlinkPacket.INCOMPAT_FLAG_SIGNED,
-                        message2.getCompatibleFlags(),
+                packet = MavlinkPacket.createSignedMavlink2Packet(
                         sequence++,
                         message2.getOriginSystemId(),
                         message2.getOriginComponentId(),
                         messageInfo.id(),
                         messageInfo.crc(),
-                        serializedPayload)
-                        .sign(
-                                signingConfiguration.getLinkId(),
-                                lastSignatureTimestamp,
-                                signingConfiguration.getSecretKey());
+                        serializedPayload,
+                        signingConfiguration.getLinkId(),
+                        lastSignatureTimestamp,
+                        signingConfiguration.getSecretKey());
             } else {
-                packet = MavlinkPacket.create(
-                        message2.getIncompatibleFlags(),
-                        message2.getCompatibleFlags(),
+                packet = MavlinkPacket.createUnsignedMavlink2Packet(
                         sequence++,
                         message2.getOriginSystemId(),
                         message2.getOriginComponentId(),
@@ -341,7 +336,7 @@ public class MavlinkConnection {
                         serializedPayload);
             }
         } else {
-            packet = MavlinkPacket.create(
+            packet = MavlinkPacket.createMavlink1Packet(
                     sequence++,
                     message.getOriginSystemId(),
                     message.getOriginComponentId(),

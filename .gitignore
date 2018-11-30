@@ -114,3 +114,4 @@ gradle-app.setting
 secring.gpg
 
 # End of https://www.gitignore.io/api/java,gradle,intellij+all
+classes/

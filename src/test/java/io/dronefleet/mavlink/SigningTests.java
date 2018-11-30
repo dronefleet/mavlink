@@ -19,12 +19,21 @@ import static org.junit.Assert.assertTrue;
 
 public class SigningTests {
 
+    private static final MavlinkPayloadSerializer serializer = new ReflectionPayloadSerializer();
+
     @Test
     public void signedPacketsPassCLibrarySigningCheck() throws NoSuchAlgorithmException {
-        MavlinkPacket packet = createUnsignedHeartbeatPacket();
         byte[] secretKey = MessageDigest.getInstance("SHA-256")
                 .digest("test".getBytes(StandardCharsets.UTF_8));
-        packet = packet.sign(1, 123456L, secretKey);
+
+        MavlinkPacket packet = MavlinkPacket.createSignedMavlink2Packet(1, 255, 0, 0, 50,
+                serializer.serialize(Heartbeat.builder()
+                        .type(MavType.MAV_TYPE_GCS)
+                        .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+                        .systemStatus(MavState.MAV_STATE_UNINIT)
+                        .mavlinkVersion(3)
+                        .build()),
+                1, 123456L, secretKey);
 
         boolean result = CLibraryTestTool.signatureCheck(
                 packet.getSignedLinkId(),
@@ -36,11 +45,44 @@ public class SigningTests {
     }
 
     @Test
-    public void validateSignatureReturnsTrueForSignedPacket() throws NoSuchAlgorithmException {
-        MavlinkPacket packet = createUnsignedHeartbeatPacket();
+    public void cLibraryFailsSigningCheckWithWrongSecretKey() throws NoSuchAlgorithmException {
         byte[] secretKey = MessageDigest.getInstance("SHA-256")
                 .digest("test".getBytes(StandardCharsets.UTF_8));
-        packet = packet.sign(1, 123456L, secretKey);
+
+        MavlinkPacket packet = MavlinkPacket.createSignedMavlink2Packet(1, 255, 0, 0, 50,
+                serializer.serialize(Heartbeat.builder()
+                        .type(MavType.MAV_TYPE_GCS)
+                        .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+                        .systemStatus(MavState.MAV_STATE_UNINIT)
+                        .mavlinkVersion(3)
+                        .build()),
+                1, 123456L, secretKey);
+
+        // shift the array 1 byte to the left
+        System.arraycopy(secretKey, 1, secretKey, 0, secretKey.length - 1);
+
+        boolean result = CLibraryTestTool.signatureCheck(
+                packet.getSignedLinkId(),
+                packet.getSignedTimestamp(),
+                secretKey,
+                packet.getRawBytes());
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void validateSignatureReturnsTrueForSignedPacket() throws NoSuchAlgorithmException {
+        byte[] secretKey = MessageDigest.getInstance("SHA-256")
+                .digest("test".getBytes(StandardCharsets.UTF_8));
+
+        MavlinkPacket packet = MavlinkPacket.createSignedMavlink2Packet(1, 255, 0, 0, 50,
+                serializer.serialize(Heartbeat.builder()
+                        .type(MavType.MAV_TYPE_GCS)
+                        .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+                        .systemStatus(MavState.MAV_STATE_UNINIT)
+                        .mavlinkVersion(3)
+                        .build()),
+                1, 123456L, secretKey);
 
         assertTrue(packet.validateSignature(
                 packet.getSignedLinkId(),
@@ -50,10 +92,17 @@ public class SigningTests {
 
     @Test
     public void validateSignatureReturnsFalseForInvalidSecretKey() throws NoSuchAlgorithmException {
-        MavlinkPacket packet = createUnsignedHeartbeatPacket();
         byte[] secretKey = MessageDigest.getInstance("SHA-256")
                 .digest("test".getBytes(StandardCharsets.UTF_8));
-        packet = packet.sign(1, 123456L, secretKey);
+
+        MavlinkPacket packet = MavlinkPacket.createSignedMavlink2Packet(1, 255, 0, 0, 50,
+                serializer.serialize(Heartbeat.builder()
+                        .type(MavType.MAV_TYPE_GCS)
+                        .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+                        .systemStatus(MavState.MAV_STATE_UNINIT)
+                        .mavlinkVersion(3)
+                        .build()),
+                1, 123456L, secretKey);
 
         // shift the array 1 byte to the left
         System.arraycopy(secretKey, 1, secretKey, 0, secretKey.length - 1);
@@ -66,41 +115,21 @@ public class SigningTests {
 
     @Test
     public void validateSignatureReturnsFalseForUnsignedPacket() throws NoSuchAlgorithmException {
-        MavlinkPacket packet = MavlinkPacket.create(
-                0,
-                0,
-                3,
-                4,
-                5,
-                6,
-                7,
-                new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9},
-                null);
         byte[] secretKey = MessageDigest.getInstance("SHA-256")
                 .digest("test".getBytes(StandardCharsets.UTF_8));
 
-        assertFalse(packet.validateSignature(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
-                secretKey));
-    }
-
-    private MavlinkPacket createUnsignedHeartbeatPacket() {
-        MavlinkPayloadSerializer payloadDeserializer = new ReflectionPayloadSerializer();
-        return MavlinkPacket.create(
-                1,
-                0,
-                1,
-                255,
-                0,
-                0,
-                50,
-                payloadDeserializer.serialize(Heartbeat.builder()
+        MavlinkPacket packet = MavlinkPacket.createUnsignedMavlink2Packet(1, 255, 0, 0, 50,
+                serializer.serialize(Heartbeat.builder()
                         .type(MavType.MAV_TYPE_GCS)
                         .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
                         .systemStatus(MavState.MAV_STATE_UNINIT)
                         .mavlinkVersion(3)
                         .build()));
+
+        assertFalse(packet.validateSignature(
+                packet.getSignedLinkId(),
+                packet.getSignedTimestamp(),
+                secretKey));
     }
 
 }

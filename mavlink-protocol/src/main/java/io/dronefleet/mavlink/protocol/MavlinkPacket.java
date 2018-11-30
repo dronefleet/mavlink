@@ -10,86 +10,51 @@ public class MavlinkPacket {
 
     public static final int MAGIC_V1 = 0xFE;
     public static final int MAGIC_V2 = 0xFD;
-
     public static final int INCOMPAT_FLAG_SIGNED = 0x01;
 
-    public static MavlinkPacket create(
-            int incompatibleFlags,
-            int compatibleFlags,
-            int sequence,
-            int systemId,
-            int componentId,
-            int messageId,
-            int crcExtra,
-            byte[] payload) {
-        return create(
-                incompatibleFlags,
-                compatibleFlags,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                crcExtra,
-                payload,
-                null);
-    }
-
-    public static MavlinkPacket create(
-            int incompatibleFlags,
-            int compatibleFlags,
-            int sequence,
-            int systemId,
-            int componentId,
-            int messageId,
-            int crcExtra,
-            byte[] payload,
-            byte[] signature) {
-        if (signature == null) {
-            signature = new byte[0];
-        } else if (signature.length != 13) {
-            throw new IllegalArgumentException("signature must be 13 bytes in length");
-        }
-
-        byte[] rawBytes = new byte[12 + payload.length  + signature.length];
+    public static MavlinkPacket createSignedMavlink2Packet(
+            int sequence, int systemId, int componentId, int messageId,
+            int crcExtra, byte[] payload, int linkId, long timestamp, byte[] secretKey) {
+        byte[] rawBytes = new byte[25 + payload.length];
         ByteArray bytes = new ByteArray(rawBytes);
         bytes.putInt8(MAGIC_V2, 0);
         bytes.putInt8(payload.length, 1);
-        bytes.putInt8(incompatibleFlags, 2);
-        bytes.putInt8(compatibleFlags, 3);
+        bytes.putInt8(INCOMPAT_FLAG_SIGNED, 2);
+        bytes.putInt8(0, 3);
         bytes.putInt8(sequence, 4);
         bytes.putInt8(systemId, 5);
         bytes.putInt8(componentId, 6);
         bytes.putInt24(messageId, 7);
         System.arraycopy(payload, 0, rawBytes, 10, payload.length);
-        System.arraycopy(signature, 0, rawBytes, 12 + payload.length, signature.length);
-
-        CrcX25 crc = new CrcX25();
-        crc.accumulate(rawBytes, 1, 10);
-        crc.accumulate(payload);
-        crc.accumulate(crcExtra);
-        bytes.putInt16(crc.get(), 10 + payload.length);
-
-        return new MavlinkPacket(
-                MAGIC_V2,
-                incompatibleFlags,
-                compatibleFlags,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                payload,
-                crc.get(),
-                signature,
-                rawBytes);
+        int crc = generateCrc(rawBytes, crcExtra);
+        bytes.putInt16(crc, 10 + payload.length);
+        byte[] signature = generateSignature(rawBytes, linkId, timestamp, secretKey);
+        System.arraycopy(signature, 0, rawBytes, rawBytes.length - signature.length, signature.length);
+        return fromV2Bytes(rawBytes);
     }
 
-    public static MavlinkPacket create(
-            int sequence,
-            int systemId,
-            int componentId,
-            int messageId,
-            int crcExtra,
-            byte[] payload) {
+    public static MavlinkPacket createUnsignedMavlink2Packet(
+            int sequence, int systemId, int componentId, int messageId,
+            int crcExtra, byte[] payload) {
+        byte[] rawBytes = new byte[12 + payload.length];
+        ByteArray bytes = new ByteArray(rawBytes);
+        bytes.putInt8(MAGIC_V2, 0);
+        bytes.putInt8(payload.length, 1);
+        bytes.putInt8(0, 2);
+        bytes.putInt8(0, 3);
+        bytes.putInt8(sequence, 4);
+        bytes.putInt8(systemId, 5);
+        bytes.putInt8(componentId, 6);
+        bytes.putInt24(messageId, 7);
+        System.arraycopy(payload, 0, rawBytes, 10, payload.length);
+        int crc = generateCrc(rawBytes, crcExtra);
+        bytes.putInt16(crc, 10 + payload.length);
+        return fromV2Bytes(rawBytes);
+    }
+
+    public static MavlinkPacket createMavlink1Packet(
+            int sequence, int systemId, int componentId, int messageId,
+            int crcExtra, byte[] payload) {
         byte[] rawBytes = new byte[8 + payload.length];
         ByteArray bytes = new ByteArray(rawBytes);
         bytes.putInt8(MAGIC_V1, 0);
@@ -99,24 +64,9 @@ public class MavlinkPacket {
         bytes.putInt8(componentId, 4);
         bytes.putInt8(messageId, 5);
         System.arraycopy(payload, 0, rawBytes, 6, payload.length);
-
-        CrcX25 crc = new CrcX25();
-        crc.accumulate(rawBytes, 1, 6 + payload.length);
-        crc.accumulate(crcExtra);
-        bytes.putInt16(crc.get(), 6 + payload.length);
-
-        return new MavlinkPacket(
-                MAGIC_V1,
-                -1,
-                -1,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                payload,
-                crc.get(),
-                new byte[0],
-                rawBytes);
+        int crc = generateCrc(rawBytes, crcExtra);
+        bytes.putInt16(crc, 6 + payload.length);
+        return fromV1Bytes(rawBytes);
     }
 
     public static MavlinkPacket fromV1Bytes(byte[] rawBytes) {
@@ -129,18 +79,8 @@ public class MavlinkPacket {
         int messageId = bytes.getInt8(5);
         byte[] payload = bytes.slice(6, payloadLength);
         int checksum = bytes.getInt16(6 + payloadLength);
-        return new MavlinkPacket(
-                versionMarker,
-                -1,
-                -1,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                payload,
-                checksum,
-                new byte[0],
-                rawBytes);
+        return new MavlinkPacket(versionMarker, -1, -1, sequence, systemId, componentId,
+                messageId, payload, checksum, new byte[0], rawBytes);
     }
 
     public static MavlinkPacket fromV2Bytes(byte[] rawBytes) {
@@ -161,18 +101,59 @@ public class MavlinkPacket {
         } else {
             signature = new byte[0];
         }
-        return new MavlinkPacket(
-                versionMarker,
-                incompatibleFlags,
-                compatibleFlags,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                payload,
-                checksum,
-                signature,
-                rawBytes);
+        return new MavlinkPacket(versionMarker, incompatibleFlags, compatibleFlags, sequence,
+                systemId, componentId, messageId, payload, checksum, signature, rawBytes);
+    }
+
+    public static int generateCrc(byte[] packetBytes, int crcExtra) {
+        if (packetBytes.length < 3) {
+            return -1;
+        }
+        int payloadLength = packetBytes[1] & 0xFF;
+        int packetLengthWithoutCrc;
+        switch (packetBytes[0] & 0xFF) {
+            case MAGIC_V1:
+                packetLengthWithoutCrc = 6;
+                break;
+            case MAGIC_V2:
+                packetLengthWithoutCrc = 10;
+                break;
+            default: throw new IllegalStateException("not a mavlink packet");
+        }
+        packetLengthWithoutCrc += payloadLength;
+        CrcX25 crc = new CrcX25();
+        crc.accumulate(packetBytes, 1, packetLengthWithoutCrc);
+        crc.accumulate(crcExtra);
+        return crc.get();
+    }
+
+    public static byte[] generateSignature(
+            byte[] packetBytes, int linkId, long timestamp, byte[] secretKey) {
+        if (packetBytes.length < 3
+                || (packetBytes[0] & MavlinkPacket.MAGIC_V2) != MavlinkPacket.MAGIC_V2
+                || (packetBytes[2] & MavlinkPacket.INCOMPAT_FLAG_SIGNED) == 0) {
+            return new byte[0];
+        }
+        int payloadLength = packetBytes[1] & 0xFF;
+        int packetLengthWithCrc = 12 + payloadLength;
+        if (packetBytes.length < packetLengthWithCrc) {
+            throw new IllegalArgumentException("specified packet seems to be incomplete");
+        }
+        byte[] signature = new byte[13];
+        ByteArray bytes = new ByteArray(signature);
+        bytes.putInt8(linkId, 0);
+        bytes.putInt48(timestamp, 1);
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update(secretKey);
+            digest.update(packetBytes, 0, packetLengthWithCrc);
+            digest.update(signature, 0, 7);
+            byte[] hash = digest.digest();
+            System.arraycopy(hash, 0, signature, 7, 6);
+            return signature;
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
+        }
     }
 
     private final int versionMarker;
@@ -257,52 +238,7 @@ public class MavlinkPacket {
     }
 
     public boolean validateCrc(int crcExtra) {
-        CrcX25 crcX25 = new CrcX25();
-        switch (versionMarker) {
-            case MAGIC_V1:
-                crcX25.accumulate(getRawBytes(), 1, 6 + payload.length);
-                break;
-            case MAGIC_V2:
-                crcX25.accumulate(getRawBytes(), 1, 10 + payload.length);
-                break;
-            default:
-                throw new IllegalStateException(
-                        "Unknown version marker: 0x" + Integer.toHexString(versionMarker));
-        }
-        crcX25.accumulate(crcExtra);
-        return crcX25.get() == checksum;
-    }
-
-    public MavlinkPacket sign(int linkId, long timestamp, byte[] secretKey) {
-        if (versionMarker == MAGIC_V1) {
-            throw new IllegalStateException("mavlink1 packets do not support signatures");
-        }
-        if ((incompatibleFlags & INCOMPAT_FLAG_SIGNED) == 0) {
-            throw new IllegalStateException("signing flag not specified in incompatibility flags");
-        }
-        byte[] signature = generateSignature(linkId, timestamp, secretKey);
-        byte[] rawBytes;
-        if (this.signature.length == 0) {
-            rawBytes = new byte[this.rawBytes.length + signature.length];
-            System.arraycopy(this.rawBytes, 0, rawBytes, 0, this.rawBytes.length);
-            System.arraycopy(signature, 0, rawBytes, this.rawBytes.length, signature.length);
-        } else {
-            rawBytes = new byte[this.rawBytes.length];
-            System.arraycopy(this.rawBytes, 0, rawBytes, 0, this.rawBytes.length - signature.length);
-            System.arraycopy(signature, 0, rawBytes, this.rawBytes.length - signature.length, signature.length);
-        }
-        return new MavlinkPacket(
-                versionMarker,
-                incompatibleFlags,
-                compatibleFlags,
-                sequence,
-                systemId,
-                componentId,
-                messageId,
-                payload,
-                checksum,
-                signature,
-                rawBytes);
+        return generateCrc(rawBytes, crcExtra) == checksum;
     }
 
     public boolean isSigned() {
@@ -310,12 +246,9 @@ public class MavlinkPacket {
     }
 
     public boolean validateSignature(int linkId, long timestamp, byte[] secretKey) {
-        if (versionMarker == MAGIC_V1) {
-            throw new IllegalStateException("mavlink1 packets do not support signatures");
-        }
         return isSigned() && Arrays.equals(
                 signature,
-                generateSignature(linkId, timestamp, secretKey));
+                generateSignature(this.rawBytes, linkId, timestamp, secretKey));
     }
 
     public int getSignedLinkId() {
@@ -325,24 +258,6 @@ public class MavlinkPacket {
     public long getSignedTimestamp() {
         ByteArray bytes = new ByteArray(signature);
         return isSigned() ? bytes.getInt48(1) : -1;
-    }
-
-    private byte[] generateSignature(int linkId, long timestamp, byte[] secretKey) {
-        byte[] signature = new byte[13];
-        ByteArray bytes = new ByteArray(signature);
-        bytes.putInt8(linkId, 0);
-        bytes.putInt48(timestamp, 1);
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            digest.update(secretKey);
-            digest.update(rawBytes, 0, rawBytes.length - this.signature.length);
-            digest.update(signature, 0, 7);
-            byte[] hash = digest.digest();
-            System.arraycopy(hash, 0, signature, 7, 6);
-            return signature;
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException("JVM does not have an implementation of SHA-256 available.");
-        }
     }
 
     @Override

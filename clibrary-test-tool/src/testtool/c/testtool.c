@@ -47,3 +47,26 @@ Java_io_dronefleet_mavlink_testtool_CLibraryTestTool_signatureCheck(
     (*env)->ReleaseByteArrayElements(env, secretKey, secretKeyBytes, 0);
     return mavlink_signature_check(&signing, &signingStreams, &msg);
 }
+
+JNIEXPORT jboolean JNICALL
+Java_io_dronefleet_mavlink_testtool_CLibraryTestTool_crcCheck(
+        JNIEnv *env,
+        jobject obj,
+        jbyteArray packet) {
+
+    mavlink_message_t msg;
+    mavlink_status_t status;
+    jbyte* packetBytes = (*env)->GetByteArrayElements(env, packet, NULL);
+    jsize packetLength = (*env)->GetArrayLength(env, packet);
+    int chan = 0;
+    int i;
+    for (i = 0; i < packetLength; i++) {
+        uint8_t byte = packetBytes[i] & 0xff;
+        uint8_t framingStatus = mavlink_frame_char(chan, byte, &msg, &status);
+        if (framingStatus == MAVLINK_FRAMING_BAD_CRC) {
+            return false;
+        }
+    }
+    (*env)->ReleaseByteArrayElements(env, packet, packetBytes, 0);
+    return true;
+}
