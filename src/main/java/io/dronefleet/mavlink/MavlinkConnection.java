@@ -9,14 +9,11 @@ import io.dronefleet.mavlink.common.Heartbeat;
 import io.dronefleet.mavlink.common.MavAutopilot;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
 import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
-import io.dronefleet.mavlink.serialization.MavlinkSerializationException;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadSerializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadDeserializer;
 import io.dronefleet.mavlink.serialization.payload.reflection.ReflectionPayloadSerializer;
-import io.dronefleet.mavlink.signing.SigningConfiguration;
 import io.dronefleet.mavlink.slugs.SlugsDialect;
-import io.dronefleet.mavlink.util.TimeProvider;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -41,7 +38,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * should be implemented by users of this class.</p>
  */
 public class MavlinkConnection {
-
     /**
      * Builds MavlinkConnection instances.
      */
@@ -49,7 +45,6 @@ public class MavlinkConnection {
         private final InputStream in;
         private final OutputStream out;
         private final Map<MavAutopilot, MavlinkDialect> dialects;
-        private TimeProvider timeProvider;
 
         private Builder(InputStream in, OutputStream out) {
             this.in = in;
@@ -59,7 +54,6 @@ public class MavlinkConnection {
             dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, new AsluavDialect());
             dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect());
             dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect());
-            this.timeProvider = TimeProvider.SYSTEM_CLOCK;
         }
 
         /**
@@ -76,19 +70,6 @@ public class MavlinkConnection {
         }
 
         /**
-         * The time provider to use when querying for the current time. The default value is
-         * {@link TimeProvider#SYSTEM_CLOCK} which uses the {@code java.time} package in order to
-         * get the actual current time.
-         *
-         * @param timeProvider The time provider to use.
-         * @return This builder.
-         */
-        public Builder timeProvider(TimeProvider timeProvider) {
-            this.timeProvider = timeProvider;
-            return this;
-        }
-
-        /**
          * Builds a ready to use connection instance.
          */
         public MavlinkConnection build() {
@@ -97,8 +78,8 @@ public class MavlinkConnection {
                     out,
                     dialects,
                     new ReflectionPayloadDeserializer(),
-                    new ReflectionPayloadSerializer(),
-                    timeProvider);
+                    new ReflectionPayloadSerializer()
+            );
         }
     }
 
@@ -171,11 +152,6 @@ public class MavlinkConnection {
     private final MavlinkPayloadSerializer serializer;
 
     /**
-     * A time provider to use for signing.
-     */
-    private final TimeProvider timeProvider;
-
-    /**
      * Locks calls to {@link #next()} to ensure no concurrent reads occur.
      */
     private final Lock readLock;
@@ -190,14 +166,12 @@ public class MavlinkConnection {
             OutputStream out,
             Map<MavAutopilot, MavlinkDialect> dialects,
             MavlinkPayloadDeserializer deserializer,
-            MavlinkPayloadSerializer serializer,
-            TimeProvider timeProvider) {
+            MavlinkPayloadSerializer serializer) {
         this.reader = reader;
         this.out = out;
         this.dialects = dialects;
         this.deserializer = deserializer;
         this.serializer = serializer;
-        this.timeProvider = timeProvider;
         systemDialects = new HashMap<>();
         readLock = new ReentrantLock();
         writeLock = new ReentrantLock();
@@ -334,14 +308,16 @@ public class MavlinkConnection {
     /**
      * Sends a signed Mavlink 2 message using the specified settings.
      *
-     * @param systemId             The system ID that originated this message.
-     * @param componentId          The component ID that originated this message.
-     * @param payload              The payload to send.
-     * @param signingConfiguration The configuration to use in order to produce a signature.
+     * @param systemId    The system ID that originated this message.
+     * @param componentId The component ID that originated this message.
+     * @param payload     The payload to send.
+     * @param linkId      The link ID to use when signing.
+     * @param timestamp   The timestamp to use when signing.
+     * @param secretKey   The secret key to use when signing.
      * @throws IOException if an I/O error occurs.
      */
-    public void send2(int systemId, int componentId, Object payload,
-                      SigningConfiguration signingConfiguration) throws IOException {
+    public void send2(int systemId, int componentId, Object payload, int linkId,
+                      long timestamp, byte[] secretKey) throws IOException {
         MavlinkMessageInfo messageInfo = payload.getClass()
                 .getAnnotation(MavlinkMessageInfo.class);
         byte[] serializedPayload = serializer.serialize(payload);
@@ -354,11 +330,9 @@ public class MavlinkConnection {
                     messageInfo.id(),
                     messageInfo.crc(),
                     serializedPayload,
-                    signingConfiguration.getLinkId(),
-                    Math.max(
-                            timeProvider.microsSince1stJan2015GMT(),
-                            signingConfiguration.getTimestamp()),
-                    signingConfiguration.getSecretKey()));
+                    linkId,
+                    timestamp,
+                    secretKey));
         } finally {
             writeLock.unlock();
         }
