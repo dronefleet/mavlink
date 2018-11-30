@@ -7,7 +7,7 @@ public class MavlinkFrameReader {
     private final TransactionalInputStream in;
 
     public MavlinkFrameReader(InputStream in) {
-        this.in = new TransactionalInputStream(in, 1024);
+        this.in = new TransactionalInputStream(in, 279);
     }
 
     public boolean next() throws IOException {
@@ -25,7 +25,7 @@ public class MavlinkFrameReader {
                     return in.advance(6 + payloadLength);
                 case MavlinkPacket.MAGIC_V2:
                     return (incompatibleFlags = in.read()) != -1
-                            && in.advance(12 + payloadLength + (incompatibleFlags & 1) * 13);
+                            && in.advance(11 + payloadLength + (incompatibleFlags & 1) * 13);
                 default:
                     in.rollback();
                     in.skip(1);
