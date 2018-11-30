@@ -13,6 +13,7 @@ public class MavlinkFrameReader {
     public boolean next() throws IOException {
         int versionMarker;
         int payloadLength;
+        int incompatibleFlags;
 
         in.commit();
         while ((versionMarker = in.read()) != -1) {
@@ -23,7 +24,8 @@ public class MavlinkFrameReader {
                 case MavlinkPacket.MAGIC_V1:
                     return in.advance(6 + payloadLength);
                 case MavlinkPacket.MAGIC_V2:
-                    return in.advance(25 + payloadLength);
+                    return (incompatibleFlags = in.read()) != -1
+                            && in.advance(12 + payloadLength + (incompatibleFlags & 1) * 13);
                 default:
                     in.rollback();
                     in.skip(1);
