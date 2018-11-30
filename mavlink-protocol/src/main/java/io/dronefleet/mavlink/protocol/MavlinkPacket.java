@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 public class MavlinkPacket {
 
-    public static final int MAGIC_V1 = 0xFE;
-    public static final int MAGIC_V2 = 0xFD;
-    public static final int INCOMPAT_FLAG_SIGNED = 0x01;
+    static final int MAGIC_V1 = 0xFE;
+    static final int MAGIC_V2 = 0xFD;
+    private static final int INCOMPAT_FLAG_SIGNED = 0x01;
 
     public static MavlinkPacket createSignedMavlink2Packet(
             int sequence, int systemId, int componentId, int messageId,
