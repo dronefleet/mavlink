@@ -68,5 +68,65 @@ try (Socket socket = new Socket("127.0.0.1", 5760)) {
 }
 ```
 
-### Signing packets
+### Creating packets
 
+The following are examples for creating Mavlink protocol packets:
+
+```java
+// Mavlink 1
+MavlinkPacket packet1 = MavlinkPacket.createMavlink1Packet(
+        sequence,
+        systemId,
+        componentId,
+        messageId,
+        crcExtra,
+        payload);
+
+// Mavlink 2, unsigned
+MavlinkPacket packet2Unsigned = MavlinkPacket.createUnsignedMavlink2Packet(
+        sequence,
+        systemId,
+        componentId,
+        messageId,
+        crcExtra,
+        payload);
+
+// Mavlink 2, signed
+MavlinkPacket packet2Signed = MavlinkPacket.createSignedMavlink2Packet(
+        sequence,
+        systemId,
+        componentId,
+        messageId,
+        crcExtra,
+        payload,
+        linkId,
+        timestamp,
+        secretKey);
+```
+
+The above packets are complete and ready to be sent. The creation methods calculate
+CRC checksums and form signatures where appropriate.
+
+### Obtaining packet bytes
+
+Once may obtain the complete packet bytes from received and created packets
+like so:
+
+```java
+MavlinkPacket packet = /* ... */;
+byte[] packetBytes = packet.getRawBytes();
+```
+
+### Validating CRCs
+CRC for packets can be validated:
+```java
+MavlinkPacket packet = /* ... */;
+boolean validCrc = packet.validateCrc(crcExtra);
+```
+
+### Validating signatures
+Signatures of signed version 2 packets can be validated:
+```java
+MavlinkPacket packet = /* ... */;
+boolean validSignature = packet.validateSignature(secretKey);
+```
