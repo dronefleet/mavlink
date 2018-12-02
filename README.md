@@ -44,78 +44,86 @@ while ((message = connection.next()) != null) {
 }
 
 // Writing
-connection.send(new MavlinkMessage<>(
-        255, // our system id
-        0, // our component id (0 if we're a ground control system)
+connection.send1(
+        255, /* systemId */
+        0, /* componentId */
         Heartbeat.builder()
-                .type(MavType.MAV_TYPE_GCS)
-                .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
-                .systemStatus(MavState.MAV_STATE_UNINIT)
-                .mavlinkVersion(3)
-                .build()));
+             .type(MavType.MAV_TYPE_GCS)
+             .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+             .systemStatus(MavState.MAV_STATE_UNINIT)
+             .mavlinkVersion(3)
+             .build()));
 
 ```
 
-#### Detailed
+#### Reading & disambiguating messages
 This is a detailed example of how to use the API to read and write messages.
 ```java
 // This example uses a TCP socket, however we may also use a UDP socket by injecting
 // PipedInputStream/PipedOutputStream to MavlinkConnection, or even USB by using any
 // implementation that will eventually yield an InputStream and an OutputStream.
 try (Socket socket = new Socket("127.0.0.1", 5760)) {
-    
     // After establishing a connection, we proceed to building a MavlinkConnection instance.
-    // Basically, the options conclude at mapping different autopilots to dialects, and
-    // specifying configuration for packet signing.
-    MavlinkConnection connection = MavlinkConnection.builder(socket.getInputStream(), socket.getOutputStream())
-            
-            // Dialects are associated to systems when a heartbeat is received. The heartbeat
-            // informs us of the autopilot of the device, which tells us which dialect
-            // that device adheres to.
-            .dialect(MavAutopilot.MAV_AUTOPILOT_GENERIC, new StandardDialect())
-            .dialect(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect())
-            
-            // When specifying signing configuration, every Mavlink2Message that is send
-            // through this connection will be signed. We will need to setup signing
-            // by sending Mavlink1 messages before we can communicate with Mavlink2 messages.
-            .signing(new SigningConfiguration(
-                    0, // This is the initial timestamp for signing, We should only specify
-                                // a value other than 0 if we do not trust that our system's clock is
-                                // going to be calibrated prior to the connection. Generally, this value
-                                // is loaded from persistence (where the last signature timestamp is stored)
-
-                    1,    // The signing link ID. Generally, this should be connection-bound. So if there
-                                // is more than a single connection, each of them has to have a different value.
-
-                    // Secret key, should be 36 bytes in length. The specification recommends using a
-                    // SHA-256'd passphrase.
-                    MessageDigest.getInstance("SHA-256")
-                            .digest("my secret key".getBytes(StandardCharsets.UTF_8))
-            ))
-            .build();
+    MavlinkConnection connection = MavlinkConnection.create(
+            socket.getInputStream(), 
+            socket.getOutputStream());
 
     // Now we are ready to read and send messages.
     MavlinkMessage message;
     while ((message = connection.next()) != null) {
-        
         // The received message could be either a Mavlink1 message, or a Mavlink2 message.
         // To check if the message is a Mavlink2 message, we could do the following:
         if (message instanceof Mavlink2Message) {
             // This is a Mavlink2 message.
+            Mavlink2Message message2 = (Mavlink2Message)message;
+            
+            if (message2.isSigned()) {
+                // This is a signed message. Let's validate its signature.
+                if (message2.validateSignature(mySecretKey)) {
+                    // Signature is valid.
+                } else {
+                    // Signature validation failed. This message is suspicious and
+                    // should not be handled. Perhaps we should log this incident.
+                }
+            } else {
+                // This is an unsigned message.
+            }
+        } else {
+           // This is a Mavlink1 message.
         }
         
         // When a message is received, its payload type isn't statically available.
-        // You can resolve which kind of message it is by its payload, like so:
+        // We can resolve which kind of message it is by its payload, like so:
         if (message.getPayload() instanceof Heartbeat) {
             // This is a heartbeat message
             MavlinkMessage<Heartbeat> heartbeatMessage = (MavlinkMessage<Heartbeat>)message;
         }
-        // We are likely better off by publishing the payload to a pub/sub mechanism such 
+        // We are better off by publishing the payload to a pub/sub mechanism such 
         // as RxJava, JMS or any other favorite instead, though.
-        
     }
 } catch (EOFException eof) {
-    // The stream has ended. This is where we may want to start retrying or reporting that the
-    // host has disconnected.
+    // The stream has ended.
 }
+```
+
+#### Writing Mavlink 2 messages
+```java
+int systemId = 255;
+int componentId = 0;
+Heartbeat heartbeat = Heartbeat.builder()
+          .type(MavType.MAV_TYPE_GCS)
+          .autopilot(MavAutopilot.MAV_AUTOPILOT_INVALID)
+          .systemStatus(MavState.MAV_STATE_UNINIT)
+          .mavlinkVersion(3)
+          .build()
+
+// Write an unsigned heartbeat
+connection.send2(systemId, componentId, heartbeat);
+
+// Write a signed heartbeat
+int linkId = 1;
+long timestamp = /* provide microsecond time */;
+byte[] secretKey = MessageDigest.getInstance("SHA-256")
+                       .digest("a secret phrase".getBytes(StandardCharsets.UTF_8))
+connection.send2(systemId, componentId, heartbeat, linkId, timestamp, secretKey);
 ```

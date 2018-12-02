@@ -36,8 +36,8 @@ public class SigningTests {
                 1, 123456L, secretKey);
 
         boolean result = CLibraryTestTool.signatureCheck(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
+                packet.getSignatureLinkId(),
+                packet.getSignatureTimestamp(),
                 secretKey,
                 packet.getRawBytes());
 
@@ -62,8 +62,8 @@ public class SigningTests {
         System.arraycopy(secretKey, 1, secretKey, 0, secretKey.length - 1);
 
         boolean result = CLibraryTestTool.signatureCheck(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
+                packet.getSignatureLinkId(),
+                packet.getSignatureTimestamp(),
                 secretKey,
                 packet.getRawBytes());
 
@@ -84,10 +84,7 @@ public class SigningTests {
                         .build()),
                 1, 123456L, secretKey);
 
-        assertTrue(packet.validateSignature(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
-                secretKey));
+        assertTrue(packet.validateSignature(secretKey));
     }
 
     @Test
@@ -107,10 +104,7 @@ public class SigningTests {
         // shift the array 1 byte to the left
         System.arraycopy(secretKey, 1, secretKey, 0, secretKey.length - 1);
 
-        assertFalse(packet.validateSignature(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
-                secretKey));
+        assertFalse(packet.validateSignature(secretKey));
     }
 
     @Test
@@ -126,10 +120,7 @@ public class SigningTests {
                         .mavlinkVersion(3)
                         .build()));
 
-        assertFalse(packet.validateSignature(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
-                secretKey));
+        assertFalse(packet.validateSignature(secretKey));
     }
 
 }

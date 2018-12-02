@@ -30,10 +30,7 @@ public class Mavlink2Message<T> extends MavlinkMessage<T> {
      * @return {@code true} if the signature validation passed, or {@code false} otherwise.
      */
     public boolean validateSignature(byte[] secretKey) {
-        return packet.validateSignature(
-                packet.getSignedLinkId(),
-                packet.getSignedTimestamp(),
-                secretKey);
+        return packet.validateSignature(secretKey);
     }
 
     /**
@@ -43,7 +40,7 @@ public class Mavlink2Message<T> extends MavlinkMessage<T> {
      * is not signed.
      */
     public long getSignatureTimestamp() {
-        return packet.getSignedTimestamp();
+        return packet.getSignatureTimestamp();
     }
 
     /**
@@ -53,7 +50,7 @@ public class Mavlink2Message<T> extends MavlinkMessage<T> {
      * is not signed.
      */
     public int getSignatureLinkId() {
-        return packet.getSignedLinkId();
+        return packet.getSignatureLinkId();
     }
 
     /**

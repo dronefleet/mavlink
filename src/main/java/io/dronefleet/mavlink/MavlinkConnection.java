@@ -7,6 +7,7 @@ import io.dronefleet.mavlink.autoquad.AutoquadDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
 import io.dronefleet.mavlink.common.Heartbeat;
 import io.dronefleet.mavlink.common.MavAutopilot;
+import io.dronefleet.mavlink.paparazzi.PaparazziDialect;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
 import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
 import io.dronefleet.mavlink.serialization.payload.MavlinkPayloadDeserializer;
@@ -26,16 +27,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * <p>Represents a Mavlink connection. This class is responsible for mid-to-low-level function of Mavlink communication.
- * A {@code MavlinkConnection} is responsible for the following responsibilities:</p>
+ * A {@code MavlinkConnection} is responsible for the following:</p>
  * <ul>
  * <li>Serialization of Mavlink messages.</li>
  * <li>Tracking and resolving dialects of systems that are available through the connection.</li>
- * <li>Low level validation of packets.</li>
+ * <li>CRC validation of packets.</li>
  * </ul>
- * <p>
- * <p>This class doesn't provide any features other than the simple means of sending/reading and ensuring the validity
- * of messages in terms of transmission and protocol. Higher level features of the protocol, such as message signings
- * should be implemented by users of this class.</p>
  */
 public class MavlinkConnection {
     /**
@@ -50,10 +47,21 @@ public class MavlinkConnection {
             this.in = in;
             this.out = out;
             dialects = new HashMap<>();
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_SLUGS, new SlugsDialect());
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_ASLUAV, new AsluavDialect());
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect());
-            dialects.put(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect());
+            dialect(MavAutopilot.MAV_AUTOPILOT_GENERIC, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_AEROB, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_AIRRAILS, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_UDB, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_SMARTAP, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_SMACCMPILOT, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_OPENPILOT, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_FP, new CommonDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_ARDUPILOTMEGA, new ArdupilotmegaDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_PX4, new ArdupilotmegaDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_ASLUAV, new AsluavDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_SLUGS, new SlugsDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect())
+                    .dialect(MavAutopilot.MAV_AUTOPILOT_PPZ, new PaparazziDialect());
         }
 
         /**
@@ -212,10 +220,7 @@ public class MavlinkConnection {
                 // information from underlying implementations that use the message protocol, we are unable to
                 // check if the packet is actually a valid one, despite not understanding it.
                 // So we have to assume that we might have received a corrupted packet, and instead, try again
-                // the at next byte rather than skipping the entire message. This means that if the message was
-                // actually valid, but simply not understood, we are going to spend N iterations for nothing for
-                // each packet, where N is the amount of bytes per packet.
-                // In other words, for the best performance, don't talk to MAVs who's dialects you do not support.
+                // at the next byte rather than skipping the entire message.
                 if (!dialect.supports(packet.getMessageId())) {
                     reader.drop();
                     continue;
