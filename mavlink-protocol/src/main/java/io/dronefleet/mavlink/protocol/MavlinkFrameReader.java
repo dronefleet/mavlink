@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * <p>>
+ * <p>
  * Reads Mavlink protocol frames.
  * <p>
  * A frame is a collection of bytes that appear to be a complete packet. A frame begins with
