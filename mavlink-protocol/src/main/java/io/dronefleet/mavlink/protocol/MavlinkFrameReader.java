@@ -52,7 +52,7 @@ public class MavlinkFrameReader {
                     return in.advance(6 + payloadLength);
                 case MavlinkPacket.MAGIC_V2:
                     return (incompatibleFlags = in.read()) != -1
-                            && in.advance(11 + payloadLength + (incompatibleFlags & 1) * 13);
+                            && in.advance(9 + payloadLength + (incompatibleFlags & 1) * 13);
                 default:
                     in.rollback();
                     in.skip(1);
