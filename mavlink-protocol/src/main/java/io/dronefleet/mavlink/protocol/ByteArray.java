@@ -48,7 +48,7 @@ class ByteArray {
     public long getLong(int offset, int size) {
         long value = 0;
         for (int i = 0; i < size; i++) {
-            value |= (bytes[offset+i] & 0xff) << (i * Byte.SIZE);
+            value |= (bytes[offset+i] & 0xFFL) << (i * Byte.SIZE);
         }
         return value;
     }
