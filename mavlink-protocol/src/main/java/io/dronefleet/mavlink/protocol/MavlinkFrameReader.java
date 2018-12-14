@@ -26,7 +26,7 @@ public class MavlinkFrameReader {
      * @param in The input stream to read mavlink frames from.
      */
     public MavlinkFrameReader(InputStream in) {
-        this.in = new TransactionalInputStream(in, 279);
+        this.in = new TransactionalInputStream(in, 280);
     }
 
     /**
@@ -54,9 +54,7 @@ public class MavlinkFrameReader {
                     return (incompatibleFlags = in.read()) != -1
                             && in.advance(9 + payloadLength + (incompatibleFlags & 1) * 13);
                 default:
-                    in.rollback();
-                    in.skip(1);
-                    in.commit();
+                    drop();
             }
         }
         return false;
