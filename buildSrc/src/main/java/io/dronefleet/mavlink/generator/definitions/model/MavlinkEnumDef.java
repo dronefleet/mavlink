@@ -6,11 +6,13 @@ public class MavlinkEnumDef {
     private final String name;
     private final String description;
     private final List<MavlinkEntryDef> entries;
+    private final MavlinkDeprecationDef deprecation;
 
-    public MavlinkEnumDef(String name, String description, List<MavlinkEntryDef> entries) {
+    public MavlinkEnumDef(String name, String description, List<MavlinkEntryDef> entries, MavlinkDeprecationDef deprecation) {
         this.name = name;
         this.description = description;
         this.entries = entries;
+        this.deprecation = deprecation;
     }
 
     public String getName() {
@@ -25,6 +27,10 @@ public class MavlinkEnumDef {
         return entries;
     }
 
+    public MavlinkDeprecationDef getDeprecation() {
+        return deprecation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,7 +40,8 @@ public class MavlinkEnumDef {
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        return entries != null ? entries.equals(that.entries) : that.entries == null;
+        if (entries != null ? !entries.equals(that.entries) : that.entries != null) return false;
+        return deprecation != null ? deprecation.equals(that.deprecation) : that.deprecation == null;
     }
 
     @Override
@@ -42,6 +49,7 @@ public class MavlinkEnumDef {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (entries != null ? entries.hashCode() : 0);
+        result = 31 * result + (deprecation != null ? deprecation.hashCode() : 0);
         return result;
     }
 
@@ -51,6 +59,7 @@ public class MavlinkEnumDef {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", entries=" + entries +
+                ", deprecation=" + deprecation +
                 '}';
     }
 }

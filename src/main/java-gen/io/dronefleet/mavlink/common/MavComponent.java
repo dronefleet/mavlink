@@ -2,6 +2,7 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
+import java.lang.Deprecated;
 
 /**
  * Component ids (values) for the different types and instances of onboard hardware/software 
@@ -184,8 +185,11 @@ public enum MavComponent {
 
     /**
      * Gimbal ID for QX1. 
+     * @deprecated Since 2018-11, replaced by MAV_COMP_ID_GIMBAL. All gimbals should use 
+     * MAV_COMP_ID_GIMBAL. 
      */
     @MavlinkEntryInfo(159)
+    @Deprecated
     MAV_COMP_ID_QX1_GIMBAL,
 
     /**
@@ -263,7 +267,10 @@ public enum MavComponent {
 
     /**
      * Component for handling system messages (e.g. to ARM, takeoff, etc.). 
+     * @deprecated Since 2018-11, replaced by MAV_COMP_ID_ALL. System control does not require a 
+     * separate component ID. 
      */
     @MavlinkEntryInfo(250)
+    @Deprecated
     MAV_COMP_ID_SYSTEM_CONTROL
 }

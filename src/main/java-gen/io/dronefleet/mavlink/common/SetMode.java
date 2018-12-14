@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -14,12 +15,15 @@ import java.util.Objects;
 /**
  * Set the system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MAV_MODE}. There is no target component id as the mode is by 
  * definition for the overall aircraft, not only for one component. 
+ * @deprecated Since 2015-12, replaced by MAV_CMD_DO_SET_MODE. Use {@link io.dronefleet.mavlink.common.CommandLong COMMAND_LONG} with 
+ * MAV_CMD_DO_SET_MODE instead 
  */
 @MavlinkMessageInfo(
         id = 11,
         crc = 89,
         description = "Set the system mode, as defined by enum MAV_MODE. There is no target component id as the mode is by definition for the overall aircraft, not only for one component."
 )
+@Deprecated
 public final class SetMode {
     private final int targetSystem;
 

@@ -68,7 +68,8 @@ public class MavlinkGeneratorFactory {
                 messageDef.getName(),
                 packageGenerator.getTypeName(messageDef.getName()),
                 messageDef.getDescription(),
-                new ArrayList<>(messageDef.getFields().size()));
+                new ArrayList<>(messageDef.getFields().size()),
+                visitDeprecation(messageDef.getDeprecation()));
 
         messageDef.getFields()
                 .stream()
@@ -104,7 +105,8 @@ public class MavlinkGeneratorFactory {
                     enumDef.getName(),
                     packageGenerator.getTypeName(enumDef.getName()),
                     enumDef.getDescription(),
-                    new ArrayList<>(enumDef.getEntries().size()));
+                    new ArrayList<>(enumDef.getEntries().size()),
+                    visitDeprecation(enumDef.getDeprecation()));
 
             packageGenerator.addEnum(enumGenerator);
         }
@@ -130,7 +132,8 @@ public class MavlinkGeneratorFactory {
                 entryDef.getName(),
                 value,
                 entryDef.getDescription(),
-                new ArrayList<>(entryDef.getParams().size()));
+                new ArrayList<>(entryDef.getParams().size()),
+                visitDeprecation(entryDef.getDeprecation()));
 
         entryDef.getParams()
                 .stream()
@@ -145,6 +148,18 @@ public class MavlinkGeneratorFactory {
                 packageGenerator,
                 paramDef.getIndex(),
                 paramDef.getDescription());
+    }
+
+    private DeprecationGenerator visitDeprecation(
+            MavlinkDeprecationDef deprecationDef) {
+        if (deprecationDef == null) {
+            return new DeprecationGenerator(false, "", "", "");
+        }
+        return new DeprecationGenerator(
+                true,
+                deprecationDef.getSince(),
+                deprecationDef.getReplacedBy(),
+                deprecationDef.getMessage());
     }
 
 

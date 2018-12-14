@@ -19,26 +19,25 @@ public class EnumGenerator {
     private final ClassName className;
     private final String description;
     private final List<EnumConstantGenerator> constants;
+    private final DeprecationGenerator deprecation;
 
     public EnumGenerator(
             PackageGenerator parentPackage,
             String name,
             ClassName className,
             String description,
-            List<EnumConstantGenerator> constants) {
+            List<EnumConstantGenerator> constants,
+            DeprecationGenerator deprecation) {
         this.parentPackage = parentPackage;
         this.name = name;
         this.className = className;
         this.description = description;
         this.constants = constants;
+        this.deprecation = deprecation;
     }
 
     public PackageGenerator getParentPackage() {
         return parentPackage;
-    }
-
-    public boolean deprecated() {
-        return description != null && description.toLowerCase().contains("deprecated");
     }
 
     public String getName() {
@@ -54,7 +53,12 @@ public class EnumGenerator {
     }
 
     public String javadoc() {
-        return parentPackage.processJavadoc(getDescription());
+        String javadoc = parentPackage.processJavadoc(getDescription());
+
+        if (deprecation.deprecated()) {
+            javadoc += parentPackage.processJavadoc(deprecation.javadoc());
+        }
+        return javadoc;
     }
 
     public void addConstant(EnumConstantGenerator generator) {
@@ -71,8 +75,8 @@ public class EnumGenerator {
     public List<AnnotationSpec> annotations() {
         List<AnnotationSpec> annotations = new ArrayList<>();
         annotations.add(AnnotationSpec.builder(MAVLINK_ENUM).build());
-        if (deprecated()) {
-            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        if (deprecation.deprecated()) {
+            annotations.add(deprecation.annotation());
         }
         return annotations;
     }

@@ -6,6 +6,7 @@ import com.squareup.javapoet.TypeSpec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EnumConstantGenerator {
 
@@ -18,22 +19,21 @@ public class EnumConstantGenerator {
     private final int value;
     private final String description;
     private final List<EnumParameterGenerator> parameters;
+    private final DeprecationGenerator deprecation;
 
     public EnumConstantGenerator(
             PackageGenerator parentPackage,
             String name,
             int value,
             String description,
-            List<EnumParameterGenerator> parameters) {
+            List<EnumParameterGenerator> parameters,
+            DeprecationGenerator deprecation) {
         this.parentPackage = parentPackage;
         this.name = name;
         this.value = value;
         this.description = description;
         this.parameters = parameters;
-    }
-
-    public boolean deprecated() {
-        return description != null && description.toLowerCase().contains("deprecated");
+        this.deprecation = deprecation;
     }
 
     public String getName() {
@@ -57,8 +57,8 @@ public class EnumConstantGenerator {
     public List<AnnotationSpec> annotations() {
         List<AnnotationSpec> annotations = new ArrayList<>();
         annotations.add(annotation());
-        if (deprecated()) {
-            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        if (deprecation.deprecated()) {
+            annotations.add(deprecation.annotation());
         }
         return annotations;
     }
@@ -68,13 +68,16 @@ public class EnumConstantGenerator {
         javadoc.append(parentPackage.processJavadoc(description));
 
         if (parameters.size() > 0) {
-            javadoc.append("<dl>\n");
-            parameters.stream()
-                    .map(p -> String.format("<dt>param%d</dt><dd>%s</dd>\n",
+            String parameterJavadoc = parameters.stream()
+                    .map(p -> String.format("  <dt>param%d</dt>\n  <dd>%s</dd>",
                             p.getIndex(),
-                            p.javadoc()))
-                    .forEach(javadoc::append);
-            javadoc.append("</dl>\n");
+                            p.javadoc().trim()))
+                    .collect(Collectors.joining("\n\n", "<dl>\n", "\n</dl>\n"));
+            javadoc.append(parameterJavadoc);
+        }
+
+        if (deprecation.deprecated()) {
+            javadoc.append(parentPackage.processJavadoc(deprecation.javadoc()));
         }
 
         return javadoc.toString();

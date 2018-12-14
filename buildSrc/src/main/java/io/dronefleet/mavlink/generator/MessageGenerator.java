@@ -24,6 +24,7 @@ public class MessageGenerator {
     private final ClassName className;
     private final String description;
     private final List<FieldGenerator> fields;
+    private final DeprecationGenerator deprecation;
 
     public MessageGenerator(
             PackageGenerator parentPackage,
@@ -31,21 +32,19 @@ public class MessageGenerator {
             String name,
             ClassName className,
             String description,
-            List<FieldGenerator> fields) {
+            List<FieldGenerator> fields,
+            DeprecationGenerator deprecation) {
         this.parentPackage = parentPackage;
         this.id = id;
         this.name = name;
         this.className = className;
         this.description = description;
         this.fields = fields;
+        this.deprecation = deprecation;
     }
 
     public int getId() {
         return id;
-    }
-
-    public boolean deprecated() {
-        return description != null && description.toLowerCase().contains("deprecated");
     }
 
     public String getName() {
@@ -65,7 +64,11 @@ public class MessageGenerator {
     }
 
     public String javadoc() {
-        return parentPackage.processJavadoc(description);
+        String javadoc = parentPackage.processJavadoc(description);
+        if (deprecation.deprecated()) {
+            javadoc += parentPackage.processJavadoc(deprecation.javadoc());
+        }
+        return javadoc;
     }
 
     public int crc() {
@@ -96,8 +99,8 @@ public class MessageGenerator {
     public List<AnnotationSpec> annotations() {
         List<AnnotationSpec> annotations = new ArrayList<>();
         annotations.add(annotation());
-        if (deprecated()) {
-            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        if (deprecation.deprecated()) {
+            annotations.add(deprecation.annotation());
         }
         return annotations;
     }

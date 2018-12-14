@@ -195,7 +195,6 @@ public class PackageGenerator {
     }
 
     public List<JavaFile> generate() {
-
         return Stream.concat(
                 Stream.concat(
                         messages.stream().map(MessageGenerator::generate),

@@ -24,9 +24,9 @@ public class MavlinkDefinitionDeserializer {
 
         return new MavlinkDef(
                 mavlink.elements("include")
-                    .stream()
-                    .map(XmlElement::getContent)
-                    .collect(Collectors.toList()),
+                        .stream()
+                        .map(XmlElement::getContent)
+                        .collect(Collectors.toList()),
                 name,
                 Integer.parseInt(mavlink.content("version", "-1")),
                 Integer.parseInt(mavlink.content("dialect", "-1")),
@@ -46,8 +46,18 @@ public class MavlinkDefinitionDeserializer {
                                                         .map(param -> new MavlinkParamDef(
                                                                 Integer.parseInt(param.attr("index")),
                                                                 param.getContent()))
-                                                        .collect(Collectors.toList())))
-                                        .collect(Collectors.toList())))
+                                                        .collect(Collectors.toList()),
+                                                entry.elements("deprecated")
+                                                        .stream()
+                                                        .findFirst()
+                                                        .map(this::deserializeDeprecation)
+                                                        .orElse(null)))
+                                        .collect(Collectors.toList()),
+                                enumeration.elements("deprecated")
+                                        .stream()
+                                        .findFirst()
+                                        .map(this::deserializeDeprecation)
+                                        .orElse(null)))
                         .collect(Collectors.toList()),
                 mavlink.elements("messages/message")
                         .stream()
@@ -71,9 +81,21 @@ public class MavlinkDefinitionDeserializer {
                                                     field.attr("print_format"),
                                                     field.getIndex() > extensionsIndex,
                                                     field.getContent()))
-                                            .collect(Collectors.toList()));
+                                            .collect(Collectors.toList()),
+                                    message.elements("deprecated")
+                                            .stream()
+                                            .findFirst()
+                                            .map(this::deserializeDeprecation)
+                                            .orElse(null));
                         })
                         .collect(Collectors.toList()));
     }
 
+
+    private MavlinkDeprecationDef deserializeDeprecation(XmlElement element) {
+        return new MavlinkDeprecationDef(
+                element.attr("since", null),
+                element.attr("replaced_by", null),
+                element.getContent());
+    }
 }

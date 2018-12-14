@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -12,12 +13,15 @@ import java.util.Objects;
 /**
  * Sent from simulation to autopilot. This packet is useful for high throughput applications 
  * such as hardware in the loop simulations. 
+ * @deprecated Since 2013-07, replaced by {@link io.dronefleet.mavlink.common.HilStateQuaternion HIL_STATE_QUATERNION}. Suffers from missing 
+ * airspeed fields and singularities due to Euler angles 
  */
 @MavlinkMessageInfo(
         id = 90,
         crc = 183,
         description = "Sent from simulation to autopilot. This packet is useful for high throughput applications such as hardware in the loop simulations."
 )
+@Deprecated
 public final class HilState {
     private final BigInteger timeUsec;
 

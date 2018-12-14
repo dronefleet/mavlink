@@ -2,12 +2,15 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
+import java.lang.Deprecated;
 
 /**
  * The ROI (region of interest) for the vehicle. This can be be used by the vehicle for 
  * camera/vehicle attitude alignment (see MAV_CMD_NAV_ROI). 
+ * @deprecated Since 2018-01, replaced by MAV_CMD_DO_SET_ROI_*. 
  */
 @MavlinkEnum
+@Deprecated
 public enum MavRoi {
     /**
      * No region of interest. 

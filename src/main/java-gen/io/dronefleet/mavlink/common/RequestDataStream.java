@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -10,12 +11,14 @@ import java.util.Objects;
 
 /**
  * Request a data stream. 
+ * @deprecated Since 2015-08, replaced by SET_MESSAGE_INTERVAL. 
  */
 @MavlinkMessageInfo(
         id = 66,
         crc = 148,
         description = "Request a data stream."
 )
+@Deprecated
 public final class RequestDataStream {
     private final int targetSystem;
 
