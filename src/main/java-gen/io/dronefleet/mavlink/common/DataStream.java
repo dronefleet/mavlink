@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Objects;
         crc = 21,
         description = "THIS INTERFACE IS DEPRECATED. USE MESSAGE_INTERVAL INSTEAD."
 )
+@Deprecated
 public final class DataStream {
     private final int streamId;
 

@@ -4,6 +4,7 @@ import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeSpec;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnumConstantGenerator {
@@ -31,6 +32,10 @@ public class EnumConstantGenerator {
         this.parameters = parameters;
     }
 
+    public boolean deprecated() {
+        return description != null && description.toLowerCase().contains("deprecated");
+    }
+
     public String getName() {
         return name;
     }
@@ -47,6 +52,15 @@ public class EnumConstantGenerator {
         return AnnotationSpec.builder(MAVLINK_ENUM_ENTRY)
                 .addMember("value", "$L", value)
                 .build();
+    }
+
+    public List<AnnotationSpec> annotations() {
+        List<AnnotationSpec> annotations = new ArrayList<>();
+        annotations.add(annotation());
+        if (deprecated()) {
+            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        }
+        return annotations;
     }
 
     public String javadoc() {
@@ -69,7 +83,7 @@ public class EnumConstantGenerator {
     public TypeSpec generate() {
         return TypeSpec.anonymousClassBuilder("")
                 .addJavadoc(javadoc())
-                .addAnnotation(annotation())
+                .addAnnotations(annotations())
                 .build();
     }
 }

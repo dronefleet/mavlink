@@ -2,6 +2,7 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
+import java.lang.Deprecated;
 
 /**
  * Commands to be executed by the MAV. They can be executed on user request, or as part of a mission 
@@ -364,6 +365,7 @@ public enum MavCmd {
      * </dl>
      */
     @MavlinkEntryInfo(80)
+    @Deprecated
     MAV_CMD_NAV_ROI,
 
     /**
@@ -1159,6 +1161,7 @@ public enum MavCmd {
      * </dl>
      */
     @MavlinkEntryInfo(201)
+    @Deprecated
     MAV_CMD_DO_SET_ROI,
 
     /**
@@ -1182,6 +1185,7 @@ public enum MavCmd {
      * </dl>
      */
     @MavlinkEntryInfo(202)
+    @Deprecated
     MAV_CMD_DO_DIGICAM_CONFIGURE,
 
     /**
@@ -1206,6 +1210,7 @@ public enum MavCmd {
      * </dl>
      */
     @MavlinkEntryInfo(203)
+    @Deprecated
     MAV_CMD_DO_DIGICAM_CONTROL,
 
     /**

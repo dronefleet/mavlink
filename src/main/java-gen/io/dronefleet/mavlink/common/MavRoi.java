@@ -2,6 +2,7 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
+import java.lang.Deprecated;
 
 /**
  * THIS INTERFACE IS DEPRECATED AS OF JANUARY 2018. Please use MAV_CMD_DO_SET_ROI_* messages 
@@ -9,6 +10,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  * camera/vehicle attitude alignment (see MAV_CMD_NAV_ROI). 
  */
 @MavlinkEnum
+@Deprecated
 public enum MavRoi {
     /**
      * No region of interest. 

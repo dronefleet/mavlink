@@ -1,9 +1,11 @@
 package io.dronefleet.mavlink.generator;
 
+import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.TypeSpec;
 
 import javax.lang.model.element.Modifier;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnumGenerator {
@@ -35,6 +37,10 @@ public class EnumGenerator {
         return parentPackage;
     }
 
+    public boolean deprecated() {
+        return description != null && description.toLowerCase().contains("deprecated");
+    }
+
     public String getName() {
         return name;
     }
@@ -62,11 +68,20 @@ public class EnumGenerator {
                 .orElse(0);
     }
 
+    public List<AnnotationSpec> annotations() {
+        List<AnnotationSpec> annotations = new ArrayList<>();
+        annotations.add(AnnotationSpec.builder(MAVLINK_ENUM).build());
+        if (deprecated()) {
+            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        }
+        return annotations;
+    }
+
     public TypeSpec generate() {
         TypeSpec.Builder builder = TypeSpec.enumBuilder(className)
                 .addModifiers(Modifier.PUBLIC)
                 .addJavadoc(javadoc())
-                .addAnnotation(MAVLINK_ENUM);
+                .addAnnotations(annotations());
         constants.forEach(c -> builder.addEnumConstant(c.getName(), c.generate()));
         return builder.build();
     }

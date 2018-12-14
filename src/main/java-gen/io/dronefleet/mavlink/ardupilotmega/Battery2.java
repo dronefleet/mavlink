@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Objects;
         crc = 174,
         description = "Deprecated. Use BATTERY_STATUS instead. 2nd Battery status"
 )
+@Deprecated
 public final class Battery2 {
     private final int voltage;
 

@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.generator;
 import com.squareup.javapoet.*;
 
 import javax.lang.model.element.Modifier;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,6 +42,10 @@ public class MessageGenerator {
 
     public int getId() {
         return id;
+    }
+
+    public boolean deprecated() {
+        return description != null && description.toLowerCase().contains("deprecated");
     }
 
     public String getName() {
@@ -86,6 +91,15 @@ public class MessageGenerator {
         }
 
         return annotation.build();
+    }
+
+    public List<AnnotationSpec> annotations() {
+        List<AnnotationSpec> annotations = new ArrayList<>();
+        annotations.add(annotation());
+        if (deprecated()) {
+            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
+        }
+        return annotations;
     }
 
     public TypeSpec generateBuilder() {
@@ -162,7 +176,7 @@ public class MessageGenerator {
         return TypeSpec.classBuilder(className)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addJavadoc(javadoc())
-                .addAnnotation(annotation())
+                .addAnnotations(annotations())
                 .addType(generateBuilder())
                 .addMethod(MethodSpec.methodBuilder("builder")
                         .addJavadoc("Returns a builder instance for this message.\n")
