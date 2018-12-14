@@ -14,7 +14,7 @@ public class XmlParser {
 
     private static class Scope {
         private String name;
-        private Map<String,String> attributes;
+        private Map<String, String> attributes;
         private String content;
         private List<XmlElement> children = new ArrayList<>();
     }

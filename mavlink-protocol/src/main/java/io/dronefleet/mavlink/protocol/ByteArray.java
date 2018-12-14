@@ -8,7 +8,7 @@ class ByteArray {
     }
 
     public int getInt8(int offset) {
-        return (int)getLong(offset, 1);
+        return (int) getLong(offset, 1);
     }
 
     public void putInt8(int value, int offset) {
@@ -16,7 +16,7 @@ class ByteArray {
     }
 
     public int getInt16(int offset) {
-        return (int)getLong(offset, 2);
+        return (int) getLong(offset, 2);
     }
 
     public void putInt16(int value, int offset) {
@@ -24,7 +24,7 @@ class ByteArray {
     }
 
     public int getInt24(int offset) {
-        return (int)getLong(offset, 3);
+        return (int) getLong(offset, 3);
     }
 
     public void putInt24(int value, int offset) {
@@ -48,14 +48,14 @@ class ByteArray {
     public long getLong(int offset, int size) {
         long value = 0;
         for (int i = 0; i < size; i++) {
-            value |= (bytes[offset+i] & 0xFFL) << (i * Byte.SIZE);
+            value |= (bytes[offset + i] & 0xFFL) << (i * Byte.SIZE);
         }
         return value;
     }
 
     public void putLong(long value, int offset, int size) {
         for (int i = 0; i < size; i++) {
-            bytes[offset+i] = (byte)((value >> (i * Byte.SIZE)) & 0xFF);
+            bytes[offset + i] = (byte) ((value >> (i * Byte.SIZE)) & 0xFF);
         }
     }
 

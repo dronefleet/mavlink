@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.util.reflection.MavlinkReflection;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Optional;
 
 public class EnumValue<T extends Enum> {
 

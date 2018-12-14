@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UnmodifiableMapBuilder<K,V> {
-    private final Map<K,V> map;
+public class UnmodifiableMapBuilder<K, V> {
+    private final Map<K, V> map;
 
     public UnmodifiableMapBuilder() {
         this(new HashMap<>());
@@ -15,7 +15,7 @@ public class UnmodifiableMapBuilder<K,V> {
         this.map = map;
     }
 
-    public UnmodifiableMapBuilder<K,V> put(K key, V value) {
+    public UnmodifiableMapBuilder<K, V> put(K key, V value) {
         if (map.containsKey(key)) {
             throw new IllegalStateException("Map already contains key " + key);
         }
@@ -23,7 +23,7 @@ public class UnmodifiableMapBuilder<K,V> {
         return this;
     }
 
-    public Map<K,V> build() {
+    public Map<K, V> build() {
         return Collections.unmodifiableMap(new HashMap<>(map));
     }
 }

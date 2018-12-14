@@ -97,7 +97,7 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
     private long unsignedIntegerValue(byte[] data) {
         long value = 0;
         for (int i = 0; i < data.length; i++) {
-            value = value | ((long)((data[i] & 0xff)) << (i * 8));
+            value = value | ((long) ((data[i] & 0xff)) << (i * 8));
         }
         return value;
     }
@@ -142,7 +142,7 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
 
     private Object enumValue(Class<?> enumType, byte[] data, boolean signed) {
         return EnumValue.create(
-                (Class<? extends Enum>)enumType,
-                (int)integerValue(data, signed));
+                (Class<? extends Enum>) enumType,
+                (int) integerValue(data, signed));
     }
 }

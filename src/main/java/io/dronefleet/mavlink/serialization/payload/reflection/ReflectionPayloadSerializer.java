@@ -87,8 +87,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
     }
 
     private void write(long value, byte[] buffer, int offset, int length) {
-        for (int i = offset, shift=0; i < length; i++, shift++) {
-            buffer[i] = (byte) ((value >> (shift*8)) & 0xff);
+        for (int i = offset, shift = 0; i < length; i++, shift++) {
+            buffer[i] = (byte) ((value >> (shift * 8)) & 0xff);
         }
     }
 
@@ -125,6 +125,6 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
     }
 
     private void write(byte[] bytes, byte[] buffer, int offset, int length) {
-        System.arraycopy(bytes, 0, buffer, offset, Math.min(length-offset, bytes.length));
+        System.arraycopy(bytes, 0, buffer, offset, Math.min(length - offset, bytes.length));
     }
 }

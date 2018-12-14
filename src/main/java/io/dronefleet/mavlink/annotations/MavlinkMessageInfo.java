@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface MavlinkMessageInfo {
     int id();
+
     int crc();
+
     String description() default "No description provided";
 }

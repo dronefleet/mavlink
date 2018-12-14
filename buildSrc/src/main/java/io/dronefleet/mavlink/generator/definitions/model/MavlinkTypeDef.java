@@ -20,7 +20,7 @@ public class MavlinkTypeDef {
         put("uint64_t", 8);
     }};
 
-    private static final Map<String,String> convertedTypes = new HashMap<String,String>() {{
+    private static final Map<String, String> convertedTypes = new HashMap<String, String>() {{
         put("uint8_t_mavlink_version", "uint8_t");
         put("array", "uint8_t");
     }};
@@ -38,7 +38,7 @@ public class MavlinkTypeDef {
                 throw new IllegalArgumentException("Malformed XML type: " + xmlValue);
             }
             originalType = xmlValue.substring(0, lenIdx);
-            arrayLength = Integer.parseInt(xmlValue.substring(lenIdx + 1, xmlValue.length()-1));
+            arrayLength = Integer.parseInt(xmlValue.substring(lenIdx + 1, xmlValue.length() - 1));
         } else {
             originalType = xmlValue;
             arrayLength = 0;

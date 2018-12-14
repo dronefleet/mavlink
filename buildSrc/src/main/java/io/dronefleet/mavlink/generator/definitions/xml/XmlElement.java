@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class XmlElement {
     private final int index;
     private final String name;
-    private final Map<String,String> attributes;
+    private final Map<String, String> attributes;
     private final String content;
     private final List<XmlElement> children;
 

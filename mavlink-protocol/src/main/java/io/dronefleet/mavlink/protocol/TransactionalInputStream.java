@@ -45,9 +45,21 @@ class TransactionalInputStream extends PushbackInputStream {
         return bytes;
     }
 
-    @Override public void unread(int b) throws IOException {disallowUnread();}
-    @Override public void unread(byte[] b) throws IOException {disallowUnread();}
-    @Override public void unread(byte[] b, int off, int len) throws IOException {disallowUnread();}
+    @Override
+    public void unread(int b) throws IOException {
+        disallowUnread();
+    }
+
+    @Override
+    public void unread(byte[] b) throws IOException {
+        disallowUnread();
+    }
+
+    @Override
+    public void unread(byte[] b, int off, int len) throws IOException {
+        disallowUnread();
+    }
+
     private void disallowUnread() {
         throw new IllegalStateException("use either commit or rollback instead.");
     }
