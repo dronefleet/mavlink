@@ -45,61 +45,61 @@ public final class MountOrientation {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Roll in global frame in degrees (set to NaN for invalid). 
+     * Roll in global frame (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Roll in global frame in degrees (set to NaN for invalid)."
+            description = "Roll in global frame (set to NaN for invalid)."
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Pitch in global frame in degrees (set to NaN for invalid). 
+     * Pitch in global frame (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Pitch in global frame in degrees (set to NaN for invalid)."
+            description = "Pitch in global frame (set to NaN for invalid)."
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Yaw relative to vehicle in degrees (set to NaN for invalid). 
+     * Yaw relative to vehicle(set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Yaw relative to vehicle in degrees (set to NaN for invalid)."
+            description = "Yaw relative to vehicle(set to NaN for invalid)."
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid). 
+     * Yaw in absolute frame, North is 0 (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             extension = true,
-            description = "Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid)."
+            description = "Yaw in absolute frame, North is 0 (set to NaN for invalid)."
     )
     public final float yawAbsolute() {
         return this.yawAbsolute;
@@ -150,12 +150,12 @@ public final class MountOrientation {
         private float yawAbsolute;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -163,12 +163,12 @@ public final class MountOrientation {
         }
 
         /**
-         * Roll in global frame in degrees (set to NaN for invalid). 
+         * Roll in global frame (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Roll in global frame in degrees (set to NaN for invalid)."
+                description = "Roll in global frame (set to NaN for invalid)."
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -176,12 +176,12 @@ public final class MountOrientation {
         }
 
         /**
-         * Pitch in global frame in degrees (set to NaN for invalid). 
+         * Pitch in global frame (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Pitch in global frame in degrees (set to NaN for invalid)."
+                description = "Pitch in global frame (set to NaN for invalid)."
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -189,12 +189,12 @@ public final class MountOrientation {
         }
 
         /**
-         * Yaw relative to vehicle in degrees (set to NaN for invalid). 
+         * Yaw relative to vehicle(set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Yaw relative to vehicle in degrees (set to NaN for invalid)."
+                description = "Yaw relative to vehicle(set to NaN for invalid)."
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -202,13 +202,13 @@ public final class MountOrientation {
         }
 
         /**
-         * Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid). 
+         * Yaw in absolute frame, North is 0 (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 extension = true,
-                description = "Yaw in absolute frame in degrees, North is 0 (set to NaN for invalid)."
+                description = "Yaw in absolute frame, North is 0 (set to NaN for invalid)."
         )
         public final Builder yawAbsolute(float yawAbsolute) {
             this.yawAbsolute = yawAbsolute;

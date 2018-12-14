@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * Flags in {@link io.dronefleet.mavlink.ardupilotmega.RallyPoint RALLY_POINT} message 
+ * Flags in {@link io.dronefleet.mavlink.ardupilotmega.RallyPoint RALLY_POINT} message. 
  */
 @MavlinkEnum
 public enum RallyFlags {

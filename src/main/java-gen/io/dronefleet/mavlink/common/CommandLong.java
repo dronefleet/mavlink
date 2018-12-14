@@ -91,13 +91,13 @@ public final class CommandLong {
     }
 
     /**
-     * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Command ID (of command to send). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             enumType = MavCmd.class,
-            description = "Command ID, as defined by MAV_CMD enum."
+            description = "Command ID (of command to send)."
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
@@ -117,84 +117,84 @@ public final class CommandLong {
     }
 
     /**
-     * Parameter 1, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 1 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Parameter 1, as defined by MAV_CMD enum."
+            description = "Parameter 1 (for the specific command)."
     )
     public final float param1() {
         return this.param1;
     }
 
     /**
-     * Parameter 2, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 2 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Parameter 2, as defined by MAV_CMD enum."
+            description = "Parameter 2 (for the specific command)."
     )
     public final float param2() {
         return this.param2;
     }
 
     /**
-     * Parameter 3, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 3 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Parameter 3, as defined by MAV_CMD enum."
+            description = "Parameter 3 (for the specific command)."
     )
     public final float param3() {
         return this.param3;
     }
 
     /**
-     * Parameter 4, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 4 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Parameter 4, as defined by MAV_CMD enum."
+            description = "Parameter 4 (for the specific command)."
     )
     public final float param4() {
         return this.param4;
     }
 
     /**
-     * Parameter 5, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 5 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Parameter 5, as defined by MAV_CMD enum."
+            description = "Parameter 5 (for the specific command)."
     )
     public final float param5() {
         return this.param5;
     }
 
     /**
-     * Parameter 6, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 6 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Parameter 6, as defined by MAV_CMD enum."
+            description = "Parameter 6 (for the specific command)."
     )
     public final float param6() {
         return this.param6;
     }
 
     /**
-     * Parameter 7, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Parameter 7 (for the specific command). 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Parameter 7, as defined by MAV_CMD enum."
+            description = "Parameter 7 (for the specific command)."
     )
     public final float param7() {
         return this.param7;
@@ -301,13 +301,13 @@ public final class CommandLong {
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of command to send). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 enumType = MavCmd.class,
-                description = "Command ID, as defined by MAV_CMD enum."
+                description = "Command ID (of command to send)."
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -315,21 +315,21 @@ public final class CommandLong {
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of command to send). 
          */
         public final Builder command(MavCmd entry) {
             return command(EnumValue.of(entry));
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of command to send). 
          */
         public final Builder command(Enum... flags) {
             return command(EnumValue.create(flags));
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of command to send). 
          */
         public final Builder command(Collection<Enum> flags) {
             return command(EnumValue.create(flags));
@@ -350,12 +350,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 1, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 1 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Parameter 1, as defined by MAV_CMD enum."
+                description = "Parameter 1 (for the specific command)."
         )
         public final Builder param1(float param1) {
             this.param1 = param1;
@@ -363,12 +363,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 2, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 2 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Parameter 2, as defined by MAV_CMD enum."
+                description = "Parameter 2 (for the specific command)."
         )
         public final Builder param2(float param2) {
             this.param2 = param2;
@@ -376,12 +376,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 3, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 3 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Parameter 3, as defined by MAV_CMD enum."
+                description = "Parameter 3 (for the specific command)."
         )
         public final Builder param3(float param3) {
             this.param3 = param3;
@@ -389,12 +389,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 4, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 4 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Parameter 4, as defined by MAV_CMD enum."
+                description = "Parameter 4 (for the specific command)."
         )
         public final Builder param4(float param4) {
             this.param4 = param4;
@@ -402,12 +402,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 5, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 5 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Parameter 5, as defined by MAV_CMD enum."
+                description = "Parameter 5 (for the specific command)."
         )
         public final Builder param5(float param5) {
             this.param5 = param5;
@@ -415,12 +415,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 6, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 6 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Parameter 6, as defined by MAV_CMD enum."
+                description = "Parameter 6 (for the specific command)."
         )
         public final Builder param6(float param6) {
             this.param6 = param6;
@@ -428,12 +428,12 @@ public final class CommandLong {
         }
 
         /**
-         * Parameter 7, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Parameter 7 (for the specific command). 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Parameter 7, as defined by MAV_CMD enum."
+                description = "Parameter 7 (for the specific command)."
         )
         public final Builder param7(float param7) {
             this.param7 = param7;

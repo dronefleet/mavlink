@@ -77,144 +77,145 @@ public final class HighresImu {
     }
 
     /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * X acceleration (m/s^2) 
+     * X acceleration 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "X acceleration (m/s^2)"
+            description = "X acceleration"
     )
     public final float xacc() {
         return this.xacc;
     }
 
     /**
-     * Y acceleration (m/s^2) 
+     * Y acceleration 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Y acceleration (m/s^2)"
+            description = "Y acceleration"
     )
     public final float yacc() {
         return this.yacc;
     }
 
     /**
-     * Z acceleration (m/s^2) 
+     * Z acceleration 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Z acceleration (m/s^2)"
+            description = "Z acceleration"
     )
     public final float zacc() {
         return this.zacc;
     }
 
     /**
-     * Angular speed around X axis (rad / sec) 
+     * Angular speed around X axis 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Angular speed around X axis (rad / sec)"
+            description = "Angular speed around X axis"
     )
     public final float xgyro() {
         return this.xgyro;
     }
 
     /**
-     * Angular speed around Y axis (rad / sec) 
+     * Angular speed around Y axis 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Angular speed around Y axis (rad / sec)"
+            description = "Angular speed around Y axis"
     )
     public final float ygyro() {
         return this.ygyro;
     }
 
     /**
-     * Angular speed around Z axis (rad / sec) 
+     * Angular speed around Z axis 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Angular speed around Z axis (rad / sec)"
+            description = "Angular speed around Z axis"
     )
     public final float zgyro() {
         return this.zgyro;
     }
 
     /**
-     * X Magnetic field (Gauss) 
+     * X Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "X Magnetic field (Gauss)"
+            description = "X Magnetic field"
     )
     public final float xmag() {
         return this.xmag;
     }
 
     /**
-     * Y Magnetic field (Gauss) 
+     * Y Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Y Magnetic field (Gauss)"
+            description = "Y Magnetic field"
     )
     public final float ymag() {
         return this.ymag;
     }
 
     /**
-     * Z Magnetic field (Gauss) 
+     * Z Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Z Magnetic field (Gauss)"
+            description = "Z Magnetic field"
     )
     public final float zmag() {
         return this.zmag;
     }
 
     /**
-     * Absolute pressure in millibar 
+     * Absolute pressure 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Absolute pressure in millibar"
+            description = "Absolute pressure"
     )
     public final float absPressure() {
         return this.absPressure;
     }
 
     /**
-     * Differential pressure in millibar 
+     * Differential pressure 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "Differential pressure in millibar"
+            description = "Differential pressure"
     )
     public final float diffPressure() {
         return this.diffPressure;
@@ -233,24 +234,24 @@ public final class HighresImu {
     }
 
     /**
-     * Temperature in degrees celsius 
+     * Temperature 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "Temperature in degrees celsius"
+            description = "Temperature"
     )
     public final float temperature() {
         return this.temperature;
     }
 
     /**
-     * Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
+     * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            description = "Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
+            description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
     )
     public final int fieldsUpdated() {
         return this.fieldsUpdated;
@@ -351,12 +352,13 @@ public final class HighresImu {
         private int fieldsUpdated;
 
         /**
-         * Timestamp (microseconds, synced to UNIX time or since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -364,12 +366,12 @@ public final class HighresImu {
         }
 
         /**
-         * X acceleration (m/s^2) 
+         * X acceleration 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "X acceleration (m/s^2)"
+                description = "X acceleration"
         )
         public final Builder xacc(float xacc) {
             this.xacc = xacc;
@@ -377,12 +379,12 @@ public final class HighresImu {
         }
 
         /**
-         * Y acceleration (m/s^2) 
+         * Y acceleration 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Y acceleration (m/s^2)"
+                description = "Y acceleration"
         )
         public final Builder yacc(float yacc) {
             this.yacc = yacc;
@@ -390,12 +392,12 @@ public final class HighresImu {
         }
 
         /**
-         * Z acceleration (m/s^2) 
+         * Z acceleration 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Z acceleration (m/s^2)"
+                description = "Z acceleration"
         )
         public final Builder zacc(float zacc) {
             this.zacc = zacc;
@@ -403,12 +405,12 @@ public final class HighresImu {
         }
 
         /**
-         * Angular speed around X axis (rad / sec) 
+         * Angular speed around X axis 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Angular speed around X axis (rad / sec)"
+                description = "Angular speed around X axis"
         )
         public final Builder xgyro(float xgyro) {
             this.xgyro = xgyro;
@@ -416,12 +418,12 @@ public final class HighresImu {
         }
 
         /**
-         * Angular speed around Y axis (rad / sec) 
+         * Angular speed around Y axis 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Angular speed around Y axis (rad / sec)"
+                description = "Angular speed around Y axis"
         )
         public final Builder ygyro(float ygyro) {
             this.ygyro = ygyro;
@@ -429,12 +431,12 @@ public final class HighresImu {
         }
 
         /**
-         * Angular speed around Z axis (rad / sec) 
+         * Angular speed around Z axis 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Angular speed around Z axis (rad / sec)"
+                description = "Angular speed around Z axis"
         )
         public final Builder zgyro(float zgyro) {
             this.zgyro = zgyro;
@@ -442,12 +444,12 @@ public final class HighresImu {
         }
 
         /**
-         * X Magnetic field (Gauss) 
+         * X Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "X Magnetic field (Gauss)"
+                description = "X Magnetic field"
         )
         public final Builder xmag(float xmag) {
             this.xmag = xmag;
@@ -455,12 +457,12 @@ public final class HighresImu {
         }
 
         /**
-         * Y Magnetic field (Gauss) 
+         * Y Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Y Magnetic field (Gauss)"
+                description = "Y Magnetic field"
         )
         public final Builder ymag(float ymag) {
             this.ymag = ymag;
@@ -468,12 +470,12 @@ public final class HighresImu {
         }
 
         /**
-         * Z Magnetic field (Gauss) 
+         * Z Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Z Magnetic field (Gauss)"
+                description = "Z Magnetic field"
         )
         public final Builder zmag(float zmag) {
             this.zmag = zmag;
@@ -481,12 +483,12 @@ public final class HighresImu {
         }
 
         /**
-         * Absolute pressure in millibar 
+         * Absolute pressure 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Absolute pressure in millibar"
+                description = "Absolute pressure"
         )
         public final Builder absPressure(float absPressure) {
             this.absPressure = absPressure;
@@ -494,12 +496,12 @@ public final class HighresImu {
         }
 
         /**
-         * Differential pressure in millibar 
+         * Differential pressure 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "Differential pressure in millibar"
+                description = "Differential pressure"
         )
         public final Builder diffPressure(float diffPressure) {
             this.diffPressure = diffPressure;
@@ -520,12 +522,12 @@ public final class HighresImu {
         }
 
         /**
-         * Temperature in degrees celsius 
+         * Temperature 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "Temperature in degrees celsius"
+                description = "Temperature"
         )
         public final Builder temperature(float temperature) {
             this.temperature = temperature;
@@ -533,12 +535,12 @@ public final class HighresImu {
         }
 
         /**
-         * Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
+         * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                description = "Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
+                description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
         )
         public final Builder fieldsUpdated(int fieldsUpdated) {
             this.fieldsUpdated = fieldsUpdated;

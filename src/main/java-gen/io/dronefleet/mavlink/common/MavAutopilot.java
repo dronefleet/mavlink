@@ -27,7 +27,7 @@ public enum MavAutopilot {
     MAV_AUTOPILOT_SLUGS,
 
     /**
-     * ArduPilotMega / ArduCopter, http://diydrones.com 
+     * ArduPilot - Plane/Copter/Rover/Sub/Tracker, http://ardupilot.org 
      */
     @MavlinkEntryInfo(3)
     MAV_AUTOPILOT_ARDUPILOTMEGA,
@@ -81,7 +81,7 @@ public enum MavAutopilot {
     MAV_AUTOPILOT_FP,
 
     /**
-     * PX4 Autopilot - http://pixhawk.ethz.ch/px4/ 
+     * PX4 Autopilot - http://px4.io/ 
      */
     @MavlinkEntryInfo(12)
     MAV_AUTOPILOT_PX4,

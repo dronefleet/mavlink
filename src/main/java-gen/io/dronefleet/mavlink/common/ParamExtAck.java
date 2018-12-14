@@ -73,26 +73,26 @@ public final class ParamExtAck {
     }
 
     /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+     * Parameter type. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavParamExtType.class,
-            description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
+            description = "Parameter type."
     )
     public final EnumValue<MavParamExtType> paramType() {
         return this.paramType;
     }
 
     /**
-     * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
+     * Result code. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             enumType = ParamAck.class,
-            description = "Result code: see the PARAM_ACK enum for possible codes."
+            description = "Result code."
     )
     public final EnumValue<ParamAck> paramResult() {
         return this.paramResult;
@@ -168,13 +168,13 @@ public final class ParamExtAck {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavParamExtType.class,
-                description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
+                description = "Parameter type."
         )
         public final Builder paramType(EnumValue<MavParamExtType> paramType) {
             this.paramType = paramType;
@@ -182,34 +182,34 @@ public final class ParamExtAck {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(MavParamExtType entry) {
             return paramType(EnumValue.of(entry));
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(Enum... flags) {
             return paramType(EnumValue.create(flags));
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(Collection<Enum> flags) {
             return paramType(EnumValue.create(flags));
         }
 
         /**
-         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
+         * Result code. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 enumType = ParamAck.class,
-                description = "Result code: see the PARAM_ACK enum for possible codes."
+                description = "Result code."
         )
         public final Builder paramResult(EnumValue<ParamAck> paramResult) {
             this.paramResult = paramResult;
@@ -217,21 +217,21 @@ public final class ParamExtAck {
         }
 
         /**
-         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
+         * Result code. 
          */
         public final Builder paramResult(ParamAck entry) {
             return paramResult(EnumValue.of(entry));
         }
 
         /**
-         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
+         * Result code. 
          */
         public final Builder paramResult(Enum... flags) {
             return paramResult(EnumValue.create(flags));
         }
 
         /**
-         * Result code: see the {@link io.dronefleet.mavlink.common.ParamAck PARAM_ACK} enum for possible codes. 
+         * Result code. 
          */
         public final Builder paramResult(Collection<Enum> flags) {
             return paramResult(EnumValue.create(flags));

@@ -61,12 +61,12 @@ public final class SetAttitudeTarget {
     }
 
     /**
-     * Timestamp in milliseconds since system boot 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp in milliseconds since system boot"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -124,36 +124,36 @@ public final class SetAttitudeTarget {
     }
 
     /**
-     * Body roll rate in radians per second 
+     * Body roll rate 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Body roll rate in radians per second"
+            description = "Body roll rate"
     )
     public final float bodyRollRate() {
         return this.bodyRollRate;
     }
 
     /**
-     * Body pitch rate in radians per second 
+     * Body pitch rate 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Body pitch rate in radians per second"
+            description = "Body pitch rate"
     )
     public final float bodyPitchRate() {
         return this.bodyPitchRate;
     }
 
     /**
-     * Body yaw rate in radians per second 
+     * Body yaw rate 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Body yaw rate in radians per second"
+            description = "Body yaw rate"
     )
     public final float bodyYawRate() {
         return this.bodyYawRate;
@@ -236,12 +236,12 @@ public final class SetAttitudeTarget {
         private float thrust;
 
         /**
-         * Timestamp in milliseconds since system boot 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp in milliseconds since system boot"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -304,12 +304,12 @@ public final class SetAttitudeTarget {
         }
 
         /**
-         * Body roll rate in radians per second 
+         * Body roll rate 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Body roll rate in radians per second"
+                description = "Body roll rate"
         )
         public final Builder bodyRollRate(float bodyRollRate) {
             this.bodyRollRate = bodyRollRate;
@@ -317,12 +317,12 @@ public final class SetAttitudeTarget {
         }
 
         /**
-         * Body pitch rate in radians per second 
+         * Body pitch rate 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Body pitch rate in radians per second"
+                description = "Body pitch rate"
         )
         public final Builder bodyPitchRate(float bodyPitchRate) {
             this.bodyPitchRate = bodyPitchRate;
@@ -330,12 +330,12 @@ public final class SetAttitudeTarget {
         }
 
         /**
-         * Body yaw rate in radians per second 
+         * Body yaw rate 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Body yaw rate in radians per second"
+                description = "Body yaw rate"
         )
         public final Builder bodyYawRate(float bodyYawRate) {
             this.bodyYawRate = bodyYawRate;

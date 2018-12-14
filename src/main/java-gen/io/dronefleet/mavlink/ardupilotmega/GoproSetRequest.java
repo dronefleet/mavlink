@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Request to set a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} with a desired 
+ * Request to set a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} with a desired. 
  */
 @MavlinkMessageInfo(
         id = 218,
         crc = 17,
-        description = "Request to set a GOPRO_COMMAND with a desired"
+        description = "Request to set a GOPRO_COMMAND with a desired."
 )
 public final class GoproSetRequest {
     private final int targetSystem;
@@ -45,50 +45,50 @@ public final class GoproSetRequest {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Command ID 
+     * Command ID. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = GoproCommand.class,
-            description = "Command ID"
+            description = "Command ID."
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
     }
 
     /**
-     * Value 
+     * Value. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             arraySize = 4,
-            description = "Value"
+            description = "Value."
     )
     public final byte[] value() {
         return this.value;
@@ -134,12 +134,12 @@ public final class GoproSetRequest {
         private byte[] value;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -147,12 +147,12 @@ public final class GoproSetRequest {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -160,13 +160,13 @@ public final class GoproSetRequest {
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = GoproCommand.class,
-                description = "Command ID"
+                description = "Command ID."
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -174,34 +174,34 @@ public final class GoproSetRequest {
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(GoproCommand entry) {
             return cmdId(EnumValue.of(entry));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Enum... flags) {
             return cmdId(EnumValue.create(flags));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Collection<Enum> flags) {
             return cmdId(EnumValue.create(flags));
         }
 
         /**
-         * Value 
+         * Value. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 arraySize = 4,
-                description = "Value"
+                description = "Value."
         )
         public final Builder value(byte[] value) {
             this.value = value;

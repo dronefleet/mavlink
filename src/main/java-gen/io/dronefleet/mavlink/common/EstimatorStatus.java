@@ -15,18 +15,18 @@ import java.util.Objects;
 /**
  * Estimator status message including flags, innovation test ratios and estimated accuracies. 
  * The flags message is an integer bitmask containing information on which EKF outputs are valid. 
- * See the {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS} enum definition for further information. The innovaton test 
- * ratios show the magnitude of the sensor innovation divided by the innovation check threshold. 
- * Under normal operation the innovaton test ratios should be below 0.5 with occasional values up 
- * to 1.0. Values greater than 1.0 should be rare under normal operation and indicate that a 
- * measurement has been rejected by the filter. The user should be notified if an innovation test 
- * ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 
- * should be optional and controllable by the user. 
+ * See the {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS} enum definition for further information. The innovation 
+ * test ratios show the magnitude of the sensor innovation divided by the innovation check 
+ * threshold. Under normal operation the innovation test ratios should be below 0.5 with 
+ * occasional values up to 1.0. Values greater than 1.0 should be rare under normal operation and 
+ * indicate that a measurement has been rejected by the filter. The user should be notified if an 
+ * innovation test ratio greater than 1.0 is recorded. Notifications for values in the range 
+ * between 0.5 and 1.0 should be optional and controllable by the user. 
  */
 @MavlinkMessageInfo(
         id = 230,
         crc = 163,
-        description = "Estimator status message including flags, innovation test ratios and estimated accuracies. The flags message is an integer bitmask containing information on which EKF outputs are valid. See the ESTIMATOR_STATUS_FLAGS enum definition for further information. The innovaton test ratios show the magnitude of the sensor innovation divided by the innovation check threshold. Under normal operation the innovaton test ratios should be below 0.5 with occasional values up to 1.0. Values greater than 1.0 should be rare under normal operation and indicate that a measurement has been rejected by the filter. The user should be notified if an innovation test ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 should be optional and controllable by the user."
+        description = "Estimator status message including flags, innovation test ratios and estimated accuracies. The flags message is an integer bitmask containing information on which EKF outputs are valid. See the ESTIMATOR_STATUS_FLAGS enum definition for further information. The innovation test ratios show the magnitude of the sensor innovation divided by the innovation check threshold. Under normal operation the innovation test ratios should be below 0.5 with occasional values up to 1.0. Values greater than 1.0 should be rare under normal operation and indicate that a measurement has been rejected by the filter. The user should be notified if an innovation test ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 should be optional and controllable by the user."
 )
 public final class EstimatorStatus {
     private final BigInteger timeUsec;
@@ -73,26 +73,26 @@ public final class EstimatorStatus {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Integer bitmask indicating which EKF outputs are valid. See definition for 
-     * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+     * Bitmap indicating which EKF outputs are valid. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
             enumType = EstimatorStatusFlags.class,
-            description = "Integer bitmask indicating which EKF outputs are valid. See definition for ESTIMATOR_STATUS_FLAGS."
+            description = "Bitmap indicating which EKF outputs are valid."
     )
     public final EnumValue<EstimatorStatusFlags> flags() {
         return this.flags;
@@ -171,24 +171,24 @@ public final class EstimatorStatus {
     }
 
     /**
-     * Horizontal position 1-STD accuracy relative to the EKF local origin (m) 
+     * Horizontal position 1-STD accuracy relative to the EKF local origin 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Horizontal position 1-STD accuracy relative to the EKF local origin (m)"
+            description = "Horizontal position 1-STD accuracy relative to the EKF local origin"
     )
     public final float posHorizAccuracy() {
         return this.posHorizAccuracy;
     }
 
     /**
-     * Vertical position 1-STD accuracy relative to the EKF local origin (m) 
+     * Vertical position 1-STD accuracy relative to the EKF local origin 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Vertical position 1-STD accuracy relative to the EKF local origin (m)"
+            description = "Vertical position 1-STD accuracy relative to the EKF local origin"
     )
     public final float posVertAccuracy() {
         return this.posVertAccuracy;
@@ -264,12 +264,13 @@ public final class EstimatorStatus {
         private float posVertAccuracy;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -277,14 +278,13 @@ public final class EstimatorStatus {
         }
 
         /**
-         * Integer bitmask indicating which EKF outputs are valid. See definition for 
-         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         * Bitmap indicating which EKF outputs are valid. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
                 enumType = EstimatorStatusFlags.class,
-                description = "Integer bitmask indicating which EKF outputs are valid. See definition for ESTIMATOR_STATUS_FLAGS."
+                description = "Bitmap indicating which EKF outputs are valid."
         )
         public final Builder flags(EnumValue<EstimatorStatusFlags> flags) {
             this.flags = flags;
@@ -292,24 +292,21 @@ public final class EstimatorStatus {
         }
 
         /**
-         * Integer bitmask indicating which EKF outputs are valid. See definition for 
-         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         * Bitmap indicating which EKF outputs are valid. 
          */
         public final Builder flags(EstimatorStatusFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * Integer bitmask indicating which EKF outputs are valid. See definition for 
-         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         * Bitmap indicating which EKF outputs are valid. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Integer bitmask indicating which EKF outputs are valid. See definition for 
-         * {@link io.dronefleet.mavlink.common.EstimatorStatusFlags ESTIMATOR_STATUS_FLAGS}. 
+         * Bitmap indicating which EKF outputs are valid. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));
@@ -394,12 +391,12 @@ public final class EstimatorStatus {
         }
 
         /**
-         * Horizontal position 1-STD accuracy relative to the EKF local origin (m) 
+         * Horizontal position 1-STD accuracy relative to the EKF local origin 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Horizontal position 1-STD accuracy relative to the EKF local origin (m)"
+                description = "Horizontal position 1-STD accuracy relative to the EKF local origin"
         )
         public final Builder posHorizAccuracy(float posHorizAccuracy) {
             this.posHorizAccuracy = posHorizAccuracy;
@@ -407,12 +404,12 @@ public final class EstimatorStatus {
         }
 
         /**
-         * Vertical position 1-STD accuracy relative to the EKF local origin (m) 
+         * Vertical position 1-STD accuracy relative to the EKF local origin 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Vertical position 1-STD accuracy relative to the EKF local origin (m)"
+                description = "Vertical position 1-STD accuracy relative to the EKF local origin"
         )
         public final Builder posVertAccuracy(float posVertAccuracy) {
             this.posVertAccuracy = posVertAccuracy;

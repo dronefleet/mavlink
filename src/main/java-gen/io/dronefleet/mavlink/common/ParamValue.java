@@ -77,13 +77,13 @@ public final class ParamValue {
     }
 
     /**
-     * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+     * Onboard parameter type. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavParamType.class,
-            description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
+            description = "Onboard parameter type."
     )
     public final EnumValue<MavParamType> paramType() {
         return this.paramType;
@@ -187,13 +187,13 @@ public final class ParamValue {
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavParamType.class,
-                description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
+                description = "Onboard parameter type."
         )
         public final Builder paramType(EnumValue<MavParamType> paramType) {
             this.paramType = paramType;
@@ -201,21 +201,21 @@ public final class ParamValue {
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(MavParamType entry) {
             return paramType(EnumValue.of(entry));
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(Enum... flags) {
             return paramType(EnumValue.create(flags));
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(Collection<Enum> flags) {
             return paramType(EnumValue.create(flags));

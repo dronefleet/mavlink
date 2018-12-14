@@ -182,7 +182,11 @@ public final class CommonDialect extends AbstractMavlinkDialect {
             .put(324, ParamExtAck.class)
             .put(330, ObstacleDistance.class)
             .put(331, Odometry.class)
-            .put(332, Trajectory.class)
+            .put(332, TrajectoryRepresentationWaypoints.class)
+            .put(333, TrajectoryRepresentationBezier.class)
+            .put(340, UtmGlobalPosition.class)
+            .put(350, DebugFloatArray.class)
+            .put(360, OrbitExecutionStatus.class)
             .build();
 
     public CommonDialect() {

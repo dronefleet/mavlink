@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *  
+ * Global position/attitude estimate from a vision source. 
  */
 @MavlinkMessageInfo(
         id = 101,
-        crc = 102
+        crc = 102,
+        description = "Global position/attitude estimate from a vision source."
 )
 public final class GlobalVisionPositionEstimate {
     private final BigInteger usec;
@@ -56,12 +57,12 @@ public final class GlobalVisionPositionEstimate {
     }
 
     /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
+     * Timestamp (UNIX time or since system boot) 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+            description = "Timestamp (UNIX time or since system boot)"
     )
     public final BigInteger usec() {
         return this.usec;
@@ -71,7 +72,7 @@ public final class GlobalVisionPositionEstimate {
      * Global X position 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
             description = "Global X position"
     )
@@ -83,7 +84,7 @@ public final class GlobalVisionPositionEstimate {
      * Global Y position 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "Global Y position"
     )
@@ -95,7 +96,7 @@ public final class GlobalVisionPositionEstimate {
      * Global Z position 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
             description = "Global Z position"
     )
@@ -104,36 +105,36 @@ public final class GlobalVisionPositionEstimate {
     }
 
     /**
-     * Roll angle in rad 
+     * Roll angle 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 4,
-            description = "Roll angle in rad"
+            description = "Roll angle"
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Pitch angle in rad 
+     * Pitch angle 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 4,
-            description = "Pitch angle in rad"
+            description = "Pitch angle"
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Yaw angle in rad 
+     * Yaw angle 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 4,
-            description = "Yaw angle in rad"
+            description = "Yaw angle"
     )
     public final float yaw() {
         return this.yaw;
@@ -144,7 +145,7 @@ public final class GlobalVisionPositionEstimate {
      * entries are the second ROW, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 9,
             unitSize = 4,
             arraySize = 21,
             extension = true,
@@ -214,12 +215,12 @@ public final class GlobalVisionPositionEstimate {
         private List<Float> covariance;
 
         /**
-         * Timestamp (microseconds, synced to UNIX time or since system boot) 
+         * Timestamp (UNIX time or since system boot) 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+                description = "Timestamp (UNIX time or since system boot)"
         )
         public final Builder usec(BigInteger usec) {
             this.usec = usec;
@@ -230,7 +231,7 @@ public final class GlobalVisionPositionEstimate {
          * Global X position 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
                 description = "Global X position"
         )
@@ -243,7 +244,7 @@ public final class GlobalVisionPositionEstimate {
          * Global Y position 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "Global Y position"
         )
@@ -256,7 +257,7 @@ public final class GlobalVisionPositionEstimate {
          * Global Z position 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
                 description = "Global Z position"
         )
@@ -266,12 +267,12 @@ public final class GlobalVisionPositionEstimate {
         }
 
         /**
-         * Roll angle in rad 
+         * Roll angle 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 4,
-                description = "Roll angle in rad"
+                description = "Roll angle"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -279,12 +280,12 @@ public final class GlobalVisionPositionEstimate {
         }
 
         /**
-         * Pitch angle in rad 
+         * Pitch angle 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 4,
-                description = "Pitch angle in rad"
+                description = "Pitch angle"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -292,12 +293,12 @@ public final class GlobalVisionPositionEstimate {
         }
 
         /**
-         * Yaw angle in rad 
+         * Yaw angle 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 4,
-                description = "Yaw angle in rad"
+                description = "Yaw angle"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -309,7 +310,7 @@ public final class GlobalVisionPositionEstimate {
          * entries are the second ROW, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 9,
                 unitSize = 4,
                 arraySize = 21,
                 extension = true,

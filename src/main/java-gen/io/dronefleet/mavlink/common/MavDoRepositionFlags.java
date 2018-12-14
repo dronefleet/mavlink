@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * Bitmask of options for the MAV_CMD_DO_REPOSITION 
+ * Bitmap of options for the MAV_CMD_DO_REPOSITION 
  */
 @MavlinkEnum
 public enum MavDoRepositionFlags {

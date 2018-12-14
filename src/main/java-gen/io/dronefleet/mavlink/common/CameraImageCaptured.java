@@ -67,24 +67,24 @@ public final class CameraImageCaptured {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
+     * Timestamp (time since UNIX epoch) in UTC. 0 for unknown. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown."
+            description = "Timestamp (time since UNIX epoch) in UTC. 0 for unknown."
     )
     public final BigInteger timeUtc() {
         return this.timeUtc;
@@ -103,52 +103,52 @@ public final class CameraImageCaptured {
     }
 
     /**
-     * Latitude, expressed as degrees * 1E7 where image was taken 
+     * Latitude where image was taken 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Latitude, expressed as degrees * 1E7 where image was taken"
+            description = "Latitude where image was taken"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude, expressed as degrees * 1E7 where capture was taken 
+     * Longitude where capture was taken 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Longitude, expressed as degrees * 1E7 where capture was taken"
+            description = "Longitude where capture was taken"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken 
+     * Altitude (MSL) where image was taken 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken"
+            description = "Altitude (MSL) where image was taken"
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * Altitude above ground in meters, expressed as * 1E3 where image was taken 
+     * Altitude above ground 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
             signed = true,
-            description = "Altitude above ground in meters, expressed as * 1E3 where image was taken"
+            description = "Altitude above ground"
     )
     public final int relativeAlt() {
         return this.relativeAlt;
@@ -282,12 +282,12 @@ public final class CameraImageCaptured {
         private String fileUrl;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -295,12 +295,12 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown. 
+         * Timestamp (time since UNIX epoch) in UTC. 0 for unknown. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch) in UTC. 0 for unknown."
+                description = "Timestamp (time since UNIX epoch) in UTC. 0 for unknown."
         )
         public final Builder timeUtc(BigInteger timeUtc) {
             this.timeUtc = timeUtc;
@@ -321,13 +321,13 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Latitude, expressed as degrees * 1E7 where image was taken 
+         * Latitude where image was taken 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude, expressed as degrees * 1E7 where image was taken"
+                description = "Latitude where image was taken"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -335,13 +335,13 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Longitude, expressed as degrees * 1E7 where capture was taken 
+         * Longitude where capture was taken 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude, expressed as degrees * 1E7 where capture was taken"
+                description = "Longitude where capture was taken"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -349,13 +349,13 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken 
+         * Altitude (MSL) where image was taken 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude in meters, expressed as * 1E3 (AMSL, not WGS84) where image was taken"
+                description = "Altitude (MSL) where image was taken"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -363,13 +363,13 @@ public final class CameraImageCaptured {
         }
 
         /**
-         * Altitude above ground in meters, expressed as * 1E3 where image was taken 
+         * Altitude above ground 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude above ground in meters, expressed as * 1E3 where image was taken"
+                description = "Altitude above ground"
         )
         public final Builder relativeAlt(int relativeAlt) {
             this.relativeAlt = relativeAlt;

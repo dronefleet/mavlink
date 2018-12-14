@@ -3,21 +3,19 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
 /**
- * Deprecated. Use {@link io.dronefleet.mavlink.common.BatteryStatus BATTERY_STATUS} instead. 2nd Battery status 
+ * 2nd Battery status 
  */
 @MavlinkMessageInfo(
         id = 181,
         crc = 174,
-        description = "Deprecated. Use BATTERY_STATUS instead. 2nd Battery status"
+        description = "2nd Battery status"
 )
-@Deprecated
 public final class Battery2 {
     private final int voltage;
 
@@ -37,26 +35,25 @@ public final class Battery2 {
     }
 
     /**
-     * voltage in millivolts 
+     * Voltage. 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 2,
-            description = "voltage in millivolts"
+            description = "Voltage."
     )
     public final int voltage() {
         return this.voltage;
     }
 
     /**
-     * Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the 
-     * current 
+     * Battery current, -1: autopilot does not measure the current. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 2,
             signed = true,
-            description = "Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
+            description = "Battery current, -1: autopilot does not measure the current."
     )
     public final int currentBattery() {
         return this.currentBattery;
@@ -92,12 +89,12 @@ public final class Battery2 {
         private int currentBattery;
 
         /**
-         * voltage in millivolts 
+         * Voltage. 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 2,
-                description = "voltage in millivolts"
+                description = "Voltage."
         )
         public final Builder voltage(int voltage) {
             this.voltage = voltage;
@@ -105,14 +102,13 @@ public final class Battery2 {
         }
 
         /**
-         * Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the 
-         * current 
+         * Battery current, -1: autopilot does not measure the current. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Battery current, in centiamperes (1 = 10 milliampere), -1: autopilot does not measure the current"
+                description = "Battery current, -1: autopilot does not measure the current."
         )
         public final Builder currentBattery(int currentBattery) {
             this.currentBattery = currentBattery;

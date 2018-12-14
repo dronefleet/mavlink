@@ -86,14 +86,14 @@ public final class SafetySetAllowedArea {
     }
 
     /**
-     * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
-     * axis up or local, right handed, Z axis down. 
+     * Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right 
+     * handed, Z axis down. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavFrame.class,
-            description = "Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
+            description = "Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
     )
     public final EnumValue<MavFrame> frame() {
         return this.frame;
@@ -262,14 +262,14 @@ public final class SafetySetAllowedArea {
         }
 
         /**
-         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
-         * axis up or local, right handed, Z axis down. 
+         * Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right 
+         * handed, Z axis down. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavFrame.class,
-                description = "Coordinate frame, as defined by MAV_FRAME enum. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
+                description = "Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down."
         )
         public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
@@ -277,24 +277,24 @@ public final class SafetySetAllowedArea {
         }
 
         /**
-         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
-         * axis up or local, right handed, Z axis down. 
+         * Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right 
+         * handed, Z axis down. 
          */
         public final Builder frame(MavFrame entry) {
             return frame(EnumValue.of(entry));
         }
 
         /**
-         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
-         * axis up or local, right handed, Z axis down. 
+         * Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right 
+         * handed, Z axis down. 
          */
         public final Builder frame(Enum... flags) {
             return frame(EnumValue.create(flags));
         }
 
         /**
-         * Coordinate frame, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. Can be either global, GPS, right-handed with Z 
-         * axis up or local, right handed, Z axis down. 
+         * Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right 
+         * handed, Z axis down. 
          */
         public final Builder frame(Collection<Enum> flags) {
             return frame(EnumValue.create(flags));

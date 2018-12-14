@@ -69,12 +69,13 @@ public final class OpticalFlowRad {
     }
 
     /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -93,88 +94,88 @@ public final class OpticalFlowRad {
     }
 
     /**
-     * Integration time in microseconds. Divide integrated_x and integrated_y by the integration 
-     * time to obtain average flow. The integration time also indicates the. 
+     * Integration time. Divide integrated_x and integrated_y by the integration time to obtain 
+     * average flow. The integration time also indicates the. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
+            description = "Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
     )
     public final long integrationTimeUs() {
         return this.integrationTimeUs;
     }
 
     /**
-     * Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. 
-     * Sensor linear motion along the positive Y axis induces a negative flow.) 
+     * Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear 
+     * motion along the positive Y axis induces a negative flow.) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
+            description = "Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
     )
     public final float integratedX() {
         return this.integratedX;
     }
 
     /**
-     * Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. 
-     * Sensor linear motion along the positive X axis induces a positive flow.) 
+     * Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear 
+     * motion along the positive X axis induces a positive flow.) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
+            description = "Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
     )
     public final float integratedY() {
         return this.integratedY;
     }
 
     /**
-     * RH rotation around X axis (rad) 
+     * RH rotation around X axis 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "RH rotation around X axis (rad)"
+            description = "RH rotation around X axis"
     )
     public final float integratedXgyro() {
         return this.integratedXgyro;
     }
 
     /**
-     * RH rotation around Y axis (rad) 
+     * RH rotation around Y axis 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "RH rotation around Y axis (rad)"
+            description = "RH rotation around Y axis"
     )
     public final float integratedYgyro() {
         return this.integratedYgyro;
     }
 
     /**
-     * RH rotation around Z axis (rad) 
+     * RH rotation around Z axis 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "RH rotation around Z axis (rad)"
+            description = "RH rotation around Z axis"
     )
     public final float integratedZgyro() {
         return this.integratedZgyro;
     }
 
     /**
-     * Temperature * 100 in centi-degrees Celsius 
+     * Temperature 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
             signed = true,
-            description = "Temperature * 100 in centi-degrees Celsius"
+            description = "Temperature"
     )
     public final int temperature() {
         return this.temperature;
@@ -193,25 +194,25 @@ public final class OpticalFlowRad {
     }
 
     /**
-     * Time in microseconds since the distance was sampled. 
+     * Time since the distance was sampled. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Time in microseconds since the distance was sampled."
+            description = "Time since the distance was sampled."
     )
     public final long timeDeltaDistanceUs() {
         return this.timeDeltaDistanceUs;
     }
 
     /**
-     * Distance to the center of the flow field in meters. Positive value (including zero): distance 
-     * known. Negative value: Unknown distance. 
+     * Distance to the center of the flow field. Positive value (including zero): distance known. 
+     * Negative value: Unknown distance. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "Distance to the center of the flow field in meters. Positive value (including zero): distance known. Negative value: Unknown distance."
+            description = "Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance."
     )
     public final float distance() {
         return this.distance;
@@ -297,12 +298,13 @@ public final class OpticalFlowRad {
         private float distance;
 
         /**
-         * Timestamp (microseconds, synced to UNIX time or since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -323,13 +325,13 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Integration time in microseconds. Divide integrated_x and integrated_y by the integration 
-         * time to obtain average flow. The integration time also indicates the. 
+         * Integration time. Divide integrated_x and integrated_y by the integration time to obtain 
+         * average flow. The integration time also indicates the. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
+                description = "Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the."
         )
         public final Builder integrationTimeUs(long integrationTimeUs) {
             this.integrationTimeUs = integrationTimeUs;
@@ -337,13 +339,13 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. 
-         * Sensor linear motion along the positive Y axis induces a negative flow.) 
+         * Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear 
+         * motion along the positive Y axis induces a negative flow.) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
+                description = "Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)"
         )
         public final Builder integratedX(float integratedX) {
             this.integratedX = integratedX;
@@ -351,13 +353,13 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. 
-         * Sensor linear motion along the positive X axis induces a positive flow.) 
+         * Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear 
+         * motion along the positive X axis induces a positive flow.) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
+                description = "Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)"
         )
         public final Builder integratedY(float integratedY) {
             this.integratedY = integratedY;
@@ -365,12 +367,12 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * RH rotation around X axis (rad) 
+         * RH rotation around X axis 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "RH rotation around X axis (rad)"
+                description = "RH rotation around X axis"
         )
         public final Builder integratedXgyro(float integratedXgyro) {
             this.integratedXgyro = integratedXgyro;
@@ -378,12 +380,12 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * RH rotation around Y axis (rad) 
+         * RH rotation around Y axis 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "RH rotation around Y axis (rad)"
+                description = "RH rotation around Y axis"
         )
         public final Builder integratedYgyro(float integratedYgyro) {
             this.integratedYgyro = integratedYgyro;
@@ -391,12 +393,12 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * RH rotation around Z axis (rad) 
+         * RH rotation around Z axis 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "RH rotation around Z axis (rad)"
+                description = "RH rotation around Z axis"
         )
         public final Builder integratedZgyro(float integratedZgyro) {
             this.integratedZgyro = integratedZgyro;
@@ -404,13 +406,13 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Temperature * 100 in centi-degrees Celsius 
+         * Temperature 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
                 signed = true,
-                description = "Temperature * 100 in centi-degrees Celsius"
+                description = "Temperature"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;
@@ -431,12 +433,12 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Time in microseconds since the distance was sampled. 
+         * Time since the distance was sampled. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Time in microseconds since the distance was sampled."
+                description = "Time since the distance was sampled."
         )
         public final Builder timeDeltaDistanceUs(long timeDeltaDistanceUs) {
             this.timeDeltaDistanceUs = timeDeltaDistanceUs;
@@ -444,13 +446,13 @@ public final class OpticalFlowRad {
         }
 
         /**
-         * Distance to the center of the flow field in meters. Positive value (including zero): distance 
-         * known. Negative value: Unknown distance. 
+         * Distance to the center of the flow field. Positive value (including zero): distance known. 
+         * Negative value: Unknown distance. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "Distance to the center of the flow field in meters. Positive value (including zero): distance known. Negative value: Unknown distance."
+                description = "Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance."
         )
         public final Builder distance(float distance) {
             this.distance = distance;

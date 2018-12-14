@@ -10,12 +10,12 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * WIP: Information about flight since last arming 
+ * Information about flight since last arming. 
  */
 @MavlinkMessageInfo(
         id = 264,
         crc = 49,
-        description = "WIP: Information about flight since last arming"
+        description = "Information about flight since last arming."
 )
 public final class FlightInformation {
     private final long timeBootMs;
@@ -43,48 +43,48 @@ public final class FlightInformation {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown 
+     * Timestamp at arming (time since UNIX epoch) in UTC, 0 for unknown 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 8,
-            description = "Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown"
+            description = "Timestamp at arming (time since UNIX epoch) in UTC, 0 for unknown"
     )
     public final BigInteger armingTimeUtc() {
         return this.armingTimeUtc;
     }
 
     /**
-     * Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown 
+     * Timestamp at takeoff (time since UNIX epoch) in UTC, 0 for unknown 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 8,
-            description = "Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown"
+            description = "Timestamp at takeoff (time since UNIX epoch) in UTC, 0 for unknown"
     )
     public final BigInteger takeoffTimeUtc() {
         return this.takeoffTimeUtc;
     }
 
     /**
-     * Universally unique identifier (UUID) of flight, should correspond to name of logfiles 
+     * Universally unique identifier (UUID) of flight, should correspond to name of log files 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 8,
-            description = "Universally unique identifier (UUID) of flight, should correspond to name of logfiles"
+            description = "Universally unique identifier (UUID) of flight, should correspond to name of log files"
     )
     public final BigInteger flightUuid() {
         return this.flightUuid;
@@ -130,12 +130,12 @@ public final class FlightInformation {
         private BigInteger flightUuid;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -143,12 +143,12 @@ public final class FlightInformation {
         }
 
         /**
-         * Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown 
+         * Timestamp at arming (time since UNIX epoch) in UTC, 0 for unknown 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 8,
-                description = "Timestamp at arming (microseconds since UNIX epoch) in UTC, 0 for unknown"
+                description = "Timestamp at arming (time since UNIX epoch) in UTC, 0 for unknown"
         )
         public final Builder armingTimeUtc(BigInteger armingTimeUtc) {
             this.armingTimeUtc = armingTimeUtc;
@@ -156,12 +156,12 @@ public final class FlightInformation {
         }
 
         /**
-         * Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown 
+         * Timestamp at takeoff (time since UNIX epoch) in UTC, 0 for unknown 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 8,
-                description = "Timestamp at takeoff (microseconds since UNIX epoch) in UTC, 0 for unknown"
+                description = "Timestamp at takeoff (time since UNIX epoch) in UTC, 0 for unknown"
         )
         public final Builder takeoffTimeUtc(BigInteger takeoffTimeUtc) {
             this.takeoffTimeUtc = takeoffTimeUtc;
@@ -169,12 +169,12 @@ public final class FlightInformation {
         }
 
         /**
-         * Universally unique identifier (UUID) of flight, should correspond to name of logfiles 
+         * Universally unique identifier (UUID) of flight, should correspond to name of log files 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 8,
-                description = "Universally unique identifier (UUID) of flight, should correspond to name of logfiles"
+                description = "Universally unique identifier (UUID) of flight, should correspond to name of log files"
         )
         public final Builder flightUuid(BigInteger flightUuid) {
             this.flightUuid = flightUuid;

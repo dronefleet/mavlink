@@ -26,7 +26,7 @@ public final class PositionTargetLocalNed {
 
     private final EnumValue<MavFrame> coordinateFrame;
 
-    private final int typeMask;
+    private final EnumValue<PositionTargetTypemask> typeMask;
 
     private final float x;
 
@@ -51,8 +51,8 @@ public final class PositionTargetLocalNed {
     private final float yawRate;
 
     private PositionTargetLocalNed(long timeBootMs, EnumValue<MavFrame> coordinateFrame,
-            int typeMask, float x, float y, float z, float vx, float vy, float vz, float afx,
-            float afy, float afz, float yaw, float yawRate) {
+            EnumValue<PositionTargetTypemask> typeMask, float x, float y, float z, float vx,
+            float vy, float vz, float afx, float afy, float afz, float yaw, float yawRate) {
         this.timeBootMs = timeBootMs;
         this.coordinateFrame = coordinateFrame;
         this.typeMask = typeMask;
@@ -78,12 +78,12 @@ public final class PositionTargetLocalNed {
     }
 
     /**
-     * Timestamp in milliseconds since system boot 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp in milliseconds since system boot"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -104,88 +104,85 @@ public final class PositionTargetLocalNed {
     }
 
     /**
-     * Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 
-     * 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions 
-     * should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead 
-     * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
-     * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
+     * Bitmap to indicate which dimensions should be ignored by the vehicle. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate"
+            enumType = PositionTargetTypemask.class,
+            description = "Bitmap to indicate which dimensions should be ignored by the vehicle."
     )
-    public final int typeMask() {
+    public final EnumValue<PositionTargetTypemask> typeMask() {
         return this.typeMask;
     }
 
     /**
-     * X Position in NED frame in meters 
+     * X Position in NED frame 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "X Position in NED frame in meters"
+            description = "X Position in NED frame"
     )
     public final float x() {
         return this.x;
     }
 
     /**
-     * Y Position in NED frame in meters 
+     * Y Position in NED frame 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Y Position in NED frame in meters"
+            description = "Y Position in NED frame"
     )
     public final float y() {
         return this.y;
     }
 
     /**
-     * Z Position in NED frame in meters (note, altitude is negative in NED) 
+     * Z Position in NED frame (note, altitude is negative in NED) 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Z Position in NED frame in meters (note, altitude is negative in NED)"
+            description = "Z Position in NED frame (note, altitude is negative in NED)"
     )
     public final float z() {
         return this.z;
     }
 
     /**
-     * X velocity in NED frame in meter / s 
+     * X velocity in NED frame 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "X velocity in NED frame in meter / s"
+            description = "X velocity in NED frame"
     )
     public final float vx() {
         return this.vx;
     }
 
     /**
-     * Y velocity in NED frame in meter / s 
+     * Y velocity in NED frame 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Y velocity in NED frame in meter / s"
+            description = "Y velocity in NED frame"
     )
     public final float vy() {
         return this.vy;
     }
 
     /**
-     * Z velocity in NED frame in meter / s 
+     * Z velocity in NED frame 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Z velocity in NED frame in meter / s"
+            description = "Z velocity in NED frame"
     )
     public final float vz() {
         return this.vz;
@@ -228,24 +225,24 @@ public final class PositionTargetLocalNed {
     }
 
     /**
-     * yaw setpoint in rad 
+     * yaw setpoint 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            description = "yaw setpoint in rad"
+            description = "yaw setpoint"
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * yaw rate setpoint in rad/s 
+     * yaw rate setpoint 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "yaw rate setpoint in rad/s"
+            description = "yaw rate setpoint"
     )
     public final float yawRate() {
         return this.yawRate;
@@ -316,7 +313,7 @@ public final class PositionTargetLocalNed {
 
         private EnumValue<MavFrame> coordinateFrame;
 
-        private int typeMask;
+        private EnumValue<PositionTargetTypemask> typeMask;
 
         private float x;
 
@@ -341,12 +338,12 @@ public final class PositionTargetLocalNed {
         private float yawRate;
 
         /**
-         * Timestamp in milliseconds since system boot 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp in milliseconds since system boot"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -393,29 +390,47 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 
-         * 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions 
-         * should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead 
-         * of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 
-         * 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate 
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate"
+                enumType = PositionTargetTypemask.class,
+                description = "Bitmap to indicate which dimensions should be ignored by the vehicle."
         )
-        public final Builder typeMask(int typeMask) {
+        public final Builder typeMask(EnumValue<PositionTargetTypemask> typeMask) {
             this.typeMask = typeMask;
             return this;
         }
 
         /**
-         * X Position in NED frame in meters 
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(PositionTargetTypemask entry) {
+            return typeMask(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(Enum... flags) {
+            return typeMask(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(Collection<Enum> flags) {
+            return typeMask(EnumValue.create(flags));
+        }
+
+        /**
+         * X Position in NED frame 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "X Position in NED frame in meters"
+                description = "X Position in NED frame"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -423,12 +438,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * Y Position in NED frame in meters 
+         * Y Position in NED frame 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Y Position in NED frame in meters"
+                description = "Y Position in NED frame"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -436,12 +451,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * Z Position in NED frame in meters (note, altitude is negative in NED) 
+         * Z Position in NED frame (note, altitude is negative in NED) 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Z Position in NED frame in meters (note, altitude is negative in NED)"
+                description = "Z Position in NED frame (note, altitude is negative in NED)"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -449,12 +464,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * X velocity in NED frame in meter / s 
+         * X velocity in NED frame 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "X velocity in NED frame in meter / s"
+                description = "X velocity in NED frame"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -462,12 +477,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * Y velocity in NED frame in meter / s 
+         * Y velocity in NED frame 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Y velocity in NED frame in meter / s"
+                description = "Y velocity in NED frame"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -475,12 +490,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * Z velocity in NED frame in meter / s 
+         * Z velocity in NED frame 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Z velocity in NED frame in meter / s"
+                description = "Z velocity in NED frame"
         )
         public final Builder vz(float vz) {
             this.vz = vz;
@@ -527,12 +542,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * yaw setpoint in rad 
+         * yaw setpoint 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                description = "yaw setpoint in rad"
+                description = "yaw setpoint"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -540,12 +555,12 @@ public final class PositionTargetLocalNed {
         }
 
         /**
-         * yaw rate setpoint in rad/s 
+         * yaw rate setpoint 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "yaw rate setpoint in rad/s"
+                description = "yaw rate setpoint"
         )
         public final Builder yawRate(float yawRate) {
             this.yawRate = yawRate;

@@ -3,23 +3,28 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
- * WIP: Information about video stream 
+ * Information about video stream 
  */
 @MavlinkMessageInfo(
         id = 269,
-        crc = 58,
-        description = "WIP: Information about video stream"
+        crc = 18,
+        description = "Information about video stream"
 )
 public final class VideoStreamInformation {
-    private final int cameraId;
+    private final int streamId;
 
-    private final int status;
+    private final int count;
+
+    private final EnumValue<VideoStreamStatusFlags> flags;
 
     private final float framerate;
 
@@ -31,17 +36,22 @@ public final class VideoStreamInformation {
 
     private final int rotation;
 
+    private final int hfov;
+
     private final String uri;
 
-    private VideoStreamInformation(int cameraId, int status, float framerate, int resolutionH,
-            int resolutionV, long bitrate, int rotation, String uri) {
-        this.cameraId = cameraId;
-        this.status = status;
+    private VideoStreamInformation(int streamId, int count, EnumValue<VideoStreamStatusFlags> flags,
+            float framerate, int resolutionH, int resolutionV, long bitrate, int rotation, int hfov,
+            String uri) {
+        this.streamId = streamId;
+        this.count = count;
+        this.flags = flags;
         this.framerate = framerate;
         this.resolutionH = resolutionH;
         this.resolutionV = resolutionV;
         this.bitrate = bitrate;
         this.rotation = rotation;
+        this.hfov = hfov;
         this.uri = uri;
     }
 
@@ -54,60 +64,73 @@ public final class VideoStreamInformation {
     }
 
     /**
-     * Camera ID (1 for first, 2 for second, etc.) 
-     */
-    @MavlinkFieldInfo(
-            position = 1,
-            unitSize = 1,
-            description = "Camera ID (1 for first, 2 for second, etc.)"
-    )
-    public final int cameraId() {
-        return this.cameraId;
-    }
-
-    /**
-     * Current status of video streaming (0: not running, 1: in progress) 
+     * Stream ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Current status of video streaming (0: not running, 1: in progress)"
+            description = "Stream ID (1 for first, 2 for second, etc.)"
     )
-    public final int status() {
-        return this.status;
+    public final int streamId() {
+        return this.streamId;
     }
 
     /**
-     * Frames per second 
+     * Number of streams available 
      */
     @MavlinkFieldInfo(
             position = 3,
+            unitSize = 1,
+            description = "Number of streams available"
+    )
+    public final int count() {
+        return this.count;
+    }
+
+    /**
+     * Bitmap of stream status flags 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 2,
+            enumType = VideoStreamStatusFlags.class,
+            description = "Bitmap of stream status flags"
+    )
+    public final EnumValue<VideoStreamStatusFlags> flags() {
+        return this.flags;
+    }
+
+    /**
+     * Frame rate 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
             unitSize = 4,
-            description = "Frames per second"
+            description = "Frame rate"
     )
     public final float framerate() {
         return this.framerate;
     }
 
     /**
-     * Resolution horizontal in pixels 
+     * Horizontal resolution 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 6,
             unitSize = 2,
-            description = "Resolution horizontal in pixels"
+            description = "Horizontal resolution"
     )
     public final int resolutionH() {
         return this.resolutionH;
     }
 
     /**
-     * Resolution vertical in pixels 
+     * Vertical resolution 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 7,
             unitSize = 2,
-            description = "Resolution vertical in pixels"
+            description = "Vertical resolution"
     )
     public final int resolutionV() {
         return this.resolutionV;
@@ -117,7 +140,7 @@ public final class VideoStreamInformation {
      * Bit rate in bits per second 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 8,
             unitSize = 4,
             description = "Bit rate in bits per second"
     )
@@ -129,7 +152,7 @@ public final class VideoStreamInformation {
      * Video image rotation clockwise 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 9,
             unitSize = 2,
             description = "Video image rotation clockwise"
     )
@@ -138,12 +161,24 @@ public final class VideoStreamInformation {
     }
 
     /**
+     * Horizontal Field of view 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 2,
+            description = "Horizontal Field of view"
+    )
+    public final int hfov() {
+        return this.hfov;
+    }
+
+    /**
      * Video stream URI 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 11,
             unitSize = 1,
-            arraySize = 230,
+            arraySize = 160,
             description = "Video stream URI"
     )
     public final String uri() {
@@ -155,13 +190,15 @@ public final class VideoStreamInformation {
         if (this == o) return true;
         if (o == null || !getClass().equals(o.getClass())) return false;
         VideoStreamInformation other = (VideoStreamInformation)o;
-        if (!Objects.deepEquals(cameraId, other.cameraId)) return false;
-        if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(streamId, other.streamId)) return false;
+        if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(flags, other.flags)) return false;
         if (!Objects.deepEquals(framerate, other.framerate)) return false;
         if (!Objects.deepEquals(resolutionH, other.resolutionH)) return false;
         if (!Objects.deepEquals(resolutionV, other.resolutionV)) return false;
         if (!Objects.deepEquals(bitrate, other.bitrate)) return false;
         if (!Objects.deepEquals(rotation, other.rotation)) return false;
+        if (!Objects.deepEquals(hfov, other.hfov)) return false;
         if (!Objects.deepEquals(uri, other.uri)) return false;
         return true;
     }
@@ -169,33 +206,39 @@ public final class VideoStreamInformation {
     @Override
     public int hashCode() {
         int result = 0;
-        result = 31 * result + Objects.hashCode(cameraId);
-        result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(streamId);
+        result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(flags);
         result = 31 * result + Objects.hashCode(framerate);
         result = 31 * result + Objects.hashCode(resolutionH);
         result = 31 * result + Objects.hashCode(resolutionV);
         result = 31 * result + Objects.hashCode(bitrate);
         result = 31 * result + Objects.hashCode(rotation);
+        result = 31 * result + Objects.hashCode(hfov);
         result = 31 * result + Objects.hashCode(uri);
         return result;
     }
 
     @Override
     public String toString() {
-        return "VideoStreamInformation{cameraId=" + cameraId
-                 + ", status=" + status
+        return "VideoStreamInformation{streamId=" + streamId
+                 + ", count=" + count
+                 + ", flags=" + flags
                  + ", framerate=" + framerate
                  + ", resolutionH=" + resolutionH
                  + ", resolutionV=" + resolutionV
                  + ", bitrate=" + bitrate
                  + ", rotation=" + rotation
+                 + ", hfov=" + hfov
                  + ", uri=" + uri + "}";
     }
 
     public static final class Builder {
-        private int cameraId;
+        private int streamId;
 
-        private int status;
+        private int count;
+
+        private EnumValue<VideoStreamStatusFlags> flags;
 
         private float framerate;
 
@@ -207,41 +250,78 @@ public final class VideoStreamInformation {
 
         private int rotation;
 
+        private int hfov;
+
         private String uri;
 
         /**
-         * Camera ID (1 for first, 2 for second, etc.) 
-         */
-        @MavlinkFieldInfo(
-                position = 1,
-                unitSize = 1,
-                description = "Camera ID (1 for first, 2 for second, etc.)"
-        )
-        public final Builder cameraId(int cameraId) {
-            this.cameraId = cameraId;
-            return this;
-        }
-
-        /**
-         * Current status of video streaming (0: not running, 1: in progress) 
+         * Stream ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Current status of video streaming (0: not running, 1: in progress)"
+                description = "Stream ID (1 for first, 2 for second, etc.)"
         )
-        public final Builder status(int status) {
-            this.status = status;
+        public final Builder streamId(int streamId) {
+            this.streamId = streamId;
             return this;
         }
 
         /**
-         * Frames per second 
+         * Number of streams available 
          */
         @MavlinkFieldInfo(
                 position = 3,
+                unitSize = 1,
+                description = "Number of streams available"
+        )
+        public final Builder count(int count) {
+            this.count = count;
+            return this;
+        }
+
+        /**
+         * Bitmap of stream status flags 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 2,
+                enumType = VideoStreamStatusFlags.class,
+                description = "Bitmap of stream status flags"
+        )
+        public final Builder flags(EnumValue<VideoStreamStatusFlags> flags) {
+            this.flags = flags;
+            return this;
+        }
+
+        /**
+         * Bitmap of stream status flags 
+         */
+        public final Builder flags(VideoStreamStatusFlags entry) {
+            return flags(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap of stream status flags 
+         */
+        public final Builder flags(Enum... flags) {
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap of stream status flags 
+         */
+        public final Builder flags(Collection<Enum> flags) {
+            return flags(EnumValue.create(flags));
+        }
+
+        /**
+         * Frame rate 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
                 unitSize = 4,
-                description = "Frames per second"
+                description = "Frame rate"
         )
         public final Builder framerate(float framerate) {
             this.framerate = framerate;
@@ -249,12 +329,12 @@ public final class VideoStreamInformation {
         }
 
         /**
-         * Resolution horizontal in pixels 
+         * Horizontal resolution 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 6,
                 unitSize = 2,
-                description = "Resolution horizontal in pixels"
+                description = "Horizontal resolution"
         )
         public final Builder resolutionH(int resolutionH) {
             this.resolutionH = resolutionH;
@@ -262,12 +342,12 @@ public final class VideoStreamInformation {
         }
 
         /**
-         * Resolution vertical in pixels 
+         * Vertical resolution 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 7,
                 unitSize = 2,
-                description = "Resolution vertical in pixels"
+                description = "Vertical resolution"
         )
         public final Builder resolutionV(int resolutionV) {
             this.resolutionV = resolutionV;
@@ -278,7 +358,7 @@ public final class VideoStreamInformation {
          * Bit rate in bits per second 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 8,
                 unitSize = 4,
                 description = "Bit rate in bits per second"
         )
@@ -291,7 +371,7 @@ public final class VideoStreamInformation {
          * Video image rotation clockwise 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 9,
                 unitSize = 2,
                 description = "Video image rotation clockwise"
         )
@@ -301,12 +381,25 @@ public final class VideoStreamInformation {
         }
 
         /**
+         * Horizontal Field of view 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 2,
+                description = "Horizontal Field of view"
+        )
+        public final Builder hfov(int hfov) {
+            this.hfov = hfov;
+            return this;
+        }
+
+        /**
          * Video stream URI 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 11,
                 unitSize = 1,
-                arraySize = 230,
+                arraySize = 160,
                 description = "Video stream URI"
         )
         public final Builder uri(String uri) {
@@ -315,7 +408,7 @@ public final class VideoStreamInformation {
         }
 
         public final VideoStreamInformation build() {
-            return new VideoStreamInformation(cameraId, status, framerate, resolutionH, resolutionV, bitrate, rotation, uri);
+            return new VideoStreamInformation(streamId, count, flags, framerate, resolutionH, resolutionV, bitrate, rotation, hfov, uri);
         }
     }
 }

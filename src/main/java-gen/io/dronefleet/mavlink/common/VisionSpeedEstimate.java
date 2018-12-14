@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *  
+ * Speed estimate from a vision source. 
  */
 @MavlinkMessageInfo(
         id = 103,
-        crc = 208
+        crc = 208,
+        description = "Speed estimate from a vision source."
 )
 public final class VisionSpeedEstimate {
     private final BigInteger usec;
@@ -47,12 +48,12 @@ public final class VisionSpeedEstimate {
     }
 
     /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
+     * Timestamp (UNIX time or time since system boot) 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+            description = "Timestamp (UNIX time or time since system boot)"
     )
     public final BigInteger usec() {
         return this.usec;
@@ -62,7 +63,7 @@ public final class VisionSpeedEstimate {
      * Global X speed 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
             description = "Global X speed"
     )
@@ -74,7 +75,7 @@ public final class VisionSpeedEstimate {
      * Global Y speed 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "Global Y speed"
     )
@@ -86,7 +87,7 @@ public final class VisionSpeedEstimate {
      * Global Z speed 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
             description = "Global Z speed"
     )
@@ -98,7 +99,7 @@ public final class VisionSpeedEstimate {
      * Linear velocity covariance matrix (1st three entries - 1st row, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 4,
             arraySize = 9,
             extension = true,
@@ -153,12 +154,12 @@ public final class VisionSpeedEstimate {
         private List<Float> covariance;
 
         /**
-         * Timestamp (microseconds, synced to UNIX time or since system boot) 
+         * Timestamp (UNIX time or time since system boot) 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+                description = "Timestamp (UNIX time or time since system boot)"
         )
         public final Builder usec(BigInteger usec) {
             this.usec = usec;
@@ -169,7 +170,7 @@ public final class VisionSpeedEstimate {
          * Global X speed 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
                 description = "Global X speed"
         )
@@ -182,7 +183,7 @@ public final class VisionSpeedEstimate {
          * Global Y speed 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "Global Y speed"
         )
@@ -195,7 +196,7 @@ public final class VisionSpeedEstimate {
          * Global Z speed 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
                 description = "Global Z speed"
         )
@@ -208,7 +209,7 @@ public final class VisionSpeedEstimate {
          * Linear velocity covariance matrix (1st three entries - 1st row, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 4,
                 arraySize = 9,
                 extension = true,

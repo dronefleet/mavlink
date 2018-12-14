@@ -48,14 +48,14 @@ public final class MessageInterval {
     }
 
     /**
-     * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
-     * disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent. 
+     * The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates 
+     * it is not available, &gt; 0 indicates the interval at which it is sent. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "The interval between two messages, in microseconds. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
+            description = "The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
     )
     public final int intervalUs() {
         return this.intervalUs;
@@ -104,14 +104,14 @@ public final class MessageInterval {
         }
 
         /**
-         * The interval between two messages, in microseconds. A value of -1 indicates this stream is 
-         * disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent. 
+         * The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates 
+         * it is not available, &gt; 0 indicates the interval at which it is sent. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "The interval between two messages, in microseconds. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
+                description = "The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent."
         )
         public final Builder intervalUs(int intervalUs) {
             this.intervalUs = intervalUs;

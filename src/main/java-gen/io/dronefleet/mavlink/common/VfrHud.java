@@ -48,24 +48,24 @@ public final class VfrHud {
     }
 
     /**
-     * Current airspeed in m/s 
+     * Current airspeed 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Current airspeed in m/s"
+            description = "Current airspeed"
     )
     public final float airspeed() {
         return this.airspeed;
     }
 
     /**
-     * Current ground speed in m/s 
+     * Current ground speed 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Current ground speed in m/s"
+            description = "Current ground speed"
     )
     public final float groundspeed() {
         return this.groundspeed;
@@ -97,24 +97,24 @@ public final class VfrHud {
     }
 
     /**
-     * Current altitude (MSL), in meters 
+     * Current altitude (MSL) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Current altitude (MSL), in meters"
+            description = "Current altitude (MSL)"
     )
     public final float alt() {
         return this.alt;
     }
 
     /**
-     * Current climb rate in meters/second 
+     * Current climb rate 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Current climb rate in meters/second"
+            description = "Current climb rate"
     )
     public final float climb() {
         return this.climb;
@@ -170,12 +170,12 @@ public final class VfrHud {
         private float climb;
 
         /**
-         * Current airspeed in m/s 
+         * Current airspeed 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Current airspeed in m/s"
+                description = "Current airspeed"
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;
@@ -183,12 +183,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current ground speed in m/s 
+         * Current ground speed 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Current ground speed in m/s"
+                description = "Current ground speed"
         )
         public final Builder groundspeed(float groundspeed) {
             this.groundspeed = groundspeed;
@@ -223,12 +223,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current altitude (MSL), in meters 
+         * Current altitude (MSL) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Current altitude (MSL), in meters"
+                description = "Current altitude (MSL)"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -236,12 +236,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current climb rate in meters/second 
+         * Current climb rate 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Current climb rate in meters/second"
+                description = "Current climb rate"
         )
         public final Builder climb(float climb) {
             this.climb = climb;

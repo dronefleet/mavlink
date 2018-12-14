@@ -78,13 +78,13 @@ public final class ParamExtValue {
     }
 
     /**
-     * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+     * Parameter type. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavParamExtType.class,
-            description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
+            description = "Parameter type."
     )
     public final EnumValue<MavParamExtType> paramType() {
         return this.paramType;
@@ -189,13 +189,13 @@ public final class ParamExtValue {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavParamExtType.class,
-                description = "Parameter type: see the MAV_PARAM_EXT_TYPE enum for supported data types."
+                description = "Parameter type."
         )
         public final Builder paramType(EnumValue<MavParamExtType> paramType) {
             this.paramType = paramType;
@@ -203,21 +203,21 @@ public final class ParamExtValue {
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(MavParamExtType entry) {
             return paramType(EnumValue.of(entry));
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(Enum... flags) {
             return paramType(EnumValue.create(flags));
         }
 
         /**
-         * Parameter type: see the {@link io.dronefleet.mavlink.common.MavParamExtType MAV_PARAM_EXT_TYPE} enum for supported data types. 
+         * Parameter type. 
          */
         public final Builder paramType(Collection<Enum> flags) {
             return paramType(EnumValue.create(flags));

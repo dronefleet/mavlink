@@ -39,36 +39,36 @@ public final class RallyFetchPoint {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * point index (first point is 0) 
+     * Point index (first point is 0). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "point index (first point is 0)"
+            description = "Point index (first point is 0)."
     )
     public final int idx() {
         return this.idx;
@@ -109,12 +109,12 @@ public final class RallyFetchPoint {
         private int idx;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -122,12 +122,12 @@ public final class RallyFetchPoint {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -135,12 +135,12 @@ public final class RallyFetchPoint {
         }
 
         /**
-         * point index (first point is 0) 
+         * Point index (first point is 0). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "point index (first point is 0)"
+                description = "Point index (first point is 0)."
         )
         public final Builder idx(int idx) {
             this.idx = idx;

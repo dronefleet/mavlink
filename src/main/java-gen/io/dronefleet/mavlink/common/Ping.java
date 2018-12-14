@@ -43,12 +43,13 @@ public final class Ping {
     }
 
     /**
-     * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -67,26 +68,26 @@ public final class Ping {
     }
 
     /**
-     * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
+     * 0: request ping from all receiving systems. If greater than 0: message is a ping response and 
      * number is the system id of the requesting system 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system"
+            description = "0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system"
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
-     * number is the system id of the requesting system 
+     * 0: request ping from all receiving components. If greater than 0: message is a ping response and 
+     * number is the component id of the requesting component. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system"
+            description = "0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component."
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -132,12 +133,13 @@ public final class Ping {
         private int targetComponent;
 
         /**
-         * Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -158,13 +160,13 @@ public final class Ping {
         }
 
         /**
-         * 0: request ping from all receiving systems, if greater than 0: message is a ping response and 
+         * 0: request ping from all receiving systems. If greater than 0: message is a ping response and 
          * number is the system id of the requesting system 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system"
+                description = "0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system"
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -172,13 +174,13 @@ public final class Ping {
         }
 
         /**
-         * 0: request ping from all receiving components, if greater than 0: message is a ping response and 
-         * number is the system id of the requesting system 
+         * 0: request ping from all receiving components. If greater than 0: message is a ping response and 
+         * number is the component id of the requesting component. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system"
+                description = "0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;

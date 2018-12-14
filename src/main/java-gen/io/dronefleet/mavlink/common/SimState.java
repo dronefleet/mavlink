@@ -179,108 +179,108 @@ public final class SimState {
     }
 
     /**
-     * X acceleration m/s/s 
+     * X acceleration 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "X acceleration m/s/s"
+            description = "X acceleration"
     )
     public final float xacc() {
         return this.xacc;
     }
 
     /**
-     * Y acceleration m/s/s 
+     * Y acceleration 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Y acceleration m/s/s"
+            description = "Y acceleration"
     )
     public final float yacc() {
         return this.yacc;
     }
 
     /**
-     * Z acceleration m/s/s 
+     * Z acceleration 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Z acceleration m/s/s"
+            description = "Z acceleration"
     )
     public final float zacc() {
         return this.zacc;
     }
 
     /**
-     * Angular speed around X axis rad/s 
+     * Angular speed around X axis 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Angular speed around X axis rad/s"
+            description = "Angular speed around X axis"
     )
     public final float xgyro() {
         return this.xgyro;
     }
 
     /**
-     * Angular speed around Y axis rad/s 
+     * Angular speed around Y axis 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "Angular speed around Y axis rad/s"
+            description = "Angular speed around Y axis"
     )
     public final float ygyro() {
         return this.ygyro;
     }
 
     /**
-     * Angular speed around Z axis rad/s 
+     * Angular speed around Z axis 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            description = "Angular speed around Z axis rad/s"
+            description = "Angular speed around Z axis"
     )
     public final float zgyro() {
         return this.zgyro;
     }
 
     /**
-     * Latitude in degrees 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "Latitude in degrees"
+            description = "Latitude"
     )
     public final float lat() {
         return this.lat;
     }
 
     /**
-     * Longitude in degrees 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
-            description = "Longitude in degrees"
+            description = "Longitude"
     )
     public final float lon() {
         return this.lon;
     }
 
     /**
-     * Altitude in meters 
+     * Altitude 
      */
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 4,
-            description = "Altitude in meters"
+            description = "Altitude"
     )
     public final float alt() {
         return this.alt;
@@ -311,36 +311,36 @@ public final class SimState {
     }
 
     /**
-     * True velocity in m/s in NORTH direction in earth-fixed NED frame 
+     * True velocity in NORTH direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 19,
             unitSize = 4,
-            description = "True velocity in m/s in NORTH direction in earth-fixed NED frame"
+            description = "True velocity in NORTH direction in earth-fixed NED frame"
     )
     public final float vn() {
         return this.vn;
     }
 
     /**
-     * True velocity in m/s in EAST direction in earth-fixed NED frame 
+     * True velocity in EAST direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 4,
-            description = "True velocity in m/s in EAST direction in earth-fixed NED frame"
+            description = "True velocity in EAST direction in earth-fixed NED frame"
     )
     public final float ve() {
         return this.ve;
     }
 
     /**
-     * True velocity in m/s in DOWN direction in earth-fixed NED frame 
+     * True velocity in DOWN direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 4,
-            description = "True velocity in m/s in DOWN direction in earth-fixed NED frame"
+            description = "True velocity in DOWN direction in earth-fixed NED frame"
     )
     public final float vd() {
         return this.vd;
@@ -562,12 +562,12 @@ public final class SimState {
         }
 
         /**
-         * X acceleration m/s/s 
+         * X acceleration 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "X acceleration m/s/s"
+                description = "X acceleration"
         )
         public final Builder xacc(float xacc) {
             this.xacc = xacc;
@@ -575,12 +575,12 @@ public final class SimState {
         }
 
         /**
-         * Y acceleration m/s/s 
+         * Y acceleration 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Y acceleration m/s/s"
+                description = "Y acceleration"
         )
         public final Builder yacc(float yacc) {
             this.yacc = yacc;
@@ -588,12 +588,12 @@ public final class SimState {
         }
 
         /**
-         * Z acceleration m/s/s 
+         * Z acceleration 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Z acceleration m/s/s"
+                description = "Z acceleration"
         )
         public final Builder zacc(float zacc) {
             this.zacc = zacc;
@@ -601,12 +601,12 @@ public final class SimState {
         }
 
         /**
-         * Angular speed around X axis rad/s 
+         * Angular speed around X axis 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Angular speed around X axis rad/s"
+                description = "Angular speed around X axis"
         )
         public final Builder xgyro(float xgyro) {
             this.xgyro = xgyro;
@@ -614,12 +614,12 @@ public final class SimState {
         }
 
         /**
-         * Angular speed around Y axis rad/s 
+         * Angular speed around Y axis 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "Angular speed around Y axis rad/s"
+                description = "Angular speed around Y axis"
         )
         public final Builder ygyro(float ygyro) {
             this.ygyro = ygyro;
@@ -627,12 +627,12 @@ public final class SimState {
         }
 
         /**
-         * Angular speed around Z axis rad/s 
+         * Angular speed around Z axis 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                description = "Angular speed around Z axis rad/s"
+                description = "Angular speed around Z axis"
         )
         public final Builder zgyro(float zgyro) {
             this.zgyro = zgyro;
@@ -640,12 +640,12 @@ public final class SimState {
         }
 
         /**
-         * Latitude in degrees 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "Latitude in degrees"
+                description = "Latitude"
         )
         public final Builder lat(float lat) {
             this.lat = lat;
@@ -653,12 +653,12 @@ public final class SimState {
         }
 
         /**
-         * Longitude in degrees 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
-                description = "Longitude in degrees"
+                description = "Longitude"
         )
         public final Builder lon(float lon) {
             this.lon = lon;
@@ -666,12 +666,12 @@ public final class SimState {
         }
 
         /**
-         * Altitude in meters 
+         * Altitude 
          */
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 4,
-                description = "Altitude in meters"
+                description = "Altitude"
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -705,12 +705,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in m/s in NORTH direction in earth-fixed NED frame 
+         * True velocity in NORTH direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 19,
                 unitSize = 4,
-                description = "True velocity in m/s in NORTH direction in earth-fixed NED frame"
+                description = "True velocity in NORTH direction in earth-fixed NED frame"
         )
         public final Builder vn(float vn) {
             this.vn = vn;
@@ -718,12 +718,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in m/s in EAST direction in earth-fixed NED frame 
+         * True velocity in EAST direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 4,
-                description = "True velocity in m/s in EAST direction in earth-fixed NED frame"
+                description = "True velocity in EAST direction in earth-fixed NED frame"
         )
         public final Builder ve(float ve) {
             this.ve = ve;
@@ -731,12 +731,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in m/s in DOWN direction in earth-fixed NED frame 
+         * True velocity in DOWN direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 4,
-                description = "True velocity in m/s in DOWN direction in earth-fixed NED frame"
+                description = "True velocity in DOWN direction in earth-fixed NED frame"
         )
         public final Builder vd(float vd) {
             this.vd = vd;

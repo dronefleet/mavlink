@@ -74,12 +74,13 @@ public final class LocalPositionNedCov {
     }
 
     /**
-     * Timestamp (microseconds since system boot or since UNIX epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -135,72 +136,72 @@ public final class LocalPositionNedCov {
     }
 
     /**
-     * X Speed (m/s) 
+     * X Speed 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "X Speed (m/s)"
+            description = "X Speed"
     )
     public final float vx() {
         return this.vx;
     }
 
     /**
-     * Y Speed (m/s) 
+     * Y Speed 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Y Speed (m/s)"
+            description = "Y Speed"
     )
     public final float vy() {
         return this.vy;
     }
 
     /**
-     * Z Speed (m/s) 
+     * Z Speed 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Z Speed (m/s)"
+            description = "Z Speed"
     )
     public final float vz() {
         return this.vz;
     }
 
     /**
-     * X Acceleration (m/s^2) 
+     * X Acceleration 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "X Acceleration (m/s^2)"
+            description = "X Acceleration"
     )
     public final float ax() {
         return this.ax;
     }
 
     /**
-     * Y Acceleration (m/s^2) 
+     * Y Acceleration 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Y Acceleration (m/s^2)"
+            description = "Y Acceleration"
     )
     public final float ay() {
         return this.ay;
     }
 
     /**
-     * Z Acceleration (m/s^2) 
+     * Z Acceleration 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Z Acceleration (m/s^2)"
+            description = "Z Acceleration"
     )
     public final float az() {
         return this.az;
@@ -300,12 +301,13 @@ public final class LocalPositionNedCov {
         private List<Float> covariance;
 
         /**
-         * Timestamp (microseconds since system boot or since UNIX epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -387,12 +389,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * X Speed (m/s) 
+         * X Speed 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "X Speed (m/s)"
+                description = "X Speed"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -400,12 +402,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * Y Speed (m/s) 
+         * Y Speed 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Y Speed (m/s)"
+                description = "Y Speed"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -413,12 +415,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * Z Speed (m/s) 
+         * Z Speed 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Z Speed (m/s)"
+                description = "Z Speed"
         )
         public final Builder vz(float vz) {
             this.vz = vz;
@@ -426,12 +428,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * X Acceleration (m/s^2) 
+         * X Acceleration 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "X Acceleration (m/s^2)"
+                description = "X Acceleration"
         )
         public final Builder ax(float ax) {
             this.ax = ax;
@@ -439,12 +441,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * Y Acceleration (m/s^2) 
+         * Y Acceleration 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Y Acceleration (m/s^2)"
+                description = "Y Acceleration"
         )
         public final Builder ay(float ay) {
             this.ay = ay;
@@ -452,12 +454,12 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * Z Acceleration (m/s^2) 
+         * Z Acceleration 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Z Acceleration (m/s^2)"
+                description = "Z Acceleration"
         )
         public final Builder az(float az) {
             this.az = az;

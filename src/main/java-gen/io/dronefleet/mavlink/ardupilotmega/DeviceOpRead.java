@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Read registers for a device 
+ * Read registers for a device. 
  */
 @MavlinkMessageInfo(
         id = 11000,
         crc = 134,
-        description = "Read registers for a device"
+        description = "Read registers for a device."
 )
 public final class DeviceOpRead {
     private final int targetSystem;
@@ -61,110 +61,110 @@ public final class DeviceOpRead {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * request ID - copied to reply 
+     * Request ID - copied to reply. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "request ID - copied to reply"
+            description = "Request ID - copied to reply."
     )
     public final long requestId() {
         return this.requestId;
     }
 
     /**
-     * The bus type 
+     * The bus type. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             enumType = DeviceOpBustype.class,
-            description = "The bus type"
+            description = "The bus type."
     )
     public final EnumValue<DeviceOpBustype> bustype() {
         return this.bustype;
     }
 
     /**
-     * Bus number 
+     * Bus number. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "Bus number"
+            description = "Bus number."
     )
     public final int bus() {
         return this.bus;
     }
 
     /**
-     * Bus address 
+     * Bus address. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "Bus address"
+            description = "Bus address."
     )
     public final int address() {
         return this.address;
     }
 
     /**
-     * Name of device on bus (for SPI) 
+     * Name of device on bus (for SPI). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
             arraySize = 40,
-            description = "Name of device on bus (for SPI)"
+            description = "Name of device on bus (for SPI)."
     )
     public final String busname() {
         return this.busname;
     }
 
     /**
-     * First register to read 
+     * First register to read. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            description = "First register to read"
+            description = "First register to read."
     )
     public final int regstart() {
         return this.regstart;
     }
 
     /**
-     * count of registers to read 
+     * Count of registers to read. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            description = "count of registers to read"
+            description = "Count of registers to read."
     )
     public final int count() {
         return this.count;
@@ -235,12 +235,12 @@ public final class DeviceOpRead {
         private int count;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -248,12 +248,12 @@ public final class DeviceOpRead {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -261,12 +261,12 @@ public final class DeviceOpRead {
         }
 
         /**
-         * request ID - copied to reply 
+         * Request ID - copied to reply. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "request ID - copied to reply"
+                description = "Request ID - copied to reply."
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -274,13 +274,13 @@ public final class DeviceOpRead {
         }
 
         /**
-         * The bus type 
+         * The bus type. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 enumType = DeviceOpBustype.class,
-                description = "The bus type"
+                description = "The bus type."
         )
         public final Builder bustype(EnumValue<DeviceOpBustype> bustype) {
             this.bustype = bustype;
@@ -288,33 +288,33 @@ public final class DeviceOpRead {
         }
 
         /**
-         * The bus type 
+         * The bus type. 
          */
         public final Builder bustype(DeviceOpBustype entry) {
             return bustype(EnumValue.of(entry));
         }
 
         /**
-         * The bus type 
+         * The bus type. 
          */
         public final Builder bustype(Enum... flags) {
             return bustype(EnumValue.create(flags));
         }
 
         /**
-         * The bus type 
+         * The bus type. 
          */
         public final Builder bustype(Collection<Enum> flags) {
             return bustype(EnumValue.create(flags));
         }
 
         /**
-         * Bus number 
+         * Bus number. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "Bus number"
+                description = "Bus number."
         )
         public final Builder bus(int bus) {
             this.bus = bus;
@@ -322,12 +322,12 @@ public final class DeviceOpRead {
         }
 
         /**
-         * Bus address 
+         * Bus address. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "Bus address"
+                description = "Bus address."
         )
         public final Builder address(int address) {
             this.address = address;
@@ -335,13 +335,13 @@ public final class DeviceOpRead {
         }
 
         /**
-         * Name of device on bus (for SPI) 
+         * Name of device on bus (for SPI). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
                 arraySize = 40,
-                description = "Name of device on bus (for SPI)"
+                description = "Name of device on bus (for SPI)."
         )
         public final Builder busname(String busname) {
             this.busname = busname;
@@ -349,12 +349,12 @@ public final class DeviceOpRead {
         }
 
         /**
-         * First register to read 
+         * First register to read. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                description = "First register to read"
+                description = "First register to read."
         )
         public final Builder regstart(int regstart) {
             this.regstart = regstart;
@@ -362,12 +362,12 @@ public final class DeviceOpRead {
         }
 
         /**
-         * count of registers to read 
+         * Count of registers to read. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                description = "count of registers to read"
+                description = "Count of registers to read."
         )
         public final Builder count(int count) {
             this.count = count;

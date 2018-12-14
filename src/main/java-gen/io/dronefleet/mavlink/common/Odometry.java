@@ -84,39 +84,39 @@ public final class Odometry {
     }
 
     /**
-     * Timestamp (microseconds since system boot or since UNIX epoch). 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since system boot or since UNIX epoch)."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+     * Coordinate frame of reference for the pose data. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = MavFrame.class,
-            description = "Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum."
+            description = "Coordinate frame of reference for the pose data."
     )
     public final EnumValue<MavFrame> frameId() {
         return this.frameId;
     }
 
     /**
-     * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-     * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+     * Coordinate frame of reference for the velocity in free space (twist) data. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavFrame.class,
-            description = "Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum."
+            description = "Coordinate frame of reference for the velocity in free space (twist) data."
     )
     public final EnumValue<MavFrame> childFrameId() {
         return this.childFrameId;
@@ -366,12 +366,13 @@ public final class Odometry {
         private List<Float> twistCovariance;
 
         /**
-         * Timestamp (microseconds since system boot or since UNIX epoch). 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since system boot or since UNIX epoch)."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -379,13 +380,13 @@ public final class Odometry {
         }
 
         /**
-         * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the pose data. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = MavFrame.class,
-                description = "Coordinate frame of reference for the pose data, as defined by MAV_FRAME enum."
+                description = "Coordinate frame of reference for the pose data."
         )
         public final Builder frameId(EnumValue<MavFrame> frameId) {
             this.frameId = frameId;
@@ -393,35 +394,34 @@ public final class Odometry {
         }
 
         /**
-         * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the pose data. 
          */
         public final Builder frameId(MavFrame entry) {
             return frameId(EnumValue.of(entry));
         }
 
         /**
-         * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the pose data. 
          */
         public final Builder frameId(Enum... flags) {
             return frameId(EnumValue.create(flags));
         }
 
         /**
-         * Coordinate frame of reference for the pose data, as defined by {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the pose data. 
          */
         public final Builder frameId(Collection<Enum> flags) {
             return frameId(EnumValue.create(flags));
         }
 
         /**
-         * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the velocity in free space (twist) data. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavFrame.class,
-                description = "Coordinate frame of reference for the velocity in free space (twist) data, as defined by MAV_FRAME enum."
+                description = "Coordinate frame of reference for the velocity in free space (twist) data."
         )
         public final Builder childFrameId(EnumValue<MavFrame> childFrameId) {
             this.childFrameId = childFrameId;
@@ -429,24 +429,21 @@ public final class Odometry {
         }
 
         /**
-         * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the velocity in free space (twist) data. 
          */
         public final Builder childFrameId(MavFrame entry) {
             return childFrameId(EnumValue.of(entry));
         }
 
         /**
-         * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the velocity in free space (twist) data. 
          */
         public final Builder childFrameId(Enum... flags) {
             return childFrameId(EnumValue.create(flags));
         }
 
         /**
-         * Coordinate frame of reference for the velocity in free space (twist) data, as defined by 
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum. 
+         * Coordinate frame of reference for the velocity in free space (twist) data. 
          */
         public final Builder childFrameId(Collection<Enum> flags) {
             return childFrameId(EnumValue.create(flags));

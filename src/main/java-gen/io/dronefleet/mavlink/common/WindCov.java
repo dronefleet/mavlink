@@ -10,11 +10,12 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- *  
+ * Wind covariance estimate from vehicle. 
  */
 @MavlinkMessageInfo(
         id = 231,
-        crc = 105
+        crc = 105,
+        description = "Wind covariance estimate from vehicle."
 )
 public final class WindCov {
     private final BigInteger timeUsec;
@@ -57,48 +58,49 @@ public final class WindCov {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Wind in X (NED) direction in m/s 
+     * Wind in X (NED) direction 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
-            description = "Wind in X (NED) direction in m/s"
+            description = "Wind in X (NED) direction"
     )
     public final float windX() {
         return this.windX;
     }
 
     /**
-     * Wind in Y (NED) direction in m/s 
+     * Wind in Y (NED) direction 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
-            description = "Wind in Y (NED) direction in m/s"
+            description = "Wind in Y (NED) direction"
     )
     public final float windY() {
         return this.windY;
     }
 
     /**
-     * Wind in Z (NED) direction in m/s 
+     * Wind in Z (NED) direction 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
-            description = "Wind in Z (NED) direction in m/s"
+            description = "Wind in Z (NED) direction"
     )
     public final float windZ() {
         return this.windZ;
@@ -108,7 +110,7 @@ public final class WindCov {
      * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 4,
             description = "Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate."
     )
@@ -120,7 +122,7 @@ public final class WindCov {
      * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 4,
             description = "Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate."
     )
@@ -129,12 +131,12 @@ public final class WindCov {
     }
 
     /**
-     * AMSL altitude (m) this measurement was taken at 
+     * Altitude (MSL) that this measurement was taken at 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 4,
-            description = "AMSL altitude (m) this measurement was taken at"
+            description = "Altitude (MSL) that this measurement was taken at"
     )
     public final float windAlt() {
         return this.windAlt;
@@ -144,7 +146,7 @@ public final class WindCov {
      * Horizontal speed 1-STD accuracy 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 8,
             unitSize = 4,
             description = "Horizontal speed 1-STD accuracy"
     )
@@ -156,7 +158,7 @@ public final class WindCov {
      * Vertical speed 1-STD accuracy 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 9,
             unitSize = 4,
             description = "Vertical speed 1-STD accuracy"
     )
@@ -229,12 +231,13 @@ public final class WindCov {
         private float vertAccuracy;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -242,12 +245,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in X (NED) direction in m/s 
+         * Wind in X (NED) direction 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
-                description = "Wind in X (NED) direction in m/s"
+                description = "Wind in X (NED) direction"
         )
         public final Builder windX(float windX) {
             this.windX = windX;
@@ -255,12 +258,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in Y (NED) direction in m/s 
+         * Wind in Y (NED) direction 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
-                description = "Wind in Y (NED) direction in m/s"
+                description = "Wind in Y (NED) direction"
         )
         public final Builder windY(float windY) {
             this.windY = windY;
@@ -268,12 +271,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in Z (NED) direction in m/s 
+         * Wind in Z (NED) direction 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
-                description = "Wind in Z (NED) direction in m/s"
+                description = "Wind in Z (NED) direction"
         )
         public final Builder windZ(float windZ) {
             this.windZ = windZ;
@@ -284,7 +287,7 @@ public final class WindCov {
          * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 4,
                 description = "Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate."
         )
@@ -297,7 +300,7 @@ public final class WindCov {
          * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 4,
                 description = "Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate."
         )
@@ -307,12 +310,12 @@ public final class WindCov {
         }
 
         /**
-         * AMSL altitude (m) this measurement was taken at 
+         * Altitude (MSL) that this measurement was taken at 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 4,
-                description = "AMSL altitude (m) this measurement was taken at"
+                description = "Altitude (MSL) that this measurement was taken at"
         )
         public final Builder windAlt(float windAlt) {
             this.windAlt = windAlt;
@@ -323,7 +326,7 @@ public final class WindCov {
          * Horizontal speed 1-STD accuracy 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 8,
                 unitSize = 4,
                 description = "Horizontal speed 1-STD accuracy"
         )
@@ -336,7 +339,7 @@ public final class WindCov {
          * Vertical speed 1-STD accuracy 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 9,
                 unitSize = 4,
                 description = "Vertical speed 1-STD accuracy"
         )

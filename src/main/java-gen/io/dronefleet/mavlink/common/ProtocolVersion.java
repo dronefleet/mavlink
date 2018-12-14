@@ -9,7 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * WIP: Version and capability of protocol version. This message is the response to 
+ * Version and capability of protocol version. This message is the response to 
  * REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink 
  * version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION 
  * to enable the handshaking. Library implementers should consider adding this into the default 
@@ -18,7 +18,7 @@ import java.util.Objects;
 @MavlinkMessageInfo(
         id = 300,
         crc = 217,
-        description = "WIP: Version and capability of protocol version. This message is the response to REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly."
+        description = "Version and capability of protocol version. This message is the response to REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly."
 )
 public final class ProtocolVersion {
     private final int version;
@@ -52,7 +52,7 @@ public final class ProtocolVersion {
      * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 2,
             description = "Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc."
     )
@@ -64,7 +64,7 @@ public final class ProtocolVersion {
      * Minimum MAVLink version supported 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 2,
             description = "Minimum MAVLink version supported"
     )
@@ -76,7 +76,7 @@ public final class ProtocolVersion {
      * Maximum MAVLink version supported (set to the same value as version by default) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 2,
             description = "Maximum MAVLink version supported (set to the same value as version by default)"
     )
@@ -88,7 +88,7 @@ public final class ProtocolVersion {
      * The first 8 bytes (not characters printed in hex!) of the git hash. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 1,
             arraySize = 8,
             description = "The first 8 bytes (not characters printed in hex!) of the git hash."
@@ -101,7 +101,7 @@ public final class ProtocolVersion {
      * The first 8 bytes (not characters printed in hex!) of the git hash. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 1,
             arraySize = 8,
             description = "The first 8 bytes (not characters printed in hex!) of the git hash."
@@ -158,7 +158,7 @@ public final class ProtocolVersion {
          * Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc. 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 2,
                 description = "Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc."
         )
@@ -171,7 +171,7 @@ public final class ProtocolVersion {
          * Minimum MAVLink version supported 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 2,
                 description = "Minimum MAVLink version supported"
         )
@@ -184,7 +184,7 @@ public final class ProtocolVersion {
          * Maximum MAVLink version supported (set to the same value as version by default) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 2,
                 description = "Maximum MAVLink version supported (set to the same value as version by default)"
         )
@@ -197,7 +197,7 @@ public final class ProtocolVersion {
          * The first 8 bytes (not characters printed in hex!) of the git hash. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 1,
                 arraySize = 8,
                 description = "The first 8 bytes (not characters printed in hex!) of the git hash."
@@ -211,7 +211,7 @@ public final class ProtocolVersion {
          * The first 8 bytes (not characters printed in hex!) of the git hash. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 1,
                 arraySize = 8,
                 description = "The first 8 bytes (not characters printed in hex!) of the git hash."

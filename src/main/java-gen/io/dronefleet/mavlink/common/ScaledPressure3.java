@@ -41,49 +41,49 @@ public final class ScaledPressure3 {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Absolute pressure (hectopascal) 
+     * Absolute pressure 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Absolute pressure (hectopascal)"
+            description = "Absolute pressure"
     )
     public final float pressAbs() {
         return this.pressAbs;
     }
 
     /**
-     * Differential pressure 1 (hectopascal) 
+     * Differential pressure 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Differential pressure 1 (hectopascal)"
+            description = "Differential pressure"
     )
     public final float pressDiff() {
         return this.pressDiff;
     }
 
     /**
-     * Temperature measurement (0.01 degrees celsius) 
+     * Temperature measurement 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Temperature measurement (0.01 degrees celsius)"
+            description = "Temperature measurement"
     )
     public final int temperature() {
         return this.temperature;
@@ -129,12 +129,12 @@ public final class ScaledPressure3 {
         private int temperature;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -142,12 +142,12 @@ public final class ScaledPressure3 {
         }
 
         /**
-         * Absolute pressure (hectopascal) 
+         * Absolute pressure 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Absolute pressure (hectopascal)"
+                description = "Absolute pressure"
         )
         public final Builder pressAbs(float pressAbs) {
             this.pressAbs = pressAbs;
@@ -155,12 +155,12 @@ public final class ScaledPressure3 {
         }
 
         /**
-         * Differential pressure 1 (hectopascal) 
+         * Differential pressure 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Differential pressure 1 (hectopascal)"
+                description = "Differential pressure"
         )
         public final Builder pressDiff(float pressDiff) {
             this.pressDiff = pressDiff;
@@ -168,13 +168,13 @@ public final class ScaledPressure3 {
         }
 
         /**
-         * Temperature measurement (0.01 degrees celsius) 
+         * Temperature measurement 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Temperature measurement (0.01 degrees celsius)"
+                description = "Temperature measurement"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;

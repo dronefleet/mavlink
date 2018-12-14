@@ -13,13 +13,13 @@ import java.util.Objects;
 
 /**
  * Request a partial list of mission items from the system/component. 
- * https://mavlink.io/en/protocol/mission.html. If start and end index are the same, just 
+ * https://mavlink.io/en/services/mission.html. If start and end index are the same, just 
  * send one waypoint. 
  */
 @MavlinkMessageInfo(
         id = 37,
         crc = 212,
-        description = "Request a partial list of mission items from the system/component. https://mavlink.io/en/protocol/mission.html. If start and end index are the same, just send one waypoint."
+        description = "Request a partial list of mission items from the system/component. https://mavlink.io/en/services/mission.html. If start and end index are the same, just send one waypoint."
 )
 public final class MissionRequestPartialList {
     private final int targetSystem;
@@ -100,14 +100,14 @@ public final class MissionRequestPartialList {
     }
 
     /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+     * Mission type. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
             enumType = MavMissionType.class,
             extension = true,
-            description = "Mission type, see MAV_MISSION_TYPE"
+            description = "Mission type."
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -212,14 +212,14 @@ public final class MissionRequestPartialList {
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
                 enumType = MavMissionType.class,
                 extension = true,
-                description = "Mission type, see MAV_MISSION_TYPE"
+                description = "Mission type."
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;
@@ -227,21 +227,21 @@ public final class MissionRequestPartialList {
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(MavMissionType entry) {
             return missionType(EnumValue.of(entry));
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(Enum... flags) {
             return missionType(EnumValue.create(flags));
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(Collection<Enum> flags) {
             return missionType(EnumValue.create(flags));

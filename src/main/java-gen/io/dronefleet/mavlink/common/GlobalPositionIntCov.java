@@ -71,12 +71,13 @@ public final class GlobalPositionIntCov {
     }
 
     /**
-     * Timestamp (microseconds since system boot or since UNIX epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -96,88 +97,88 @@ public final class GlobalPositionIntCov {
     }
 
     /**
-     * Latitude, expressed as degrees * 1E7 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Latitude, expressed as degrees * 1E7"
+            description = "Latitude"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude, expressed as degrees * 1E7 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Longitude, expressed as degrees * 1E7"
+            description = "Longitude"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude in meters, expressed as * 1000 (millimeters), above MSL 
+     * Altitude in meters above MSL 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Altitude in meters, expressed as * 1000 (millimeters), above MSL"
+            description = "Altitude in meters above MSL"
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * Altitude above ground in meters, expressed as * 1000 (millimeters) 
+     * Altitude above ground 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
+            description = "Altitude above ground"
     )
     public final int relativeAlt() {
         return this.relativeAlt;
     }
 
     /**
-     * Ground X Speed (Latitude), expressed as m/s 
+     * Ground X Speed (Latitude) 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Ground X Speed (Latitude), expressed as m/s"
+            description = "Ground X Speed (Latitude)"
     )
     public final float vx() {
         return this.vx;
     }
 
     /**
-     * Ground Y Speed (Longitude), expressed as m/s 
+     * Ground Y Speed (Longitude) 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Ground Y Speed (Longitude), expressed as m/s"
+            description = "Ground Y Speed (Longitude)"
     )
     public final float vy() {
         return this.vy;
     }
 
     /**
-     * Ground Z Speed (Altitude), expressed as m/s 
+     * Ground Z Speed (Altitude) 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Ground Z Speed (Altitude), expressed as m/s"
+            description = "Ground Z Speed (Altitude)"
     )
     public final float vz() {
         return this.vz;
@@ -267,12 +268,13 @@ public final class GlobalPositionIntCov {
         private List<Float> covariance;
 
         /**
-         * Timestamp (microseconds since system boot or since UNIX epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -315,13 +317,13 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Latitude, expressed as degrees * 1E7 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude, expressed as degrees * 1E7"
+                description = "Latitude"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -329,13 +331,13 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Longitude, expressed as degrees * 1E7 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude, expressed as degrees * 1E7"
+                description = "Longitude"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -343,13 +345,13 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Altitude in meters, expressed as * 1000 (millimeters), above MSL 
+         * Altitude in meters above MSL 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude in meters, expressed as * 1000 (millimeters), above MSL"
+                description = "Altitude in meters above MSL"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -357,13 +359,13 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Altitude above ground in meters, expressed as * 1000 (millimeters) 
+         * Altitude above ground 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
+                description = "Altitude above ground"
         )
         public final Builder relativeAlt(int relativeAlt) {
             this.relativeAlt = relativeAlt;
@@ -371,12 +373,12 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Ground X Speed (Latitude), expressed as m/s 
+         * Ground X Speed (Latitude) 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Ground X Speed (Latitude), expressed as m/s"
+                description = "Ground X Speed (Latitude)"
         )
         public final Builder vx(float vx) {
             this.vx = vx;
@@ -384,12 +386,12 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Ground Y Speed (Longitude), expressed as m/s 
+         * Ground Y Speed (Longitude) 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Ground Y Speed (Longitude), expressed as m/s"
+                description = "Ground Y Speed (Longitude)"
         )
         public final Builder vy(float vy) {
             this.vy = vy;
@@ -397,12 +399,12 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Ground Z Speed (Altitude), expressed as m/s 
+         * Ground Z Speed (Altitude) 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Ground Z Speed (Altitude), expressed as m/s"
+                description = "Ground Z Speed (Altitude)"
         )
         public final Builder vz(float vz) {
             this.vz = vz;

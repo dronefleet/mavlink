@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * WIP: Information about a storage medium. 
+ * Information about a storage medium. 
  */
 @MavlinkMessageInfo(
         id = 261,
         crc = 179,
-        description = "WIP: Information about a storage medium."
+        description = "Information about a storage medium."
 )
 public final class StorageInformation {
     private final long timeBootMs;
@@ -58,12 +58,12 @@ public final class StorageInformation {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -73,7 +73,7 @@ public final class StorageInformation {
      * Storage ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             description = "Storage ID (1 for first, 2 for second, etc.)"
     )
@@ -85,7 +85,7 @@ public final class StorageInformation {
      * Number of storage devices 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 1,
             description = "Number of storage devices"
     )
@@ -97,7 +97,7 @@ public final class StorageInformation {
      * Status of storage (0 not available, 1 unformatted, 2 formatted) 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 1,
             description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
     )
@@ -106,60 +106,60 @@ public final class StorageInformation {
     }
 
     /**
-     * Total capacity in MiB 
+     * Total capacity. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 4,
-            description = "Total capacity in MiB"
+            description = "Total capacity."
     )
     public final float totalCapacity() {
         return this.totalCapacity;
     }
 
     /**
-     * Used capacity in MiB 
+     * Used capacity. 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 4,
-            description = "Used capacity in MiB"
+            description = "Used capacity."
     )
     public final float usedCapacity() {
         return this.usedCapacity;
     }
 
     /**
-     * Available capacity in MiB 
+     * Available storage capacity. 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 8,
             unitSize = 4,
-            description = "Available capacity in MiB"
+            description = "Available storage capacity."
     )
     public final float availableCapacity() {
         return this.availableCapacity;
     }
 
     /**
-     * Read speed in MiB/s 
+     * Read speed. 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 9,
             unitSize = 4,
-            description = "Read speed in MiB/s"
+            description = "Read speed."
     )
     public final float readSpeed() {
         return this.readSpeed;
     }
 
     /**
-     * Write speed in MiB/s 
+     * Write speed. 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 10,
             unitSize = 4,
-            description = "Write speed in MiB/s"
+            description = "Write speed."
     )
     public final float writeSpeed() {
         return this.writeSpeed;
@@ -230,12 +230,12 @@ public final class StorageInformation {
         private float writeSpeed;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -246,7 +246,7 @@ public final class StorageInformation {
          * Storage ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 description = "Storage ID (1 for first, 2 for second, etc.)"
         )
@@ -259,7 +259,7 @@ public final class StorageInformation {
          * Number of storage devices 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 1,
                 description = "Number of storage devices"
         )
@@ -272,7 +272,7 @@ public final class StorageInformation {
          * Status of storage (0 not available, 1 unformatted, 2 formatted) 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 1,
                 description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
         )
@@ -282,12 +282,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Total capacity in MiB 
+         * Total capacity. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 4,
-                description = "Total capacity in MiB"
+                description = "Total capacity."
         )
         public final Builder totalCapacity(float totalCapacity) {
             this.totalCapacity = totalCapacity;
@@ -295,12 +295,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Used capacity in MiB 
+         * Used capacity. 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 4,
-                description = "Used capacity in MiB"
+                description = "Used capacity."
         )
         public final Builder usedCapacity(float usedCapacity) {
             this.usedCapacity = usedCapacity;
@@ -308,12 +308,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Available capacity in MiB 
+         * Available storage capacity. 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 8,
                 unitSize = 4,
-                description = "Available capacity in MiB"
+                description = "Available storage capacity."
         )
         public final Builder availableCapacity(float availableCapacity) {
             this.availableCapacity = availableCapacity;
@@ -321,12 +321,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Read speed in MiB/s 
+         * Read speed. 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 9,
                 unitSize = 4,
-                description = "Read speed in MiB/s"
+                description = "Read speed."
         )
         public final Builder readSpeed(float readSpeed) {
             this.readSpeed = readSpeed;
@@ -334,12 +334,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Write speed in MiB/s 
+         * Write speed. 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 10,
                 unitSize = 4,
-                description = "Write speed in MiB/s"
+                description = "Write speed."
         )
         public final Builder writeSpeed(float writeSpeed) {
             this.writeSpeed = writeSpeed;

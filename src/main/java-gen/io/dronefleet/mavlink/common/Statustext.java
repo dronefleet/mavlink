@@ -41,13 +41,13 @@ public final class Statustext {
     }
 
     /**
-     * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+     * Severity of status. Relies on the definitions within RFC-5424. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = MavSeverity.class,
-            description = "Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY."
+            description = "Severity of status. Relies on the definitions within RFC-5424."
     )
     public final EnumValue<MavSeverity> severity() {
         return this.severity;
@@ -96,13 +96,13 @@ public final class Statustext {
         private String text;
 
         /**
-         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+         * Severity of status. Relies on the definitions within RFC-5424. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = MavSeverity.class,
-                description = "Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY."
+                description = "Severity of status. Relies on the definitions within RFC-5424."
         )
         public final Builder severity(EnumValue<MavSeverity> severity) {
             this.severity = severity;
@@ -110,21 +110,21 @@ public final class Statustext {
         }
 
         /**
-         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+         * Severity of status. Relies on the definitions within RFC-5424. 
          */
         public final Builder severity(MavSeverity entry) {
             return severity(EnumValue.of(entry));
         }
 
         /**
-         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+         * Severity of status. Relies on the definitions within RFC-5424. 
          */
         public final Builder severity(Enum... flags) {
             return severity(EnumValue.create(flags));
         }
 
         /**
-         * Severity of status. Relies on the definitions within RFC-5424. See enum {@link io.dronefleet.mavlink.common.MavSeverity MAV_SEVERITY}. 
+         * Severity of status. Relies on the definitions within RFC-5424. 
          */
         public final Builder severity(Collection<Enum> flags) {
             return severity(EnumValue.create(flags));

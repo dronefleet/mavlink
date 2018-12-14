@@ -47,12 +47,13 @@ public final class RawPressure {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -72,26 +73,26 @@ public final class RawPressure {
     }
 
     /**
-     * Differential pressure 1 (raw, 0 if nonexistant) 
+     * Differential pressure 1 (raw, 0 if nonexistent) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Differential pressure 1 (raw, 0 if nonexistant)"
+            description = "Differential pressure 1 (raw, 0 if nonexistent)"
     )
     public final int pressDiff1() {
         return this.pressDiff1;
     }
 
     /**
-     * Differential pressure 2 (raw, 0 if nonexistant) 
+     * Differential pressure 2 (raw, 0 if nonexistent) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Differential pressure 2 (raw, 0 if nonexistant)"
+            description = "Differential pressure 2 (raw, 0 if nonexistent)"
     )
     public final int pressDiff2() {
         return this.pressDiff2;
@@ -155,12 +156,13 @@ public final class RawPressure {
         private int temperature;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -182,13 +184,13 @@ public final class RawPressure {
         }
 
         /**
-         * Differential pressure 1 (raw, 0 if nonexistant) 
+         * Differential pressure 1 (raw, 0 if nonexistent) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Differential pressure 1 (raw, 0 if nonexistant)"
+                description = "Differential pressure 1 (raw, 0 if nonexistent)"
         )
         public final Builder pressDiff1(int pressDiff1) {
             this.pressDiff1 = pressDiff1;
@@ -196,13 +198,13 @@ public final class RawPressure {
         }
 
         /**
-         * Differential pressure 2 (raw, 0 if nonexistant) 
+         * Differential pressure 2 (raw, 0 if nonexistent) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Differential pressure 2 (raw, 0 if nonexistant)"
+                description = "Differential pressure 2 (raw, 0 if nonexistent)"
         )
         public final Builder pressDiff2(int pressDiff2) {
             this.pressDiff2 = pressDiff2;

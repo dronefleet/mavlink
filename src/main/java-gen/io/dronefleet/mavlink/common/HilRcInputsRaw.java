@@ -76,168 +76,169 @@ public final class HilRcInputsRaw {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * RC channel 1 value, in microseconds 
+     * RC channel 1 value 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            description = "RC channel 1 value, in microseconds"
+            description = "RC channel 1 value"
     )
     public final int chan1Raw() {
         return this.chan1Raw;
     }
 
     /**
-     * RC channel 2 value, in microseconds 
+     * RC channel 2 value 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "RC channel 2 value, in microseconds"
+            description = "RC channel 2 value"
     )
     public final int chan2Raw() {
         return this.chan2Raw;
     }
 
     /**
-     * RC channel 3 value, in microseconds 
+     * RC channel 3 value 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "RC channel 3 value, in microseconds"
+            description = "RC channel 3 value"
     )
     public final int chan3Raw() {
         return this.chan3Raw;
     }
 
     /**
-     * RC channel 4 value, in microseconds 
+     * RC channel 4 value 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "RC channel 4 value, in microseconds"
+            description = "RC channel 4 value"
     )
     public final int chan4Raw() {
         return this.chan4Raw;
     }
 
     /**
-     * RC channel 5 value, in microseconds 
+     * RC channel 5 value 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "RC channel 5 value, in microseconds"
+            description = "RC channel 5 value"
     )
     public final int chan5Raw() {
         return this.chan5Raw;
     }
 
     /**
-     * RC channel 6 value, in microseconds 
+     * RC channel 6 value 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "RC channel 6 value, in microseconds"
+            description = "RC channel 6 value"
     )
     public final int chan6Raw() {
         return this.chan6Raw;
     }
 
     /**
-     * RC channel 7 value, in microseconds 
+     * RC channel 7 value 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "RC channel 7 value, in microseconds"
+            description = "RC channel 7 value"
     )
     public final int chan7Raw() {
         return this.chan7Raw;
     }
 
     /**
-     * RC channel 8 value, in microseconds 
+     * RC channel 8 value 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "RC channel 8 value, in microseconds"
+            description = "RC channel 8 value"
     )
     public final int chan8Raw() {
         return this.chan8Raw;
     }
 
     /**
-     * RC channel 9 value, in microseconds 
+     * RC channel 9 value 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            description = "RC channel 9 value, in microseconds"
+            description = "RC channel 9 value"
     )
     public final int chan9Raw() {
         return this.chan9Raw;
     }
 
     /**
-     * RC channel 10 value, in microseconds 
+     * RC channel 10 value 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
-            description = "RC channel 10 value, in microseconds"
+            description = "RC channel 10 value"
     )
     public final int chan10Raw() {
         return this.chan10Raw;
     }
 
     /**
-     * RC channel 11 value, in microseconds 
+     * RC channel 11 value 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            description = "RC channel 11 value, in microseconds"
+            description = "RC channel 11 value"
     )
     public final int chan11Raw() {
         return this.chan11Raw;
     }
 
     /**
-     * RC channel 12 value, in microseconds 
+     * RC channel 12 value 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            description = "RC channel 12 value, in microseconds"
+            description = "RC channel 12 value"
     )
     public final int chan12Raw() {
         return this.chan12Raw;
     }
 
     /**
-     * Receive signal strength indicator, 0: 0%, 255: 100% 
+     * Receive signal strength indicator. Values: [0-100], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
-            description = "Receive signal strength indicator, 0: 0%, 255: 100%"
+            description = "Receive signal strength indicator. Values: [0-100], 255: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
@@ -333,12 +334,13 @@ public final class HilRcInputsRaw {
         private int rssi;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -346,12 +348,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 1 value, in microseconds 
+         * RC channel 1 value 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                description = "RC channel 1 value, in microseconds"
+                description = "RC channel 1 value"
         )
         public final Builder chan1Raw(int chan1Raw) {
             this.chan1Raw = chan1Raw;
@@ -359,12 +361,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 2 value, in microseconds 
+         * RC channel 2 value 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "RC channel 2 value, in microseconds"
+                description = "RC channel 2 value"
         )
         public final Builder chan2Raw(int chan2Raw) {
             this.chan2Raw = chan2Raw;
@@ -372,12 +374,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 3 value, in microseconds 
+         * RC channel 3 value 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "RC channel 3 value, in microseconds"
+                description = "RC channel 3 value"
         )
         public final Builder chan3Raw(int chan3Raw) {
             this.chan3Raw = chan3Raw;
@@ -385,12 +387,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 4 value, in microseconds 
+         * RC channel 4 value 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "RC channel 4 value, in microseconds"
+                description = "RC channel 4 value"
         )
         public final Builder chan4Raw(int chan4Raw) {
             this.chan4Raw = chan4Raw;
@@ -398,12 +400,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 5 value, in microseconds 
+         * RC channel 5 value 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "RC channel 5 value, in microseconds"
+                description = "RC channel 5 value"
         )
         public final Builder chan5Raw(int chan5Raw) {
             this.chan5Raw = chan5Raw;
@@ -411,12 +413,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 6 value, in microseconds 
+         * RC channel 6 value 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "RC channel 6 value, in microseconds"
+                description = "RC channel 6 value"
         )
         public final Builder chan6Raw(int chan6Raw) {
             this.chan6Raw = chan6Raw;
@@ -424,12 +426,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 7 value, in microseconds 
+         * RC channel 7 value 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "RC channel 7 value, in microseconds"
+                description = "RC channel 7 value"
         )
         public final Builder chan7Raw(int chan7Raw) {
             this.chan7Raw = chan7Raw;
@@ -437,12 +439,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 8 value, in microseconds 
+         * RC channel 8 value 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "RC channel 8 value, in microseconds"
+                description = "RC channel 8 value"
         )
         public final Builder chan8Raw(int chan8Raw) {
             this.chan8Raw = chan8Raw;
@@ -450,12 +452,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 9 value, in microseconds 
+         * RC channel 9 value 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                description = "RC channel 9 value, in microseconds"
+                description = "RC channel 9 value"
         )
         public final Builder chan9Raw(int chan9Raw) {
             this.chan9Raw = chan9Raw;
@@ -463,12 +465,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 10 value, in microseconds 
+         * RC channel 10 value 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
-                description = "RC channel 10 value, in microseconds"
+                description = "RC channel 10 value"
         )
         public final Builder chan10Raw(int chan10Raw) {
             this.chan10Raw = chan10Raw;
@@ -476,12 +478,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 11 value, in microseconds 
+         * RC channel 11 value 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                description = "RC channel 11 value, in microseconds"
+                description = "RC channel 11 value"
         )
         public final Builder chan11Raw(int chan11Raw) {
             this.chan11Raw = chan11Raw;
@@ -489,12 +491,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * RC channel 12 value, in microseconds 
+         * RC channel 12 value 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                description = "RC channel 12 value, in microseconds"
+                description = "RC channel 12 value"
         )
         public final Builder chan12Raw(int chan12Raw) {
             this.chan12Raw = chan12Raw;
@@ -502,12 +504,12 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * Receive signal strength indicator, 0: 0%, 255: 100% 
+         * Receive signal strength indicator. Values: [0-100], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
-                description = "Receive signal strength indicator, 0: 0%, 255: 100%"
+                description = "Receive signal strength indicator. Values: [0-100], 255: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;

@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * camera vision based attitude and position deltas 
+ * Camera vision based attitude and position deltas. 
  */
 @MavlinkMessageInfo(
         id = 11011,
         crc = 106,
-        description = "camera vision based attitude and position deltas"
+        description = "Camera vision based attitude and position deltas."
 )
 public final class VisionPositionDelta {
     private final BigInteger timeUsec;
@@ -48,24 +48,24 @@ public final class VisionPositionDelta {
     }
 
     /**
-     * Timestamp (microseconds, synced to UNIX time or since system boot) 
+     * Timestamp (synced to UNIX time or since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+            description = "Timestamp (synced to UNIX time or since system boot)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Time in microseconds since the last reported camera frame 
+     * Time since the last reported camera frame. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 8,
-            description = "Time in microseconds since the last reported camera frame"
+            description = "Time since the last reported camera frame."
     )
     public final BigInteger timeDeltaUsec() {
         return this.timeDeltaUsec;
@@ -73,39 +73,39 @@ public final class VisionPositionDelta {
 
     /**
      * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
-     * current orientation 
+     * current orientation. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             arraySize = 3,
-            description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation"
+            description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation."
     )
     public final List<Float> angleDelta() {
         return this.angleDelta;
     }
 
     /**
-     * Change in position in meters from previous to current frame rotated into body frame 
-     * (0=forward, 1=right, 2=down) 
+     * Change in position from previous to current frame rotated into body frame (0=forward, 
+     * 1=right, 2=down). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             arraySize = 3,
-            description = "Change in position in meters from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)"
+            description = "Change in position from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)."
     )
     public final List<Float> positionDelta() {
         return this.positionDelta;
     }
 
     /**
-     * normalised confidence value from 0 to 100 
+     * Normalised confidence value from 0 to 100. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "normalised confidence value from 0 to 100"
+            description = "Normalised confidence value from 0 to 100."
     )
     public final float confidence() {
         return this.confidence;
@@ -156,12 +156,12 @@ public final class VisionPositionDelta {
         private float confidence;
 
         /**
-         * Timestamp (microseconds, synced to UNIX time or since system boot) 
+         * Timestamp (synced to UNIX time or since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds, synced to UNIX time or since system boot)"
+                description = "Timestamp (synced to UNIX time or since system boot)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -169,12 +169,12 @@ public final class VisionPositionDelta {
         }
 
         /**
-         * Time in microseconds since the last reported camera frame 
+         * Time since the last reported camera frame. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 8,
-                description = "Time in microseconds since the last reported camera frame"
+                description = "Time since the last reported camera frame."
         )
         public final Builder timeDeltaUsec(BigInteger timeDeltaUsec) {
             this.timeDeltaUsec = timeDeltaUsec;
@@ -183,13 +183,13 @@ public final class VisionPositionDelta {
 
         /**
          * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
-         * current orientation 
+         * current orientation. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 arraySize = 3,
-                description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation"
+                description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation."
         )
         public final Builder angleDelta(List<Float> angleDelta) {
             this.angleDelta = angleDelta;
@@ -197,14 +197,14 @@ public final class VisionPositionDelta {
         }
 
         /**
-         * Change in position in meters from previous to current frame rotated into body frame 
-         * (0=forward, 1=right, 2=down) 
+         * Change in position from previous to current frame rotated into body frame (0=forward, 
+         * 1=right, 2=down). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 arraySize = 3,
-                description = "Change in position in meters from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)"
+                description = "Change in position from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)."
         )
         public final Builder positionDelta(List<Float> positionDelta) {
             this.positionDelta = positionDelta;
@@ -212,12 +212,12 @@ public final class VisionPositionDelta {
         }
 
         /**
-         * normalised confidence value from 0 to 100 
+         * Normalised confidence value from 0 to 100. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "normalised confidence value from 0 to 100"
+                description = "Normalised confidence value from 0 to 100."
         )
         public final Builder confidence(float confidence) {
             this.confidence = confidence;

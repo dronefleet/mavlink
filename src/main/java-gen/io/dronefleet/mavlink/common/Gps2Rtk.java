@@ -74,12 +74,12 @@ public final class Gps2Rtk {
     }
 
     /**
-     * Time since boot of last baseline message received in ms. 
+     * Time since boot of last baseline message received. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Time since boot of last baseline message received in ms."
+            description = "Time since boot of last baseline message received."
     )
     public final long timeLastBaselineMs() {
         return this.timeLastBaselineMs;
@@ -134,12 +134,12 @@ public final class Gps2Rtk {
     }
 
     /**
-     * Rate of baseline messages being received by GPS, in HZ 
+     * Rate of baseline messages being received by GPS 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "Rate of baseline messages being received by GPS, in HZ"
+            description = "Rate of baseline messages being received by GPS"
     )
     public final int rtkRate() {
         return this.rtkRate;
@@ -171,39 +171,39 @@ public final class Gps2Rtk {
     }
 
     /**
-     * Current baseline in ECEF x or NED north component in mm. 
+     * Current baseline in ECEF x or NED north component. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
             signed = true,
-            description = "Current baseline in ECEF x or NED north component in mm."
+            description = "Current baseline in ECEF x or NED north component."
     )
     public final int baselineAMm() {
         return this.baselineAMm;
     }
 
     /**
-     * Current baseline in ECEF y or NED east component in mm. 
+     * Current baseline in ECEF y or NED east component. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
             signed = true,
-            description = "Current baseline in ECEF y or NED east component in mm."
+            description = "Current baseline in ECEF y or NED east component."
     )
     public final int baselineBMm() {
         return this.baselineBMm;
     }
 
     /**
-     * Current baseline in ECEF z or NED down component in mm. 
+     * Current baseline in ECEF z or NED down component. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
             signed = true,
-            description = "Current baseline in ECEF z or NED down component in mm."
+            description = "Current baseline in ECEF z or NED down component."
     )
     public final int baselineCMm() {
         return this.baselineCMm;
@@ -319,12 +319,12 @@ public final class Gps2Rtk {
         private int iarNumHypotheses;
 
         /**
-         * Time since boot of last baseline message received in ms. 
+         * Time since boot of last baseline message received. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Time since boot of last baseline message received in ms."
+                description = "Time since boot of last baseline message received."
         )
         public final Builder timeLastBaselineMs(long timeLastBaselineMs) {
             this.timeLastBaselineMs = timeLastBaselineMs;
@@ -384,12 +384,12 @@ public final class Gps2Rtk {
         }
 
         /**
-         * Rate of baseline messages being received by GPS, in HZ 
+         * Rate of baseline messages being received by GPS 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "Rate of baseline messages being received by GPS, in HZ"
+                description = "Rate of baseline messages being received by GPS"
         )
         public final Builder rtkRate(int rtkRate) {
             this.rtkRate = rtkRate;
@@ -446,13 +446,13 @@ public final class Gps2Rtk {
         }
 
         /**
-         * Current baseline in ECEF x or NED north component in mm. 
+         * Current baseline in ECEF x or NED north component. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
                 signed = true,
-                description = "Current baseline in ECEF x or NED north component in mm."
+                description = "Current baseline in ECEF x or NED north component."
         )
         public final Builder baselineAMm(int baselineAMm) {
             this.baselineAMm = baselineAMm;
@@ -460,13 +460,13 @@ public final class Gps2Rtk {
         }
 
         /**
-         * Current baseline in ECEF y or NED east component in mm. 
+         * Current baseline in ECEF y or NED east component. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
                 signed = true,
-                description = "Current baseline in ECEF y or NED east component in mm."
+                description = "Current baseline in ECEF y or NED east component."
         )
         public final Builder baselineBMm(int baselineBMm) {
             this.baselineBMm = baselineBMm;
@@ -474,13 +474,13 @@ public final class Gps2Rtk {
         }
 
         /**
-         * Current baseline in ECEF z or NED down component in mm. 
+         * Current baseline in ECEF z or NED down component. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
                 signed = true,
-                description = "Current baseline in ECEF z or NED down component in mm."
+                description = "Current baseline in ECEF z or NED down component."
         )
         public final Builder baselineCMm(int baselineCMm) {
             this.baselineCMm = baselineCMm;

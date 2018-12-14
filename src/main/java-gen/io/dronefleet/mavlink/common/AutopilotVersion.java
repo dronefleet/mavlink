@@ -72,13 +72,13 @@ public final class AutopilotVersion {
     }
 
     /**
-     * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+     * Bitmap of capabilities 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
             enumType = MavProtocolCapability.class,
-            description = "bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)"
+            description = "Bitmap of capabilities"
     )
     public final EnumValue<MavProtocolCapability> capabilities() {
         return this.capabilities;
@@ -308,13 +308,13 @@ public final class AutopilotVersion {
         private byte[] uid2;
 
         /**
-         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         * Bitmap of capabilities 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
                 enumType = MavProtocolCapability.class,
-                description = "bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)"
+                description = "Bitmap of capabilities"
         )
         public final Builder capabilities(EnumValue<MavProtocolCapability> capabilities) {
             this.capabilities = capabilities;
@@ -322,21 +322,21 @@ public final class AutopilotVersion {
         }
 
         /**
-         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         * Bitmap of capabilities 
          */
         public final Builder capabilities(MavProtocolCapability entry) {
             return capabilities(EnumValue.of(entry));
         }
 
         /**
-         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         * Bitmap of capabilities 
          */
         public final Builder capabilities(Enum... flags) {
             return capabilities(EnumValue.create(flags));
         }
 
         /**
-         * bitmask of capabilities (see {@link io.dronefleet.mavlink.common.MavProtocolCapability MAV_PROTOCOL_CAPABILITY} enum) 
+         * Bitmap of capabilities 
          */
         public final Builder capabilities(Collection<Enum> flags) {
             return capabilities(EnumValue.create(flags));

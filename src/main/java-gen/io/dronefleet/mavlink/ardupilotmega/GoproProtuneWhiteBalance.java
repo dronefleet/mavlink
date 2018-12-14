@@ -9,31 +9,31 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum GoproProtuneWhiteBalance {
     /**
-     * Auto 
+     * Auto. 
      */
     @MavlinkEntryInfo(0)
     GOPRO_PROTUNE_WHITE_BALANCE_AUTO,
 
     /**
-     * 3000K 
+     * 3000K. 
      */
     @MavlinkEntryInfo(1)
     GOPRO_PROTUNE_WHITE_BALANCE_3000K,
 
     /**
-     * 5500K 
+     * 5500K. 
      */
     @MavlinkEntryInfo(2)
     GOPRO_PROTUNE_WHITE_BALANCE_5500K,
 
     /**
-     * 6500K 
+     * 6500K. 
      */
     @MavlinkEntryInfo(3)
     GOPRO_PROTUNE_WHITE_BALANCE_6500K,
 
     /**
-     * Camera Raw 
+     * Camera Raw. 
      */
     @MavlinkEntryInfo(4)
     GOPRO_PROTUNE_WHITE_BALANCE_RAW

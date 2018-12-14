@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- *  
+ * MAVLINK system type. All components in a system should report this type in their {@link io.dronefleet.mavlink.common.Heartbeat HEARTBEAT}. 
  */
 @MavlinkEnum
 public enum MavType {
@@ -165,13 +165,13 @@ public enum MavType {
     MAV_TYPE_VTOL_RESERVED5,
 
     /**
-     * Onboard gimbal 
+     * Gimbal (standalone) 
      */
     @MavlinkEntryInfo(26)
     MAV_TYPE_GIMBAL,
 
     /**
-     * Onboard ADSB peripheral 
+     * ADSB system (standalone) 
      */
     @MavlinkEntryInfo(27)
     MAV_TYPE_ADSB,
@@ -189,7 +189,7 @@ public enum MavType {
     MAV_TYPE_DODECAROTOR,
 
     /**
-     * Camera 
+     * Camera (standalone) 
      */
     @MavlinkEntryInfo(30)
     MAV_TYPE_CAMERA,
@@ -201,7 +201,7 @@ public enum MavType {
     MAV_TYPE_CHARGING_STATION,
 
     /**
-     * Onboard FLARM collision avoidance system 
+     * FLARM collision avoidance system (standalone) 
      */
     @MavlinkEntryInfo(32)
     MAV_TYPE_FLARM

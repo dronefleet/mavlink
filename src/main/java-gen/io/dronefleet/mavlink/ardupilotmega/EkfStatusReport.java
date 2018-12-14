@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * EKF Status message including flags and variances 
+ * EKF Status message including flags and variances. 
  */
 @MavlinkMessageInfo(
         id = 193,
         crc = 71,
-        description = "EKF Status message including flags and variances"
+        description = "EKF Status message including flags and variances."
 )
 public final class EkfStatusReport {
     private final EnumValue<EkfStatusFlags> flags;
@@ -55,86 +55,86 @@ public final class EkfStatusReport {
     }
 
     /**
-     * Flags 
+     * Flags. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
             enumType = EkfStatusFlags.class,
-            description = "Flags"
+            description = "Flags."
     )
     public final EnumValue<EkfStatusFlags> flags() {
         return this.flags;
     }
 
     /**
-     * Velocity variance 
+     * Velocity variance. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Velocity variance"
+            description = "Velocity variance."
     )
     public final float velocityVariance() {
         return this.velocityVariance;
     }
 
     /**
-     * Horizontal Position variance 
+     * Horizontal Position variance. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Horizontal Position variance"
+            description = "Horizontal Position variance."
     )
     public final float posHorizVariance() {
         return this.posHorizVariance;
     }
 
     /**
-     * Vertical Position variance 
+     * Vertical Position variance. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Vertical Position variance"
+            description = "Vertical Position variance."
     )
     public final float posVertVariance() {
         return this.posVertVariance;
     }
 
     /**
-     * Compass variance 
+     * Compass variance. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Compass variance"
+            description = "Compass variance."
     )
     public final float compassVariance() {
         return this.compassVariance;
     }
 
     /**
-     * Terrain Altitude variance 
+     * Terrain Altitude variance. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Terrain Altitude variance"
+            description = "Terrain Altitude variance."
     )
     public final float terrainAltVariance() {
         return this.terrainAltVariance;
     }
 
     /**
-     * Airspeed variance 
+     * Airspeed variance. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
             extension = true,
-            description = "Airspeed variance"
+            description = "Airspeed variance."
     )
     public final float airspeedVariance() {
         return this.airspeedVariance;
@@ -195,13 +195,13 @@ public final class EkfStatusReport {
         private float airspeedVariance;
 
         /**
-         * Flags 
+         * Flags. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
                 enumType = EkfStatusFlags.class,
-                description = "Flags"
+                description = "Flags."
         )
         public final Builder flags(EnumValue<EkfStatusFlags> flags) {
             this.flags = flags;
@@ -209,33 +209,33 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Flags 
+         * Flags. 
          */
         public final Builder flags(EkfStatusFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * Flags 
+         * Flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Flags 
+         * Flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Velocity variance 
+         * Velocity variance. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Velocity variance"
+                description = "Velocity variance."
         )
         public final Builder velocityVariance(float velocityVariance) {
             this.velocityVariance = velocityVariance;
@@ -243,12 +243,12 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Horizontal Position variance 
+         * Horizontal Position variance. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Horizontal Position variance"
+                description = "Horizontal Position variance."
         )
         public final Builder posHorizVariance(float posHorizVariance) {
             this.posHorizVariance = posHorizVariance;
@@ -256,12 +256,12 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Vertical Position variance 
+         * Vertical Position variance. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Vertical Position variance"
+                description = "Vertical Position variance."
         )
         public final Builder posVertVariance(float posVertVariance) {
             this.posVertVariance = posVertVariance;
@@ -269,12 +269,12 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Compass variance 
+         * Compass variance. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Compass variance"
+                description = "Compass variance."
         )
         public final Builder compassVariance(float compassVariance) {
             this.compassVariance = compassVariance;
@@ -282,12 +282,12 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Terrain Altitude variance 
+         * Terrain Altitude variance. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Terrain Altitude variance"
+                description = "Terrain Altitude variance."
         )
         public final Builder terrainAltVariance(float terrainAltVariance) {
             this.terrainAltVariance = terrainAltVariance;
@@ -295,13 +295,13 @@ public final class EkfStatusReport {
         }
 
         /**
-         * Airspeed variance 
+         * Airspeed variance. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
                 extension = true,
-                description = "Airspeed variance"
+                description = "Airspeed variance."
         )
         public final Builder airspeedVariance(float airspeedVariance) {
             this.airspeedVariance = airspeedVariance;

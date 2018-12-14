@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Wind estimation 
+ * Wind estimation. 
  */
 @MavlinkMessageInfo(
         id = 168,
         crc = 1,
-        description = "Wind estimation"
+        description = "Wind estimation."
 )
 public final class Wind {
     private final float direction;
@@ -38,36 +38,36 @@ public final class Wind {
     }
 
     /**
-     * wind direction that wind is coming from (degrees) 
+     * Wind direction (that wind is coming from). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "wind direction that wind is coming from (degrees)"
+            description = "Wind direction (that wind is coming from)."
     )
     public final float direction() {
         return this.direction;
     }
 
     /**
-     * wind speed in ground plane (m/s) 
+     * Wind speed in ground plane. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "wind speed in ground plane (m/s)"
+            description = "Wind speed in ground plane."
     )
     public final float speed() {
         return this.speed;
     }
 
     /**
-     * vertical wind speed (m/s) 
+     * Vertical wind speed. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "vertical wind speed (m/s)"
+            description = "Vertical wind speed."
     )
     public final float speedZ() {
         return this.speedZ;
@@ -108,12 +108,12 @@ public final class Wind {
         private float speedZ;
 
         /**
-         * wind direction that wind is coming from (degrees) 
+         * Wind direction (that wind is coming from). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "wind direction that wind is coming from (degrees)"
+                description = "Wind direction (that wind is coming from)."
         )
         public final Builder direction(float direction) {
             this.direction = direction;
@@ -121,12 +121,12 @@ public final class Wind {
         }
 
         /**
-         * wind speed in ground plane (m/s) 
+         * Wind speed in ground plane. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "wind speed in ground plane (m/s)"
+                description = "Wind speed in ground plane."
         )
         public final Builder speed(float speed) {
             this.speed = speed;
@@ -134,12 +134,12 @@ public final class Wind {
         }
 
         /**
-         * vertical wind speed (m/s) 
+         * Vertical wind speed. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "vertical wind speed (m/s)"
+                description = "Vertical wind speed."
         )
         public final Builder speedZ(float speedZ) {
             this.speedZ = speedZ;

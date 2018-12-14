@@ -54,12 +54,12 @@ public final class MidLvlCmds {
     }
 
     /**
-     * Commanded Altitude 
+     * Commanded altitude (MSL) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Commanded Altitude"
+            description = "Commanded altitude (MSL)"
     )
     public final float hcommand() {
         return this.hcommand;
@@ -142,12 +142,12 @@ public final class MidLvlCmds {
         }
 
         /**
-         * Commanded Altitude 
+         * Commanded altitude (MSL) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Commanded Altitude"
+                description = "Commanded altitude (MSL)"
         )
         public final Builder hcommand(float hcommand) {
             this.hcommand = hcommand;

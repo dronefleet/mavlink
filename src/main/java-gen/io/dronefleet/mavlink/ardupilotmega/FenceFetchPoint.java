@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Request a current fence point from MAV 
+ * Request a current fence point from MAV. 
  */
 @MavlinkMessageInfo(
         id = 161,
         crc = 68,
-        description = "Request a current fence point from MAV"
+        description = "Request a current fence point from MAV."
 )
 public final class FenceFetchPoint {
     private final int targetSystem;
@@ -38,36 +38,36 @@ public final class FenceFetchPoint {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * point index (first point is 1, 0 is for return point) 
+     * Point index (first point is 1, 0 is for return point). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "point index (first point is 1, 0 is for return point)"
+            description = "Point index (first point is 1, 0 is for return point)."
     )
     public final int idx() {
         return this.idx;
@@ -108,12 +108,12 @@ public final class FenceFetchPoint {
         private int idx;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -121,12 +121,12 @@ public final class FenceFetchPoint {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -134,12 +134,12 @@ public final class FenceFetchPoint {
         }
 
         /**
-         * point index (first point is 1, 0 is for return point) 
+         * Point index (first point is 1, 0 is for return point). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "point index (first point is 1, 0 is for return point)"
+                description = "Point index (first point is 1, 0 is for return point)."
         )
         public final Builder idx(int idx) {
             this.idx = idx;

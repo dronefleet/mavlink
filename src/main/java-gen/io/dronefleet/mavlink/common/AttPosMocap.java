@@ -51,12 +51,13 @@ public final class AttPosMocap {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -76,36 +77,36 @@ public final class AttPosMocap {
     }
 
     /**
-     * X position in meters (NED) 
+     * X position (NED) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "X position in meters (NED)"
+            description = "X position (NED)"
     )
     public final float x() {
         return this.x;
     }
 
     /**
-     * Y position in meters (NED) 
+     * Y position (NED) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Y position in meters (NED)"
+            description = "Y position (NED)"
     )
     public final float y() {
         return this.y;
     }
 
     /**
-     * Z position in meters (NED) 
+     * Z position (NED) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Z position in meters (NED)"
+            description = "Z position (NED)"
     )
     public final float z() {
         return this.z;
@@ -176,12 +177,13 @@ public final class AttPosMocap {
         private List<Float> covariance;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -203,12 +205,12 @@ public final class AttPosMocap {
         }
 
         /**
-         * X position in meters (NED) 
+         * X position (NED) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "X position in meters (NED)"
+                description = "X position (NED)"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -216,12 +218,12 @@ public final class AttPosMocap {
         }
 
         /**
-         * Y position in meters (NED) 
+         * Y position (NED) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Y position in meters (NED)"
+                description = "Y position (NED)"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -229,12 +231,12 @@ public final class AttPosMocap {
         }
 
         /**
-         * Z position in meters (NED) 
+         * Z position (NED) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Z position in meters (NED)"
+                description = "Z position (NED)"
         )
         public final Builder z(float z) {
             this.z = z;

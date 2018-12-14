@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * A rally point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
+ * A rally point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS. 
  */
 @MavlinkMessageInfo(
         id = 175,
         crc = 138,
-        description = "A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS"
+        description = "A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS."
 )
 public final class RallyPoint {
     private final int targetSystem;
@@ -63,125 +63,125 @@ public final class RallyPoint {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * point index (first point is 0) 
+     * Point index (first point is 0). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "point index (first point is 0)"
+            description = "Point index (first point is 0)."
     )
     public final int idx() {
         return this.idx;
     }
 
     /**
-     * total number of points (for sanity checking) 
+     * Total number of points (for sanity checking). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "total number of points (for sanity checking)"
+            description = "Total number of points (for sanity checking)."
     )
     public final int count() {
         return this.count;
     }
 
     /**
-     * Latitude of point in degrees * 1E7 
+     * Latitude of point. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Latitude of point in degrees * 1E7"
+            description = "Latitude of point."
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude of point in degrees * 1E7 
+     * Longitude of point. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Longitude of point in degrees * 1E7"
+            description = "Longitude of point."
     )
     public final int lng() {
         return this.lng;
     }
 
     /**
-     * Transit / loiter altitude in meters relative to home 
+     * Transit / loiter altitude relative to home. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
             signed = true,
-            description = "Transit / loiter altitude in meters relative to home"
+            description = "Transit / loiter altitude relative to home."
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * Break altitude in meters relative to home 
+     * Break altitude relative to home. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
             signed = true,
-            description = "Break altitude in meters relative to home"
+            description = "Break altitude relative to home."
     )
     public final int breakAlt() {
         return this.breakAlt;
     }
 
     /**
-     * Heading to aim for when landing. In centi-degrees. 
+     * Heading to aim for when landing. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "Heading to aim for when landing. In centi-degrees."
+            description = "Heading to aim for when landing."
     )
     public final int landDir() {
         return this.landDir;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+     * Configuration flags. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
             enumType = RallyFlags.class,
-            description = "See RALLY_FLAGS enum for definition of the bitmask."
+            description = "Configuration flags."
     )
     public final EnumValue<RallyFlags> flags() {
         return this.flags;
@@ -257,12 +257,12 @@ public final class RallyPoint {
         private EnumValue<RallyFlags> flags;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -270,12 +270,12 @@ public final class RallyPoint {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -283,12 +283,12 @@ public final class RallyPoint {
         }
 
         /**
-         * point index (first point is 0) 
+         * Point index (first point is 0). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "point index (first point is 0)"
+                description = "Point index (first point is 0)."
         )
         public final Builder idx(int idx) {
             this.idx = idx;
@@ -296,12 +296,12 @@ public final class RallyPoint {
         }
 
         /**
-         * total number of points (for sanity checking) 
+         * Total number of points (for sanity checking). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "total number of points (for sanity checking)"
+                description = "Total number of points (for sanity checking)."
         )
         public final Builder count(int count) {
             this.count = count;
@@ -309,13 +309,13 @@ public final class RallyPoint {
         }
 
         /**
-         * Latitude of point in degrees * 1E7 
+         * Latitude of point. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude of point in degrees * 1E7"
+                description = "Latitude of point."
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -323,13 +323,13 @@ public final class RallyPoint {
         }
 
         /**
-         * Longitude of point in degrees * 1E7 
+         * Longitude of point. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude of point in degrees * 1E7"
+                description = "Longitude of point."
         )
         public final Builder lng(int lng) {
             this.lng = lng;
@@ -337,13 +337,13 @@ public final class RallyPoint {
         }
 
         /**
-         * Transit / loiter altitude in meters relative to home 
+         * Transit / loiter altitude relative to home. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
                 signed = true,
-                description = "Transit / loiter altitude in meters relative to home"
+                description = "Transit / loiter altitude relative to home."
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -351,13 +351,13 @@ public final class RallyPoint {
         }
 
         /**
-         * Break altitude in meters relative to home 
+         * Break altitude relative to home. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
                 signed = true,
-                description = "Break altitude in meters relative to home"
+                description = "Break altitude relative to home."
         )
         public final Builder breakAlt(int breakAlt) {
             this.breakAlt = breakAlt;
@@ -365,12 +365,12 @@ public final class RallyPoint {
         }
 
         /**
-         * Heading to aim for when landing. In centi-degrees. 
+         * Heading to aim for when landing. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "Heading to aim for when landing. In centi-degrees."
+                description = "Heading to aim for when landing."
         )
         public final Builder landDir(int landDir) {
             this.landDir = landDir;
@@ -378,13 +378,13 @@ public final class RallyPoint {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         * Configuration flags. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
                 enumType = RallyFlags.class,
-                description = "See RALLY_FLAGS enum for definition of the bitmask."
+                description = "Configuration flags."
         )
         public final Builder flags(EnumValue<RallyFlags> flags) {
             this.flags = flags;
@@ -392,21 +392,21 @@ public final class RallyPoint {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         * Configuration flags. 
          */
         public final Builder flags(RallyFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         * Configuration flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.RallyFlags RALLY_FLAGS} enum for definition of the bitmask. 
+         * Configuration flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));

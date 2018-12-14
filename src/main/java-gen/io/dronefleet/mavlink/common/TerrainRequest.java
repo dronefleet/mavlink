@@ -42,38 +42,38 @@ public final class TerrainRequest {
     }
 
     /**
-     * Latitude of SW corner of first grid (degrees *10^7) 
+     * Latitude of SW corner of first grid 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
             signed = true,
-            description = "Latitude of SW corner of first grid (degrees *10^7)"
+            description = "Latitude of SW corner of first grid"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude of SW corner of first grid (in degrees *10^7) 
+     * Longitude of SW corner of first grid 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Longitude of SW corner of first grid (in degrees *10^7)"
+            description = "Longitude of SW corner of first grid"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Grid spacing in meters 
+     * Grid spacing 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "Grid spacing in meters"
+            description = "Grid spacing"
     )
     public final int gridSpacing() {
         return this.gridSpacing;
@@ -131,13 +131,13 @@ public final class TerrainRequest {
         private BigInteger mask;
 
         /**
-         * Latitude of SW corner of first grid (degrees *10^7) 
+         * Latitude of SW corner of first grid 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude of SW corner of first grid (degrees *10^7)"
+                description = "Latitude of SW corner of first grid"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -145,13 +145,13 @@ public final class TerrainRequest {
         }
 
         /**
-         * Longitude of SW corner of first grid (in degrees *10^7) 
+         * Longitude of SW corner of first grid 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude of SW corner of first grid (in degrees *10^7)"
+                description = "Longitude of SW corner of first grid"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -159,12 +159,12 @@ public final class TerrainRequest {
         }
 
         /**
-         * Grid spacing in meters 
+         * Grid spacing 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "Grid spacing in meters"
+                description = "Grid spacing"
         )
         public final Builder gridSpacing(int gridSpacing) {
             this.gridSpacing = gridSpacing;

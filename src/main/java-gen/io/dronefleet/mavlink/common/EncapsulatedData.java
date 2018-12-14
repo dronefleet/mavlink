@@ -9,11 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- *  
+ * Data packet for images sent using the Image Transmission Protocol: 
+ * https://mavlink.io/en/services/image_transmission.html. 
  */
 @MavlinkMessageInfo(
         id = 131,
-        crc = 223
+        crc = 223,
+        description = "Data packet for images sent using the Image Transmission Protocol: https://mavlink.io/en/services/image_transmission.html."
 )
 public final class EncapsulatedData {
     private final int seqnr;
@@ -37,7 +39,7 @@ public final class EncapsulatedData {
      * sequence number (starting with 0 on every transmission) 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 2,
             description = "sequence number (starting with 0 on every transmission)"
     )
@@ -49,7 +51,7 @@ public final class EncapsulatedData {
      * image data bytes 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             arraySize = 253,
             description = "image data bytes"
@@ -91,7 +93,7 @@ public final class EncapsulatedData {
          * sequence number (starting with 0 on every transmission) 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 2,
                 description = "sequence number (starting with 0 on every transmission)"
         )
@@ -104,7 +106,7 @@ public final class EncapsulatedData {
          * image data bytes 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 arraySize = 253,
                 description = "image data bytes"

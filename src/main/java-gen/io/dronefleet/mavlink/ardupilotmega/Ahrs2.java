@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available 
+ * Status of secondary {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available. 
  */
 @MavlinkMessageInfo(
         id = 178,
         crc = 47,
-        description = "Status of secondary AHRS filter if available"
+        description = "Status of secondary AHRS filter if available."
 )
 public final class Ahrs2 {
     private final float roll;
@@ -47,74 +47,74 @@ public final class Ahrs2 {
     }
 
     /**
-     * Roll angle (rad) 
+     * Roll angle. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Roll angle (rad)"
+            description = "Roll angle."
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Pitch angle (rad) 
+     * Pitch angle. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Pitch angle (rad)"
+            description = "Pitch angle."
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Yaw angle (rad) 
+     * Yaw angle. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Yaw angle (rad)"
+            description = "Yaw angle."
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Altitude (MSL) 
+     * Altitude (MSL). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Altitude (MSL)"
+            description = "Altitude (MSL)."
     )
     public final float altitude() {
         return this.altitude;
     }
 
     /**
-     * Latitude in degrees * 1E7 
+     * Latitude. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Latitude in degrees * 1E7"
+            description = "Latitude."
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude in degrees * 1E7 
+     * Longitude. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Longitude in degrees * 1E7"
+            description = "Longitude."
     )
     public final int lng() {
         return this.lng;
@@ -170,12 +170,12 @@ public final class Ahrs2 {
         private int lng;
 
         /**
-         * Roll angle (rad) 
+         * Roll angle. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Roll angle (rad)"
+                description = "Roll angle."
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -183,12 +183,12 @@ public final class Ahrs2 {
         }
 
         /**
-         * Pitch angle (rad) 
+         * Pitch angle. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Pitch angle (rad)"
+                description = "Pitch angle."
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -196,12 +196,12 @@ public final class Ahrs2 {
         }
 
         /**
-         * Yaw angle (rad) 
+         * Yaw angle. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Yaw angle (rad)"
+                description = "Yaw angle."
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -209,12 +209,12 @@ public final class Ahrs2 {
         }
 
         /**
-         * Altitude (MSL) 
+         * Altitude (MSL). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Altitude (MSL)"
+                description = "Altitude (MSL)."
         )
         public final Builder altitude(float altitude) {
             this.altitude = altitude;
@@ -222,13 +222,13 @@ public final class Ahrs2 {
         }
 
         /**
-         * Latitude in degrees * 1E7 
+         * Latitude. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude in degrees * 1E7"
+                description = "Latitude."
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -236,13 +236,13 @@ public final class Ahrs2 {
         }
 
         /**
-         * Longitude in degrees * 1E7 
+         * Longitude. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude in degrees * 1E7"
+                description = "Longitude."
         )
         public final Builder lng(int lng) {
             this.lng = lng;

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Write registers reply 
+ * Write registers reply. 
  */
 @MavlinkMessageInfo(
         id = 11003,
         crc = 64,
-        description = "Write registers reply"
+        description = "Write registers reply."
 )
 public final class DeviceOpWriteReply {
     private final long requestId;
@@ -35,24 +35,24 @@ public final class DeviceOpWriteReply {
     }
 
     /**
-     * request ID - copied from request 
+     * Request ID - copied from request. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "request ID - copied from request"
+            description = "Request ID - copied from request."
     )
     public final long requestId() {
         return this.requestId;
     }
 
     /**
-     * 0 for success, anything else is failure code 
+     * 0 for success, anything else is failure code. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "0 for success, anything else is failure code"
+            description = "0 for success, anything else is failure code."
     )
     public final int result() {
         return this.result;
@@ -88,12 +88,12 @@ public final class DeviceOpWriteReply {
         private int result;
 
         /**
-         * request ID - copied from request 
+         * Request ID - copied from request. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "request ID - copied from request"
+                description = "Request ID - copied from request."
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -101,12 +101,12 @@ public final class DeviceOpWriteReply {
         }
 
         /**
-         * 0 for success, anything else is failure code 
+         * 0 for success, anything else is failure code. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "0 for success, anything else is failure code"
+                description = "0 for success, anything else is failure code."
         )
         public final Builder result(int result) {
             this.result = result;

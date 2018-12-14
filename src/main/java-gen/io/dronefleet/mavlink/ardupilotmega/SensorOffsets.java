@@ -68,149 +68,149 @@ public final class SensorOffsets {
     }
 
     /**
-     * magnetometer X offset 
+     * Magnetometer X offset. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
             signed = true,
-            description = "magnetometer X offset"
+            description = "Magnetometer X offset."
     )
     public final int magOfsX() {
         return this.magOfsX;
     }
 
     /**
-     * magnetometer Y offset 
+     * Magnetometer Y offset. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
             signed = true,
-            description = "magnetometer Y offset"
+            description = "Magnetometer Y offset."
     )
     public final int magOfsY() {
         return this.magOfsY;
     }
 
     /**
-     * magnetometer Z offset 
+     * Magnetometer Z offset. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "magnetometer Z offset"
+            description = "Magnetometer Z offset."
     )
     public final int magOfsZ() {
         return this.magOfsZ;
     }
 
     /**
-     * magnetic declination (radians) 
+     * Magnetic declination. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "magnetic declination (radians)"
+            description = "Magnetic declination."
     )
     public final float magDeclination() {
         return this.magDeclination;
     }
 
     /**
-     * raw pressure from barometer 
+     * Raw pressure from barometer. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "raw pressure from barometer"
+            description = "Raw pressure from barometer."
     )
     public final int rawPress() {
         return this.rawPress;
     }
 
     /**
-     * raw temperature from barometer 
+     * Raw temperature from barometer. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "raw temperature from barometer"
+            description = "Raw temperature from barometer."
     )
     public final int rawTemp() {
         return this.rawTemp;
     }
 
     /**
-     * gyro X calibration 
+     * Gyro X calibration. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "gyro X calibration"
+            description = "Gyro X calibration."
     )
     public final float gyroCalX() {
         return this.gyroCalX;
     }
 
     /**
-     * gyro Y calibration 
+     * Gyro Y calibration. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "gyro Y calibration"
+            description = "Gyro Y calibration."
     )
     public final float gyroCalY() {
         return this.gyroCalY;
     }
 
     /**
-     * gyro Z calibration 
+     * Gyro Z calibration. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "gyro Z calibration"
+            description = "Gyro Z calibration."
     )
     public final float gyroCalZ() {
         return this.gyroCalZ;
     }
 
     /**
-     * accel X calibration 
+     * Accel X calibration. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "accel X calibration"
+            description = "Accel X calibration."
     )
     public final float accelCalX() {
         return this.accelCalX;
     }
 
     /**
-     * accel Y calibration 
+     * Accel Y calibration. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "accel Y calibration"
+            description = "Accel Y calibration."
     )
     public final float accelCalY() {
         return this.accelCalY;
     }
 
     /**
-     * accel Z calibration 
+     * Accel Z calibration. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "accel Z calibration"
+            description = "Accel Z calibration."
     )
     public final float accelCalZ() {
         return this.accelCalZ;
@@ -296,13 +296,13 @@ public final class SensorOffsets {
         private float accelCalZ;
 
         /**
-         * magnetometer X offset 
+         * Magnetometer X offset. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer X offset"
+                description = "Magnetometer X offset."
         )
         public final Builder magOfsX(int magOfsX) {
             this.magOfsX = magOfsX;
@@ -310,13 +310,13 @@ public final class SensorOffsets {
         }
 
         /**
-         * magnetometer Y offset 
+         * Magnetometer Y offset. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer Y offset"
+                description = "Magnetometer Y offset."
         )
         public final Builder magOfsY(int magOfsY) {
             this.magOfsY = magOfsY;
@@ -324,13 +324,13 @@ public final class SensorOffsets {
         }
 
         /**
-         * magnetometer Z offset 
+         * Magnetometer Z offset. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer Z offset"
+                description = "Magnetometer Z offset."
         )
         public final Builder magOfsZ(int magOfsZ) {
             this.magOfsZ = magOfsZ;
@@ -338,12 +338,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * magnetic declination (radians) 
+         * Magnetic declination. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "magnetic declination (radians)"
+                description = "Magnetic declination."
         )
         public final Builder magDeclination(float magDeclination) {
             this.magDeclination = magDeclination;
@@ -351,13 +351,13 @@ public final class SensorOffsets {
         }
 
         /**
-         * raw pressure from barometer 
+         * Raw pressure from barometer. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "raw pressure from barometer"
+                description = "Raw pressure from barometer."
         )
         public final Builder rawPress(int rawPress) {
             this.rawPress = rawPress;
@@ -365,13 +365,13 @@ public final class SensorOffsets {
         }
 
         /**
-         * raw temperature from barometer 
+         * Raw temperature from barometer. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "raw temperature from barometer"
+                description = "Raw temperature from barometer."
         )
         public final Builder rawTemp(int rawTemp) {
             this.rawTemp = rawTemp;
@@ -379,12 +379,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * gyro X calibration 
+         * Gyro X calibration. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "gyro X calibration"
+                description = "Gyro X calibration."
         )
         public final Builder gyroCalX(float gyroCalX) {
             this.gyroCalX = gyroCalX;
@@ -392,12 +392,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * gyro Y calibration 
+         * Gyro Y calibration. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "gyro Y calibration"
+                description = "Gyro Y calibration."
         )
         public final Builder gyroCalY(float gyroCalY) {
             this.gyroCalY = gyroCalY;
@@ -405,12 +405,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * gyro Z calibration 
+         * Gyro Z calibration. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "gyro Z calibration"
+                description = "Gyro Z calibration."
         )
         public final Builder gyroCalZ(float gyroCalZ) {
             this.gyroCalZ = gyroCalZ;
@@ -418,12 +418,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * accel X calibration 
+         * Accel X calibration. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "accel X calibration"
+                description = "Accel X calibration."
         )
         public final Builder accelCalX(float accelCalX) {
             this.accelCalX = accelCalX;
@@ -431,12 +431,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * accel Y calibration 
+         * Accel Y calibration. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "accel Y calibration"
+                description = "Accel Y calibration."
         )
         public final Builder accelCalY(float accelCalY) {
             this.accelCalY = accelCalY;
@@ -444,12 +444,12 @@ public final class SensorOffsets {
         }
 
         /**
-         * accel Z calibration 
+         * Accel Z calibration. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "accel Z calibration"
+                description = "Accel Z calibration."
         )
         public final Builder accelCalZ(float accelCalZ) {
             this.accelCalZ = accelCalZ;

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Information about the status of a capture 
+ * Information about the status of a capture. 
  */
 @MavlinkMessageInfo(
         id = 262,
         crc = 12,
-        description = "Information about the status of a capture"
+        description = "Information about the status of a capture."
 )
 public final class CameraCaptureStatus {
     private final long timeBootMs;
@@ -48,12 +48,12 @@ public final class CameraCaptureStatus {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -85,36 +85,36 @@ public final class CameraCaptureStatus {
     }
 
     /**
-     * Image capture interval in seconds 
+     * Image capture interval 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Image capture interval in seconds"
+            description = "Image capture interval"
     )
     public final float imageInterval() {
         return this.imageInterval;
     }
 
     /**
-     * Time in milliseconds since recording started 
+     * Time since recording started 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Time in milliseconds since recording started"
+            description = "Time since recording started"
     )
     public final long recordingTimeMs() {
         return this.recordingTimeMs;
     }
 
     /**
-     * Available storage capacity in MiB 
+     * Available storage capacity. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Available storage capacity in MiB"
+            description = "Available storage capacity."
     )
     public final float availableCapacity() {
         return this.availableCapacity;
@@ -170,12 +170,12 @@ public final class CameraCaptureStatus {
         private float availableCapacity;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -210,12 +210,12 @@ public final class CameraCaptureStatus {
         }
 
         /**
-         * Image capture interval in seconds 
+         * Image capture interval 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Image capture interval in seconds"
+                description = "Image capture interval"
         )
         public final Builder imageInterval(float imageInterval) {
             this.imageInterval = imageInterval;
@@ -223,12 +223,12 @@ public final class CameraCaptureStatus {
         }
 
         /**
-         * Time in milliseconds since recording started 
+         * Time since recording started 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Time in milliseconds since recording started"
+                description = "Time since recording started"
         )
         public final Builder recordingTimeMs(long recordingTimeMs) {
             this.recordingTimeMs = recordingTimeMs;
@@ -236,12 +236,12 @@ public final class CameraCaptureStatus {
         }
 
         /**
-         * Available storage capacity in MiB 
+         * Available storage capacity. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Available storage capacity in MiB"
+                description = "Available storage capacity."
         )
         public final Builder availableCapacity(float availableCapacity) {
             this.availableCapacity = availableCapacity;

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Data packet, size 32 
+ * Data packet, size 32. 
  */
 @MavlinkMessageInfo(
         id = 170,
         crc = 73,
-        description = "Data packet, size 32"
+        description = "Data packet, size 32."
 )
 public final class Data32 {
     private final int type;
@@ -38,37 +38,37 @@ public final class Data32 {
     }
 
     /**
-     * data type 
+     * Data type. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "data type"
+            description = "Data type."
     )
     public final int type() {
         return this.type;
     }
 
     /**
-     * data length 
+     * Data length. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "data length"
+            description = "Data length."
     )
     public final int len() {
         return this.len;
     }
 
     /**
-     * raw data 
+     * Raw data. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             arraySize = 32,
-            description = "raw data"
+            description = "Raw data."
     )
     public final byte[] data() {
         return this.data;
@@ -109,12 +109,12 @@ public final class Data32 {
         private byte[] data;
 
         /**
-         * data type 
+         * Data type. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "data type"
+                description = "Data type."
         )
         public final Builder type(int type) {
             this.type = type;
@@ -122,12 +122,12 @@ public final class Data32 {
         }
 
         /**
-         * data length 
+         * Data length. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "data length"
+                description = "Data length."
         )
         public final Builder len(int len) {
             this.len = len;
@@ -135,13 +135,13 @@ public final class Data32 {
         }
 
         /**
-         * raw data 
+         * Raw data. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 arraySize = 32,
-                description = "raw data"
+                description = "Raw data."
         )
         public final Builder data(byte[] data) {
             this.data = data;

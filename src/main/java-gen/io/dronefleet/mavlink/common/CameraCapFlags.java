@@ -4,18 +4,18 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * Camera capability flags (Bitmap). 
+ * Camera capability flags (Bitmap) 
  */
 @MavlinkEnum
 public enum CameraCapFlags {
     /**
-     * Camera is able to record video. 
+     * Camera is able to record video 
      */
     @MavlinkEntryInfo(1)
     CAMERA_CAP_FLAGS_CAPTURE_VIDEO,
 
     /**
-     * Camera is able to capture images. 
+     * Camera is able to capture images 
      */
     @MavlinkEntryInfo(2)
     CAMERA_CAP_FLAGS_CAPTURE_IMAGE,
@@ -42,5 +42,17 @@ public enum CameraCapFlags {
      * Camera has image survey mode (MAV_CMD_SET_CAMERA_MODE) 
      */
     @MavlinkEntryInfo(32)
-    CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE
+    CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE,
+
+    /**
+     * Camera has basic zoom control (MAV_CMD_SET_CAMERA_ZOOM) 
+     */
+    @MavlinkEntryInfo(64)
+    CAMERA_CAP_FLAGS_HAS_BASIC_ZOOM,
+
+    /**
+     * Camera has basic focus control (MAV_CMD_SET_CAMERA_FOCUS) 
+     */
+    @MavlinkEntryInfo(128)
+    CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS
 }

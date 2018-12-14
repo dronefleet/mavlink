@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} sensor output 
+ * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} sensor output. 
  */
 @MavlinkMessageInfo(
         id = 226,
         crc = 207,
-        description = "RPM sensor output"
+        description = "RPM sensor output."
 )
 public final class Rpm {
     private final float rpm1;
@@ -35,24 +35,24 @@ public final class Rpm {
     }
 
     /**
-     * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor1 
+     * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor1. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "RPM Sensor1"
+            description = "RPM Sensor1."
     )
     public final float rpm1() {
         return this.rpm1;
     }
 
     /**
-     * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor2 
+     * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor2. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "RPM Sensor2"
+            description = "RPM Sensor2."
     )
     public final float rpm2() {
         return this.rpm2;
@@ -88,12 +88,12 @@ public final class Rpm {
         private float rpm2;
 
         /**
-         * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor1 
+         * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor1. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "RPM Sensor1"
+                description = "RPM Sensor1."
         )
         public final Builder rpm1(float rpm1) {
             this.rpm1 = rpm1;
@@ -101,12 +101,12 @@ public final class Rpm {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor2 
+         * {@link io.dronefleet.mavlink.ardupilotmega.Rpm RPM} Sensor2. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "RPM Sensor2"
+                description = "RPM Sensor2."
         )
         public final Builder rpm2(float rpm2) {
             this.rpm2 = rpm2;

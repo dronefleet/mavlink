@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Read registers reply 
+ * Read registers reply. 
  */
 @MavlinkMessageInfo(
         id = 11001,
         crc = 15,
-        description = "Read registers reply"
+        description = "Read registers reply."
 )
 public final class DeviceOpReadReply {
     private final long requestId;
@@ -44,61 +44,61 @@ public final class DeviceOpReadReply {
     }
 
     /**
-     * request ID - copied from request 
+     * Request ID - copied from request. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "request ID - copied from request"
+            description = "Request ID - copied from request."
     )
     public final long requestId() {
         return this.requestId;
     }
 
     /**
-     * 0 for success, anything else is failure code 
+     * 0 for success, anything else is failure code. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "0 for success, anything else is failure code"
+            description = "0 for success, anything else is failure code."
     )
     public final int result() {
         return this.result;
     }
 
     /**
-     * starting register 
+     * Starting register. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "starting register"
+            description = "Starting register."
     )
     public final int regstart() {
         return this.regstart;
     }
 
     /**
-     * count of bytes read 
+     * Count of bytes read. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "count of bytes read"
+            description = "Count of bytes read."
     )
     public final int count() {
         return this.count;
     }
 
     /**
-     * reply data 
+     * Reply data. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             arraySize = 128,
-            description = "reply data"
+            description = "Reply data."
     )
     public final byte[] data() {
         return this.data;
@@ -149,12 +149,12 @@ public final class DeviceOpReadReply {
         private byte[] data;
 
         /**
-         * request ID - copied from request 
+         * Request ID - copied from request. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "request ID - copied from request"
+                description = "Request ID - copied from request."
         )
         public final Builder requestId(long requestId) {
             this.requestId = requestId;
@@ -162,12 +162,12 @@ public final class DeviceOpReadReply {
         }
 
         /**
-         * 0 for success, anything else is failure code 
+         * 0 for success, anything else is failure code. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "0 for success, anything else is failure code"
+                description = "0 for success, anything else is failure code."
         )
         public final Builder result(int result) {
             this.result = result;
@@ -175,12 +175,12 @@ public final class DeviceOpReadReply {
         }
 
         /**
-         * starting register 
+         * Starting register. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "starting register"
+                description = "Starting register."
         )
         public final Builder regstart(int regstart) {
             this.regstart = regstart;
@@ -188,12 +188,12 @@ public final class DeviceOpReadReply {
         }
 
         /**
-         * count of bytes read 
+         * Count of bytes read. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "count of bytes read"
+                description = "Count of bytes read."
         )
         public final Builder count(int count) {
             this.count = count;
@@ -201,13 +201,13 @@ public final class DeviceOpReadReply {
         }
 
         /**
-         * reply data 
+         * Reply data. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 arraySize = 128,
-                description = "reply data"
+                description = "Reply data."
         )
         public final Builder data(byte[] data) {
             this.data = data;

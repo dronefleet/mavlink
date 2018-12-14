@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * data for injecting into the onboard GPS (used for DGPS) 
+ * Data for injecting into the onboard GPS (used for DGPS) 
  */
 @MavlinkMessageInfo(
         id = 123,
         crc = 250,
-        description = "data for injecting into the onboard GPS (used for DGPS)"
+        description = "Data for injecting into the onboard GPS (used for DGPS)"
 )
 public final class GpsInjectData {
     private final int targetSystem;
@@ -65,25 +65,25 @@ public final class GpsInjectData {
     }
 
     /**
-     * data length 
+     * Data length 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "data length"
+            description = "Data length"
     )
     public final int len() {
         return this.len;
     }
 
     /**
-     * raw data (110 is enough for 12 satellites of RTCMv2) 
+     * Raw data (110 is enough for 12 satellites of RTCMv2) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             arraySize = 110,
-            description = "raw data (110 is enough for 12 satellites of RTCMv2)"
+            description = "Raw data (110 is enough for 12 satellites of RTCMv2)"
     )
     public final byte[] data() {
         return this.data;
@@ -155,12 +155,12 @@ public final class GpsInjectData {
         }
 
         /**
-         * data length 
+         * Data length 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "data length"
+                description = "Data length"
         )
         public final Builder len(int len) {
             this.len = len;
@@ -168,13 +168,13 @@ public final class GpsInjectData {
         }
 
         /**
-         * raw data (110 is enough for 12 satellites of RTCMv2) 
+         * Raw data (110 is enough for 12 satellites of RTCMv2) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 arraySize = 110,
-                description = "raw data (110 is enough for 12 satellites of RTCMv2)"
+                description = "Raw data (110 is enough for 12 satellites of RTCMv2)"
         )
         public final Builder data(byte[] data) {
             this.data = data;

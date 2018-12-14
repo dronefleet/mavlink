@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * PID tuning information 
+ * PID tuning information. 
  */
 @MavlinkMessageInfo(
         id = 194,
         crc = 98,
-        description = "PID tuning information"
+        description = "PID tuning information."
 )
 public final class PidTuning {
     private final EnumValue<PidTuningAxis> axis;
@@ -54,85 +54,85 @@ public final class PidTuning {
     }
 
     /**
-     * axis 
+     * Axis. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = PidTuningAxis.class,
-            description = "axis"
+            description = "Axis."
     )
     public final EnumValue<PidTuningAxis> axis() {
         return this.axis;
     }
 
     /**
-     * desired rate (degrees/s) 
+     * Desired rate. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "desired rate (degrees/s)"
+            description = "Desired rate."
     )
     public final float desired() {
         return this.desired;
     }
 
     /**
-     * achieved rate (degrees/s) 
+     * Achieved rate. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "achieved rate (degrees/s)"
+            description = "Achieved rate."
     )
     public final float achieved() {
         return this.achieved;
     }
 
     /**
-     * FF component 
+     * FF component. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "FF component"
+            description = "FF component."
     )
     public final float ff() {
         return this.ff;
     }
 
     /**
-     * P component 
+     * P component. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "P component"
+            description = "P component."
     )
     public final float p() {
         return this.p;
     }
 
     /**
-     * I component 
+     * I component. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "I component"
+            description = "I component."
     )
     public final float i() {
         return this.i;
     }
 
     /**
-     * D component 
+     * D component. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "D component"
+            description = "D component."
     )
     public final float d() {
         return this.d;
@@ -193,13 +193,13 @@ public final class PidTuning {
         private float d;
 
         /**
-         * axis 
+         * Axis. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = PidTuningAxis.class,
-                description = "axis"
+                description = "Axis."
         )
         public final Builder axis(EnumValue<PidTuningAxis> axis) {
             this.axis = axis;
@@ -207,33 +207,33 @@ public final class PidTuning {
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(PidTuningAxis entry) {
             return axis(EnumValue.of(entry));
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(Enum... flags) {
             return axis(EnumValue.create(flags));
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(Collection<Enum> flags) {
             return axis(EnumValue.create(flags));
         }
 
         /**
-         * desired rate (degrees/s) 
+         * Desired rate. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "desired rate (degrees/s)"
+                description = "Desired rate."
         )
         public final Builder desired(float desired) {
             this.desired = desired;
@@ -241,12 +241,12 @@ public final class PidTuning {
         }
 
         /**
-         * achieved rate (degrees/s) 
+         * Achieved rate. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "achieved rate (degrees/s)"
+                description = "Achieved rate."
         )
         public final Builder achieved(float achieved) {
             this.achieved = achieved;
@@ -254,12 +254,12 @@ public final class PidTuning {
         }
 
         /**
-         * FF component 
+         * FF component. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "FF component"
+                description = "FF component."
         )
         public final Builder ff(float ff) {
             this.ff = ff;
@@ -267,12 +267,12 @@ public final class PidTuning {
         }
 
         /**
-         * P component 
+         * P component. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "P component"
+                description = "P component."
         )
         public final Builder p(float p) {
             this.p = p;
@@ -280,12 +280,12 @@ public final class PidTuning {
         }
 
         /**
-         * I component 
+         * I component. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "I component"
+                description = "I component."
         )
         public final Builder i(float i) {
             this.i = i;
@@ -293,12 +293,12 @@ public final class PidTuning {
         }
 
         /**
-         * D component 
+         * D component. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "D component"
+                description = "D component."
         )
         public final Builder d(float d) {
             this.d = d;

@@ -37,24 +37,24 @@ public final class SystemTime {
     }
 
     /**
-     * Timestamp of the master clock in microseconds since UNIX epoch. 
+     * Timestamp (UNIX epoch time). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp of the master clock in microseconds since UNIX epoch."
+            description = "Timestamp (UNIX epoch time)."
     )
     public final BigInteger timeUnixUsec() {
         return this.timeUnixUsec;
     }
 
     /**
-     * Timestamp of the component clock since boot time in milliseconds. 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Timestamp of the component clock since boot time in milliseconds."
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -90,12 +90,12 @@ public final class SystemTime {
         private long timeBootMs;
 
         /**
-         * Timestamp of the master clock in microseconds since UNIX epoch. 
+         * Timestamp (UNIX epoch time). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp of the master clock in microseconds since UNIX epoch."
+                description = "Timestamp (UNIX epoch time)."
         )
         public final Builder timeUnixUsec(BigInteger timeUnixUsec) {
             this.timeUnixUsec = timeUnixUsec;
@@ -103,12 +103,12 @@ public final class SystemTime {
         }
 
         /**
-         * Timestamp of the component clock since boot time in milliseconds. 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Timestamp of the component clock since boot time in milliseconds."
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;

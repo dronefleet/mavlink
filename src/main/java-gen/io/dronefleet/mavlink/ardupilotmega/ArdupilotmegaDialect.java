@@ -82,6 +82,9 @@ public final class ArdupilotmegaDialect extends AbstractMavlinkDialect {
             .put(11010, AdapTuning.class)
             .put(11011, VisionPositionDelta.class)
             .put(11020, AoaSsa.class)
+            .put(11030, EscTelemetry1To4.class)
+            .put(11031, EscTelemetry5To8.class)
+            .put(11032, EscTelemetry9To12.class)
             .build();
 
     public ArdupilotmegaDialect() {

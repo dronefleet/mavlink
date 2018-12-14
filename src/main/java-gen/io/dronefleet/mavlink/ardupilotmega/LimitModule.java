@@ -9,19 +9,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum LimitModule {
     /**
-     * pre-initialization 
+     * Pre-initialization. 
      */
     @MavlinkEntryInfo(1)
     LIMIT_GPSLOCK,
 
     /**
-     * disabled 
+     * Disabled. 
      */
     @MavlinkEntryInfo(2)
     LIMIT_GEOFENCE,
 
     /**
-     * checking limits 
+     * Checking limits. 
      */
     @MavlinkEntryInfo(4)
     LIMIT_ALTITUDE

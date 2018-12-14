@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Rangefinder reporting 
+ * Rangefinder reporting. 
  */
 @MavlinkMessageInfo(
         id = 173,
         crc = 83,
-        description = "Rangefinder reporting"
+        description = "Rangefinder reporting."
 )
 public final class Rangefinder {
     private final float distance;
@@ -35,24 +35,24 @@ public final class Rangefinder {
     }
 
     /**
-     * distance in meters 
+     * Distance. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "distance in meters"
+            description = "Distance."
     )
     public final float distance() {
         return this.distance;
     }
 
     /**
-     * raw voltage if available, zero otherwise 
+     * Raw voltage if available, zero otherwise. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "raw voltage if available, zero otherwise"
+            description = "Raw voltage if available, zero otherwise."
     )
     public final float voltage() {
         return this.voltage;
@@ -88,12 +88,12 @@ public final class Rangefinder {
         private float voltage;
 
         /**
-         * distance in meters 
+         * Distance. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "distance in meters"
+                description = "Distance."
         )
         public final Builder distance(float distance) {
             this.distance = distance;
@@ -101,12 +101,12 @@ public final class Rangefinder {
         }
 
         /**
-         * raw voltage if available, zero otherwise 
+         * Raw voltage if available, zero otherwise. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "raw voltage if available, zero otherwise"
+                description = "Raw voltage if available, zero otherwise."
         )
         public final Builder voltage(float voltage) {
             this.voltage = voltage;

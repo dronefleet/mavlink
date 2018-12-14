@@ -86,89 +86,89 @@ public final class AdsbVehicle {
     }
 
     /**
-     * Latitude, expressed as degrees * 1E7 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Latitude, expressed as degrees * 1E7"
+            description = "Latitude"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude, expressed as degrees * 1E7 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Longitude, expressed as degrees * 1E7"
+            description = "Longitude"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+     * ADSB altitude type. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             enumType = AdsbAltitudeType.class,
-            description = "Type from ADSB_ALTITUDE_TYPE enum"
+            description = "ADSB altitude type."
     )
     public final EnumValue<AdsbAltitudeType> altitudeType() {
         return this.altitudeType;
     }
 
     /**
-     * Altitude(ASL) in millimeters 
+     * Altitude(ASL) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Altitude(ASL) in millimeters"
+            description = "Altitude(ASL)"
     )
     public final int altitude() {
         return this.altitude;
     }
 
     /**
-     * Course over ground in centidegrees 
+     * Course over ground 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "Course over ground in centidegrees"
+            description = "Course over ground"
     )
     public final int heading() {
         return this.heading;
     }
 
     /**
-     * The horizontal velocity in centimeters/second 
+     * The horizontal velocity 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "The horizontal velocity in centimeters/second"
+            description = "The horizontal velocity"
     )
     public final int horVelocity() {
         return this.horVelocity;
     }
 
     /**
-     * The vertical velocity in centimeters/second, positive is up 
+     * The vertical velocity. Positive is up 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
             signed = true,
-            description = "The vertical velocity in centimeters/second, positive is up"
+            description = "The vertical velocity. Positive is up"
     )
     public final int verVelocity() {
         return this.verVelocity;
@@ -188,13 +188,13 @@ public final class AdsbVehicle {
     }
 
     /**
-     * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+     * ADSB emitter type. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
             enumType = AdsbEmitterType.class,
-            description = "Type from ADSB_EMITTER_TYPE enum"
+            description = "ADSB emitter type."
     )
     public final EnumValue<AdsbEmitterType> emitterType() {
         return this.emitterType;
@@ -213,13 +213,13 @@ public final class AdsbVehicle {
     }
 
     /**
-     * Flags to indicate various statuses including valid data fields 
+     * Bitmap to indicate various statuses including valid data fields 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
             enumType = AdsbFlags.class,
-            description = "Flags to indicate various statuses including valid data fields"
+            description = "Bitmap to indicate various statuses including valid data fields"
     )
     public final EnumValue<AdsbFlags> flags() {
         return this.flags;
@@ -335,13 +335,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Latitude, expressed as degrees * 1E7 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude, expressed as degrees * 1E7"
+                description = "Latitude"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -349,13 +349,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Longitude, expressed as degrees * 1E7 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude, expressed as degrees * 1E7"
+                description = "Longitude"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -363,13 +363,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         * ADSB altitude type. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 enumType = AdsbAltitudeType.class,
-                description = "Type from ADSB_ALTITUDE_TYPE enum"
+                description = "ADSB altitude type."
         )
         public final Builder altitudeType(EnumValue<AdsbAltitudeType> altitudeType) {
             this.altitudeType = altitudeType;
@@ -377,34 +377,34 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         * ADSB altitude type. 
          */
         public final Builder altitudeType(AdsbAltitudeType entry) {
             return altitudeType(EnumValue.of(entry));
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         * ADSB altitude type. 
          */
         public final Builder altitudeType(Enum... flags) {
             return altitudeType(EnumValue.create(flags));
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbAltitudeType ADSB_ALTITUDE_TYPE} enum 
+         * ADSB altitude type. 
          */
         public final Builder altitudeType(Collection<Enum> flags) {
             return altitudeType(EnumValue.create(flags));
         }
 
         /**
-         * Altitude(ASL) in millimeters 
+         * Altitude(ASL) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude(ASL) in millimeters"
+                description = "Altitude(ASL)"
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -412,12 +412,12 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Course over ground in centidegrees 
+         * Course over ground 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "Course over ground in centidegrees"
+                description = "Course over ground"
         )
         public final Builder heading(int heading) {
             this.heading = heading;
@@ -425,12 +425,12 @@ public final class AdsbVehicle {
         }
 
         /**
-         * The horizontal velocity in centimeters/second 
+         * The horizontal velocity 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "The horizontal velocity in centimeters/second"
+                description = "The horizontal velocity"
         )
         public final Builder horVelocity(int horVelocity) {
             this.horVelocity = horVelocity;
@@ -438,13 +438,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * The vertical velocity in centimeters/second, positive is up 
+         * The vertical velocity. Positive is up 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
                 signed = true,
-                description = "The vertical velocity in centimeters/second, positive is up"
+                description = "The vertical velocity. Positive is up"
         )
         public final Builder verVelocity(int verVelocity) {
             this.verVelocity = verVelocity;
@@ -466,13 +466,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         * ADSB emitter type. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
                 enumType = AdsbEmitterType.class,
-                description = "Type from ADSB_EMITTER_TYPE enum"
+                description = "ADSB emitter type."
         )
         public final Builder emitterType(EnumValue<AdsbEmitterType> emitterType) {
             this.emitterType = emitterType;
@@ -480,21 +480,21 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         * ADSB emitter type. 
          */
         public final Builder emitterType(AdsbEmitterType entry) {
             return emitterType(EnumValue.of(entry));
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         * ADSB emitter type. 
          */
         public final Builder emitterType(Enum... flags) {
             return emitterType(EnumValue.create(flags));
         }
 
         /**
-         * Type from {@link io.dronefleet.mavlink.common.AdsbEmitterType ADSB_EMITTER_TYPE} enum 
+         * ADSB emitter type. 
          */
         public final Builder emitterType(Collection<Enum> flags) {
             return emitterType(EnumValue.create(flags));
@@ -514,13 +514,13 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Flags to indicate various statuses including valid data fields 
+         * Bitmap to indicate various statuses including valid data fields 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
                 enumType = AdsbFlags.class,
-                description = "Flags to indicate various statuses including valid data fields"
+                description = "Bitmap to indicate various statuses including valid data fields"
         )
         public final Builder flags(EnumValue<AdsbFlags> flags) {
             this.flags = flags;
@@ -528,21 +528,21 @@ public final class AdsbVehicle {
         }
 
         /**
-         * Flags to indicate various statuses including valid data fields 
+         * Bitmap to indicate various statuses including valid data fields 
          */
         public final Builder flags(AdsbFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * Flags to indicate various statuses including valid data fields 
+         * Bitmap to indicate various statuses including valid data fields 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Flags to indicate various statuses including valid data fields 
+         * Bitmap to indicate various statuses including valid data fields 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));

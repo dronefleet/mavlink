@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,16 +12,14 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * THIS INTERFACE IS DEPRECATED. USE {@link io.dronefleet.mavlink.common.CommandLong COMMAND_LONG} with MAV_CMD_DO_SET_MODE INSTEAD. Set the 
- * system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MAV_MODE}. There is no target component id as the mode is by 
+ * Set the system mode, as defined by enum {@link io.dronefleet.mavlink.common.MavMode MAV_MODE}. There is no target component id as the mode is by 
  * definition for the overall aircraft, not only for one component. 
  */
 @MavlinkMessageInfo(
         id = 11,
         crc = 89,
-        description = "THIS INTERFACE IS DEPRECATED. USE COMMAND_LONG with MAV_CMD_DO_SET_MODE INSTEAD. Set the system mode, as defined by enum MAV_MODE. There is no target component id as the mode is by definition for the overall aircraft, not only for one component."
+        description = "Set the system mode, as defined by enum MAV_MODE. There is no target component id as the mode is by definition for the overall aircraft, not only for one component."
 )
-@Deprecated
 public final class SetMode {
     private final int targetSystem;
 
@@ -48,7 +45,7 @@ public final class SetMode {
      * The system setting the mode 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             description = "The system setting the mode"
     )
@@ -57,13 +54,13 @@ public final class SetMode {
     }
 
     /**
-     * The new base mode 
+     * The new base mode. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             enumType = MavMode.class,
-            description = "The new base mode"
+            description = "The new base mode."
     )
     public final EnumValue<MavMode> baseMode() {
         return this.baseMode;
@@ -73,7 +70,7 @@ public final class SetMode {
      * The new autopilot-specific mode. This field can be ignored by an autopilot. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
             description = "The new autopilot-specific mode. This field can be ignored by an autopilot."
     )
@@ -119,7 +116,7 @@ public final class SetMode {
          * The system setting the mode 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 description = "The system setting the mode"
         )
@@ -129,13 +126,13 @@ public final class SetMode {
         }
 
         /**
-         * The new base mode 
+         * The new base mode. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 enumType = MavMode.class,
-                description = "The new base mode"
+                description = "The new base mode."
         )
         public final Builder baseMode(EnumValue<MavMode> baseMode) {
             this.baseMode = baseMode;
@@ -143,21 +140,21 @@ public final class SetMode {
         }
 
         /**
-         * The new base mode 
+         * The new base mode. 
          */
         public final Builder baseMode(MavMode entry) {
             return baseMode(EnumValue.of(entry));
         }
 
         /**
-         * The new base mode 
+         * The new base mode. 
          */
         public final Builder baseMode(Enum... flags) {
             return baseMode(EnumValue.create(flags));
         }
 
         /**
-         * The new base mode 
+         * The new base mode. 
          */
         public final Builder baseMode(Collection<Enum> flags) {
             return baseMode(EnumValue.create(flags));
@@ -167,7 +164,7 @@ public final class SetMode {
          * The new autopilot-specific mode. This field can be ignored by an autopilot. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
                 description = "The new autopilot-specific mode. This field can be ignored by an autopilot."
         )

@@ -48,75 +48,75 @@ public final class MountControl {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * pitch(deg*100) or lat, depending on mount mode 
+     * Pitch (centi-degrees) or lat (degE7), depending on mount mode. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "pitch(deg*100) or lat, depending on mount mode"
+            description = "Pitch (centi-degrees) or lat (degE7), depending on mount mode."
     )
     public final int inputA() {
         return this.inputA;
     }
 
     /**
-     * roll(deg*100) or lon depending on mount mode 
+     * Roll (centi-degrees) or lon (degE7) depending on mount mode. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "roll(deg*100) or lon depending on mount mode"
+            description = "Roll (centi-degrees) or lon (degE7) depending on mount mode."
     )
     public final int inputB() {
         return this.inputB;
     }
 
     /**
-     * yaw(deg*100) or alt (in cm) depending on mount mode 
+     * Yaw (centi-degrees) or alt (cm) depending on mount mode. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "yaw(deg*100) or alt (in cm) depending on mount mode"
+            description = "Yaw (centi-degrees) or alt (cm) depending on mount mode."
     )
     public final int inputC() {
         return this.inputC;
     }
 
     /**
-     * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
+     * If "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "if \"1\" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)"
+            description = "If \"1\" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)."
     )
     public final int savePosition() {
         return this.savePosition;
@@ -172,12 +172,12 @@ public final class MountControl {
         private int savePosition;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -185,12 +185,12 @@ public final class MountControl {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -198,13 +198,13 @@ public final class MountControl {
         }
 
         /**
-         * pitch(deg*100) or lat, depending on mount mode 
+         * Pitch (centi-degrees) or lat (degE7), depending on mount mode. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "pitch(deg*100) or lat, depending on mount mode"
+                description = "Pitch (centi-degrees) or lat (degE7), depending on mount mode."
         )
         public final Builder inputA(int inputA) {
             this.inputA = inputA;
@@ -212,13 +212,13 @@ public final class MountControl {
         }
 
         /**
-         * roll(deg*100) or lon depending on mount mode 
+         * Roll (centi-degrees) or lon (degE7) depending on mount mode. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "roll(deg*100) or lon depending on mount mode"
+                description = "Roll (centi-degrees) or lon (degE7) depending on mount mode."
         )
         public final Builder inputB(int inputB) {
             this.inputB = inputB;
@@ -226,13 +226,13 @@ public final class MountControl {
         }
 
         /**
-         * yaw(deg*100) or alt (in cm) depending on mount mode 
+         * Yaw (centi-degrees) or alt (cm) depending on mount mode. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "yaw(deg*100) or alt (in cm) depending on mount mode"
+                description = "Yaw (centi-degrees) or alt (cm) depending on mount mode."
         )
         public final Builder inputC(int inputC) {
             this.inputC = inputC;
@@ -240,12 +240,12 @@ public final class MountControl {
         }
 
         /**
-         * if "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING) 
+         * If "1" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "if \"1\" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)"
+                description = "If \"1\" it will save current trimmed position on EEPROM (just valid for NEUTRAL and LANDING)."
         )
         public final Builder savePosition(int savePosition) {
             this.savePosition = savePosition;

@@ -14,7 +14,7 @@ import java.util.Objects;
 /**
  * This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The 
  * position the system will return to and land on. The position is set automatically by the system 
- * during the takeoff in case it was not explicitely set by the operator before or after. The 
+ * during the takeoff in case it was not explicitly set by the operator before or after. The 
  * position the system will return to and land on. The global and local positions encode the 
  * position in the respective coordinate frames, while the q parameter encodes the orientation 
  * of the surface. Under normal conditions it describes the heading and terrain slope, which can 
@@ -25,7 +25,7 @@ import java.util.Objects;
 @MavlinkMessageInfo(
         id = 242,
         crc = 104,
-        description = "This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitely set by the operator before or after. The position the system will return to and land on. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector."
+        description = "This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitly set by the operator before or after. The position the system will return to and land on. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector."
 )
 public final class HomePosition {
     private final int latitude;
@@ -74,39 +74,39 @@ public final class HomePosition {
     }
 
     /**
-     * Latitude (WGS84), in degrees * 1E7 
+     * Latitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
             signed = true,
-            description = "Latitude (WGS84), in degrees * 1E7"
+            description = "Latitude (WGS84)"
     )
     public final int latitude() {
         return this.latitude;
     }
 
     /**
-     * Longitude (WGS84, in degrees * 1E7 
+     * Longitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Longitude (WGS84, in degrees * 1E7"
+            description = "Longitude (WGS84)"
     )
     public final int longitude() {
         return this.longitude;
     }
 
     /**
-     * Altitude (AMSL), in meters * 1000 (positive for up) 
+     * Altitude (MSL). Positive for up. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Altitude (AMSL), in meters * 1000 (positive for up)"
+            description = "Altitude (MSL). Positive for up."
     )
     public final int altitude() {
         return this.altitude;
@@ -208,13 +208,14 @@ public final class HomePosition {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 8,
             extension = true,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -295,13 +296,13 @@ public final class HomePosition {
         private BigInteger timeUsec;
 
         /**
-         * Latitude (WGS84), in degrees * 1E7 
+         * Latitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (WGS84), in degrees * 1E7"
+                description = "Latitude (WGS84)"
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -309,13 +310,13 @@ public final class HomePosition {
         }
 
         /**
-         * Longitude (WGS84, in degrees * 1E7 
+         * Longitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (WGS84, in degrees * 1E7"
+                description = "Longitude (WGS84)"
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -323,13 +324,13 @@ public final class HomePosition {
         }
 
         /**
-         * Altitude (AMSL), in meters * 1000 (positive for up) 
+         * Altitude (MSL). Positive for up. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude (AMSL), in meters * 1000 (positive for up)"
+                description = "Altitude (MSL). Positive for up."
         )
         public final Builder altitude(int altitude) {
             this.altitude = altitude;
@@ -439,13 +440,14 @@ public final class HomePosition {
         }
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 8,
                 extension = true,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

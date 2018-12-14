@@ -2,15 +2,12 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
-import java.lang.Deprecated;
 
 /**
- * THIS INTERFACE IS DEPRECATED AS OF JULY 2015. Please use {@link io.dronefleet.mavlink.common.MessageInterval MESSAGE_INTERVAL} instead. A data 
- * stream is not a fixed set of messages, but rather a recommendation to the autopilot software. 
- * Individual autopilots may or may not obey the recommended messages. 
+ * A data stream is not a fixed set of messages, but rather a recommendation to the autopilot 
+ * software. Individual autopilots may or may not obey the recommended messages. 
  */
 @MavlinkEnum
-@Deprecated
 public enum MavDataStream {
     /**
      * Enable all data streams 

@@ -3,20 +3,25 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
- *  
+ * Handshake message to initiate, control and stop image streaming when using the Image 
+ * Transmission Protocol: https://mavlink.io/en/services/image_transmission.html. 
  */
 @MavlinkMessageInfo(
         id = 130,
-        crc = 29
+        crc = 29,
+        description = "Handshake message to initiate, control and stop image streaming when using the Image Transmission Protocol: https://mavlink.io/en/services/image_transmission.html."
 )
 public final class DataTransmissionHandshake {
-    private final int type;
+    private final EnumValue<MavlinkDataStreamType> type;
 
     private final long size;
 
@@ -30,8 +35,8 @@ public final class DataTransmissionHandshake {
 
     private final int jpgQuality;
 
-    private DataTransmissionHandshake(int type, long size, int width, int height, int packets,
-            int payload, int jpgQuality) {
+    private DataTransmissionHandshake(EnumValue<MavlinkDataStreamType> type, long size, int width,
+            int height, int packets, int payload, int jpgQuality) {
         this.type = type;
         this.size = size;
         this.width = width;
@@ -50,86 +55,86 @@ public final class DataTransmissionHandshake {
     }
 
     /**
-     * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-     * mavlink/include/mavlink_types.h) 
+     * Type of requested/acknowledged data. 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 1,
-            description = "type of requested/acknowledged data (as defined in ENUM DATA_TYPES in mavlink/include/mavlink_types.h)"
+            enumType = MavlinkDataStreamType.class,
+            description = "Type of requested/acknowledged data."
     )
-    public final int type() {
+    public final EnumValue<MavlinkDataStreamType> type() {
         return this.type;
     }
 
     /**
-     * total data size in bytes (set on ACK only) 
+     * total data size (set on ACK only). 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
-            description = "total data size in bytes (set on ACK only)"
+            description = "total data size (set on ACK only)."
     )
     public final long size() {
         return this.size;
     }
 
     /**
-     * Width of a matrix or image 
+     * Width of a matrix or image. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 2,
-            description = "Width of a matrix or image"
+            description = "Width of a matrix or image."
     )
     public final int width() {
         return this.width;
     }
 
     /**
-     * Height of a matrix or image 
+     * Height of a matrix or image. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 2,
-            description = "Height of a matrix or image"
+            description = "Height of a matrix or image."
     )
     public final int height() {
         return this.height;
     }
 
     /**
-     * number of packets beeing sent (set on ACK only) 
+     * Number of packets being sent (set on ACK only). 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 2,
-            description = "number of packets beeing sent (set on ACK only)"
+            description = "Number of packets being sent (set on ACK only)."
     )
     public final int packets() {
         return this.packets;
     }
 
     /**
-     * payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
-     * (set on ACK only) 
+     * Payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
+     * (set on ACK only). 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 1,
-            description = "payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only)"
+            description = "Payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only)."
     )
     public final int payload() {
         return this.payload;
     }
 
     /**
-     * JPEG quality out of [1,100] 
+     * JPEG quality. Values: [1-100]. 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 1,
-            description = "JPEG quality out of [1,100]"
+            description = "JPEG quality. Values: [1-100]."
     )
     public final int jpgQuality() {
         return this.jpgQuality;
@@ -175,7 +180,7 @@ public final class DataTransmissionHandshake {
     }
 
     public static final class Builder {
-        private int type;
+        private EnumValue<MavlinkDataStreamType> type;
 
         private long size;
 
@@ -190,26 +195,47 @@ public final class DataTransmissionHandshake {
         private int jpgQuality;
 
         /**
-         * type of requested/acknowledged data (as defined in ENUM DATA_TYPES in 
-         * mavlink/include/mavlink_types.h) 
+         * Type of requested/acknowledged data. 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 1,
-                description = "type of requested/acknowledged data (as defined in ENUM DATA_TYPES in mavlink/include/mavlink_types.h)"
+                enumType = MavlinkDataStreamType.class,
+                description = "Type of requested/acknowledged data."
         )
-        public final Builder type(int type) {
+        public final Builder type(EnumValue<MavlinkDataStreamType> type) {
             this.type = type;
             return this;
         }
 
         /**
-         * total data size in bytes (set on ACK only) 
+         * Type of requested/acknowledged data. 
+         */
+        public final Builder type(MavlinkDataStreamType entry) {
+            return type(EnumValue.of(entry));
+        }
+
+        /**
+         * Type of requested/acknowledged data. 
+         */
+        public final Builder type(Enum... flags) {
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type of requested/acknowledged data. 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * total data size (set on ACK only). 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
-                description = "total data size in bytes (set on ACK only)"
+                description = "total data size (set on ACK only)."
         )
         public final Builder size(long size) {
             this.size = size;
@@ -217,12 +243,12 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * Width of a matrix or image 
+         * Width of a matrix or image. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 2,
-                description = "Width of a matrix or image"
+                description = "Width of a matrix or image."
         )
         public final Builder width(int width) {
             this.width = width;
@@ -230,12 +256,12 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * Height of a matrix or image 
+         * Height of a matrix or image. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 2,
-                description = "Height of a matrix or image"
+                description = "Height of a matrix or image."
         )
         public final Builder height(int height) {
             this.height = height;
@@ -243,12 +269,12 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * number of packets beeing sent (set on ACK only) 
+         * Number of packets being sent (set on ACK only). 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 2,
-                description = "number of packets beeing sent (set on ACK only)"
+                description = "Number of packets being sent (set on ACK only)."
         )
         public final Builder packets(int packets) {
             this.packets = packets;
@@ -256,13 +282,13 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
-         * (set on ACK only) 
+         * Payload size per packet (normally 253 byte, see DATA field size in message {@link io.dronefleet.mavlink.common.EncapsulatedData ENCAPSULATED_DATA}) 
+         * (set on ACK only). 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 1,
-                description = "payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only)"
+                description = "Payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only)."
         )
         public final Builder payload(int payload) {
             this.payload = payload;
@@ -270,12 +296,12 @@ public final class DataTransmissionHandshake {
         }
 
         /**
-         * JPEG quality out of [1,100] 
+         * JPEG quality. Values: [1-100]. 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 1,
-                description = "JPEG quality out of [1,100]"
+                description = "JPEG quality. Values: [1-100]."
         )
         public final Builder jpgQuality(int jpgQuality) {
             this.jpgQuality = jpgQuality;

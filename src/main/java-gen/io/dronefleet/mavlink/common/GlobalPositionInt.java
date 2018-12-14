@@ -60,117 +60,115 @@ public final class GlobalPositionInt {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Latitude, expressed as degrees * 1E7 
+     * Latitude, expressed 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Latitude, expressed as degrees * 1E7"
+            description = "Latitude, expressed"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude, expressed as degrees * 1E7 
+     * Longitude, expressed 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Longitude, expressed as degrees * 1E7"
+            description = "Longitude, expressed"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually 
-     * all GPS modules provide the AMSL as well) 
+     * Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually all GPS modules provide the AMSL as well)"
+            description = "Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL."
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * Altitude above ground in meters, expressed as * 1000 (millimeters) 
+     * Altitude above ground 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
+            description = "Altitude above ground"
     )
     public final int relativeAlt() {
         return this.relativeAlt;
     }
 
     /**
-     * Ground X Speed (Latitude, positive north), expressed as m/s * 100 
+     * Ground X Speed (Latitude, positive north) 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
             signed = true,
-            description = "Ground X Speed (Latitude, positive north), expressed as m/s * 100"
+            description = "Ground X Speed (Latitude, positive north)"
     )
     public final int vx() {
         return this.vx;
     }
 
     /**
-     * Ground Y Speed (Longitude, positive east), expressed as m/s * 100 
+     * Ground Y Speed (Longitude, positive east) 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
             signed = true,
-            description = "Ground Y Speed (Longitude, positive east), expressed as m/s * 100"
+            description = "Ground Y Speed (Longitude, positive east)"
     )
     public final int vy() {
         return this.vy;
     }
 
     /**
-     * Ground Z Speed (Altitude, positive down), expressed as m/s * 100 
+     * Ground Z Speed (Altitude, positive down) 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
             signed = true,
-            description = "Ground Z Speed (Altitude, positive down), expressed as m/s * 100"
+            description = "Ground Z Speed (Altitude, positive down)"
     )
     public final int vz() {
         return this.vz;
     }
 
     /**
-     * Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 
-     * UINT16_MAX 
+     * Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
+            description = "Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
     )
     public final int hdg() {
         return this.hdg;
@@ -241,12 +239,12 @@ public final class GlobalPositionInt {
         private int hdg;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -254,13 +252,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Latitude, expressed as degrees * 1E7 
+         * Latitude, expressed 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude, expressed as degrees * 1E7"
+                description = "Latitude, expressed"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -268,13 +266,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Longitude, expressed as degrees * 1E7 
+         * Longitude, expressed 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude, expressed as degrees * 1E7"
+                description = "Longitude, expressed"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -282,14 +280,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually 
-         * all GPS modules provide the AMSL as well) 
+         * Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually all GPS modules provide the AMSL as well)"
+                description = "Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL."
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -297,13 +294,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Altitude above ground in meters, expressed as * 1000 (millimeters) 
+         * Altitude above ground 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude above ground in meters, expressed as * 1000 (millimeters)"
+                description = "Altitude above ground"
         )
         public final Builder relativeAlt(int relativeAlt) {
             this.relativeAlt = relativeAlt;
@@ -311,13 +308,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Ground X Speed (Latitude, positive north), expressed as m/s * 100 
+         * Ground X Speed (Latitude, positive north) 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
                 signed = true,
-                description = "Ground X Speed (Latitude, positive north), expressed as m/s * 100"
+                description = "Ground X Speed (Latitude, positive north)"
         )
         public final Builder vx(int vx) {
             this.vx = vx;
@@ -325,13 +322,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Ground Y Speed (Longitude, positive east), expressed as m/s * 100 
+         * Ground Y Speed (Longitude, positive east) 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
                 signed = true,
-                description = "Ground Y Speed (Longitude, positive east), expressed as m/s * 100"
+                description = "Ground Y Speed (Longitude, positive east)"
         )
         public final Builder vy(int vy) {
             this.vy = vy;
@@ -339,13 +336,13 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Ground Z Speed (Altitude, positive down), expressed as m/s * 100 
+         * Ground Z Speed (Altitude, positive down) 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
                 signed = true,
-                description = "Ground Z Speed (Altitude, positive down), expressed as m/s * 100"
+                description = "Ground Z Speed (Altitude, positive down)"
         )
         public final Builder vz(int vz) {
             this.vz = vz;
@@ -353,13 +350,12 @@ public final class GlobalPositionInt {
         }
 
         /**
-         * Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 
-         * UINT16_MAX 
+         * Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
+                description = "Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
         )
         public final Builder hdg(int hdg) {
             this.hdg = hdg;

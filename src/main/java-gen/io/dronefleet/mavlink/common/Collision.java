@@ -106,36 +106,36 @@ public final class Collision {
     }
 
     /**
-     * Estimated time until collision occurs (seconds) 
+     * Estimated time until collision occurs 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Estimated time until collision occurs (seconds)"
+            description = "Estimated time until collision occurs"
     )
     public final float timeToMinimumDelta() {
         return this.timeToMinimumDelta;
     }
 
     /**
-     * Closest vertical distance in meters between vehicle and object 
+     * Closest vertical distance between vehicle and object 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Closest vertical distance in meters between vehicle and object"
+            description = "Closest vertical distance between vehicle and object"
     )
     public final float altitudeMinimumDelta() {
         return this.altitudeMinimumDelta;
     }
 
     /**
-     * Closest horizontal distance in meteres between vehicle and object 
+     * Closest horizontal distance between vehicle and object 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Closest horizontal distance in meteres between vehicle and object"
+            description = "Closest horizontal distance between vehicle and object"
     )
     public final float horizontalMinimumDelta() {
         return this.horizontalMinimumDelta;
@@ -314,12 +314,12 @@ public final class Collision {
         }
 
         /**
-         * Estimated time until collision occurs (seconds) 
+         * Estimated time until collision occurs 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Estimated time until collision occurs (seconds)"
+                description = "Estimated time until collision occurs"
         )
         public final Builder timeToMinimumDelta(float timeToMinimumDelta) {
             this.timeToMinimumDelta = timeToMinimumDelta;
@@ -327,12 +327,12 @@ public final class Collision {
         }
 
         /**
-         * Closest vertical distance in meters between vehicle and object 
+         * Closest vertical distance between vehicle and object 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Closest vertical distance in meters between vehicle and object"
+                description = "Closest vertical distance between vehicle and object"
         )
         public final Builder altitudeMinimumDelta(float altitudeMinimumDelta) {
             this.altitudeMinimumDelta = altitudeMinimumDelta;
@@ -340,12 +340,12 @@ public final class Collision {
         }
 
         /**
-         * Closest horizontal distance in meteres between vehicle and object 
+         * Closest horizontal distance between vehicle and object 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Closest horizontal distance in meteres between vehicle and object"
+                description = "Closest horizontal distance between vehicle and object"
         )
         public final Builder horizontalMinimumDelta(float horizontalMinimumDelta) {
             this.horizontalMinimumDelta = horizontalMinimumDelta;

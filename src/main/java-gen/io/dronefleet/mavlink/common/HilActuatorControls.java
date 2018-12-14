@@ -49,12 +49,13 @@ public final class HilActuatorControls {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -74,13 +75,13 @@ public final class HilActuatorControls {
     }
 
     /**
-     * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+     * System mode. Includes arming state. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavMode.class,
-            description = "System mode (MAV_MODE), includes arming state."
+            description = "System mode. Includes arming state."
     )
     public final EnumValue<MavMode> mode() {
         return this.mode;
@@ -138,12 +139,13 @@ public final class HilActuatorControls {
         private BigInteger flags;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -165,13 +167,13 @@ public final class HilActuatorControls {
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         * System mode. Includes arming state. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavMode.class,
-                description = "System mode (MAV_MODE), includes arming state."
+                description = "System mode. Includes arming state."
         )
         public final Builder mode(EnumValue<MavMode> mode) {
             this.mode = mode;
@@ -179,21 +181,21 @@ public final class HilActuatorControls {
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         * System mode. Includes arming state. 
          */
         public final Builder mode(MavMode entry) {
             return mode(EnumValue.of(entry));
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         * System mode. Includes arming state. 
          */
         public final Builder mode(Enum... flags) {
             return mode(EnumValue.create(flags));
         }
 
         /**
-         * System mode ({@link io.dronefleet.mavlink.common.MavMode MAV_MODE}), includes arming state. 
+         * System mode. Includes arming state. 
          */
         public final Builder mode(Collection<Enum> flags) {
             return mode(EnumValue.create(flags));

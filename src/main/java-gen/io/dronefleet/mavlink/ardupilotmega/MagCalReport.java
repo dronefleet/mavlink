@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.common.MavSensorOrientation;
 import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
 import java.lang.Object;
@@ -48,9 +49,17 @@ public final class MagCalReport {
 
     private final float offdiagZ;
 
+    private final float orientationConfidence;
+
+    private final EnumValue<MavSensorOrientation> oldOrientation;
+
+    private final EnumValue<MavSensorOrientation> newOrientation;
+
     private MagCalReport(int compassId, int calMask, EnumValue<MagCalStatus> calStatus,
             int autosaved, float fitness, float ofsX, float ofsY, float ofsZ, float diagX,
-            float diagY, float diagZ, float offdiagX, float offdiagY, float offdiagZ) {
+            float diagY, float diagZ, float offdiagX, float offdiagY, float offdiagZ,
+            float orientationConfidence, EnumValue<MavSensorOrientation> oldOrientation,
+            EnumValue<MavSensorOrientation> newOrientation) {
         this.compassId = compassId;
         this.calMask = calMask;
         this.calStatus = calStatus;
@@ -65,6 +74,9 @@ public final class MagCalReport {
         this.offdiagX = offdiagX;
         this.offdiagY = offdiagY;
         this.offdiagZ = offdiagZ;
+        this.orientationConfidence = orientationConfidence;
+        this.oldOrientation = oldOrientation;
+        this.newOrientation = newOrientation;
     }
 
     /**
@@ -76,172 +88,213 @@ public final class MagCalReport {
     }
 
     /**
-     * Compass being calibrated 
+     * Compass being calibrated. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "Compass being calibrated"
+            description = "Compass being calibrated."
     )
     public final int compassId() {
         return this.compassId;
     }
 
     /**
-     * Bitmask of compasses being calibrated 
+     * Bitmask of compasses being calibrated. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Bitmask of compasses being calibrated"
+            description = "Bitmask of compasses being calibrated."
     )
     public final int calMask() {
         return this.calMask;
     }
 
     /**
-     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+     * Calibration Status. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MagCalStatus.class,
-            description = "Status (see MAG_CAL_STATUS enum)"
+            description = "Calibration Status."
     )
     public final EnumValue<MagCalStatus> calStatus() {
         return this.calStatus;
     }
 
     /**
-     * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
+     * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters"
+            description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters."
     )
     public final int autosaved() {
         return this.autosaved;
     }
 
     /**
-     * RMS milligauss residuals 
+     * RMS milligauss residuals. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "RMS milligauss residuals"
+            description = "RMS milligauss residuals."
     )
     public final float fitness() {
         return this.fitness;
     }
 
     /**
-     * X offset 
+     * X offset. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "X offset"
+            description = "X offset."
     )
     public final float ofsX() {
         return this.ofsX;
     }
 
     /**
-     * Y offset 
+     * Y offset. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Y offset"
+            description = "Y offset."
     )
     public final float ofsY() {
         return this.ofsY;
     }
 
     /**
-     * Z offset 
+     * Z offset. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Z offset"
+            description = "Z offset."
     )
     public final float ofsZ() {
         return this.ofsZ;
     }
 
     /**
-     * X diagonal (matrix 11) 
+     * X diagonal (matrix 11). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "X diagonal (matrix 11)"
+            description = "X diagonal (matrix 11)."
     )
     public final float diagX() {
         return this.diagX;
     }
 
     /**
-     * Y diagonal (matrix 22) 
+     * Y diagonal (matrix 22). 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Y diagonal (matrix 22)"
+            description = "Y diagonal (matrix 22)."
     )
     public final float diagY() {
         return this.diagY;
     }
 
     /**
-     * Z diagonal (matrix 33) 
+     * Z diagonal (matrix 33). 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Z diagonal (matrix 33)"
+            description = "Z diagonal (matrix 33)."
     )
     public final float diagZ() {
         return this.diagZ;
     }
 
     /**
-     * X off-diagonal (matrix 12 and 21) 
+     * X off-diagonal (matrix 12 and 21). 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "X off-diagonal (matrix 12 and 21)"
+            description = "X off-diagonal (matrix 12 and 21)."
     )
     public final float offdiagX() {
         return this.offdiagX;
     }
 
     /**
-     * Y off-diagonal (matrix 13 and 31) 
+     * Y off-diagonal (matrix 13 and 31). 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            description = "Y off-diagonal (matrix 13 and 31)"
+            description = "Y off-diagonal (matrix 13 and 31)."
     )
     public final float offdiagY() {
         return this.offdiagY;
     }
 
     /**
-     * Z off-diagonal (matrix 32 and 23) 
+     * Z off-diagonal (matrix 32 and 23). 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "Z off-diagonal (matrix 32 and 23)"
+            description = "Z off-diagonal (matrix 32 and 23)."
     )
     public final float offdiagZ() {
         return this.offdiagZ;
+    }
+
+    /**
+     * Confidence in orientation (higher is better). 
+     */
+    @MavlinkFieldInfo(
+            position = 16,
+            unitSize = 4,
+            extension = true,
+            description = "Confidence in orientation (higher is better)."
+    )
+    public final float orientationConfidence() {
+        return this.orientationConfidence;
+    }
+
+    /**
+     * orientation before calibration. 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 1,
+            enumType = MavSensorOrientation.class,
+            extension = true,
+            description = "orientation before calibration."
+    )
+    public final EnumValue<MavSensorOrientation> oldOrientation() {
+        return this.oldOrientation;
+    }
+
+    /**
+     * orientation after calibration. 
+     */
+    @MavlinkFieldInfo(
+            position = 18,
+            unitSize = 1,
+            enumType = MavSensorOrientation.class,
+            extension = true,
+            description = "orientation after calibration."
+    )
+    public final EnumValue<MavSensorOrientation> newOrientation() {
+        return this.newOrientation;
     }
 
     @Override
@@ -263,6 +316,9 @@ public final class MagCalReport {
         if (!Objects.deepEquals(offdiagX, other.offdiagX)) return false;
         if (!Objects.deepEquals(offdiagY, other.offdiagY)) return false;
         if (!Objects.deepEquals(offdiagZ, other.offdiagZ)) return false;
+        if (!Objects.deepEquals(orientationConfidence, other.orientationConfidence)) return false;
+        if (!Objects.deepEquals(oldOrientation, other.oldOrientation)) return false;
+        if (!Objects.deepEquals(newOrientation, other.newOrientation)) return false;
         return true;
     }
 
@@ -283,6 +339,9 @@ public final class MagCalReport {
         result = 31 * result + Objects.hashCode(offdiagX);
         result = 31 * result + Objects.hashCode(offdiagY);
         result = 31 * result + Objects.hashCode(offdiagZ);
+        result = 31 * result + Objects.hashCode(orientationConfidence);
+        result = 31 * result + Objects.hashCode(oldOrientation);
+        result = 31 * result + Objects.hashCode(newOrientation);
         return result;
     }
 
@@ -301,7 +360,10 @@ public final class MagCalReport {
                  + ", diagZ=" + diagZ
                  + ", offdiagX=" + offdiagX
                  + ", offdiagY=" + offdiagY
-                 + ", offdiagZ=" + offdiagZ + "}";
+                 + ", offdiagZ=" + offdiagZ
+                 + ", orientationConfidence=" + orientationConfidence
+                 + ", oldOrientation=" + oldOrientation
+                 + ", newOrientation=" + newOrientation + "}";
     }
 
     public static final class Builder {
@@ -333,13 +395,19 @@ public final class MagCalReport {
 
         private float offdiagZ;
 
+        private float orientationConfidence;
+
+        private EnumValue<MavSensorOrientation> oldOrientation;
+
+        private EnumValue<MavSensorOrientation> newOrientation;
+
         /**
-         * Compass being calibrated 
+         * Compass being calibrated. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "Compass being calibrated"
+                description = "Compass being calibrated."
         )
         public final Builder compassId(int compassId) {
             this.compassId = compassId;
@@ -347,12 +415,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Bitmask of compasses being calibrated 
+         * Bitmask of compasses being calibrated. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Bitmask of compasses being calibrated"
+                description = "Bitmask of compasses being calibrated."
         )
         public final Builder calMask(int calMask) {
             this.calMask = calMask;
@@ -360,13 +428,13 @@ public final class MagCalReport {
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MagCalStatus.class,
-                description = "Status (see MAG_CAL_STATUS enum)"
+                description = "Calibration Status."
         )
         public final Builder calStatus(EnumValue<MagCalStatus> calStatus) {
             this.calStatus = calStatus;
@@ -374,33 +442,33 @@ public final class MagCalReport {
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(MagCalStatus entry) {
             return calStatus(EnumValue.of(entry));
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(Enum... flags) {
             return calStatus(EnumValue.create(flags));
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(Collection<Enum> flags) {
             return calStatus(EnumValue.create(flags));
         }
 
         /**
-         * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters 
+         * 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters"
+                description = "0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters."
         )
         public final Builder autosaved(int autosaved) {
             this.autosaved = autosaved;
@@ -408,12 +476,12 @@ public final class MagCalReport {
         }
 
         /**
-         * RMS milligauss residuals 
+         * RMS milligauss residuals. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "RMS milligauss residuals"
+                description = "RMS milligauss residuals."
         )
         public final Builder fitness(float fitness) {
             this.fitness = fitness;
@@ -421,12 +489,12 @@ public final class MagCalReport {
         }
 
         /**
-         * X offset 
+         * X offset. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "X offset"
+                description = "X offset."
         )
         public final Builder ofsX(float ofsX) {
             this.ofsX = ofsX;
@@ -434,12 +502,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Y offset 
+         * Y offset. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Y offset"
+                description = "Y offset."
         )
         public final Builder ofsY(float ofsY) {
             this.ofsY = ofsY;
@@ -447,12 +515,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Z offset 
+         * Z offset. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Z offset"
+                description = "Z offset."
         )
         public final Builder ofsZ(float ofsZ) {
             this.ofsZ = ofsZ;
@@ -460,12 +528,12 @@ public final class MagCalReport {
         }
 
         /**
-         * X diagonal (matrix 11) 
+         * X diagonal (matrix 11). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "X diagonal (matrix 11)"
+                description = "X diagonal (matrix 11)."
         )
         public final Builder diagX(float diagX) {
             this.diagX = diagX;
@@ -473,12 +541,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Y diagonal (matrix 22) 
+         * Y diagonal (matrix 22). 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Y diagonal (matrix 22)"
+                description = "Y diagonal (matrix 22)."
         )
         public final Builder diagY(float diagY) {
             this.diagY = diagY;
@@ -486,12 +554,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Z diagonal (matrix 33) 
+         * Z diagonal (matrix 33). 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Z diagonal (matrix 33)"
+                description = "Z diagonal (matrix 33)."
         )
         public final Builder diagZ(float diagZ) {
             this.diagZ = diagZ;
@@ -499,12 +567,12 @@ public final class MagCalReport {
         }
 
         /**
-         * X off-diagonal (matrix 12 and 21) 
+         * X off-diagonal (matrix 12 and 21). 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "X off-diagonal (matrix 12 and 21)"
+                description = "X off-diagonal (matrix 12 and 21)."
         )
         public final Builder offdiagX(float offdiagX) {
             this.offdiagX = offdiagX;
@@ -512,12 +580,12 @@ public final class MagCalReport {
         }
 
         /**
-         * Y off-diagonal (matrix 13 and 31) 
+         * Y off-diagonal (matrix 13 and 31). 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                description = "Y off-diagonal (matrix 13 and 31)"
+                description = "Y off-diagonal (matrix 13 and 31)."
         )
         public final Builder offdiagY(float offdiagY) {
             this.offdiagY = offdiagY;
@@ -525,20 +593,106 @@ public final class MagCalReport {
         }
 
         /**
-         * Z off-diagonal (matrix 32 and 23) 
+         * Z off-diagonal (matrix 32 and 23). 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "Z off-diagonal (matrix 32 and 23)"
+                description = "Z off-diagonal (matrix 32 and 23)."
         )
         public final Builder offdiagZ(float offdiagZ) {
             this.offdiagZ = offdiagZ;
             return this;
         }
 
+        /**
+         * Confidence in orientation (higher is better). 
+         */
+        @MavlinkFieldInfo(
+                position = 16,
+                unitSize = 4,
+                extension = true,
+                description = "Confidence in orientation (higher is better)."
+        )
+        public final Builder orientationConfidence(float orientationConfidence) {
+            this.orientationConfidence = orientationConfidence;
+            return this;
+        }
+
+        /**
+         * orientation before calibration. 
+         */
+        @MavlinkFieldInfo(
+                position = 17,
+                unitSize = 1,
+                enumType = MavSensorOrientation.class,
+                extension = true,
+                description = "orientation before calibration."
+        )
+        public final Builder oldOrientation(EnumValue<MavSensorOrientation> oldOrientation) {
+            this.oldOrientation = oldOrientation;
+            return this;
+        }
+
+        /**
+         * orientation before calibration. 
+         */
+        public final Builder oldOrientation(MavSensorOrientation entry) {
+            return oldOrientation(EnumValue.of(entry));
+        }
+
+        /**
+         * orientation before calibration. 
+         */
+        public final Builder oldOrientation(Enum... flags) {
+            return oldOrientation(EnumValue.create(flags));
+        }
+
+        /**
+         * orientation before calibration. 
+         */
+        public final Builder oldOrientation(Collection<Enum> flags) {
+            return oldOrientation(EnumValue.create(flags));
+        }
+
+        /**
+         * orientation after calibration. 
+         */
+        @MavlinkFieldInfo(
+                position = 18,
+                unitSize = 1,
+                enumType = MavSensorOrientation.class,
+                extension = true,
+                description = "orientation after calibration."
+        )
+        public final Builder newOrientation(EnumValue<MavSensorOrientation> newOrientation) {
+            this.newOrientation = newOrientation;
+            return this;
+        }
+
+        /**
+         * orientation after calibration. 
+         */
+        public final Builder newOrientation(MavSensorOrientation entry) {
+            return newOrientation(EnumValue.of(entry));
+        }
+
+        /**
+         * orientation after calibration. 
+         */
+        public final Builder newOrientation(Enum... flags) {
+            return newOrientation(EnumValue.create(flags));
+        }
+
+        /**
+         * orientation after calibration. 
+         */
+        public final Builder newOrientation(Collection<Enum> flags) {
+            return newOrientation(EnumValue.create(flags));
+        }
+
         public final MagCalReport build() {
-            return new MagCalReport(compassId, calMask, calStatus, autosaved, fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ);
+            return new MagCalReport(compassId, calMask, calStatus, autosaved, fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ, orientationConfidence, oldOrientation, newOrientation);
         }
     }
 }

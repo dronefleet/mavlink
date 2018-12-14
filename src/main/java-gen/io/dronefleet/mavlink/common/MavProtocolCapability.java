@@ -88,7 +88,7 @@ public enum MavProtocolCapability {
     MAV_PROTOCOL_CAPABILITY_COMPASS_CALIBRATION,
 
     /**
-     * Autopilot supports mavlink version 2. 
+     * Autopilot supports MAVLink version 2. 
      */
     @MavlinkEntryInfo(8192)
     MAV_PROTOCOL_CAPABILITY_MAVLINK2,

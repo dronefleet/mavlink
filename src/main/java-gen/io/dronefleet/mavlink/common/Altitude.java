@@ -53,12 +53,13 @@ public final class Altitude {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -84,12 +85,12 @@ public final class Altitude {
      * This altitude measure is strictly above mean sea level and might be non-monotonic (it might 
      * reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which 
      * global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, 
-     * most GPS modules already output AMSL by default and not the WGS84 altitude. 
+     * most GPS modules already output MSL by default and not the WGS84 altitude. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude."
+            description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output MSL by default and not the WGS84 altitude."
     )
     public final float altitudeAmsl() {
         return this.altitudeAmsl;
@@ -203,12 +204,13 @@ public final class Altitude {
         private float bottomClearance;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -236,12 +238,12 @@ public final class Altitude {
          * This altitude measure is strictly above mean sea level and might be non-monotonic (it might 
          * reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which 
          * global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, 
-         * most GPS modules already output AMSL by default and not the WGS84 altitude. 
+         * most GPS modules already output MSL by default and not the WGS84 altitude. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude."
+                description = "This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output MSL by default and not the WGS84 altitude."
         )
         public final Builder altitudeAmsl(float altitudeAmsl) {
             this.altitudeAmsl = altitudeAmsl;

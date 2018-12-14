@@ -122,13 +122,13 @@ public final class UavionixAdsbOutDynamic {
     }
 
     /**
-     * Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX 
+     * Altitude (WGS84). UP +ve. If unknown set to INT32_MAX 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX"
+            description = "Altitude (WGS84). UP +ve. If unknown set to INT32_MAX"
     )
     public final int gpsalt() {
         return this.gpsalt;
@@ -160,14 +160,14 @@ public final class UavionixAdsbOutDynamic {
     }
 
     /**
-     * Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar 
-     * corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
+     * Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT 
+     * bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
             signed = true,
-            description = "Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
+            description = "Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
     )
     public final int baroaltmsl() {
         return this.baroaltmsl;
@@ -427,13 +427,13 @@ public final class UavionixAdsbOutDynamic {
         }
 
         /**
-         * Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX 
+         * Altitude (WGS84). UP +ve. If unknown set to INT32_MAX 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude in mm (m * 1E-3) UP +ve. WGS84 altitude. If unknown set to INT32_MAX"
+                description = "Altitude (WGS84). UP +ve. If unknown set to INT32_MAX"
         )
         public final Builder gpsalt(int gpsalt) {
             this.gpsalt = gpsalt;
@@ -489,14 +489,14 @@ public final class UavionixAdsbOutDynamic {
         }
 
         /**
-         * Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar 
-         * corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
+         * Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT 
+         * bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
                 signed = true,
-                description = "Barometric pressure altitude relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
+                description = "Barometric pressure altitude (MSL) relative to a standard atmosphere of 1013.2 mBar and NOT bar corrected altitude (m * 1E-3). (up +ve). If unknown set to INT32_MAX"
         )
         public final Builder baroaltmsl(int baroaltmsl) {
             this.baroaltmsl = baroaltmsl;

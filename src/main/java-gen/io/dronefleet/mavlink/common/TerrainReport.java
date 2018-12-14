@@ -51,26 +51,26 @@ public final class TerrainReport {
     }
 
     /**
-     * Latitude (degrees *10^7) 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
             signed = true,
-            description = "Latitude (degrees *10^7)"
+            description = "Latitude"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude (degrees *10^7) 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Longitude (degrees *10^7)"
+            description = "Longitude"
     )
     public final int lon() {
         return this.lon;
@@ -89,24 +89,24 @@ public final class TerrainReport {
     }
 
     /**
-     * Terrain height in meters AMSL 
+     * Terrain height MSL 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Terrain height in meters AMSL"
+            description = "Terrain height MSL"
     )
     public final float terrainHeight() {
         return this.terrainHeight;
     }
 
     /**
-     * Current vehicle height above lat/lon terrain height (meters) 
+     * Current vehicle height above lat/lon terrain height 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Current vehicle height above lat/lon terrain height (meters)"
+            description = "Current vehicle height above lat/lon terrain height"
     )
     public final float currentHeight() {
         return this.currentHeight;
@@ -191,13 +191,13 @@ public final class TerrainReport {
         private int loaded;
 
         /**
-         * Latitude (degrees *10^7) 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (degrees *10^7)"
+                description = "Latitude"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -205,13 +205,13 @@ public final class TerrainReport {
         }
 
         /**
-         * Longitude (degrees *10^7) 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (degrees *10^7)"
+                description = "Longitude"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -232,12 +232,12 @@ public final class TerrainReport {
         }
 
         /**
-         * Terrain height in meters AMSL 
+         * Terrain height MSL 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Terrain height in meters AMSL"
+                description = "Terrain height MSL"
         )
         public final Builder terrainHeight(float terrainHeight) {
             this.terrainHeight = terrainHeight;
@@ -245,12 +245,12 @@ public final class TerrainReport {
         }
 
         /**
-         * Current vehicle height above lat/lon terrain height (meters) 
+         * Current vehicle height above lat/lon terrain height 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Current vehicle height above lat/lon terrain height (meters)"
+                description = "Current vehicle height above lat/lon terrain height"
         )
         public final Builder currentHeight(float currentHeight) {
             this.currentHeight = currentHeight;

@@ -12,14 +12,15 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * The heartbeat message shows that a system is present and responding. The type of the MAV and 
- * Autopilot hardware allow the receiving system to treat further messages from this system 
- * appropriate (e.g. by laying out the user interface based on the autopilot). 
+ * The heartbeat message shows that a system or component is present and responding. The type and 
+ * autopilot fields (along with the message component id), allow the receiving system to treat 
+ * further messages from this system appropriately (e.g. by laying out the user interface based 
+ * on the autopilot). 
  */
 @MavlinkMessageInfo(
         id = 0,
         crc = 50,
-        description = "The heartbeat message shows that a system is present and responding. The type of the MAV and Autopilot hardware allow the receiving system to treat further messages from this system appropriate (e.g. by laying out the user interface based on the autopilot)."
+        description = "The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot)."
 )
 public final class Heartbeat {
     private final EnumValue<MavType> type;
@@ -54,39 +55,40 @@ public final class Heartbeat {
     }
 
     /**
-     * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+     * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
+     * associated system. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = MavType.class,
-            description = "Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)"
+            description = "Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system."
     )
     public final EnumValue<MavType> type() {
         return this.type;
     }
 
     /**
-     * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+     * Autopilot type / class. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = MavAutopilot.class,
-            description = "Autopilot type / class. defined in MAV_AUTOPILOT ENUM"
+            description = "Autopilot type / class."
     )
     public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
     }
 
     /**
-     * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+     * System mode bitmap. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavModeFlag.class,
-            description = "System mode bitfield, as defined by MAV_MODE_FLAG enum"
+            description = "System mode bitmap."
     )
     public final EnumValue<MavModeFlag> baseMode() {
         return this.baseMode;
@@ -105,13 +107,13 @@ public final class Heartbeat {
     }
 
     /**
-     * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+     * System status flag. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             enumType = MavState.class,
-            description = "System status flag, as defined by MAV_STATE enum"
+            description = "System status flag."
     )
     public final EnumValue<MavState> systemStatus() {
         return this.systemStatus;
@@ -180,13 +182,14 @@ public final class Heartbeat {
         private int mavlinkVersion;
 
         /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
+         * associated system. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = MavType.class,
-                description = "Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)"
+                description = "Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system."
         )
         public final Builder type(EnumValue<MavType> type) {
             this.type = type;
@@ -194,34 +197,37 @@ public final class Heartbeat {
         }
 
         /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
+         * associated system. 
          */
         public final Builder type(MavType entry) {
             return type(EnumValue.of(entry));
         }
 
         /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
+         * associated system. 
          */
         public final Builder type(Enum... flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in {@link io.dronefleet.mavlink.common.MavType MAV_TYPE} ENUM) 
+         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
+         * associated system. 
          */
         public final Builder type(Collection<Enum> flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         * Autopilot type / class. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = MavAutopilot.class,
-                description = "Autopilot type / class. defined in MAV_AUTOPILOT ENUM"
+                description = "Autopilot type / class."
         )
         public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
@@ -229,34 +235,34 @@ public final class Heartbeat {
         }
 
         /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         * Autopilot type / class. 
          */
         public final Builder autopilot(MavAutopilot entry) {
             return autopilot(EnumValue.of(entry));
         }
 
         /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         * Autopilot type / class. 
          */
         public final Builder autopilot(Enum... flags) {
             return autopilot(EnumValue.create(flags));
         }
 
         /**
-         * Autopilot type / class. defined in {@link io.dronefleet.mavlink.common.MavAutopilot MAV_AUTOPILOT} ENUM 
+         * Autopilot type / class. 
          */
         public final Builder autopilot(Collection<Enum> flags) {
             return autopilot(EnumValue.create(flags));
         }
 
         /**
-         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         * System mode bitmap. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavModeFlag.class,
-                description = "System mode bitfield, as defined by MAV_MODE_FLAG enum"
+                description = "System mode bitmap."
         )
         public final Builder baseMode(EnumValue<MavModeFlag> baseMode) {
             this.baseMode = baseMode;
@@ -264,21 +270,21 @@ public final class Heartbeat {
         }
 
         /**
-         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         * System mode bitmap. 
          */
         public final Builder baseMode(MavModeFlag entry) {
             return baseMode(EnumValue.of(entry));
         }
 
         /**
-         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         * System mode bitmap. 
          */
         public final Builder baseMode(Enum... flags) {
             return baseMode(EnumValue.create(flags));
         }
 
         /**
-         * System mode bitfield, as defined by {@link io.dronefleet.mavlink.common.MavModeFlag MAV_MODE_FLAG} enum 
+         * System mode bitmap. 
          */
         public final Builder baseMode(Collection<Enum> flags) {
             return baseMode(EnumValue.create(flags));
@@ -298,13 +304,13 @@ public final class Heartbeat {
         }
 
         /**
-         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         * System status flag. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 enumType = MavState.class,
-                description = "System status flag, as defined by MAV_STATE enum"
+                description = "System status flag."
         )
         public final Builder systemStatus(EnumValue<MavState> systemStatus) {
             this.systemStatus = systemStatus;
@@ -312,21 +318,21 @@ public final class Heartbeat {
         }
 
         /**
-         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         * System status flag. 
          */
         public final Builder systemStatus(MavState entry) {
             return systemStatus(EnumValue.of(entry));
         }
 
         /**
-         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         * System status flag. 
          */
         public final Builder systemStatus(Enum... flags) {
             return systemStatus(EnumValue.create(flags));
         }
 
         /**
-         * System status flag, as defined by {@link io.dronefleet.mavlink.common.MavState MAV_STATE} enum 
+         * System status flag. 
          */
         public final Builder systemStatus(Collection<Enum> flags) {
             return systemStatus(EnumValue.create(flags));

@@ -55,12 +55,13 @@ public final class ObstacleDistance {
     }
 
     /**
-     * Timestamp (microseconds since system boot or since UNIX epoch). 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since system boot or since UNIX epoch)."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -108,24 +109,24 @@ public final class ObstacleDistance {
     }
 
     /**
-     * Minimum distance the sensor can measure in centimeters. 
+     * Minimum distance the sensor can measure. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "Minimum distance the sensor can measure in centimeters."
+            description = "Minimum distance the sensor can measure."
     )
     public final int minDistance() {
         return this.minDistance;
     }
 
     /**
-     * Maximum distance the sensor can measure in centimeters. 
+     * Maximum distance the sensor can measure. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "Maximum distance the sensor can measure in centimeters."
+            description = "Maximum distance the sensor can measure."
     )
     public final int maxDistance() {
         return this.maxDistance;
@@ -181,12 +182,13 @@ public final class ObstacleDistance {
         private int maxDistance;
 
         /**
-         * Timestamp (microseconds since system boot or since UNIX epoch). 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since system boot or since UNIX epoch)."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -259,12 +261,12 @@ public final class ObstacleDistance {
         }
 
         /**
-         * Minimum distance the sensor can measure in centimeters. 
+         * Minimum distance the sensor can measure. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "Minimum distance the sensor can measure in centimeters."
+                description = "Minimum distance the sensor can measure."
         )
         public final Builder minDistance(int minDistance) {
             this.minDistance = minDistance;
@@ -272,12 +274,12 @@ public final class ObstacleDistance {
         }
 
         /**
-         * Maximum distance the sensor can measure in centimeters. 
+         * Maximum distance the sensor can measure. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "Maximum distance the sensor can measure in centimeters."
+                description = "Maximum distance the sensor can measure."
         )
         public final Builder maxDistance(int maxDistance) {
             this.maxDistance = maxDistance;

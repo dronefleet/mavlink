@@ -15,12 +15,13 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * The location of a landing area captured from a downward facing camera 
+ * The location of a landing target. See: 
+ * https://mavlink.io/en/services/landing_target.html 
  */
 @MavlinkMessageInfo(
         id = 149,
         crc = 200,
-        description = "The location of a landing area captured from a downward facing camera"
+        description = "The location of a landing target. See: https://mavlink.io/en/services/landing_target.html"
 )
 public final class LandingTarget {
     private final BigInteger timeUsec;
@@ -79,12 +80,13 @@ public final class LandingTarget {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -103,113 +105,112 @@ public final class LandingTarget {
     }
 
     /**
-     * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
-     * etc. 
+     * Coordinate frame used for following fields. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavFrame.class,
-            description = "MAV_FRAME enum specifying the whether the following feilds are earth-frame, body-frame, etc."
+            description = "Coordinate frame used for following fields."
     )
     public final EnumValue<MavFrame> frame() {
         return this.frame;
     }
 
     /**
-     * X-axis angular offset (in radians) of the target from the center of the image 
+     * X-axis angular offset of the target from the center of the image 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "X-axis angular offset (in radians) of the target from the center of the image"
+            description = "X-axis angular offset of the target from the center of the image"
     )
     public final float angleX() {
         return this.angleX;
     }
 
     /**
-     * Y-axis angular offset (in radians) of the target from the center of the image 
+     * Y-axis angular offset of the target from the center of the image 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Y-axis angular offset (in radians) of the target from the center of the image"
+            description = "Y-axis angular offset of the target from the center of the image"
     )
     public final float angleY() {
         return this.angleY;
     }
 
     /**
-     * Distance to the target from the vehicle in meters 
+     * Distance to the target from the vehicle 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Distance to the target from the vehicle in meters"
+            description = "Distance to the target from the vehicle"
     )
     public final float distance() {
         return this.distance;
     }
 
     /**
-     * Size in radians of target along x-axis 
+     * Size of target along x-axis 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Size in radians of target along x-axis"
+            description = "Size of target along x-axis"
     )
     public final float sizeX() {
         return this.sizeX;
     }
 
     /**
-     * Size in radians of target along y-axis 
+     * Size of target along y-axis 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Size in radians of target along y-axis"
+            description = "Size of target along y-axis"
     )
     public final float sizeY() {
         return this.sizeY;
     }
 
     /**
-     * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+     * X Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
             extension = true,
-            description = "X Position of the landing target on MAV_FRAME"
+            description = "X Position of the landing target in MAV_FRAME"
     )
     public final float x() {
         return this.x;
     }
 
     /**
-     * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+     * Y Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
             extension = true,
-            description = "Y Position of the landing target on MAV_FRAME"
+            description = "Y Position of the landing target in MAV_FRAME"
     )
     public final float y() {
         return this.y;
     }
 
     /**
-     * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+     * Z Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
             extension = true,
-            description = "Z Position of the landing target on MAV_FRAME"
+            description = "Z Position of the landing target in MAV_FRAME"
     )
     public final float z() {
         return this.z;
@@ -230,28 +231,28 @@ public final class LandingTarget {
     }
 
     /**
-     * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+     * Type of landing target 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
             enumType = LandingTargetType.class,
             extension = true,
-            description = "LANDING_TARGET_TYPE enum specifying the type of landing target"
+            description = "Type of landing target"
     )
     public final EnumValue<LandingTargetType> type() {
         return this.type;
     }
 
     /**
-     * Boolean indicating known position (1) or default unkown position (0), for validation of 
-     * positioning of the landing target 
+     * Boolean indicating whether the position fields (x, y, z, q, type) contain valid target 
+     * position information (valid: 1, invalid: 0). Default is 0 (invalid). 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 1,
             extension = true,
-            description = "Boolean indicating known position (1) or default unkown position (0), for validation of positioning of the landing target"
+            description = "Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid)."
     )
     public final int positionValid() {
         return this.positionValid;
@@ -347,12 +348,13 @@ public final class LandingTarget {
         private int positionValid;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -373,14 +375,13 @@ public final class LandingTarget {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
-         * etc. 
+         * Coordinate frame used for following fields. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavFrame.class,
-                description = "MAV_FRAME enum specifying the whether the following feilds are earth-frame, body-frame, etc."
+                description = "Coordinate frame used for following fields."
         )
         public final Builder frame(EnumValue<MavFrame> frame) {
             this.frame = frame;
@@ -388,36 +389,33 @@ public final class LandingTarget {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
-         * etc. 
+         * Coordinate frame used for following fields. 
          */
         public final Builder frame(MavFrame entry) {
             return frame(EnumValue.of(entry));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
-         * etc. 
+         * Coordinate frame used for following fields. 
          */
         public final Builder frame(Enum... flags) {
             return frame(EnumValue.create(flags));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} enum specifying the whether the following feilds are earth-frame, body-frame, 
-         * etc. 
+         * Coordinate frame used for following fields. 
          */
         public final Builder frame(Collection<Enum> flags) {
             return frame(EnumValue.create(flags));
         }
 
         /**
-         * X-axis angular offset (in radians) of the target from the center of the image 
+         * X-axis angular offset of the target from the center of the image 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "X-axis angular offset (in radians) of the target from the center of the image"
+                description = "X-axis angular offset of the target from the center of the image"
         )
         public final Builder angleX(float angleX) {
             this.angleX = angleX;
@@ -425,12 +423,12 @@ public final class LandingTarget {
         }
 
         /**
-         * Y-axis angular offset (in radians) of the target from the center of the image 
+         * Y-axis angular offset of the target from the center of the image 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Y-axis angular offset (in radians) of the target from the center of the image"
+                description = "Y-axis angular offset of the target from the center of the image"
         )
         public final Builder angleY(float angleY) {
             this.angleY = angleY;
@@ -438,12 +436,12 @@ public final class LandingTarget {
         }
 
         /**
-         * Distance to the target from the vehicle in meters 
+         * Distance to the target from the vehicle 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Distance to the target from the vehicle in meters"
+                description = "Distance to the target from the vehicle"
         )
         public final Builder distance(float distance) {
             this.distance = distance;
@@ -451,12 +449,12 @@ public final class LandingTarget {
         }
 
         /**
-         * Size in radians of target along x-axis 
+         * Size of target along x-axis 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Size in radians of target along x-axis"
+                description = "Size of target along x-axis"
         )
         public final Builder sizeX(float sizeX) {
             this.sizeX = sizeX;
@@ -464,12 +462,12 @@ public final class LandingTarget {
         }
 
         /**
-         * Size in radians of target along y-axis 
+         * Size of target along y-axis 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Size in radians of target along y-axis"
+                description = "Size of target along y-axis"
         )
         public final Builder sizeY(float sizeY) {
             this.sizeY = sizeY;
@@ -477,13 +475,13 @@ public final class LandingTarget {
         }
 
         /**
-         * X Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+         * X Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
                 extension = true,
-                description = "X Position of the landing target on MAV_FRAME"
+                description = "X Position of the landing target in MAV_FRAME"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -491,13 +489,13 @@ public final class LandingTarget {
         }
 
         /**
-         * Y Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+         * Y Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
                 extension = true,
-                description = "Y Position of the landing target on MAV_FRAME"
+                description = "Y Position of the landing target in MAV_FRAME"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -505,13 +503,13 @@ public final class LandingTarget {
         }
 
         /**
-         * Z Position of the landing target on {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
+         * Z Position of the landing target in {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
                 extension = true,
-                description = "Z Position of the landing target on MAV_FRAME"
+                description = "Z Position of the landing target in MAV_FRAME"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -534,14 +532,14 @@ public final class LandingTarget {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         * Type of landing target 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
                 enumType = LandingTargetType.class,
                 extension = true,
-                description = "LANDING_TARGET_TYPE enum specifying the type of landing target"
+                description = "Type of landing target"
         )
         public final Builder type(EnumValue<LandingTargetType> type) {
             this.type = type;
@@ -549,35 +547,35 @@ public final class LandingTarget {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         * Type of landing target 
          */
         public final Builder type(LandingTargetType entry) {
             return type(EnumValue.of(entry));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         * Type of landing target 
          */
         public final Builder type(Enum... flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.LandingTargetType LANDING_TARGET_TYPE} enum specifying the type of landing target 
+         * Type of landing target 
          */
         public final Builder type(Collection<Enum> flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Boolean indicating known position (1) or default unkown position (0), for validation of 
-         * positioning of the landing target 
+         * Boolean indicating whether the position fields (x, y, z, q, type) contain valid target 
+         * position information (valid: 1, invalid: 0). Default is 0 (invalid). 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 1,
                 extension = true,
-                description = "Boolean indicating known position (1) or default unkown position (0), for validation of positioning of the landing target"
+                description = "Boolean indicating whether the position fields (x, y, z, q, type) contain valid target position information (valid: 1, invalid: 0). Default is 0 (invalid)."
         )
         public final Builder positionValid(int positionValid) {
             this.positionValid = positionValid;

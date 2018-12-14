@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * state of APM memory 
+ * State of APM memory. 
  */
 @MavlinkMessageInfo(
         id = 152,
         crc = 208,
-        description = "state of APM memory"
+        description = "State of APM memory."
 )
 public final class Meminfo {
     private final int brkval;
@@ -38,37 +38,37 @@ public final class Meminfo {
     }
 
     /**
-     * heap top 
+     * Heap top. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            description = "heap top"
+            description = "Heap top."
     )
     public final int brkval() {
         return this.brkval;
     }
 
     /**
-     * free memory 
+     * Free memory. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            description = "free memory"
+            description = "Free memory."
     )
     public final int freemem() {
         return this.freemem;
     }
 
     /**
-     * free memory (32 bit) 
+     * Free memory (32 bit). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             extension = true,
-            description = "free memory (32 bit)"
+            description = "Free memory (32 bit)."
     )
     public final long freemem32() {
         return this.freemem32;
@@ -109,12 +109,12 @@ public final class Meminfo {
         private long freemem32;
 
         /**
-         * heap top 
+         * Heap top. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                description = "heap top"
+                description = "Heap top."
         )
         public final Builder brkval(int brkval) {
             this.brkval = brkval;
@@ -122,12 +122,12 @@ public final class Meminfo {
         }
 
         /**
-         * free memory 
+         * Free memory. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                description = "free memory"
+                description = "Free memory."
         )
         public final Builder freemem(int freemem) {
             this.freemem = freemem;
@@ -135,13 +135,13 @@ public final class Meminfo {
         }
 
         /**
-         * free memory (32 bit) 
+         * Free memory (32 bit). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 extension = true,
-                description = "free memory (32 bit)"
+                description = "Free memory (32 bit)."
         )
         public final Builder freemem32(long freemem32) {
             this.freemem32 = freemem32;

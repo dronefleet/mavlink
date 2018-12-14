@@ -65,24 +65,25 @@ public final class UavcanNodeInfo {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * The number of seconds since the start-up of the node. 
+     * Time since the start-up of the node. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "The number of seconds since the start-up of the node."
+            description = "Time since the start-up of the node."
     )
     public final long uptimeSec() {
         return this.uptimeSec;
@@ -240,12 +241,13 @@ public final class UavcanNodeInfo {
         private long swVcsCommit;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -253,12 +255,12 @@ public final class UavcanNodeInfo {
         }
 
         /**
-         * The number of seconds since the start-up of the node. 
+         * Time since the start-up of the node. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "The number of seconds since the start-up of the node."
+                description = "Time since the start-up of the node."
         )
         public final Builder uptimeSec(long uptimeSec) {
             this.uptimeSec = uptimeSec;

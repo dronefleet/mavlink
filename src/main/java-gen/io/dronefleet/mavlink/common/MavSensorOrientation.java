@@ -237,8 +237,26 @@ public enum MavSensorOrientation {
     MAV_SENSOR_ROTATION_ROLL_90_YAW_270,
 
     /**
-     * Roll: 315, Pitch: 315, Yaw: 315 
+     * Roll: 90, Pitch: 68, Yaw: 293 
      */
     @MavlinkEntryInfo(38)
-    MAV_SENSOR_ROTATION_ROLL_315_PITCH_315_YAW_315
+    MAV_SENSOR_ROTATION_ROLL_90_PITCH_68_YAW_293,
+
+    /**
+     * Pitch: 315 
+     */
+    @MavlinkEntryInfo(39)
+    MAV_SENSOR_ROTATION_PITCH_315,
+
+    /**
+     * Roll: 90, Pitch: 315 
+     */
+    @MavlinkEntryInfo(40)
+    MAV_SENSOR_ROTATION_ROLL_90_PITCH_315,
+
+    /**
+     * Custom orientation 
+     */
+    @MavlinkEntryInfo(100)
+    MAV_SENSOR_ROTATION_CUSTOM
 }

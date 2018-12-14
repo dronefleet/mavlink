@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * 100 Hz gimbal torque command telemetry 
+ * 100 Hz gimbal torque command telemetry. 
  */
 @MavlinkMessageInfo(
         id = 214,
         crc = 69,
-        description = "100 Hz gimbal torque command telemetry"
+        description = "100 Hz gimbal torque command telemetry."
 )
 public final class GimbalTorqueCmdReport {
     private final int targetSystem;
@@ -45,63 +45,63 @@ public final class GimbalTorqueCmdReport {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Roll Torque Command 
+     * Roll Torque Command. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Roll Torque Command"
+            description = "Roll Torque Command."
     )
     public final int rlTorqueCmd() {
         return this.rlTorqueCmd;
     }
 
     /**
-     * Elevation Torque Command 
+     * Elevation Torque Command. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Elevation Torque Command"
+            description = "Elevation Torque Command."
     )
     public final int elTorqueCmd() {
         return this.elTorqueCmd;
     }
 
     /**
-     * Azimuth Torque Command 
+     * Azimuth Torque Command. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
             signed = true,
-            description = "Azimuth Torque Command"
+            description = "Azimuth Torque Command."
     )
     public final int azTorqueCmd() {
         return this.azTorqueCmd;
@@ -152,12 +152,12 @@ public final class GimbalTorqueCmdReport {
         private int azTorqueCmd;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -165,12 +165,12 @@ public final class GimbalTorqueCmdReport {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -178,13 +178,13 @@ public final class GimbalTorqueCmdReport {
         }
 
         /**
-         * Roll Torque Command 
+         * Roll Torque Command. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Roll Torque Command"
+                description = "Roll Torque Command."
         )
         public final Builder rlTorqueCmd(int rlTorqueCmd) {
             this.rlTorqueCmd = rlTorqueCmd;
@@ -192,13 +192,13 @@ public final class GimbalTorqueCmdReport {
         }
 
         /**
-         * Elevation Torque Command 
+         * Elevation Torque Command. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Elevation Torque Command"
+                description = "Elevation Torque Command."
         )
         public final Builder elTorqueCmd(int elTorqueCmd) {
             this.elTorqueCmd = elTorqueCmd;
@@ -206,13 +206,13 @@ public final class GimbalTorqueCmdReport {
         }
 
         /**
-         * Azimuth Torque Command 
+         * Azimuth Torque Command. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
                 signed = true,
-                description = "Azimuth Torque Command"
+                description = "Azimuth Torque Command."
         )
         public final Builder azTorqueCmd(int azTorqueCmd) {
             this.azTorqueCmd = azTorqueCmd;

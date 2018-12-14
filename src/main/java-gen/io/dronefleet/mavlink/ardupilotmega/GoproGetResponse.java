@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} get request 
+ * Response from a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} get request. 
  */
 @MavlinkMessageInfo(
         id = 217,
         crc = 202,
-        description = "Response from a GOPRO_COMMAND get request"
+        description = "Response from a GOPRO_COMMAND get request."
 )
 public final class GoproGetResponse {
     private final EnumValue<GoproCommand> cmdId;
@@ -42,39 +42,39 @@ public final class GoproGetResponse {
     }
 
     /**
-     * Command ID 
+     * Command ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = GoproCommand.class,
-            description = "Command ID"
+            description = "Command ID."
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
     }
 
     /**
-     * Status 
+     * Status. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = GoproRequestStatus.class,
-            description = "Status"
+            description = "Status."
     )
     public final EnumValue<GoproRequestStatus> status() {
         return this.status;
     }
 
     /**
-     * Value 
+     * Value. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             arraySize = 4,
-            description = "Value"
+            description = "Value."
     )
     public final byte[] value() {
         return this.value;
@@ -115,13 +115,13 @@ public final class GoproGetResponse {
         private byte[] value;
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = GoproCommand.class,
-                description = "Command ID"
+                description = "Command ID."
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -129,34 +129,34 @@ public final class GoproGetResponse {
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(GoproCommand entry) {
             return cmdId(EnumValue.of(entry));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Enum... flags) {
             return cmdId(EnumValue.create(flags));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Collection<Enum> flags) {
             return cmdId(EnumValue.create(flags));
         }
 
         /**
-         * Status 
+         * Status. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = GoproRequestStatus.class,
-                description = "Status"
+                description = "Status."
         )
         public final Builder status(EnumValue<GoproRequestStatus> status) {
             this.status = status;
@@ -164,34 +164,34 @@ public final class GoproGetResponse {
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(GoproRequestStatus entry) {
             return status(EnumValue.of(entry));
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(Enum... flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(Collection<Enum> flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Value 
+         * Value. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 arraySize = 4,
-                description = "Value"
+                description = "Value."
         )
         public final Builder value(byte[] value) {
             this.value = value;

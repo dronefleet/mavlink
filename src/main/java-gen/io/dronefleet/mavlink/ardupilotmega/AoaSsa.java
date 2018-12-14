@@ -10,12 +10,12 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Angle of Attack and Side Slip Angle 
+ * Angle of Attack and Side Slip Angle. 
  */
 @MavlinkMessageInfo(
         id = 11020,
         crc = 205,
-        description = "Angle of Attack and Side Slip Angle"
+        description = "Angle of Attack and Side Slip Angle."
 )
 public final class AoaSsa {
     private final BigInteger timeUsec;
@@ -39,36 +39,36 @@ public final class AoaSsa {
     }
 
     /**
-     * Timestamp (micros since boot or Unix epoch) 
+     * Timestamp (since boot or Unix epoch). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (micros since boot or Unix epoch)"
+            description = "Timestamp (since boot or Unix epoch)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Angle of Attack (degrees) 
+     * Angle of Attack. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Angle of Attack (degrees)"
+            description = "Angle of Attack."
     )
     public final float aoa() {
         return this.aoa;
     }
 
     /**
-     * Side Slip Angle (degrees) 
+     * Side Slip Angle. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Side Slip Angle (degrees)"
+            description = "Side Slip Angle."
     )
     public final float ssa() {
         return this.ssa;
@@ -109,12 +109,12 @@ public final class AoaSsa {
         private float ssa;
 
         /**
-         * Timestamp (micros since boot or Unix epoch) 
+         * Timestamp (since boot or Unix epoch). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (micros since boot or Unix epoch)"
+                description = "Timestamp (since boot or Unix epoch)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -122,12 +122,12 @@ public final class AoaSsa {
         }
 
         /**
-         * Angle of Attack (degrees) 
+         * Angle of Attack. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Angle of Attack (degrees)"
+                description = "Angle of Attack."
         )
         public final Builder aoa(float aoa) {
             this.aoa = aoa;
@@ -135,12 +135,12 @@ public final class AoaSsa {
         }
 
         /**
-         * Side Slip Angle (degrees) 
+         * Side Slip Angle. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Side Slip Angle (degrees)"
+                description = "Side Slip Angle."
         )
         public final Builder ssa(float ssa) {
             this.ssa = ssa;

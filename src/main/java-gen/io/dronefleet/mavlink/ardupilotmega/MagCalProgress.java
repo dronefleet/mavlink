@@ -61,110 +61,110 @@ public final class MagCalProgress {
     }
 
     /**
-     * Compass being calibrated 
+     * Compass being calibrated. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "Compass being calibrated"
+            description = "Compass being calibrated."
     )
     public final int compassId() {
         return this.compassId;
     }
 
     /**
-     * Bitmask of compasses being calibrated 
+     * Bitmask of compasses being calibrated. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Bitmask of compasses being calibrated"
+            description = "Bitmask of compasses being calibrated."
     )
     public final int calMask() {
         return this.calMask;
     }
 
     /**
-     * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+     * Calibration Status. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MagCalStatus.class,
-            description = "Status (see MAG_CAL_STATUS enum)"
+            description = "Calibration Status."
     )
     public final EnumValue<MagCalStatus> calStatus() {
         return this.calStatus;
     }
 
     /**
-     * Attempt number 
+     * Attempt number. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Attempt number"
+            description = "Attempt number."
     )
     public final int attempt() {
         return this.attempt;
     }
 
     /**
-     * Completion percentage 
+     * Completion percentage. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "Completion percentage"
+            description = "Completion percentage."
     )
     public final int completionPct() {
         return this.completionPct;
     }
 
     /**
-     * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid) 
+     * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
             arraySize = 10,
-            description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)"
+            description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)."
     )
     public final byte[] completionMask() {
         return this.completionMask;
     }
 
     /**
-     * Body frame direction vector for display 
+     * Body frame direction vector for display. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Body frame direction vector for display"
+            description = "Body frame direction vector for display."
     )
     public final float directionX() {
         return this.directionX;
     }
 
     /**
-     * Body frame direction vector for display 
+     * Body frame direction vector for display. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Body frame direction vector for display"
+            description = "Body frame direction vector for display."
     )
     public final float directionY() {
         return this.directionY;
     }
 
     /**
-     * Body frame direction vector for display 
+     * Body frame direction vector for display. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Body frame direction vector for display"
+            description = "Body frame direction vector for display."
     )
     public final float directionZ() {
         return this.directionZ;
@@ -235,12 +235,12 @@ public final class MagCalProgress {
         private float directionZ;
 
         /**
-         * Compass being calibrated 
+         * Compass being calibrated. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "Compass being calibrated"
+                description = "Compass being calibrated."
         )
         public final Builder compassId(int compassId) {
             this.compassId = compassId;
@@ -248,12 +248,12 @@ public final class MagCalProgress {
         }
 
         /**
-         * Bitmask of compasses being calibrated 
+         * Bitmask of compasses being calibrated. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Bitmask of compasses being calibrated"
+                description = "Bitmask of compasses being calibrated."
         )
         public final Builder calMask(int calMask) {
             this.calMask = calMask;
@@ -261,13 +261,13 @@ public final class MagCalProgress {
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MagCalStatus.class,
-                description = "Status (see MAG_CAL_STATUS enum)"
+                description = "Calibration Status."
         )
         public final Builder calStatus(EnumValue<MagCalStatus> calStatus) {
             this.calStatus = calStatus;
@@ -275,33 +275,33 @@ public final class MagCalProgress {
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(MagCalStatus entry) {
             return calStatus(EnumValue.of(entry));
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(Enum... flags) {
             return calStatus(EnumValue.create(flags));
         }
 
         /**
-         * Status (see {@link io.dronefleet.mavlink.ardupilotmega.MagCalStatus MAG_CAL_STATUS} enum) 
+         * Calibration Status. 
          */
         public final Builder calStatus(Collection<Enum> flags) {
             return calStatus(EnumValue.create(flags));
         }
 
         /**
-         * Attempt number 
+         * Attempt number. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Attempt number"
+                description = "Attempt number."
         )
         public final Builder attempt(int attempt) {
             this.attempt = attempt;
@@ -309,12 +309,12 @@ public final class MagCalProgress {
         }
 
         /**
-         * Completion percentage 
+         * Completion percentage. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "Completion percentage"
+                description = "Completion percentage."
         )
         public final Builder completionPct(int completionPct) {
             this.completionPct = completionPct;
@@ -322,13 +322,13 @@ public final class MagCalProgress {
         }
 
         /**
-         * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid) 
+         * Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
                 arraySize = 10,
-                description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)"
+                description = "Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid)."
         )
         public final Builder completionMask(byte[] completionMask) {
             this.completionMask = completionMask;
@@ -336,12 +336,12 @@ public final class MagCalProgress {
         }
 
         /**
-         * Body frame direction vector for display 
+         * Body frame direction vector for display. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Body frame direction vector for display"
+                description = "Body frame direction vector for display."
         )
         public final Builder directionX(float directionX) {
             this.directionX = directionX;
@@ -349,12 +349,12 @@ public final class MagCalProgress {
         }
 
         /**
-         * Body frame direction vector for display 
+         * Body frame direction vector for display. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Body frame direction vector for display"
+                description = "Body frame direction vector for display."
         )
         public final Builder directionY(float directionY) {
             this.directionY = directionY;
@@ -362,12 +362,12 @@ public final class MagCalProgress {
         }
 
         /**
-         * Body frame direction vector for display 
+         * Body frame direction vector for display. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Body frame direction vector for display"
+                description = "Body frame direction vector for display."
         )
         public final Builder directionZ(float directionZ) {
             this.directionZ = directionZ;

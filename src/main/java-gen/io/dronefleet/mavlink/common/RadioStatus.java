@@ -75,12 +75,12 @@ public final class RadioStatus {
     }
 
     /**
-     * Remaining free buffer space in percent. 
+     * Remaining free buffer space. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Remaining free buffer space in percent."
+            description = "Remaining free buffer space."
     )
     public final int txbuf() {
         return this.txbuf;
@@ -215,12 +215,12 @@ public final class RadioStatus {
         }
 
         /**
-         * Remaining free buffer space in percent. 
+         * Remaining free buffer space. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Remaining free buffer space in percent."
+                description = "Remaining free buffer space."
         )
         public final Builder txbuf(int txbuf) {
             this.txbuf = txbuf;

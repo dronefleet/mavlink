@@ -89,7 +89,7 @@ public enum AutoquadNavStatus {
     AQ_NAV_STATUS_DVH,
 
     /**
-     * ynamic Altitude Override is active (AH with proportional manual adjustment) 
+     * Dynamic Altitude Override is active (AH with proportional manual adjustment) 
      */
     @MavlinkEntryInfo(33554432)
     AQ_NAV_STATUS_DAO,

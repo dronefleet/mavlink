@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * A mapping of plane flight modes for custom_mode field of heartbeat 
+ * A mapping of plane flight modes for custom_mode field of heartbeat. 
  */
 @MavlinkEnum
 public enum PlaneMode {

@@ -6,6 +6,7 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.math.BigInteger;
 import java.util.Objects;
 
 /**
@@ -13,15 +14,18 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 208,
-        crc = 175,
+        crc = 144,
         description = "Atmospheric sensors (temperature, humidity, ...)"
 )
 public final class SensAtmos {
+    private final BigInteger timestamp;
+
     private final float tempambient;
 
     private final float humidity;
 
-    private SensAtmos(float tempambient, float humidity) {
+    private SensAtmos(BigInteger timestamp, float tempambient, float humidity) {
+        this.timestamp = timestamp;
         this.tempambient = tempambient;
         this.humidity = humidity;
     }
@@ -35,10 +39,22 @@ public final class SensAtmos {
     }
 
     /**
-     * Ambient temperature 
+     * Time since system boot 
      */
     @MavlinkFieldInfo(
             position = 1,
+            unitSize = 8,
+            description = "Time since system boot"
+    )
+    public final BigInteger timestamp() {
+        return this.timestamp;
+    }
+
+    /**
+     * Ambient temperature 
+     */
+    @MavlinkFieldInfo(
+            position = 2,
             unitSize = 4,
             description = "Ambient temperature"
     )
@@ -50,7 +66,7 @@ public final class SensAtmos {
      * Relative humidity 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "Relative humidity"
     )
@@ -63,6 +79,7 @@ public final class SensAtmos {
         if (this == o) return true;
         if (o == null || !getClass().equals(o.getClass())) return false;
         SensAtmos other = (SensAtmos)o;
+        if (!Objects.deepEquals(timestamp, other.timestamp)) return false;
         if (!Objects.deepEquals(tempambient, other.tempambient)) return false;
         if (!Objects.deepEquals(humidity, other.humidity)) return false;
         return true;
@@ -71,6 +88,7 @@ public final class SensAtmos {
     @Override
     public int hashCode() {
         int result = 0;
+        result = 31 * result + Objects.hashCode(timestamp);
         result = 31 * result + Objects.hashCode(tempambient);
         result = 31 * result + Objects.hashCode(humidity);
         return result;
@@ -78,20 +96,36 @@ public final class SensAtmos {
 
     @Override
     public String toString() {
-        return "SensAtmos{tempambient=" + tempambient
+        return "SensAtmos{timestamp=" + timestamp
+                 + ", tempambient=" + tempambient
                  + ", humidity=" + humidity + "}";
     }
 
     public static final class Builder {
+        private BigInteger timestamp;
+
         private float tempambient;
 
         private float humidity;
 
         /**
-         * Ambient temperature 
+         * Time since system boot 
          */
         @MavlinkFieldInfo(
                 position = 1,
+                unitSize = 8,
+                description = "Time since system boot"
+        )
+        public final Builder timestamp(BigInteger timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        /**
+         * Ambient temperature 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
                 unitSize = 4,
                 description = "Ambient temperature"
         )
@@ -104,7 +138,7 @@ public final class SensAtmos {
          * Relative humidity 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "Relative humidity"
         )
@@ -114,7 +148,7 @@ public final class SensAtmos {
         }
 
         public final SensAtmos build() {
-            return new SensAtmos(tempambient, humidity);
+            return new SensAtmos(timestamp, tempambient, humidity);
         }
     }
 }

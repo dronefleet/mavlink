@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * current motion information from a designated system 
+ * Current motion information from a designated system 
  */
 @MavlinkMessageInfo(
         id = 144,
         crc = 127,
-        description = "current motion information from a designated system"
+        description = "Current motion information from a designated system"
 )
 public final class FollowTarget {
     private final BigInteger timestamp;
@@ -67,12 +67,12 @@ public final class FollowTarget {
     }
 
     /**
-     * Timestamp in milliseconds since system boot 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp in milliseconds since system boot"
+            description = "Timestamp (time since system boot)."
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -91,38 +91,38 @@ public final class FollowTarget {
     }
 
     /**
-     * Latitude (WGS84), in degrees * 1E7 
+     * Latitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Latitude (WGS84), in degrees * 1E7"
+            description = "Latitude (WGS84)"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude (WGS84), in degrees * 1E7 
+     * Longitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Longitude (WGS84), in degrees * 1E7"
+            description = "Longitude (WGS84)"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * AMSL, in meters 
+     * Altitude (MSL) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "AMSL, in meters"
+            description = "Altitude (MSL)"
     )
     public final float alt() {
         return this.alt;
@@ -280,12 +280,12 @@ public final class FollowTarget {
         private BigInteger customState;
 
         /**
-         * Timestamp in milliseconds since system boot 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp in milliseconds since system boot"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -306,13 +306,13 @@ public final class FollowTarget {
         }
 
         /**
-         * Latitude (WGS84), in degrees * 1E7 
+         * Latitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (WGS84), in degrees * 1E7"
+                description = "Latitude (WGS84)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -320,13 +320,13 @@ public final class FollowTarget {
         }
 
         /**
-         * Longitude (WGS84), in degrees * 1E7 
+         * Longitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (WGS84), in degrees * 1E7"
+                description = "Longitude (WGS84)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -334,12 +334,12 @@ public final class FollowTarget {
         }
 
         /**
-         * AMSL, in meters 
+         * Altitude (MSL) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "AMSL, in meters"
+                description = "Altitude (MSL)"
         )
         public final Builder alt(float alt) {
             this.alt = alt;

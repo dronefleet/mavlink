@@ -36,26 +36,26 @@ public final class TerrainCheck {
     }
 
     /**
-     * Latitude (degrees *10^7) 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
             signed = true,
-            description = "Latitude (degrees *10^7)"
+            description = "Latitude"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude (degrees *10^7) 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Longitude (degrees *10^7)"
+            description = "Longitude"
     )
     public final int lon() {
         return this.lon;
@@ -91,13 +91,13 @@ public final class TerrainCheck {
         private int lon;
 
         /**
-         * Latitude (degrees *10^7) 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (degrees *10^7)"
+                description = "Latitude"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -105,13 +105,13 @@ public final class TerrainCheck {
         }
 
         /**
-         * Longitude (degrees *10^7) 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (degrees *10^7)"
+                description = "Longitude"
         )
         public final Builder lon(int lon) {
             this.lon = lon;

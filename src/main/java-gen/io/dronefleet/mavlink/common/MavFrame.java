@@ -9,7 +9,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavFrame {
     /**
-     * Global coordinate frame, WGS84 coordinate system. First value / x: latitude, second value / y: 
+     * Global (WGS84) coordinate frame + MSL altitude. First value / x: latitude, second value / y: 
      * longitude, third value / z: positive altitude over mean sea level (MSL). 
      */
     @MavlinkEntryInfo(0)
@@ -28,9 +28,9 @@ public enum MavFrame {
     MAV_FRAME_MISSION,
 
     /**
-     * Global coordinate frame, WGS84 coordinate system, relative altitude over ground with 
-     * respect to the home position. First value / x: latitude, second value / y: longitude, third 
-     * value / z: positive altitude with 0 being at the altitude of the home location. 
+     * Global (WGS84) coordinate frame + altitude relative to the home position. First value / x: 
+     * latitude, second value / y: longitude, third value / z: positive altitude with 0 being at the 
+     * altitude of the home location. 
      */
     @MavlinkEntryInfo(3)
     MAV_FRAME_GLOBAL_RELATIVE_ALT,
@@ -42,7 +42,7 @@ public enum MavFrame {
     MAV_FRAME_LOCAL_ENU,
 
     /**
-     * Global coordinate frame, WGS84 coordinate system. First value / x: latitude in 
+     * Global (WGS84) coordinate frame (scaled) + MSL altitude. First value / x: latitude in 
      * degrees*1.0e-7, second value / y: longitude in degrees*1.0e-7, third value / z: positive 
      * altitude over mean sea level (MSL). 
      */
@@ -50,10 +50,9 @@ public enum MavFrame {
     MAV_FRAME_GLOBAL_INT,
 
     /**
-     * Global coordinate frame, WGS84 coordinate system, relative altitude over ground with 
-     * respect to the home position. First value / x: latitude in degrees*10e-7, second value / y: 
-     * longitude in degrees*10e-7, third value / z: positive altitude with 0 being at the altitude of 
-     * the home location. 
+     * Global (WGS84) coordinate frame (scaled) + altitude relative to the home position. First 
+     * value / x: latitude in degrees*10e-7, second value / y: longitude in degrees*10e-7, third 
+     * value / z: positive altitude with 0 being at the altitude of the home location. 
      */
     @MavlinkEntryInfo(6)
     MAV_FRAME_GLOBAL_RELATIVE_ALT_INT,
@@ -80,19 +79,17 @@ public enum MavFrame {
     MAV_FRAME_BODY_OFFSET_NED,
 
     /**
-     * Global coordinate frame with above terrain level altitude. WGS84 coordinate system, 
-     * relative altitude over terrain with respect to the waypoint coordinate. First value / x: 
-     * latitude in degrees, second value / y: longitude in degrees, third value / z: positive altitude 
-     * in meters with 0 being at ground level in terrain model. 
+     * Global (WGS84) coordinate frame with AGL altitude (at the waypoint coordinate). First value / 
+     * x: latitude in degrees, second value / y: longitude in degrees, third value / z: positive 
+     * altitude in meters with 0 being at ground level in terrain model. 
      */
     @MavlinkEntryInfo(10)
     MAV_FRAME_GLOBAL_TERRAIN_ALT,
 
     /**
-     * Global coordinate frame with above terrain level altitude. WGS84 coordinate system, 
-     * relative altitude over terrain with respect to the waypoint coordinate. First value / x: 
-     * latitude in degrees*10e-7, second value / y: longitude in degrees*10e-7, third value / z: 
-     * positive altitude in meters with 0 being at ground level in terrain model. 
+     * Global (WGS84) coordinate frame (scaled) with AGL altitude (at the waypoint coordinate). 
+     * First value / x: latitude in degrees*10e-7, second value / y: longitude in degrees*10e-7, 
+     * third value / z: positive altitude in meters with 0 being at ground level in terrain model. 
      */
     @MavlinkEntryInfo(11)
     MAV_FRAME_GLOBAL_TERRAIN_ALT_INT,

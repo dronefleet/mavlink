@@ -3,22 +3,19 @@ package io.dronefleet.mavlink.ardupilotmega;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
 /**
- * Deprecated. Use MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS instead. Set the magnetometer 
- * offsets 
+ * Set the magnetometer offsets 
  */
 @MavlinkMessageInfo(
         id = 151,
         crc = 219,
-        description = "Deprecated. Use MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS instead. Set the magnetometer offsets"
+        description = "Set the magnetometer offsets"
 )
-@Deprecated
 public final class SetMagOffsets {
     private final int targetSystem;
 
@@ -48,63 +45,63 @@ public final class SetMagOffsets {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * magnetometer X offset 
+     * Magnetometer X offset. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 2,
             signed = true,
-            description = "magnetometer X offset"
+            description = "Magnetometer X offset."
     )
     public final int magOfsX() {
         return this.magOfsX;
     }
 
     /**
-     * magnetometer Y offset 
+     * Magnetometer Y offset. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 2,
             signed = true,
-            description = "magnetometer Y offset"
+            description = "Magnetometer Y offset."
     )
     public final int magOfsY() {
         return this.magOfsY;
     }
 
     /**
-     * magnetometer Z offset 
+     * Magnetometer Z offset. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 2,
             signed = true,
-            description = "magnetometer Z offset"
+            description = "Magnetometer Z offset."
     )
     public final int magOfsZ() {
         return this.magOfsZ;
@@ -155,12 +152,12 @@ public final class SetMagOffsets {
         private int magOfsZ;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -168,12 +165,12 @@ public final class SetMagOffsets {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -181,13 +178,13 @@ public final class SetMagOffsets {
         }
 
         /**
-         * magnetometer X offset 
+         * Magnetometer X offset. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer X offset"
+                description = "Magnetometer X offset."
         )
         public final Builder magOfsX(int magOfsX) {
             this.magOfsX = magOfsX;
@@ -195,13 +192,13 @@ public final class SetMagOffsets {
         }
 
         /**
-         * magnetometer Y offset 
+         * Magnetometer Y offset. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer Y offset"
+                description = "Magnetometer Y offset."
         )
         public final Builder magOfsY(int magOfsY) {
             this.magOfsY = magOfsY;
@@ -209,13 +206,13 @@ public final class SetMagOffsets {
         }
 
         /**
-         * magnetometer Z offset 
+         * Magnetometer Z offset. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 2,
                 signed = true,
-                description = "magnetometer Z offset"
+                description = "Magnetometer Z offset."
         )
         public final Builder magOfsZ(int magOfsZ) {
             this.magOfsZ = magOfsZ;

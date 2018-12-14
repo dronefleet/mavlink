@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Camera Event 
+ * Camera Event. 
  */
 @MavlinkMessageInfo(
         id = 179,
         crc = 189,
-        description = "Camera Event"
+        description = "Camera Event."
 )
 public final class CameraStatus {
     private final BigInteger timeUsec;
@@ -61,109 +61,109 @@ public final class CameraStatus {
     }
 
     /**
-     * Image timestamp (microseconds since UNIX epoch, according to camera clock) 
+     * Image timestamp (since UNIX epoch, according to camera clock). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Image timestamp (microseconds since UNIX epoch, according to camera clock)"
+            description = "Image timestamp (since UNIX epoch, according to camera clock)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Camera ID 
+     * Camera ID. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Camera ID"
+            description = "Camera ID."
     )
     public final int camIdx() {
         return this.camIdx;
     }
 
     /**
-     * Image index 
+     * Image index. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "Image index"
+            description = "Image index."
     )
     public final int imgIdx() {
         return this.imgIdx;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+     * Event type. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             enumType = CameraStatusTypes.class,
-            description = "See CAMERA_STATUS_TYPES enum for definition of the bitmask"
+            description = "Event type."
     )
     public final EnumValue<CameraStatusTypes> eventId() {
         return this.eventId;
     }
 
     /**
-     * Parameter 1 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+     * Parameter 1 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Parameter 1 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+            description = "Parameter 1 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
     )
     public final float p1() {
         return this.p1;
     }
 
     /**
-     * Parameter 2 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+     * Parameter 2 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Parameter 2 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+            description = "Parameter 2 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
     )
     public final float p2() {
         return this.p2;
     }
 
     /**
-     * Parameter 3 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+     * Parameter 3 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Parameter 3 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+            description = "Parameter 3 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
     )
     public final float p3() {
         return this.p3;
     }
 
     /**
-     * Parameter 4 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+     * Parameter 4 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Parameter 4 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+            description = "Parameter 4 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
     )
     public final float p4() {
         return this.p4;
@@ -234,12 +234,12 @@ public final class CameraStatus {
         private float p4;
 
         /**
-         * Image timestamp (microseconds since UNIX epoch, according to camera clock) 
+         * Image timestamp (since UNIX epoch, according to camera clock). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Image timestamp (microseconds since UNIX epoch, according to camera clock)"
+                description = "Image timestamp (since UNIX epoch, according to camera clock)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -247,12 +247,12 @@ public final class CameraStatus {
         }
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -260,12 +260,12 @@ public final class CameraStatus {
         }
 
         /**
-         * Camera ID 
+         * Camera ID. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Camera ID"
+                description = "Camera ID."
         )
         public final Builder camIdx(int camIdx) {
             this.camIdx = camIdx;
@@ -273,12 +273,12 @@ public final class CameraStatus {
         }
 
         /**
-         * Image index 
+         * Image index. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "Image index"
+                description = "Image index."
         )
         public final Builder imgIdx(int imgIdx) {
             this.imgIdx = imgIdx;
@@ -286,13 +286,13 @@ public final class CameraStatus {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         * Event type. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 enumType = CameraStatusTypes.class,
-                description = "See CAMERA_STATUS_TYPES enum for definition of the bitmask"
+                description = "Event type."
         )
         public final Builder eventId(EnumValue<CameraStatusTypes> eventId) {
             this.eventId = eventId;
@@ -300,33 +300,33 @@ public final class CameraStatus {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         * Event type. 
          */
         public final Builder eventId(CameraStatusTypes entry) {
             return eventId(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         * Event type. 
          */
         public final Builder eventId(Enum... flags) {
             return eventId(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum for definition of the bitmask 
+         * Event type. 
          */
         public final Builder eventId(Collection<Enum> flags) {
             return eventId(EnumValue.create(flags));
         }
 
         /**
-         * Parameter 1 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+         * Parameter 1 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Parameter 1 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+                description = "Parameter 1 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
         )
         public final Builder p1(float p1) {
             this.p1 = p1;
@@ -334,12 +334,12 @@ public final class CameraStatus {
         }
 
         /**
-         * Parameter 2 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+         * Parameter 2 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Parameter 2 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+                description = "Parameter 2 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
         )
         public final Builder p2(float p2) {
             this.p2 = p2;
@@ -347,12 +347,12 @@ public final class CameraStatus {
         }
 
         /**
-         * Parameter 3 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+         * Parameter 3 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Parameter 3 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+                description = "Parameter 3 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
         )
         public final Builder p3(float p3) {
             this.p3 = p3;
@@ -360,12 +360,12 @@ public final class CameraStatus {
         }
 
         /**
-         * Parameter 4 (meaning depends on event, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum) 
+         * Parameter 4 (meaning depends on event_id, see {@link io.dronefleet.mavlink.ardupilotmega.CameraStatusTypes CAMERA_STATUS_TYPES} enum). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Parameter 4 (meaning depends on event, see CAMERA_STATUS_TYPES enum)"
+                description = "Parameter 4 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum)."
         )
         public final Builder p4(float p4) {
             this.p4 = p4;

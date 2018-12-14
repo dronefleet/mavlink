@@ -41,37 +41,37 @@ public final class PowerStatus {
     }
 
     /**
-     * 5V rail voltage in millivolts 
+     * 5V rail voltage. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            description = "5V rail voltage in millivolts"
+            description = "5V rail voltage."
     )
     public final int vcc() {
         return this.vcc;
     }
 
     /**
-     * servo rail voltage in millivolts 
+     * Servo rail voltage. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            description = "servo rail voltage in millivolts"
+            description = "Servo rail voltage."
     )
     public final int vservo() {
         return this.vservo;
     }
 
     /**
-     * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+     * Bitmap of power supply status flags. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             enumType = MavPowerStatus.class,
-            description = "power supply status flags (see MAV_POWER_STATUS enum)"
+            description = "Bitmap of power supply status flags."
     )
     public final EnumValue<MavPowerStatus> flags() {
         return this.flags;
@@ -112,12 +112,12 @@ public final class PowerStatus {
         private EnumValue<MavPowerStatus> flags;
 
         /**
-         * 5V rail voltage in millivolts 
+         * 5V rail voltage. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                description = "5V rail voltage in millivolts"
+                description = "5V rail voltage."
         )
         public final Builder vcc(int vcc) {
             this.vcc = vcc;
@@ -125,12 +125,12 @@ public final class PowerStatus {
         }
 
         /**
-         * servo rail voltage in millivolts 
+         * Servo rail voltage. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                description = "servo rail voltage in millivolts"
+                description = "Servo rail voltage."
         )
         public final Builder vservo(int vservo) {
             this.vservo = vservo;
@@ -138,13 +138,13 @@ public final class PowerStatus {
         }
 
         /**
-         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         * Bitmap of power supply status flags. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 enumType = MavPowerStatus.class,
-                description = "power supply status flags (see MAV_POWER_STATUS enum)"
+                description = "Bitmap of power supply status flags."
         )
         public final Builder flags(EnumValue<MavPowerStatus> flags) {
             this.flags = flags;
@@ -152,21 +152,21 @@ public final class PowerStatus {
         }
 
         /**
-         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         * Bitmap of power supply status flags. 
          */
         public final Builder flags(MavPowerStatus entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         * Bitmap of power supply status flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * power supply status flags (see {@link io.dronefleet.mavlink.common.MavPowerStatus MAV_POWER_STATUS} enum) 
+         * Bitmap of power supply status flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));

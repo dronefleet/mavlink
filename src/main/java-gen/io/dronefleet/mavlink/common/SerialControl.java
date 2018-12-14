@@ -54,38 +54,38 @@ public final class SerialControl {
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+     * Serial control device type. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = SerialControlDev.class,
-            description = "See SERIAL_CONTROL_DEV enum"
+            description = "Serial control device type."
     )
     public final EnumValue<SerialControlDev> device() {
         return this.device;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+     * Bitmap of serial control flags. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = SerialControlFlag.class,
-            description = "See SERIAL_CONTROL_FLAG enum"
+            description = "Bitmap of serial control flags."
     )
     public final EnumValue<SerialControlFlag> flags() {
         return this.flags;
     }
 
     /**
-     * Timeout for reply data in milliseconds 
+     * Timeout for reply data 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "Timeout for reply data in milliseconds"
+            description = "Timeout for reply data"
     )
     public final int timeout() {
         return this.timeout;
@@ -178,13 +178,13 @@ public final class SerialControl {
         private byte[] data;
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         * Serial control device type. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = SerialControlDev.class,
-                description = "See SERIAL_CONTROL_DEV enum"
+                description = "Serial control device type."
         )
         public final Builder device(EnumValue<SerialControlDev> device) {
             this.device = device;
@@ -192,34 +192,34 @@ public final class SerialControl {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         * Serial control device type. 
          */
         public final Builder device(SerialControlDev entry) {
             return device(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         * Serial control device type. 
          */
         public final Builder device(Enum... flags) {
             return device(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlDev SERIAL_CONTROL_DEV} enum 
+         * Serial control device type. 
          */
         public final Builder device(Collection<Enum> flags) {
             return device(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         * Bitmap of serial control flags. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = SerialControlFlag.class,
-                description = "See SERIAL_CONTROL_FLAG enum"
+                description = "Bitmap of serial control flags."
         )
         public final Builder flags(EnumValue<SerialControlFlag> flags) {
             this.flags = flags;
@@ -227,33 +227,33 @@ public final class SerialControl {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         * Bitmap of serial control flags. 
          */
         public final Builder flags(SerialControlFlag entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         * Bitmap of serial control flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.SerialControlFlag SERIAL_CONTROL_FLAG} enum 
+         * Bitmap of serial control flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Timeout for reply data in milliseconds 
+         * Timeout for reply data 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "Timeout for reply data in milliseconds"
+                description = "Timeout for reply data"
         )
         public final Builder timeout(int timeout) {
             this.timeout = timeout;

@@ -9,37 +9,37 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum LimitsState {
     /**
-     * pre-initialization 
+     * Pre-initialization. 
      */
     @MavlinkEntryInfo(0)
     LIMITS_INIT,
 
     /**
-     * disabled 
+     * Disabled. 
      */
     @MavlinkEntryInfo(1)
     LIMITS_DISABLED,
 
     /**
-     * checking limits 
+     * Checking limits. 
      */
     @MavlinkEntryInfo(2)
     LIMITS_ENABLED,
 
     /**
-     * a limit has been breached 
+     * A limit has been breached. 
      */
     @MavlinkEntryInfo(3)
     LIMITS_TRIGGERED,
 
     /**
-     * taking action eg. RTL 
+     * Taking action e.g. Return/RTL. 
      */
     @MavlinkEntryInfo(4)
     LIMITS_RECOVERING,
 
     /**
-     * we're no longer in breach of a limit 
+     * We're no longer in breach of a limit. 
      */
     @MavlinkEntryInfo(5)
     LIMITS_RECOVERED

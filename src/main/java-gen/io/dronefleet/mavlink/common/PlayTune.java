@@ -23,10 +23,13 @@ public final class PlayTune {
 
     private final String tune;
 
-    private PlayTune(int targetSystem, int targetComponent, String tune) {
+    private final String tune2;
+
+    private PlayTune(int targetSystem, int targetComponent, String tune, String tune2) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.tune = tune;
+        this.tune2 = tune2;
     }
 
     /**
@@ -74,6 +77,20 @@ public final class PlayTune {
         return this.tune;
     }
 
+    /**
+     * tune extension (appended to tune) 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 1,
+            arraySize = 200,
+            extension = true,
+            description = "tune extension (appended to tune)"
+    )
+    public final String tune2() {
+        return this.tune2;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +99,7 @@ public final class PlayTune {
         if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
         if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
         if (!Objects.deepEquals(tune, other.tune)) return false;
+        if (!Objects.deepEquals(tune2, other.tune2)) return false;
         return true;
     }
 
@@ -91,6 +109,7 @@ public final class PlayTune {
         result = 31 * result + Objects.hashCode(targetSystem);
         result = 31 * result + Objects.hashCode(targetComponent);
         result = 31 * result + Objects.hashCode(tune);
+        result = 31 * result + Objects.hashCode(tune2);
         return result;
     }
 
@@ -98,7 +117,8 @@ public final class PlayTune {
     public String toString() {
         return "PlayTune{targetSystem=" + targetSystem
                  + ", targetComponent=" + targetComponent
-                 + ", tune=" + tune + "}";
+                 + ", tune=" + tune
+                 + ", tune2=" + tune2 + "}";
     }
 
     public static final class Builder {
@@ -107,6 +127,8 @@ public final class PlayTune {
         private int targetComponent;
 
         private String tune;
+
+        private String tune2;
 
         /**
          * System ID 
@@ -148,8 +170,23 @@ public final class PlayTune {
             return this;
         }
 
+        /**
+         * tune extension (appended to tune) 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 1,
+                arraySize = 200,
+                extension = true,
+                description = "tune extension (appended to tune)"
+        )
+        public final Builder tune2(String tune2) {
+            this.tune2 = tune2;
+            return this;
+        }
+
         public final PlayTune build() {
-            return new PlayTune(targetSystem, targetComponent, tune);
+            return new PlayTune(targetSystem, targetComponent, tune, tune2);
         }
     }
 }

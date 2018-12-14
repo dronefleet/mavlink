@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Status of compassmot calibration 
+ * Status of compassmot calibration. 
  */
 @MavlinkMessageInfo(
         id = 177,
         crc = 240,
-        description = "Status of compassmot calibration"
+        description = "Status of compassmot calibration."
 )
 public final class CompassmotStatus {
     private final int throttle;
@@ -48,72 +48,72 @@ public final class CompassmotStatus {
     }
 
     /**
-     * throttle (percent*10) 
+     * Throttle. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
-            description = "throttle (percent*10)"
+            description = "Throttle."
     )
     public final int throttle() {
         return this.throttle;
     }
 
     /**
-     * current (Ampere) 
+     * Current. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "current (Ampere)"
+            description = "Current."
     )
     public final float current() {
         return this.current;
     }
 
     /**
-     * interference (percent) 
+     * Interference. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "interference (percent)"
+            description = "Interference."
     )
     public final int interference() {
         return this.interference;
     }
 
     /**
-     * Motor Compensation X 
+     * Motor Compensation X. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Motor Compensation X"
+            description = "Motor Compensation X."
     )
     public final float compensationx() {
         return this.compensationx;
     }
 
     /**
-     * Motor Compensation Y 
+     * Motor Compensation Y. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Motor Compensation Y"
+            description = "Motor Compensation Y."
     )
     public final float compensationy() {
         return this.compensationy;
     }
 
     /**
-     * Motor Compensation Z 
+     * Motor Compensation Z. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Motor Compensation Z"
+            description = "Motor Compensation Z."
     )
     public final float compensationz() {
         return this.compensationz;
@@ -169,12 +169,12 @@ public final class CompassmotStatus {
         private float compensationz;
 
         /**
-         * throttle (percent*10) 
+         * Throttle. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
-                description = "throttle (percent*10)"
+                description = "Throttle."
         )
         public final Builder throttle(int throttle) {
             this.throttle = throttle;
@@ -182,12 +182,12 @@ public final class CompassmotStatus {
         }
 
         /**
-         * current (Ampere) 
+         * Current. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "current (Ampere)"
+                description = "Current."
         )
         public final Builder current(float current) {
             this.current = current;
@@ -195,12 +195,12 @@ public final class CompassmotStatus {
         }
 
         /**
-         * interference (percent) 
+         * Interference. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "interference (percent)"
+                description = "Interference."
         )
         public final Builder interference(int interference) {
             this.interference = interference;
@@ -208,12 +208,12 @@ public final class CompassmotStatus {
         }
 
         /**
-         * Motor Compensation X 
+         * Motor Compensation X. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Motor Compensation X"
+                description = "Motor Compensation X."
         )
         public final Builder compensationx(float compensationx) {
             this.compensationx = compensationx;
@@ -221,12 +221,12 @@ public final class CompassmotStatus {
         }
 
         /**
-         * Motor Compensation Y 
+         * Motor Compensation Y. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Motor Compensation Y"
+                description = "Motor Compensation Y."
         )
         public final Builder compensationy(float compensationy) {
             this.compensationy = compensationy;
@@ -234,12 +234,12 @@ public final class CompassmotStatus {
         }
 
         /**
-         * Motor Compensation Z 
+         * Motor Compensation Z. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Motor Compensation Z"
+                description = "Motor Compensation Z."
         )
         public final Builder compensationz(float compensationz) {
             this.compensationz = compensationz;

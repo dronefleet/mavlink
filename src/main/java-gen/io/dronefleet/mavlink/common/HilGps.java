@@ -73,12 +73,13 @@ public final class HilGps {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -98,127 +99,127 @@ public final class HilGps {
     }
 
     /**
-     * Latitude (WGS84), in degrees * 1E7 
+     * Latitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Latitude (WGS84), in degrees * 1E7"
+            description = "Latitude (WGS84)"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude (WGS84), in degrees * 1E7 
+     * Longitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Longitude (WGS84), in degrees * 1E7"
+            description = "Longitude (WGS84)"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
+     * Altitude (MSL). Positive for up. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
+            description = "Altitude (MSL). Positive for up."
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535 
+     * GPS HDOP horizontal dilution of position. If unknown, set to: 65535 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535"
+            description = "GPS HDOP horizontal dilution of position. If unknown, set to: 65535"
     )
     public final int eph() {
         return this.eph;
     }
 
     /**
-     * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535 
+     * GPS VDOP vertical dilution of position. If unknown, set to: 65535 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535"
+            description = "GPS VDOP vertical dilution of position. If unknown, set to: 65535"
     )
     public final int epv() {
         return this.epv;
     }
 
     /**
-     * GPS ground speed in cm/s. If unknown, set to: 65535 
+     * GPS ground speed. If unknown, set to: 65535 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "GPS ground speed in cm/s. If unknown, set to: 65535"
+            description = "GPS ground speed. If unknown, set to: 65535"
     )
     public final int vel() {
         return this.vel;
     }
 
     /**
-     * GPS velocity in cm/s in NORTH direction in earth-fixed NED frame 
+     * GPS velocity in NORTH direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in cm/s in NORTH direction in earth-fixed NED frame"
+            description = "GPS velocity in NORTH direction in earth-fixed NED frame"
     )
     public final int vn() {
         return this.vn;
     }
 
     /**
-     * GPS velocity in cm/s in EAST direction in earth-fixed NED frame 
+     * GPS velocity in EAST direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in cm/s in EAST direction in earth-fixed NED frame"
+            description = "GPS velocity in EAST direction in earth-fixed NED frame"
     )
     public final int ve() {
         return this.ve;
     }
 
     /**
-     * GPS velocity in cm/s in DOWN direction in earth-fixed NED frame 
+     * GPS velocity in DOWN direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in cm/s in DOWN direction in earth-fixed NED frame"
+            description = "GPS velocity in DOWN direction in earth-fixed NED frame"
     )
     public final int vd() {
         return this.vd;
     }
 
     /**
-     * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
-     * degrees. If unknown, set to: 65535 
+     * Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If 
+     * unknown, set to: 65535 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 65535"
+            description = "Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535"
     )
     public final int cog() {
         return this.cog;
@@ -321,12 +322,13 @@ public final class HilGps {
         private int satellitesVisible;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -348,13 +350,13 @@ public final class HilGps {
         }
 
         /**
-         * Latitude (WGS84), in degrees * 1E7 
+         * Latitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (WGS84), in degrees * 1E7"
+                description = "Latitude (WGS84)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -362,13 +364,13 @@ public final class HilGps {
         }
 
         /**
-         * Longitude (WGS84), in degrees * 1E7 
+         * Longitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (WGS84), in degrees * 1E7"
+                description = "Longitude (WGS84)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -376,13 +378,13 @@ public final class HilGps {
         }
 
         /**
-         * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
+         * Altitude (MSL). Positive for up. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
+                description = "Altitude (MSL). Positive for up."
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -390,12 +392,12 @@ public final class HilGps {
         }
 
         /**
-         * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535 
+         * GPS HDOP horizontal dilution of position. If unknown, set to: 65535 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535"
+                description = "GPS HDOP horizontal dilution of position. If unknown, set to: 65535"
         )
         public final Builder eph(int eph) {
             this.eph = eph;
@@ -403,12 +405,12 @@ public final class HilGps {
         }
 
         /**
-         * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535 
+         * GPS VDOP vertical dilution of position. If unknown, set to: 65535 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: 65535"
+                description = "GPS VDOP vertical dilution of position. If unknown, set to: 65535"
         )
         public final Builder epv(int epv) {
             this.epv = epv;
@@ -416,12 +418,12 @@ public final class HilGps {
         }
 
         /**
-         * GPS ground speed in cm/s. If unknown, set to: 65535 
+         * GPS ground speed. If unknown, set to: 65535 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "GPS ground speed in cm/s. If unknown, set to: 65535"
+                description = "GPS ground speed. If unknown, set to: 65535"
         )
         public final Builder vel(int vel) {
             this.vel = vel;
@@ -429,13 +431,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in cm/s in NORTH direction in earth-fixed NED frame 
+         * GPS velocity in NORTH direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in cm/s in NORTH direction in earth-fixed NED frame"
+                description = "GPS velocity in NORTH direction in earth-fixed NED frame"
         )
         public final Builder vn(int vn) {
             this.vn = vn;
@@ -443,13 +445,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in cm/s in EAST direction in earth-fixed NED frame 
+         * GPS velocity in EAST direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in cm/s in EAST direction in earth-fixed NED frame"
+                description = "GPS velocity in EAST direction in earth-fixed NED frame"
         )
         public final Builder ve(int ve) {
             this.ve = ve;
@@ -457,13 +459,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in cm/s in DOWN direction in earth-fixed NED frame 
+         * GPS velocity in DOWN direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in cm/s in DOWN direction in earth-fixed NED frame"
+                description = "GPS velocity in DOWN direction in earth-fixed NED frame"
         )
         public final Builder vd(int vd) {
             this.vd = vd;
@@ -471,13 +473,13 @@ public final class HilGps {
         }
 
         /**
-         * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
-         * degrees. If unknown, set to: 65535 
+         * Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If 
+         * unknown, set to: 65535 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: 65535"
+                description = "Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535"
         )
         public final Builder cog(int cog) {
             this.cog = cog;

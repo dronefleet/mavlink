@@ -63,13 +63,13 @@ public final class Altitudes {
     }
 
     /**
-     * GPS altitude in meters, expressed as * 1000 (millimeters), above MSL 
+     * GPS altitude (MSL) in meters, expressed as * 1000 (millimeters) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "GPS altitude in meters, expressed as * 1000 (millimeters), above MSL"
+            description = "GPS altitude (MSL) in meters, expressed as * 1000 (millimeters)"
     )
     public final int altGps() {
         return this.altGps;
@@ -208,13 +208,13 @@ public final class Altitudes {
         }
 
         /**
-         * GPS altitude in meters, expressed as * 1000 (millimeters), above MSL 
+         * GPS altitude (MSL) in meters, expressed as * 1000 (millimeters) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "GPS altitude in meters, expressed as * 1000 (millimeters), above MSL"
+                description = "GPS altitude (MSL) in meters, expressed as * 1000 (millimeters)"
         )
         public final Builder altGps(int altGps) {
             this.altGps = altGps;

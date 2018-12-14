@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Control message for rate gimbal 
+ * Control message for rate gimbal. 
  */
 @MavlinkMessageInfo(
         id = 201,
         crc = 205,
-        description = "Control message for rate gimbal"
+        description = "Control message for rate gimbal."
 )
 public final class GimbalControl {
     private final int targetSystem;
@@ -45,60 +45,60 @@ public final class GimbalControl {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Demanded angular rate X (rad/s) 
+     * Demanded angular rate X. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Demanded angular rate X (rad/s)"
+            description = "Demanded angular rate X."
     )
     public final float demandedRateX() {
         return this.demandedRateX;
     }
 
     /**
-     * Demanded angular rate Y (rad/s) 
+     * Demanded angular rate Y. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Demanded angular rate Y (rad/s)"
+            description = "Demanded angular rate Y."
     )
     public final float demandedRateY() {
         return this.demandedRateY;
     }
 
     /**
-     * Demanded angular rate Z (rad/s) 
+     * Demanded angular rate Z. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Demanded angular rate Z (rad/s)"
+            description = "Demanded angular rate Z."
     )
     public final float demandedRateZ() {
         return this.demandedRateZ;
@@ -149,12 +149,12 @@ public final class GimbalControl {
         private float demandedRateZ;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -162,12 +162,12 @@ public final class GimbalControl {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -175,12 +175,12 @@ public final class GimbalControl {
         }
 
         /**
-         * Demanded angular rate X (rad/s) 
+         * Demanded angular rate X. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Demanded angular rate X (rad/s)"
+                description = "Demanded angular rate X."
         )
         public final Builder demandedRateX(float demandedRateX) {
             this.demandedRateX = demandedRateX;
@@ -188,12 +188,12 @@ public final class GimbalControl {
         }
 
         /**
-         * Demanded angular rate Y (rad/s) 
+         * Demanded angular rate Y. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Demanded angular rate Y (rad/s)"
+                description = "Demanded angular rate Y."
         )
         public final Builder demandedRateY(float demandedRateY) {
             this.demandedRateY = demandedRateY;
@@ -201,12 +201,12 @@ public final class GimbalControl {
         }
 
         /**
-         * Demanded angular rate Z (rad/s) 
+         * Demanded angular rate Z. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Demanded angular rate Z (rad/s)"
+                description = "Demanded angular rate Z."
         )
         public final Builder demandedRateZ(float demandedRateZ) {
             this.demandedRateZ = demandedRateZ;

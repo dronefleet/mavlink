@@ -88,12 +88,13 @@ public final class ServoOutputRaw {
     }
 
     /**
-     * Timestamp (microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final long timeUsec() {
         return this.timeUsec;
@@ -113,200 +114,200 @@ public final class ServoOutputRaw {
     }
 
     /**
-     * Servo output 1 value, in microseconds 
+     * Servo output 1 value 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "Servo output 1 value, in microseconds"
+            description = "Servo output 1 value"
     )
     public final int servo1Raw() {
         return this.servo1Raw;
     }
 
     /**
-     * Servo output 2 value, in microseconds 
+     * Servo output 2 value 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "Servo output 2 value, in microseconds"
+            description = "Servo output 2 value"
     )
     public final int servo2Raw() {
         return this.servo2Raw;
     }
 
     /**
-     * Servo output 3 value, in microseconds 
+     * Servo output 3 value 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "Servo output 3 value, in microseconds"
+            description = "Servo output 3 value"
     )
     public final int servo3Raw() {
         return this.servo3Raw;
     }
 
     /**
-     * Servo output 4 value, in microseconds 
+     * Servo output 4 value 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "Servo output 4 value, in microseconds"
+            description = "Servo output 4 value"
     )
     public final int servo4Raw() {
         return this.servo4Raw;
     }
 
     /**
-     * Servo output 5 value, in microseconds 
+     * Servo output 5 value 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "Servo output 5 value, in microseconds"
+            description = "Servo output 5 value"
     )
     public final int servo5Raw() {
         return this.servo5Raw;
     }
 
     /**
-     * Servo output 6 value, in microseconds 
+     * Servo output 6 value 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "Servo output 6 value, in microseconds"
+            description = "Servo output 6 value"
     )
     public final int servo6Raw() {
         return this.servo6Raw;
     }
 
     /**
-     * Servo output 7 value, in microseconds 
+     * Servo output 7 value 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "Servo output 7 value, in microseconds"
+            description = "Servo output 7 value"
     )
     public final int servo7Raw() {
         return this.servo7Raw;
     }
 
     /**
-     * Servo output 8 value, in microseconds 
+     * Servo output 8 value 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            description = "Servo output 8 value, in microseconds"
+            description = "Servo output 8 value"
     )
     public final int servo8Raw() {
         return this.servo8Raw;
     }
 
     /**
-     * Servo output 9 value, in microseconds 
+     * Servo output 9 value 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
             extension = true,
-            description = "Servo output 9 value, in microseconds"
+            description = "Servo output 9 value"
     )
     public final int servo9Raw() {
         return this.servo9Raw;
     }
 
     /**
-     * Servo output 10 value, in microseconds 
+     * Servo output 10 value 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
             extension = true,
-            description = "Servo output 10 value, in microseconds"
+            description = "Servo output 10 value"
     )
     public final int servo10Raw() {
         return this.servo10Raw;
     }
 
     /**
-     * Servo output 11 value, in microseconds 
+     * Servo output 11 value 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 2,
             extension = true,
-            description = "Servo output 11 value, in microseconds"
+            description = "Servo output 11 value"
     )
     public final int servo11Raw() {
         return this.servo11Raw;
     }
 
     /**
-     * Servo output 12 value, in microseconds 
+     * Servo output 12 value 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
             extension = true,
-            description = "Servo output 12 value, in microseconds"
+            description = "Servo output 12 value"
     )
     public final int servo12Raw() {
         return this.servo12Raw;
     }
 
     /**
-     * Servo output 13 value, in microseconds 
+     * Servo output 13 value 
      */
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 2,
             extension = true,
-            description = "Servo output 13 value, in microseconds"
+            description = "Servo output 13 value"
     )
     public final int servo13Raw() {
         return this.servo13Raw;
     }
 
     /**
-     * Servo output 14 value, in microseconds 
+     * Servo output 14 value 
      */
     @MavlinkFieldInfo(
             position = 17,
             unitSize = 2,
             extension = true,
-            description = "Servo output 14 value, in microseconds"
+            description = "Servo output 14 value"
     )
     public final int servo14Raw() {
         return this.servo14Raw;
     }
 
     /**
-     * Servo output 15 value, in microseconds 
+     * Servo output 15 value 
      */
     @MavlinkFieldInfo(
             position = 18,
             unitSize = 2,
             extension = true,
-            description = "Servo output 15 value, in microseconds"
+            description = "Servo output 15 value"
     )
     public final int servo15Raw() {
         return this.servo15Raw;
     }
 
     /**
-     * Servo output 16 value, in microseconds 
+     * Servo output 16 value 
      */
     @MavlinkFieldInfo(
             position = 19,
             unitSize = 2,
             extension = true,
-            description = "Servo output 16 value, in microseconds"
+            description = "Servo output 16 value"
     )
     public final int servo16Raw() {
         return this.servo16Raw;
@@ -422,12 +423,13 @@ public final class ServoOutputRaw {
         private int servo16Raw;
 
         /**
-         * Timestamp (microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(long timeUsec) {
             this.timeUsec = timeUsec;
@@ -449,12 +451,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 1 value, in microseconds 
+         * Servo output 1 value 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "Servo output 1 value, in microseconds"
+                description = "Servo output 1 value"
         )
         public final Builder servo1Raw(int servo1Raw) {
             this.servo1Raw = servo1Raw;
@@ -462,12 +464,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 2 value, in microseconds 
+         * Servo output 2 value 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "Servo output 2 value, in microseconds"
+                description = "Servo output 2 value"
         )
         public final Builder servo2Raw(int servo2Raw) {
             this.servo2Raw = servo2Raw;
@@ -475,12 +477,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 3 value, in microseconds 
+         * Servo output 3 value 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "Servo output 3 value, in microseconds"
+                description = "Servo output 3 value"
         )
         public final Builder servo3Raw(int servo3Raw) {
             this.servo3Raw = servo3Raw;
@@ -488,12 +490,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 4 value, in microseconds 
+         * Servo output 4 value 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "Servo output 4 value, in microseconds"
+                description = "Servo output 4 value"
         )
         public final Builder servo4Raw(int servo4Raw) {
             this.servo4Raw = servo4Raw;
@@ -501,12 +503,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 5 value, in microseconds 
+         * Servo output 5 value 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "Servo output 5 value, in microseconds"
+                description = "Servo output 5 value"
         )
         public final Builder servo5Raw(int servo5Raw) {
             this.servo5Raw = servo5Raw;
@@ -514,12 +516,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 6 value, in microseconds 
+         * Servo output 6 value 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "Servo output 6 value, in microseconds"
+                description = "Servo output 6 value"
         )
         public final Builder servo6Raw(int servo6Raw) {
             this.servo6Raw = servo6Raw;
@@ -527,12 +529,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 7 value, in microseconds 
+         * Servo output 7 value 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "Servo output 7 value, in microseconds"
+                description = "Servo output 7 value"
         )
         public final Builder servo7Raw(int servo7Raw) {
             this.servo7Raw = servo7Raw;
@@ -540,12 +542,12 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 8 value, in microseconds 
+         * Servo output 8 value 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                description = "Servo output 8 value, in microseconds"
+                description = "Servo output 8 value"
         )
         public final Builder servo8Raw(int servo8Raw) {
             this.servo8Raw = servo8Raw;
@@ -553,13 +555,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 9 value, in microseconds 
+         * Servo output 9 value 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 9 value, in microseconds"
+                description = "Servo output 9 value"
         )
         public final Builder servo9Raw(int servo9Raw) {
             this.servo9Raw = servo9Raw;
@@ -567,13 +569,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 10 value, in microseconds 
+         * Servo output 10 value 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 10 value, in microseconds"
+                description = "Servo output 10 value"
         )
         public final Builder servo10Raw(int servo10Raw) {
             this.servo10Raw = servo10Raw;
@@ -581,13 +583,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 11 value, in microseconds 
+         * Servo output 11 value 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 11 value, in microseconds"
+                description = "Servo output 11 value"
         )
         public final Builder servo11Raw(int servo11Raw) {
             this.servo11Raw = servo11Raw;
@@ -595,13 +597,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 12 value, in microseconds 
+         * Servo output 12 value 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 12 value, in microseconds"
+                description = "Servo output 12 value"
         )
         public final Builder servo12Raw(int servo12Raw) {
             this.servo12Raw = servo12Raw;
@@ -609,13 +611,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 13 value, in microseconds 
+         * Servo output 13 value 
          */
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 13 value, in microseconds"
+                description = "Servo output 13 value"
         )
         public final Builder servo13Raw(int servo13Raw) {
             this.servo13Raw = servo13Raw;
@@ -623,13 +625,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 14 value, in microseconds 
+         * Servo output 14 value 
          */
         @MavlinkFieldInfo(
                 position = 17,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 14 value, in microseconds"
+                description = "Servo output 14 value"
         )
         public final Builder servo14Raw(int servo14Raw) {
             this.servo14Raw = servo14Raw;
@@ -637,13 +639,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 15 value, in microseconds 
+         * Servo output 15 value 
          */
         @MavlinkFieldInfo(
                 position = 18,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 15 value, in microseconds"
+                description = "Servo output 15 value"
         )
         public final Builder servo15Raw(int servo15Raw) {
             this.servo15Raw = servo15Raw;
@@ -651,13 +653,13 @@ public final class ServoOutputRaw {
         }
 
         /**
-         * Servo output 16 value, in microseconds 
+         * Servo output 16 value 
          */
         @MavlinkFieldInfo(
                 position = 19,
                 unitSize = 2,
                 extension = true,
-                description = "Servo output 16 value, in microseconds"
+                description = "Servo output 16 value"
         )
         public final Builder servo16Raw(int servo16Raw) {
             this.servo16Raw = servo16Raw;

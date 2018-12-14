@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * result in a mavlink mission ack 
+ * result in a MAVLink mission ack 
  */
 @MavlinkEnum
 public enum MavMissionResult {

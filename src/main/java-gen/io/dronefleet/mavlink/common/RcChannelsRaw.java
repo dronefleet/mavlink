@@ -10,13 +10,13 @@ import java.util.Objects;
 
 /**
  * The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 
- * microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might 
- * violate this specification. 
+ * microseconds: 0%, 2000 microseconds: 100%. A value of UINT16_MAX implies the channel is 
+ * unused. Individual receivers/transmitters might violate this specification. 
  */
 @MavlinkMessageInfo(
         id = 35,
         crc = 244,
-        description = "The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might violate this specification."
+        description = "The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. A value of UINT16_MAX implies the channel is unused. Individual receivers/transmitters might violate this specification."
 )
 public final class RcChannelsRaw {
     private final long timeBootMs;
@@ -65,12 +65,12 @@ public final class RcChannelsRaw {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -90,108 +90,108 @@ public final class RcChannelsRaw {
     }
 
     /**
-     * RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 1 value. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 1 value."
     )
     public final int chan1Raw() {
         return this.chan1Raw;
     }
 
     /**
-     * RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 2 value. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 2 value."
     )
     public final int chan2Raw() {
         return this.chan2Raw;
     }
 
     /**
-     * RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 3 value. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 3 value."
     )
     public final int chan3Raw() {
         return this.chan3Raw;
     }
 
     /**
-     * RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 4 value. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 4 value."
     )
     public final int chan4Raw() {
         return this.chan4Raw;
     }
 
     /**
-     * RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 5 value. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 5 value."
     )
     public final int chan5Raw() {
         return this.chan5Raw;
     }
 
     /**
-     * RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 6 value. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 6 value."
     )
     public final int chan6Raw() {
         return this.chan6Raw;
     }
 
     /**
-     * RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 7 value. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 7 value."
     )
     public final int chan7Raw() {
         return this.chan7Raw;
     }
 
     /**
-     * RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+     * RC channel 8 value. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            description = "RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+            description = "RC channel 8 value."
     )
     public final int chan8Raw() {
         return this.chan8Raw;
     }
 
     /**
-     * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
+     * Receive signal strength indicator. Values: [0-100], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 1,
-            description = "Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown."
+            description = "Receive signal strength indicator. Values: [0-100], 255: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
@@ -272,12 +272,12 @@ public final class RcChannelsRaw {
         private int rssi;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -299,12 +299,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 1 value. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 1 value."
         )
         public final Builder chan1Raw(int chan1Raw) {
             this.chan1Raw = chan1Raw;
@@ -312,12 +312,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 2 value. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 2 value."
         )
         public final Builder chan2Raw(int chan2Raw) {
             this.chan2Raw = chan2Raw;
@@ -325,12 +325,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 3 value. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 3 value."
         )
         public final Builder chan3Raw(int chan3Raw) {
             this.chan3Raw = chan3Raw;
@@ -338,12 +338,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 4 value. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 4 value."
         )
         public final Builder chan4Raw(int chan4Raw) {
             this.chan4Raw = chan4Raw;
@@ -351,12 +351,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 5 value. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 5 value."
         )
         public final Builder chan5Raw(int chan5Raw) {
             this.chan5Raw = chan5Raw;
@@ -364,12 +364,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 6 value. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 6 value."
         )
         public final Builder chan6Raw(int chan6Raw) {
             this.chan6Raw = chan6Raw;
@@ -377,12 +377,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 7 value. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 7 value."
         )
         public final Builder chan7Raw(int chan7Raw) {
             this.chan7Raw = chan7Raw;
@@ -390,12 +390,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is unused. 
+         * RC channel 8 value. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                description = "RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is unused."
+                description = "RC channel 8 value."
         )
         public final Builder chan8Raw(int chan8Raw) {
             this.chan8Raw = chan8Raw;
@@ -403,12 +403,12 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown. 
+         * Receive signal strength indicator. Values: [0-100], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 1,
-                description = "Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown."
+                description = "Receive signal strength indicator. Values: [0-100], 255: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;

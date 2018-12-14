@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Report button state change 
+ * Report button state change. 
  */
 @MavlinkMessageInfo(
         id = 257,
         crc = 131,
-        description = "Report button state change"
+        description = "Report button state change."
 )
 public final class ButtonChange {
     private final long timeBootMs;
@@ -38,36 +38,36 @@ public final class ButtonChange {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Time of last change of button state 
+     * Time of last change of button state. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Time of last change of button state"
+            description = "Time of last change of button state."
     )
     public final long lastChangeMs() {
         return this.lastChangeMs;
     }
 
     /**
-     * Bitmap state of buttons 
+     * Bitmap for state of buttons. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Bitmap state of buttons"
+            description = "Bitmap for state of buttons."
     )
     public final int state() {
         return this.state;
@@ -108,12 +108,12 @@ public final class ButtonChange {
         private int state;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -121,12 +121,12 @@ public final class ButtonChange {
         }
 
         /**
-         * Time of last change of button state 
+         * Time of last change of button state. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Time of last change of button state"
+                description = "Time of last change of button state."
         )
         public final Builder lastChangeMs(long lastChangeMs) {
             this.lastChangeMs = lastChangeMs;
@@ -134,12 +134,12 @@ public final class ButtonChange {
         }
 
         /**
-         * Bitmap state of buttons 
+         * Bitmap for state of buttons. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Bitmap state of buttons"
+                description = "Bitmap for state of buttons."
         )
         public final Builder state(int state) {
             this.state = state;

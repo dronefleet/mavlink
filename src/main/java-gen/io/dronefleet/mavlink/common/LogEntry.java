@@ -80,24 +80,24 @@ public final class LogEntry {
     }
 
     /**
-     * UTC timestamp of log in seconds since 1970, or 0 if not available 
+     * UTC timestamp of log since 1970, or 0 if not available 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "UTC timestamp of log in seconds since 1970, or 0 if not available"
+            description = "UTC timestamp of log since 1970, or 0 if not available"
     )
     public final long timeUtc() {
         return this.timeUtc;
     }
 
     /**
-     * Size of the log (may be approximate) in bytes 
+     * Size of the log (may be approximate) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Size of the log (may be approximate) in bytes"
+            description = "Size of the log (may be approximate)"
     )
     public final long size() {
         return this.size;
@@ -187,12 +187,12 @@ public final class LogEntry {
         }
 
         /**
-         * UTC timestamp of log in seconds since 1970, or 0 if not available 
+         * UTC timestamp of log since 1970, or 0 if not available 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "UTC timestamp of log in seconds since 1970, or 0 if not available"
+                description = "UTC timestamp of log since 1970, or 0 if not available"
         )
         public final Builder timeUtc(long timeUtc) {
             this.timeUtc = timeUtc;
@@ -200,12 +200,12 @@ public final class LogEntry {
         }
 
         /**
-         * Size of the log (may be approximate) in bytes 
+         * Size of the log (may be approximate) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Size of the log (may be approximate) in bytes"
+                description = "Size of the log (may be approximate)"
         )
         public final Builder size(long size) {
             this.size = size;

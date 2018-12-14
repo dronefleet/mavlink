@@ -83,12 +83,13 @@ public final class HilStateQuaternion {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -109,177 +110,177 @@ public final class HilStateQuaternion {
     }
 
     /**
-     * Body frame roll / phi angular speed (rad/s) 
+     * Body frame roll / phi angular speed 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Body frame roll / phi angular speed (rad/s)"
+            description = "Body frame roll / phi angular speed"
     )
     public final float rollspeed() {
         return this.rollspeed;
     }
 
     /**
-     * Body frame pitch / theta angular speed (rad/s) 
+     * Body frame pitch / theta angular speed 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Body frame pitch / theta angular speed (rad/s)"
+            description = "Body frame pitch / theta angular speed"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
     }
 
     /**
-     * Body frame yaw / psi angular speed (rad/s) 
+     * Body frame yaw / psi angular speed 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Body frame yaw / psi angular speed (rad/s)"
+            description = "Body frame yaw / psi angular speed"
     )
     public final float yawspeed() {
         return this.yawspeed;
     }
 
     /**
-     * Latitude, expressed as degrees * 1E7 
+     * Latitude 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Latitude, expressed as degrees * 1E7"
+            description = "Latitude"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude, expressed as degrees * 1E7 
+     * Longitude 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
             signed = true,
-            description = "Longitude, expressed as degrees * 1E7"
+            description = "Longitude"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude in meters, expressed as * 1000 (millimeters) 
+     * Altitude 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
             signed = true,
-            description = "Altitude in meters, expressed as * 1000 (millimeters)"
+            description = "Altitude"
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * Ground X Speed (Latitude), expressed as cm/s 
+     * Ground X Speed (Latitude) 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
             signed = true,
-            description = "Ground X Speed (Latitude), expressed as cm/s"
+            description = "Ground X Speed (Latitude)"
     )
     public final int vx() {
         return this.vx;
     }
 
     /**
-     * Ground Y Speed (Longitude), expressed as cm/s 
+     * Ground Y Speed (Longitude) 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
             signed = true,
-            description = "Ground Y Speed (Longitude), expressed as cm/s"
+            description = "Ground Y Speed (Longitude)"
     )
     public final int vy() {
         return this.vy;
     }
 
     /**
-     * Ground Z Speed (Altitude), expressed as cm/s 
+     * Ground Z Speed (Altitude) 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
             signed = true,
-            description = "Ground Z Speed (Altitude), expressed as cm/s"
+            description = "Ground Z Speed (Altitude)"
     )
     public final int vz() {
         return this.vz;
     }
 
     /**
-     * Indicated airspeed, expressed as cm/s 
+     * Indicated airspeed 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
-            description = "Indicated airspeed, expressed as cm/s"
+            description = "Indicated airspeed"
     )
     public final int indAirspeed() {
         return this.indAirspeed;
     }
 
     /**
-     * True airspeed, expressed as cm/s 
+     * True airspeed 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
-            description = "True airspeed, expressed as cm/s"
+            description = "True airspeed"
     )
     public final int trueAirspeed() {
         return this.trueAirspeed;
     }
 
     /**
-     * X acceleration (mg) 
+     * X acceleration 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 2,
             signed = true,
-            description = "X acceleration (mg)"
+            description = "X acceleration"
     )
     public final int xacc() {
         return this.xacc;
     }
 
     /**
-     * Y acceleration (mg) 
+     * Y acceleration 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
             signed = true,
-            description = "Y acceleration (mg)"
+            description = "Y acceleration"
     )
     public final int yacc() {
         return this.yacc;
     }
 
     /**
-     * Z acceleration (mg) 
+     * Z acceleration 
      */
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 2,
             signed = true,
-            description = "Z acceleration (mg)"
+            description = "Z acceleration"
     )
     public final int zacc() {
         return this.zacc;
@@ -385,12 +386,13 @@ public final class HilStateQuaternion {
         private int zacc;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -413,12 +415,12 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Body frame roll / phi angular speed (rad/s) 
+         * Body frame roll / phi angular speed 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Body frame roll / phi angular speed (rad/s)"
+                description = "Body frame roll / phi angular speed"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -426,12 +428,12 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Body frame pitch / theta angular speed (rad/s) 
+         * Body frame pitch / theta angular speed 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Body frame pitch / theta angular speed (rad/s)"
+                description = "Body frame pitch / theta angular speed"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -439,12 +441,12 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Body frame yaw / psi angular speed (rad/s) 
+         * Body frame yaw / psi angular speed 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Body frame yaw / psi angular speed (rad/s)"
+                description = "Body frame yaw / psi angular speed"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;
@@ -452,13 +454,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Latitude, expressed as degrees * 1E7 
+         * Latitude 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude, expressed as degrees * 1E7"
+                description = "Latitude"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -466,13 +468,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Longitude, expressed as degrees * 1E7 
+         * Longitude 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude, expressed as degrees * 1E7"
+                description = "Longitude"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -480,13 +482,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Altitude in meters, expressed as * 1000 (millimeters) 
+         * Altitude 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude in meters, expressed as * 1000 (millimeters)"
+                description = "Altitude"
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -494,13 +496,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Ground X Speed (Latitude), expressed as cm/s 
+         * Ground X Speed (Latitude) 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
                 signed = true,
-                description = "Ground X Speed (Latitude), expressed as cm/s"
+                description = "Ground X Speed (Latitude)"
         )
         public final Builder vx(int vx) {
             this.vx = vx;
@@ -508,13 +510,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Ground Y Speed (Longitude), expressed as cm/s 
+         * Ground Y Speed (Longitude) 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
                 signed = true,
-                description = "Ground Y Speed (Longitude), expressed as cm/s"
+                description = "Ground Y Speed (Longitude)"
         )
         public final Builder vy(int vy) {
             this.vy = vy;
@@ -522,13 +524,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Ground Z Speed (Altitude), expressed as cm/s 
+         * Ground Z Speed (Altitude) 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
                 signed = true,
-                description = "Ground Z Speed (Altitude), expressed as cm/s"
+                description = "Ground Z Speed (Altitude)"
         )
         public final Builder vz(int vz) {
             this.vz = vz;
@@ -536,12 +538,12 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Indicated airspeed, expressed as cm/s 
+         * Indicated airspeed 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
-                description = "Indicated airspeed, expressed as cm/s"
+                description = "Indicated airspeed"
         )
         public final Builder indAirspeed(int indAirspeed) {
             this.indAirspeed = indAirspeed;
@@ -549,12 +551,12 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * True airspeed, expressed as cm/s 
+         * True airspeed 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
-                description = "True airspeed, expressed as cm/s"
+                description = "True airspeed"
         )
         public final Builder trueAirspeed(int trueAirspeed) {
             this.trueAirspeed = trueAirspeed;
@@ -562,13 +564,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * X acceleration (mg) 
+         * X acceleration 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 2,
                 signed = true,
-                description = "X acceleration (mg)"
+                description = "X acceleration"
         )
         public final Builder xacc(int xacc) {
             this.xacc = xacc;
@@ -576,13 +578,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Y acceleration (mg) 
+         * Y acceleration 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
                 signed = true,
-                description = "Y acceleration (mg)"
+                description = "Y acceleration"
         )
         public final Builder yacc(int yacc) {
             this.yacc = yacc;
@@ -590,13 +592,13 @@ public final class HilStateQuaternion {
         }
 
         /**
-         * Z acceleration (mg) 
+         * Z acceleration 
          */
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 2,
                 signed = true,
-                description = "Z acceleration (mg)"
+                description = "Z acceleration"
         )
         public final Builder zacc(int zacc) {
             this.zacc = zacc;

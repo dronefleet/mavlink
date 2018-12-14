@@ -42,7 +42,7 @@ public enum MavSeverity {
     MAV_SEVERITY_WARNING,
 
     /**
-     * An unusual event has occured, though not an error condition. This should be investigated for 
+     * An unusual event has occurred, though not an error condition. This should be investigated for 
      * the root cause. 
      */
     @MavlinkEntryInfo(5)

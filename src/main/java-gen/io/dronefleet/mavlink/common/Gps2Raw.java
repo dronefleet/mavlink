@@ -71,113 +71,114 @@ public final class Gps2Raw {
     }
 
     /**
-     * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+     * GPS fix type. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = GpsFixType.class,
-            description = "See the GPS_FIX_TYPE enum."
+            description = "GPS fix type."
     )
     public final EnumValue<GpsFixType> fixType() {
         return this.fixType;
     }
 
     /**
-     * Latitude (WGS84), in degrees * 1E7 
+     * Latitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Latitude (WGS84), in degrees * 1E7"
+            description = "Latitude (WGS84)"
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude (WGS84), in degrees * 1E7 
+     * Longitude (WGS84) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Longitude (WGS84), in degrees * 1E7"
+            description = "Longitude (WGS84)"
     )
     public final int lon() {
         return this.lon;
     }
 
     /**
-     * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
+     * Altitude (MSL). Positive for up. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
+            description = "Altitude (MSL). Positive for up."
     )
     public final int alt() {
         return this.alt;
     }
 
     /**
-     * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
+     * GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX"
+            description = "GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX"
     )
     public final int eph() {
         return this.eph;
     }
 
     /**
-     * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
+     * GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX"
+            description = "GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX"
     )
     public final int epv() {
         return this.epv;
     }
 
     /**
-     * GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX 
+     * GPS ground speed. If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX"
+            description = "GPS ground speed. If unknown, set to: UINT16_MAX"
     )
     public final int vel() {
         return this.vel;
     }
 
     /**
-     * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
-     * degrees. If unknown, set to: UINT16_MAX 
+     * Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If 
+     * unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
+            description = "Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
     )
     public final int cog() {
         return this.cog;
@@ -299,12 +300,13 @@ public final class Gps2Raw {
         private long dgpsAge;
 
         /**
-         * Timestamp (microseconds since UNIX epoch or microseconds since system boot) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since UNIX epoch or microseconds since system boot)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -312,13 +314,13 @@ public final class Gps2Raw {
         }
 
         /**
-         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         * GPS fix type. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = GpsFixType.class,
-                description = "See the GPS_FIX_TYPE enum."
+                description = "GPS fix type."
         )
         public final Builder fixType(EnumValue<GpsFixType> fixType) {
             this.fixType = fixType;
@@ -326,34 +328,34 @@ public final class Gps2Raw {
         }
 
         /**
-         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         * GPS fix type. 
          */
         public final Builder fixType(GpsFixType entry) {
             return fixType(EnumValue.of(entry));
         }
 
         /**
-         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         * GPS fix type. 
          */
         public final Builder fixType(Enum... flags) {
             return fixType(EnumValue.create(flags));
         }
 
         /**
-         * See the {@link io.dronefleet.mavlink.common.GpsFixType GPS_FIX_TYPE} enum. 
+         * GPS fix type. 
          */
         public final Builder fixType(Collection<Enum> flags) {
             return fixType(EnumValue.create(flags));
         }
 
         /**
-         * Latitude (WGS84), in degrees * 1E7 
+         * Latitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude (WGS84), in degrees * 1E7"
+                description = "Latitude (WGS84)"
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -361,13 +363,13 @@ public final class Gps2Raw {
         }
 
         /**
-         * Longitude (WGS84), in degrees * 1E7 
+         * Longitude (WGS84) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude (WGS84), in degrees * 1E7"
+                description = "Longitude (WGS84)"
         )
         public final Builder lon(int lon) {
             this.lon = lon;
@@ -375,13 +377,13 @@ public final class Gps2Raw {
         }
 
         /**
-         * Altitude (AMSL, not WGS84), in meters * 1000 (positive for up) 
+         * Altitude (MSL). Positive for up. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Altitude (AMSL, not WGS84), in meters * 1000 (positive for up)"
+                description = "Altitude (MSL). Positive for up."
         )
         public final Builder alt(int alt) {
             this.alt = alt;
@@ -389,12 +391,12 @@ public final class Gps2Raw {
         }
 
         /**
-         * GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
+         * GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: UINT16_MAX"
+                description = "GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX"
         )
         public final Builder eph(int eph) {
             this.eph = eph;
@@ -402,12 +404,12 @@ public final class Gps2Raw {
         }
 
         /**
-         * GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX 
+         * GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "GPS VDOP vertical dilution of position in cm (m*100). If unknown, set to: UINT16_MAX"
+                description = "GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX"
         )
         public final Builder epv(int epv) {
             this.epv = epv;
@@ -415,12 +417,12 @@ public final class Gps2Raw {
         }
 
         /**
-         * GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX 
+         * GPS ground speed. If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX"
+                description = "GPS ground speed. If unknown, set to: UINT16_MAX"
         )
         public final Builder vel(int vel) {
             this.vel = vel;
@@ -428,13 +430,13 @@ public final class Gps2Raw {
         }
 
         /**
-         * Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 
-         * degrees. If unknown, set to: UINT16_MAX 
+         * Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If 
+         * unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
+                description = "Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX"
         )
         public final Builder cog(int cog) {
             this.cog = cog;

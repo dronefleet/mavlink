@@ -51,26 +51,26 @@ public final class CommandAck {
     }
 
     /**
-     * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+     * Command ID (of acknowledged command). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 2,
             enumType = MavCmd.class,
-            description = "Command ID, as defined by MAV_CMD enum."
+            description = "Command ID (of acknowledged command)."
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+     * Result of command. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = MavResult.class,
-            description = "See MAV_RESULT enum"
+            description = "Result of command."
     )
     public final EnumValue<MavResult> result() {
         return this.result;
@@ -182,13 +182,13 @@ public final class CommandAck {
         private int targetComponent;
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of acknowledged command). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 2,
                 enumType = MavCmd.class,
-                description = "Command ID, as defined by MAV_CMD enum."
+                description = "Command ID (of acknowledged command)."
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -196,34 +196,34 @@ public final class CommandAck {
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of acknowledged command). 
          */
         public final Builder command(MavCmd entry) {
             return command(EnumValue.of(entry));
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of acknowledged command). 
          */
         public final Builder command(Enum... flags) {
             return command(EnumValue.create(flags));
         }
 
         /**
-         * Command ID, as defined by {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum. 
+         * Command ID (of acknowledged command). 
          */
         public final Builder command(Collection<Enum> flags) {
             return command(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         * Result of command. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = MavResult.class,
-                description = "See MAV_RESULT enum"
+                description = "Result of command."
         )
         public final Builder result(EnumValue<MavResult> result) {
             this.result = result;
@@ -231,21 +231,21 @@ public final class CommandAck {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         * Result of command. 
          */
         public final Builder result(MavResult entry) {
             return result(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         * Result of command. 
          */
         public final Builder result(Enum... flags) {
             return result(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavResult MAV_RESULT} enum 
+         * Result of command. 
          */
         public final Builder result(Collection<Enum> flags) {
             return result(EnumValue.create(flags));

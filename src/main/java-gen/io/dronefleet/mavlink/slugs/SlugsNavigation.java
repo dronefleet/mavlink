@@ -168,12 +168,12 @@ public final class SlugsNavigation {
     }
 
     /**
-     * Commanded altitude 
+     * Commanded altitude (MSL) 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            description = "Commanded altitude"
+            description = "Commanded altitude (MSL)"
     )
     public final int hC() {
         return this.hC;
@@ -366,12 +366,12 @@ public final class SlugsNavigation {
         }
 
         /**
-         * Commanded altitude 
+         * Commanded altitude (MSL) 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                description = "Commanded altitude"
+                description = "Commanded altitude (MSL)"
         )
         public final Builder hC(int hC) {
             this.hC = hC;

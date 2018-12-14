@@ -74,12 +74,12 @@ public final class CameraInformation {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -125,60 +125,60 @@ public final class CameraInformation {
     }
 
     /**
-     * Focal length in mm 
+     * Focal length 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Focal length in mm"
+            description = "Focal length"
     )
     public final float focalLength() {
         return this.focalLength;
     }
 
     /**
-     * Image sensor size horizontal in mm 
+     * Image sensor size horizontal 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Image sensor size horizontal in mm"
+            description = "Image sensor size horizontal"
     )
     public final float sensorSizeH() {
         return this.sensorSizeH;
     }
 
     /**
-     * Image sensor size vertical in mm 
+     * Image sensor size vertical 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Image sensor size vertical in mm"
+            description = "Image sensor size vertical"
     )
     public final float sensorSizeV() {
         return this.sensorSizeV;
     }
 
     /**
-     * Image resolution in pixels horizontal 
+     * Horizontal image resolution 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "Image resolution in pixels horizontal"
+            description = "Horizontal image resolution"
     )
     public final int resolutionH() {
         return this.resolutionH;
     }
 
     /**
-     * Image resolution in pixels vertical 
+     * Vertical image resolution 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "Image resolution in pixels vertical"
+            description = "Vertical image resolution"
     )
     public final int resolutionV() {
         return this.resolutionV;
@@ -197,13 +197,13 @@ public final class CameraInformation {
     }
 
     /**
-     * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+     * Bitmap of camera capability flags. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
             enumType = CameraCapFlags.class,
-            description = "CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities."
+            description = "Bitmap of camera capability flags."
     )
     public final EnumValue<CameraCapFlags> flags() {
         return this.flags;
@@ -319,12 +319,12 @@ public final class CameraInformation {
         private String camDefinitionUri;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -374,12 +374,12 @@ public final class CameraInformation {
         }
 
         /**
-         * Focal length in mm 
+         * Focal length 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Focal length in mm"
+                description = "Focal length"
         )
         public final Builder focalLength(float focalLength) {
             this.focalLength = focalLength;
@@ -387,12 +387,12 @@ public final class CameraInformation {
         }
 
         /**
-         * Image sensor size horizontal in mm 
+         * Image sensor size horizontal 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Image sensor size horizontal in mm"
+                description = "Image sensor size horizontal"
         )
         public final Builder sensorSizeH(float sensorSizeH) {
             this.sensorSizeH = sensorSizeH;
@@ -400,12 +400,12 @@ public final class CameraInformation {
         }
 
         /**
-         * Image sensor size vertical in mm 
+         * Image sensor size vertical 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Image sensor size vertical in mm"
+                description = "Image sensor size vertical"
         )
         public final Builder sensorSizeV(float sensorSizeV) {
             this.sensorSizeV = sensorSizeV;
@@ -413,12 +413,12 @@ public final class CameraInformation {
         }
 
         /**
-         * Image resolution in pixels horizontal 
+         * Horizontal image resolution 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "Image resolution in pixels horizontal"
+                description = "Horizontal image resolution"
         )
         public final Builder resolutionH(int resolutionH) {
             this.resolutionH = resolutionH;
@@ -426,12 +426,12 @@ public final class CameraInformation {
         }
 
         /**
-         * Image resolution in pixels vertical 
+         * Vertical image resolution 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "Image resolution in pixels vertical"
+                description = "Vertical image resolution"
         )
         public final Builder resolutionV(int resolutionV) {
             this.resolutionV = resolutionV;
@@ -452,13 +452,13 @@ public final class CameraInformation {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         * Bitmap of camera capability flags. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
                 enumType = CameraCapFlags.class,
-                description = "CAMERA_CAP_FLAGS enum flags (bitmap) describing camera capabilities."
+                description = "Bitmap of camera capability flags."
         )
         public final Builder flags(EnumValue<CameraCapFlags> flags) {
             this.flags = flags;
@@ -466,21 +466,21 @@ public final class CameraInformation {
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         * Bitmap of camera capability flags. 
          */
         public final Builder flags(CameraCapFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         * Bitmap of camera capability flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * {@link io.dronefleet.mavlink.common.CameraCapFlags CAMERA_CAP_FLAGS} enum flags (bitmap) describing camera capabilities. 
+         * Bitmap of camera capability flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));

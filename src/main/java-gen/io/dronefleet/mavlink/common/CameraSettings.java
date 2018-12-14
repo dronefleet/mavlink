@@ -24,9 +24,16 @@ public final class CameraSettings {
 
     private final EnumValue<CameraMode> modeId;
 
-    private CameraSettings(long timeBootMs, EnumValue<CameraMode> modeId) {
+    private final float zoomlevel;
+
+    private final float focuslevel;
+
+    private CameraSettings(long timeBootMs, EnumValue<CameraMode> modeId, float zoomlevel,
+            float focuslevel) {
         this.timeBootMs = timeBootMs;
         this.modeId = modeId;
+        this.zoomlevel = zoomlevel;
+        this.focuslevel = focuslevel;
     }
 
     /**
@@ -38,28 +45,54 @@ public final class CameraSettings {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+     * Camera mode 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = CameraMode.class,
-            description = "Camera mode (CAMERA_MODE)"
+            description = "Camera mode"
     )
     public final EnumValue<CameraMode> modeId() {
         return this.modeId;
+    }
+
+    /**
+     * Current zoom level (0.0 to 100.0, NaN if not known) 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 4,
+            extension = true,
+            description = "Current zoom level (0.0 to 100.0, NaN if not known)"
+    )
+    public final float zoomlevel() {
+        return this.zoomlevel;
+    }
+
+    /**
+     * Current focus level (0.0 to 100.0, NaN if not known) 
+     */
+    @MavlinkFieldInfo(
+            position = 5,
+            unitSize = 4,
+            extension = true,
+            description = "Current focus level (0.0 to 100.0, NaN if not known)"
+    )
+    public final float focuslevel() {
+        return this.focuslevel;
     }
 
     @Override
@@ -69,6 +102,8 @@ public final class CameraSettings {
         CameraSettings other = (CameraSettings)o;
         if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
         if (!Objects.deepEquals(modeId, other.modeId)) return false;
+        if (!Objects.deepEquals(zoomlevel, other.zoomlevel)) return false;
+        if (!Objects.deepEquals(focuslevel, other.focuslevel)) return false;
         return true;
     }
 
@@ -77,13 +112,17 @@ public final class CameraSettings {
         int result = 0;
         result = 31 * result + Objects.hashCode(timeBootMs);
         result = 31 * result + Objects.hashCode(modeId);
+        result = 31 * result + Objects.hashCode(zoomlevel);
+        result = 31 * result + Objects.hashCode(focuslevel);
         return result;
     }
 
     @Override
     public String toString() {
         return "CameraSettings{timeBootMs=" + timeBootMs
-                 + ", modeId=" + modeId + "}";
+                 + ", modeId=" + modeId
+                 + ", zoomlevel=" + zoomlevel
+                 + ", focuslevel=" + focuslevel + "}";
     }
 
     public static final class Builder {
@@ -91,13 +130,17 @@ public final class CameraSettings {
 
         private EnumValue<CameraMode> modeId;
 
+        private float zoomlevel;
+
+        private float focuslevel;
+
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -105,13 +148,13 @@ public final class CameraSettings {
         }
 
         /**
-         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         * Camera mode 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = CameraMode.class,
-                description = "Camera mode (CAMERA_MODE)"
+                description = "Camera mode"
         )
         public final Builder modeId(EnumValue<CameraMode> modeId) {
             this.modeId = modeId;
@@ -119,28 +162,56 @@ public final class CameraSettings {
         }
 
         /**
-         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         * Camera mode 
          */
         public final Builder modeId(CameraMode entry) {
             return modeId(EnumValue.of(entry));
         }
 
         /**
-         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         * Camera mode 
          */
         public final Builder modeId(Enum... flags) {
             return modeId(EnumValue.create(flags));
         }
 
         /**
-         * Camera mode ({@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE}) 
+         * Camera mode 
          */
         public final Builder modeId(Collection<Enum> flags) {
             return modeId(EnumValue.create(flags));
         }
 
+        /**
+         * Current zoom level (0.0 to 100.0, NaN if not known) 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 4,
+                extension = true,
+                description = "Current zoom level (0.0 to 100.0, NaN if not known)"
+        )
+        public final Builder zoomlevel(float zoomlevel) {
+            this.zoomlevel = zoomlevel;
+            return this;
+        }
+
+        /**
+         * Current focus level (0.0 to 100.0, NaN if not known) 
+         */
+        @MavlinkFieldInfo(
+                position = 5,
+                unitSize = 4,
+                extension = true,
+                description = "Current focus level (0.0 to 100.0, NaN if not known)"
+        )
+        public final Builder focuslevel(float focuslevel) {
+            this.focuslevel = focuslevel;
+            return this;
+        }
+
         public final CameraSettings build() {
-            return new CameraSettings(timeBootMs, modeId);
+            return new CameraSettings(timeBootMs, modeId, zoomlevel, focuslevel);
         }
     }
 }

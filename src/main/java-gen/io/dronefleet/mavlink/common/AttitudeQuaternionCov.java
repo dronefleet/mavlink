@@ -52,12 +52,13 @@ public final class AttitudeQuaternionCov {
     }
 
     /**
-     * Timestamp (microseconds since system boot or since UNIX epoch) 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -77,36 +78,36 @@ public final class AttitudeQuaternionCov {
     }
 
     /**
-     * Roll angular speed (rad/s) 
+     * Roll angular speed 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Roll angular speed (rad/s)"
+            description = "Roll angular speed"
     )
     public final float rollspeed() {
         return this.rollspeed;
     }
 
     /**
-     * Pitch angular speed (rad/s) 
+     * Pitch angular speed 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Pitch angular speed (rad/s)"
+            description = "Pitch angular speed"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
     }
 
     /**
-     * Yaw angular speed (rad/s) 
+     * Yaw angular speed 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Yaw angular speed (rad/s)"
+            description = "Yaw angular speed"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -175,12 +176,13 @@ public final class AttitudeQuaternionCov {
         private List<Float> covariance;
 
         /**
-         * Timestamp (microseconds since system boot or since UNIX epoch) 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (microseconds since system boot or since UNIX epoch)"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -202,12 +204,12 @@ public final class AttitudeQuaternionCov {
         }
 
         /**
-         * Roll angular speed (rad/s) 
+         * Roll angular speed 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Roll angular speed (rad/s)"
+                description = "Roll angular speed"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -215,12 +217,12 @@ public final class AttitudeQuaternionCov {
         }
 
         /**
-         * Pitch angular speed (rad/s) 
+         * Pitch angular speed 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Pitch angular speed (rad/s)"
+                description = "Pitch angular speed"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -228,12 +230,12 @@ public final class AttitudeQuaternionCov {
         }
 
         /**
-         * Yaw angular speed (rad/s) 
+         * Yaw angular speed 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Yaw angular speed (rad/s)"
+                description = "Yaw angular speed"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;

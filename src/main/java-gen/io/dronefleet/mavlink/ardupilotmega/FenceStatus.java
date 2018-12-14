@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Status of geo-fencing. Sent in extended status stream when fencing enabled 
+ * Status of geo-fencing. Sent in extended status stream when fencing enabled. 
  */
 @MavlinkMessageInfo(
         id = 162,
         crc = 189,
-        description = "Status of geo-fencing. Sent in extended status stream when fencing enabled"
+        description = "Status of geo-fencing. Sent in extended status stream when fencing enabled."
 )
 public final class FenceStatus {
     private final int breachStatus;
@@ -46,49 +46,49 @@ public final class FenceStatus {
     }
 
     /**
-     * 0 if currently inside fence, 1 if outside 
+     * Breach status (0 if currently inside fence, 1 if outside). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "0 if currently inside fence, 1 if outside"
+            description = "Breach status (0 if currently inside fence, 1 if outside)."
     )
     public final int breachStatus() {
         return this.breachStatus;
     }
 
     /**
-     * number of fence breaches 
+     * Number of fence breaches. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
-            description = "number of fence breaches"
+            description = "Number of fence breaches."
     )
     public final int breachCount() {
         return this.breachCount;
     }
 
     /**
-     * last breach type (see FENCE_BREACH_* enum) 
+     * Last breach type. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = FenceBreach.class,
-            description = "last breach type (see FENCE_BREACH_* enum)"
+            description = "Last breach type."
     )
     public final EnumValue<FenceBreach> breachType() {
         return this.breachType;
     }
 
     /**
-     * time of last breach in milliseconds since boot 
+     * Time (since boot) of last breach. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "time of last breach in milliseconds since boot"
+            description = "Time (since boot) of last breach."
     )
     public final long breachTime() {
         return this.breachTime;
@@ -134,12 +134,12 @@ public final class FenceStatus {
         private long breachTime;
 
         /**
-         * 0 if currently inside fence, 1 if outside 
+         * Breach status (0 if currently inside fence, 1 if outside). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "0 if currently inside fence, 1 if outside"
+                description = "Breach status (0 if currently inside fence, 1 if outside)."
         )
         public final Builder breachStatus(int breachStatus) {
             this.breachStatus = breachStatus;
@@ -147,12 +147,12 @@ public final class FenceStatus {
         }
 
         /**
-         * number of fence breaches 
+         * Number of fence breaches. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
-                description = "number of fence breaches"
+                description = "Number of fence breaches."
         )
         public final Builder breachCount(int breachCount) {
             this.breachCount = breachCount;
@@ -160,13 +160,13 @@ public final class FenceStatus {
         }
 
         /**
-         * last breach type (see FENCE_BREACH_* enum) 
+         * Last breach type. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = FenceBreach.class,
-                description = "last breach type (see FENCE_BREACH_* enum)"
+                description = "Last breach type."
         )
         public final Builder breachType(EnumValue<FenceBreach> breachType) {
             this.breachType = breachType;
@@ -174,33 +174,33 @@ public final class FenceStatus {
         }
 
         /**
-         * last breach type (see FENCE_BREACH_* enum) 
+         * Last breach type. 
          */
         public final Builder breachType(FenceBreach entry) {
             return breachType(EnumValue.of(entry));
         }
 
         /**
-         * last breach type (see FENCE_BREACH_* enum) 
+         * Last breach type. 
          */
         public final Builder breachType(Enum... flags) {
             return breachType(EnumValue.create(flags));
         }
 
         /**
-         * last breach type (see FENCE_BREACH_* enum) 
+         * Last breach type. 
          */
         public final Builder breachType(Collection<Enum> flags) {
             return breachType(EnumValue.create(flags));
         }
 
         /**
-         * time of last breach in milliseconds since boot 
+         * Time (since boot) of last breach. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "time of last breach in milliseconds since boot"
+                description = "Time (since boot) of last breach."
         )
         public final Builder breachTime(long breachTime) {
             this.breachTime = breachTime;

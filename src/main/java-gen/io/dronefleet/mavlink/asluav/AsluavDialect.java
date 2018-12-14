@@ -21,6 +21,8 @@ public final class AsluavDialect extends AbstractMavlinkDialect {
      * A list of all message types supported by this dialect.
      */
     private static final Map<Integer, Class> messages = new UnmodifiableMapBuilder<Integer, Class>()
+            .put(78, CommandIntStamped.class)
+            .put(79, CommandLongStamped.class)
             .put(201, SensPower.class)
             .put(202, SensMppt.class)
             .put(203, AslctrlData.class)
@@ -33,6 +35,7 @@ public final class AsluavDialect extends AbstractMavlinkDialect {
             .put(210, FwSoaringData.class)
             .put(211, SensorpodStatus.class)
             .put(212, SensPowerBoard.class)
+            .put(213, GsmLinkStatus.class)
             .build();
 
     public AsluavDialect() {

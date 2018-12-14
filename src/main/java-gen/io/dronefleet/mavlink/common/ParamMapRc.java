@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Bind a RC channel to a parameter. The parameter should change accoding to the RC channel value. 
+ * Bind a RC channel to a parameter. The parameter should change according to the RC channel value. 
  */
 @MavlinkMessageInfo(
         id = 50,
         crc = 78,
-        description = "Bind a RC channel to a parameter. The parameter should change accoding to the RC channel value."
+        description = "Bind a RC channel to a parameter. The parameter should change according to the RC channel value."
 )
 public final class ParamMapRc {
     private final int targetSystem;
@@ -111,13 +111,13 @@ public final class ParamMapRc {
     }
 
     /**
-     * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
+     * Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a 
      * potentiometer-knob on the RC. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a potentiometer-knob on the RC."
+            description = "Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a potentiometer-knob on the RC."
     )
     public final int parameterRcChannelIndex() {
         return this.parameterRcChannelIndex;
@@ -295,13 +295,13 @@ public final class ParamMapRc {
         }
 
         /**
-         * Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a 
+         * Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a 
          * potentiometer-knob on the RC. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a potentiometer-knob on the RC."
+                description = "Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a potentiometer-knob on the RC."
         )
         public final Builder parameterRcChannelIndex(int parameterRcChannelIndex) {
             this.parameterRcChannelIndex = parameterRcChannelIndex;

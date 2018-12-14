@@ -12,17 +12,16 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Set a parameter value TEMPORARILY to RAM. It will be reset to default on system reboot. Send the 
- * ACTION MAV_ACTION_STORAGE_WRITE to PERMANENTLY write the RAM contents to EEPROM. 
- * IMPORTANT: The receiving component should acknowledge the new parameter value by sending a 
- * param_value message to all communication partners. This will also ensure that multiple GCS 
- * all have an up-to-date list of all parameters. If the sending GCS did not receive a {@link io.dronefleet.mavlink.common.ParamValue PARAM_VALUE} 
- * message within its timeout time, it should re-send the {@link io.dronefleet.mavlink.common.ParamSet PARAM_SET} message. 
+ * Set a parameter value (write new value to permanent storage). IMPORTANT: The receiving 
+ * component should acknowledge the new parameter value by sending a {@link io.dronefleet.mavlink.common.ParamValue PARAM_VALUE} message to all 
+ * communication partners. This will also ensure that multiple GCS all have an up-to-date list of 
+ * all parameters. If the sending GCS did not receive a {@link io.dronefleet.mavlink.common.ParamValue PARAM_VALUE} message within its timeout 
+ * time, it should re-send the {@link io.dronefleet.mavlink.common.ParamSet PARAM_SET} message. 
  */
 @MavlinkMessageInfo(
         id = 23,
         crc = 168,
-        description = "Set a parameter value TEMPORARILY to RAM. It will be reset to default on system reboot. Send the ACTION MAV_ACTION_STORAGE_WRITE to PERMANENTLY write the RAM contents to EEPROM. IMPORTANT: The receiving component should acknowledge the new parameter value by sending a param_value message to all communication partners. This will also ensure that multiple GCS all have an up-to-date list of all parameters. If the sending GCS did not receive a PARAM_VALUE message within its timeout time, it should re-send the PARAM_SET message."
+        description = "Set a parameter value (write new value to permanent storage). IMPORTANT: The receiving component should acknowledge the new parameter value by sending a PARAM_VALUE message to all communication partners. This will also ensure that multiple GCS all have an up-to-date list of all parameters. If the sending GCS did not receive a PARAM_VALUE message within its timeout time, it should re-send the PARAM_SET message."
 )
 public final class ParamSet {
     private final int targetSystem;
@@ -104,13 +103,13 @@ public final class ParamSet {
     }
 
     /**
-     * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+     * Onboard parameter type. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             enumType = MavParamType.class,
-            description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
+            description = "Onboard parameter type."
     )
     public final EnumValue<MavParamType> paramType() {
         return this.paramType;
@@ -216,13 +215,13 @@ public final class ParamSet {
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 enumType = MavParamType.class,
-                description = "Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types."
+                description = "Onboard parameter type."
         )
         public final Builder paramType(EnumValue<MavParamType> paramType) {
             this.paramType = paramType;
@@ -230,21 +229,21 @@ public final class ParamSet {
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(MavParamType entry) {
             return paramType(EnumValue.of(entry));
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(Enum... flags) {
             return paramType(EnumValue.create(flags));
         }
 
         /**
-         * Onboard parameter type: see the {@link io.dronefleet.mavlink.common.MavParamType MAV_PARAM_TYPE} enum for supported data types. 
+         * Onboard parameter type. 
          */
         public final Builder paramType(Collection<Enum> flags) {
             return paramType(EnumValue.create(flags));

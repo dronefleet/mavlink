@@ -204,7 +204,8 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
     private TypeName enumType() {
         return parentPackage.resolveEnum(enumName)
                 .map(EnumGenerator::getClassName)
-                .orElseThrow(() -> new IllegalStateException("unable to find enum " + enumName));
+                .orElseThrow(() -> new IllegalStateException("unable to find enum " + enumName
+                + " while generating field " + name));
     }
 
     private TypeName enumValueType() {

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * A fence point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS 
+ * A fence point. Used to set a point when from GCS -&gt; MAV. Also used to return a point from MAV -&gt; GCS. 
  */
 @MavlinkMessageInfo(
         id = 160,
         crc = 78,
-        description = "A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS"
+        description = "A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS."
 )
 public final class FencePoint {
     private final int targetSystem;
@@ -48,72 +48,72 @@ public final class FencePoint {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * point index (first point is 1, 0 is for return point) 
+     * Point index (first point is 1, 0 is for return point). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "point index (first point is 1, 0 is for return point)"
+            description = "Point index (first point is 1, 0 is for return point)."
     )
     public final int idx() {
         return this.idx;
     }
 
     /**
-     * total number of points (for sanity checking) 
+     * Total number of points (for sanity checking). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "total number of points (for sanity checking)"
+            description = "Total number of points (for sanity checking)."
     )
     public final int count() {
         return this.count;
     }
 
     /**
-     * Latitude of point 
+     * Latitude of point. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Latitude of point"
+            description = "Latitude of point."
     )
     public final float lat() {
         return this.lat;
     }
 
     /**
-     * Longitude of point 
+     * Longitude of point. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Longitude of point"
+            description = "Longitude of point."
     )
     public final float lng() {
         return this.lng;
@@ -169,12 +169,12 @@ public final class FencePoint {
         private float lng;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -182,12 +182,12 @@ public final class FencePoint {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -195,12 +195,12 @@ public final class FencePoint {
         }
 
         /**
-         * point index (first point is 1, 0 is for return point) 
+         * Point index (first point is 1, 0 is for return point). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "point index (first point is 1, 0 is for return point)"
+                description = "Point index (first point is 1, 0 is for return point)."
         )
         public final Builder idx(int idx) {
             this.idx = idx;
@@ -208,12 +208,12 @@ public final class FencePoint {
         }
 
         /**
-         * total number of points (for sanity checking) 
+         * Total number of points (for sanity checking). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "total number of points (for sanity checking)"
+                description = "Total number of points (for sanity checking)."
         )
         public final Builder count(int count) {
             this.count = count;
@@ -221,12 +221,12 @@ public final class FencePoint {
         }
 
         /**
-         * Latitude of point 
+         * Latitude of point. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Latitude of point"
+                description = "Latitude of point."
         )
         public final Builder lat(float lat) {
             this.lat = lat;
@@ -234,12 +234,12 @@ public final class FencePoint {
         }
 
         /**
-         * Longitude of point 
+         * Longitude of point. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Longitude of point"
+                description = "Longitude of point."
         )
         public final Builder lng(float lng) {
             this.lng = lng;

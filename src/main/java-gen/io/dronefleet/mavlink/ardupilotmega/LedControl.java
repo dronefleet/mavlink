@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Control vehicle LEDs 
+ * Control vehicle LEDs. 
  */
 @MavlinkMessageInfo(
         id = 186,
         crc = 72,
-        description = "Control vehicle LEDs"
+        description = "Control vehicle LEDs."
 )
 public final class LedControl {
     private final int targetSystem;
@@ -48,73 +48,73 @@ public final class LedControl {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Instance (LED instance to control or 255 for all LEDs) 
+     * Instance (LED instance to control or 255 for all LEDs). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Instance (LED instance to control or 255 for all LEDs)"
+            description = "Instance (LED instance to control or 255 for all LEDs)."
     )
     public final int instance() {
         return this.instance;
     }
 
     /**
-     * Pattern (see LED_PATTERN_ENUM) 
+     * Pattern (see LED_PATTERN_ENUM). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Pattern (see LED_PATTERN_ENUM)"
+            description = "Pattern (see LED_PATTERN_ENUM)."
     )
     public final int pattern() {
         return this.pattern;
     }
 
     /**
-     * Custom Byte Length 
+     * Custom Byte Length. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "Custom Byte Length"
+            description = "Custom Byte Length."
     )
     public final int customLen() {
         return this.customLen;
     }
 
     /**
-     * Custom Bytes 
+     * Custom Bytes. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
             arraySize = 24,
-            description = "Custom Bytes"
+            description = "Custom Bytes."
     )
     public final byte[] customBytes() {
         return this.customBytes;
@@ -170,12 +170,12 @@ public final class LedControl {
         private byte[] customBytes;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -183,12 +183,12 @@ public final class LedControl {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -196,12 +196,12 @@ public final class LedControl {
         }
 
         /**
-         * Instance (LED instance to control or 255 for all LEDs) 
+         * Instance (LED instance to control or 255 for all LEDs). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Instance (LED instance to control or 255 for all LEDs)"
+                description = "Instance (LED instance to control or 255 for all LEDs)."
         )
         public final Builder instance(int instance) {
             this.instance = instance;
@@ -209,12 +209,12 @@ public final class LedControl {
         }
 
         /**
-         * Pattern (see LED_PATTERN_ENUM) 
+         * Pattern (see LED_PATTERN_ENUM). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Pattern (see LED_PATTERN_ENUM)"
+                description = "Pattern (see LED_PATTERN_ENUM)."
         )
         public final Builder pattern(int pattern) {
             this.pattern = pattern;
@@ -222,12 +222,12 @@ public final class LedControl {
         }
 
         /**
-         * Custom Byte Length 
+         * Custom Byte Length. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "Custom Byte Length"
+                description = "Custom Byte Length."
         )
         public final Builder customLen(int customLen) {
             this.customLen = customLen;
@@ -235,13 +235,13 @@ public final class LedControl {
         }
 
         /**
-         * Custom Bytes 
+         * Custom Bytes. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
                 arraySize = 24,
-                description = "Custom Bytes"
+                description = "Custom Bytes."
         )
         public final Builder customBytes(byte[] customBytes) {
             this.customBytes = customBytes;

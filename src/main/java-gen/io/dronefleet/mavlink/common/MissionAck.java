@@ -12,13 +12,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Ack message during waypoint handling. The type field states if this message is a positive ack 
- * (type=0) or if an error happened (type=non-zero). 
+ * Acknowledgment message during waypoint handling. The type field states if this message is a 
+ * positive ack (type=0) or if an error happened (type=non-zero). 
  */
 @MavlinkMessageInfo(
         id = 47,
         crc = 153,
-        description = "Ack message during waypoint handling. The type field states if this message is a positive ack (type=0) or if an error happened (type=non-zero)."
+        description = "Acknowledgment message during waypoint handling. The type field states if this message is a positive ack (type=0) or if an error happened (type=non-zero)."
 )
 public final class MissionAck {
     private final int targetSystem;
@@ -70,27 +70,27 @@ public final class MissionAck {
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+     * Mission result. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavMissionResult.class,
-            description = "See MAV_MISSION_RESULT enum"
+            description = "Mission result."
     )
     public final EnumValue<MavMissionResult> type() {
         return this.type;
     }
 
     /**
-     * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+     * Mission type. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             enumType = MavMissionType.class,
             extension = true,
-            description = "Mission type, see MAV_MISSION_TYPE"
+            description = "Mission type."
     )
     public final EnumValue<MavMissionType> missionType() {
         return this.missionType;
@@ -162,13 +162,13 @@ public final class MissionAck {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+         * Mission result. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavMissionResult.class,
-                description = "See MAV_MISSION_RESULT enum"
+                description = "Mission result."
         )
         public final Builder type(EnumValue<MavMissionResult> type) {
             this.type = type;
@@ -176,35 +176,35 @@ public final class MissionAck {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+         * Mission result. 
          */
         public final Builder type(MavMissionResult entry) {
             return type(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+         * Mission result. 
          */
         public final Builder type(Enum... flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.common.MavMissionResult MAV_MISSION_RESULT} enum 
+         * Mission result. 
          */
         public final Builder type(Collection<Enum> flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 enumType = MavMissionType.class,
                 extension = true,
-                description = "Mission type, see MAV_MISSION_TYPE"
+                description = "Mission type."
         )
         public final Builder missionType(EnumValue<MavMissionType> missionType) {
             this.missionType = missionType;
@@ -212,21 +212,21 @@ public final class MissionAck {
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(MavMissionType entry) {
             return missionType(EnumValue.of(entry));
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(Enum... flags) {
             return missionType(EnumValue.create(flags));
         }
 
         /**
-         * Mission type, see {@link io.dronefleet.mavlink.common.MavMissionType MAV_MISSION_TYPE} 
+         * Mission type. 
          */
         public final Builder missionType(Collection<Enum> flags) {
             return missionType(EnumValue.create(flags));

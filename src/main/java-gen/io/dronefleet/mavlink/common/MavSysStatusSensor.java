@@ -168,5 +168,11 @@ public enum MavSysStatusSensor {
      * 0x4000000 Proximity 
      */
     @MavlinkEntryInfo(67108864)
-    MAV_SYS_STATUS_SENSOR_PROXIMITY
+    MAV_SYS_STATUS_SENSOR_PROXIMITY,
+
+    /**
+     * 0x8000000 Satellite Communication 
+     */
+    @MavlinkEntryInfo(134217728)
+    MAV_SYS_STATUS_SENSOR_SATCOM
 }

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Message with some status from APM to GCS about camera or antenna mount 
+ * Message with some status from APM to GCS about camera or antenna mount. 
  */
 @MavlinkMessageInfo(
         id = 158,
         crc = 134,
-        description = "Message with some status from APM to GCS about camera or antenna mount"
+        description = "Message with some status from APM to GCS about camera or antenna mount."
 )
 public final class MountStatus {
     private final int targetSystem;
@@ -45,63 +45,63 @@ public final class MountStatus {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * pitch(deg*100) 
+     * Pitch. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "pitch(deg*100)"
+            description = "Pitch."
     )
     public final int pointingA() {
         return this.pointingA;
     }
 
     /**
-     * roll(deg*100) 
+     * Roll. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "roll(deg*100)"
+            description = "Roll."
     )
     public final int pointingB() {
         return this.pointingB;
     }
 
     /**
-     * yaw(deg*100) 
+     * Yaw. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "yaw(deg*100)"
+            description = "Yaw."
     )
     public final int pointingC() {
         return this.pointingC;
@@ -152,12 +152,12 @@ public final class MountStatus {
         private int pointingC;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -165,12 +165,12 @@ public final class MountStatus {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -178,13 +178,13 @@ public final class MountStatus {
         }
 
         /**
-         * pitch(deg*100) 
+         * Pitch. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "pitch(deg*100)"
+                description = "Pitch."
         )
         public final Builder pointingA(int pointingA) {
             this.pointingA = pointingA;
@@ -192,13 +192,13 @@ public final class MountStatus {
         }
 
         /**
-         * roll(deg*100) 
+         * Roll. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "roll(deg*100)"
+                description = "Roll."
         )
         public final Builder pointingB(int pointingB) {
             this.pointingB = pointingB;
@@ -206,13 +206,13 @@ public final class MountStatus {
         }
 
         /**
-         * yaw(deg*100) 
+         * Yaw. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "yaw(deg*100)"
+                description = "Yaw."
         )
         public final Builder pointingC(int pointingC) {
             this.pointingC = pointingC;

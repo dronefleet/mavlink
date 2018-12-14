@@ -61,129 +61,129 @@ public final class ScaledImu3 {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * X acceleration (mg) 
+     * X acceleration 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 2,
             signed = true,
-            description = "X acceleration (mg)"
+            description = "X acceleration"
     )
     public final int xacc() {
         return this.xacc;
     }
 
     /**
-     * Y acceleration (mg) 
+     * Y acceleration 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Y acceleration (mg)"
+            description = "Y acceleration"
     )
     public final int yacc() {
         return this.yacc;
     }
 
     /**
-     * Z acceleration (mg) 
+     * Z acceleration 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Z acceleration (mg)"
+            description = "Z acceleration"
     )
     public final int zacc() {
         return this.zacc;
     }
 
     /**
-     * Angular speed around X axis (millirad /sec) 
+     * Angular speed around X axis 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
             signed = true,
-            description = "Angular speed around X axis (millirad /sec)"
+            description = "Angular speed around X axis"
     )
     public final int xgyro() {
         return this.xgyro;
     }
 
     /**
-     * Angular speed around Y axis (millirad /sec) 
+     * Angular speed around Y axis 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
             signed = true,
-            description = "Angular speed around Y axis (millirad /sec)"
+            description = "Angular speed around Y axis"
     )
     public final int ygyro() {
         return this.ygyro;
     }
 
     /**
-     * Angular speed around Z axis (millirad /sec) 
+     * Angular speed around Z axis 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
             signed = true,
-            description = "Angular speed around Z axis (millirad /sec)"
+            description = "Angular speed around Z axis"
     )
     public final int zgyro() {
         return this.zgyro;
     }
 
     /**
-     * X Magnetic field (milli tesla) 
+     * X Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
             signed = true,
-            description = "X Magnetic field (milli tesla)"
+            description = "X Magnetic field"
     )
     public final int xmag() {
         return this.xmag;
     }
 
     /**
-     * Y Magnetic field (milli tesla) 
+     * Y Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
             signed = true,
-            description = "Y Magnetic field (milli tesla)"
+            description = "Y Magnetic field"
     )
     public final int ymag() {
         return this.ymag;
     }
 
     /**
-     * Z Magnetic field (milli tesla) 
+     * Z Magnetic field 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
             signed = true,
-            description = "Z Magnetic field (milli tesla)"
+            description = "Z Magnetic field"
     )
     public final int zmag() {
         return this.zmag;
@@ -259,12 +259,12 @@ public final class ScaledImu3 {
         private int zmag;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -272,13 +272,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * X acceleration (mg) 
+         * X acceleration 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 2,
                 signed = true,
-                description = "X acceleration (mg)"
+                description = "X acceleration"
         )
         public final Builder xacc(int xacc) {
             this.xacc = xacc;
@@ -286,13 +286,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Y acceleration (mg) 
+         * Y acceleration 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Y acceleration (mg)"
+                description = "Y acceleration"
         )
         public final Builder yacc(int yacc) {
             this.yacc = yacc;
@@ -300,13 +300,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Z acceleration (mg) 
+         * Z acceleration 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Z acceleration (mg)"
+                description = "Z acceleration"
         )
         public final Builder zacc(int zacc) {
             this.zacc = zacc;
@@ -314,13 +314,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Angular speed around X axis (millirad /sec) 
+         * Angular speed around X axis 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
                 signed = true,
-                description = "Angular speed around X axis (millirad /sec)"
+                description = "Angular speed around X axis"
         )
         public final Builder xgyro(int xgyro) {
             this.xgyro = xgyro;
@@ -328,13 +328,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Angular speed around Y axis (millirad /sec) 
+         * Angular speed around Y axis 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
                 signed = true,
-                description = "Angular speed around Y axis (millirad /sec)"
+                description = "Angular speed around Y axis"
         )
         public final Builder ygyro(int ygyro) {
             this.ygyro = ygyro;
@@ -342,13 +342,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Angular speed around Z axis (millirad /sec) 
+         * Angular speed around Z axis 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
                 signed = true,
-                description = "Angular speed around Z axis (millirad /sec)"
+                description = "Angular speed around Z axis"
         )
         public final Builder zgyro(int zgyro) {
             this.zgyro = zgyro;
@@ -356,13 +356,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * X Magnetic field (milli tesla) 
+         * X Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
                 signed = true,
-                description = "X Magnetic field (milli tesla)"
+                description = "X Magnetic field"
         )
         public final Builder xmag(int xmag) {
             this.xmag = xmag;
@@ -370,13 +370,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Y Magnetic field (milli tesla) 
+         * Y Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
                 signed = true,
-                description = "Y Magnetic field (milli tesla)"
+                description = "Y Magnetic field"
         )
         public final Builder ymag(int ymag) {
             this.ymag = ymag;
@@ -384,13 +384,13 @@ public final class ScaledImu3 {
         }
 
         /**
-         * Z Magnetic field (milli tesla) 
+         * Z Magnetic field 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
                 signed = true,
-                description = "Z Magnetic field (milli tesla)"
+                description = "Z Magnetic field"
         )
         public final Builder zmag(int zmag) {
             this.zmag = zmag;

@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Send a block of log data to remote location 
+ * Send a block of log data to remote location. 
  */
 @MavlinkMessageInfo(
         id = 184,
         crc = 159,
-        description = "Send a block of log data to remote location"
+        description = "Send a block of log data to remote location."
 )
 public final class RemoteLogDataBlock {
     private final int targetSystem;
@@ -45,50 +45,50 @@ public final class RemoteLogDataBlock {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * log data block sequence number 
+     * Log data block sequence number. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             enumType = MavRemoteLogDataBlockCommands.class,
-            description = "log data block sequence number"
+            description = "Log data block sequence number."
     )
     public final EnumValue<MavRemoteLogDataBlockCommands> seqno() {
         return this.seqno;
     }
 
     /**
-     * log data block 
+     * Log data block. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             arraySize = 200,
-            description = "log data block"
+            description = "Log data block."
     )
     public final byte[] data() {
         return this.data;
@@ -134,12 +134,12 @@ public final class RemoteLogDataBlock {
         private byte[] data;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -147,12 +147,12 @@ public final class RemoteLogDataBlock {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -160,13 +160,13 @@ public final class RemoteLogDataBlock {
         }
 
         /**
-         * log data block sequence number 
+         * Log data block sequence number. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 enumType = MavRemoteLogDataBlockCommands.class,
-                description = "log data block sequence number"
+                description = "Log data block sequence number."
         )
         public final Builder seqno(EnumValue<MavRemoteLogDataBlockCommands> seqno) {
             this.seqno = seqno;
@@ -174,34 +174,34 @@ public final class RemoteLogDataBlock {
         }
 
         /**
-         * log data block sequence number 
+         * Log data block sequence number. 
          */
         public final Builder seqno(MavRemoteLogDataBlockCommands entry) {
             return seqno(EnumValue.of(entry));
         }
 
         /**
-         * log data block sequence number 
+         * Log data block sequence number. 
          */
         public final Builder seqno(Enum... flags) {
             return seqno(EnumValue.create(flags));
         }
 
         /**
-         * log data block sequence number 
+         * Log data block sequence number. 
          */
         public final Builder seqno(Collection<Enum> flags) {
             return seqno(EnumValue.create(flags));
         }
 
         /**
-         * log data block 
+         * Log data block. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 arraySize = 200,
-                description = "log data block"
+                description = "Log data block."
         )
         public final Builder data(byte[] data) {
             this.data = data;

@@ -51,48 +51,48 @@ public final class ManualSetpoint {
     }
 
     /**
-     * Timestamp in milliseconds since system boot 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp in milliseconds since system boot"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Desired roll rate in radians per second 
+     * Desired roll rate 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Desired roll rate in radians per second"
+            description = "Desired roll rate"
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Desired pitch rate in radians per second 
+     * Desired pitch rate 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Desired pitch rate in radians per second"
+            description = "Desired pitch rate"
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Desired yaw rate in radians per second 
+     * Desired yaw rate 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Desired yaw rate in radians per second"
+            description = "Desired yaw rate"
     )
     public final float yaw() {
         return this.yaw;
@@ -189,12 +189,12 @@ public final class ManualSetpoint {
         private int manualOverrideSwitch;
 
         /**
-         * Timestamp in milliseconds since system boot 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp in milliseconds since system boot"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -202,12 +202,12 @@ public final class ManualSetpoint {
         }
 
         /**
-         * Desired roll rate in radians per second 
+         * Desired roll rate 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Desired roll rate in radians per second"
+                description = "Desired roll rate"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -215,12 +215,12 @@ public final class ManualSetpoint {
         }
 
         /**
-         * Desired pitch rate in radians per second 
+         * Desired pitch rate 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Desired pitch rate in radians per second"
+                description = "Desired pitch rate"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -228,12 +228,12 @@ public final class ManualSetpoint {
         }
 
         /**
-         * Desired yaw rate in radians per second 
+         * Desired yaw rate 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Desired yaw rate in radians per second"
+                description = "Desired yaw rate"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;

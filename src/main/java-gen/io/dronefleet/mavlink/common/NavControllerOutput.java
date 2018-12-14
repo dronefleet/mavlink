@@ -54,98 +54,98 @@ public final class NavControllerOutput {
     }
 
     /**
-     * Current desired roll in degrees 
+     * Current desired roll 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Current desired roll in degrees"
+            description = "Current desired roll"
     )
     public final float navRoll() {
         return this.navRoll;
     }
 
     /**
-     * Current desired pitch in degrees 
+     * Current desired pitch 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Current desired pitch in degrees"
+            description = "Current desired pitch"
     )
     public final float navPitch() {
         return this.navPitch;
     }
 
     /**
-     * Current desired heading in degrees 
+     * Current desired heading 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Current desired heading in degrees"
+            description = "Current desired heading"
     )
     public final int navBearing() {
         return this.navBearing;
     }
 
     /**
-     * Bearing to current waypoint/target in degrees 
+     * Bearing to current waypoint/target 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Bearing to current waypoint/target in degrees"
+            description = "Bearing to current waypoint/target"
     )
     public final int targetBearing() {
         return this.targetBearing;
     }
 
     /**
-     * Distance to active waypoint in meters 
+     * Distance to active waypoint 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "Distance to active waypoint in meters"
+            description = "Distance to active waypoint"
     )
     public final int wpDist() {
         return this.wpDist;
     }
 
     /**
-     * Current altitude error in meters 
+     * Current altitude error 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Current altitude error in meters"
+            description = "Current altitude error"
     )
     public final float altError() {
         return this.altError;
     }
 
     /**
-     * Current airspeed error in meters/second 
+     * Current airspeed error 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Current airspeed error in meters/second"
+            description = "Current airspeed error"
     )
     public final float aspdError() {
         return this.aspdError;
     }
 
     /**
-     * Current crosstrack error on x-y plane in meters 
+     * Current crosstrack error on x-y plane 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Current crosstrack error on x-y plane in meters"
+            description = "Current crosstrack error on x-y plane"
     )
     public final float xtrackError() {
         return this.xtrackError;
@@ -211,12 +211,12 @@ public final class NavControllerOutput {
         private float xtrackError;
 
         /**
-         * Current desired roll in degrees 
+         * Current desired roll 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Current desired roll in degrees"
+                description = "Current desired roll"
         )
         public final Builder navRoll(float navRoll) {
             this.navRoll = navRoll;
@@ -224,12 +224,12 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Current desired pitch in degrees 
+         * Current desired pitch 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Current desired pitch in degrees"
+                description = "Current desired pitch"
         )
         public final Builder navPitch(float navPitch) {
             this.navPitch = navPitch;
@@ -237,13 +237,13 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Current desired heading in degrees 
+         * Current desired heading 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Current desired heading in degrees"
+                description = "Current desired heading"
         )
         public final Builder navBearing(int navBearing) {
             this.navBearing = navBearing;
@@ -251,13 +251,13 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Bearing to current waypoint/target in degrees 
+         * Bearing to current waypoint/target 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Bearing to current waypoint/target in degrees"
+                description = "Bearing to current waypoint/target"
         )
         public final Builder targetBearing(int targetBearing) {
             this.targetBearing = targetBearing;
@@ -265,12 +265,12 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Distance to active waypoint in meters 
+         * Distance to active waypoint 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "Distance to active waypoint in meters"
+                description = "Distance to active waypoint"
         )
         public final Builder wpDist(int wpDist) {
             this.wpDist = wpDist;
@@ -278,12 +278,12 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Current altitude error in meters 
+         * Current altitude error 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Current altitude error in meters"
+                description = "Current altitude error"
         )
         public final Builder altError(float altError) {
             this.altError = altError;
@@ -291,12 +291,12 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Current airspeed error in meters/second 
+         * Current airspeed error 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Current airspeed error in meters/second"
+                description = "Current airspeed error"
         )
         public final Builder aspdError(float aspdError) {
             this.aspdError = aspdError;
@@ -304,12 +304,12 @@ public final class NavControllerOutput {
         }
 
         /**
-         * Current crosstrack error on x-y plane in meters 
+         * Current crosstrack error on x-y plane 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Current crosstrack error on x-y plane in meters"
+                description = "Current crosstrack error on x-y plane"
         )
         public final Builder xtrackError(float xtrackError) {
             this.xtrackError = xtrackError;

@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available. This is for ANU research group (Ali and Sean) 
+ * Status of third {@link io.dronefleet.mavlink.ardupilotmega.Ahrs AHRS} filter if available. This is for ANU research group (Ali and Sean). 
  */
 @MavlinkMessageInfo(
         id = 182,
         crc = 229,
-        description = "Status of third AHRS filter if available. This is for ANU research group (Ali and Sean)"
+        description = "Status of third AHRS filter if available. This is for ANU research group (Ali and Sean)."
 )
 public final class Ahrs3 {
     private final float roll;
@@ -60,122 +60,122 @@ public final class Ahrs3 {
     }
 
     /**
-     * Roll angle (rad) 
+     * Roll angle. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Roll angle (rad)"
+            description = "Roll angle."
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Pitch angle (rad) 
+     * Pitch angle. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Pitch angle (rad)"
+            description = "Pitch angle."
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Yaw angle (rad) 
+     * Yaw angle. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Yaw angle (rad)"
+            description = "Yaw angle."
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Altitude (MSL) 
+     * Altitude (MSL). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Altitude (MSL)"
+            description = "Altitude (MSL)."
     )
     public final float altitude() {
         return this.altitude;
     }
 
     /**
-     * Latitude in degrees * 1E7 
+     * Latitude. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Latitude in degrees * 1E7"
+            description = "Latitude."
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude in degrees * 1E7 
+     * Longitude. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Longitude in degrees * 1E7"
+            description = "Longitude."
     )
     public final int lng() {
         return this.lng;
     }
 
     /**
-     * test variable1 
+     * Test variable1. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "test variable1"
+            description = "Test variable1."
     )
     public final float v1() {
         return this.v1;
     }
 
     /**
-     * test variable2 
+     * Test variable2. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "test variable2"
+            description = "Test variable2."
     )
     public final float v2() {
         return this.v2;
     }
 
     /**
-     * test variable3 
+     * Test variable3. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "test variable3"
+            description = "Test variable3."
     )
     public final float v3() {
         return this.v3;
     }
 
     /**
-     * test variable4 
+     * Test variable4. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "test variable4"
+            description = "Test variable4."
     )
     public final float v4() {
         return this.v4;
@@ -251,12 +251,12 @@ public final class Ahrs3 {
         private float v4;
 
         /**
-         * Roll angle (rad) 
+         * Roll angle. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Roll angle (rad)"
+                description = "Roll angle."
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -264,12 +264,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * Pitch angle (rad) 
+         * Pitch angle. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Pitch angle (rad)"
+                description = "Pitch angle."
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -277,12 +277,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * Yaw angle (rad) 
+         * Yaw angle. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Yaw angle (rad)"
+                description = "Yaw angle."
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -290,12 +290,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * Altitude (MSL) 
+         * Altitude (MSL). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Altitude (MSL)"
+                description = "Altitude (MSL)."
         )
         public final Builder altitude(float altitude) {
             this.altitude = altitude;
@@ -303,13 +303,13 @@ public final class Ahrs3 {
         }
 
         /**
-         * Latitude in degrees * 1E7 
+         * Latitude. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude in degrees * 1E7"
+                description = "Latitude."
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -317,13 +317,13 @@ public final class Ahrs3 {
         }
 
         /**
-         * Longitude in degrees * 1E7 
+         * Longitude. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude in degrees * 1E7"
+                description = "Longitude."
         )
         public final Builder lng(int lng) {
             this.lng = lng;
@@ -331,12 +331,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * test variable1 
+         * Test variable1. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "test variable1"
+                description = "Test variable1."
         )
         public final Builder v1(float v1) {
             this.v1 = v1;
@@ -344,12 +344,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * test variable2 
+         * Test variable2. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "test variable2"
+                description = "Test variable2."
         )
         public final Builder v2(float v2) {
             this.v2 = v2;
@@ -357,12 +357,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * test variable3 
+         * Test variable3. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "test variable3"
+                description = "Test variable3."
         )
         public final Builder v3(float v3) {
             this.v3 = v3;
@@ -370,12 +370,12 @@ public final class Ahrs3 {
         }
 
         /**
-         * test variable4 
+         * Test variable4. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "test variable4"
+                description = "Test variable4."
         )
         public final Builder v4(float v4) {
             this.v4 = v4;

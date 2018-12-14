@@ -9,13 +9,13 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum GripperActions {
     /**
-     * gripper release of cargo 
+     * Gripper release cargo. 
      */
     @MavlinkEntryInfo(0)
     GRIPPER_ACTION_RELEASE,
 
     /**
-     * gripper grabs onto cargo 
+     * Gripper grab onto cargo. 
      */
     @MavlinkEntryInfo(1)
     GRIPPER_ACTION_GRAB

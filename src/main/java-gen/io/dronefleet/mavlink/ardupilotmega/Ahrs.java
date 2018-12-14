@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Status of DCM attitude estimator 
+ * Status of DCM attitude estimator. 
  */
 @MavlinkMessageInfo(
         id = 163,
         crc = 127,
-        description = "Status of DCM attitude estimator"
+        description = "Status of DCM attitude estimator."
 )
 public final class Ahrs {
     private final float omegaix;
@@ -51,84 +51,84 @@ public final class Ahrs {
     }
 
     /**
-     * X gyro drift estimate rad/s 
+     * X gyro drift estimate. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "X gyro drift estimate rad/s"
+            description = "X gyro drift estimate."
     )
     public final float omegaix() {
         return this.omegaix;
     }
 
     /**
-     * Y gyro drift estimate rad/s 
+     * Y gyro drift estimate. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Y gyro drift estimate rad/s"
+            description = "Y gyro drift estimate."
     )
     public final float omegaiy() {
         return this.omegaiy;
     }
 
     /**
-     * Z gyro drift estimate rad/s 
+     * Z gyro drift estimate. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Z gyro drift estimate rad/s"
+            description = "Z gyro drift estimate."
     )
     public final float omegaiz() {
         return this.omegaiz;
     }
 
     /**
-     * average accel_weight 
+     * Average accel_weight. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "average accel_weight"
+            description = "Average accel_weight."
     )
     public final float accelWeight() {
         return this.accelWeight;
     }
 
     /**
-     * average renormalisation value 
+     * Average renormalisation value. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "average renormalisation value"
+            description = "Average renormalisation value."
     )
     public final float renormVal() {
         return this.renormVal;
     }
 
     /**
-     * average error_roll_pitch value 
+     * Average error_roll_pitch value. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "average error_roll_pitch value"
+            description = "Average error_roll_pitch value."
     )
     public final float errorRp() {
         return this.errorRp;
     }
 
     /**
-     * average error_yaw value 
+     * Average error_yaw value. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "average error_yaw value"
+            description = "Average error_yaw value."
     )
     public final float errorYaw() {
         return this.errorYaw;
@@ -189,12 +189,12 @@ public final class Ahrs {
         private float errorYaw;
 
         /**
-         * X gyro drift estimate rad/s 
+         * X gyro drift estimate. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "X gyro drift estimate rad/s"
+                description = "X gyro drift estimate."
         )
         public final Builder omegaix(float omegaix) {
             this.omegaix = omegaix;
@@ -202,12 +202,12 @@ public final class Ahrs {
         }
 
         /**
-         * Y gyro drift estimate rad/s 
+         * Y gyro drift estimate. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Y gyro drift estimate rad/s"
+                description = "Y gyro drift estimate."
         )
         public final Builder omegaiy(float omegaiy) {
             this.omegaiy = omegaiy;
@@ -215,12 +215,12 @@ public final class Ahrs {
         }
 
         /**
-         * Z gyro drift estimate rad/s 
+         * Z gyro drift estimate. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Z gyro drift estimate rad/s"
+                description = "Z gyro drift estimate."
         )
         public final Builder omegaiz(float omegaiz) {
             this.omegaiz = omegaiz;
@@ -228,12 +228,12 @@ public final class Ahrs {
         }
 
         /**
-         * average accel_weight 
+         * Average accel_weight. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "average accel_weight"
+                description = "Average accel_weight."
         )
         public final Builder accelWeight(float accelWeight) {
             this.accelWeight = accelWeight;
@@ -241,12 +241,12 @@ public final class Ahrs {
         }
 
         /**
-         * average renormalisation value 
+         * Average renormalisation value. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "average renormalisation value"
+                description = "Average renormalisation value."
         )
         public final Builder renormVal(float renormVal) {
             this.renormVal = renormVal;
@@ -254,12 +254,12 @@ public final class Ahrs {
         }
 
         /**
-         * average error_roll_pitch value 
+         * Average error_roll_pitch value. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "average error_roll_pitch value"
+                description = "Average error_roll_pitch value."
         )
         public final Builder errorRp(float errorRp) {
             this.errorRp = errorRp;
@@ -267,12 +267,12 @@ public final class Ahrs {
         }
 
         /**
-         * average error_yaw value 
+         * Average error_yaw value. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "average error_yaw value"
+                description = "Average error_yaw value."
         )
         public final Builder errorYaw(float errorYaw) {
             this.errorYaw = errorYaw;

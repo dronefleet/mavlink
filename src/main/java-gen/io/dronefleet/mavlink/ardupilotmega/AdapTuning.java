@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Adaptive Controller tuning information 
+ * Adaptive Controller tuning information. 
  */
 @MavlinkMessageInfo(
         id = 11010,
         crc = 46,
-        description = "Adaptive Controller tuning information"
+        description = "Adaptive Controller tuning information."
 )
 public final class AdapTuning {
     private final EnumValue<PidTuningAxis> axis;
@@ -73,157 +73,157 @@ public final class AdapTuning {
     }
 
     /**
-     * axis 
+     * Axis. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = PidTuningAxis.class,
-            description = "axis"
+            description = "Axis."
     )
     public final EnumValue<PidTuningAxis> axis() {
         return this.axis;
     }
 
     /**
-     * desired rate (degrees/s) 
+     * Desired rate. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "desired rate (degrees/s)"
+            description = "Desired rate."
     )
     public final float desired() {
         return this.desired;
     }
 
     /**
-     * achieved rate (degrees/s) 
+     * Achieved rate. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "achieved rate (degrees/s)"
+            description = "Achieved rate."
     )
     public final float achieved() {
         return this.achieved;
     }
 
     /**
-     * error between model and vehicle 
+     * Error between model and vehicle. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "error between model and vehicle"
+            description = "Error between model and vehicle."
     )
     public final float error() {
         return this.error;
     }
 
     /**
-     * theta estimated state predictor 
+     * Theta estimated state predictor. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "theta estimated state predictor"
+            description = "Theta estimated state predictor."
     )
     public final float theta() {
         return this.theta;
     }
 
     /**
-     * omega estimated state predictor 
+     * Omega estimated state predictor. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "omega estimated state predictor"
+            description = "Omega estimated state predictor."
     )
     public final float omega() {
         return this.omega;
     }
 
     /**
-     * sigma estimated state predictor 
+     * Sigma estimated state predictor. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "sigma estimated state predictor"
+            description = "Sigma estimated state predictor."
     )
     public final float sigma() {
         return this.sigma;
     }
 
     /**
-     * theta derivative 
+     * Theta derivative. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "theta derivative"
+            description = "Theta derivative."
     )
     public final float thetaDot() {
         return this.thetaDot;
     }
 
     /**
-     * omega derivative 
+     * Omega derivative. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "omega derivative"
+            description = "Omega derivative."
     )
     public final float omegaDot() {
         return this.omegaDot;
     }
 
     /**
-     * sigma derivative 
+     * Sigma derivative. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "sigma derivative"
+            description = "Sigma derivative."
     )
     public final float sigmaDot() {
         return this.sigmaDot;
     }
 
     /**
-     * projection operator value 
+     * Projection operator value. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "projection operator value"
+            description = "Projection operator value."
     )
     public final float f() {
         return this.f;
     }
 
     /**
-     * projection operator derivative 
+     * Projection operator derivative. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "projection operator derivative"
+            description = "Projection operator derivative."
     )
     public final float fDot() {
         return this.fDot;
     }
 
     /**
-     * u adaptive controlled output command 
+     * u adaptive controlled output command. 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            description = "u adaptive controlled output command"
+            description = "u adaptive controlled output command."
     )
     public final float u() {
         return this.u;
@@ -314,13 +314,13 @@ public final class AdapTuning {
         private float u;
 
         /**
-         * axis 
+         * Axis. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = PidTuningAxis.class,
-                description = "axis"
+                description = "Axis."
         )
         public final Builder axis(EnumValue<PidTuningAxis> axis) {
             this.axis = axis;
@@ -328,33 +328,33 @@ public final class AdapTuning {
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(PidTuningAxis entry) {
             return axis(EnumValue.of(entry));
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(Enum... flags) {
             return axis(EnumValue.create(flags));
         }
 
         /**
-         * axis 
+         * Axis. 
          */
         public final Builder axis(Collection<Enum> flags) {
             return axis(EnumValue.create(flags));
         }
 
         /**
-         * desired rate (degrees/s) 
+         * Desired rate. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "desired rate (degrees/s)"
+                description = "Desired rate."
         )
         public final Builder desired(float desired) {
             this.desired = desired;
@@ -362,12 +362,12 @@ public final class AdapTuning {
         }
 
         /**
-         * achieved rate (degrees/s) 
+         * Achieved rate. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "achieved rate (degrees/s)"
+                description = "Achieved rate."
         )
         public final Builder achieved(float achieved) {
             this.achieved = achieved;
@@ -375,12 +375,12 @@ public final class AdapTuning {
         }
 
         /**
-         * error between model and vehicle 
+         * Error between model and vehicle. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "error between model and vehicle"
+                description = "Error between model and vehicle."
         )
         public final Builder error(float error) {
             this.error = error;
@@ -388,12 +388,12 @@ public final class AdapTuning {
         }
 
         /**
-         * theta estimated state predictor 
+         * Theta estimated state predictor. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "theta estimated state predictor"
+                description = "Theta estimated state predictor."
         )
         public final Builder theta(float theta) {
             this.theta = theta;
@@ -401,12 +401,12 @@ public final class AdapTuning {
         }
 
         /**
-         * omega estimated state predictor 
+         * Omega estimated state predictor. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "omega estimated state predictor"
+                description = "Omega estimated state predictor."
         )
         public final Builder omega(float omega) {
             this.omega = omega;
@@ -414,12 +414,12 @@ public final class AdapTuning {
         }
 
         /**
-         * sigma estimated state predictor 
+         * Sigma estimated state predictor. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "sigma estimated state predictor"
+                description = "Sigma estimated state predictor."
         )
         public final Builder sigma(float sigma) {
             this.sigma = sigma;
@@ -427,12 +427,12 @@ public final class AdapTuning {
         }
 
         /**
-         * theta derivative 
+         * Theta derivative. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "theta derivative"
+                description = "Theta derivative."
         )
         public final Builder thetaDot(float thetaDot) {
             this.thetaDot = thetaDot;
@@ -440,12 +440,12 @@ public final class AdapTuning {
         }
 
         /**
-         * omega derivative 
+         * Omega derivative. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "omega derivative"
+                description = "Omega derivative."
         )
         public final Builder omegaDot(float omegaDot) {
             this.omegaDot = omegaDot;
@@ -453,12 +453,12 @@ public final class AdapTuning {
         }
 
         /**
-         * sigma derivative 
+         * Sigma derivative. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "sigma derivative"
+                description = "Sigma derivative."
         )
         public final Builder sigmaDot(float sigmaDot) {
             this.sigmaDot = sigmaDot;
@@ -466,12 +466,12 @@ public final class AdapTuning {
         }
 
         /**
-         * projection operator value 
+         * Projection operator value. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "projection operator value"
+                description = "Projection operator value."
         )
         public final Builder f(float f) {
             this.f = f;
@@ -479,12 +479,12 @@ public final class AdapTuning {
         }
 
         /**
-         * projection operator derivative 
+         * Projection operator derivative. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "projection operator derivative"
+                description = "Projection operator derivative."
         )
         public final Builder fDot(float fDot) {
             this.fDot = fDot;
@@ -492,12 +492,12 @@ public final class AdapTuning {
         }
 
         /**
-         * u adaptive controlled output command 
+         * u adaptive controlled output command. 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                description = "u adaptive controlled output command"
+                description = "u adaptive controlled output command."
         )
         public final Builder u(float u) {
             this.u = u;

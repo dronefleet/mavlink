@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * 3 axis gimbal mesuraments 
+ * 3 axis gimbal measurements. 
  */
 @MavlinkMessageInfo(
         id = 200,
         crc = 134,
-        description = "3 axis gimbal mesuraments"
+        description = "3 axis gimbal measurements."
 )
 public final class GimbalReport {
     private final int targetSystem;
@@ -67,144 +67,144 @@ public final class GimbalReport {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Time since last update (seconds) 
+     * Time since last update. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Time since last update (seconds)"
+            description = "Time since last update."
     )
     public final float deltaTime() {
         return this.deltaTime;
     }
 
     /**
-     * Delta angle X (radians) 
+     * Delta angle X. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Delta angle X (radians)"
+            description = "Delta angle X."
     )
     public final float deltaAngleX() {
         return this.deltaAngleX;
     }
 
     /**
-     * Delta angle Y (radians) 
+     * Delta angle Y. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Delta angle Y (radians)"
+            description = "Delta angle Y."
     )
     public final float deltaAngleY() {
         return this.deltaAngleY;
     }
 
     /**
-     * Delta angle X (radians) 
+     * Delta angle X. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Delta angle X (radians)"
+            description = "Delta angle X."
     )
     public final float deltaAngleZ() {
         return this.deltaAngleZ;
     }
 
     /**
-     * Delta velocity X (m/s) 
+     * Delta velocity X. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Delta velocity X (m/s)"
+            description = "Delta velocity X."
     )
     public final float deltaVelocityX() {
         return this.deltaVelocityX;
     }
 
     /**
-     * Delta velocity Y (m/s) 
+     * Delta velocity Y. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Delta velocity Y (m/s)"
+            description = "Delta velocity Y."
     )
     public final float deltaVelocityY() {
         return this.deltaVelocityY;
     }
 
     /**
-     * Delta velocity Z (m/s) 
+     * Delta velocity Z. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Delta velocity Z (m/s)"
+            description = "Delta velocity Z."
     )
     public final float deltaVelocityZ() {
         return this.deltaVelocityZ;
     }
 
     /**
-     * Joint ROLL (radians) 
+     * Joint ROLL. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Joint ROLL (radians)"
+            description = "Joint ROLL."
     )
     public final float jointRoll() {
         return this.jointRoll;
     }
 
     /**
-     * Joint EL (radians) 
+     * Joint EL. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Joint EL (radians)"
+            description = "Joint EL."
     )
     public final float jointEl() {
         return this.jointEl;
     }
 
     /**
-     * Joint AZ (radians) 
+     * Joint AZ. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "Joint AZ (radians)"
+            description = "Joint AZ."
     )
     public final float jointAz() {
         return this.jointAz;
@@ -290,12 +290,12 @@ public final class GimbalReport {
         private float jointAz;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -303,12 +303,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -316,12 +316,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Time since last update (seconds) 
+         * Time since last update. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Time since last update (seconds)"
+                description = "Time since last update."
         )
         public final Builder deltaTime(float deltaTime) {
             this.deltaTime = deltaTime;
@@ -329,12 +329,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta angle X (radians) 
+         * Delta angle X. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Delta angle X (radians)"
+                description = "Delta angle X."
         )
         public final Builder deltaAngleX(float deltaAngleX) {
             this.deltaAngleX = deltaAngleX;
@@ -342,12 +342,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta angle Y (radians) 
+         * Delta angle Y. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Delta angle Y (radians)"
+                description = "Delta angle Y."
         )
         public final Builder deltaAngleY(float deltaAngleY) {
             this.deltaAngleY = deltaAngleY;
@@ -355,12 +355,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta angle X (radians) 
+         * Delta angle X. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Delta angle X (radians)"
+                description = "Delta angle X."
         )
         public final Builder deltaAngleZ(float deltaAngleZ) {
             this.deltaAngleZ = deltaAngleZ;
@@ -368,12 +368,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta velocity X (m/s) 
+         * Delta velocity X. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Delta velocity X (m/s)"
+                description = "Delta velocity X."
         )
         public final Builder deltaVelocityX(float deltaVelocityX) {
             this.deltaVelocityX = deltaVelocityX;
@@ -381,12 +381,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta velocity Y (m/s) 
+         * Delta velocity Y. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Delta velocity Y (m/s)"
+                description = "Delta velocity Y."
         )
         public final Builder deltaVelocityY(float deltaVelocityY) {
             this.deltaVelocityY = deltaVelocityY;
@@ -394,12 +394,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Delta velocity Z (m/s) 
+         * Delta velocity Z. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Delta velocity Z (m/s)"
+                description = "Delta velocity Z."
         )
         public final Builder deltaVelocityZ(float deltaVelocityZ) {
             this.deltaVelocityZ = deltaVelocityZ;
@@ -407,12 +407,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Joint ROLL (radians) 
+         * Joint ROLL. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Joint ROLL (radians)"
+                description = "Joint ROLL."
         )
         public final Builder jointRoll(float jointRoll) {
             this.jointRoll = jointRoll;
@@ -420,12 +420,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Joint EL (radians) 
+         * Joint EL. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Joint EL (radians)"
+                description = "Joint EL."
         )
         public final Builder jointEl(float jointEl) {
             this.jointEl = jointEl;
@@ -433,12 +433,12 @@ public final class GimbalReport {
         }
 
         /**
-         * Joint AZ (radians) 
+         * Joint AZ. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "Joint AZ (radians)"
+                description = "Joint AZ."
         )
         public final Builder jointAz(float jointAz) {
             this.jointAz = jointAz;

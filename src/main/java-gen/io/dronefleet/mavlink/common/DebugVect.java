@@ -10,11 +10,12 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- *  
+ * To debug something using a named 3D vector. 
  */
 @MavlinkMessageInfo(
         id = 250,
-        crc = 49
+        crc = 49,
+        description = "To debug something using a named 3D vector."
 )
 public final class DebugVect {
     private final String name;
@@ -47,7 +48,7 @@ public final class DebugVect {
      * Name 
      */
     @MavlinkFieldInfo(
-            position = 0,
+            position = 1,
             unitSize = 1,
             arraySize = 10,
             description = "Name"
@@ -57,12 +58,13 @@ public final class DebugVect {
     }
 
     /**
-     * Timestamp 
+     * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 8,
-            description = "Timestamp"
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -72,7 +74,7 @@ public final class DebugVect {
      * x 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "x"
     )
@@ -84,7 +86,7 @@ public final class DebugVect {
      * y 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
             description = "y"
     )
@@ -96,7 +98,7 @@ public final class DebugVect {
      * z 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 4,
             description = "z"
     )
@@ -152,7 +154,7 @@ public final class DebugVect {
          * Name 
          */
         @MavlinkFieldInfo(
-                position = 0,
+                position = 1,
                 unitSize = 1,
                 arraySize = 10,
                 description = "Name"
@@ -163,12 +165,13 @@ public final class DebugVect {
         }
 
         /**
-         * Timestamp 
+         * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 8,
-                description = "Timestamp"
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -179,7 +182,7 @@ public final class DebugVect {
          * x 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "x"
         )
@@ -192,7 +195,7 @@ public final class DebugVect {
          * y 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
                 description = "y"
         )
@@ -205,7 +208,7 @@ public final class DebugVect {
          * z 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 4,
                 description = "z"
         )

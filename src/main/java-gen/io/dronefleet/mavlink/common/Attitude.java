@@ -51,84 +51,84 @@ public final class Attitude {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
     }
 
     /**
-     * Roll angle (rad, -pi..+pi) 
+     * Roll angle (-pi..+pi) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Roll angle (rad, -pi..+pi)"
+            description = "Roll angle (-pi..+pi)"
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Pitch angle (rad, -pi..+pi) 
+     * Pitch angle (-pi..+pi) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Pitch angle (rad, -pi..+pi)"
+            description = "Pitch angle (-pi..+pi)"
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Yaw angle (rad, -pi..+pi) 
+     * Yaw angle (-pi..+pi) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Yaw angle (rad, -pi..+pi)"
+            description = "Yaw angle (-pi..+pi)"
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Roll angular speed (rad/s) 
+     * Roll angular speed 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Roll angular speed (rad/s)"
+            description = "Roll angular speed"
     )
     public final float rollspeed() {
         return this.rollspeed;
     }
 
     /**
-     * Pitch angular speed (rad/s) 
+     * Pitch angular speed 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Pitch angular speed (rad/s)"
+            description = "Pitch angular speed"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
     }
 
     /**
-     * Yaw angular speed (rad/s) 
+     * Yaw angular speed 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Yaw angular speed (rad/s)"
+            description = "Yaw angular speed"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -189,12 +189,12 @@ public final class Attitude {
         private float yawspeed;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -202,12 +202,12 @@ public final class Attitude {
         }
 
         /**
-         * Roll angle (rad, -pi..+pi) 
+         * Roll angle (-pi..+pi) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Roll angle (rad, -pi..+pi)"
+                description = "Roll angle (-pi..+pi)"
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -215,12 +215,12 @@ public final class Attitude {
         }
 
         /**
-         * Pitch angle (rad, -pi..+pi) 
+         * Pitch angle (-pi..+pi) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Pitch angle (rad, -pi..+pi)"
+                description = "Pitch angle (-pi..+pi)"
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -228,12 +228,12 @@ public final class Attitude {
         }
 
         /**
-         * Yaw angle (rad, -pi..+pi) 
+         * Yaw angle (-pi..+pi) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Yaw angle (rad, -pi..+pi)"
+                description = "Yaw angle (-pi..+pi)"
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -241,12 +241,12 @@ public final class Attitude {
         }
 
         /**
-         * Roll angular speed (rad/s) 
+         * Roll angular speed 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Roll angular speed (rad/s)"
+                description = "Roll angular speed"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -254,12 +254,12 @@ public final class Attitude {
         }
 
         /**
-         * Pitch angular speed (rad/s) 
+         * Pitch angular speed 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Pitch angular speed (rad/s)"
+                description = "Pitch angular speed"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -267,12 +267,12 @@ public final class Attitude {
         }
 
         /**
-         * Yaw angular speed (rad/s) 
+         * Yaw angular speed 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Yaw angular speed (rad/s)"
+                description = "Yaw angular speed"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;

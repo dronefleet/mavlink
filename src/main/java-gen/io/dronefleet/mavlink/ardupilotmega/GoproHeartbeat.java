@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Heartbeat from a HeroBus attached GoPro 
+ * Heartbeat from a HeroBus attached GoPro. 
  */
 @MavlinkMessageInfo(
         id = 215,
         crc = 101,
-        description = "Heartbeat from a HeroBus attached GoPro"
+        description = "Heartbeat from a HeroBus attached GoPro."
 )
 public final class GoproHeartbeat {
     private final EnumValue<GoproHeartbeatStatus> status;
@@ -42,39 +42,39 @@ public final class GoproHeartbeat {
     }
 
     /**
-     * Status 
+     * Status. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = GoproHeartbeatStatus.class,
-            description = "Status"
+            description = "Status."
     )
     public final EnumValue<GoproHeartbeatStatus> status() {
         return this.status;
     }
 
     /**
-     * Current capture mode 
+     * Current capture mode. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = GoproCaptureMode.class,
-            description = "Current capture mode"
+            description = "Current capture mode."
     )
     public final EnumValue<GoproCaptureMode> captureMode() {
         return this.captureMode;
     }
 
     /**
-     * additional status bits 
+     * Additional status bits. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = GoproHeartbeatFlags.class,
-            description = "additional status bits"
+            description = "Additional status bits."
     )
     public final EnumValue<GoproHeartbeatFlags> flags() {
         return this.flags;
@@ -115,13 +115,13 @@ public final class GoproHeartbeat {
         private EnumValue<GoproHeartbeatFlags> flags;
 
         /**
-         * Status 
+         * Status. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = GoproHeartbeatStatus.class,
-                description = "Status"
+                description = "Status."
         )
         public final Builder status(EnumValue<GoproHeartbeatStatus> status) {
             this.status = status;
@@ -129,34 +129,34 @@ public final class GoproHeartbeat {
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(GoproHeartbeatStatus entry) {
             return status(EnumValue.of(entry));
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(Enum... flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Status 
+         * Status. 
          */
         public final Builder status(Collection<Enum> flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Current capture mode 
+         * Current capture mode. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = GoproCaptureMode.class,
-                description = "Current capture mode"
+                description = "Current capture mode."
         )
         public final Builder captureMode(EnumValue<GoproCaptureMode> captureMode) {
             this.captureMode = captureMode;
@@ -164,34 +164,34 @@ public final class GoproHeartbeat {
         }
 
         /**
-         * Current capture mode 
+         * Current capture mode. 
          */
         public final Builder captureMode(GoproCaptureMode entry) {
             return captureMode(EnumValue.of(entry));
         }
 
         /**
-         * Current capture mode 
+         * Current capture mode. 
          */
         public final Builder captureMode(Enum... flags) {
             return captureMode(EnumValue.create(flags));
         }
 
         /**
-         * Current capture mode 
+         * Current capture mode. 
          */
         public final Builder captureMode(Collection<Enum> flags) {
             return captureMode(EnumValue.create(flags));
         }
 
         /**
-         * additional status bits 
+         * Additional status bits. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = GoproHeartbeatFlags.class,
-                description = "additional status bits"
+                description = "Additional status bits."
         )
         public final Builder flags(EnumValue<GoproHeartbeatFlags> flags) {
             this.flags = flags;
@@ -199,21 +199,21 @@ public final class GoproHeartbeat {
         }
 
         /**
-         * additional status bits 
+         * Additional status bits. 
          */
         public final Builder flags(GoproHeartbeatFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * additional status bits 
+         * Additional status bits. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * additional status bits 
+         * Additional status bits. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));

@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Request a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} response from the GoPro 
+ * Request a {@link io.dronefleet.mavlink.ardupilotmega.GoproCommand GOPRO_COMMAND} response from the GoPro. 
  */
 @MavlinkMessageInfo(
         id = 216,
         crc = 50,
-        description = "Request a GOPRO_COMMAND response from the GoPro"
+        description = "Request a GOPRO_COMMAND response from the GoPro."
 )
 public final class GoproGetRequest {
     private final int targetSystem;
@@ -41,37 +41,37 @@ public final class GoproGetRequest {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Command ID 
+     * Command ID. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = GoproCommand.class,
-            description = "Command ID"
+            description = "Command ID."
     )
     public final EnumValue<GoproCommand> cmdId() {
         return this.cmdId;
@@ -112,12 +112,12 @@ public final class GoproGetRequest {
         private EnumValue<GoproCommand> cmdId;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -125,12 +125,12 @@ public final class GoproGetRequest {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -138,13 +138,13 @@ public final class GoproGetRequest {
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = GoproCommand.class,
-                description = "Command ID"
+                description = "Command ID."
         )
         public final Builder cmdId(EnumValue<GoproCommand> cmdId) {
             this.cmdId = cmdId;
@@ -152,21 +152,21 @@ public final class GoproGetRequest {
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(GoproCommand entry) {
             return cmdId(EnumValue.of(entry));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Enum... flags) {
             return cmdId(EnumValue.create(flags));
         }
 
         /**
-         * Command ID 
+         * Command ID. 
          */
         public final Builder cmdId(Collection<Enum> flags) {
             return cmdId(EnumValue.create(flags));

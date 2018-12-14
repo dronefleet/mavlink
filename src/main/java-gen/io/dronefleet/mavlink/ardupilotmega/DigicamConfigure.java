@@ -64,133 +64,133 @@ public final class DigicamConfigure {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore) 
+     * Mode enumeration from 1 to N //P, TV, AV, M, etc. (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore)"
+            description = "Mode enumeration from 1 to N //P, TV, AV, M, etc. (0 means ignore)."
     )
     public final int mode() {
         return this.mode;
     }
 
     /**
-     * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
+     * Divisor number //e.g. 1000 means 1/1000 (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)"
+            description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)."
     )
     public final int shutterSpeed() {
         return this.shutterSpeed;
     }
 
     /**
-     * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore) 
+     * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)"
+            description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)."
     )
     public final int aperture() {
         return this.aperture;
     }
 
     /**
-     * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore) 
+     * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)"
+            description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)."
     )
     public final int iso() {
         return this.iso;
     }
 
     /**
-     * Exposure type enumeration from 1 to N (0 means ignore) 
+     * Exposure type enumeration from 1 to N (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            description = "Exposure type enumeration from 1 to N (0 means ignore)"
+            description = "Exposure type enumeration from 1 to N (0 means ignore)."
     )
     public final int exposureType() {
         return this.exposureType;
     }
 
     /**
-     * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-     * or pooled just once 
+     * Command Identity (incremental loop: 0 to 255). //A command sent multiple times will be 
+     * executed or pooled just once. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
+            description = "Command Identity (incremental loop: 0 to 255). //A command sent multiple times will be executed or pooled just once."
     )
     public final int commandId() {
         return this.commandId;
     }
 
     /**
-     * Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off) 
+     * Main engine cut-off time before camera trigger (0 means no cut-off). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            description = "Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)"
+            description = "Main engine cut-off time before camera trigger (0 means no cut-off)."
     )
     public final int engineCutOff() {
         return this.engineCutOff;
     }
 
     /**
-     * Extra parameters enumeration (0 means ignore) 
+     * Extra parameters enumeration (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            description = "Extra parameters enumeration (0 means ignore)"
+            description = "Extra parameters enumeration (0 means ignore)."
     )
     public final int extraParam() {
         return this.extraParam;
     }
 
     /**
-     * Correspondent value to given extra_param 
+     * Correspondent value to given extra_param. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Correspondent value to given extra_param"
+            description = "Correspondent value to given extra_param."
     )
     public final float extraValue() {
         return this.extraValue;
@@ -271,12 +271,12 @@ public final class DigicamConfigure {
         private float extraValue;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -284,12 +284,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -297,12 +297,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore) 
+         * Mode enumeration from 1 to N //P, TV, AV, M, etc. (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Mode enumeration from 1 to N //P, TV, AV, M, Etc (0 means ignore)"
+                description = "Mode enumeration from 1 to N //P, TV, AV, M, etc. (0 means ignore)."
         )
         public final Builder mode(int mode) {
             this.mode = mode;
@@ -310,12 +310,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Divisor number //e.g. 1000 means 1/1000 (0 means ignore) 
+         * Divisor number //e.g. 1000 means 1/1000 (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)"
+                description = "Divisor number //e.g. 1000 means 1/1000 (0 means ignore)."
         )
         public final Builder shutterSpeed(int shutterSpeed) {
             this.shutterSpeed = shutterSpeed;
@@ -323,12 +323,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore) 
+         * F stop number x 10 //e.g. 28 means 2.8 (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)"
+                description = "F stop number x 10 //e.g. 28 means 2.8 (0 means ignore)."
         )
         public final Builder aperture(int aperture) {
             this.aperture = aperture;
@@ -336,12 +336,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore) 
+         * ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)"
+                description = "ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore)."
         )
         public final Builder iso(int iso) {
             this.iso = iso;
@@ -349,12 +349,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Exposure type enumeration from 1 to N (0 means ignore) 
+         * Exposure type enumeration from 1 to N (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                description = "Exposure type enumeration from 1 to N (0 means ignore)"
+                description = "Exposure type enumeration from 1 to N (0 means ignore)."
         )
         public final Builder exposureType(int exposureType) {
             this.exposureType = exposureType;
@@ -362,13 +362,13 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-         * or pooled just once 
+         * Command Identity (incremental loop: 0 to 255). //A command sent multiple times will be 
+         * executed or pooled just once. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
+                description = "Command Identity (incremental loop: 0 to 255). //A command sent multiple times will be executed or pooled just once."
         )
         public final Builder commandId(int commandId) {
             this.commandId = commandId;
@@ -376,12 +376,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off) 
+         * Main engine cut-off time before camera trigger (0 means no cut-off). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                description = "Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)"
+                description = "Main engine cut-off time before camera trigger (0 means no cut-off)."
         )
         public final Builder engineCutOff(int engineCutOff) {
             this.engineCutOff = engineCutOff;
@@ -389,12 +389,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Extra parameters enumeration (0 means ignore) 
+         * Extra parameters enumeration (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                description = "Extra parameters enumeration (0 means ignore)"
+                description = "Extra parameters enumeration (0 means ignore)."
         )
         public final Builder extraParam(int extraParam) {
             this.extraParam = extraParam;
@@ -402,12 +402,12 @@ public final class DigicamConfigure {
         }
 
         /**
-         * Correspondent value to given extra_param 
+         * Correspondent value to given extra_param. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Correspondent value to given extra_param"
+                description = "Correspondent value to given extra_param."
         )
         public final Builder extraValue(float extraValue) {
             this.extraValue = extraValue;

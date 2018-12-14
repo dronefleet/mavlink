@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * WIP: Message that sets video stream settings 
+ * Message that sets video stream settings 
  */
 @MavlinkMessageInfo(
         id = 270,
-        crc = 232,
-        description = "WIP: Message that sets video stream settings"
+        crc = 253,
+        description = "Message that sets video stream settings"
 )
 public final class SetVideoStreamSettings {
     private final int targetSystem;
@@ -61,7 +61,7 @@ public final class SetVideoStreamSettings {
      * system ID of the target 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             description = "system ID of the target"
     )
@@ -73,7 +73,7 @@ public final class SetVideoStreamSettings {
      * component ID of the target 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             description = "component ID of the target"
     )
@@ -82,60 +82,60 @@ public final class SetVideoStreamSettings {
     }
 
     /**
-     * Camera ID (1 for first, 2 for second, etc.) 
+     * Stream ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 1,
-            description = "Camera ID (1 for first, 2 for second, etc.)"
+            description = "Stream ID (1 for first, 2 for second, etc.)"
     )
     public final int cameraId() {
         return this.cameraId;
     }
 
     /**
-     * Frames per second (set to -1 for highest framerate possible) 
+     * Frame rate (set to -1 for highest framerate possible) 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 4,
-            description = "Frames per second (set to -1 for highest framerate possible)"
+            description = "Frame rate (set to -1 for highest framerate possible)"
     )
     public final float framerate() {
         return this.framerate;
     }
 
     /**
-     * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
+     * Horizontal resolution (set to -1 for highest resolution possible) 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 2,
-            description = "Resolution horizontal in pixels (set to -1 for highest resolution possible)"
+            description = "Horizontal resolution (set to -1 for highest resolution possible)"
     )
     public final int resolutionH() {
         return this.resolutionH;
     }
 
     /**
-     * Resolution vertical in pixels (set to -1 for highest resolution possible) 
+     * Vertical resolution (set to -1 for highest resolution possible) 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 2,
-            description = "Resolution vertical in pixels (set to -1 for highest resolution possible)"
+            description = "Vertical resolution (set to -1 for highest resolution possible)"
     )
     public final int resolutionV() {
         return this.resolutionV;
     }
 
     /**
-     * Bit rate in bits per second (set to -1 for auto) 
+     * Bit rate (set to -1 for auto) 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 8,
             unitSize = 4,
-            description = "Bit rate in bits per second (set to -1 for auto)"
+            description = "Bit rate (set to -1 for auto)"
     )
     public final long bitrate() {
         return this.bitrate;
@@ -145,7 +145,7 @@ public final class SetVideoStreamSettings {
      * Video image rotation clockwise (0-359 degrees) 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 9,
             unitSize = 2,
             description = "Video image rotation clockwise (0-359 degrees)"
     )
@@ -154,13 +154,13 @@ public final class SetVideoStreamSettings {
     }
 
     /**
-     * Video stream URI 
+     * Video stream URI (mostly for UDP/RTP) 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 10,
             unitSize = 1,
-            arraySize = 230,
-            description = "Video stream URI"
+            arraySize = 160,
+            description = "Video stream URI (mostly for UDP/RTP)"
     )
     public final String uri() {
         return this.uri;
@@ -234,7 +234,7 @@ public final class SetVideoStreamSettings {
          * system ID of the target 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 description = "system ID of the target"
         )
@@ -247,7 +247,7 @@ public final class SetVideoStreamSettings {
          * component ID of the target 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 description = "component ID of the target"
         )
@@ -257,12 +257,12 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Camera ID (1 for first, 2 for second, etc.) 
+         * Stream ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 1,
-                description = "Camera ID (1 for first, 2 for second, etc.)"
+                description = "Stream ID (1 for first, 2 for second, etc.)"
         )
         public final Builder cameraId(int cameraId) {
             this.cameraId = cameraId;
@@ -270,12 +270,12 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Frames per second (set to -1 for highest framerate possible) 
+         * Frame rate (set to -1 for highest framerate possible) 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 4,
-                description = "Frames per second (set to -1 for highest framerate possible)"
+                description = "Frame rate (set to -1 for highest framerate possible)"
         )
         public final Builder framerate(float framerate) {
             this.framerate = framerate;
@@ -283,12 +283,12 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Resolution horizontal in pixels (set to -1 for highest resolution possible) 
+         * Horizontal resolution (set to -1 for highest resolution possible) 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 2,
-                description = "Resolution horizontal in pixels (set to -1 for highest resolution possible)"
+                description = "Horizontal resolution (set to -1 for highest resolution possible)"
         )
         public final Builder resolutionH(int resolutionH) {
             this.resolutionH = resolutionH;
@@ -296,12 +296,12 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Resolution vertical in pixels (set to -1 for highest resolution possible) 
+         * Vertical resolution (set to -1 for highest resolution possible) 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 2,
-                description = "Resolution vertical in pixels (set to -1 for highest resolution possible)"
+                description = "Vertical resolution (set to -1 for highest resolution possible)"
         )
         public final Builder resolutionV(int resolutionV) {
             this.resolutionV = resolutionV;
@@ -309,12 +309,12 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Bit rate in bits per second (set to -1 for auto) 
+         * Bit rate (set to -1 for auto) 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 8,
                 unitSize = 4,
-                description = "Bit rate in bits per second (set to -1 for auto)"
+                description = "Bit rate (set to -1 for auto)"
         )
         public final Builder bitrate(long bitrate) {
             this.bitrate = bitrate;
@@ -325,7 +325,7 @@ public final class SetVideoStreamSettings {
          * Video image rotation clockwise (0-359 degrees) 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 9,
                 unitSize = 2,
                 description = "Video image rotation clockwise (0-359 degrees)"
         )
@@ -335,13 +335,13 @@ public final class SetVideoStreamSettings {
         }
 
         /**
-         * Video stream URI 
+         * Video stream URI (mostly for UDP/RTP) 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 10,
                 unitSize = 1,
-                arraySize = 230,
-                description = "Video stream URI"
+                arraySize = 160,
+                description = "Video stream URI (mostly for UDP/RTP)"
         )
         public final Builder uri(String uri) {
             this.uri = uri;

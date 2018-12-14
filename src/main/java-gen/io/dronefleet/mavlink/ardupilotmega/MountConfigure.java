@@ -52,73 +52,73 @@ public final class MountConfigure {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+     * Mount operating mode. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
             enumType = MavMountMode.class,
-            description = "mount operating mode (see MAV_MOUNT_MODE enum)"
+            description = "Mount operating mode."
     )
     public final EnumValue<MavMountMode> mountMode() {
         return this.mountMode;
     }
 
     /**
-     * (1 = yes, 0 = no) 
+     * (1 = yes, 0 = no). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "(1 = yes, 0 = no)"
+            description = "(1 = yes, 0 = no)."
     )
     public final int stabRoll() {
         return this.stabRoll;
     }
 
     /**
-     * (1 = yes, 0 = no) 
+     * (1 = yes, 0 = no). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "(1 = yes, 0 = no)"
+            description = "(1 = yes, 0 = no)."
     )
     public final int stabPitch() {
         return this.stabPitch;
     }
 
     /**
-     * (1 = yes, 0 = no) 
+     * (1 = yes, 0 = no). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "(1 = yes, 0 = no)"
+            description = "(1 = yes, 0 = no)."
     )
     public final int stabYaw() {
         return this.stabYaw;
@@ -174,12 +174,12 @@ public final class MountConfigure {
         private int stabYaw;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -187,12 +187,12 @@ public final class MountConfigure {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -200,13 +200,13 @@ public final class MountConfigure {
         }
 
         /**
-         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         * Mount operating mode. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
                 enumType = MavMountMode.class,
-                description = "mount operating mode (see MAV_MOUNT_MODE enum)"
+                description = "Mount operating mode."
         )
         public final Builder mountMode(EnumValue<MavMountMode> mountMode) {
             this.mountMode = mountMode;
@@ -214,33 +214,33 @@ public final class MountConfigure {
         }
 
         /**
-         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         * Mount operating mode. 
          */
         public final Builder mountMode(MavMountMode entry) {
             return mountMode(EnumValue.of(entry));
         }
 
         /**
-         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         * Mount operating mode. 
          */
         public final Builder mountMode(Enum... flags) {
             return mountMode(EnumValue.create(flags));
         }
 
         /**
-         * mount operating mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum) 
+         * Mount operating mode. 
          */
         public final Builder mountMode(Collection<Enum> flags) {
             return mountMode(EnumValue.create(flags));
         }
 
         /**
-         * (1 = yes, 0 = no) 
+         * (1 = yes, 0 = no). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "(1 = yes, 0 = no)"
+                description = "(1 = yes, 0 = no)."
         )
         public final Builder stabRoll(int stabRoll) {
             this.stabRoll = stabRoll;
@@ -248,12 +248,12 @@ public final class MountConfigure {
         }
 
         /**
-         * (1 = yes, 0 = no) 
+         * (1 = yes, 0 = no). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "(1 = yes, 0 = no)"
+                description = "(1 = yes, 0 = no)."
         )
         public final Builder stabPitch(int stabPitch) {
             this.stabPitch = stabPitch;
@@ -261,12 +261,12 @@ public final class MountConfigure {
         }
 
         /**
-         * (1 = yes, 0 = no) 
+         * (1 = yes, 0 = no). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "(1 = yes, 0 = no)"
+                description = "(1 = yes, 0 = no)."
         )
         public final Builder stabYaw(int stabYaw) {
             this.stabYaw = stabYaw;

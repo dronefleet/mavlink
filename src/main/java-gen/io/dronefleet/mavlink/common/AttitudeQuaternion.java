@@ -55,12 +55,12 @@ public final class AttitudeQuaternion {
     }
 
     /**
-     * Timestamp (milliseconds since system boot) 
+     * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (milliseconds since system boot)"
+            description = "Timestamp (time since system boot)."
     )
     public final long timeBootMs() {
         return this.timeBootMs;
@@ -115,36 +115,36 @@ public final class AttitudeQuaternion {
     }
 
     /**
-     * Roll angular speed (rad/s) 
+     * Roll angular speed 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Roll angular speed (rad/s)"
+            description = "Roll angular speed"
     )
     public final float rollspeed() {
         return this.rollspeed;
     }
 
     /**
-     * Pitch angular speed (rad/s) 
+     * Pitch angular speed 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Pitch angular speed (rad/s)"
+            description = "Pitch angular speed"
     )
     public final float pitchspeed() {
         return this.pitchspeed;
     }
 
     /**
-     * Yaw angular speed (rad/s) 
+     * Yaw angular speed 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Yaw angular speed (rad/s)"
+            description = "Yaw angular speed"
     )
     public final float yawspeed() {
         return this.yawspeed;
@@ -210,12 +210,12 @@ public final class AttitudeQuaternion {
         private float yawspeed;
 
         /**
-         * Timestamp (milliseconds since system boot) 
+         * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (milliseconds since system boot)"
+                description = "Timestamp (time since system boot)."
         )
         public final Builder timeBootMs(long timeBootMs) {
             this.timeBootMs = timeBootMs;
@@ -275,12 +275,12 @@ public final class AttitudeQuaternion {
         }
 
         /**
-         * Roll angular speed (rad/s) 
+         * Roll angular speed 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Roll angular speed (rad/s)"
+                description = "Roll angular speed"
         )
         public final Builder rollspeed(float rollspeed) {
             this.rollspeed = rollspeed;
@@ -288,12 +288,12 @@ public final class AttitudeQuaternion {
         }
 
         /**
-         * Pitch angular speed (rad/s) 
+         * Pitch angular speed 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Pitch angular speed (rad/s)"
+                description = "Pitch angular speed"
         )
         public final Builder pitchspeed(float pitchspeed) {
             this.pitchspeed = pitchspeed;
@@ -301,12 +301,12 @@ public final class AttitudeQuaternion {
         }
 
         /**
-         * Yaw angular speed (rad/s) 
+         * Yaw angular speed 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Yaw angular speed (rad/s)"
+                description = "Yaw angular speed"
         )
         public final Builder yawspeed(float yawspeed) {
             this.yawspeed = yawspeed;

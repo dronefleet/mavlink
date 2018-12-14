@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Camera Capture Feedback 
+ * Camera Capture Feedback. 
  */
 @MavlinkMessageInfo(
         id = 180,
         crc = 52,
-        description = "Camera Capture Feedback"
+        description = "Camera Capture Feedback."
 )
 public final class CameraFeedback {
     private final BigInteger timeUsec;
@@ -77,173 +77,173 @@ public final class CameraFeedback {
     }
 
     /**
-     * Image timestamp (microseconds since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CAMERA_STATUS} message (or 
-     * autopilot if no CCB) 
+     * Image timestamp (since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CAMERA_STATUS} message (or autopilot if no 
+     * CCB). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Image timestamp (microseconds since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)"
+            description = "Image timestamp (since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Camera ID 
+     * Camera ID. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Camera ID"
+            description = "Camera ID."
     )
     public final int camIdx() {
         return this.camIdx;
     }
 
     /**
-     * Image index 
+     * Image index. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "Image index"
+            description = "Image index."
     )
     public final int imgIdx() {
         return this.imgIdx;
     }
 
     /**
-     * Latitude in (deg * 1E7) 
+     * Latitude. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Latitude in (deg * 1E7)"
+            description = "Latitude."
     )
     public final int lat() {
         return this.lat;
     }
 
     /**
-     * Longitude in (deg * 1E7) 
+     * Longitude. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Longitude in (deg * 1E7)"
+            description = "Longitude."
     )
     public final int lng() {
         return this.lng;
     }
 
     /**
-     * Altitude Absolute (meters AMSL) 
+     * Altitude (MSL). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Altitude Absolute (meters AMSL)"
+            description = "Altitude (MSL)."
     )
     public final float altMsl() {
         return this.altMsl;
     }
 
     /**
-     * Altitude Relative (meters above HOME location) 
+     * Altitude (Relative to HOME location). 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Altitude Relative (meters above HOME location)"
+            description = "Altitude (Relative to HOME location)."
     )
     public final float altRel() {
         return this.altRel;
     }
 
     /**
-     * Camera Roll angle (earth frame, degrees, +-180) 
+     * Camera Roll angle (earth frame, +-180). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Camera Roll angle (earth frame, degrees, +-180)"
+            description = "Camera Roll angle (earth frame, +-180)."
     )
     public final float roll() {
         return this.roll;
     }
 
     /**
-     * Camera Pitch angle (earth frame, degrees, +-180) 
+     * Camera Pitch angle (earth frame, +-180). 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Camera Pitch angle (earth frame, degrees, +-180)"
+            description = "Camera Pitch angle (earth frame, +-180)."
     )
     public final float pitch() {
         return this.pitch;
     }
 
     /**
-     * Camera Yaw (earth frame, degrees, 0-360, true) 
+     * Camera Yaw (earth frame, 0-360, true). 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "Camera Yaw (earth frame, degrees, 0-360, true)"
+            description = "Camera Yaw (earth frame, 0-360, true)."
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Focal Length (mm) 
+     * Focal Length. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "Focal Length (mm)"
+            description = "Focal Length."
     )
     public final float focLen() {
         return this.focLen;
     }
 
     /**
-     * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+     * Feedback flags. 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 1,
             enumType = CameraFeedbackFlags.class,
-            description = "See CAMERA_FEEDBACK_FLAGS enum for definition of the bitmask"
+            description = "Feedback flags."
     )
     public final EnumValue<CameraFeedbackFlags> flags() {
         return this.flags;
     }
 
     /**
-     * Completed image captures 
+     * Completed image captures. 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
             extension = true,
-            description = "Completed image captures"
+            description = "Completed image captures."
     )
     public final int completedCaptures() {
         return this.completedCaptures;
@@ -339,13 +339,13 @@ public final class CameraFeedback {
         private int completedCaptures;
 
         /**
-         * Image timestamp (microseconds since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CAMERA_STATUS} message (or 
-         * autopilot if no CCB) 
+         * Image timestamp (since UNIX epoch), as passed in by {@link io.dronefleet.mavlink.ardupilotmega.CameraStatus CAMERA_STATUS} message (or autopilot if no 
+         * CCB). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Image timestamp (microseconds since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)"
+                description = "Image timestamp (since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB)."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -353,12 +353,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -366,12 +366,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Camera ID 
+         * Camera ID. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Camera ID"
+                description = "Camera ID."
         )
         public final Builder camIdx(int camIdx) {
             this.camIdx = camIdx;
@@ -379,12 +379,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Image index 
+         * Image index. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "Image index"
+                description = "Image index."
         )
         public final Builder imgIdx(int imgIdx) {
             this.imgIdx = imgIdx;
@@ -392,13 +392,13 @@ public final class CameraFeedback {
         }
 
         /**
-         * Latitude in (deg * 1E7) 
+         * Latitude. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Latitude in (deg * 1E7)"
+                description = "Latitude."
         )
         public final Builder lat(int lat) {
             this.lat = lat;
@@ -406,13 +406,13 @@ public final class CameraFeedback {
         }
 
         /**
-         * Longitude in (deg * 1E7) 
+         * Longitude. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Longitude in (deg * 1E7)"
+                description = "Longitude."
         )
         public final Builder lng(int lng) {
             this.lng = lng;
@@ -420,12 +420,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Altitude Absolute (meters AMSL) 
+         * Altitude (MSL). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Altitude Absolute (meters AMSL)"
+                description = "Altitude (MSL)."
         )
         public final Builder altMsl(float altMsl) {
             this.altMsl = altMsl;
@@ -433,12 +433,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Altitude Relative (meters above HOME location) 
+         * Altitude (Relative to HOME location). 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Altitude Relative (meters above HOME location)"
+                description = "Altitude (Relative to HOME location)."
         )
         public final Builder altRel(float altRel) {
             this.altRel = altRel;
@@ -446,12 +446,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Camera Roll angle (earth frame, degrees, +-180) 
+         * Camera Roll angle (earth frame, +-180). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Camera Roll angle (earth frame, degrees, +-180)"
+                description = "Camera Roll angle (earth frame, +-180)."
         )
         public final Builder roll(float roll) {
             this.roll = roll;
@@ -459,12 +459,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Camera Pitch angle (earth frame, degrees, +-180) 
+         * Camera Pitch angle (earth frame, +-180). 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Camera Pitch angle (earth frame, degrees, +-180)"
+                description = "Camera Pitch angle (earth frame, +-180)."
         )
         public final Builder pitch(float pitch) {
             this.pitch = pitch;
@@ -472,12 +472,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Camera Yaw (earth frame, degrees, 0-360, true) 
+         * Camera Yaw (earth frame, 0-360, true). 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "Camera Yaw (earth frame, degrees, 0-360, true)"
+                description = "Camera Yaw (earth frame, 0-360, true)."
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -485,12 +485,12 @@ public final class CameraFeedback {
         }
 
         /**
-         * Focal Length (mm) 
+         * Focal Length. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "Focal Length (mm)"
+                description = "Focal Length."
         )
         public final Builder focLen(float focLen) {
             this.focLen = focLen;
@@ -498,13 +498,13 @@ public final class CameraFeedback {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         * Feedback flags. 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 1,
                 enumType = CameraFeedbackFlags.class,
-                description = "See CAMERA_FEEDBACK_FLAGS enum for definition of the bitmask"
+                description = "Feedback flags."
         )
         public final Builder flags(EnumValue<CameraFeedbackFlags> flags) {
             this.flags = flags;
@@ -512,34 +512,34 @@ public final class CameraFeedback {
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         * Feedback flags. 
          */
         public final Builder flags(CameraFeedbackFlags entry) {
             return flags(EnumValue.of(entry));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         * Feedback flags. 
          */
         public final Builder flags(Enum... flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * See {@link io.dronefleet.mavlink.ardupilotmega.CameraFeedbackFlags CAMERA_FEEDBACK_FLAGS} enum for definition of the bitmask 
+         * Feedback flags. 
          */
         public final Builder flags(Collection<Enum> flags) {
             return flags(EnumValue.create(flags));
         }
 
         /**
-         * Completed image captures 
+         * Completed image captures. 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
                 extension = true,
-                description = "Completed image captures"
+                description = "Completed image captures."
         )
         public final Builder completedCaptures(int completedCaptures) {
             this.completedCaptures = completedCaptures;

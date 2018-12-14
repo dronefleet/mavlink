@@ -61,85 +61,85 @@ public final class DigicamControl {
     }
 
     /**
-     * System ID 
+     * System ID. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "System ID"
+            description = "System ID."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * Component ID 
+     * Component ID. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Component ID"
+            description = "Component ID."
     )
     public final int targetComponent() {
         return this.targetComponent;
     }
 
     /**
-     * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens 
+     * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "0: stop, 1: start or keep it up //Session control e.g. show/hide lens"
+            description = "0: stop, 1: start or keep it up //Session control e.g. show/hide lens."
     )
     public final int session() {
         return this.session;
     }
 
     /**
-     * 1 to N //Zoom's absolute position (0 means ignore) 
+     * 1 to N //Zoom's absolute position (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "1 to N //Zoom's absolute position (0 means ignore)"
+            description = "1 to N //Zoom's absolute position (0 means ignore)."
     )
     public final int zoomPos() {
         return this.zoomPos;
     }
 
     /**
-     * -100 to 100 //Zooming step value to offset zoom from the current position 
+     * -100 to 100 //Zooming step value to offset zoom from the current position. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             signed = true,
-            description = "-100 to 100 //Zooming step value to offset zoom from the current position"
+            description = "-100 to 100 //Zooming step value to offset zoom from the current position."
     )
     public final int zoomStep() {
         return this.zoomStep;
     }
 
     /**
-     * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus 
+     * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus"
+            description = "0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus."
     )
     public final int focusLock() {
         return this.focusLock;
     }
 
     /**
-     * 0: ignore, 1: shot or start filming 
+     * 0: ignore, 1: shot or start filming. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
-            description = "0: ignore, 1: shot or start filming"
+            description = "0: ignore, 1: shot or start filming."
     )
     public final int shot() {
         return this.shot;
@@ -147,36 +147,36 @@ public final class DigicamControl {
 
     /**
      * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-     * or pooled just once 
+     * or pooled just once. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
+            description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once."
     )
     public final int commandId() {
         return this.commandId;
     }
 
     /**
-     * Extra parameters enumeration (0 means ignore) 
+     * Extra parameters enumeration (0 means ignore). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 1,
-            description = "Extra parameters enumeration (0 means ignore)"
+            description = "Extra parameters enumeration (0 means ignore)."
     )
     public final int extraParam() {
         return this.extraParam;
     }
 
     /**
-     * Correspondent value to given extra_param 
+     * Correspondent value to given extra_param. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "Correspondent value to given extra_param"
+            description = "Correspondent value to given extra_param."
     )
     public final float extraValue() {
         return this.extraValue;
@@ -252,12 +252,12 @@ public final class DigicamControl {
         private float extraValue;
 
         /**
-         * System ID 
+         * System ID. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "System ID"
+                description = "System ID."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -265,12 +265,12 @@ public final class DigicamControl {
         }
 
         /**
-         * Component ID 
+         * Component ID. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Component ID"
+                description = "Component ID."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;
@@ -278,12 +278,12 @@ public final class DigicamControl {
         }
 
         /**
-         * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens 
+         * 0: stop, 1: start or keep it up //Session control e.g. show/hide lens. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "0: stop, 1: start or keep it up //Session control e.g. show/hide lens"
+                description = "0: stop, 1: start or keep it up //Session control e.g. show/hide lens."
         )
         public final Builder session(int session) {
             this.session = session;
@@ -291,12 +291,12 @@ public final class DigicamControl {
         }
 
         /**
-         * 1 to N //Zoom's absolute position (0 means ignore) 
+         * 1 to N //Zoom's absolute position (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "1 to N //Zoom's absolute position (0 means ignore)"
+                description = "1 to N //Zoom's absolute position (0 means ignore)."
         )
         public final Builder zoomPos(int zoomPos) {
             this.zoomPos = zoomPos;
@@ -304,13 +304,13 @@ public final class DigicamControl {
         }
 
         /**
-         * -100 to 100 //Zooming step value to offset zoom from the current position 
+         * -100 to 100 //Zooming step value to offset zoom from the current position. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 signed = true,
-                description = "-100 to 100 //Zooming step value to offset zoom from the current position"
+                description = "-100 to 100 //Zooming step value to offset zoom from the current position."
         )
         public final Builder zoomStep(int zoomStep) {
             this.zoomStep = zoomStep;
@@ -318,12 +318,12 @@ public final class DigicamControl {
         }
 
         /**
-         * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus 
+         * 0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus"
+                description = "0: unlock focus or keep unlocked, 1: lock focus or keep locked, 3: re-lock focus."
         )
         public final Builder focusLock(int focusLock) {
             this.focusLock = focusLock;
@@ -331,12 +331,12 @@ public final class DigicamControl {
         }
 
         /**
-         * 0: ignore, 1: shot or start filming 
+         * 0: ignore, 1: shot or start filming. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
-                description = "0: ignore, 1: shot or start filming"
+                description = "0: ignore, 1: shot or start filming."
         )
         public final Builder shot(int shot) {
             this.shot = shot;
@@ -345,12 +345,12 @@ public final class DigicamControl {
 
         /**
          * Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed 
-         * or pooled just once 
+         * or pooled just once. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once"
+                description = "Command Identity (incremental loop: 0 to 255)//A command sent multiple times will be executed or pooled just once."
         )
         public final Builder commandId(int commandId) {
             this.commandId = commandId;
@@ -358,12 +358,12 @@ public final class DigicamControl {
         }
 
         /**
-         * Extra parameters enumeration (0 means ignore) 
+         * Extra parameters enumeration (0 means ignore). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 1,
-                description = "Extra parameters enumeration (0 means ignore)"
+                description = "Extra parameters enumeration (0 means ignore)."
         )
         public final Builder extraParam(int extraParam) {
             this.extraParam = extraParam;
@@ -371,12 +371,12 @@ public final class DigicamControl {
         }
 
         /**
-         * Correspondent value to given extra_param 
+         * Correspondent value to given extra_param. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "Correspondent value to given extra_param"
+                description = "Correspondent value to given extra_param."
         )
         public final Builder extraValue(float extraValue) {
             this.extraValue = extraValue;

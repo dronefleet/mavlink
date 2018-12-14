@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Deepstall path planning 
+ * Deepstall path planning. 
  */
 @MavlinkMessageInfo(
         id = 195,
         crc = 120,
-        description = "Deepstall path planning"
+        description = "Deepstall path planning."
 )
 public final class Deepstall {
     private final int landingLat;
@@ -64,127 +64,127 @@ public final class Deepstall {
     }
 
     /**
-     * Landing latitude (deg * 1E7) 
+     * Landing latitude. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
             signed = true,
-            description = "Landing latitude (deg * 1E7)"
+            description = "Landing latitude."
     )
     public final int landingLat() {
         return this.landingLat;
     }
 
     /**
-     * Landing longitude (deg * 1E7) 
+     * Landing longitude. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
             signed = true,
-            description = "Landing longitude (deg * 1E7)"
+            description = "Landing longitude."
     )
     public final int landingLon() {
         return this.landingLon;
     }
 
     /**
-     * Final heading start point, latitude (deg * 1E7) 
+     * Final heading start point, latitude. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             signed = true,
-            description = "Final heading start point, latitude (deg * 1E7)"
+            description = "Final heading start point, latitude."
     )
     public final int pathLat() {
         return this.pathLat;
     }
 
     /**
-     * Final heading start point, longitude (deg * 1E7) 
+     * Final heading start point, longitude. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             signed = true,
-            description = "Final heading start point, longitude (deg * 1E7)"
+            description = "Final heading start point, longitude."
     )
     public final int pathLon() {
         return this.pathLon;
     }
 
     /**
-     * Arc entry point, latitude (deg * 1E7) 
+     * Arc entry point, latitude. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             signed = true,
-            description = "Arc entry point, latitude (deg * 1E7)"
+            description = "Arc entry point, latitude."
     )
     public final int arcEntryLat() {
         return this.arcEntryLat;
     }
 
     /**
-     * Arc entry point, longitude (deg * 1E7) 
+     * Arc entry point, longitude. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             signed = true,
-            description = "Arc entry point, longitude (deg * 1E7)"
+            description = "Arc entry point, longitude."
     )
     public final int arcEntryLon() {
         return this.arcEntryLon;
     }
 
     /**
-     * Altitude (meters) 
+     * Altitude. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Altitude (meters)"
+            description = "Altitude."
     )
     public final float altitude() {
         return this.altitude;
     }
 
     /**
-     * Distance the aircraft expects to travel during the deepstall 
+     * Distance the aircraft expects to travel during the deepstall. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Distance the aircraft expects to travel during the deepstall"
+            description = "Distance the aircraft expects to travel during the deepstall."
     )
     public final float expectedTravelDistance() {
         return this.expectedTravelDistance;
     }
 
     /**
-     * Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND) 
+     * Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND). 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND)"
+            description = "Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND)."
     )
     public final float crossTrackError() {
         return this.crossTrackError;
     }
 
     /**
-     * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+     * Deepstall stage. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
             enumType = DeepstallStage.class,
-            description = "Deepstall stage, see enum MAV_DEEPSTALL_STAGE"
+            description = "Deepstall stage."
     )
     public final EnumValue<DeepstallStage> stage() {
         return this.stage;
@@ -260,13 +260,13 @@ public final class Deepstall {
         private EnumValue<DeepstallStage> stage;
 
         /**
-         * Landing latitude (deg * 1E7) 
+         * Landing latitude. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
                 signed = true,
-                description = "Landing latitude (deg * 1E7)"
+                description = "Landing latitude."
         )
         public final Builder landingLat(int landingLat) {
             this.landingLat = landingLat;
@@ -274,13 +274,13 @@ public final class Deepstall {
         }
 
         /**
-         * Landing longitude (deg * 1E7) 
+         * Landing longitude. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
                 signed = true,
-                description = "Landing longitude (deg * 1E7)"
+                description = "Landing longitude."
         )
         public final Builder landingLon(int landingLon) {
             this.landingLon = landingLon;
@@ -288,13 +288,13 @@ public final class Deepstall {
         }
 
         /**
-         * Final heading start point, latitude (deg * 1E7) 
+         * Final heading start point, latitude. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 signed = true,
-                description = "Final heading start point, latitude (deg * 1E7)"
+                description = "Final heading start point, latitude."
         )
         public final Builder pathLat(int pathLat) {
             this.pathLat = pathLat;
@@ -302,13 +302,13 @@ public final class Deepstall {
         }
 
         /**
-         * Final heading start point, longitude (deg * 1E7) 
+         * Final heading start point, longitude. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 signed = true,
-                description = "Final heading start point, longitude (deg * 1E7)"
+                description = "Final heading start point, longitude."
         )
         public final Builder pathLon(int pathLon) {
             this.pathLon = pathLon;
@@ -316,13 +316,13 @@ public final class Deepstall {
         }
 
         /**
-         * Arc entry point, latitude (deg * 1E7) 
+         * Arc entry point, latitude. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 signed = true,
-                description = "Arc entry point, latitude (deg * 1E7)"
+                description = "Arc entry point, latitude."
         )
         public final Builder arcEntryLat(int arcEntryLat) {
             this.arcEntryLat = arcEntryLat;
@@ -330,13 +330,13 @@ public final class Deepstall {
         }
 
         /**
-         * Arc entry point, longitude (deg * 1E7) 
+         * Arc entry point, longitude. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 signed = true,
-                description = "Arc entry point, longitude (deg * 1E7)"
+                description = "Arc entry point, longitude."
         )
         public final Builder arcEntryLon(int arcEntryLon) {
             this.arcEntryLon = arcEntryLon;
@@ -344,12 +344,12 @@ public final class Deepstall {
         }
 
         /**
-         * Altitude (meters) 
+         * Altitude. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Altitude (meters)"
+                description = "Altitude."
         )
         public final Builder altitude(float altitude) {
             this.altitude = altitude;
@@ -357,12 +357,12 @@ public final class Deepstall {
         }
 
         /**
-         * Distance the aircraft expects to travel during the deepstall 
+         * Distance the aircraft expects to travel during the deepstall. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Distance the aircraft expects to travel during the deepstall"
+                description = "Distance the aircraft expects to travel during the deepstall."
         )
         public final Builder expectedTravelDistance(float expectedTravelDistance) {
             this.expectedTravelDistance = expectedTravelDistance;
@@ -370,12 +370,12 @@ public final class Deepstall {
         }
 
         /**
-         * Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND) 
+         * Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND). 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Deepstall cross track error in meters (only valid when in DEEPSTALL_STAGE_LAND)"
+                description = "Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND)."
         )
         public final Builder crossTrackError(float crossTrackError) {
             this.crossTrackError = crossTrackError;
@@ -383,13 +383,13 @@ public final class Deepstall {
         }
 
         /**
-         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         * Deepstall stage. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
                 enumType = DeepstallStage.class,
-                description = "Deepstall stage, see enum MAV_DEEPSTALL_STAGE"
+                description = "Deepstall stage."
         )
         public final Builder stage(EnumValue<DeepstallStage> stage) {
             this.stage = stage;
@@ -397,21 +397,21 @@ public final class Deepstall {
         }
 
         /**
-         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         * Deepstall stage. 
          */
         public final Builder stage(DeepstallStage entry) {
             return stage(EnumValue.of(entry));
         }
 
         /**
-         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         * Deepstall stage. 
          */
         public final Builder stage(Enum... flags) {
             return stage(EnumValue.create(flags));
         }
 
         /**
-         * Deepstall stage, see enum MAV_DEEPSTALL_STAGE 
+         * Deepstall stage. 
          */
         public final Builder stage(Collection<Enum> flags) {
             return stage(EnumValue.create(flags));
