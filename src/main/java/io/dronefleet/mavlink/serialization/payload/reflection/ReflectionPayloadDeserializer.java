@@ -80,6 +80,8 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                                 method.invoke(builder, doubleValue(data));
                             } else if (String.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, stringValue(data));
+                            } else if (byte[].class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, data);
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             e.printStackTrace();
