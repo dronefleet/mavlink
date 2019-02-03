@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,12 +16,18 @@ import java.util.Objects;
 /**
  * Vehicle status report that is sent out while orbit execution is in progress (see 
  * MAV_CMD_DO_ORBIT). 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 360,
         crc = 11,
-        description = "Vehicle status report that is sent out while orbit execution is in progress (see MAV_CMD_DO_ORBIT)."
+        description = "Vehicle status report that is sent out while orbit execution is in progress (see MAV_CMD_DO_ORBIT).",
+        workInProgress = true
 )
+@Deprecated
 public final class OrbitExecutionStatus {
     private final BigInteger timeUsec;
 

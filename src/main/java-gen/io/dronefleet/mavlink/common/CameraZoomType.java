@@ -7,7 +7,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
  * Zoom types for MAV_CMD_SET_CAMERA_ZOOM 
  */
 @MavlinkEnum
-public enum SetZoomType {
+public enum CameraZoomType {
     /**
      * Zoom one step increment (-1 for wide, 1 for tele) 
      */

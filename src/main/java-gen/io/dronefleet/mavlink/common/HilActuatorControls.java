@@ -28,12 +28,12 @@ public final class HilActuatorControls {
 
     private final List<Float> controls;
 
-    private final EnumValue<MavMode> mode;
+    private final EnumValue<MavModeFlag> mode;
 
     private final BigInteger flags;
 
-    private HilActuatorControls(BigInteger timeUsec, List<Float> controls, EnumValue<MavMode> mode,
-            BigInteger flags) {
+    private HilActuatorControls(BigInteger timeUsec, List<Float> controls,
+            EnumValue<MavModeFlag> mode, BigInteger flags) {
         this.timeUsec = timeUsec;
         this.controls = controls;
         this.mode = mode;
@@ -80,10 +80,10 @@ public final class HilActuatorControls {
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            enumType = MavMode.class,
+            enumType = MavModeFlag.class,
             description = "System mode. Includes arming state."
     )
-    public final EnumValue<MavMode> mode() {
+    public final EnumValue<MavModeFlag> mode() {
         return this.mode;
     }
 
@@ -134,7 +134,7 @@ public final class HilActuatorControls {
 
         private List<Float> controls;
 
-        private EnumValue<MavMode> mode;
+        private EnumValue<MavModeFlag> mode;
 
         private BigInteger flags;
 
@@ -172,10 +172,10 @@ public final class HilActuatorControls {
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                enumType = MavMode.class,
+                enumType = MavModeFlag.class,
                 description = "System mode. Includes arming state."
         )
-        public final Builder mode(EnumValue<MavMode> mode) {
+        public final Builder mode(EnumValue<MavModeFlag> mode) {
             this.mode = mode;
             return this;
         }
@@ -183,7 +183,7 @@ public final class HilActuatorControls {
         /**
          * System mode. Includes arming state. 
          */
-        public final Builder mode(MavMode entry) {
+        public final Builder mode(MavModeFlag entry) {
             return mode(EnumValue.of(entry));
         }
 

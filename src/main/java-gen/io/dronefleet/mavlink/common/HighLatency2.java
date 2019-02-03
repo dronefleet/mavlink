@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,12 +14,18 @@ import java.util.Objects;
 
 /**
  * Message appropriate for high latency connections like Iridium (version 2) 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 235,
         crc = 179,
-        description = "Message appropriate for high latency connections like Iridium (version 2)"
+        description = "Message appropriate for high latency connections like Iridium (version 2)",
+        workInProgress = true
 )
+@Deprecated
 public final class HighLatency2 {
     private final long timestamp;
 

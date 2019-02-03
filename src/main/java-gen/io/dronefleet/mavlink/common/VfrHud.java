@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Metrics typically displayed on a HUD for fixed wing aircraft 
+ * Metrics typically displayed on a HUD for fixed wing aircraft. 
  */
 @MavlinkMessageInfo(
         id = 74,
         crc = 20,
-        description = "Metrics typically displayed on a HUD for fixed wing aircraft"
+        description = "Metrics typically displayed on a HUD for fixed wing aircraft."
 )
 public final class VfrHud {
     private final float airspeed;
@@ -48,73 +48,73 @@ public final class VfrHud {
     }
 
     /**
-     * Current airspeed 
+     * Current indicated airspeed (IAS). 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Current airspeed"
+            description = "Current indicated airspeed (IAS)."
     )
     public final float airspeed() {
         return this.airspeed;
     }
 
     /**
-     * Current ground speed 
+     * Current ground speed. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Current ground speed"
+            description = "Current ground speed."
     )
     public final float groundspeed() {
         return this.groundspeed;
     }
 
     /**
-     * Current heading in degrees, in compass units (0..360, 0=north) 
+     * Current heading in compass units (0-360, 0=north). 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Current heading in degrees, in compass units (0..360, 0=north)"
+            description = "Current heading in compass units (0-360, 0=north)."
     )
     public final int heading() {
         return this.heading;
     }
 
     /**
-     * Current throttle setting in integer percent, 0 to 100 
+     * Current throttle setting (0 to 100). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "Current throttle setting in integer percent, 0 to 100"
+            description = "Current throttle setting (0 to 100)."
     )
     public final int throttle() {
         return this.throttle;
     }
 
     /**
-     * Current altitude (MSL) 
+     * Current altitude (MSL). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Current altitude (MSL)"
+            description = "Current altitude (MSL)."
     )
     public final float alt() {
         return this.alt;
     }
 
     /**
-     * Current climb rate 
+     * Current climb rate. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Current climb rate"
+            description = "Current climb rate."
     )
     public final float climb() {
         return this.climb;
@@ -170,12 +170,12 @@ public final class VfrHud {
         private float climb;
 
         /**
-         * Current airspeed 
+         * Current indicated airspeed (IAS). 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Current airspeed"
+                description = "Current indicated airspeed (IAS)."
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;
@@ -183,12 +183,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current ground speed 
+         * Current ground speed. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Current ground speed"
+                description = "Current ground speed."
         )
         public final Builder groundspeed(float groundspeed) {
             this.groundspeed = groundspeed;
@@ -196,13 +196,13 @@ public final class VfrHud {
         }
 
         /**
-         * Current heading in degrees, in compass units (0..360, 0=north) 
+         * Current heading in compass units (0-360, 0=north). 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Current heading in degrees, in compass units (0..360, 0=north)"
+                description = "Current heading in compass units (0-360, 0=north)."
         )
         public final Builder heading(int heading) {
             this.heading = heading;
@@ -210,12 +210,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current throttle setting in integer percent, 0 to 100 
+         * Current throttle setting (0 to 100). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "Current throttle setting in integer percent, 0 to 100"
+                description = "Current throttle setting (0 to 100)."
         )
         public final Builder throttle(int throttle) {
             this.throttle = throttle;
@@ -223,12 +223,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current altitude (MSL) 
+         * Current altitude (MSL). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Current altitude (MSL)"
+                description = "Current altitude (MSL)."
         )
         public final Builder alt(float alt) {
             this.alt = alt;
@@ -236,12 +236,12 @@ public final class VfrHud {
         }
 
         /**
-         * Current climb rate 
+         * Current climb rate. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Current climb rate"
+                description = "Current climb rate."
         )
         public final Builder climb(float climb) {
             this.climb = climb;

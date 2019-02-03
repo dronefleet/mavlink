@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -14,12 +15,18 @@ import java.util.Objects;
 
 /**
  * The global position resulting from GPS and sensor fusion. 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 340,
         crc = 99,
-        description = "The global position resulting from GPS and sensor fusion."
+        description = "The global position resulting from GPS and sensor fusion.",
+        workInProgress = true
 )
+@Deprecated
 public final class UtmGlobalPosition {
     private final BigInteger time;
 
@@ -281,12 +288,12 @@ public final class UtmGlobalPosition {
     }
 
     /**
-     * Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode. 
+     * Time until next update. Set to 0 if unknown or in data driven mode. 
      */
     @MavlinkFieldInfo(
             position = 17,
             unitSize = 2,
-            description = "Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode."
+            description = "Time until next update. Set to 0 if unknown or in data driven mode."
     )
     public final int updateRate() {
         return this.updateRate;
@@ -634,12 +641,12 @@ public final class UtmGlobalPosition {
         }
 
         /**
-         * Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode. 
+         * Time until next update. Set to 0 if unknown or in data driven mode. 
          */
         @MavlinkFieldInfo(
                 position = 17,
                 unitSize = 2,
-                description = "Seconds * 1E2 until next update. Set to 0 if unknown or in data driven mode."
+                description = "Time until next update. Set to 0 if unknown or in data driven mode."
         )
         public final Builder updateRate(int updateRate) {
             this.updateRate = updateRate;

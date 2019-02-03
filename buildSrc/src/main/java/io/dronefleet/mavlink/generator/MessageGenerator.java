@@ -25,6 +25,7 @@ public class MessageGenerator {
     private final String description;
     private final List<FieldGenerator> fields;
     private final DeprecationGenerator deprecation;
+    private final boolean workInProgress;
 
     public MessageGenerator(
             PackageGenerator parentPackage,
@@ -33,7 +34,8 @@ public class MessageGenerator {
             ClassName className,
             String description,
             List<FieldGenerator> fields,
-            DeprecationGenerator deprecation) {
+            DeprecationGenerator deprecation,
+            boolean workInProgress) {
         this.parentPackage = parentPackage;
         this.id = id;
         this.name = name;
@@ -41,6 +43,7 @@ public class MessageGenerator {
         this.description = description;
         this.fields = fields;
         this.deprecation = deprecation;
+        this.workInProgress = workInProgress;
     }
 
     public int getId() {
@@ -67,6 +70,12 @@ public class MessageGenerator {
         String javadoc = parentPackage.processJavadoc(description);
         if (deprecation.deprecated()) {
             javadoc += parentPackage.processJavadoc(deprecation.javadoc());
+        } else if (workInProgress) {
+            javadoc += parentPackage.processJavadoc("@deprecated This message is a work in progress. " +
+                    "It may be modified in a non backward-compatible way in a future release without any warning. " +
+                    "This version of the message may not even work with autopilots that support this message due to " +
+                    "discrepancies between dialect versions. Unless you completely understand the risks of doing so, " +
+                    "don't use it.");
         }
         return javadoc;
     }
@@ -93,6 +102,10 @@ public class MessageGenerator {
             annotation.addMember("description", "$S", description);
         }
 
+        if (workInProgress) {
+            annotation.addMember("workInProgress", "$L", workInProgress);
+        }
+
         return annotation.build();
     }
 
@@ -101,6 +114,8 @@ public class MessageGenerator {
         annotations.add(annotation());
         if (deprecation.deprecated()) {
             annotations.add(deprecation.annotation());
+        } else if (workInProgress) {
+            annotations.add(AnnotationSpec.builder(Deprecated.class).build());
         }
         return annotations;
     }

@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * Enumeration for low battery states. 
+ * Enumeration for battery charge states. 
  */
 @MavlinkEnum
 public enum MavBatteryChargeState {
@@ -49,5 +49,11 @@ public enum MavBatteryChargeState {
      * Battery is diagnosed to be defective or an error occurred, usage is discouraged / prohibited. 
      */
     @MavlinkEntryInfo(6)
-    MAV_BATTERY_CHARGE_STATE_UNHEALTHY
+    MAV_BATTERY_CHARGE_STATE_UNHEALTHY,
+
+    /**
+     * Battery is charging. 
+     */
+    @MavlinkEntryInfo(7)
+    MAV_BATTERY_CHARGE_STATE_CHARGING
 }

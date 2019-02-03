@@ -86,7 +86,11 @@ public class MavlinkDefinitionDeserializer {
                                             .stream()
                                             .findFirst()
                                             .map(this::deserializeDeprecation)
-                                            .orElse(null));
+                                            .orElse(null),
+                                    message.elements("wip")
+                                            .stream()
+                                            .findAny()
+                                            .isPresent());
                         })
                         .collect(Collectors.toList()));
     }

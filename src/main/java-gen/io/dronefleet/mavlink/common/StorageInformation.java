@@ -61,7 +61,7 @@ public final class StorageInformation {
      * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 4,
             description = "Timestamp (time since system boot)."
     )
@@ -73,7 +73,7 @@ public final class StorageInformation {
      * Storage ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Storage ID (1 for first, 2 for second, etc.)"
     )
@@ -85,7 +85,7 @@ public final class StorageInformation {
      * Number of storage devices 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 1,
             description = "Number of storage devices"
     )
@@ -97,7 +97,7 @@ public final class StorageInformation {
      * Status of storage (0 not available, 1 unformatted, 2 formatted) 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 1,
             description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
     )
@@ -109,7 +109,7 @@ public final class StorageInformation {
      * Total capacity. 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 4,
             description = "Total capacity."
     )
@@ -121,7 +121,7 @@ public final class StorageInformation {
      * Used capacity. 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 4,
             description = "Used capacity."
     )
@@ -133,7 +133,7 @@ public final class StorageInformation {
      * Available storage capacity. 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 4,
             description = "Available storage capacity."
     )
@@ -145,7 +145,7 @@ public final class StorageInformation {
      * Read speed. 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 4,
             description = "Read speed."
     )
@@ -157,7 +157,7 @@ public final class StorageInformation {
      * Write speed. 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 9,
             unitSize = 4,
             description = "Write speed."
     )
@@ -233,7 +233,7 @@ public final class StorageInformation {
          * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 4,
                 description = "Timestamp (time since system boot)."
         )
@@ -246,7 +246,7 @@ public final class StorageInformation {
          * Storage ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Storage ID (1 for first, 2 for second, etc.)"
         )
@@ -259,7 +259,7 @@ public final class StorageInformation {
          * Number of storage devices 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 1,
                 description = "Number of storage devices"
         )
@@ -272,7 +272,7 @@ public final class StorageInformation {
          * Status of storage (0 not available, 1 unformatted, 2 formatted) 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 1,
                 description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
         )
@@ -285,7 +285,7 @@ public final class StorageInformation {
          * Total capacity. 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 4,
                 description = "Total capacity."
         )
@@ -298,7 +298,7 @@ public final class StorageInformation {
          * Used capacity. 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 4,
                 description = "Used capacity."
         )
@@ -311,7 +311,7 @@ public final class StorageInformation {
          * Available storage capacity. 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 4,
                 description = "Available storage capacity."
         )
@@ -324,7 +324,7 @@ public final class StorageInformation {
          * Read speed. 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 4,
                 description = "Read speed."
         )
@@ -337,7 +337,7 @@ public final class StorageInformation {
          * Write speed. 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 9,
                 unitSize = 4,
                 description = "Write speed."
         )

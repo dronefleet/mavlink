@@ -8,18 +8,21 @@ public class MavlinkMessageDef {
     private final String description;
     private final List<MavlinkFieldDef> fields;
     private final MavlinkDeprecationDef deprecation;
+    private final boolean workInProgress;
 
     public MavlinkMessageDef(
             int id,
             String name,
             String description,
             List<MavlinkFieldDef> fields,
-            MavlinkDeprecationDef deprecation) {
+            MavlinkDeprecationDef deprecation,
+            boolean workInProgress) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.fields = fields;
         this.deprecation = deprecation;
+        this.workInProgress = workInProgress;
     }
 
     public int getId() {
@@ -42,6 +45,10 @@ public class MavlinkMessageDef {
         return deprecation;
     }
 
+    public boolean isWorkInProgress() {
+        return workInProgress;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +57,7 @@ public class MavlinkMessageDef {
         MavlinkMessageDef that = (MavlinkMessageDef) o;
 
         if (id != that.id) return false;
+        if (workInProgress != that.workInProgress) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (fields != null ? !fields.equals(that.fields) : that.fields != null) return false;
@@ -63,6 +71,7 @@ public class MavlinkMessageDef {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (fields != null ? fields.hashCode() : 0);
         result = 31 * result + (deprecation != null ? deprecation.hashCode() : 0);
+        result = 31 * result + (workInProgress ? 1 : 0);
         return result;
     }
 
@@ -74,6 +83,7 @@ public class MavlinkMessageDef {
                 ", description='" + description + '\'' +
                 ", fields=" + fields +
                 ", deprecation=" + deprecation +
+                ", workInProgress=" + workInProgress +
                 '}';
     }
 }

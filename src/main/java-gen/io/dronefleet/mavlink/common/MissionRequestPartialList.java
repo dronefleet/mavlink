@@ -74,13 +74,13 @@ public final class MissionRequestPartialList {
     }
 
     /**
-     * Start index, 0 by default 
+     * Start index 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Start index, 0 by default"
+            description = "Start index"
     )
     public final int startIndex() {
         return this.startIndex;
@@ -184,13 +184,13 @@ public final class MissionRequestPartialList {
         }
 
         /**
-         * Start index, 0 by default 
+         * Start index 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Start index, 0 by default"
+                description = "Start index"
         )
         public final Builder startIndex(int startIndex) {
             this.startIndex = startIndex;

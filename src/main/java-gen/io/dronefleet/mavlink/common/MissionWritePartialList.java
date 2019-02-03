@@ -74,13 +74,13 @@ public final class MissionWritePartialList {
     }
 
     /**
-     * Start index, 0 by default and smaller / equal to the largest index of the current onboard list. 
+     * Start index. Must be smaller / equal to the largest index of the current onboard list. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
             signed = true,
-            description = "Start index, 0 by default and smaller / equal to the largest index of the current onboard list."
+            description = "Start index. Must be smaller / equal to the largest index of the current onboard list."
     )
     public final int startIndex() {
         return this.startIndex;
@@ -184,13 +184,13 @@ public final class MissionWritePartialList {
         }
 
         /**
-         * Start index, 0 by default and smaller / equal to the largest index of the current onboard list. 
+         * Start index. Must be smaller / equal to the largest index of the current onboard list. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
                 signed = true,
-                description = "Start index, 0 by default and smaller / equal to the largest index of the current onboard list."
+                description = "Start index. Must be smaller / equal to the largest index of the current onboard list."
         )
         public final Builder startIndex(int startIndex) {
             this.startIndex = startIndex;

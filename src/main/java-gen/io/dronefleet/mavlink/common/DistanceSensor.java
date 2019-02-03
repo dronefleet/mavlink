@@ -5,10 +5,12 @@ import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Enum;
+import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -36,9 +38,15 @@ public final class DistanceSensor {
 
     private final int covariance;
 
+    private final float horizontalFov;
+
+    private final float verticalFov;
+
+    private final List<Float> quaternion;
+
     private DistanceSensor(long timeBootMs, int minDistance, int maxDistance, int currentDistance,
             EnumValue<MavDistanceSensor> type, int id, EnumValue<MavSensorOrientation> orientation,
-            int covariance) {
+            int covariance, float horizontalFov, float verticalFov, List<Float> quaternion) {
         this.timeBootMs = timeBootMs;
         this.minDistance = minDistance;
         this.maxDistance = maxDistance;
@@ -47,6 +55,9 @@ public final class DistanceSensor {
         this.id = id;
         this.orientation = orientation;
         this.covariance = covariance;
+        this.horizontalFov = horizontalFov;
+        this.verticalFov = verticalFov;
+        this.quaternion = quaternion;
     }
 
     /**
@@ -157,6 +168,50 @@ public final class DistanceSensor {
         return this.covariance;
     }
 
+    /**
+     * Horizontal Field of View (angle) where the distance measurement is valid and the field of view 
+     * is known. Otherwise this is set to 0. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4,
+            extension = true,
+            description = "Horizontal Field of View (angle) where the distance measurement is valid and the field of view is known. Otherwise this is set to 0."
+    )
+    public final float horizontalFov() {
+        return this.horizontalFov;
+    }
+
+    /**
+     * Vertical Field of View (angle) where the distance measurement is valid and the field of view is 
+     * known. Otherwise this is set to 0. 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4,
+            extension = true,
+            description = "Vertical Field of View (angle) where the distance measurement is valid and the field of view is known. Otherwise this is set to 0."
+    )
+    public final float verticalFov() {
+        return this.verticalFov;
+    }
+
+    /**
+     * Quaternion of the sensor orientation in vehicle body frame (w, x, y, z order, zero-rotation is 
+     * 1, 0, 0, 0). Zero-rotation is along the vehicle body x-axis. This field is required if the 
+     * orientation is set to MAV_SENSOR_ROTATION_CUSTOM. Set it to 0 if invalid." 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 4,
+            arraySize = 4,
+            extension = true,
+            description = "Quaternion of the sensor orientation in vehicle body frame (w, x, y, z order, zero-rotation is 1, 0, 0, 0). Zero-rotation is along the vehicle body x-axis. This field is required if the orientation is set to MAV_SENSOR_ROTATION_CUSTOM. Set it to 0 if invalid.\""
+    )
+    public final List<Float> quaternion() {
+        return this.quaternion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -170,6 +225,9 @@ public final class DistanceSensor {
         if (!Objects.deepEquals(id, other.id)) return false;
         if (!Objects.deepEquals(orientation, other.orientation)) return false;
         if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        if (!Objects.deepEquals(horizontalFov, other.horizontalFov)) return false;
+        if (!Objects.deepEquals(verticalFov, other.verticalFov)) return false;
+        if (!Objects.deepEquals(quaternion, other.quaternion)) return false;
         return true;
     }
 
@@ -184,6 +242,9 @@ public final class DistanceSensor {
         result = 31 * result + Objects.hashCode(id);
         result = 31 * result + Objects.hashCode(orientation);
         result = 31 * result + Objects.hashCode(covariance);
+        result = 31 * result + Objects.hashCode(horizontalFov);
+        result = 31 * result + Objects.hashCode(verticalFov);
+        result = 31 * result + Objects.hashCode(quaternion);
         return result;
     }
 
@@ -196,7 +257,10 @@ public final class DistanceSensor {
                  + ", type=" + type
                  + ", id=" + id
                  + ", orientation=" + orientation
-                 + ", covariance=" + covariance + "}";
+                 + ", covariance=" + covariance
+                 + ", horizontalFov=" + horizontalFov
+                 + ", verticalFov=" + verticalFov
+                 + ", quaternion=" + quaternion + "}";
     }
 
     public static final class Builder {
@@ -215,6 +279,12 @@ public final class DistanceSensor {
         private EnumValue<MavSensorOrientation> orientation;
 
         private int covariance;
+
+        private float horizontalFov;
+
+        private float verticalFov;
+
+        private List<Float> quaternion;
 
         /**
          * Timestamp (time since system boot). 
@@ -372,8 +442,55 @@ public final class DistanceSensor {
             return this;
         }
 
+        /**
+         * Horizontal Field of View (angle) where the distance measurement is valid and the field of view 
+         * is known. Otherwise this is set to 0. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 4,
+                extension = true,
+                description = "Horizontal Field of View (angle) where the distance measurement is valid and the field of view is known. Otherwise this is set to 0."
+        )
+        public final Builder horizontalFov(float horizontalFov) {
+            this.horizontalFov = horizontalFov;
+            return this;
+        }
+
+        /**
+         * Vertical Field of View (angle) where the distance measurement is valid and the field of view is 
+         * known. Otherwise this is set to 0. 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 4,
+                extension = true,
+                description = "Vertical Field of View (angle) where the distance measurement is valid and the field of view is known. Otherwise this is set to 0."
+        )
+        public final Builder verticalFov(float verticalFov) {
+            this.verticalFov = verticalFov;
+            return this;
+        }
+
+        /**
+         * Quaternion of the sensor orientation in vehicle body frame (w, x, y, z order, zero-rotation is 
+         * 1, 0, 0, 0). Zero-rotation is along the vehicle body x-axis. This field is required if the 
+         * orientation is set to MAV_SENSOR_ROTATION_CUSTOM. Set it to 0 if invalid." 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 4,
+                arraySize = 4,
+                extension = true,
+                description = "Quaternion of the sensor orientation in vehicle body frame (w, x, y, z order, zero-rotation is 1, 0, 0, 0). Zero-rotation is along the vehicle body x-axis. This field is required if the orientation is set to MAV_SENSOR_ROTATION_CUSTOM. Set it to 0 if invalid.\""
+        )
+        public final Builder quaternion(List<Float> quaternion) {
+            this.quaternion = quaternion;
+            return this;
+        }
+
         public final DistanceSensor build() {
-            return new DistanceSensor(timeBootMs, minDistance, maxDistance, currentDistance, type, id, orientation, covariance);
+            return new DistanceSensor(timeBootMs, minDistance, maxDistance, currentDistance, type, id, orientation, covariance, horizontalFov, verticalFov, quaternion);
         }
     }
 }

@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -14,12 +15,18 @@ import java.util.Objects;
  * version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION 
  * to enable the handshaking. Library implementers should consider adding this into the default 
  * decoding state machine to allow the protocol core to respond directly. 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 300,
         crc = 217,
-        description = "Version and capability of protocol version. This message is the response to REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly."
+        description = "Version and capability of protocol version. This message is the response to REQUEST_PROTOCOL_VERSION and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to REQUEST_PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly.",
+        workInProgress = true
 )
+@Deprecated
 public final class ProtocolVersion {
     private final int version;
 

@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -11,12 +12,18 @@ import java.util.Objects;
 
 /**
  * Information about flight since last arming. 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 264,
         crc = 49,
-        description = "Information about flight since last arming."
+        description = "Information about flight since last arming.",
+        workInProgress = true
 )
+@Deprecated
 public final class FlightInformation {
     private final long timeBootMs;
 

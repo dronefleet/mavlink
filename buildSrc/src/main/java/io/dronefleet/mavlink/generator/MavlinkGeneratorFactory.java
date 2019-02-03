@@ -69,7 +69,8 @@ public class MavlinkGeneratorFactory {
                 packageGenerator.getTypeName(messageDef.getName()),
                 messageDef.getDescription(),
                 new ArrayList<>(messageDef.getFields().size()),
-                visitDeprecation(messageDef.getDeprecation()));
+                visitDeprecation(messageDef.getDeprecation()),
+                messageDef.isWorkInProgress());
 
         messageDef.getFields()
                 .stream()

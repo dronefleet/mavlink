@@ -54,5 +54,12 @@ public enum CameraCapFlags {
      * Camera has basic focus control (MAV_CMD_SET_CAMERA_FOCUS) 
      */
     @MavlinkEntryInfo(128)
-    CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS
+    CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS,
+
+    /**
+     * Camera has video streaming capabilities (use MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION 
+     * for video streaming info) 
+     */
+    @MavlinkEntryInfo(256)
+    CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM
 }

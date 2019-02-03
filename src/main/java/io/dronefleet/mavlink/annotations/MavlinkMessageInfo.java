@@ -14,4 +14,6 @@ public @interface MavlinkMessageInfo {
     int crc();
 
     String description() default "No description provided";
+
+    boolean workInProgress() default false;
 }

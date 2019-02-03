@@ -170,7 +170,7 @@ public final class CommonDialect extends AbstractMavlinkDialect {
             .put(267, LoggingDataAcked.class)
             .put(268, LoggingAck.class)
             .put(269, VideoStreamInformation.class)
-            .put(270, SetVideoStreamSettings.class)
+            .put(270, VideoStreamStatus.class)
             .put(299, WifiConfigAp.class)
             .put(300, ProtocolVersion.class)
             .put(310, UavcanNodeStatus.class)
@@ -184,9 +184,12 @@ public final class CommonDialect extends AbstractMavlinkDialect {
             .put(331, Odometry.class)
             .put(332, TrajectoryRepresentationWaypoints.class)
             .put(333, TrajectoryRepresentationBezier.class)
+            .put(334, CellularStatus.class)
             .put(340, UtmGlobalPosition.class)
             .put(350, DebugFloatArray.class)
             .put(360, OrbitExecutionStatus.class)
+            .put(365, StatustextLong.class)
+            .put(9000, WheelDistance.class)
             .build();
 
     public CommonDialect() {

@@ -77,13 +77,13 @@ public final class RcChannelsScaled {
     }
 
     /**
-     * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-     * than 8 servos. 
+     * Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = 
+     * MAIN, 1 = AUX. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos."
+            description = "Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX."
     )
     public final int port() {
         return this.port;
@@ -293,13 +293,13 @@ public final class RcChannelsScaled {
         }
 
         /**
-         * Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more 
-         * than 8 servos. 
+         * Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = 
+         * MAIN, 1 = AUX. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos."
+                description = "Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX."
         )
         public final Builder port(int port) {
             this.port = port;

@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,12 +14,18 @@ import java.util.Objects;
 
 /**
  * Describe a trajectory using an array of up-to 5 waypoints in the local frame. 
+ * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
+ * way in a future release without any warning. This version of the message may not even work with 
+ * autopilots that support this message due to discrepancies between dialect versions. Unless 
+ * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 332,
         crc = 91,
-        description = "Describe a trajectory using an array of up-to 5 waypoints in the local frame."
+        description = "Describe a trajectory using an array of up-to 5 waypoints in the local frame.",
+        workInProgress = true
 )
+@Deprecated
 public final class TrajectoryRepresentationWaypoints {
     private final BigInteger timeUsec;
 

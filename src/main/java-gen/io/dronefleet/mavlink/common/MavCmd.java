@@ -158,29 +158,28 @@ public enum MavCmd {
     MAV_CMD_NAV_RETURN_TO_LAUNCH,
 
     /**
-     * Land at location 
+     * Land at location. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Abort Alt</dd>
+     *   <dd>Minimum target altitude if landing is aborted (0 = undefined/use system default).</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Precision land mode. (0 = normal landing, 1 = opportunistic precision landing, 2 = required 
-     * precsion landing)</dd>
+     *   <dd>Precision land mode.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Empty</dd>
+     *   <dd>Empty.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Desired yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Latitude</dd>
+     *   <dd>Latitude.</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Longitude</dd>
+     *   <dd>Longitude.</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Altitude (ground level)</dd>
+     *   <dd>Landing altitude (ground level in current frame).</dd>
      * </dl>
      */
     @MavlinkEntryInfo(21)
@@ -551,13 +550,13 @@ public enum MavCmd {
     MAV_CMD_NAV_SPLINE_WAYPOINT,
 
     /**
-     * Takeoff from ground using VTOL mode 
+     * Takeoff from ground using VTOL mode, and transition to forward flight with specified heading. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Empty</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Front transition heading, see {@link io.dronefleet.mavlink.common.VtolTransitionHeading VTOL_TRANSITION_HEADING} enum.</dd>
+     *   <dd>Front transition heading.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -2400,13 +2399,15 @@ public enum MavCmd {
     MAV_CMD_RESET_CAMERA_SETTINGS,
 
     /**
-     * Set camera running mode. Use NAN for reserved values. 
+     * Set camera running mode. Use NaN for reserved values. GCS will send a 
+     * MAV_CMD_REQUEST_VIDEO_STREAM_STATUS command after a mode change if the camera supports 
+     * video streaming. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Reserved (Set to 0)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Camera mode (see {@link io.dronefleet.mavlink.common.CameraMode CAMERA_MODE} enum)</dd>
+     *   <dd>Camera mode</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2416,13 +2417,14 @@ public enum MavCmd {
     MAV_CMD_SET_CAMERA_MODE,
 
     /**
-     * Set camera zoom. Returns {@link io.dronefleet.mavlink.common.CameraSettings CAMERA_SETTINGS} message. Use NAN for reserved values. 
+     * Set camera zoom. Camera must respond with a {@link io.dronefleet.mavlink.common.CameraSettings CAMERA_SETTINGS} message (on success). Use NaN for 
+     * reserved values. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Zoom type</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Zoom value</dd>
+     *   <dd>Zoom value. The range of valid values depend on the zoom type.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2432,7 +2434,8 @@ public enum MavCmd {
     MAV_CMD_SET_CAMERA_ZOOM,
 
     /**
-     * Set camera focus. Returns {@link io.dronefleet.mavlink.common.CameraSettings CAMERA_SETTINGS} message. Use NAN for reserved values. 
+     * Set camera focus. Camera must respond with a {@link io.dronefleet.mavlink.common.CameraSettings CAMERA_SETTINGS} message (on success). Use NaN for 
+     * reserved values. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Focus type</dd>
@@ -2448,21 +2451,49 @@ public enum MavCmd {
     MAV_CMD_SET_CAMERA_FOCUS,
 
     /**
-     * Start image capture sequence. Sends {@link io.dronefleet.mavlink.common.CameraImageCaptured CAMERA_IMAGE_CAPTURED} after each capture. Use NAN for 
+     * Tagged jump target. Can be jumped to with MAV_CMD_DO_JUMP_TAG. 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>Tag.</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(600)
+    MAV_CMD_JUMP_TAG,
+
+    /**
+     * Jump to the matching tag in the mission list. Repeat this action for the specified number of 
+     * times. A mission should contain a single matching tag for each jump. If this is not the case then a 
+     * jump to a missing tag should complete the mission, and a jump where there are multiple matching 
+     * tags should always select the one with the lowest mission sequence number. 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>Target tag to jump to.</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>Repeat count</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(601)
+    MAV_CMD_DO_JUMP_TAG,
+
+    /**
+     * Start image capture sequence. Sends {@link io.dronefleet.mavlink.common.CameraImageCaptured CAMERA_IMAGE_CAPTURED} after each capture. Use NaN for 
      * reserved values. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Reserved (Set to 0)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Duration between two consecutive pictures (in seconds)</dd>
+     *   <dd>Desired elapsed time between two consecutive pictures (in seconds). Minimum values depend on 
+     * hardware (typically greater than 2 seconds).</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Number of images to capture total - 0 for unlimited capture</dd>
+     *   <dd>Total number of images to capture. 0 to capture forever/until MAV_CMD_IMAGE_STOP_CAPTURE.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Capture sequence (ID to prevent double captures when a command is retransmitted, 0: unused, &gt;= 
-     * 1: used)</dd>
+     *   <dd>Capture sequence number starting from 1. This is only valid for single-capture (param3 == 1). 
+     * Increment the capture ID for each capture command to prevent double captures when a command is 
+     * re-transmitted. Use 0 to ignore it.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2472,7 +2503,7 @@ public enum MavCmd {
     MAV_CMD_IMAGE_START_CAPTURE,
 
     /**
-     * Stop image capture sequence Use NAN for reserved values. 
+     * Stop image capture sequence Use NaN for reserved values. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>Reserved (Set to 0)</dd>
@@ -2485,10 +2516,10 @@ public enum MavCmd {
     MAV_CMD_IMAGE_STOP_CAPTURE,
 
     /**
-     * Re-request a CAMERA_IMAGE_CAPTURE packet. Use NAN for reserved values. 
+     * Re-request a CAMERA_IMAGE_CAPTURE message. Use NaN for reserved values. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Sequence number for missing CAMERA_IMAGE_CAPTURE packet</dd>
+     *   <dd>Sequence number for missing CAMERA_IMAGE_CAPTURE message</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2514,10 +2545,10 @@ public enum MavCmd {
     MAV_CMD_DO_TRIGGER_CONTROL,
 
     /**
-     * Starts video capture (recording). Use NAN for reserved values. 
+     * Starts video capture (recording). Use NaN for reserved values. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Reserved (Set to 0)</dd>
+     *   <dd>Video Stream ID (0 for all streams)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Frequency {@link io.dronefleet.mavlink.common.CameraCaptureStatus CAMERA_CAPTURE_STATUS} messages should be sent while recording (0 for no messages, 
@@ -2531,10 +2562,10 @@ public enum MavCmd {
     MAV_CMD_VIDEO_START_CAPTURE,
 
     /**
-     * Stop the current video capture (recording). Use NAN for reserved values. 
+     * Stop the current video capture (recording). Use NaN for reserved values. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Reserved (Set to 0)</dd>
+     *   <dd>Video Stream ID (0 for all streams)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2547,7 +2578,7 @@ public enum MavCmd {
      * Start video streaming 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
+     *   <dd>Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved</dd>
@@ -2557,10 +2588,10 @@ public enum MavCmd {
     MAV_CMD_VIDEO_START_STREAMING,
 
     /**
-     * Stop the current video streaming 
+     * Stop the given video stream 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
+     *   <dd>Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved</dd>
@@ -2573,17 +2604,27 @@ public enum MavCmd {
      * Request video stream information ({@link io.dronefleet.mavlink.common.VideoStreamInformation VIDEO_STREAM_INFORMATION}) 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
+     *   <dd>Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>0: No Action 1: Request video stream information</dd>
-     *
-     *   <dt>param3</dt>
      *   <dd>Reserved (all remaining params)</dd>
      * </dl>
      */
     @MavlinkEntryInfo(2504)
     MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION,
+
+    /**
+     * Request video stream status ({@link io.dronefleet.mavlink.common.VideoStreamStatus VIDEO_STREAM_STATUS}) 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>Video Stream ID (0 for all streams, 1 for first, 2 for second, etc.)</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>Reserved (all remaining params)</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(2505)
+    MAV_CMD_REQUEST_VIDEO_STREAM_STATUS,
 
     /**
      * Request to start streaming logging data over MAVLink (see also {@link io.dronefleet.mavlink.common.LoggingData LOGGING_DATA} message) 
@@ -2648,22 +2689,22 @@ public enum MavCmd {
      *   <dd>Landing gear ID (default: 0, -1 for all)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Landing gear position (Down: 0, Up: 1, NAN for no change)</dd>
+     *   <dd>Landing gear position (Down: 0, Up: 1, NaN for no change)</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Reserved, set to NAN</dd>
+     *   <dd>Reserved, set to NaN</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Reserved, set to NAN</dd>
+     *   <dd>Reserved, set to NaN</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Reserved, set to NAN</dd>
+     *   <dd>Reserved, set to NaN</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Reserved, set to NAN</dd>
+     *   <dd>Reserved, set to NaN</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Reserved, set to NAN</dd>
+     *   <dd>Reserved, set to NaN</dd>
      * </dl>
      */
     @MavlinkEntryInfo(2520)
