@@ -20,7 +20,9 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -127,6 +129,11 @@ public class MavlinkConnection {
     private final Map<Integer, MavlinkDialect> systemDialects;
 
     /**
+     * A list of default dialects used for decoding packets.
+     */
+    private final List<MavlinkDialect> defaultDialects;
+
+    /**
      * The current send sequence of this connection.
      */
     private int sequence;
@@ -181,8 +188,21 @@ public class MavlinkConnection {
         this.deserializer = deserializer;
         this.serializer = serializer;
         systemDialects = new HashMap<>();
+        defaultDialects = new ArrayList<>();
         readLock = new ReentrantLock();
         writeLock = new ReentrantLock();
+    }
+
+    /**
+     * Adds a default dialect. The added dialect will be used to decode the packets
+     * without relying on detecting dialects by heartbeat.
+     *
+     * @param dialect The dialect to add.
+     * @return This Mavlink connection.
+     */
+    public MavlinkConnection addDefaultDialect(MavlinkDialect dialect) {
+        defaultDialects.add(dialect);
+        return this;
     }
 
     /**
@@ -214,6 +234,15 @@ public class MavlinkConnection {
                 // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
                 // or we don't support the dialect of its autopilot, then we use the common dialect.
                 MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
+
+                // Try to get supported dialect from default dialects
+                // instead of system dialects which are detected from heartbeat
+                for (MavlinkDialect mavlinkDialect:defaultDialects){
+                    if (mavlinkDialect.supports(packet.getMessageId())){
+                        dialect = mavlinkDialect;
+                        break;
+                    }
+                }
 
                 // If the packet is not supported by the dialect, then we drop the packet and continue.
                 // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates
