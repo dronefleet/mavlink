@@ -18,8 +18,8 @@ public final class ArdupilotmegaDialect extends AbstractMavlinkDialect {
      */
     private static final List<MavlinkDialect> dependencies = Arrays.asList(
             new CommonDialect(),
-            new UavionixDialect(),
-            new IcarousDialect());
+            new IcarousDialect(),
+            new UavionixDialect());
 
     /**
      * A list of all message types supported by this dialect.
