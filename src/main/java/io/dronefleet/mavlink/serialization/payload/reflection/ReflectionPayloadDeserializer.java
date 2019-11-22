@@ -44,7 +44,6 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                         MavlinkFieldInfo fb = b.getAnnotation(MavlinkFieldInfo.class);
                         return wireComparator.compare(fa, fb);
                     })
-                    .filter(f -> nextOffset.get() < payload.length)
                     .forEach(method -> {
                         MavlinkFieldInfo field = method.getAnnotation(MavlinkFieldInfo.class);
 
@@ -52,12 +51,13 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                         int offset = nextOffset.getAndAccumulate(length, (a, b) -> a + b);
 
                         byte[] data = new byte[length];
-                        int copyLength = Math.max(
-                                Math.min(
-                                        length,
-                                        payload.length - offset),
-                                0);
-                        System.arraycopy(payload, offset, data, 0, copyLength);
+                        if (offset < payload.length) {
+                            int copyLength = Math.max(
+                                    Math.min(length, payload.length - offset),
+                                    0
+                            );
+                            System.arraycopy(payload, offset, data, 0, copyLength);
+                        }
 
                         Class fieldType = Optional.of(method.getParameterTypes())
                                 .filter(types -> types.length == 1)
