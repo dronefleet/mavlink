@@ -9,6 +9,7 @@ import io.dronefleet.mavlink.util.EnumValue;
 import io.dronefleet.mavlink.util.WireFieldInfoComparator;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
@@ -82,6 +83,8 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                                 method.invoke(builder, stringValue(data));
                             } else if (byte[].class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, data);
+                            } else if (BigInteger.class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, bigIntValue(data));
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             e.printStackTrace();
@@ -140,6 +143,18 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
             }
         }
         return new String(data, StandardCharsets.UTF_8);
+    }
+
+
+    private BigInteger bigIntValue(byte[] data){
+        // Invert to big-endian, for BigInteger constructor
+        for (int i = 0; i < data.length/2; ++i){
+            byte tmp = data[i];
+            data[i] = data[data.length-1-i];
+            data[data.length-1-i] = tmp;
+        }
+
+        return new BigInteger(data);
     }
 
     private Object enumValue(Class<?> enumType, byte[] data, boolean signed) {
