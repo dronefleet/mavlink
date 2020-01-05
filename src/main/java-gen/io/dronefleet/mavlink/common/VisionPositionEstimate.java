@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Global position/attitude estimate from a vision source. 
+ * Local position/attitude estimate from a vision source. 
  */
 @MavlinkMessageInfo(
         id = 102,
         crc = 158,
-        description = "Global position/attitude estimate from a vision source."
+        description = "Local position/attitude estimate from a vision source."
 )
 public final class VisionPositionEstimate {
     private final BigInteger usec;
@@ -36,8 +36,10 @@ public final class VisionPositionEstimate {
 
     private final List<Float> covariance;
 
+    private final int resetCounter;
+
     private VisionPositionEstimate(BigInteger usec, float x, float y, float z, float roll,
-            float pitch, float yaw, List<Float> covariance) {
+            float pitch, float yaw, List<Float> covariance, int resetCounter) {
         this.usec = usec;
         this.x = x;
         this.y = y;
@@ -46,6 +48,7 @@ public final class VisionPositionEstimate {
         this.pitch = pitch;
         this.yaw = yaw;
         this.covariance = covariance;
+        this.resetCounter = resetCounter;
     }
 
     /**
@@ -69,36 +72,36 @@ public final class VisionPositionEstimate {
     }
 
     /**
-     * Global X position 
+     * Local X position 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Global X position"
+            description = "Local X position"
     )
     public final float x() {
         return this.x;
     }
 
     /**
-     * Global Y position 
+     * Local Y position 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Global Y position"
+            description = "Local Y position"
     )
     public final float y() {
         return this.y;
     }
 
     /**
-     * Global Z position 
+     * Local Z position 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Global Z position"
+            description = "Local Z position"
     )
     public final float z() {
         return this.z;
@@ -141,18 +144,34 @@ public final class VisionPositionEstimate {
     }
 
     /**
-     * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-     * entries are the second ROW, etc.) 
+     * Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: 
+     * x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second 
+     * ROW, etc.). If unknown, assign NaN value to first element in the array. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
             arraySize = 21,
             extension = true,
-            description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+            description = "Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
+    }
+
+    /**
+     * Estimate reset counter. This should be incremented when the estimate resets in any of the 
+     * dimensions (position, velocity, attitude, angular speed). This is designed to be used when 
+     * e.g an external SLAM system detects a loop-closure and the estimate jumps. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 1,
+            extension = true,
+            description = "Estimate reset counter. This should be incremented when the estimate resets in any of the dimensions (position, velocity, attitude, angular speed). This is designed to be used when e.g an external SLAM system detects a loop-closure and the estimate jumps."
+    )
+    public final int resetCounter() {
+        return this.resetCounter;
     }
 
     @Override
@@ -168,6 +187,7 @@ public final class VisionPositionEstimate {
         if (!Objects.deepEquals(pitch, other.pitch)) return false;
         if (!Objects.deepEquals(yaw, other.yaw)) return false;
         if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        if (!Objects.deepEquals(resetCounter, other.resetCounter)) return false;
         return true;
     }
 
@@ -182,6 +202,7 @@ public final class VisionPositionEstimate {
         result = 31 * result + Objects.hashCode(pitch);
         result = 31 * result + Objects.hashCode(yaw);
         result = 31 * result + Objects.hashCode(covariance);
+        result = 31 * result + Objects.hashCode(resetCounter);
         return result;
     }
 
@@ -194,7 +215,8 @@ public final class VisionPositionEstimate {
                  + ", roll=" + roll
                  + ", pitch=" + pitch
                  + ", yaw=" + yaw
-                 + ", covariance=" + covariance + "}";
+                 + ", covariance=" + covariance
+                 + ", resetCounter=" + resetCounter + "}";
     }
 
     public static final class Builder {
@@ -214,6 +236,8 @@ public final class VisionPositionEstimate {
 
         private List<Float> covariance;
 
+        private int resetCounter;
+
         /**
          * Timestamp (UNIX time or time since system boot) 
          */
@@ -228,12 +252,12 @@ public final class VisionPositionEstimate {
         }
 
         /**
-         * Global X position 
+         * Local X position 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Global X position"
+                description = "Local X position"
         )
         public final Builder x(float x) {
             this.x = x;
@@ -241,12 +265,12 @@ public final class VisionPositionEstimate {
         }
 
         /**
-         * Global Y position 
+         * Local Y position 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Global Y position"
+                description = "Local Y position"
         )
         public final Builder y(float y) {
             this.y = y;
@@ -254,12 +278,12 @@ public final class VisionPositionEstimate {
         }
 
         /**
-         * Global Z position 
+         * Local Z position 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Global Z position"
+                description = "Local Z position"
         )
         public final Builder z(float z) {
             this.z = z;
@@ -306,23 +330,40 @@ public final class VisionPositionEstimate {
         }
 
         /**
-         * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-         * entries are the second ROW, etc.) 
+         * Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: 
+         * x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second 
+         * ROW, etc.). If unknown, assign NaN value to first element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
                 arraySize = 21,
                 extension = true,
-                description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+                description = "Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;
             return this;
         }
 
+        /**
+         * Estimate reset counter. This should be incremented when the estimate resets in any of the 
+         * dimensions (position, velocity, attitude, angular speed). This is designed to be used when 
+         * e.g an external SLAM system detects a loop-closure and the estimate jumps. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 1,
+                extension = true,
+                description = "Estimate reset counter. This should be incremented when the estimate resets in any of the dimensions (position, velocity, attitude, angular speed). This is designed to be used when e.g an external SLAM system detects a loop-closure and the estimate jumps."
+        )
+        public final Builder resetCounter(int resetCounter) {
+            this.resetCounter = resetCounter;
+            return this;
+        }
+
         public final VisionPositionEstimate build() {
-            return new VisionPositionEstimate(usec, x, y, z, roll, pitch, yaw, covariance);
+            return new VisionPositionEstimate(usec, x, y, z, roll, pitch, yaw, covariance, resetCounter);
         }
     }
 }

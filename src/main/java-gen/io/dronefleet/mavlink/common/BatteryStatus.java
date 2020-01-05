@@ -14,12 +14,13 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Battery information 
+ * Battery information. Updates GCS with flight controller battery status. Use 
+ * SMART_BATTERY_* messages instead for smart batteries. 
  */
 @MavlinkMessageInfo(
         id = 147,
         crc = 154,
-        description = "Battery information"
+        description = "Battery information. Updates GCS with flight controller battery status. Use SMART_BATTERY_* messages instead for smart batteries."
 )
 public final class BatteryStatus {
     private final int id;

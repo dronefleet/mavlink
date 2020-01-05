@@ -208,14 +208,16 @@ public final class LocalPositionNedCov {
     }
 
     /**
-     * Covariance matrix upper right triangular (first nine entries are the first ROW, next eight 
-     * entries are the second row, etc.) 
+     * Row-major representation of position, velocity and acceleration 9x9 cross-covariance 
+     * matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the 
+     * first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first 
+     * element in the array. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
             arraySize = 45,
-            description = "Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)"
+            description = "Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -467,14 +469,16 @@ public final class LocalPositionNedCov {
         }
 
         /**
-         * Covariance matrix upper right triangular (first nine entries are the first ROW, next eight 
-         * entries are the second row, etc.) 
+         * Row-major representation of position, velocity and acceleration 9x9 cross-covariance 
+         * matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the 
+         * first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first 
+         * element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
                 arraySize = 45,
-                description = "Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)"
+                description = "Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

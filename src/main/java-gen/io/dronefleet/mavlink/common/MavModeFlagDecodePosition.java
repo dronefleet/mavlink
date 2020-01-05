@@ -41,7 +41,7 @@ public enum MavModeFlagDecodePosition {
     MAV_MODE_FLAG_DECODE_POSITION_GUIDED,
 
     /**
-     * Sixt bit: 00000100 
+     * Sixth bit: 00000100 
      */
     @MavlinkEntryInfo(4)
     MAV_MODE_FLAG_DECODE_POSITION_AUTO,

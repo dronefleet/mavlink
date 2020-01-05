@@ -13,12 +13,13 @@ import java.util.Objects;
 
 /**
  * Message encoding a command with parameters as scaled integers. Scaling depends on the actual 
- * command value. 
+ * command value. The command microservice is documented at 
+ * https://mavlink.io/en/services/command.html 
  */
 @MavlinkMessageInfo(
         id = 75,
         crc = 158,
-        description = "Message encoding a command with parameters as scaled integers. Scaling depends on the actual command value."
+        description = "Message encoding a command with parameters as scaled integers. Scaling depends on the actual command value. The command microservice is documented at https://mavlink.io/en/services/command.html"
 )
 public final class CommandInt {
     private final int targetSystem;

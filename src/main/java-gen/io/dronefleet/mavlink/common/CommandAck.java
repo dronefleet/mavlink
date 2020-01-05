@@ -12,12 +12,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Report status of a command. Includes feedback whether the command was executed. 
+ * Report status of a command. Includes feedback whether the command was executed. The command 
+ * microservice is documented at https://mavlink.io/en/services/command.html 
  */
 @MavlinkMessageInfo(
         id = 77,
         crc = 143,
-        description = "Report status of a command. Includes feedback whether the command was executed."
+        description = "Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html"
 )
 public final class CommandAck {
     private final EnumValue<MavCmd> command;

@@ -114,13 +114,15 @@ public final class AttitudeQuaternionCov {
     }
 
     /**
-     * Attitude covariance 
+     * Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; 
+     * first three entries are the first ROW, next three entries are the second row, etc.). If unknown, 
+     * assign NaN value to first element in the array. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             arraySize = 9,
-            description = "Attitude covariance"
+            description = "Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -243,13 +245,15 @@ public final class AttitudeQuaternionCov {
         }
 
         /**
-         * Attitude covariance 
+         * Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; 
+         * first three entries are the first ROW, next three entries are the second row, etc.). If unknown, 
+         * assign NaN value to first element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 arraySize = 9,
-                description = "Attitude covariance"
+                description = "Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

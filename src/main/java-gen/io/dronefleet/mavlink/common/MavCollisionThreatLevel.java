@@ -21,7 +21,7 @@ public enum MavCollisionThreatLevel {
     MAV_COLLISION_THREAT_LEVEL_LOW,
 
     /**
-     * Craft is panicing, and may take actions to avoid threat 
+     * Craft is panicking, and may take actions to avoid threat 
      */
     @MavlinkEntryInfo(2)
     MAV_COLLISION_THREAT_LEVEL_HIGH

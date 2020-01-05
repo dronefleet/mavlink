@@ -55,11 +55,13 @@ public final class MagCalReport {
 
     private final EnumValue<MavSensorOrientation> newOrientation;
 
+    private final float scaleFactor;
+
     private MagCalReport(int compassId, int calMask, EnumValue<MagCalStatus> calStatus,
             int autosaved, float fitness, float ofsX, float ofsY, float ofsZ, float diagX,
             float diagY, float diagZ, float offdiagX, float offdiagY, float offdiagZ,
             float orientationConfidence, EnumValue<MavSensorOrientation> oldOrientation,
-            EnumValue<MavSensorOrientation> newOrientation) {
+            EnumValue<MavSensorOrientation> newOrientation, float scaleFactor) {
         this.compassId = compassId;
         this.calMask = calMask;
         this.calStatus = calStatus;
@@ -77,6 +79,7 @@ public final class MagCalReport {
         this.orientationConfidence = orientationConfidence;
         this.oldOrientation = oldOrientation;
         this.newOrientation = newOrientation;
+        this.scaleFactor = scaleFactor;
     }
 
     /**
@@ -297,6 +300,19 @@ public final class MagCalReport {
         return this.newOrientation;
     }
 
+    /**
+     * field radius correction factor 
+     */
+    @MavlinkFieldInfo(
+            position = 19,
+            unitSize = 4,
+            extension = true,
+            description = "field radius correction factor"
+    )
+    public final float scaleFactor() {
+        return this.scaleFactor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -319,6 +335,7 @@ public final class MagCalReport {
         if (!Objects.deepEquals(orientationConfidence, other.orientationConfidence)) return false;
         if (!Objects.deepEquals(oldOrientation, other.oldOrientation)) return false;
         if (!Objects.deepEquals(newOrientation, other.newOrientation)) return false;
+        if (!Objects.deepEquals(scaleFactor, other.scaleFactor)) return false;
         return true;
     }
 
@@ -342,6 +359,7 @@ public final class MagCalReport {
         result = 31 * result + Objects.hashCode(orientationConfidence);
         result = 31 * result + Objects.hashCode(oldOrientation);
         result = 31 * result + Objects.hashCode(newOrientation);
+        result = 31 * result + Objects.hashCode(scaleFactor);
         return result;
     }
 
@@ -363,7 +381,8 @@ public final class MagCalReport {
                  + ", offdiagZ=" + offdiagZ
                  + ", orientationConfidence=" + orientationConfidence
                  + ", oldOrientation=" + oldOrientation
-                 + ", newOrientation=" + newOrientation + "}";
+                 + ", newOrientation=" + newOrientation
+                 + ", scaleFactor=" + scaleFactor + "}";
     }
 
     public static final class Builder {
@@ -400,6 +419,8 @@ public final class MagCalReport {
         private EnumValue<MavSensorOrientation> oldOrientation;
 
         private EnumValue<MavSensorOrientation> newOrientation;
+
+        private float scaleFactor;
 
         /**
          * Compass being calibrated. 
@@ -691,8 +712,22 @@ public final class MagCalReport {
             return newOrientation(EnumValue.create(flags));
         }
 
+        /**
+         * field radius correction factor 
+         */
+        @MavlinkFieldInfo(
+                position = 19,
+                unitSize = 4,
+                extension = true,
+                description = "field radius correction factor"
+        )
+        public final Builder scaleFactor(float scaleFactor) {
+            this.scaleFactor = scaleFactor;
+            return this;
+        }
+
         public final MagCalReport build() {
-            return new MagCalReport(compassId, calMask, calStatus, autosaved, fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ, orientationConfidence, oldOrientation, newOrientation);
+            return new MagCalReport(compassId, calMask, calStatus, autosaved, fitness, ofsX, ofsY, ofsZ, diagX, diagY, diagZ, offdiagX, offdiagY, offdiagZ, orientationConfidence, oldOrientation, newOrientation, scaleFactor);
         }
     }
 }

@@ -15,12 +15,13 @@ import java.util.Objects;
  * The heartbeat message shows that a system or component is present and responding. The type and 
  * autopilot fields (along with the message component id), allow the receiving system to treat 
  * further messages from this system appropriately (e.g. by laying out the user interface based 
- * on the autopilot). 
+ * on the autopilot). This microservice is documented at 
+ * https://mavlink.io/en/services/heartbeat.html 
  */
 @MavlinkMessageInfo(
         id = 0,
         crc = 50,
-        description = "The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot)."
+        description = "The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html"
 )
 public final class Heartbeat {
     private final EnumValue<MavType> type;
@@ -55,27 +56,29 @@ public final class Heartbeat {
     }
 
     /**
-     * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
-     * associated system. 
+     * Vehicle or component type. For a flight controller component the vehicle type (quadrotor, 
+     * helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This 
+     * should be used in preference to component id for identifying the component type. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
             enumType = MavType.class,
-            description = "Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system."
+            description = "Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type."
     )
     public final EnumValue<MavType> type() {
         return this.type;
     }
 
     /**
-     * Autopilot type / class. 
+     * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+     * controllers. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
             enumType = MavAutopilot.class,
-            description = "Autopilot type / class."
+            description = "Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers."
     )
     public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
@@ -182,14 +185,15 @@ public final class Heartbeat {
         private int mavlinkVersion;
 
         /**
-         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
-         * associated system. 
+         * Vehicle or component type. For a flight controller component the vehicle type (quadrotor, 
+         * helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This 
+         * should be used in preference to component id for identifying the component type. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
                 enumType = MavType.class,
-                description = "Type of the system (quadrotor, helicopter, etc.). Components use the same type as their associated system."
+                description = "Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type."
         )
         public final Builder type(EnumValue<MavType> type) {
             this.type = type;
@@ -197,37 +201,41 @@ public final class Heartbeat {
         }
 
         /**
-         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
-         * associated system. 
+         * Vehicle or component type. For a flight controller component the vehicle type (quadrotor, 
+         * helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This 
+         * should be used in preference to component id for identifying the component type. 
          */
         public final Builder type(MavType entry) {
             return type(EnumValue.of(entry));
         }
 
         /**
-         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
-         * associated system. 
+         * Vehicle or component type. For a flight controller component the vehicle type (quadrotor, 
+         * helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This 
+         * should be used in preference to component id for identifying the component type. 
          */
         public final Builder type(Enum... flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Type of the system (quadrotor, helicopter, etc.). Components use the same type as their 
-         * associated system. 
+         * Vehicle or component type. For a flight controller component the vehicle type (quadrotor, 
+         * helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This 
+         * should be used in preference to component id for identifying the component type. 
          */
         public final Builder type(Collection<Enum> flags) {
             return type(EnumValue.create(flags));
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
                 enumType = MavAutopilot.class,
-                description = "Autopilot type / class."
+                description = "Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers."
         )
         public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
@@ -235,21 +243,24 @@ public final class Heartbeat {
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(MavAutopilot entry) {
             return autopilot(EnumValue.of(entry));
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(Enum... flags) {
             return autopilot(EnumValue.create(flags));
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(Collection<Enum> flags) {
             return autopilot(EnumValue.create(flags));

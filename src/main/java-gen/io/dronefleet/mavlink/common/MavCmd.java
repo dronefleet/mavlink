@@ -9,7 +9,9 @@ import java.lang.Deprecated;
  * script. If the action is used in a mission, the parameter mapping to the waypoint/mission 
  * message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This 
  * command list is similar what ARINC 424 is for commercial aircraft: A data format how to 
- * interpret waypoint/mission data. 
+ * interpret waypoint/mission data. See 
+ * https://mavlink.io/en/guide/xml_schema.html#{@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} for information about the 
+ * structure of the {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} entries 
  */
 @MavlinkEnum
 public enum MavCmd {
@@ -17,15 +19,14 @@ public enum MavCmd {
      * Navigate to waypoint. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Hold time in decimal seconds. (ignored by fixed wing, time to stay at waypoint for rotary wing)</dd>
+     *   <dd>Hold time. (ignored by fixed wing, time to stay at waypoint for rotary wing)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Acceptance radius in meters (if the sphere with this radius is hit, the waypoint counts as 
-     * reached)</dd>
+     *   <dd>Acceptance radius (if the sphere with this radius is hit, the waypoint counts as reached)</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>0 to pass through the WP, if &gt; 0 radius in meters to pass by WP. Positive value for clockwise orbit, 
-     * negative value for counter-clockwise orbit. Allows trajectory control.</dd>
+     *   <dd>0 to pass through the WP, if &gt; 0 radius to pass by WP. Positive value for clockwise orbit, negative 
+     * value for counter-clockwise orbit. Allows trajectory control.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Desired yaw angle at waypoint (rotary wing). NaN for unchanged.</dd>
@@ -53,10 +54,10 @@ public enum MavCmd {
      *   <dd>Empty</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Radius around waypoint, in meters. If positive loiter clockwise, else counter-clockwise</dd>
+     *   <dd>Radius around waypoint. If positive loiter clockwise, else counter-clockwise</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Desired yaw angle.</dd>
+     *   <dd>Desired yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude</dd>
@@ -75,17 +76,17 @@ public enum MavCmd {
      * Loiter around this waypoint for X turns 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Turns</dd>
+     *   <dd>Number of turns.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Radius around waypoint, in meters. If positive loiter clockwise, else counter-clockwise</dd>
+     *   <dd>Radius around waypoint. If positive loiter clockwise, else counter-clockwise</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Forward moving aircraft this sets exit xtrack location: 0 for center of loiter wp, 1 for exit 
-     * location. Else, this is desired yaw angle</dd>
+     * location. Else, this is desired yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude</dd>
@@ -104,17 +105,17 @@ public enum MavCmd {
      * Loiter around this waypoint for X seconds 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Seconds (decimal)</dd>
+     *   <dd>Loiter time.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Radius around waypoint, in meters. If positive loiter clockwise, else counter-clockwise</dd>
+     *   <dd>Radius around waypoint. If positive loiter clockwise, else counter-clockwise.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Forward moving aircraft this sets exit xtrack location: 0 for center of loiter wp, 1 for exit 
-     * location. Else, this is desired yaw angle</dd>
+     * location. Else, this is desired yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude</dd>
@@ -220,24 +221,24 @@ public enum MavCmd {
      *   <dd>Landing target number (if available)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Maximum accepted offset from desired landing position [m] - computed magnitude from 
-     * spherical coordinates: d = sqrt(x^2 + y^2 + z^2), which gives the maximum accepted distance 
-     * between the desired landing position and the position where the vehicle is about to land</dd>
+     *   <dd>Maximum accepted offset from desired landing position - computed magnitude from spherical 
+     * coordinates: d = sqrt(x^2 + y^2 + z^2), which gives the maximum accepted distance between the 
+     * desired landing position and the position where the vehicle is about to land</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Landing descend rate [ms^-1]</dd>
+     *   <dd>Landing descend rate</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Desired yaw angle [rad]</dd>
+     *   <dd>Desired yaw angle</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Y-axis position [m]</dd>
+     *   <dd>Y-axis position</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>X-axis position [m]</dd>
+     *   <dd>X-axis position</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Z-axis / ground level position [m]</dd>
+     *   <dd>Z-axis / ground level position</dd>
      * </dl>
      */
     @MavlinkEntryInfo(23)
@@ -247,26 +248,26 @@ public enum MavCmd {
      * Takeoff from local position (local frame only) 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Minimum pitch (if airspeed sensor present), desired pitch without sensor [rad]</dd>
+     *   <dd>Minimum pitch (if airspeed sensor present), desired pitch without sensor</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Takeoff ascend rate [ms^-1]</dd>
+     *   <dd>Takeoff ascend rate</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Yaw angle [rad] (if magnetometer or another yaw estimation source present), ignored without 
-     * one of these</dd>
+     *   <dd>Yaw angle (if magnetometer or another yaw estimation source present), ignored without one of 
+     * these</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Y-axis position [m]</dd>
+     *   <dd>Y-axis position</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>X-axis position [m]</dd>
+     *   <dd>X-axis position</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Z-axis position [m]</dd>
+     *   <dd>Z-axis position</dd>
      * </dl>
      */
     @MavlinkEntryInfo(24)
@@ -283,7 +284,7 @@ public enum MavCmd {
      *   <dd>Ground speed of vehicle to be followed</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Radius around waypoint, in meters. If positive loiter clockwise, else counter-clockwise</dd>
+     *   <dd>Radius around waypoint. If positive loiter clockwise, else counter-clockwise</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Desired yaw angle.</dd>
@@ -327,7 +328,7 @@ public enum MavCmd {
      *   <dd>Empty</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Desired altitude in meters</dd>
+     *   <dd>Desired altitude</dd>
      * </dl>
      */
     @MavlinkEntryInfo(30)
@@ -343,8 +344,8 @@ public enum MavCmd {
      *   <dd>Heading Required (0 = False)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Radius in meters. If positive loiter clockwise, negative counter-clockwise, 0 means no 
-     * change to standard loiter.</dd>
+     *   <dd>Radius. If positive loiter clockwise, negative counter-clockwise, 0 means no change to 
+     * standard loiter.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -367,11 +368,11 @@ public enum MavCmd {
     MAV_CMD_NAV_LOITER_TO_ALT,
 
     /**
-     * Being following a target 
+     * Begin following a target 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>System ID (the system ID of the {@link io.dronefleet.mavlink.common.FollowTarget FOLLOW_TARGET} beacon). Send 0 to disable follow-me and return to 
-     * the default position hold mode</dd>
+     *   <dd>System ID (of the {@link io.dronefleet.mavlink.common.FollowTarget FOLLOW_TARGET} beacon). Send 0 to disable follow-me and return to the default 
+     * position hold mode.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>RESERVED</dd>
@@ -380,18 +381,18 @@ public enum MavCmd {
      *   <dd>RESERVED</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>altitude flag: 0: Keep current altitude, 1: keep altitude difference to target, 2: go to a fixed 
-     * altitude above home</dd>
+     *   <dd>Altitude mode: 0: Keep current altitude, 1: keep altitude difference to target, 2: go to a fixed 
+     * altitude above home.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>altitude</dd>
+     *   <dd>Altitude above home. (used if mode=2)</dd>
      *
      *   <dt>param6</dt>
      *   <dd>RESERVED</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>TTL in seconds in which the MAV should go to the default position hold mode after a message rx 
-     * timeout</dd>
+     *   <dd>Time to land in which the MAV should go to the default position hold mode after a message RX 
+     * timeout.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(32)
@@ -413,13 +414,13 @@ public enum MavCmd {
      *   <dd>Camera q4</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>altitude offset from target (m)</dd>
+     *   <dd>altitude offset from target</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>X offset from target (m)</dd>
+     *   <dd>X offset from target</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Y offset from target (m)</dd>
+     *   <dd>Y offset from target</dd>
      * </dl>
      */
     @MavlinkEntryInfo(33)
@@ -430,15 +431,13 @@ public enum MavCmd {
      * NaN results in using defaults. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Radius of the circle in meters. positive: Orbit clockwise. negative: Orbit 
-     * counter-clockwise.</dd>
+     *   <dd>Radius of the circle. positive: Orbit clockwise. negative: Orbit counter-clockwise.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Velocity tangential in m/s. NaN: Vehicle configuration default.</dd>
+     *   <dd>Tangential Velocity. NaN: Vehicle configuration default.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Yaw behavior of the vehicle. 0: vehicle front points to the center (default). 1: Hold last 
-     * heading. 2: Leave yaw uncontrolled.</dd>
+     *   <dd>Yaw behavior of the vehicle.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Reserved (e.g. for dynamic center beacon options)</dd>
@@ -465,7 +464,7 @@ public enum MavCmd {
      * sensors such as cameras. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Region of interest mode. (see {@link io.dronefleet.mavlink.common.MavRoi MAV_ROI} enum)</dd>
+     *   <dd>Region of interest mode.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Waypoint index/ target ID. (see {@link io.dronefleet.mavlink.common.MavRoi MAV_ROI} enum)</dd>
@@ -506,7 +505,7 @@ public enum MavCmd {
      *   <dd>Empty</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Yaw angle at goal, in compass degrees, [0..360]</dd>
+     *   <dd>Yaw angle at goal</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude/X of goal</dd>
@@ -525,7 +524,7 @@ public enum MavCmd {
      * Navigate to waypoint using a spline path. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Hold time in decimal seconds. (ignored by fixed wing, time to stay at waypoint for rotary wing)</dd>
+     *   <dd>Hold time. (ignored by fixed wing, time to stay at waypoint for rotary wing)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -562,7 +561,7 @@ public enum MavCmd {
      *   <dd>Empty</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Yaw angle in degrees. NaN for unchanged.</dd>
+     *   <dd>Yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude</dd>
@@ -590,7 +589,7 @@ public enum MavCmd {
      *   <dd>Approach altitude (with the same reference as the Altitude field). NaN if unspecified.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Yaw angle in degrees. NaN for unchanged.</dd>
+     *   <dd>Yaw angle. NaN for unchanged.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude</dd>
@@ -637,7 +636,7 @@ public enum MavCmd {
      * Delay the next navigation command a number of seconds or until a specified time 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Delay in seconds (decimal, -1 to enable time-of-day fields)</dd>
+     *   <dd>Delay (-1 to enable time-of-day fields)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>hour (24h format, UTC, -1 to ignore)</dd>
@@ -662,11 +661,13 @@ public enum MavCmd {
     MAV_CMD_NAV_DELAY,
 
     /**
-     * Descend and place payload. Vehicle descends until it detects a hanging payload has reached the 
-     * ground, the gripper is opened to release the payload 
+     * Descend and place payload. Vehicle moves to specified location, descends until it detects a 
+     * hanging payload has reached the ground, and then releases the payload. If ground is not 
+     * detected before the reaching the maximum descent value (param1), the command will complete 
+     * without releasing the payload. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Maximum distance to descend (meters)</dd>
+     *   <dd>Maximum distance to descend.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -678,13 +679,13 @@ public enum MavCmd {
      *   <dd>Empty</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Latitude (deg * 1E7)</dd>
+     *   <dd>Latitude</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Longitude (deg * 1E7)</dd>
+     *   <dd>Longitude</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Altitude (meters)</dd>
+     *   <dd>Altitude</dd>
      * </dl>
      */
     @MavlinkEntryInfo(94)
@@ -723,7 +724,7 @@ public enum MavCmd {
      * Delay mission state machine. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Delay in seconds (decimal)</dd>
+     *   <dd>Delay</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -751,7 +752,7 @@ public enum MavCmd {
      * Ascend/descend at rate. Delay mission state machine until desired altitude reached. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Descent / Ascend rate (m/s)</dd>
+     *   <dd>Descent / Ascend rate.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -779,7 +780,7 @@ public enum MavCmd {
      * Delay mission state machine until within desired distance of next NAV point. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Distance (meters)</dd>
+     *   <dd>Distance.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -807,16 +808,16 @@ public enum MavCmd {
      * Reach a certain target angle. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>target angle: [0-360], 0 is north</dd>
+     *   <dd>target angle, 0 is north</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>speed during yaw change:[deg per second]</dd>
+     *   <dd>angular speed</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>direction: negative: counter clockwise, positive: clockwise [-1,1]</dd>
+     *   <dd>direction: -1: counter clockwise, 1: clockwise</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>relative offset or absolute angle: [ 1,0]</dd>
+     *   <dd>0: absolute angle, 1: relative offset</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Empty</dd>
@@ -864,7 +865,7 @@ public enum MavCmd {
      * Set system mode. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Mode, as defined by ENUM {@link io.dronefleet.mavlink.common.MavMode MAV_MODE}</dd>
+     *   <dd>Mode</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Custom mode - this is system specific, please refer to the individual autopilot 
@@ -926,13 +927,13 @@ public enum MavCmd {
      *   <dd>Speed type (0=Airspeed, 1=Ground Speed, 2=Climb Speed, 3=Descent Speed)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Speed (m/s, -1 indicates no change)</dd>
+     *   <dd>Speed (-1 indicates no change)</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Throttle ( Percent, -1 indicates no change)</dd>
+     *   <dd>Throttle (-1 indicates no change)</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>absolute or relative [0,1]</dd>
+     *   <dd>0: absolute, 1: relative</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Empty</dd>
@@ -1008,10 +1009,10 @@ public enum MavCmd {
      * Set a relay to a condition. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Relay number</dd>
+     *   <dd>Relay instance number.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Setting (1=on, 0=off, others possible depending on system hardware)</dd>
+     *   <dd>Setting. (1=on, 0=off, others possible depending on system hardware)</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -1036,13 +1037,13 @@ public enum MavCmd {
      * Cycle a relay on and off for a desired number of cycles with a desired period. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Relay number</dd>
+     *   <dd>Relay instance number.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Cycle count</dd>
+     *   <dd>Cycle count.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Cycle time (seconds, decimal)</dd>
+     *   <dd>Cycle time.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Empty</dd>
@@ -1064,10 +1065,10 @@ public enum MavCmd {
      * Set a servo to a desired PWM value. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Servo number</dd>
+     *   <dd>Servo instance number.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>PWM (microseconds, 1000 to 2000 typical)</dd>
+     *   <dd>Pulse Width Modulation.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -1093,16 +1094,16 @@ public enum MavCmd {
      * desired period. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Servo number</dd>
+     *   <dd>Servo instance number.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>PWM (microseconds, 1000 to 2000 typical)</dd>
+     *   <dd>Pulse Width Modulation.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Cycle count</dd>
+     *   <dd>Cycle count.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Cycle time (seconds)</dd>
+     *   <dd>Cycle time.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Empty</dd>
@@ -1149,10 +1150,10 @@ public enum MavCmd {
      * Change altitude set point. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Altitude in meters</dd>
+     *   <dd>Altitude.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Mav frame of new altitude (see {@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME})</dd>
+     *   <dd>Frame of new altitude.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -1209,10 +1210,10 @@ public enum MavCmd {
      * Mission command to perform a landing from a rally point. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Break altitude (meters)</dd>
+     *   <dd>Break altitude</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Landing speed (m/s)</dd>
+     *   <dd>Landing speed</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -1237,7 +1238,7 @@ public enum MavCmd {
      * Mission command to safely abort an autonomous landing. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Altitude (meters)</dd>
+     *   <dd>Altitude</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -1268,7 +1269,7 @@ public enum MavCmd {
      *   <dd>Ground speed, less than 0 (-1) for default</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Bitmask of option flags, see the {@link io.dronefleet.mavlink.common.MavDoRepositionFlags MAV_DO_REPOSITION_FLAGS} enum.</dd>
+     *   <dd>Bitmask of option flags.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Reserved</dd>
@@ -1278,10 +1279,10 @@ public enum MavCmd {
      * counter clockwise)</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Latitude (deg * 1E7)</dd>
+     *   <dd>Latitude</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Longitude (deg * 1E7)</dd>
+     *   <dd>Longitude</dd>
      *
      *   <dt>param7</dt>
      *   <dd>Altitude (meters)</dd>
@@ -1438,6 +1439,17 @@ public enum MavCmd {
     MAV_CMD_DO_SET_ROI_NONE,
 
     /**
+     * Mount tracks system with specified system ID. Determination of target vehicle position may be 
+     * done with {@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} or any other means. 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>sysid</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(198)
+    MAV_CMD_DO_SET_ROI_SYSID,
+
+    /**
      * Control onboard camera system. 
      * <dl>
      *   <dt>param1</dt>
@@ -1447,7 +1459,7 @@ public enum MavCmd {
      *   <dd>Transmission: 0: disabled, 1: enabled compressed, 2: enabled raw</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Transmission mode: 0: video stream, &gt;0: single images every n seconds (decimal)</dd>
+     *   <dd>Transmission mode: 0: video stream, &gt;0: single images every n seconds</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Recording: 0: disabled, 1: enabled compressed, 2: enabled raw</dd>
@@ -1471,13 +1483,13 @@ public enum MavCmd {
      * sensors such as cameras. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Region of interest mode. (see {@link io.dronefleet.mavlink.common.MavRoi MAV_ROI} enum)</dd>
+     *   <dd>Region of interest mode.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Waypoint index/ target ID. (see {@link io.dronefleet.mavlink.common.MavRoi MAV_ROI} enum)</dd>
+     *   <dd>Waypoint index/ target ID (depends on param 1).</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>ROI index (allows a vehicle to manage multiple ROI's)</dd>
+     *   <dd>Region of interest index. (allows a vehicle to manage multiple ROI's)</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Empty</dd>
@@ -1503,25 +1515,25 @@ public enum MavCmd {
      * https://mavlink.io/en/services/camera_def.html ). 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Modes: P, TV, AV, M, Etc</dd>
+     *   <dd>Modes: P, TV, AV, M, Etc.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Shutter speed: Divisor number for one second</dd>
+     *   <dd>Shutter speed: Divisor number for one second.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Aperture: F stop number</dd>
+     *   <dd>Aperture: F stop number.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>ISO number e.g. 80, 100, 200, Etc</dd>
+     *   <dd>ISO number e.g. 80, 100, 200, Etc.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Exposure type enumerator</dd>
+     *   <dd>Exposure type enumerator.</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Command Identity</dd>
+     *   <dd>Command Identity.</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)</dd>
+     *   <dd>Main engine cut-off time before camera trigger. (0 means no cut-off)</dd>
      * </dl>
      */
     @MavlinkEntryInfo(202)
@@ -1562,7 +1574,7 @@ public enum MavCmd {
      * Mission command to configure a camera or antenna mount 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Mount operation mode (see {@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum)</dd>
+     *   <dd>Mount operation mode</dd>
      *
      *   <dt>param2</dt>
      *   <dd>stabilize roll? (1 = yes, 0 = no)</dd>
@@ -1599,16 +1611,16 @@ public enum MavCmd {
      *   <dd>yaw depending on mount mode (degrees or degrees/second depending on yaw input).</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>alt in meters depending on mount mode.</dd>
+     *   <dd>altitude depending on mount mode.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>latitude in degrees * 1E7, set if appropriate mount mode.</dd>
+     *   <dd>latitude, set if appropriate mount mode.</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>longitude in degrees * 1E7, set if appropriate mount mode.</dd>
+     *   <dd>longitude, set if appropriate mount mode.</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>{@link io.dronefleet.mavlink.common.MavMountMode MAV_MOUNT_MODE} enum value</dd>
+     *   <dd>Mount mode.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(205)
@@ -1620,10 +1632,10 @@ public enum MavCmd {
      * time for the camera. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Camera trigger distance (meters). 0 to stop triggering.</dd>
+     *   <dd>Camera trigger distance. 0 to stop triggering.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Camera shutter integration time (milliseconds). -1 or 0 to ignore</dd>
+     *   <dd>Camera shutter integration time. -1 or 0 to ignore</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Trigger camera once immediately. (0 = no trigger, 1 = trigger)</dd>
@@ -1676,8 +1688,7 @@ public enum MavCmd {
      * Mission command to trigger a parachute 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>action (0=disable, 1=enable, 2=release, for some systems see PARACHUTE_ACTION enum, not in 
-     * general message set.)</dd>
+     *   <dd>action</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -1702,27 +1713,26 @@ public enum MavCmd {
     MAV_CMD_DO_PARACHUTE,
 
     /**
-     * Mission command to perform motor test 
+     * Mission command to perform motor test. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>motor number (a number from 1 to max number of motors on the vehicle)</dd>
+     *   <dd>Motor instance number. (from 1 to max number of motors on the vehicle)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>throttle type (0=throttle percentage, 1=PWM, 2=pilot throttle channel pass-through. See 
-     * {@link io.dronefleet.mavlink.common.MotorTestThrottleType MOTOR_TEST_THROTTLE_TYPE} enum)</dd>
+     *   <dd>Throttle type.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>throttle</dd>
+     *   <dd>Throttle.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>timeout (in seconds)</dd>
+     *   <dd>Timeout.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>motor count (number of motors to test to test in sequence, waiting for the timeout above between 
-     * them; 0=1 motor, 1=1 motor, 2=2 motors...)</dd>
+     *   <dd>Motor count. (number of motors to test to test in sequence, waiting for the timeout above 
+     * between them; 0=1 motor, 1=1 motor, 2=2 motors...)</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>motor test order (See {@link io.dronefleet.mavlink.common.MotorTestOrder MOTOR_TEST_ORDER} enum)</dd>
+     *   <dd>Motor test order.</dd>
      *
      *   <dt>param7</dt>
      *   <dd>Empty</dd>
@@ -1732,10 +1742,10 @@ public enum MavCmd {
     MAV_CMD_DO_MOTOR_TEST,
 
     /**
-     * Change to/from inverted flight 
+     * Change to/from inverted flight. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>inverted (0=normal, 1=inverted)</dd>
+     *   <dd>Inverted flight. (0=normal, 1=inverted)</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Empty</dd>
@@ -1760,16 +1770,16 @@ public enum MavCmd {
     MAV_CMD_DO_INVERTED_FLIGHT,
 
     /**
-     * Sets a desired vehicle turn angle and speed change 
+     * Sets a desired vehicle turn angle and speed change. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>yaw angle to adjust steering by in centidegress</dd>
+     *   <dd>Yaw angle to adjust steering by.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>speed - normalized to 0 .. 1</dd>
+     *   <dd>Speed.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Empty</dd>
+     *   <dd>Final angle. (0=absolute, 1=relative)</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Empty</dd>
@@ -1793,11 +1803,10 @@ public enum MavCmd {
      * shutter integration time for the camera. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Camera trigger cycle time (milliseconds). -1 or 0 to ignore.</dd>
+     *   <dd>Camera trigger cycle time. -1 or 0 to ignore.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Camera shutter integration time (milliseconds). Should be less than trigger cycle time. -1 or 
-     * 0 to ignore.</dd>
+     *   <dd>Camera shutter integration time. Should be less than trigger cycle time. -1 or 0 to ignore.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Empty</dd>
@@ -1822,16 +1831,16 @@ public enum MavCmd {
      * Mission command to control a camera or antenna mount, using a quaternion as reference. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>q1 - quaternion param #1, w (1 in null-rotation)</dd>
+     *   <dd>quaternion param q1, w (1 in null-rotation)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>q2 - quaternion param #2, x (0 in null-rotation)</dd>
+     *   <dd>quaternion param q2, x (0 in null-rotation)</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>q3 - quaternion param #3, y (0 in null-rotation)</dd>
+     *   <dd>quaternion param q3, y (0 in null-rotation)</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>q4 - quaternion param #4, z (0 in null-rotation)</dd>
+     *   <dd>quaternion param q4, z (0 in null-rotation)</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Empty</dd>
@@ -1878,21 +1887,21 @@ public enum MavCmd {
      * Set limits for external control 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Timeout - maximum time (in seconds) that external controller will be allowed to control 
-     * vehicle. 0 means no timeout.</dd>
+     *   <dd>Timeout - maximum time that external controller will be allowed to control vehicle. 0 means no 
+     * timeout.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Altitude (MSL) min, in meters - if vehicle moves below this alt, the command will be aborted and 
-     * the mission will continue. 0 means no lower altitude limit.</dd>
+     *   <dd>Altitude (MSL) min - if vehicle moves below this alt, the command will be aborted and the mission 
+     * will continue. 0 means no lower altitude limit.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Altitude (MSL) max, in meters - if vehicle moves above this alt, the command will be aborted and 
-     * the mission will continue. 0 means no upper altitude limit.</dd>
+     *   <dd>Altitude (MSL) max - if vehicle moves above this alt, the command will be aborted and the mission 
+     * will continue. 0 means no upper altitude limit.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Horizontal move limit, in meters - if vehicle moves more than this distance from its location at 
-     * the moment the command was executed, the command will be aborted and the mission will continue. 
-     * 0 means no horizontal move limit.</dd>
+     *   <dd>Horizontal move limit - if vehicle moves more than this distance from its location at the moment 
+     * the command was executed, the command will be aborted and the mission will continue. 0 means no 
+     * horizontal move limit.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Empty</dd>
@@ -1918,9 +1927,9 @@ public enum MavCmd {
      *   <dd>0: Warm start, 1:Cold start. Controls use of choke where applicable</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Height delay (meters). This is for commanding engine start only after the vehicle has gained 
-     * the specified height. Used in VTOL vehicles during takeoff to start engine after the aircraft 
-     * is off the ground. Zero for no delay.</dd>
+     *   <dd>Height delay. This is for commanding engine start only after the vehicle has gained the 
+     * specified height. Used in VTOL vehicles during takeoff to start engine after the aircraft is 
+     * off the ground. Zero for no delay.</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Empty</dd>
@@ -2104,8 +2113,8 @@ public enum MavCmd {
      * defaults</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Onboard logging: 0: Ignore, 1: Start default rate logging, -1: Stop logging, &gt; 1: start logging 
-     * with rate of param 3 in Hz (e.g. set to 1000 for 1000 Hz logging)</dd>
+     *   <dd>Onboard logging: 0: Ignore, 1: Start default rate logging, -1: Stop logging, &gt; 1: logging rate 
+     * (e.g. set to 1000 for 1000 Hz logging)</dd>
      *
      *   <dt>param4</dt>
      *   <dd>Reserved</dd>
@@ -2156,29 +2165,32 @@ public enum MavCmd {
     MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN,
 
     /**
-     * Hold / continue the current action 
+     * Override current mission with command to pause mission, pause mission and move to position, 
+     * continue/resume mission. When param 1 indicates that the mission is paused 
+     * (MAV_GOTO_DO_HOLD), param 2 defines whether it holds in place or moves to another position. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>MAV_GOTO_DO_HOLD: hold MAV_GOTO_DO_CONTINUE: continue with next item in mission plan</dd>
+     *   <dd>MAV_GOTO_DO_HOLD: pause mission and either hold or move to specified position (depending on 
+     * param2), MAV_GOTO_DO_CONTINUE: resume mission.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>MAV_GOTO_HOLD_AT_CURRENT_POSITION: Hold at current position 
-     * MAV_GOTO_HOLD_AT_SPECIFIED_POSITION: hold at specified position</dd>
+     *   <dd>MAV_GOTO_HOLD_AT_CURRENT_POSITION: hold at current position, 
+     * MAV_GOTO_HOLD_AT_SPECIFIED_POSITION: hold at specified position.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>{@link io.dronefleet.mavlink.common.MavFrame MAV_FRAME} coordinate frame of hold point</dd>
+     *   <dd>Coordinate frame of hold point.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Desired yaw angle in degrees</dd>
+     *   <dd>Desired yaw angle.</dd>
      *
      *   <dt>param5</dt>
-     *   <dd>Latitude / X position</dd>
+     *   <dd>Latitude / X position.</dd>
      *
      *   <dt>param6</dt>
-     *   <dd>Longitude / Y position</dd>
+     *   <dd>Longitude / Y position.</dd>
      *
      *   <dt>param7</dt>
-     *   <dd>Altitude / Z position</dd>
+     *   <dd>Altitude / Z position.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(252)
@@ -2201,11 +2213,27 @@ public enum MavCmd {
      * Arms / Disarms a component 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>1 to arm, 0 to disarm</dd>
+     *   <dd>0: disarm, 1: arm</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force 
+     * arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)</dd>
      * </dl>
      */
     @MavlinkEntryInfo(400)
     MAV_CMD_COMPONENT_ARM_DISARM,
+
+    /**
+     * Turns illuminators ON/OFF. An illuminator is a light source that is used for lighting up dark 
+     * areas external to the sytstem: e.g. a torch or searchlight (as opposed to a light source for 
+     * illuminating the system itself, e.g. an indicator light). 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>0: Illuminators OFF, 1: Illuminators ON</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(405)
+    MAV_CMD_ILLUMINATOR_ON_OFF,
 
     /**
      * Request the home position from the vehicle. 
@@ -2236,20 +2264,21 @@ public enum MavCmd {
     MAV_CMD_GET_HOME_POSITION,
 
     /**
-     * Starts receiver pairing 
+     * Starts receiver pairing. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>0:Spektrum</dd>
+     *   <dd>0:Spektrum.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>RC type (see {@link io.dronefleet.mavlink.common.RcType RC_TYPE} enum)</dd>
+     *   <dd>RC type.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(500)
     MAV_CMD_START_RX_PAIR,
 
     /**
-     * Request the interval between messages for a particular MAVLink message ID 
+     * Request the interval between messages for a particular MAVLink message ID. The receiver 
+     * should ACK the command and then emit its response in a {@link io.dronefleet.mavlink.common.MessageInterval MESSAGE_INTERVAL} message. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>The MAVLink message ID</dd>
@@ -2260,18 +2289,56 @@ public enum MavCmd {
 
     /**
      * Set the interval between messages for a particular MAVLink message ID. This interface 
-     * replaces {@link io.dronefleet.mavlink.common.RequestDataStream REQUEST_DATA_STREAM} 
+     * replaces {@link io.dronefleet.mavlink.common.RequestDataStream REQUEST_DATA_STREAM}. 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>The MAVLink message ID</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>The interval between two messages, in microseconds. Set to -1 to disable and 0 to request 
-     * default rate.</dd>
+     *   <dd>The interval between two messages. Set to -1 to disable and 0 to request default rate.</dd>
+     *
+     *   <dt>param7</dt>
+     *   <dd>Target address of message stream (if message has target address fields). 0: Flight-stack 
+     * default (recommended), 1: address of requestor, 2: broadcast.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(511)
     MAV_CMD_SET_MESSAGE_INTERVAL,
+
+    /**
+     * Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" 
+     * version of MAV_CMD_SET_MESSAGE_INTERVAL). 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>The MAVLink message ID of the requested message.</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>Index id (if appropriate). The use of this parameter (if any), must be defined in the requested 
+     * message.</dd>
+     *
+     *   <dt>param3</dt>
+     *   <dd>The use of this parameter (if any), must be defined in the requested message. By default assumed 
+     * not used (0).</dd>
+     *
+     *   <dt>param4</dt>
+     *   <dd>The use of this parameter (if any), must be defined in the requested message. By default assumed 
+     * not used (0).</dd>
+     *
+     *   <dt>param5</dt>
+     *   <dd>The use of this parameter (if any), must be defined in the requested message. By default assumed 
+     * not used (0).</dd>
+     *
+     *   <dt>param6</dt>
+     *   <dd>The use of this parameter (if any), must be defined in the requested message. By default assumed 
+     * not used (0).</dd>
+     *
+     *   <dt>param7</dt>
+     *   <dd>Target address for requested message (if message has target address fields). 0: Flight-stack 
+     * default, 1: address of requestor, 2: broadcast.</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(512)
+    MAV_CMD_REQUEST_MESSAGE,
 
     /**
      * Request MAVLink protocol version compatibility 
@@ -2287,7 +2354,8 @@ public enum MavCmd {
     MAV_CMD_REQUEST_PROTOCOL_VERSION,
 
     /**
-     * Request autopilot capabilities 
+     * Request autopilot capabilities. The receiver should ACK the command and then emit its 
+     * capabilities in an {@link io.dronefleet.mavlink.common.AutopilotVersion AUTOPILOT_VERSION} message 
      * <dl>
      *   <dt>param1</dt>
      *   <dd>1: Request autopilot version</dd>
@@ -2470,7 +2538,7 @@ public enum MavCmd {
      *   <dd>Target tag to jump to.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Repeat count</dd>
+     *   <dd>Repeat count.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(601)
@@ -2552,7 +2620,7 @@ public enum MavCmd {
      *
      *   <dt>param2</dt>
      *   <dd>Frequency {@link io.dronefleet.mavlink.common.CameraCaptureStatus CAMERA_CAPTURE_STATUS} messages should be sent while recording (0 for no messages, 
-     * otherwise frequency in Hz)</dd>
+     * otherwise frequency)</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Reserved (all remaining params)</dd>
@@ -2742,16 +2810,16 @@ public enum MavCmd {
      * Create a panorama at the current position 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>Viewing angle horizontal of the panorama (in degrees, +- 0.5 the total angle)</dd>
+     *   <dd>Viewing angle horizontal of the panorama (+- 0.5 the total angle)</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Viewing angle vertical of panorama (in degrees)</dd>
+     *   <dd>Viewing angle vertical of panorama.</dd>
      *
      *   <dt>param3</dt>
-     *   <dd>Speed of the horizontal rotation (in degrees per second)</dd>
+     *   <dd>Speed of the horizontal rotation.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Speed of the vertical rotation (in degrees per second)</dd>
+     *   <dd>Speed of the vertical rotation.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(2800)
@@ -2761,8 +2829,7 @@ public enum MavCmd {
      * Request VTOL transition 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>The target VTOL state, as defined by ENUM {@link io.dronefleet.mavlink.common.MavVtolState MAV_VTOL_STATE}. Only MAV_VTOL_STATE_MC and 
-     * MAV_VTOL_STATE_FW can be used.</dd>
+     *   <dd>The target VTOL state. Only MAV_VTOL_STATE_MC and MAV_VTOL_STATE_FW can be used.</dd>
      * </dl>
      */
     @MavlinkEntryInfo(3000)
@@ -2935,7 +3002,7 @@ public enum MavCmd {
      * Circular fence area. The vehicle must stay inside this area. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>radius in meters</dd>
+     *   <dd>Radius.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved</dd>
@@ -2963,7 +3030,7 @@ public enum MavCmd {
      * Circular fence area. The vehicle must stay outside this area. 
      * <dl>
      *   <dt>param1</dt>
-     *   <dd>radius in meters</dd>
+     *   <dd>Radius.</dd>
      *
      *   <dt>param2</dt>
      *   <dd>Reserved</dd>
@@ -3057,8 +3124,8 @@ public enum MavCmd {
      * execution, but allowing abort). 2: add payload deploy to existing deployment list.</dd>
      *
      *   <dt>param2</dt>
-     *   <dd>Desired approach vector in degrees compass heading (0..360). A negative value indicates the 
-     * system can define the approach vector at will.</dd>
+     *   <dd>Desired approach vector in compass heading. A negative value indicates the system can define 
+     * the approach vector at will.</dd>
      *
      *   <dt>param3</dt>
      *   <dd>Desired ground speed at release time. This can be overridden by the airframe in case it needs to 
@@ -3066,8 +3133,8 @@ public enum MavCmd {
      * will.</dd>
      *
      *   <dt>param4</dt>
-     *   <dd>Minimum altitude clearance to the release position in meters. A negative value indicates the 
-     * system can define the clearance at will.</dd>
+     *   <dd>Minimum altitude clearance to the release position. A negative value indicates the system can 
+     * define the clearance at will.</dd>
      *
      *   <dt>param5</dt>
      *   <dd>Latitude unscaled for {@link io.dronefleet.mavlink.common.MissionItem MISSION_ITEM} or in 1e7 degrees for {@link io.dronefleet.mavlink.common.MissionItemInt MISSION_ITEM_INT}</dd>
@@ -3884,6 +3951,36 @@ public enum MavCmd {
     MAV_CMD_FIXED_MAG_CAL_FIELD,
 
     /**
+     * Magnetometer calibration based on provided known yaw. This allows for fast calibration using 
+     * WMM field tables in the vehicle, given only the known yaw of the vehicle. If Latitude and 
+     * longitude are both zero then use the current vehicle location. 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>Yaw of vehicle in earth frame.</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>CompassMask, 0 for all.</dd>
+     *
+     *   <dt>param3</dt>
+     *   <dd>Latitude.</dd>
+     *
+     *   <dt>param4</dt>
+     *   <dd>Longitude.</dd>
+     *
+     *   <dt>param5</dt>
+     *   <dd>Empty.</dd>
+     *
+     *   <dt>param6</dt>
+     *   <dd>Empty.</dd>
+     *
+     *   <dt>param7</dt>
+     *   <dd>Empty.</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(42006)
+    MAV_CMD_FIXED_MAG_CAL_YAW,
+
+    /**
      * Initiate a magnetometer calibration. 
      * <dl>
      *   <dt>param1</dt>
@@ -4220,6 +4317,19 @@ public enum MavCmd {
      */
     @MavlinkEntryInfo(42650)
     MAV_CMD_FLASH_BOOTLOADER,
+
+    /**
+     * Reset battery capacity for batteries that accumulate consumed battery via integration. 
+     * <dl>
+     *   <dt>param1</dt>
+     *   <dd>Bitmask of batteries to reset. Least significant bit is for the first battery.</dd>
+     *
+     *   <dt>param2</dt>
+     *   <dd>Battery percentage remaining to set.</dd>
+     * </dl>
+     */
+    @MavlinkEntryInfo(42651)
+    MAV_CMD_BATTERY_RESET,
 
     /**
      * Does nothing. 

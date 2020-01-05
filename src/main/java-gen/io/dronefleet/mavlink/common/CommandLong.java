@@ -12,12 +12,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Send a command with up to seven parameters to the MAV 
+ * Send a command with up to seven parameters to the MAV. The command microservice is documented at 
+ * https://mavlink.io/en/services/command.html 
  */
 @MavlinkMessageInfo(
         id = 76,
         crc = 152,
-        description = "Send a command with up to seven parameters to the MAV"
+        description = "Send a command with up to seven parameters to the MAV. The command microservice is documented at https://mavlink.io/en/services/command.html"
 )
 public final class CommandLong {
     private final int targetSystem;

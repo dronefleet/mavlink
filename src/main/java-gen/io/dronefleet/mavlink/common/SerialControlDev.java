@@ -36,5 +36,65 @@ public enum SerialControlDev {
      * system shell 
      */
     @MavlinkEntryInfo(10)
-    SERIAL_CONTROL_DEV_SHELL
+    SERIAL_CONTROL_DEV_SHELL,
+
+    /**
+     * SERIAL0 
+     */
+    @MavlinkEntryInfo(100)
+    SERIAL_CONTROL_SERIAL0,
+
+    /**
+     * SERIAL1 
+     */
+    @MavlinkEntryInfo(101)
+    SERIAL_CONTROL_SERIAL1,
+
+    /**
+     * SERIAL2 
+     */
+    @MavlinkEntryInfo(102)
+    SERIAL_CONTROL_SERIAL2,
+
+    /**
+     * SERIAL3 
+     */
+    @MavlinkEntryInfo(103)
+    SERIAL_CONTROL_SERIAL3,
+
+    /**
+     * SERIAL4 
+     */
+    @MavlinkEntryInfo(104)
+    SERIAL_CONTROL_SERIAL4,
+
+    /**
+     * SERIAL5 
+     */
+    @MavlinkEntryInfo(105)
+    SERIAL_CONTROL_SERIAL5,
+
+    /**
+     * SERIAL6 
+     */
+    @MavlinkEntryInfo(106)
+    SERIAL_CONTROL_SERIAL6,
+
+    /**
+     * SERIAL7 
+     */
+    @MavlinkEntryInfo(107)
+    SERIAL_CONTROL_SERIAL7,
+
+    /**
+     * SERIAL8 
+     */
+    @MavlinkEntryInfo(108)
+    SERIAL_CONTROL_SERIAL8,
+
+    /**
+     * SERIAL9 
+     */
+    @MavlinkEntryInfo(109)
+    SERIAL_CONTROL_SERIAL9
 }

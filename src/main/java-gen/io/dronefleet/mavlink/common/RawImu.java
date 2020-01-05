@@ -10,13 +10,14 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * The RAW IMU readings for the usual 9DOF sensor setup. This message should always contain the 
- * true raw values without any scaling to allow data capture and system debugging. 
+ * The RAW IMU readings for a 9DOF sensor, which is identified by the id (default IMU1). This 
+ * message should always contain the true raw values without any scaling to allow data capture and 
+ * system debugging. 
  */
 @MavlinkMessageInfo(
         id = 27,
         crc = 144,
-        description = "The RAW IMU readings for the usual 9DOF sensor setup. This message should always contain the true raw values without any scaling to allow data capture and system debugging."
+        description = "The RAW IMU readings for a 9DOF sensor, which is identified by the id (default IMU1). This message should always contain the true raw values without any scaling to allow data capture and system debugging."
 )
 public final class RawImu {
     private final BigInteger timeUsec;
@@ -39,8 +40,12 @@ public final class RawImu {
 
     private final int zmag;
 
+    private final int id;
+
+    private final int temperature;
+
     private RawImu(BigInteger timeUsec, int xacc, int yacc, int zacc, int xgyro, int ygyro,
-            int zgyro, int xmag, int ymag, int zmag) {
+            int zgyro, int xmag, int ymag, int zmag, int id, int temperature) {
         this.timeUsec = timeUsec;
         this.xacc = xacc;
         this.yacc = yacc;
@@ -51,6 +56,8 @@ public final class RawImu {
         this.xmag = xmag;
         this.ymag = ymag;
         this.zmag = zmag;
+        this.id = id;
+        this.temperature = temperature;
     }
 
     /**
@@ -191,6 +198,35 @@ public final class RawImu {
         return this.zmag;
     }
 
+    /**
+     * Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with 
+     * id=0) 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 1,
+            extension = true,
+            description = "Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)"
+    )
+    public final int id() {
+        return this.id;
+    }
+
+    /**
+     * Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 
+     * (0.01C). 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 2,
+            signed = true,
+            extension = true,
+            description = "Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C)."
+    )
+    public final int temperature() {
+        return this.temperature;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -206,6 +242,8 @@ public final class RawImu {
         if (!Objects.deepEquals(xmag, other.xmag)) return false;
         if (!Objects.deepEquals(ymag, other.ymag)) return false;
         if (!Objects.deepEquals(zmag, other.zmag)) return false;
+        if (!Objects.deepEquals(id, other.id)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
         return true;
     }
 
@@ -222,6 +260,8 @@ public final class RawImu {
         result = 31 * result + Objects.hashCode(xmag);
         result = 31 * result + Objects.hashCode(ymag);
         result = 31 * result + Objects.hashCode(zmag);
+        result = 31 * result + Objects.hashCode(id);
+        result = 31 * result + Objects.hashCode(temperature);
         return result;
     }
 
@@ -236,7 +276,9 @@ public final class RawImu {
                  + ", zgyro=" + zgyro
                  + ", xmag=" + xmag
                  + ", ymag=" + ymag
-                 + ", zmag=" + zmag + "}";
+                 + ", zmag=" + zmag
+                 + ", id=" + id
+                 + ", temperature=" + temperature + "}";
     }
 
     public static final class Builder {
@@ -259,6 +301,10 @@ public final class RawImu {
         private int ymag;
 
         private int zmag;
+
+        private int id;
+
+        private int temperature;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
@@ -400,8 +446,39 @@ public final class RawImu {
             return this;
         }
 
+        /**
+         * Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with 
+         * id=0) 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 1,
+                extension = true,
+                description = "Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)"
+        )
+        public final Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 
+         * (0.01C). 
+         */
+        @MavlinkFieldInfo(
+                position = 13,
+                unitSize = 2,
+                signed = true,
+                extension = true,
+                description = "Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C)."
+        )
+        public final Builder temperature(int temperature) {
+            this.temperature = temperature;
+            return this;
+        }
+
         public final RawImu build() {
-            return new RawImu(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag);
+            return new RawImu(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, id, temperature);
         }
     }
 }

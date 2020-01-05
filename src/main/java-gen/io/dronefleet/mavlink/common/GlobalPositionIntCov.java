@@ -185,14 +185,15 @@ public final class GlobalPositionIntCov {
     }
 
     /**
-     * Covariance matrix (first six entries are the first ROW, next six entries are the second row, 
-     * etc.) 
+     * Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix 
+     * (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the 
+     * second row, etc.). If unknown, assign NaN value to first element in the array. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
             arraySize = 36,
-            description = "Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)"
+            description = "Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -412,14 +413,15 @@ public final class GlobalPositionIntCov {
         }
 
         /**
-         * Covariance matrix (first six entries are the first ROW, next six entries are the second row, 
-         * etc.) 
+         * Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix 
+         * (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the 
+         * second row, etc.). If unknown, assign NaN value to first element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
                 arraySize = 36,
-                description = "Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)"
+                description = "Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

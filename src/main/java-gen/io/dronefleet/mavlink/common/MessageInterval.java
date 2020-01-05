@@ -9,13 +9,14 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * The interval between messages for a particular MAVLink message ID. This interface replaces 
- * {@link io.dronefleet.mavlink.common.DataStream DATA_STREAM} 
+ * The interval between messages for a particular MAVLink message ID. This message is the 
+ * response to the MAV_CMD_GET_MESSAGE_INTERVAL command. This interface replaces 
+ * {@link io.dronefleet.mavlink.common.DataStream DATA_STREAM}. 
  */
 @MavlinkMessageInfo(
         id = 244,
         crc = 95,
-        description = "The interval between messages for a particular MAVLink message ID. This interface replaces DATA_STREAM"
+        description = "The interval between messages for a particular MAVLink message ID. This message is the response to the MAV_CMD_GET_MESSAGE_INTERVAL command. This interface replaces DATA_STREAM."
 )
 public final class MessageInterval {
     private final int messageId;

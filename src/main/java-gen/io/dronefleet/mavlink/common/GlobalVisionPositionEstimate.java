@@ -36,8 +36,10 @@ public final class GlobalVisionPositionEstimate {
 
     private final List<Float> covariance;
 
+    private final int resetCounter;
+
     private GlobalVisionPositionEstimate(BigInteger usec, float x, float y, float z, float roll,
-            float pitch, float yaw, List<Float> covariance) {
+            float pitch, float yaw, List<Float> covariance, int resetCounter) {
         this.usec = usec;
         this.x = x;
         this.y = y;
@@ -46,6 +48,7 @@ public final class GlobalVisionPositionEstimate {
         this.pitch = pitch;
         this.yaw = yaw;
         this.covariance = covariance;
+        this.resetCounter = resetCounter;
     }
 
     /**
@@ -141,18 +144,34 @@ public final class GlobalVisionPositionEstimate {
     }
 
     /**
-     * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-     * entries are the second ROW, etc.) 
+     * Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: 
+     * x_global, y_global, z_global, roll, pitch, yaw; first six entries are the first ROW, next five 
+     * entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
             arraySize = 21,
             extension = true,
-            description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+            description = "Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: x_global, y_global, z_global, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
+    }
+
+    /**
+     * Estimate reset counter. This should be incremented when the estimate resets in any of the 
+     * dimensions (position, velocity, attitude, angular speed). This is designed to be used when 
+     * e.g an external SLAM system detects a loop-closure and the estimate jumps. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 1,
+            extension = true,
+            description = "Estimate reset counter. This should be incremented when the estimate resets in any of the dimensions (position, velocity, attitude, angular speed). This is designed to be used when e.g an external SLAM system detects a loop-closure and the estimate jumps."
+    )
+    public final int resetCounter() {
+        return this.resetCounter;
     }
 
     @Override
@@ -168,6 +187,7 @@ public final class GlobalVisionPositionEstimate {
         if (!Objects.deepEquals(pitch, other.pitch)) return false;
         if (!Objects.deepEquals(yaw, other.yaw)) return false;
         if (!Objects.deepEquals(covariance, other.covariance)) return false;
+        if (!Objects.deepEquals(resetCounter, other.resetCounter)) return false;
         return true;
     }
 
@@ -182,6 +202,7 @@ public final class GlobalVisionPositionEstimate {
         result = 31 * result + Objects.hashCode(pitch);
         result = 31 * result + Objects.hashCode(yaw);
         result = 31 * result + Objects.hashCode(covariance);
+        result = 31 * result + Objects.hashCode(resetCounter);
         return result;
     }
 
@@ -194,7 +215,8 @@ public final class GlobalVisionPositionEstimate {
                  + ", roll=" + roll
                  + ", pitch=" + pitch
                  + ", yaw=" + yaw
-                 + ", covariance=" + covariance + "}";
+                 + ", covariance=" + covariance
+                 + ", resetCounter=" + resetCounter + "}";
     }
 
     public static final class Builder {
@@ -213,6 +235,8 @@ public final class GlobalVisionPositionEstimate {
         private float yaw;
 
         private List<Float> covariance;
+
+        private int resetCounter;
 
         /**
          * Timestamp (UNIX time or since system boot) 
@@ -306,23 +330,40 @@ public final class GlobalVisionPositionEstimate {
         }
 
         /**
-         * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-         * entries are the second ROW, etc.) 
+         * Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: 
+         * x_global, y_global, z_global, roll, pitch, yaw; first six entries are the first ROW, next five 
+         * entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
                 arraySize = 21,
                 extension = true,
-                description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+                description = "Row-major representation of pose 6x6 cross-covariance matrix upper right triangle (states: x_global, y_global, z_global, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;
             return this;
         }
 
+        /**
+         * Estimate reset counter. This should be incremented when the estimate resets in any of the 
+         * dimensions (position, velocity, attitude, angular speed). This is designed to be used when 
+         * e.g an external SLAM system detects a loop-closure and the estimate jumps. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 1,
+                extension = true,
+                description = "Estimate reset counter. This should be incremented when the estimate resets in any of the dimensions (position, velocity, attitude, angular speed). This is designed to be used when e.g an external SLAM system detects a loop-closure and the estimate jumps."
+        )
+        public final Builder resetCounter(int resetCounter) {
+            this.resetCounter = resetCounter;
+            return this;
+        }
+
         public final GlobalVisionPositionEstimate build() {
-            return new GlobalVisionPositionEstimate(usec, x, y, z, roll, pitch, yaw, covariance);
+            return new GlobalVisionPositionEstimate(usec, x, y, z, roll, pitch, yaw, covariance, resetCounter);
         }
     }
 }

@@ -157,12 +157,12 @@ public final class DistanceSensor {
     }
 
     /**
-     * Measurement covariance, 0 for unknown / invalid readings 
+     * Measurement variance. Max standard deviation is 6cm. 255 if unknown. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            description = "Measurement covariance, 0 for unknown / invalid readings"
+            description = "Measurement variance. Max standard deviation is 6cm. 255 if unknown."
     )
     public final int covariance() {
         return this.covariance;
@@ -430,12 +430,12 @@ public final class DistanceSensor {
         }
 
         /**
-         * Measurement covariance, 0 for unknown / invalid readings 
+         * Measurement variance. Max standard deviation is 6cm. 255 if unknown. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                description = "Measurement covariance, 0 for unknown / invalid readings"
+                description = "Measurement variance. Max standard deviation is 6cm. 255 if unknown."
         )
         public final Builder covariance(int covariance) {
             this.covariance = covariance;

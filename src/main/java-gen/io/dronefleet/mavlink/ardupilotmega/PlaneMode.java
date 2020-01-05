@@ -83,6 +83,12 @@ public enum PlaneMode {
     /**
      *  
      */
+    @MavlinkEntryInfo(13)
+    PLANE_MODE_TAKEOFF,
+
+    /**
+     *  
+     */
     @MavlinkEntryInfo(14)
     PLANE_MODE_AVOID_ADSB,
 
@@ -126,5 +132,11 @@ public enum PlaneMode {
      *  
      */
     @MavlinkEntryInfo(21)
-    PLANE_MODE_QRTL
+    PLANE_MODE_QRTL,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(22)
+    PLANE_MODE_QAUTOTUNE
 }

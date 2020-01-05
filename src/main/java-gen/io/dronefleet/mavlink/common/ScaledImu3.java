@@ -38,8 +38,10 @@ public final class ScaledImu3 {
 
     private final int zmag;
 
+    private final int temperature;
+
     private ScaledImu3(long timeBootMs, int xacc, int yacc, int zacc, int xgyro, int ygyro,
-            int zgyro, int xmag, int ymag, int zmag) {
+            int zgyro, int xmag, int ymag, int zmag, int temperature) {
         this.timeBootMs = timeBootMs;
         this.xacc = xacc;
         this.yacc = yacc;
@@ -50,6 +52,7 @@ public final class ScaledImu3 {
         this.xmag = xmag;
         this.ymag = ymag;
         this.zmag = zmag;
+        this.temperature = temperature;
     }
 
     /**
@@ -189,6 +192,21 @@ public final class ScaledImu3 {
         return this.zmag;
     }
 
+    /**
+     * Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 
+     * (0.01C). 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 2,
+            signed = true,
+            extension = true,
+            description = "Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C)."
+    )
+    public final int temperature() {
+        return this.temperature;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -204,6 +222,7 @@ public final class ScaledImu3 {
         if (!Objects.deepEquals(xmag, other.xmag)) return false;
         if (!Objects.deepEquals(ymag, other.ymag)) return false;
         if (!Objects.deepEquals(zmag, other.zmag)) return false;
+        if (!Objects.deepEquals(temperature, other.temperature)) return false;
         return true;
     }
 
@@ -220,6 +239,7 @@ public final class ScaledImu3 {
         result = 31 * result + Objects.hashCode(xmag);
         result = 31 * result + Objects.hashCode(ymag);
         result = 31 * result + Objects.hashCode(zmag);
+        result = 31 * result + Objects.hashCode(temperature);
         return result;
     }
 
@@ -234,7 +254,8 @@ public final class ScaledImu3 {
                  + ", zgyro=" + zgyro
                  + ", xmag=" + xmag
                  + ", ymag=" + ymag
-                 + ", zmag=" + zmag + "}";
+                 + ", zmag=" + zmag
+                 + ", temperature=" + temperature + "}";
     }
 
     public static final class Builder {
@@ -257,6 +278,8 @@ public final class ScaledImu3 {
         private int ymag;
 
         private int zmag;
+
+        private int temperature;
 
         /**
          * Timestamp (time since system boot). 
@@ -397,8 +420,24 @@ public final class ScaledImu3 {
             return this;
         }
 
+        /**
+         * Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 
+         * (0.01C). 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 2,
+                signed = true,
+                extension = true,
+                description = "Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C)."
+        )
+        public final Builder temperature(int temperature) {
+            this.temperature = temperature;
+            return this;
+        }
+
         public final ScaledImu3 build() {
-            return new ScaledImu3(timeBootMs, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag);
+            return new ScaledImu3(timeBootMs, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, temperature);
         }
     }
 }

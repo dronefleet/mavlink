@@ -24,5 +24,13 @@ public enum CameraZoomType {
      * Zoom value as proportion of full camera range (a value between 0.0 and 100.0) 
      */
     @MavlinkEntryInfo(2)
-    ZOOM_TYPE_RANGE
+    ZOOM_TYPE_RANGE,
+
+    /**
+     * Zoom value/variable focal length in milimetres. Note that there is no message to get the valid 
+     * zoom range of the camera, so this can type can only be used for cameras where the zoom range is 
+     * known (implying that this cannot reliably be used in a GCS for an arbitrary camera) 
+     */
+    @MavlinkEntryInfo(3)
+    ZOOM_TYPE_FOCAL_LENGTH
 }

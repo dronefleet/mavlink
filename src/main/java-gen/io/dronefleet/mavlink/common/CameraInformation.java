@@ -222,13 +222,15 @@ public final class CameraInformation {
     }
 
     /**
-     * Camera definition URI (if any, otherwise only basic functions will be available). 
+     * Camera definition URI (if any, otherwise only basic functions will be available). HTTP- 
+     * (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be 
+     * supported by any GCS that implements the Camera Protocol). 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 1,
             arraySize = 140,
-            description = "Camera definition URI (if any, otherwise only basic functions will be available)."
+            description = "Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol)."
     )
     public final String camDefinitionUri() {
         return this.camDefinitionUri;
@@ -500,13 +502,15 @@ public final class CameraInformation {
         }
 
         /**
-         * Camera definition URI (if any, otherwise only basic functions will be available). 
+         * Camera definition URI (if any, otherwise only basic functions will be available). HTTP- 
+         * (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be 
+         * supported by any GCS that implements the Camera Protocol). 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 1,
                 arraySize = 140,
-                description = "Camera definition URI (if any, otherwise only basic functions will be available)."
+                description = "Camera definition URI (if any, otherwise only basic functions will be available). HTTP- (http://) and MAVLink FTP- (mavlinkftp://) formatted URIs are allowed (and both must be supported by any GCS that implements the Camera Protocol)."
         )
         public final Builder camDefinitionUri(String camDefinitionUri) {
             this.camDefinitionUri = camDefinitionUri;

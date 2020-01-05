@@ -84,31 +84,34 @@ public final class V2Extension {
      * A code that identifies the software component that understands this message (analogous to USB 
      * device classes or mime type strings). If this code is less than 32768, it is considered a 
      * 'registered' protocol extension and the corresponding entry should be added to 
-     * https://github.com/mavlink/mavlink/extension-message-ids.xml. Software creators can 
-     * register blocks of message IDs as needed (useful for GCS specific metadata, etc...). 
-     * Message_types greater than 32767 are considered local experiments and should not be checked 
-     * in to any widely distributed codebase. 
+     * https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. 
+     * Software creators can register blocks of message IDs as needed (useful for GCS specific 
+     * metadata, etc...). Message_types greater than 32767 are considered local experiments and 
+     * should not be checked in to any widely distributed codebase. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings).  If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/extension-message-ids.xml.  Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
+            description = "A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings). If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
     )
     public final int messageType() {
         return this.messageType;
     }
 
     /**
-     * Variable length payload. The length is defined by the remaining message length when 
-     * subtracting the header and other fields. The entire content of this block is opaque unless you 
-     * understand any the encoding message_type. The particular encoding used can be extension 
-     * specific and might not always be documented as part of the mavlink specification. 
+     * Variable length payload. The length must be encoded in the payload as part of the message_type 
+     * protocol, e.g. by including the length as payload data, or by terminating the payload data with 
+     * a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are 
+     * (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the 
+     * payload block is opaque unless you understand the encoding message_type. The particular 
+     * encoding used can be extension specific and might not always be documented as part of the 
+     * MAVLink specification. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
             arraySize = 249,
-            description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
+            description = "Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification."
     )
     public final byte[] payload() {
         return this.payload;
@@ -201,15 +204,15 @@ public final class V2Extension {
          * A code that identifies the software component that understands this message (analogous to USB 
          * device classes or mime type strings). If this code is less than 32768, it is considered a 
          * 'registered' protocol extension and the corresponding entry should be added to 
-         * https://github.com/mavlink/mavlink/extension-message-ids.xml. Software creators can 
-         * register blocks of message IDs as needed (useful for GCS specific metadata, etc...). 
-         * Message_types greater than 32767 are considered local experiments and should not be checked 
-         * in to any widely distributed codebase. 
+         * https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. 
+         * Software creators can register blocks of message IDs as needed (useful for GCS specific 
+         * metadata, etc...). Message_types greater than 32767 are considered local experiments and 
+         * should not be checked in to any widely distributed codebase. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings).  If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/extension-message-ids.xml.  Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
+                description = "A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings). If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
         )
         public final Builder messageType(int messageType) {
             this.messageType = messageType;
@@ -217,16 +220,19 @@ public final class V2Extension {
         }
 
         /**
-         * Variable length payload. The length is defined by the remaining message length when 
-         * subtracting the header and other fields. The entire content of this block is opaque unless you 
-         * understand any the encoding message_type. The particular encoding used can be extension 
-         * specific and might not always be documented as part of the mavlink specification. 
+         * Variable length payload. The length must be encoded in the payload as part of the message_type 
+         * protocol, e.g. by including the length as payload data, or by terminating the payload data with 
+         * a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are 
+         * (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the 
+         * payload block is opaque unless you understand the encoding message_type. The particular 
+         * encoding used can be extension specific and might not always be documented as part of the 
+         * MAVLink specification. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
                 arraySize = 249,
-                description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
+                description = "Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification."
         )
         public final Builder payload(byte[] payload) {
             this.payload = payload;

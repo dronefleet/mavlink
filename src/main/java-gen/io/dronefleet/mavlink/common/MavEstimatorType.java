@@ -9,6 +9,12 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavEstimatorType {
     /**
+     * Unknown type of the estimator. 
+     */
+    @MavlinkEntryInfo(0)
+    MAV_ESTIMATOR_TYPE_UNKNOWN,
+
+    /**
      * This is a naive estimator without any real covariance feedback. 
      */
     @MavlinkEntryInfo(1)
@@ -36,5 +42,23 @@ public enum MavEstimatorType {
      * Estimator integrating GPS and inertial sensing. 
      */
     @MavlinkEntryInfo(5)
-    MAV_ESTIMATOR_TYPE_GPS_INS
+    MAV_ESTIMATOR_TYPE_GPS_INS,
+
+    /**
+     * Estimate from external motion capturing system. 
+     */
+    @MavlinkEntryInfo(6)
+    MAV_ESTIMATOR_TYPE_MOCAP,
+
+    /**
+     * Estimator based on lidar sensor input. 
+     */
+    @MavlinkEntryInfo(7)
+    MAV_ESTIMATOR_TYPE_LIDAR,
+
+    /**
+     * Estimator on autopilot. 
+     */
+    @MavlinkEntryInfo(8)
+    MAV_ESTIMATOR_TYPE_AUTOPILOT
 }

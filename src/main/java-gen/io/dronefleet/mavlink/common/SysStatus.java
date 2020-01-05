@@ -113,14 +113,14 @@ public final class SysStatus {
     }
 
     /**
-     * Bitmap showing which onboard controllers and sensors are operational or have an error: Value 
-     * of 0: not enabled. Value of 1: enabled. 
+     * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+     * Value of 0: error. Value of 1: healthy. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             enumType = MavSysStatusSensor.class,
-            description = "Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled."
+            description = "Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy."
     )
     public final EnumValue<MavSysStatusSensor> onboardControlSensorsHealth() {
         return this.onboardControlSensorsHealth;
@@ -139,38 +139,38 @@ public final class SysStatus {
     }
 
     /**
-     * Battery voltage 
+     * Battery voltage, UINT16_MAX: Voltage not sent by autopilot 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "Battery voltage"
+            description = "Battery voltage, UINT16_MAX: Voltage not sent by autopilot"
     )
     public final int voltageBattery() {
         return this.voltageBattery;
     }
 
     /**
-     * Battery current, -1: autopilot does not measure the current 
+     * Battery current, -1: Current not sent by autopilot 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
             signed = true,
-            description = "Battery current, -1: autopilot does not measure the current"
+            description = "Battery current, -1: Current not sent by autopilot"
     )
     public final int currentBattery() {
         return this.currentBattery;
     }
 
     /**
-     * Remaining battery energy, -1: autopilot estimate the remaining battery 
+     * Battery energy remaining, -1: Battery remaining energy not sent by autopilot 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
             signed = true,
-            description = "Remaining battery energy, -1: autopilot estimate the remaining battery"
+            description = "Battery energy remaining, -1: Battery remaining energy not sent by autopilot"
     )
     public final int batteryRemaining() {
         return this.batteryRemaining;
@@ -415,14 +415,14 @@ public final class SysStatus {
         }
 
         /**
-         * Bitmap showing which onboard controllers and sensors are operational or have an error: Value 
-         * of 0: not enabled. Value of 1: enabled. 
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 enumType = MavSysStatusSensor.class,
-                description = "Bitmap showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled."
+                description = "Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy."
         )
         public final Builder onboardControlSensorsHealth(
                 EnumValue<MavSysStatusSensor> onboardControlSensorsHealth) {
@@ -431,24 +431,24 @@ public final class SysStatus {
         }
 
         /**
-         * Bitmap showing which onboard controllers and sensors are operational or have an error: Value 
-         * of 0: not enabled. Value of 1: enabled. 
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
          */
         public final Builder onboardControlSensorsHealth(MavSysStatusSensor entry) {
             return onboardControlSensorsHealth(EnumValue.of(entry));
         }
 
         /**
-         * Bitmap showing which onboard controllers and sensors are operational or have an error: Value 
-         * of 0: not enabled. Value of 1: enabled. 
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
          */
         public final Builder onboardControlSensorsHealth(Enum... flags) {
             return onboardControlSensorsHealth(EnumValue.create(flags));
         }
 
         /**
-         * Bitmap showing which onboard controllers and sensors are operational or have an error: Value 
-         * of 0: not enabled. Value of 1: enabled. 
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
          */
         public final Builder onboardControlSensorsHealth(Collection<Enum> flags) {
             return onboardControlSensorsHealth(EnumValue.create(flags));
@@ -468,12 +468,12 @@ public final class SysStatus {
         }
 
         /**
-         * Battery voltage 
+         * Battery voltage, UINT16_MAX: Voltage not sent by autopilot 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "Battery voltage"
+                description = "Battery voltage, UINT16_MAX: Voltage not sent by autopilot"
         )
         public final Builder voltageBattery(int voltageBattery) {
             this.voltageBattery = voltageBattery;
@@ -481,13 +481,13 @@ public final class SysStatus {
         }
 
         /**
-         * Battery current, -1: autopilot does not measure the current 
+         * Battery current, -1: Current not sent by autopilot 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
                 signed = true,
-                description = "Battery current, -1: autopilot does not measure the current"
+                description = "Battery current, -1: Current not sent by autopilot"
         )
         public final Builder currentBattery(int currentBattery) {
             this.currentBattery = currentBattery;
@@ -495,13 +495,13 @@ public final class SysStatus {
         }
 
         /**
-         * Remaining battery energy, -1: autopilot estimate the remaining battery 
+         * Battery energy remaining, -1: Battery remaining energy not sent by autopilot 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
                 signed = true,
-                description = "Remaining battery energy, -1: autopilot estimate the remaining battery"
+                description = "Battery energy remaining, -1: Battery remaining energy not sent by autopilot"
         )
         public final Builder batteryRemaining(int batteryRemaining) {
             this.batteryRemaining = batteryRemaining;

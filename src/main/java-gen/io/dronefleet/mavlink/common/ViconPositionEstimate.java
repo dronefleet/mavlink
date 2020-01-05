@@ -141,15 +141,16 @@ public final class ViconPositionEstimate {
     }
 
     /**
-     * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-     * entries are the second ROW, etc.) 
+     * Row-major representation of 6x6 pose cross-covariance matrix upper right triangle (states: 
+     * x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second 
+     * ROW, etc.). If unknown, assign NaN value to first element in the array. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
             arraySize = 21,
             extension = true,
-            description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+            description = "Row-major representation of 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
     )
     public final List<Float> covariance() {
         return this.covariance;
@@ -306,15 +307,16 @@ public final class ViconPositionEstimate {
         }
 
         /**
-         * Pose covariance matrix upper right triangular (first six entries are the first ROW, next five 
-         * entries are the second ROW, etc.) 
+         * Row-major representation of 6x6 pose cross-covariance matrix upper right triangle (states: 
+         * x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second 
+         * ROW, etc.). If unknown, assign NaN value to first element in the array. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
                 arraySize = 21,
                 extension = true,
-                description = "Pose covariance matrix upper right triangular (first six entries are the first ROW, next five entries are the second ROW, etc.)"
+                description = "Row-major representation of 6x6 pose cross-covariance matrix upper right triangle (states: x, y, z, roll, pitch, yaw; first six entries are the first ROW, next five entries are the second ROW, etc.). If unknown, assign NaN value to first element in the array."
         )
         public final Builder covariance(List<Float> covariance) {
             this.covariance = covariance;

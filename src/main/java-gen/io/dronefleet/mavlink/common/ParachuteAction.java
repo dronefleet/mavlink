@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.ardupilotmega;
+package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;

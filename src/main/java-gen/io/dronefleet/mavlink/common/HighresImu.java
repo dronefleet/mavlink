@@ -48,9 +48,11 @@ public final class HighresImu {
 
     private final int fieldsUpdated;
 
+    private final int id;
+
     private HighresImu(BigInteger timeUsec, float xacc, float yacc, float zacc, float xgyro,
             float ygyro, float zgyro, float xmag, float ymag, float zmag, float absPressure,
-            float diffPressure, float pressureAlt, float temperature, int fieldsUpdated) {
+            float diffPressure, float pressureAlt, float temperature, int fieldsUpdated, int id) {
         this.timeUsec = timeUsec;
         this.xacc = xacc;
         this.yacc = yacc;
@@ -66,6 +68,7 @@ public final class HighresImu {
         this.pressureAlt = pressureAlt;
         this.temperature = temperature;
         this.fieldsUpdated = fieldsUpdated;
+        this.id = id;
     }
 
     /**
@@ -257,6 +260,20 @@ public final class HighresImu {
         return this.fieldsUpdated;
     }
 
+    /**
+     * Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with 
+     * id=0) 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 1,
+            extension = true,
+            description = "Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)"
+    )
+    public final int id() {
+        return this.id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -277,6 +294,7 @@ public final class HighresImu {
         if (!Objects.deepEquals(pressureAlt, other.pressureAlt)) return false;
         if (!Objects.deepEquals(temperature, other.temperature)) return false;
         if (!Objects.deepEquals(fieldsUpdated, other.fieldsUpdated)) return false;
+        if (!Objects.deepEquals(id, other.id)) return false;
         return true;
     }
 
@@ -298,6 +316,7 @@ public final class HighresImu {
         result = 31 * result + Objects.hashCode(pressureAlt);
         result = 31 * result + Objects.hashCode(temperature);
         result = 31 * result + Objects.hashCode(fieldsUpdated);
+        result = 31 * result + Objects.hashCode(id);
         return result;
     }
 
@@ -317,7 +336,8 @@ public final class HighresImu {
                  + ", diffPressure=" + diffPressure
                  + ", pressureAlt=" + pressureAlt
                  + ", temperature=" + temperature
-                 + ", fieldsUpdated=" + fieldsUpdated + "}";
+                 + ", fieldsUpdated=" + fieldsUpdated
+                 + ", id=" + id + "}";
     }
 
     public static final class Builder {
@@ -350,6 +370,8 @@ public final class HighresImu {
         private float temperature;
 
         private int fieldsUpdated;
+
+        private int id;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
@@ -547,8 +569,23 @@ public final class HighresImu {
             return this;
         }
 
+        /**
+         * Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with 
+         * id=0) 
+         */
+        @MavlinkFieldInfo(
+                position = 17,
+                unitSize = 1,
+                extension = true,
+                description = "Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)"
+        )
+        public final Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
         public final HighresImu build() {
-            return new HighresImu(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, absPressure, diffPressure, pressureAlt, temperature, fieldsUpdated);
+            return new HighresImu(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, absPressure, diffPressure, pressureAlt, temperature, fieldsUpdated, id);
         }
     }
 }

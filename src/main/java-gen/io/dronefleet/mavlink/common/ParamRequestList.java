@@ -9,12 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Request all parameters of this component. After this request, all parameters are emitted. 
+ * Request all parameters of this component. After this request, all parameters are emitted. The 
+ * parameter microservice is documented at https://mavlink.io/en/services/parameter.html 
  */
 @MavlinkMessageInfo(
         id = 21,
         crc = 159,
-        description = "Request all parameters of this component. After this request, all parameters are emitted."
+        description = "Request all parameters of this component. After this request, all parameters are emitted. The parameter microservice is documented at https://mavlink.io/en/services/parameter.html"
 )
 public final class ParamRequestList {
     private final int targetSystem;

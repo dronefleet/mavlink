@@ -174,39 +174,39 @@ public final class HilGps {
     }
 
     /**
-     * GPS velocity in NORTH direction in earth-fixed NED frame 
+     * GPS velocity in north direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in NORTH direction in earth-fixed NED frame"
+            description = "GPS velocity in north direction in earth-fixed NED frame"
     )
     public final int vn() {
         return this.vn;
     }
 
     /**
-     * GPS velocity in EAST direction in earth-fixed NED frame 
+     * GPS velocity in east direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in EAST direction in earth-fixed NED frame"
+            description = "GPS velocity in east direction in earth-fixed NED frame"
     )
     public final int ve() {
         return this.ve;
     }
 
     /**
-     * GPS velocity in DOWN direction in earth-fixed NED frame 
+     * GPS velocity in down direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 2,
             signed = true,
-            description = "GPS velocity in DOWN direction in earth-fixed NED frame"
+            description = "GPS velocity in down direction in earth-fixed NED frame"
     )
     public final int vd() {
         return this.vd;
@@ -431,13 +431,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in NORTH direction in earth-fixed NED frame 
+         * GPS velocity in north direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in NORTH direction in earth-fixed NED frame"
+                description = "GPS velocity in north direction in earth-fixed NED frame"
         )
         public final Builder vn(int vn) {
             this.vn = vn;
@@ -445,13 +445,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in EAST direction in earth-fixed NED frame 
+         * GPS velocity in east direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in EAST direction in earth-fixed NED frame"
+                description = "GPS velocity in east direction in earth-fixed NED frame"
         )
         public final Builder ve(int ve) {
             this.ve = ve;
@@ -459,13 +459,13 @@ public final class HilGps {
         }
 
         /**
-         * GPS velocity in DOWN direction in earth-fixed NED frame 
+         * GPS velocity in down direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 2,
                 signed = true,
-                description = "GPS velocity in DOWN direction in earth-fixed NED frame"
+                description = "GPS velocity in down direction in earth-fixed NED frame"
         )
         public final Builder vd(int vd) {
             this.vd = vd;

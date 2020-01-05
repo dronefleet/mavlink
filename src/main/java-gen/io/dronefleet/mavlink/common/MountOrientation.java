@@ -81,25 +81,25 @@ public final class MountOrientation {
     }
 
     /**
-     * Yaw relative to vehicle(set to NaN for invalid). 
+     * Yaw relative to vehicle (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Yaw relative to vehicle(set to NaN for invalid)."
+            description = "Yaw relative to vehicle (set to NaN for invalid)."
     )
     public final float yaw() {
         return this.yaw;
     }
 
     /**
-     * Yaw in absolute frame, North is 0 (set to NaN for invalid). 
+     * Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
             extension = true,
-            description = "Yaw in absolute frame, North is 0 (set to NaN for invalid)."
+            description = "Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid)."
     )
     public final float yawAbsolute() {
         return this.yawAbsolute;
@@ -189,12 +189,12 @@ public final class MountOrientation {
         }
 
         /**
-         * Yaw relative to vehicle(set to NaN for invalid). 
+         * Yaw relative to vehicle (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Yaw relative to vehicle(set to NaN for invalid)."
+                description = "Yaw relative to vehicle (set to NaN for invalid)."
         )
         public final Builder yaw(float yaw) {
             this.yaw = yaw;
@@ -202,13 +202,13 @@ public final class MountOrientation {
         }
 
         /**
-         * Yaw in absolute frame, North is 0 (set to NaN for invalid). 
+         * Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
                 extension = true,
-                description = "Yaw in absolute frame, North is 0 (set to NaN for invalid)."
+                description = "Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid)."
         )
         public final Builder yawAbsolute(float yawAbsolute) {
             this.yawAbsolute = yawAbsolute;

@@ -3,9 +3,11 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,8 +36,10 @@ public final class AttitudeQuaternion {
 
     private final float yawspeed;
 
+    private final List<Float> reprOffsetQ;
+
     private AttitudeQuaternion(long timeBootMs, float q1, float q2, float q3, float q4,
-            float rollspeed, float pitchspeed, float yawspeed) {
+            float rollspeed, float pitchspeed, float yawspeed, List<Float> reprOffsetQ) {
         this.timeBootMs = timeBootMs;
         this.q1 = q1;
         this.q2 = q2;
@@ -44,6 +48,7 @@ public final class AttitudeQuaternion {
         this.rollspeed = rollspeed;
         this.pitchspeed = pitchspeed;
         this.yawspeed = yawspeed;
+        this.reprOffsetQ = reprOffsetQ;
     }
 
     /**
@@ -150,6 +155,25 @@ public final class AttitudeQuaternion {
         return this.yawspeed;
     }
 
+    /**
+     * Rotation offset by which the attitude quaternion and angular speed vector should be rotated 
+     * for user display (quaternion with [w, x, y, z] order, zero-rotation is [1, 0, 0, 0], send [0, 0, 0, 
+     * 0] if field not supported). This field is intended for systems in which the reference attitude 
+     * may change during flight. For example, tailsitters VTOLs rotate their reference attitude by 
+     * 90 degrees between hover mode and fixed wing mode, thus repr_offset_q is equal to [1, 0, 0, 0] in 
+     * hover mode and equal to [0.7071, 0, 0.7071, 0] in fixed wing mode. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4,
+            arraySize = 4,
+            extension = true,
+            description = "Rotation offset by which the attitude quaternion and angular speed vector should be rotated for user display (quaternion with [w, x, y, z] order, zero-rotation is [1, 0, 0, 0], send [0, 0, 0, 0] if field not supported). This field is intended for systems in which the reference attitude may change during flight. For example, tailsitters VTOLs rotate their reference attitude by 90 degrees between hover mode and fixed wing mode, thus repr_offset_q is equal to [1, 0, 0, 0] in hover mode and equal to [0.7071, 0, 0.7071, 0] in fixed wing mode."
+    )
+    public final List<Float> reprOffsetQ() {
+        return this.reprOffsetQ;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,6 +187,7 @@ public final class AttitudeQuaternion {
         if (!Objects.deepEquals(rollspeed, other.rollspeed)) return false;
         if (!Objects.deepEquals(pitchspeed, other.pitchspeed)) return false;
         if (!Objects.deepEquals(yawspeed, other.yawspeed)) return false;
+        if (!Objects.deepEquals(reprOffsetQ, other.reprOffsetQ)) return false;
         return true;
     }
 
@@ -177,6 +202,7 @@ public final class AttitudeQuaternion {
         result = 31 * result + Objects.hashCode(rollspeed);
         result = 31 * result + Objects.hashCode(pitchspeed);
         result = 31 * result + Objects.hashCode(yawspeed);
+        result = 31 * result + Objects.hashCode(reprOffsetQ);
         return result;
     }
 
@@ -189,7 +215,8 @@ public final class AttitudeQuaternion {
                  + ", q4=" + q4
                  + ", rollspeed=" + rollspeed
                  + ", pitchspeed=" + pitchspeed
-                 + ", yawspeed=" + yawspeed + "}";
+                 + ", yawspeed=" + yawspeed
+                 + ", reprOffsetQ=" + reprOffsetQ + "}";
     }
 
     public static final class Builder {
@@ -208,6 +235,8 @@ public final class AttitudeQuaternion {
         private float pitchspeed;
 
         private float yawspeed;
+
+        private List<Float> reprOffsetQ;
 
         /**
          * Timestamp (time since system boot). 
@@ -313,8 +342,28 @@ public final class AttitudeQuaternion {
             return this;
         }
 
+        /**
+         * Rotation offset by which the attitude quaternion and angular speed vector should be rotated 
+         * for user display (quaternion with [w, x, y, z] order, zero-rotation is [1, 0, 0, 0], send [0, 0, 0, 
+         * 0] if field not supported). This field is intended for systems in which the reference attitude 
+         * may change during flight. For example, tailsitters VTOLs rotate their reference attitude by 
+         * 90 degrees between hover mode and fixed wing mode, thus repr_offset_q is equal to [1, 0, 0, 0] in 
+         * hover mode and equal to [0.7071, 0, 0.7071, 0] in fixed wing mode. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 4,
+                arraySize = 4,
+                extension = true,
+                description = "Rotation offset by which the attitude quaternion and angular speed vector should be rotated for user display (quaternion with [w, x, y, z] order, zero-rotation is [1, 0, 0, 0], send [0, 0, 0, 0] if field not supported). This field is intended for systems in which the reference attitude may change during flight. For example, tailsitters VTOLs rotate their reference attitude by 90 degrees between hover mode and fixed wing mode, thus repr_offset_q is equal to [1, 0, 0, 0] in hover mode and equal to [0.7071, 0, 0.7071, 0] in fixed wing mode."
+        )
+        public final Builder reprOffsetQ(List<Float> reprOffsetQ) {
+            this.reprOffsetQ = reprOffsetQ;
+            return this;
+        }
+
         public final AttitudeQuaternion build() {
-            return new AttitudeQuaternion(timeBootMs, q1, q2, q3, q4, rollspeed, pitchspeed, yawspeed);
+            return new AttitudeQuaternion(timeBootMs, q1, q2, q3, q4, rollspeed, pitchspeed, yawspeed, reprOffsetQ);
         }
     }
 }

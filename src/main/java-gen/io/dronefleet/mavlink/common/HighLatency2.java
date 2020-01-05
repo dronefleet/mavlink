@@ -150,13 +150,14 @@ public final class HighLatency2 {
     }
 
     /**
-     * Autopilot type / class. 
+     * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+     * controllers. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             enumType = MavAutopilot.class,
-            description = "Autopilot type / class."
+            description = "Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers."
     )
     public final EnumValue<MavAutopilot> autopilot() {
         return this.autopilot;
@@ -385,13 +386,13 @@ public final class HighLatency2 {
     }
 
     /**
-     * Battery (percentage, -1 for DNU) 
+     * Battery level (-1 if field not provided). 
      */
     @MavlinkFieldInfo(
             position = 23,
             unitSize = 1,
             signed = true,
-            description = "Battery (percentage, -1 for DNU)"
+            description = "Battery level (-1 if field not provided)."
     )
     public final int battery() {
         return this.battery;
@@ -664,13 +665,14 @@ public final class HighLatency2 {
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 enumType = MavAutopilot.class,
-                description = "Autopilot type / class."
+                description = "Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers."
         )
         public final Builder autopilot(EnumValue<MavAutopilot> autopilot) {
             this.autopilot = autopilot;
@@ -678,21 +680,24 @@ public final class HighLatency2 {
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(MavAutopilot entry) {
             return autopilot(EnumValue.of(entry));
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(Enum... flags) {
             return autopilot(EnumValue.create(flags));
         }
 
         /**
-         * Autopilot type / class. 
+         * Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight 
+         * controllers. 
          */
         public final Builder autopilot(Collection<Enum> flags) {
             return autopilot(EnumValue.create(flags));
@@ -939,13 +944,13 @@ public final class HighLatency2 {
         }
 
         /**
-         * Battery (percentage, -1 for DNU) 
+         * Battery level (-1 if field not provided). 
          */
         @MavlinkFieldInfo(
                 position = 23,
                 unitSize = 1,
                 signed = true,
-                description = "Battery (percentage, -1 for DNU)"
+                description = "Battery level (-1 if field not provided)."
         )
         public final Builder battery(int battery) {
             this.battery = battery;

@@ -36,5 +36,11 @@ public enum MavMountMode {
      * Load neutral position and start to point to Lat,Lon,Alt 
      */
     @MavlinkEntryInfo(4)
-    MAV_MOUNT_MODE_GPS_POINT
+    MAV_MOUNT_MODE_GPS_POINT,
+
+    /**
+     * Gimbal tracks system with specified system ID 
+     */
+    @MavlinkEntryInfo(5)
+    MAV_MOUNT_MODE_SYSID_TARGET
 }

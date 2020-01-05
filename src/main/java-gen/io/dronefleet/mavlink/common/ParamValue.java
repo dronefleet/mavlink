@@ -14,12 +14,13 @@ import java.util.Objects;
 /**
  * Emit the value of a onboard parameter. The inclusion of param_count and param_index in the 
  * message allows the recipient to keep track of received parameters and allows him to re-request 
- * missing parameters after a loss or timeout. 
+ * missing parameters after a loss or timeout. The parameter microservice is documented at 
+ * https://mavlink.io/en/services/parameter.html 
  */
 @MavlinkMessageInfo(
         id = 22,
         crc = 220,
-        description = "Emit the value of a onboard parameter. The inclusion of param_count and param_index in the message allows the recipient to keep track of received parameters and allows him to re-request missing parameters after a loss or timeout."
+        description = "Emit the value of a onboard parameter. The inclusion of param_count and param_index in the message allows the recipient to keep track of received parameters and allows him to re-request missing parameters after a loss or timeout. The parameter microservice is documented at https://mavlink.io/en/services/parameter.html"
 )
 public final class ParamValue {
     private final String paramId;

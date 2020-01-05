@@ -48,5 +48,11 @@ public enum MagCalStatus {
      *  
      */
     @MavlinkEntryInfo(6)
-    MAG_CAL_BAD_ORIENTATION
+    MAG_CAL_BAD_ORIENTATION,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(7)
+    MAG_CAL_BAD_RADIUS
 }

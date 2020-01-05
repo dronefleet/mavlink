@@ -4,12 +4,14 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * MAVLINK system type. All components in a system should report this type in their {@link io.dronefleet.mavlink.common.Heartbeat HEARTBEAT}. 
+ * MAVLINK component type reported in {@link io.dronefleet.mavlink.common.Heartbeat HEARTBEAT} message. Flight controllers must report the 
+ * type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components 
+ * must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA). 
  */
 @MavlinkEnum
 public enum MavType {
     /**
-     * Generic micro air vehicle. 
+     * Generic micro air vehicle 
      */
     @MavlinkEntryInfo(0)
     MAV_TYPE_GENERIC,
@@ -165,13 +167,13 @@ public enum MavType {
     MAV_TYPE_VTOL_RESERVED5,
 
     /**
-     * Gimbal (standalone) 
+     * Gimbal 
      */
     @MavlinkEntryInfo(26)
     MAV_TYPE_GIMBAL,
 
     /**
-     * ADSB system (standalone) 
+     * ADSB system 
      */
     @MavlinkEntryInfo(27)
     MAV_TYPE_ADSB,
@@ -189,7 +191,7 @@ public enum MavType {
     MAV_TYPE_DODECAROTOR,
 
     /**
-     * Camera (standalone) 
+     * Camera 
      */
     @MavlinkEntryInfo(30)
     MAV_TYPE_CAMERA,
@@ -201,8 +203,14 @@ public enum MavType {
     MAV_TYPE_CHARGING_STATION,
 
     /**
-     * FLARM collision avoidance system (standalone) 
+     * FLARM collision avoidance system 
      */
     @MavlinkEntryInfo(32)
-    MAV_TYPE_FLARM
+    MAV_TYPE_FLARM,
+
+    /**
+     * Servo 
+     */
+    @MavlinkEntryInfo(33)
+    MAV_TYPE_SERVO
 }

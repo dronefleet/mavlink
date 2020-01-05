@@ -10,13 +10,14 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Once the MAV sets a new GPS-Local correspondence, this message announces the origin (0,0,0) 
- * position 
+ * Publishes the GPS co-ordinates of the vehicle local origin (0,0,0) position. Emitted 
+ * whenever a new GPS-Local position mapping is requested or set - e.g. following 
+ * {@link io.dronefleet.mavlink.common.SetGpsGlobalOrigin SET_GPS_GLOBAL_ORIGIN} message. 
  */
 @MavlinkMessageInfo(
         id = 49,
         crc = 39,
-        description = "Once the MAV sets a new GPS-Local correspondence, this message announces the origin (0,0,0) position"
+        description = "Publishes the GPS co-ordinates of the vehicle local origin (0,0,0) position. Emitted whenever a new GPS-Local position mapping is requested or set - e.g. following SET_GPS_GLOBAL_ORIGIN message."
 )
 public final class GpsGlobalOrigin {
     private final int latitude;

@@ -3,12 +3,15 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Deprecated;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +24,7 @@ import java.util.Objects;
  */
 @MavlinkMessageInfo(
         id = 332,
-        crc = 91,
+        crc = 236,
         description = "Describe a trajectory using an array of up-to 5 waypoints in the local frame.",
         workInProgress = true
 )
@@ -53,10 +56,12 @@ public final class TrajectoryRepresentationWaypoints {
 
     private final List<Float> velYaw;
 
+    private final EnumValue<MavCmd> command;
+
     private TrajectoryRepresentationWaypoints(BigInteger timeUsec, int validPoints,
             List<Float> posX, List<Float> posY, List<Float> posZ, List<Float> velX,
             List<Float> velY, List<Float> velZ, List<Float> accX, List<Float> accY,
-            List<Float> accZ, List<Float> posYaw, List<Float> velYaw) {
+            List<Float> accZ, List<Float> posYaw, List<Float> velYaw, EnumValue<MavCmd> command) {
         this.timeUsec = timeUsec;
         this.validPoints = validPoints;
         this.posX = posX;
@@ -70,6 +75,7 @@ public final class TrajectoryRepresentationWaypoints {
         this.accZ = accZ;
         this.posYaw = posYaw;
         this.velYaw = velYaw;
+        this.command = command;
     }
 
     /**
@@ -248,6 +254,20 @@ public final class TrajectoryRepresentationWaypoints {
         return this.velYaw;
     }
 
+    /**
+     * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+     */
+    @MavlinkFieldInfo(
+            position = 15,
+            unitSize = 2,
+            arraySize = 5,
+            enumType = MavCmd.class,
+            description = "Scheduled action for each waypoint, UINT16_MAX if not being used."
+    )
+    public final EnumValue<MavCmd> command() {
+        return this.command;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -266,6 +286,7 @@ public final class TrajectoryRepresentationWaypoints {
         if (!Objects.deepEquals(accZ, other.accZ)) return false;
         if (!Objects.deepEquals(posYaw, other.posYaw)) return false;
         if (!Objects.deepEquals(velYaw, other.velYaw)) return false;
+        if (!Objects.deepEquals(command, other.command)) return false;
         return true;
     }
 
@@ -285,6 +306,7 @@ public final class TrajectoryRepresentationWaypoints {
         result = 31 * result + Objects.hashCode(accZ);
         result = 31 * result + Objects.hashCode(posYaw);
         result = 31 * result + Objects.hashCode(velYaw);
+        result = 31 * result + Objects.hashCode(command);
         return result;
     }
 
@@ -302,7 +324,8 @@ public final class TrajectoryRepresentationWaypoints {
                  + ", accY=" + accY
                  + ", accZ=" + accZ
                  + ", posYaw=" + posYaw
-                 + ", velYaw=" + velYaw + "}";
+                 + ", velYaw=" + velYaw
+                 + ", command=" + command + "}";
     }
 
     public static final class Builder {
@@ -331,6 +354,8 @@ public final class TrajectoryRepresentationWaypoints {
         private List<Float> posYaw;
 
         private List<Float> velYaw;
+
+        private EnumValue<MavCmd> command;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
@@ -513,8 +538,44 @@ public final class TrajectoryRepresentationWaypoints {
             return this;
         }
 
+        /**
+         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         */
+        @MavlinkFieldInfo(
+                position = 15,
+                unitSize = 2,
+                arraySize = 5,
+                enumType = MavCmd.class,
+                description = "Scheduled action for each waypoint, UINT16_MAX if not being used."
+        )
+        public final Builder command(EnumValue<MavCmd> command) {
+            this.command = command;
+            return this;
+        }
+
+        /**
+         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         */
+        public final Builder command(MavCmd entry) {
+            return command(EnumValue.of(entry));
+        }
+
+        /**
+         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         */
+        public final Builder command(Enum... flags) {
+            return command(EnumValue.create(flags));
+        }
+
+        /**
+         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         */
+        public final Builder command(Collection<Enum> flags) {
+            return command(EnumValue.create(flags));
+        }
+
         public final TrajectoryRepresentationWaypoints build() {
-            return new TrajectoryRepresentationWaypoints(timeUsec, validPoints, posX, posY, posZ, velX, velY, velZ, accX, accY, accZ, posYaw, velYaw);
+            return new TrajectoryRepresentationWaypoints(timeUsec, validPoints, posX, posY, posZ, velX, velY, velZ, accX, accY, accZ, posYaw, velYaw, command);
         }
     }
 }

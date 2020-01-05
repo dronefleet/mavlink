@@ -58,10 +58,12 @@ public final class GpsInput {
 
     private final int satellitesVisible;
 
+    private final int yaw;
+
     private GpsInput(BigInteger timeUsec, int gpsId, EnumValue<GpsInputIgnoreFlags> ignoreFlags,
             long timeWeekMs, int timeWeek, int fixType, int lat, int lon, float alt, float hdop,
             float vdop, float vn, float ve, float vd, float speedAccuracy, float horizAccuracy,
-            float vertAccuracy, int satellitesVisible) {
+            float vertAccuracy, int satellitesVisible, int yaw) {
         this.timeUsec = timeUsec;
         this.gpsId = gpsId;
         this.ignoreFlags = ignoreFlags;
@@ -80,6 +82,7 @@ public final class GpsInput {
         this.horizAccuracy = horizAccuracy;
         this.vertAccuracy = vertAccuracy;
         this.satellitesVisible = satellitesVisible;
+        this.yaw = yaw;
     }
 
     /**
@@ -227,36 +230,36 @@ public final class GpsInput {
     }
 
     /**
-     * GPS velocity in NORTH direction in earth-fixed NED frame 
+     * GPS velocity in north direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 4,
-            description = "GPS velocity in NORTH direction in earth-fixed NED frame"
+            description = "GPS velocity in north direction in earth-fixed NED frame"
     )
     public final float vn() {
         return this.vn;
     }
 
     /**
-     * GPS velocity in EAST direction in earth-fixed NED frame 
+     * GPS velocity in east direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
-            description = "GPS velocity in EAST direction in earth-fixed NED frame"
+            description = "GPS velocity in east direction in earth-fixed NED frame"
     )
     public final float ve() {
         return this.ve;
     }
 
     /**
-     * GPS velocity in DOWN direction in earth-fixed NED frame 
+     * GPS velocity in down direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "GPS velocity in DOWN direction in earth-fixed NED frame"
+            description = "GPS velocity in down direction in earth-fixed NED frame"
     )
     public final float vd() {
         return this.vd;
@@ -310,6 +313,19 @@ public final class GpsInput {
         return this.satellitesVisible;
     }
 
+    /**
+     * Yaw of vehicle relative to Earth's North, zero means not available, use 36000 for north 
+     */
+    @MavlinkFieldInfo(
+            position = 20,
+            unitSize = 2,
+            extension = true,
+            description = "Yaw of vehicle relative to Earth's North, zero means not available, use 36000 for north"
+    )
+    public final int yaw() {
+        return this.yaw;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -333,6 +349,7 @@ public final class GpsInput {
         if (!Objects.deepEquals(horizAccuracy, other.horizAccuracy)) return false;
         if (!Objects.deepEquals(vertAccuracy, other.vertAccuracy)) return false;
         if (!Objects.deepEquals(satellitesVisible, other.satellitesVisible)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
         return true;
     }
 
@@ -357,6 +374,7 @@ public final class GpsInput {
         result = 31 * result + Objects.hashCode(horizAccuracy);
         result = 31 * result + Objects.hashCode(vertAccuracy);
         result = 31 * result + Objects.hashCode(satellitesVisible);
+        result = 31 * result + Objects.hashCode(yaw);
         return result;
     }
 
@@ -379,7 +397,8 @@ public final class GpsInput {
                  + ", speedAccuracy=" + speedAccuracy
                  + ", horizAccuracy=" + horizAccuracy
                  + ", vertAccuracy=" + vertAccuracy
-                 + ", satellitesVisible=" + satellitesVisible + "}";
+                 + ", satellitesVisible=" + satellitesVisible
+                 + ", yaw=" + yaw + "}";
     }
 
     public static final class Builder {
@@ -418,6 +437,8 @@ public final class GpsInput {
         private float vertAccuracy;
 
         private int satellitesVisible;
+
+        private int yaw;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
@@ -588,12 +609,12 @@ public final class GpsInput {
         }
 
         /**
-         * GPS velocity in NORTH direction in earth-fixed NED frame 
+         * GPS velocity in north direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 4,
-                description = "GPS velocity in NORTH direction in earth-fixed NED frame"
+                description = "GPS velocity in north direction in earth-fixed NED frame"
         )
         public final Builder vn(float vn) {
             this.vn = vn;
@@ -601,12 +622,12 @@ public final class GpsInput {
         }
 
         /**
-         * GPS velocity in EAST direction in earth-fixed NED frame 
+         * GPS velocity in east direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
-                description = "GPS velocity in EAST direction in earth-fixed NED frame"
+                description = "GPS velocity in east direction in earth-fixed NED frame"
         )
         public final Builder ve(float ve) {
             this.ve = ve;
@@ -614,12 +635,12 @@ public final class GpsInput {
         }
 
         /**
-         * GPS velocity in DOWN direction in earth-fixed NED frame 
+         * GPS velocity in down direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "GPS velocity in DOWN direction in earth-fixed NED frame"
+                description = "GPS velocity in down direction in earth-fixed NED frame"
         )
         public final Builder vd(float vd) {
             this.vd = vd;
@@ -678,8 +699,22 @@ public final class GpsInput {
             return this;
         }
 
+        /**
+         * Yaw of vehicle relative to Earth's North, zero means not available, use 36000 for north 
+         */
+        @MavlinkFieldInfo(
+                position = 20,
+                unitSize = 2,
+                extension = true,
+                description = "Yaw of vehicle relative to Earth's North, zero means not available, use 36000 for north"
+        )
+        public final Builder yaw(int yaw) {
+            this.yaw = yaw;
+            return this;
+        }
+
         public final GpsInput build() {
-            return new GpsInput(timeUsec, gpsId, ignoreFlags, timeWeekMs, timeWeek, fixType, lat, lon, alt, hdop, vdop, vn, ve, vd, speedAccuracy, horizAccuracy, vertAccuracy, satellitesVisible);
+            return new GpsInput(timeUsec, gpsId, ignoreFlags, timeWeekMs, timeWeek, fixType, lat, lon, alt, hdop, vdop, vn, ve, vd, speedAccuracy, horizAccuracy, vertAccuracy, satellitesVisible, yaw);
         }
     }
 }

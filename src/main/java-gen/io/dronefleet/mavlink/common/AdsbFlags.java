@@ -48,5 +48,23 @@ public enum AdsbFlags {
      *  
      */
     @MavlinkEntryInfo(64)
-    ADSB_FLAGS_SIMULATED
+    ADSB_FLAGS_SIMULATED,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(128)
+    ADSB_FLAGS_VERTICAL_VELOCITY_VALID,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(256)
+    ADSB_FLAGS_BARO_VALID,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(32768)
+    ADSB_FLAGS_SOURCE_UAT
 }

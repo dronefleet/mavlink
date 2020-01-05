@@ -3,18 +3,22 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Information about a storage medium. 
+ * Information about a storage medium. This message is sent in response to a request and whenever 
+ * the status of the storage changes ({@link io.dronefleet.mavlink.common.StorageStatus STORAGE_STATUS}). 
  */
 @MavlinkMessageInfo(
         id = 261,
         crc = 179,
-        description = "Information about a storage medium."
+        description = "Information about a storage medium. This message is sent in response to a request and whenever the status of the storage changes (STORAGE_STATUS)."
 )
 public final class StorageInformation {
     private final long timeBootMs;
@@ -23,7 +27,7 @@ public final class StorageInformation {
 
     private final int storageCount;
 
-    private final int status;
+    private final EnumValue<StorageStatus> status;
 
     private final float totalCapacity;
 
@@ -35,9 +39,9 @@ public final class StorageInformation {
 
     private final float writeSpeed;
 
-    private StorageInformation(long timeBootMs, int storageId, int storageCount, int status,
-            float totalCapacity, float usedCapacity, float availableCapacity, float readSpeed,
-            float writeSpeed) {
+    private StorageInformation(long timeBootMs, int storageId, int storageCount,
+            EnumValue<StorageStatus> status, float totalCapacity, float usedCapacity,
+            float availableCapacity, float readSpeed, float writeSpeed) {
         this.timeBootMs = timeBootMs;
         this.storageId = storageId;
         this.storageCount = storageCount;
@@ -94,48 +98,50 @@ public final class StorageInformation {
     }
 
     /**
-     * Status of storage (0 not available, 1 unformatted, 2 formatted) 
+     * Status of storage 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
+            enumType = StorageStatus.class,
+            description = "Status of storage"
     )
-    public final int status() {
+    public final EnumValue<StorageStatus> status() {
         return this.status;
     }
 
     /**
-     * Total capacity. 
+     * Total capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Total capacity."
+            description = "Total capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
     )
     public final float totalCapacity() {
         return this.totalCapacity;
     }
 
     /**
-     * Used capacity. 
+     * Used capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Used capacity."
+            description = "Used capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
     )
     public final float usedCapacity() {
         return this.usedCapacity;
     }
 
     /**
-     * Available storage capacity. 
+     * Available storage capacity. If storage is not ready (STORAGE_STATUS_READY) value will be 
+     * ignored. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Available storage capacity."
+            description = "Available storage capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
     )
     public final float availableCapacity() {
         return this.availableCapacity;
@@ -217,7 +223,7 @@ public final class StorageInformation {
 
         private int storageCount;
 
-        private int status;
+        private EnumValue<StorageStatus> status;
 
         private float totalCapacity;
 
@@ -269,25 +275,47 @@ public final class StorageInformation {
         }
 
         /**
-         * Status of storage (0 not available, 1 unformatted, 2 formatted) 
+         * Status of storage 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Status of storage (0 not available, 1 unformatted, 2 formatted)"
+                enumType = StorageStatus.class,
+                description = "Status of storage"
         )
-        public final Builder status(int status) {
+        public final Builder status(EnumValue<StorageStatus> status) {
             this.status = status;
             return this;
         }
 
         /**
-         * Total capacity. 
+         * Status of storage 
+         */
+        public final Builder status(StorageStatus entry) {
+            return status(EnumValue.of(entry));
+        }
+
+        /**
+         * Status of storage 
+         */
+        public final Builder status(Enum... flags) {
+            return status(EnumValue.create(flags));
+        }
+
+        /**
+         * Status of storage 
+         */
+        public final Builder status(Collection<Enum> flags) {
+            return status(EnumValue.create(flags));
+        }
+
+        /**
+         * Total capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Total capacity."
+                description = "Total capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
         )
         public final Builder totalCapacity(float totalCapacity) {
             this.totalCapacity = totalCapacity;
@@ -295,12 +323,12 @@ public final class StorageInformation {
         }
 
         /**
-         * Used capacity. 
+         * Used capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Used capacity."
+                description = "Used capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
         )
         public final Builder usedCapacity(float usedCapacity) {
             this.usedCapacity = usedCapacity;
@@ -308,12 +336,13 @@ public final class StorageInformation {
         }
 
         /**
-         * Available storage capacity. 
+         * Available storage capacity. If storage is not ready (STORAGE_STATUS_READY) value will be 
+         * ignored. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Available storage capacity."
+                description = "Available storage capacity. If storage is not ready (STORAGE_STATUS_READY) value will be ignored."
         )
         public final Builder availableCapacity(float availableCapacity) {
             this.availableCapacity = availableCapacity;

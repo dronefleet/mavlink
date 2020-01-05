@@ -10,14 +10,16 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * As local waypoints exist, the global waypoint reference allows to transform between the local 
- * coordinate frame and the global (GPS) coordinate frame. This can be necessary when e.g. in- and 
- * outdoor settings are connected and the MAV should move from in- to outdoor. 
+ * Sets the GPS co-ordinates of the vehicle local origin (0,0,0) position. Vehicle should emit 
+ * {@link io.dronefleet.mavlink.common.GpsGlobalOrigin GPS_GLOBAL_ORIGIN} irrespective of whether the origin is changed. This enables transform 
+ * between the local coordinate frame and the global (GPS) coordinate frame, which may be 
+ * necessary when (for example) indoor and outdoor settings are connected and the MAV should move 
+ * from in- to outdoor. 
  */
 @MavlinkMessageInfo(
         id = 48,
         crc = 41,
-        description = "As local waypoints exist, the global waypoint reference allows to transform between the local coordinate frame and the global (GPS) coordinate frame. This can be necessary when e.g. in- and outdoor settings are connected and the MAV should move from in- to outdoor."
+        description = "Sets the GPS co-ordinates of the vehicle local origin (0,0,0) position. Vehicle should emit GPS_GLOBAL_ORIGIN irrespective of whether the origin is changed. This enables transform between the local coordinate frame and the global (GPS) coordinate frame, which may be necessary when (for example) indoor and outdoor settings are connected and the MAV should move from in- to outdoor."
 )
 public final class SetGpsGlobalOrigin {
     private final int targetSystem;

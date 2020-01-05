@@ -11,12 +11,13 @@ import java.util.Objects;
 
 /**
  * A ping message either requesting or responding to a ping. This allows to measure the system 
- * latencies, including serial port, radio modem and UDP connections. 
+ * latencies, including serial port, radio modem and UDP connections. The ping microservice is 
+ * documented at https://mavlink.io/en/services/ping.html 
  */
 @MavlinkMessageInfo(
         id = 4,
         crc = 237,
-        description = "A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections."
+        description = "A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections. The ping microservice is documented at https://mavlink.io/en/services/ping.html"
 )
 public final class Ping {
     private final BigInteger timeUsec;

@@ -311,36 +311,36 @@ public final class SimState {
     }
 
     /**
-     * True velocity in NORTH direction in earth-fixed NED frame 
+     * True velocity in north direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 19,
             unitSize = 4,
-            description = "True velocity in NORTH direction in earth-fixed NED frame"
+            description = "True velocity in north direction in earth-fixed NED frame"
     )
     public final float vn() {
         return this.vn;
     }
 
     /**
-     * True velocity in EAST direction in earth-fixed NED frame 
+     * True velocity in east direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 4,
-            description = "True velocity in EAST direction in earth-fixed NED frame"
+            description = "True velocity in east direction in earth-fixed NED frame"
     )
     public final float ve() {
         return this.ve;
     }
 
     /**
-     * True velocity in DOWN direction in earth-fixed NED frame 
+     * True velocity in down direction in earth-fixed NED frame 
      */
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 4,
-            description = "True velocity in DOWN direction in earth-fixed NED frame"
+            description = "True velocity in down direction in earth-fixed NED frame"
     )
     public final float vd() {
         return this.vd;
@@ -705,12 +705,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in NORTH direction in earth-fixed NED frame 
+         * True velocity in north direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 19,
                 unitSize = 4,
-                description = "True velocity in NORTH direction in earth-fixed NED frame"
+                description = "True velocity in north direction in earth-fixed NED frame"
         )
         public final Builder vn(float vn) {
             this.vn = vn;
@@ -718,12 +718,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in EAST direction in earth-fixed NED frame 
+         * True velocity in east direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 4,
-                description = "True velocity in EAST direction in earth-fixed NED frame"
+                description = "True velocity in east direction in earth-fixed NED frame"
         )
         public final Builder ve(float ve) {
             this.ve = ve;
@@ -731,12 +731,12 @@ public final class SimState {
         }
 
         /**
-         * True velocity in DOWN direction in earth-fixed NED frame 
+         * True velocity in down direction in earth-fixed NED frame 
          */
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 4,
-                description = "True velocity in DOWN direction in earth-fixed NED frame"
+                description = "True velocity in down direction in earth-fixed NED frame"
         )
         public final Builder vd(float vd) {
             this.vd = vd;

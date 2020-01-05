@@ -51,84 +51,88 @@ public final class RadioStatus {
     }
 
     /**
-     * Local signal strength 
+     * Local (message sender) recieved signal strength indication in device-dependent 
+     * units/scale. Values: [0-254], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 1,
-            description = "Local signal strength"
+            description = "Local (message sender) recieved signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
     }
 
     /**
-     * Remote signal strength 
+     * Remote (message receiver) signal strength indication in device-dependent units/scale. 
+     * Values: [0-254], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
-            description = "Remote signal strength"
+            description = "Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
     )
     public final int remrssi() {
         return this.remrssi;
     }
 
     /**
-     * Remaining free buffer space. 
+     * Remaining free transmitter buffer space. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 1,
-            description = "Remaining free buffer space."
+            description = "Remaining free transmitter buffer space."
     )
     public final int txbuf() {
         return this.txbuf;
     }
 
     /**
-     * Background noise level 
+     * Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on 
+     * SiK radios). Values: [0-254], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Background noise level"
+            description = "Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown."
     )
     public final int noise() {
         return this.noise;
     }
 
     /**
-     * Remote background noise level 
+     * Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on 
+     * SiK radios). Values: [0-254], 255: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "Remote background noise level"
+            description = "Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown."
     )
     public final int remnoise() {
         return this.remnoise;
     }
 
     /**
-     * Receive errors 
+     * Count of radio packet receive errors (since boot). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "Receive errors"
+            description = "Count of radio packet receive errors (since boot)."
     )
     public final int rxerrors() {
         return this.rxerrors;
     }
 
     /**
-     * Count of error corrected packets 
+     * Count of error corrected radio packets (since boot). 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "Count of error corrected packets"
+            description = "Count of error corrected radio packets (since boot)."
     )
     public final int fixed() {
         return this.fixed;
@@ -189,12 +193,13 @@ public final class RadioStatus {
         private int fixed;
 
         /**
-         * Local signal strength 
+         * Local (message sender) recieved signal strength indication in device-dependent 
+         * units/scale. Values: [0-254], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 1,
-                description = "Local signal strength"
+                description = "Local (message sender) recieved signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;
@@ -202,12 +207,13 @@ public final class RadioStatus {
         }
 
         /**
-         * Remote signal strength 
+         * Remote (message receiver) signal strength indication in device-dependent units/scale. 
+         * Values: [0-254], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
-                description = "Remote signal strength"
+                description = "Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
         )
         public final Builder remrssi(int remrssi) {
             this.remrssi = remrssi;
@@ -215,12 +221,12 @@ public final class RadioStatus {
         }
 
         /**
-         * Remaining free buffer space. 
+         * Remaining free transmitter buffer space. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 1,
-                description = "Remaining free buffer space."
+                description = "Remaining free transmitter buffer space."
         )
         public final Builder txbuf(int txbuf) {
             this.txbuf = txbuf;
@@ -228,12 +234,13 @@ public final class RadioStatus {
         }
 
         /**
-         * Background noise level 
+         * Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on 
+         * SiK radios). Values: [0-254], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Background noise level"
+                description = "Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown."
         )
         public final Builder noise(int noise) {
             this.noise = noise;
@@ -241,12 +248,13 @@ public final class RadioStatus {
         }
 
         /**
-         * Remote background noise level 
+         * Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on 
+         * SiK radios). Values: [0-254], 255: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "Remote background noise level"
+                description = "Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown."
         )
         public final Builder remnoise(int remnoise) {
             this.remnoise = remnoise;
@@ -254,12 +262,12 @@ public final class RadioStatus {
         }
 
         /**
-         * Receive errors 
+         * Count of radio packet receive errors (since boot). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "Receive errors"
+                description = "Count of radio packet receive errors (since boot)."
         )
         public final Builder rxerrors(int rxerrors) {
             this.rxerrors = rxerrors;
@@ -267,12 +275,12 @@ public final class RadioStatus {
         }
 
         /**
-         * Count of error corrected packets 
+         * Count of error corrected radio packets (since boot). 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "Count of error corrected packets"
+                description = "Count of error corrected radio packets (since boot)."
         )
         public final Builder fixed(int fixed) {
             this.fixed = fixed;

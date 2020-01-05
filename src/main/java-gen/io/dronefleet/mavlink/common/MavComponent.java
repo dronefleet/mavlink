@@ -18,9 +18,10 @@ import java.lang.Deprecated;
 @MavlinkEnum
 public enum MavComponent {
     /**
-     * Used to broadcast messages to all components of the receiving system. Components should 
-     * attempt to process messages with this component ID and forward to components on any other 
-     * interfaces. 
+     * Target id (target_component) used to broadcast messages to all components of the receiving 
+     * system. Components should attempt to process messages with this component ID and forward to 
+     * components on any other interfaces. Note: This is not a valid *source* component id for a 
+     * message. 
      */
     @MavlinkEntryInfo(0)
     MAV_COMP_ID_ALL,
@@ -31,6 +32,531 @@ public enum MavComponent {
      */
     @MavlinkEntryInfo(1)
     MAV_COMP_ID_AUTOPILOT1,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(25)
+    MAV_COMP_ID_USER1,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(26)
+    MAV_COMP_ID_USER2,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(27)
+    MAV_COMP_ID_USER3,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(28)
+    MAV_COMP_ID_USER4,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(29)
+    MAV_COMP_ID_USER5,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(30)
+    MAV_COMP_ID_USER6,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(31)
+    MAV_COMP_ID_USER7,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(32)
+    MAV_COMP_ID_USER8,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(33)
+    MAV_COMP_ID_USER9,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(34)
+    MAV_COMP_ID_USER10,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(35)
+    MAV_COMP_ID_USER11,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(36)
+    MAV_COMP_ID_USER12,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(37)
+    MAV_COMP_ID_USER13,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(38)
+    MAV_COMP_ID_USER14,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(39)
+    MAV_COMP_ID_USER15,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(40)
+    MAV_COMP_ID_USE16,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(41)
+    MAV_COMP_ID_USER17,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(42)
+    MAV_COMP_ID_USER18,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(43)
+    MAV_COMP_ID_USER19,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(44)
+    MAV_COMP_ID_USER20,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(45)
+    MAV_COMP_ID_USER21,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(46)
+    MAV_COMP_ID_USER22,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(47)
+    MAV_COMP_ID_USER23,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(48)
+    MAV_COMP_ID_USER24,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(49)
+    MAV_COMP_ID_USER25,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(50)
+    MAV_COMP_ID_USER26,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(51)
+    MAV_COMP_ID_USER27,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(52)
+    MAV_COMP_ID_USER28,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(53)
+    MAV_COMP_ID_USER29,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(54)
+    MAV_COMP_ID_USER30,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(55)
+    MAV_COMP_ID_USER31,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(56)
+    MAV_COMP_ID_USER32,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(57)
+    MAV_COMP_ID_USER33,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(58)
+    MAV_COMP_ID_USER34,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(59)
+    MAV_COMP_ID_USER35,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(60)
+    MAV_COMP_ID_USER36,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(61)
+    MAV_COMP_ID_USER37,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(62)
+    MAV_COMP_ID_USER38,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(63)
+    MAV_COMP_ID_USER39,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(64)
+    MAV_COMP_ID_USER40,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(65)
+    MAV_COMP_ID_USER41,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(66)
+    MAV_COMP_ID_USER42,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(67)
+    MAV_COMP_ID_USER43,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(68)
+    MAV_COMP_ID_USER44,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(69)
+    MAV_COMP_ID_USER45,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(70)
+    MAV_COMP_ID_USER46,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(71)
+    MAV_COMP_ID_USER47,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(72)
+    MAV_COMP_ID_USER48,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(73)
+    MAV_COMP_ID_USER49,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(74)
+    MAV_COMP_ID_USER50,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(75)
+    MAV_COMP_ID_USER51,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(76)
+    MAV_COMP_ID_USER52,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(77)
+    MAV_COMP_ID_USER53,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(78)
+    MAV_COMP_ID_USER54,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(79)
+    MAV_COMP_ID_USER55,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(80)
+    MAV_COMP_ID_USER56,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(81)
+    MAV_COMP_ID_USER57,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(82)
+    MAV_COMP_ID_USER58,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(83)
+    MAV_COMP_ID_USER59,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(84)
+    MAV_COMP_ID_USER60,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(85)
+    MAV_COMP_ID_USER61,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(86)
+    MAV_COMP_ID_USER62,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(87)
+    MAV_COMP_ID_USER63,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(88)
+    MAV_COMP_ID_USER64,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(89)
+    MAV_COMP_ID_USER65,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(90)
+    MAV_COMP_ID_USER66,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(91)
+    MAV_COMP_ID_USER67,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(92)
+    MAV_COMP_ID_USER68,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(93)
+    MAV_COMP_ID_USER69,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(94)
+    MAV_COMP_ID_USER70,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(95)
+    MAV_COMP_ID_USER71,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(96)
+    MAV_COMP_ID_USER72,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(97)
+    MAV_COMP_ID_USER73,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(98)
+    MAV_COMP_ID_USER74,
+
+    /**
+     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
+     * be published by components outside of the private network. 
+     */
+    @MavlinkEntryInfo(99)
+    MAV_COMP_ID_USER75,
 
     /**
      * Camera #1. 
@@ -153,7 +679,7 @@ public enum MavComponent {
     MAV_COMP_ID_SERVO14,
 
     /**
-     * Gimbal component. 
+     * Gimbal #1. 
      */
     @MavlinkEntryInfo(154)
     MAV_COMP_ID_GIMBAL,
@@ -199,6 +725,36 @@ public enum MavComponent {
     MAV_COMP_ID_FLARM,
 
     /**
+     * Gimbal #2. 
+     */
+    @MavlinkEntryInfo(171)
+    MAV_COMP_ID_GIMBAL2,
+
+    /**
+     * Gimbal #3. 
+     */
+    @MavlinkEntryInfo(172)
+    MAV_COMP_ID_GIMBAL3,
+
+    /**
+     * Gimbal #4 
+     */
+    @MavlinkEntryInfo(173)
+    MAV_COMP_ID_GIMBAL4,
+
+    /**
+     * Gimbal #5. 
+     */
+    @MavlinkEntryInfo(174)
+    MAV_COMP_ID_GIMBAL5,
+
+    /**
+     * Gimbal #6. 
+     */
+    @MavlinkEntryInfo(175)
+    MAV_COMP_ID_GIMBAL6,
+
+    /**
      * Component that can generate/supply a mission flight plan (e.g. GCS or developer API). 
      */
     @MavlinkEntryInfo(190)
@@ -222,6 +778,12 @@ public enum MavComponent {
      */
     @MavlinkEntryInfo(197)
     MAV_COMP_ID_VISUAL_INERTIAL_ODOMETRY,
+
+    /**
+     * Component that manages pairing of vehicle and GCS. 
+     */
+    @MavlinkEntryInfo(198)
+    MAV_COMP_ID_PAIRING_MANAGER,
 
     /**
      * Inertial Measurement Unit (IMU) #1. 
@@ -264,6 +826,12 @@ public enum MavComponent {
      */
     @MavlinkEntryInfo(241)
     MAV_COMP_ID_UART_BRIDGE,
+
+    /**
+     * Component handling {@link io.dronefleet.mavlink.common.Tunnel TUNNEL} messages (e.g. vendor specific GUI of a component). 
+     */
+    @MavlinkEntryInfo(242)
+    MAV_COMP_ID_TUNNEL_NODE,
 
     /**
      * Component for handling system messages (e.g. to ARM, takeoff, etc.). 
