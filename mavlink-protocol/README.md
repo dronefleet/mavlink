@@ -25,7 +25,7 @@ and signing.
 
 ## Get it
 
-Maven Central coordinates are `io.dronefleet.mavlink:mavlink-protocol:1.1.6`
+Maven Central coordinates are `io.dronefleet.mavlink:mavlink-protocol:1.1.7`
 
 ## Examples
 
