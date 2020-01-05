@@ -1,6 +1,7 @@
 package io.dronefleet.mavlink.serialization.payload.reflection;
 
 
+import io.dronefleet.mavlink.common.ActuatorControlTarget;
 import io.dronefleet.mavlink.common.CommandLong;
 import io.dronefleet.mavlink.common.LogData;
 import io.dronefleet.mavlink.common.MavCmd;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,6 +37,11 @@ public class ReflectionSerializationTests {
                                         .ofs(46080)
                                         .count(90)
                                         .data(Arrays.copyOf("Test data".getBytes(StandardCharsets.UTF_8), 90))
+                                        .build()
+                        },
+                        {
+                                ActuatorControlTarget.builder()
+                                        .timeUsec(new BigInteger(new byte[] { -7, -6, -5, -4, -3, -2 ,-1, 0 }))
                                         .build()
                         }
                 }
