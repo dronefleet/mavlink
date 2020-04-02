@@ -33,8 +33,8 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                 .map(m -> m.getAnnotation(MavlinkFieldInfo.class))
                 .mapToInt(f -> f.unitSize() * Math.max(1, f.arraySize()))
                 .sum();
-        if (payloadLength > 253) {
-            throw new IllegalStateException("payload length > 253 for message" + messageClass.getName());
+        if (payloadLength > 255) {
+            throw new IllegalStateException("payload length > 255 for message" + messageClass.getName());
         }
         byte[] payload = new byte[payloadLength];
 
