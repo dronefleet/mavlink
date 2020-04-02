@@ -20,6 +20,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
@@ -42,6 +43,7 @@ public class MavlinkConnection {
         private final InputStream in;
         private final OutputStream out;
         private final Map<MavAutopilot, MavlinkDialect> dialects;
+        private MavlinkDialect defaultDialect;
 
         private Builder(InputStream in, OutputStream out) {
             this.in = in;
@@ -62,6 +64,7 @@ public class MavlinkConnection {
                     .dialect(MavAutopilot.MAV_AUTOPILOT_SLUGS, new SlugsDialect())
                     .dialect(MavAutopilot.MAV_AUTOPILOT_AUTOQUAD, new AutoquadDialect())
                     .dialect(MavAutopilot.MAV_AUTOPILOT_PPZ, new PaparazziDialect());
+            defaultDialect = COMMON_DIALECT;
         }
 
         /**
@@ -78,6 +81,18 @@ public class MavlinkConnection {
         }
 
         /**
+         * Sets the default dialect to be used by the built connection. The default dialect
+         * will be assumed for systems which did not yet send a {@link Heartbeat}.
+         *
+         * @param dialect The default dialect to use.
+         * @return This builder.
+         */
+        public Builder defaultDialect(MavlinkDialect dialect) {
+            defaultDialect = dialect;
+            return this;
+        }
+
+        /**
          * Builds a ready to use connection instance.
          */
         public MavlinkConnection build() {
@@ -85,6 +100,7 @@ public class MavlinkConnection {
                     new MavlinkPacketReader(in),
                     out,
                     dialects,
+                    defaultDialect,
                     new ReflectionPayloadDeserializer(),
                     new ReflectionPayloadSerializer()
             );
@@ -149,6 +165,12 @@ public class MavlinkConnection {
     private final Map<MavAutopilot, MavlinkDialect> dialects;
 
     /**
+     * The default dialect to use before a system announces its dialect with a
+     * heartbeat.
+     */
+    private final MavlinkDialect defaultDialect;
+
+    /**
      * The payload deserializer that this connection uses in order to deserialize
      * message payloads.
      */
@@ -173,11 +195,13 @@ public class MavlinkConnection {
             MavlinkPacketReader reader,
             OutputStream out,
             Map<MavAutopilot, MavlinkDialect> dialects,
+            MavlinkDialect defaultDialect,
             MavlinkPayloadDeserializer deserializer,
             MavlinkPayloadSerializer serializer) {
         this.reader = reader;
         this.out = out;
         this.dialects = dialects;
+        this.defaultDialect = defaultDialect;
         this.deserializer = deserializer;
         this.serializer = serializer;
         systemDialects = new HashMap<>();
@@ -212,28 +236,26 @@ public class MavlinkConnection {
             MavlinkPacket packet;
             while ((packet = reader.next()) != null) {
                 // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
-                // or we don't support the dialect of its autopilot, then we use the common dialect.
-                MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), COMMON_DIALECT);
-
-                // If the packet is not supported by the dialect, then we drop the packet and continue.
-                // Unfortunately, because of the inadequate design of Mavlink's CRC validation which incorporates
-                // information from underlying implementations that use the message protocol, we are unable to
-                // check if the packet is actually a valid one, despite not understanding it.
-                // So we have to assume that we might have received a corrupted packet, and instead, try again
-                // at the next byte rather than skipping the entire message.
-                if (!dialect.supports(packet.getMessageId())) {
-                    reader.drop();
-                    continue;
+                // or we don't support the dialect of its autopilot, then we use the default dialect.
+                MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), defaultDialect);
+                Class<?> messageType = getMessageType(packet, dialect);
+                if (messageType == null) {
+                    // If we couldn't get the message type from the configured dialect, we fall back to the common
+                    // dialect so that we may receive heartbeats.
+                    dialect = COMMON_DIALECT;
+                    messageType = getMessageType(packet, COMMON_DIALECT);
+                    if (messageType == null) {
+                        // If the packet is not supported by the configured dialects, then we must drop the packet
+                        // and continue. Unfortunately, because of the inadequate design of Mavlink's CRC validation
+                        // which incorporates information from underlying implementations that use the message protocol,
+                        // we are unable to check if the packet is actually a valid one, despite not understanding it.
+                        // So we have to assume that we might have received a corrupted packet, and instead, try again
+                        // at the next byte rather than skipping the entire message.
+                        reader.drop();
+                        continue;
+                    }
                 }
 
-                // Get the message type and deserialize the payload.
-                Class<?> messageType = dialect.resolve(packet.getMessageId());
-                MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
-                if (!packet.validateCrc(messageInfo.crc())) {
-                    // This packet did not pass CRC validation. It may be dropped.
-                    reader.drop();
-                    continue;
-                }
                 Object payload = deserializer.deserialize(packet.getPayload(), messageType);
 
                 // If we received a Heartbeat message, then we can use that in order to update the dialect
@@ -366,5 +388,22 @@ public class MavlinkConnection {
      */
     private void send(MavlinkPacket packet) throws IOException {
         out.write(packet.getRawBytes());
+    }
+
+    /**
+     * @param packet  The packet for which to resolve the message type.
+     * @param dialect The dialect to use in order to resolve the message type.
+     * @return The message type according to the specified dialect, or {@code null}
+     * if the packet does not represent a message of the specified dialect.
+     */
+    private Class<?> getMessageType(MavlinkPacket packet, MavlinkDialect dialect) {
+        if (dialect.supports(packet.getMessageId())) {
+            Class<?> messageType = dialect.resolve(packet.getMessageId());
+            MavlinkMessageInfo messageInfo = messageType.getAnnotation(MavlinkMessageInfo.class);
+            if (packet.validateCrc(messageInfo.crc())) {
+                return messageType;
+            }
+        }
+        return null;
     }
 }
