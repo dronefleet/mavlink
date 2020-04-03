@@ -20,7 +20,9 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -234,44 +236,26 @@ public class MavlinkConnection {
         try {
             MavlinkPacket packet;
             while ((packet = reader.next()) != null) {
-                // Get the dialect for the system that sent this packet. If we don't know which dialect it is,
-                // or we don't support the dialect of its autopilot, then we use the default dialect.
-                MavlinkDialect dialect = systemDialects.getOrDefault(packet.getSystemId(), defaultDialect);
-                Class<?> messageType = getMessageType(packet, dialect);
-                if (messageType == null) {
-                    // If we couldn't get the message type from the configured dialect, we fall back to the common
-                    // dialect so that we may receive heartbeats.
-                    dialect = COMMON_DIALECT;
-                    messageType = getMessageType(packet, COMMON_DIALECT);
-                    if (messageType == null) {
-                        // If the packet is not supported by the configured dialects, then we must drop the packet
-                        // and continue. Unfortunately, because of the inadequate design of Mavlink's CRC validation
-                        // which incorporates information from underlying implementations that use the message protocol,
-                        // we are unable to check if the packet is actually a valid one, despite not understanding it.
-                        // So we have to assume that we might have received a corrupted packet, and instead, try again
-                        // at the next byte rather than skipping the entire message.
-                        reader.drop();
-                        continue;
+                Class<?> messageType = getMessageType(packet, Arrays.asList(
+                        systemDialects.getOrDefault(packet.getSystemId(), defaultDialect),
+                        COMMON_DIALECT));
+                if (messageType != null) {
+                    Object payload = deserializer.deserialize(packet.getPayload(), messageType);
+                    if (payload instanceof Heartbeat) {
+                        Heartbeat heartbeat = (Heartbeat) payload;
+                        if (dialects.containsKey(heartbeat.autopilot().entry())) {
+                            systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot().entry()));
+                        }
                     }
-                }
-
-                Object payload = deserializer.deserialize(packet.getPayload(), messageType);
-
-                // If we received a Heartbeat message, then we can use that in order to update the dialect
-                // for this system.
-                if (payload instanceof Heartbeat) {
-                    Heartbeat heartbeat = (Heartbeat) payload;
-                    if (dialects.containsKey(heartbeat.autopilot().entry())) {
-                        systemDialects.put(packet.getSystemId(), dialects.get(heartbeat.autopilot().entry()));
+                    if (packet.isMavlink2()) {
+                        //noinspection unchecked
+                        return new Mavlink2Message(packet, payload);
+                    } else {
+                        //noinspection unchecked
+                        return new MavlinkMessage(packet, payload);
                     }
-                }
-
-                if (packet.isMavlink2()) {
-                    //noinspection unchecked
-                    return new Mavlink2Message(packet, payload);
                 } else {
-                    //noinspection unchecked
-                    return new MavlinkMessage(packet, payload);
+                    reader.drop();
                 }
             }
 
@@ -387,6 +371,24 @@ public class MavlinkConnection {
      */
     private void send(MavlinkPacket packet) throws IOException {
         out.write(packet.getRawBytes());
+    }
+
+    /**
+     * @param packet   The packet for which to resolve the message type.
+     * @param dialects The list of dialects to use in order to resolve the message type. The list
+     *                 order specifies which dialects will take priority in resolving the
+     *                 type of the message.
+     * @return The message type according to the specified dialects, or {@code null}
+     * if the packet does not represent a message in any of the specified dialects.
+     */
+    private Class<?> getMessageType(MavlinkPacket packet, List<MavlinkDialect> dialects) {
+        for (MavlinkDialect dialect : dialects) {
+            Class<?> messageType = getMessageType(packet, dialect);
+            if (messageType != null) {
+                return messageType;
+            }
+        }
+        return null;
     }
 
     /**
