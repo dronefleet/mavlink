@@ -82,7 +82,13 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                             } else if (String.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, stringValue(data));
                             } else if (byte[].class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, data);
+                                method.invoke(builder, (Object) data);
+                            } else if (short[].class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, (Object) shortArrayValue(data));
+                            } else if (int[].class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, (Object) intArrayValue(data));
+                            } else if (long[].class.isAssignableFrom(fieldType)) {
+                                method.invoke(builder, (Object) longArrayValue(data));
                             } else if (BigInteger.class.isAssignableFrom(fieldType)) {
                                 method.invoke(builder, bigIntValue(data));
                             }
@@ -162,4 +168,28 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                 (Class<? extends Enum>) enumType,
                 (int) integerValue(data, signed));
     }
+
+    private short[] shortArrayValue(byte[] data){
+        short[] result = new short[data.length/2];
+        ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(result);
+
+        return result;
+    }
+
+    private int[] intArrayValue(byte[] data){
+        int[] result = new int[data.length/4];
+        ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).asIntBuffer().get(result);
+
+        return result;
+    }
+
+
+    private long[] longArrayValue(byte[] data){
+        long[] result = new long[data.length/8];
+        ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).asLongBuffer().get(result);
+
+        return result;
+    }
+
+
 }

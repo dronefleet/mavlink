@@ -216,8 +216,17 @@ public class FieldGenerator implements Comparable<FieldGenerator> {
         if ("char".equals(type)) {
             return ClassName.get(String.class);
         }
-        if ("uint8_t".equals(type)) {
+        if ("uint8_t".equals(type) || "int8_t".equals(type)) {
             return TypeName.get(byte[].class);
+        }
+        if ("uint16_t".equals(type) || "int16_t".equals(type)) {
+            return TypeName.get(short[].class);
+        }
+        if ("uint32_t".equals(type) || "int32_t".equals(type)) {
+            return TypeName.get(int[].class);
+        }
+        if ("uint64_t".equals(type) || "int64_t".equals(type)) {
+            return TypeName.get(long[].class);
         }
         return ParameterizedTypeName.get(ClassName.get(List.class), primitiveType().box());
     }
