@@ -9,12 +9,13 @@ import io.dronefleet.mavlink.util.EnumValue;
 import io.dronefleet.mavlink.util.WireFieldInfoComparator;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer {
@@ -60,32 +61,15 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
                             System.arraycopy(payload, offset, data, 0, copyLength);
                         }
 
-                        Class fieldType = Optional.of(method.getParameterTypes())
+                        Type fieldType = Optional.of(method.getGenericParameterTypes())
                                 .filter(types -> types.length == 1)
                                 .map(types -> types[0])
                                 .orElseThrow(() -> new MavlinkSerializationException(
                                         "Method " + method.getName() + " of " + builder.getClass().getName()
                                                 + " is annotated with @MavlinkFieldInfo, however does not " +
                                                 "accept a single parameter."));
-
                         try {
-                            if (EnumValue.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, enumValue(field.enumType(), data, field.signed()));
-                            } else if (int.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, (int) integerValue(data, field.signed()));
-                            } else if (long.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, integerValue(data, field.signed()));
-                            } else if (float.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, floatValue(data));
-                            } else if (double.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, doubleValue(data));
-                            } else if (String.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, stringValue(data));
-                            } else if (byte[].class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, data);
-                            } else if (BigInteger.class.isAssignableFrom(fieldType)) {
-                                method.invoke(builder, bigIntValue(data));
-                            }
+                            method.invoke(builder, deserialize(fieldType, data, 0, data.length, field));
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             e.printStackTrace();
                         }
@@ -99,41 +83,71 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
         return null;
     }
 
-    private long unsignedIntegerValue(byte[] data) {
+    private Object deserialize(Type fieldType, byte[] data, int offset, int length, MavlinkFieldInfo field) {
+        if (fieldType instanceof Class) {
+            Class fieldClass = (Class<?>) fieldType;
+            if (int.class.isAssignableFrom(fieldClass) || Integer.class.isAssignableFrom(fieldClass)) {
+                return (int) integerValue(data, offset, length, field.signed());
+            } else if (long.class.isAssignableFrom(fieldClass) || Long.class.isAssignableFrom(fieldClass)) {
+                return integerValue(data, offset, length, field.signed());
+            } else if (float.class.isAssignableFrom(fieldClass) || Float.class.isAssignableFrom(fieldClass)) {
+                return floatValue(data, offset);
+            } else if (double.class.isAssignableFrom(fieldClass) || Double.class.isAssignableFrom(fieldClass)) {
+                return doubleValue(data, offset);
+            } else if (String.class.isAssignableFrom(fieldClass)) {
+                return stringValue(data);
+            } else if (byte[].class.isAssignableFrom(fieldClass)) {
+                return data;
+            } else if (BigInteger.class.isAssignableFrom(fieldClass)) {
+                return bigIntValue(data);
+            }
+        } else if (fieldType instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) fieldType;
+            Class<?> fieldClass = (Class<?>) parameterizedType.getRawType();
+            if (EnumValue.class.isAssignableFrom(fieldClass)) {
+                return enumValue(field.enumType(), data, offset, length, field.signed());
+            } else if (List.class.isAssignableFrom(fieldClass)) {
+                return listValue((Class<?>) parameterizedType.getActualTypeArguments()[0], data, field);
+            }
+        }
+        return null;
+    }
+
+    private long unsignedIntegerValue(byte[] data, int offset, int length) {
         long value = 0;
-        for (int i = 0; i < data.length; i++) {
-            value = value | ((long) ((data[i] & 0xff)) << (i * 8));
+        for (int i = offset; i < Math.min(data.length, length); i++) {
+            value = value | ((long) ((data[i] & 0xff)) << ((i - offset) * 8));
         }
         return value;
     }
 
-    private long signedIntegerValue(byte[] data) {
-        long value = unsignedIntegerValue(data);
-        int signBitIndex = data.length * Byte.SIZE - 1;
+    private long signedIntegerValue(byte[] data, int offset, int length) {
+        long value = unsignedIntegerValue(data, offset, length);
+        int signBitIndex = (length - offset) * Byte.SIZE - 1;
         if ((value >> signBitIndex) == 1) {
             value |= (-1L << signBitIndex);
         }
         return value;
     }
 
-    private long integerValue(byte[] data, boolean signed) {
+    private long integerValue(byte[] data, int offset, int length, boolean signed) {
         if (signed) {
-            return signedIntegerValue(data);
+            return signedIntegerValue(data, offset, length);
         } else {
-            return unsignedIntegerValue(data);
+            return unsignedIntegerValue(data, offset, length);
         }
     }
 
-    private double doubleValue(byte[] data) {
+    private double doubleValue(byte[] data, int offset) {
         return ByteBuffer.wrap(data)
                 .order(ByteOrder.LITTLE_ENDIAN)
-                .getDouble();
+                .getDouble(offset);
     }
 
-    private float floatValue(byte[] data) {
+    private float floatValue(byte[] data, int offset) {
         return ByteBuffer.wrap(data)
                 .order(ByteOrder.LITTLE_ENDIAN)
-                .getFloat();
+                .getFloat(offset);
     }
 
     private String stringValue(byte[] data) {
@@ -146,20 +160,30 @@ public class ReflectionPayloadDeserializer implements MavlinkPayloadDeserializer
     }
 
 
-    private BigInteger bigIntValue(byte[] data){
+    private BigInteger bigIntValue(byte[] data) {
         // Invert to big-endian, for BigInteger constructor
-        for (int i = 0; i < data.length/2; ++i){
+        for (int i = 0; i < data.length / 2; ++i) {
             byte tmp = data[i];
-            data[i] = data[data.length-1-i];
-            data[data.length-1-i] = tmp;
+            data[i] = data[data.length - 1 - i];
+            data[data.length - 1 - i] = tmp;
         }
 
         return new BigInteger(data);
     }
 
-    private Object enumValue(Class<?> enumType, byte[] data, boolean signed) {
+    private Object enumValue(Class<?> enumType, byte[] data, int offset, int length, boolean signed) {
         return EnumValue.create(
                 (Class<? extends Enum>) enumType,
-                (int) integerValue(data, signed));
+                (int) integerValue(data, offset, length, signed));
+    }
+
+    private List<?> listValue(Class<?> listType, byte[] data, MavlinkFieldInfo field) {
+        int unitSize = field.unitSize();
+        List<Object> result = new ArrayList<>(data.length / unitSize);
+        for (int offset = 0; offset < data.length; offset += unitSize) {
+            Object value = deserialize(listType, data, offset, offset + unitSize, field);
+            result.add(value);
+        }
+        return Collections.unmodifiableList(result);
     }
 }

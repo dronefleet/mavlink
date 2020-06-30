@@ -15,6 +15,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
@@ -55,28 +56,7 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                     try {
                         Object fieldValue = m.invoke(message);
                         if (fieldValue != null) {
-                            Class<?> fieldType = fieldValue.getClass();
-                            if (Integer.class.isAssignableFrom(fieldType)) {
-                                write((Integer) fieldValue, payload, offset, length);
-                            } else if (Long.class.isAssignableFrom(fieldType)) {
-                                write((Long) fieldValue, payload, offset, length);
-                            } else if (BigInteger.class.isAssignableFrom(fieldType)) {
-                                write((BigInteger) fieldValue, payload, offset, length);
-                            } else if (Float.class.isAssignableFrom(fieldType)) {
-                                write((Float) fieldValue, payload, offset, length);
-                            } else if (Double.class.isAssignableFrom(fieldType)) {
-                                write((Double) fieldValue, payload, offset, length);
-                            } else if (Enum.class.isAssignableFrom(fieldType)) {
-                                write((Enum) fieldValue, payload, offset, length);
-                            } else if (EnumValue.class.isAssignableFrom(fieldType)) {
-                                write((EnumValue<? extends Enum>) fieldValue, payload, offset, length);
-                            } else if (String.class.isAssignableFrom(fieldType)) {
-                                write((String) fieldValue, payload, offset, length);
-                            } else if (byte[].class.isAssignableFrom(fieldType)) {
-                                write((byte[]) fieldValue, payload, offset, length);
-                            } else {
-                                throw new MavlinkSerializationException("unrecognized field type " + fieldType.getName());
-                            }
+                            write(fieldValue, payload, offset, length, field.unitSize());
                         }
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         throw new IllegalStateException(e);
@@ -84,6 +64,33 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
                 });
 
         return payload;
+    }
+
+    private void write(Object value, byte[] buffer, int offset, int length, int unitSize) {
+        Class<?> type = value.getClass();
+        if (Integer.class.isAssignableFrom(type)) {
+            write((Integer) value, buffer, offset, length);
+        } else if (Long.class.isAssignableFrom(type)) {
+            write((Long) value, buffer, offset, length);
+        } else if (BigInteger.class.isAssignableFrom(type)) {
+            write((BigInteger) value, buffer, offset, length);
+        } else if (Float.class.isAssignableFrom(type)) {
+            write((Float) value, buffer, offset, length);
+        } else if (Double.class.isAssignableFrom(type)) {
+            write((Double) value, buffer, offset, length);
+        } else if (Enum.class.isAssignableFrom(type)) {
+            write((Enum) value, buffer, offset, length);
+        } else if (EnumValue.class.isAssignableFrom(type)) {
+            write((EnumValue<? extends Enum>) value, buffer, offset, length);
+        } else if (String.class.isAssignableFrom(type)) {
+            write((String) value, buffer, offset, length);
+        } else if (byte[].class.isAssignableFrom(type)) {
+            write((byte[]) value, buffer, offset, length);
+        } else if (List.class.isAssignableFrom(type)) {
+            write((List<?>) value, buffer, offset, length, unitSize);
+        } else {
+            throw new MavlinkSerializationException("unrecognized field type " + type.getName());
+        }
     }
 
     private void write(long value, byte[] buffer, int offset, int length) {
@@ -126,5 +133,15 @@ public class ReflectionPayloadSerializer implements MavlinkPayloadSerializer {
 
     private void write(byte[] bytes, byte[] buffer, int offset, int length) {
         System.arraycopy(bytes, 0, buffer, offset, Math.min(length - offset, bytes.length));
+    }
+
+    private void write(List<?> list, byte[] buffer, int offset, int length, int unitSize) {
+        if (list.size() > (length / unitSize)) {
+            throw new IllegalStateException("too many items in list");
+        }
+        for (Object value : list) {
+            write(value, buffer, offset, offset + unitSize, 1);
+            offset += unitSize;
+        }
     }
 }

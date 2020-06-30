@@ -1,10 +1,7 @@
 package io.dronefleet.mavlink.serialization.payload.reflection;
 
 
-import io.dronefleet.mavlink.common.ActuatorControlTarget;
-import io.dronefleet.mavlink.common.CommandLong;
-import io.dronefleet.mavlink.common.LogData;
-import io.dronefleet.mavlink.common.MavCmd;
+import io.dronefleet.mavlink.common.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -41,7 +38,17 @@ public class ReflectionSerializationTests {
                         },
                         {
                                 ActuatorControlTarget.builder()
-                                        .timeUsec(new BigInteger(new byte[] { -7, -6, -5, -4, -3, -2 ,-1, 0 }))
+                                        .timeUsec(new BigInteger(new byte[]{-7, -6, -5, -4, -3, -2, -1, 0}))
+                                        .controls(Arrays.asList(.1f, -.2f, .3f, -.4f, .5f, -.6f, .7f, -.8f))
+                                        .build()
+                        },
+                        {
+                                BatteryStatus.builder()
+                                        .batteryFunction(MavBatteryFunction.MAV_BATTERY_FUNCTION_ALL)
+                                        .type(MavBatteryType.MAV_BATTERY_TYPE_LION)
+                                        .chargeState(MavBatteryChargeState.MAV_BATTERY_CHARGE_STATE_OK)
+                                        .voltages(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+                                        .currentBattery(-5)
                                         .build()
                         }
                 }
@@ -59,7 +66,7 @@ public class ReflectionSerializationTests {
     }
 
     @Test
-    public void test() throws InterruptedException {
+    public void test() {
         byte[] bytes = serializer.serialize(expected);
         Object actual = deserializer.deserialize(bytes, expected.getClass());
         assertEquals(expected, actual);
