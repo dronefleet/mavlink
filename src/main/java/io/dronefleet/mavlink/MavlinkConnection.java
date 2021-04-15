@@ -371,6 +371,7 @@ public class MavlinkConnection {
      */
     private void send(MavlinkPacket packet) throws IOException {
         out.write(packet.getRawBytes());
+        out.flush();
     }
 
     /**
