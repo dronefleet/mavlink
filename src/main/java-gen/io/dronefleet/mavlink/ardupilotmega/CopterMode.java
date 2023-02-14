@@ -120,5 +120,41 @@ public enum CopterMode {
      *  
      */
     @MavlinkEntryInfo(21)
-    COPTER_MODE_SMART_RTL
+    COPTER_MODE_SMART_RTL,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(22)
+    COPTER_MODE_FLOWHOLD,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(23)
+    COPTER_MODE_FOLLOW,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(24)
+    COPTER_MODE_ZIGZAG,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(25)
+    COPTER_MODE_SYSTEMID,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(26)
+    COPTER_MODE_AUTOROTATE,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(27)
+    COPTER_MODE_AUTO_RTL
 }

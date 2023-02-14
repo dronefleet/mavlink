@@ -44,9 +44,12 @@ public final class DistanceSensor {
 
     private final List<Float> quaternion;
 
+    private final int signalQuality;
+
     private DistanceSensor(long timeBootMs, int minDistance, int maxDistance, int currentDistance,
             EnumValue<MavDistanceSensor> type, int id, EnumValue<MavSensorOrientation> orientation,
-            int covariance, float horizontalFov, float verticalFov, List<Float> quaternion) {
+            int covariance, float horizontalFov, float verticalFov, List<Float> quaternion,
+            int signalQuality) {
         this.timeBootMs = timeBootMs;
         this.minDistance = minDistance;
         this.maxDistance = maxDistance;
@@ -58,6 +61,7 @@ public final class DistanceSensor {
         this.horizontalFov = horizontalFov;
         this.verticalFov = verticalFov;
         this.quaternion = quaternion;
+        this.signalQuality = signalQuality;
     }
 
     /**
@@ -157,12 +161,12 @@ public final class DistanceSensor {
     }
 
     /**
-     * Measurement variance. Max standard deviation is 6cm. 255 if unknown. 
+     * Measurement variance. Max standard deviation is 6cm. UINT8_MAX if unknown. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
-            description = "Measurement variance. Max standard deviation is 6cm. 255 if unknown."
+            description = "Measurement variance. Max standard deviation is 6cm. UINT8_MAX if unknown."
     )
     public final int covariance() {
         return this.covariance;
@@ -212,6 +216,21 @@ public final class DistanceSensor {
         return this.quaternion;
     }
 
+    /**
+     * Signal quality of the sensor. Specific to each sensor type, representing the relation of the 
+     * signal strength with the target reflectivity, distance, size or aspect, but normalised as a 
+     * percentage. 0 = unknown/unset signal quality, 1 = invalid signal, 100 = perfect signal. 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 1,
+            extension = true,
+            description = "Signal quality of the sensor. Specific to each sensor type, representing the relation of the signal strength with the target reflectivity, distance, size or aspect, but normalised as a percentage. 0 = unknown/unset signal quality, 1 = invalid signal, 100 = perfect signal."
+    )
+    public final int signalQuality() {
+        return this.signalQuality;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -228,6 +247,7 @@ public final class DistanceSensor {
         if (!Objects.deepEquals(horizontalFov, other.horizontalFov)) return false;
         if (!Objects.deepEquals(verticalFov, other.verticalFov)) return false;
         if (!Objects.deepEquals(quaternion, other.quaternion)) return false;
+        if (!Objects.deepEquals(signalQuality, other.signalQuality)) return false;
         return true;
     }
 
@@ -245,6 +265,7 @@ public final class DistanceSensor {
         result = 31 * result + Objects.hashCode(horizontalFov);
         result = 31 * result + Objects.hashCode(verticalFov);
         result = 31 * result + Objects.hashCode(quaternion);
+        result = 31 * result + Objects.hashCode(signalQuality);
         return result;
     }
 
@@ -260,7 +281,8 @@ public final class DistanceSensor {
                  + ", covariance=" + covariance
                  + ", horizontalFov=" + horizontalFov
                  + ", verticalFov=" + verticalFov
-                 + ", quaternion=" + quaternion + "}";
+                 + ", quaternion=" + quaternion
+                 + ", signalQuality=" + signalQuality + "}";
     }
 
     public static final class Builder {
@@ -285,6 +307,8 @@ public final class DistanceSensor {
         private float verticalFov;
 
         private List<Float> quaternion;
+
+        private int signalQuality;
 
         /**
          * Timestamp (time since system boot). 
@@ -430,12 +454,12 @@ public final class DistanceSensor {
         }
 
         /**
-         * Measurement variance. Max standard deviation is 6cm. 255 if unknown. 
+         * Measurement variance. Max standard deviation is 6cm. UINT8_MAX if unknown. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
-                description = "Measurement variance. Max standard deviation is 6cm. 255 if unknown."
+                description = "Measurement variance. Max standard deviation is 6cm. UINT8_MAX if unknown."
         )
         public final Builder covariance(int covariance) {
             this.covariance = covariance;
@@ -489,8 +513,24 @@ public final class DistanceSensor {
             return this;
         }
 
+        /**
+         * Signal quality of the sensor. Specific to each sensor type, representing the relation of the 
+         * signal strength with the target reflectivity, distance, size or aspect, but normalised as a 
+         * percentage. 0 = unknown/unset signal quality, 1 = invalid signal, 100 = perfect signal. 
+         */
+        @MavlinkFieldInfo(
+                position = 13,
+                unitSize = 1,
+                extension = true,
+                description = "Signal quality of the sensor. Specific to each sensor type, representing the relation of the signal strength with the target reflectivity, distance, size or aspect, but normalised as a percentage. 0 = unknown/unset signal quality, 1 = invalid signal, 100 = perfect signal."
+        )
+        public final Builder signalQuality(int signalQuality) {
+            this.signalQuality = signalQuality;
+            return this;
+        }
+
         public final DistanceSensor build() {
-            return new DistanceSensor(timeBootMs, minDistance, maxDistance, currentDistance, type, id, orientation, covariance, horizontalFov, verticalFov, quaternion);
+            return new DistanceSensor(timeBootMs, minDistance, maxDistance, currentDistance, type, id, orientation, covariance, horizontalFov, verticalFov, quaternion, signalQuality);
         }
     }
 }

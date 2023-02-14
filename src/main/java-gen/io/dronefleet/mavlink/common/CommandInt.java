@@ -13,13 +13,15 @@ import java.util.Objects;
 
 /**
  * Message encoding a command with parameters as scaled integers. Scaling depends on the actual 
- * command value. The command microservice is documented at 
+ * command value. NaN or INT32_MAX may be used in float/integer params (respectively) to 
+ * indicate optional/default values (e.g. to use the component's current latitude, yaw rather 
+ * than a specific value). The command microservice is documented at 
  * https://mavlink.io/en/services/command.html 
  */
 @MavlinkMessageInfo(
         id = 75,
         crc = 158,
-        description = "Message encoding a command with parameters as scaled integers. Scaling depends on the actual command value. The command microservice is documented at https://mavlink.io/en/services/command.html"
+        description = "Message encoding a command with parameters as scaled integers. Scaling depends on the actual command value. NaN or INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current latitude, yaw rather than a specific value). The command microservice is documented at https://mavlink.io/en/services/command.html"
 )
 public final class CommandInt {
     private final int targetSystem;
@@ -125,24 +127,24 @@ public final class CommandInt {
     }
 
     /**
-     * false:0, true:1 
+     * Not used. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "false:0, true:1"
+            description = "Not used."
     )
     public final int current() {
         return this.current;
     }
 
     /**
-     * autocontinue to next wp 
+     * Not used (set 0). 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
-            description = "autocontinue to next wp"
+            description = "Not used (set 0)."
     )
     public final int autocontinue() {
         return this.autocontinue;
@@ -415,12 +417,12 @@ public final class CommandInt {
         }
 
         /**
-         * false:0, true:1 
+         * Not used. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "false:0, true:1"
+                description = "Not used."
         )
         public final Builder current(int current) {
             this.current = current;
@@ -428,12 +430,12 @@ public final class CommandInt {
         }
 
         /**
-         * autocontinue to next wp 
+         * Not used (set 0). 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
-                description = "autocontinue to next wp"
+                description = "Not used (set 0)."
         )
         public final Builder autocontinue(int autocontinue) {
             this.autocontinue = autocontinue;

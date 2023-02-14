@@ -9,12 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Information about the status of a capture. 
+ * Information about the status of a capture. Can be requested with a MAV_CMD_REQUEST_MESSAGE 
+ * command. 
  */
 @MavlinkMessageInfo(
         id = 262,
         crc = 12,
-        description = "Information about the status of a capture."
+        description = "Information about the status of a capture. Can be requested with a MAV_CMD_REQUEST_MESSAGE command."
 )
 public final class CameraCaptureStatus {
     private final long timeBootMs;
@@ -29,14 +30,17 @@ public final class CameraCaptureStatus {
 
     private final float availableCapacity;
 
+    private final int imageCount;
+
     private CameraCaptureStatus(long timeBootMs, int imageStatus, int videoStatus,
-            float imageInterval, long recordingTimeMs, float availableCapacity) {
+            float imageInterval, long recordingTimeMs, float availableCapacity, int imageCount) {
         this.timeBootMs = timeBootMs;
         this.imageStatus = imageStatus;
         this.videoStatus = videoStatus;
         this.imageInterval = imageInterval;
         this.recordingTimeMs = recordingTimeMs;
         this.availableCapacity = availableCapacity;
+        this.imageCount = imageCount;
     }
 
     /**
@@ -97,12 +101,13 @@ public final class CameraCaptureStatus {
     }
 
     /**
-     * Time since recording started 
+     * Elapsed time since recording started (0: Not supported/available). A GCS should compute 
+     * recording time and use non-zero values of this field to correct any discrepancy. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Time since recording started"
+            description = "Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy."
     )
     public final long recordingTimeMs() {
         return this.recordingTimeMs;
@@ -120,6 +125,20 @@ public final class CameraCaptureStatus {
         return this.availableCapacity;
     }
 
+    /**
+     * Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT). 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 4,
+            signed = true,
+            extension = true,
+            description = "Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT)."
+    )
+    public final int imageCount() {
+        return this.imageCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,6 +150,7 @@ public final class CameraCaptureStatus {
         if (!Objects.deepEquals(imageInterval, other.imageInterval)) return false;
         if (!Objects.deepEquals(recordingTimeMs, other.recordingTimeMs)) return false;
         if (!Objects.deepEquals(availableCapacity, other.availableCapacity)) return false;
+        if (!Objects.deepEquals(imageCount, other.imageCount)) return false;
         return true;
     }
 
@@ -143,6 +163,7 @@ public final class CameraCaptureStatus {
         result = 31 * result + Objects.hashCode(imageInterval);
         result = 31 * result + Objects.hashCode(recordingTimeMs);
         result = 31 * result + Objects.hashCode(availableCapacity);
+        result = 31 * result + Objects.hashCode(imageCount);
         return result;
     }
 
@@ -153,7 +174,8 @@ public final class CameraCaptureStatus {
                  + ", videoStatus=" + videoStatus
                  + ", imageInterval=" + imageInterval
                  + ", recordingTimeMs=" + recordingTimeMs
-                 + ", availableCapacity=" + availableCapacity + "}";
+                 + ", availableCapacity=" + availableCapacity
+                 + ", imageCount=" + imageCount + "}";
     }
 
     public static final class Builder {
@@ -168,6 +190,8 @@ public final class CameraCaptureStatus {
         private long recordingTimeMs;
 
         private float availableCapacity;
+
+        private int imageCount;
 
         /**
          * Timestamp (time since system boot). 
@@ -223,12 +247,13 @@ public final class CameraCaptureStatus {
         }
 
         /**
-         * Time since recording started 
+         * Elapsed time since recording started (0: Not supported/available). A GCS should compute 
+         * recording time and use non-zero values of this field to correct any discrepancy. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Time since recording started"
+                description = "Elapsed time since recording started (0: Not supported/available). A GCS should compute recording time and use non-zero values of this field to correct any discrepancy."
         )
         public final Builder recordingTimeMs(long recordingTimeMs) {
             this.recordingTimeMs = recordingTimeMs;
@@ -248,8 +273,23 @@ public final class CameraCaptureStatus {
             return this;
         }
 
+        /**
+         * Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT). 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 4,
+                signed = true,
+                extension = true,
+                description = "Total number of images captured ('forever', or until reset using MAV_CMD_STORAGE_FORMAT)."
+        )
+        public final Builder imageCount(int imageCount) {
+            this.imageCount = imageCount;
+            return this;
+        }
+
         public final CameraCaptureStatus build() {
-            return new CameraCaptureStatus(timeBootMs, imageStatus, videoStatus, imageInterval, recordingTimeMs, availableCapacity);
+            return new CameraCaptureStatus(timeBootMs, imageStatus, videoStatus, imageInterval, recordingTimeMs, availableCapacity, imageCount);
         }
     }
 }

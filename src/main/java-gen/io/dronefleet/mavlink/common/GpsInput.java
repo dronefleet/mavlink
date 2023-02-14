@@ -95,12 +95,12 @@ public final class GpsInput {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -206,24 +206,24 @@ public final class GpsInput {
     }
 
     /**
-     * GPS HDOP horizontal dilution of position 
+     * GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 4,
-            description = "GPS HDOP horizontal dilution of position"
+            description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
     )
     public final float hdop() {
         return this.hdop;
     }
 
     /**
-     * GPS VDOP vertical dilution of position 
+     * GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 4,
-            description = "GPS VDOP vertical dilution of position"
+            description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
     )
     public final float vdop() {
         return this.vdop;
@@ -442,12 +442,12 @@ public final class GpsInput {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -583,12 +583,12 @@ public final class GpsInput {
         }
 
         /**
-         * GPS HDOP horizontal dilution of position 
+         * GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 4,
-                description = "GPS HDOP horizontal dilution of position"
+                description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
         )
         public final Builder hdop(float hdop) {
             this.hdop = hdop;
@@ -596,12 +596,12 @@ public final class GpsInput {
         }
 
         /**
-         * GPS VDOP vertical dilution of position 
+         * GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 4,
-                description = "GPS VDOP vertical dilution of position"
+                description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
         )
         public final Builder vdop(float vdop) {
             this.vdop = vdop;

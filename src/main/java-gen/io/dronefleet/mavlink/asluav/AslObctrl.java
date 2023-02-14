@@ -13,7 +13,7 @@ import java.util.Objects;
  * Off-board controls/commands for ASLUAVs 
  */
 @MavlinkMessageInfo(
-        id = 207,
+        id = 8008,
         crc = 234,
         description = "Off-board controls/commands for ASLUAVs"
 )

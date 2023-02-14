@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,19 +14,19 @@ import java.util.Objects;
 /**
  * Data for filling the OpenDroneID Location message. The float data types are 32-bit IEEE 754. 
  * The Location message provides the location, altitude, direction and speed of the aircraft. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 12901,
-        crc = 16,
-        description = "Data for filling the OpenDroneID Location message. The float data types are 32-bit IEEE 754. The Location message provides the location, altitude, direction and speed of the aircraft.",
-        workInProgress = true
+        crc = 254,
+        description = "Data for filling the OpenDroneID Location message. The float data types are 32-bit IEEE 754. The Location message provides the location, altitude, direction and speed of the aircraft."
 )
-@Deprecated
 public final class OpenDroneIdLocation {
+    private final int targetSystem;
+
+    private final int targetComponent;
+
+    private final byte[] idOrMac;
+
     private final EnumValue<MavOdidStatus> status;
 
     private final int direction;
@@ -60,12 +59,16 @@ public final class OpenDroneIdLocation {
 
     private final EnumValue<MavOdidTimeAcc> timestampAccuracy;
 
-    private OpenDroneIdLocation(EnumValue<MavOdidStatus> status, int direction, int speedHorizontal,
-            int speedVertical, int latitude, int longitude, float altitudeBarometric,
-            float altitudeGeodetic, EnumValue<MavOdidHeightRef> heightReference, float height,
+    private OpenDroneIdLocation(int targetSystem, int targetComponent, byte[] idOrMac,
+            EnumValue<MavOdidStatus> status, int direction, int speedHorizontal, int speedVertical,
+            int latitude, int longitude, float altitudeBarometric, float altitudeGeodetic,
+            EnumValue<MavOdidHeightRef> heightReference, float height,
             EnumValue<MavOdidHorAcc> horizontalAccuracy, EnumValue<MavOdidVerAcc> verticalAccuracy,
             EnumValue<MavOdidVerAcc> barometerAccuracy, EnumValue<MavOdidSpeedAcc> speedAccuracy,
             float timestamp, EnumValue<MavOdidTimeAcc> timestampAccuracy) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.idOrMac = idOrMac;
         this.status = status;
         this.direction = direction;
         this.speedHorizontal = speedHorizontal;
@@ -93,79 +96,117 @@ public final class OpenDroneIdLocation {
     }
 
     /**
-     * Indicates whether the Unmanned Aircraft is on the ground or in the air. 
+     * System ID (0 for broadcast). 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1,
+            description = "System ID (0 for broadcast)."
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID (0 for broadcast). 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 1,
+            description = "Component ID (0 for broadcast)."
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
+    }
+
+    /**
+     * Only used for drone ID data received from other UAs. See detailed description at 
+     * https://mavlink.io/en/services/opendroneid.html. 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1,
+            arraySize = 20,
+            description = "Only used for drone ID data received from other UAs. See detailed description at https://mavlink.io/en/services/opendroneid.html."
+    )
+    public final byte[] idOrMac() {
+        return this.idOrMac;
+    }
+
+    /**
+     * Indicates whether the unmanned aircraft is on the ground or in the air. 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
+            unitSize = 1,
             enumType = MavOdidStatus.class,
-            description = "Indicates whether the Unmanned Aircraft is on the ground or in the air."
+            description = "Indicates whether the unmanned aircraft is on the ground or in the air."
     )
     public final EnumValue<MavOdidStatus> status() {
         return this.status;
     }
 
     /**
-     * Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 
-     * degrees. If unknown: 361.00 degrees. 
+     * Direction over ground (not heading, but direction of movement) measured clockwise from true 
+     * North: 0 - 35999 centi-degrees. If unknown: 36100 centi-degrees. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 5,
             unitSize = 2,
-            description = "Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees."
+            description = "Direction over ground (not heading, but direction of movement) measured clockwise from true North: 0 - 35999 centi-degrees. If unknown: 36100 centi-degrees."
     )
     public final int direction() {
         return this.direction;
     }
 
     /**
-     * Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 
-     * 254.25 m/s. 
+     * Ground speed. Positive only. If unknown: 25500 cm/s. If speed is larger than 25425 cm/s, use 
+     * 25425 cm/s. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 6,
             unitSize = 2,
-            description = "Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s."
+            description = "Ground speed. Positive only. If unknown: 25500 cm/s. If speed is larger than 25425 cm/s, use 25425 cm/s."
     )
     public final int speedHorizontal() {
         return this.speedHorizontal;
     }
 
     /**
-     * The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 
-     * 62.00 m/s. 
+     * The vertical speed. Up is positive. If unknown: 6300 cm/s. If speed is larger than 6200 cm/s, use 
+     * 6200 cm/s. If lower than -6200 cm/s, use -6200 cm/s. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 7,
             unitSize = 2,
             signed = true,
-            description = "The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s."
+            description = "The vertical speed. Up is positive. If unknown: 6300 cm/s. If speed is larger than 6200 cm/s, use 6200 cm/s. If lower than -6200 cm/s, use -6200 cm/s."
     )
     public final int speedVertical() {
         return this.speedVertical;
     }
 
     /**
-     * Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon). 
+     * Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon). 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 8,
             unitSize = 4,
             signed = true,
-            description = "Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon)."
+            description = "Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon)."
     )
     public final int latitude() {
         return this.latitude;
     }
 
     /**
-     * Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon). 
+     * Current longitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon). 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 9,
             unitSize = 4,
             signed = true,
-            description = "Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon)."
+            description = "Current longitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon)."
     )
     public final int longitude() {
         return this.longitude;
@@ -176,7 +217,7 @@ public final class OpenDroneIdLocation {
      * 1013.2mb. If unknown: -1000 m. 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 10,
             unitSize = 4,
             description = "The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m."
     )
@@ -188,7 +229,7 @@ public final class OpenDroneIdLocation {
      * The geodetic altitude as defined by WGS84. If unknown: -1000 m. 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 11,
             unitSize = 4,
             description = "The geodetic altitude as defined by WGS84. If unknown: -1000 m."
     )
@@ -200,7 +241,7 @@ public final class OpenDroneIdLocation {
      * Indicates the reference point for the height field. 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 12,
             unitSize = 1,
             enumType = MavOdidHeightRef.class,
             description = "Indicates the reference point for the height field."
@@ -210,13 +251,13 @@ public final class OpenDroneIdLocation {
     }
 
     /**
-     * The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as 
+     * The current height of the unmanned aircraft above the take-off location or the ground as 
      * indicated by height_reference. If unknown: -1000 m. 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 13,
             unitSize = 4,
-            description = "The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m."
+            description = "The current height of the unmanned aircraft above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m."
     )
     public final float height() {
         return this.height;
@@ -226,7 +267,7 @@ public final class OpenDroneIdLocation {
      * The accuracy of the horizontal position. 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 14,
             unitSize = 1,
             enumType = MavOdidHorAcc.class,
             description = "The accuracy of the horizontal position."
@@ -239,7 +280,7 @@ public final class OpenDroneIdLocation {
      * The accuracy of the vertical position. 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 15,
             unitSize = 1,
             enumType = MavOdidVerAcc.class,
             description = "The accuracy of the vertical position."
@@ -252,7 +293,7 @@ public final class OpenDroneIdLocation {
      * The accuracy of the barometric altitude. 
      */
     @MavlinkFieldInfo(
-            position = 14,
+            position = 16,
             unitSize = 1,
             enumType = MavOdidVerAcc.class,
             description = "The accuracy of the barometric altitude."
@@ -265,7 +306,7 @@ public final class OpenDroneIdLocation {
      * The accuracy of the horizontal and vertical speed. 
      */
     @MavlinkFieldInfo(
-            position = 15,
+            position = 17,
             unitSize = 1,
             enumType = MavOdidSpeedAcc.class,
             description = "The accuracy of the horizontal and vertical speed."
@@ -275,14 +316,14 @@ public final class OpenDroneIdLocation {
     }
 
     /**
-     * Seconds after the full hour. Typically the GPS outputs a time of week value in milliseconds. 
-     * That value can be easily converted for this field using ((float) (time_week_ms % 
-     * (60*60*1000))) / 1000. 
+     * Seconds after the full hour with reference to UTC time. Typically the GPS outputs a 
+     * time-of-week value in milliseconds. First convert that to UTC and then convert for this field 
+     * using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF. 
      */
     @MavlinkFieldInfo(
-            position = 16,
+            position = 18,
             unitSize = 4,
-            description = "Seconds after the full hour. Typically the GPS outputs a time of week value in milliseconds. That value can be easily converted for this field using ((float) (time_week_ms % (60*60*1000))) / 1000."
+            description = "Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF."
     )
     public final float timestamp() {
         return this.timestamp;
@@ -292,7 +333,7 @@ public final class OpenDroneIdLocation {
      * The accuracy of the timestamps. 
      */
     @MavlinkFieldInfo(
-            position = 17,
+            position = 19,
             unitSize = 1,
             enumType = MavOdidTimeAcc.class,
             description = "The accuracy of the timestamps."
@@ -306,6 +347,9 @@ public final class OpenDroneIdLocation {
         if (this == o) return true;
         if (o == null || !getClass().equals(o.getClass())) return false;
         OpenDroneIdLocation other = (OpenDroneIdLocation)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(idOrMac, other.idOrMac)) return false;
         if (!Objects.deepEquals(status, other.status)) return false;
         if (!Objects.deepEquals(direction, other.direction)) return false;
         if (!Objects.deepEquals(speedHorizontal, other.speedHorizontal)) return false;
@@ -328,6 +372,9 @@ public final class OpenDroneIdLocation {
     @Override
     public int hashCode() {
         int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(idOrMac);
         result = 31 * result + Objects.hashCode(status);
         result = 31 * result + Objects.hashCode(direction);
         result = 31 * result + Objects.hashCode(speedHorizontal);
@@ -349,7 +396,10 @@ public final class OpenDroneIdLocation {
 
     @Override
     public String toString() {
-        return "OpenDroneIdLocation{status=" + status
+        return "OpenDroneIdLocation{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", idOrMac=" + idOrMac
+                 + ", status=" + status
                  + ", direction=" + direction
                  + ", speedHorizontal=" + speedHorizontal
                  + ", speedVertical=" + speedVertical
@@ -368,6 +418,12 @@ public final class OpenDroneIdLocation {
     }
 
     public static final class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private byte[] idOrMac;
+
         private EnumValue<MavOdidStatus> status;
 
         private int direction;
@@ -401,13 +457,54 @@ public final class OpenDroneIdLocation {
         private EnumValue<MavOdidTimeAcc> timestampAccuracy;
 
         /**
-         * Indicates whether the Unmanned Aircraft is on the ground or in the air. 
+         * System ID (0 for broadcast). 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1,
+                description = "System ID (0 for broadcast)."
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID (0 for broadcast). 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 1,
+                description = "Component ID (0 for broadcast)."
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Only used for drone ID data received from other UAs. See detailed description at 
+         * https://mavlink.io/en/services/opendroneid.html. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1,
+                arraySize = 20,
+                description = "Only used for drone ID data received from other UAs. See detailed description at https://mavlink.io/en/services/opendroneid.html."
+        )
+        public final Builder idOrMac(byte[] idOrMac) {
+            this.idOrMac = idOrMac;
+            return this;
+        }
+
+        /**
+         * Indicates whether the unmanned aircraft is on the ground or in the air. 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
+                unitSize = 1,
                 enumType = MavOdidStatus.class,
-                description = "Indicates whether the Unmanned Aircraft is on the ground or in the air."
+                description = "Indicates whether the unmanned aircraft is on the ground or in the air."
         )
         public final Builder status(EnumValue<MavOdidStatus> status) {
             this.status = status;
@@ -415,34 +512,34 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * Indicates whether the Unmanned Aircraft is on the ground or in the air. 
+         * Indicates whether the unmanned aircraft is on the ground or in the air. 
          */
         public final Builder status(MavOdidStatus entry) {
             return status(EnumValue.of(entry));
         }
 
         /**
-         * Indicates whether the Unmanned Aircraft is on the ground or in the air. 
+         * Indicates whether the unmanned aircraft is on the ground or in the air. 
          */
         public final Builder status(Enum... flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Indicates whether the Unmanned Aircraft is on the ground or in the air. 
+         * Indicates whether the unmanned aircraft is on the ground or in the air. 
          */
         public final Builder status(Collection<Enum> flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 
-         * degrees. If unknown: 361.00 degrees. 
+         * Direction over ground (not heading, but direction of movement) measured clockwise from true 
+         * North: 0 - 35999 centi-degrees. If unknown: 36100 centi-degrees. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 5,
                 unitSize = 2,
-                description = "Direction over ground (not heading, but direction of movement) in degrees * 100: 0.0 - 359.99 degrees. If unknown: 361.00 degrees."
+                description = "Direction over ground (not heading, but direction of movement) measured clockwise from true North: 0 - 35999 centi-degrees. If unknown: 36100 centi-degrees."
         )
         public final Builder direction(int direction) {
             this.direction = direction;
@@ -450,13 +547,13 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 
-         * 254.25 m/s. 
+         * Ground speed. Positive only. If unknown: 25500 cm/s. If speed is larger than 25425 cm/s, use 
+         * 25425 cm/s. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 6,
                 unitSize = 2,
-                description = "Ground speed. Positive only. If unknown: 255.00 m/s. If speed is larger than 254.25 m/s, use 254.25 m/s."
+                description = "Ground speed. Positive only. If unknown: 25500 cm/s. If speed is larger than 25425 cm/s, use 25425 cm/s."
         )
         public final Builder speedHorizontal(int speedHorizontal) {
             this.speedHorizontal = speedHorizontal;
@@ -464,14 +561,14 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 
-         * 62.00 m/s. 
+         * The vertical speed. Up is positive. If unknown: 6300 cm/s. If speed is larger than 6200 cm/s, use 
+         * 6200 cm/s. If lower than -6200 cm/s, use -6200 cm/s. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 7,
                 unitSize = 2,
                 signed = true,
-                description = "The vertical speed. Up is positive. If unknown: 63.00 m/s. If speed is larger than 62.00 m/s, use 62.00 m/s."
+                description = "The vertical speed. Up is positive. If unknown: 6300 cm/s. If speed is larger than 6200 cm/s, use 6200 cm/s. If lower than -6200 cm/s, use -6200 cm/s."
         )
         public final Builder speedVertical(int speedVertical) {
             this.speedVertical = speedVertical;
@@ -479,13 +576,13 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon). 
+         * Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon). 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 8,
                 unitSize = 4,
                 signed = true,
-                description = "Current latitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon)."
+                description = "Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon)."
         )
         public final Builder latitude(int latitude) {
             this.latitude = latitude;
@@ -493,13 +590,13 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon). 
+         * Current longitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon). 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 9,
                 unitSize = 4,
                 signed = true,
-                description = "Current longitude of the UA (Unmanned Aircraft). If unknown: 0 deg (both Lat/Lon)."
+                description = "Current longitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon)."
         )
         public final Builder longitude(int longitude) {
             this.longitude = longitude;
@@ -511,7 +608,7 @@ public final class OpenDroneIdLocation {
          * 1013.2mb. If unknown: -1000 m. 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 10,
                 unitSize = 4,
                 description = "The altitude calculated from the barometric pressue. Reference is against 29.92inHg or 1013.2mb. If unknown: -1000 m."
         )
@@ -524,7 +621,7 @@ public final class OpenDroneIdLocation {
          * The geodetic altitude as defined by WGS84. If unknown: -1000 m. 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 11,
                 unitSize = 4,
                 description = "The geodetic altitude as defined by WGS84. If unknown: -1000 m."
         )
@@ -537,7 +634,7 @@ public final class OpenDroneIdLocation {
          * Indicates the reference point for the height field. 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 12,
                 unitSize = 1,
                 enumType = MavOdidHeightRef.class,
                 description = "Indicates the reference point for the height field."
@@ -569,13 +666,13 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as 
+         * The current height of the unmanned aircraft above the take-off location or the ground as 
          * indicated by height_reference. If unknown: -1000 m. 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 13,
                 unitSize = 4,
-                description = "The current height of the UA (Unmanned Aircraft) above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m."
+                description = "The current height of the unmanned aircraft above the take-off location or the ground as indicated by height_reference. If unknown: -1000 m."
         )
         public final Builder height(float height) {
             this.height = height;
@@ -586,7 +683,7 @@ public final class OpenDroneIdLocation {
          * The accuracy of the horizontal position. 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 14,
                 unitSize = 1,
                 enumType = MavOdidHorAcc.class,
                 description = "The accuracy of the horizontal position."
@@ -621,7 +718,7 @@ public final class OpenDroneIdLocation {
          * The accuracy of the vertical position. 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 15,
                 unitSize = 1,
                 enumType = MavOdidVerAcc.class,
                 description = "The accuracy of the vertical position."
@@ -656,7 +753,7 @@ public final class OpenDroneIdLocation {
          * The accuracy of the barometric altitude. 
          */
         @MavlinkFieldInfo(
-                position = 14,
+                position = 16,
                 unitSize = 1,
                 enumType = MavOdidVerAcc.class,
                 description = "The accuracy of the barometric altitude."
@@ -691,7 +788,7 @@ public final class OpenDroneIdLocation {
          * The accuracy of the horizontal and vertical speed. 
          */
         @MavlinkFieldInfo(
-                position = 15,
+                position = 17,
                 unitSize = 1,
                 enumType = MavOdidSpeedAcc.class,
                 description = "The accuracy of the horizontal and vertical speed."
@@ -723,14 +820,14 @@ public final class OpenDroneIdLocation {
         }
 
         /**
-         * Seconds after the full hour. Typically the GPS outputs a time of week value in milliseconds. 
-         * That value can be easily converted for this field using ((float) (time_week_ms % 
-         * (60*60*1000))) / 1000. 
+         * Seconds after the full hour with reference to UTC time. Typically the GPS outputs a 
+         * time-of-week value in milliseconds. First convert that to UTC and then convert for this field 
+         * using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF. 
          */
         @MavlinkFieldInfo(
-                position = 16,
+                position = 18,
                 unitSize = 4,
-                description = "Seconds after the full hour. Typically the GPS outputs a time of week value in milliseconds. That value can be easily converted for this field using ((float) (time_week_ms % (60*60*1000))) / 1000."
+                description = "Seconds after the full hour with reference to UTC time. Typically the GPS outputs a time-of-week value in milliseconds. First convert that to UTC and then convert for this field using ((float) (time_week_ms % (60*60*1000))) / 1000. If unknown: 0xFFFF."
         )
         public final Builder timestamp(float timestamp) {
             this.timestamp = timestamp;
@@ -741,7 +838,7 @@ public final class OpenDroneIdLocation {
          * The accuracy of the timestamps. 
          */
         @MavlinkFieldInfo(
-                position = 17,
+                position = 19,
                 unitSize = 1,
                 enumType = MavOdidTimeAcc.class,
                 description = "The accuracy of the timestamps."
@@ -773,7 +870,7 @@ public final class OpenDroneIdLocation {
         }
 
         public final OpenDroneIdLocation build() {
-            return new OpenDroneIdLocation(status, direction, speedHorizontal, speedVertical, latitude, longitude, altitudeBarometric, altitudeGeodetic, heightReference, height, horizontalAccuracy, verticalAccuracy, barometerAccuracy, speedAccuracy, timestamp, timestampAccuracy);
+            return new OpenDroneIdLocation(targetSystem, targetComponent, idOrMac, status, direction, speedHorizontal, speedVertical, latitude, longitude, altitudeBarometric, altitudeGeodetic, heightReference, height, horizontalAccuracy, verticalAccuracy, barometerAccuracy, speedAccuracy, timestamp, timestampAccuracy);
         }
     }
 }

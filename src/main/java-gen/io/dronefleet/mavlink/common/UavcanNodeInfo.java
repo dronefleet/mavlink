@@ -66,12 +66,12 @@ public final class UavcanNodeInfo {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -164,13 +164,12 @@ public final class UavcanNodeInfo {
     }
 
     /**
-     * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
-     * unknown. 
+     * Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown."
+            description = "Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown."
     )
     public final long swVcsCommit() {
         return this.swVcsCommit;
@@ -242,12 +241,12 @@ public final class UavcanNodeInfo {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -348,13 +347,12 @@ public final class UavcanNodeInfo {
         }
 
         /**
-         * Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if 
-         * unknown. 
+         * Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Version control system (VCS) revision identifier (e.g. git short commit hash). Zero if unknown."
+                description = "Version control system (VCS) revision identifier (e.g. git short commit hash). 0 if unknown."
         )
         public final Builder swVcsCommit(long swVcsCommit) {
             this.swVcsCommit = swVcsCommit;

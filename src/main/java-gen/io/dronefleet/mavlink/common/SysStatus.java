@@ -56,11 +56,20 @@ public final class SysStatus {
 
     private final int errorsCount4;
 
+    private final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsPresentExtended;
+
+    private final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsEnabledExtended;
+
+    private final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsHealthExtended;
+
     private SysStatus(EnumValue<MavSysStatusSensor> onboardControlSensorsPresent,
             EnumValue<MavSysStatusSensor> onboardControlSensorsEnabled,
             EnumValue<MavSysStatusSensor> onboardControlSensorsHealth, int load, int voltageBattery,
             int currentBattery, int batteryRemaining, int dropRateComm, int errorsComm,
-            int errorsCount1, int errorsCount2, int errorsCount3, int errorsCount4) {
+            int errorsCount1, int errorsCount2, int errorsCount3, int errorsCount4,
+            EnumValue<MavSysStatusSensorExtended> onboardControlSensorsPresentExtended,
+            EnumValue<MavSysStatusSensorExtended> onboardControlSensorsEnabledExtended,
+            EnumValue<MavSysStatusSensorExtended> onboardControlSensorsHealthExtended) {
         this.onboardControlSensorsPresent = onboardControlSensorsPresent;
         this.onboardControlSensorsEnabled = onboardControlSensorsEnabled;
         this.onboardControlSensorsHealth = onboardControlSensorsHealth;
@@ -74,6 +83,9 @@ public final class SysStatus {
         this.errorsCount2 = errorsCount2;
         this.errorsCount3 = errorsCount3;
         this.errorsCount4 = errorsCount4;
+        this.onboardControlSensorsPresentExtended = onboardControlSensorsPresentExtended;
+        this.onboardControlSensorsEnabledExtended = onboardControlSensorsEnabledExtended;
+        this.onboardControlSensorsHealthExtended = onboardControlSensorsHealthExtended;
     }
 
     /**
@@ -250,6 +262,51 @@ public final class SysStatus {
         return this.errorsCount4;
     }
 
+    /**
+     * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
+     * Value of 1: present. 
+     */
+    @MavlinkFieldInfo(
+            position = 15,
+            unitSize = 4,
+            enumType = MavSysStatusSensorExtended.class,
+            extension = true,
+            description = "Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present."
+    )
+    public final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsPresentExtended() {
+        return this.onboardControlSensorsPresentExtended;
+    }
+
+    /**
+     * Bitmap showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+     * Value of 1: enabled. 
+     */
+    @MavlinkFieldInfo(
+            position = 16,
+            unitSize = 4,
+            enumType = MavSysStatusSensorExtended.class,
+            extension = true,
+            description = "Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled."
+    )
+    public final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsEnabledExtended() {
+        return this.onboardControlSensorsEnabledExtended;
+    }
+
+    /**
+     * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+     * Value of 0: error. Value of 1: healthy. 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 4,
+            enumType = MavSysStatusSensorExtended.class,
+            extension = true,
+            description = "Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy."
+    )
+    public final EnumValue<MavSysStatusSensorExtended> onboardControlSensorsHealthExtended() {
+        return this.onboardControlSensorsHealthExtended;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -268,6 +325,9 @@ public final class SysStatus {
         if (!Objects.deepEquals(errorsCount2, other.errorsCount2)) return false;
         if (!Objects.deepEquals(errorsCount3, other.errorsCount3)) return false;
         if (!Objects.deepEquals(errorsCount4, other.errorsCount4)) return false;
+        if (!Objects.deepEquals(onboardControlSensorsPresentExtended, other.onboardControlSensorsPresentExtended)) return false;
+        if (!Objects.deepEquals(onboardControlSensorsEnabledExtended, other.onboardControlSensorsEnabledExtended)) return false;
+        if (!Objects.deepEquals(onboardControlSensorsHealthExtended, other.onboardControlSensorsHealthExtended)) return false;
         return true;
     }
 
@@ -287,6 +347,9 @@ public final class SysStatus {
         result = 31 * result + Objects.hashCode(errorsCount2);
         result = 31 * result + Objects.hashCode(errorsCount3);
         result = 31 * result + Objects.hashCode(errorsCount4);
+        result = 31 * result + Objects.hashCode(onboardControlSensorsPresentExtended);
+        result = 31 * result + Objects.hashCode(onboardControlSensorsEnabledExtended);
+        result = 31 * result + Objects.hashCode(onboardControlSensorsHealthExtended);
         return result;
     }
 
@@ -304,7 +367,10 @@ public final class SysStatus {
                  + ", errorsCount1=" + errorsCount1
                  + ", errorsCount2=" + errorsCount2
                  + ", errorsCount3=" + errorsCount3
-                 + ", errorsCount4=" + errorsCount4 + "}";
+                 + ", errorsCount4=" + errorsCount4
+                 + ", onboardControlSensorsPresentExtended=" + onboardControlSensorsPresentExtended
+                 + ", onboardControlSensorsEnabledExtended=" + onboardControlSensorsEnabledExtended
+                 + ", onboardControlSensorsHealthExtended=" + onboardControlSensorsHealthExtended + "}";
     }
 
     public static final class Builder {
@@ -333,6 +399,12 @@ public final class SysStatus {
         private int errorsCount3;
 
         private int errorsCount4;
+
+        private EnumValue<MavSysStatusSensorExtended> onboardControlSensorsPresentExtended;
+
+        private EnumValue<MavSysStatusSensorExtended> onboardControlSensorsEnabledExtended;
+
+        private EnumValue<MavSysStatusSensorExtended> onboardControlSensorsHealthExtended;
 
         /**
          * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
@@ -588,8 +660,133 @@ public final class SysStatus {
             return this;
         }
 
+        /**
+         * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. 
+         */
+        @MavlinkFieldInfo(
+                position = 15,
+                unitSize = 4,
+                enumType = MavSysStatusSensorExtended.class,
+                extension = true,
+                description = "Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present."
+        )
+        public final Builder onboardControlSensorsPresentExtended(
+                EnumValue<MavSysStatusSensorExtended> onboardControlSensorsPresentExtended) {
+            this.onboardControlSensorsPresentExtended = onboardControlSensorsPresentExtended;
+            return this;
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. 
+         */
+        public final Builder onboardControlSensorsPresentExtended(
+                MavSysStatusSensorExtended entry) {
+            return onboardControlSensorsPresentExtended(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. 
+         */
+        public final Builder onboardControlSensorsPresentExtended(Enum... flags) {
+            return onboardControlSensorsPresentExtended(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. 
+         * Value of 1: present. 
+         */
+        public final Builder onboardControlSensorsPresentExtended(Collection<Enum> flags) {
+            return onboardControlSensorsPresentExtended(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. 
+         */
+        @MavlinkFieldInfo(
+                position = 16,
+                unitSize = 4,
+                enumType = MavSysStatusSensorExtended.class,
+                extension = true,
+                description = "Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled."
+        )
+        public final Builder onboardControlSensorsEnabledExtended(
+                EnumValue<MavSysStatusSensorExtended> onboardControlSensorsEnabledExtended) {
+            this.onboardControlSensorsEnabledExtended = onboardControlSensorsEnabledExtended;
+            return this;
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. 
+         */
+        public final Builder onboardControlSensorsEnabledExtended(
+                MavSysStatusSensorExtended entry) {
+            return onboardControlSensorsEnabledExtended(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. 
+         */
+        public final Builder onboardControlSensorsEnabledExtended(Enum... flags) {
+            return onboardControlSensorsEnabledExtended(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors are enabled: Value of 0: not enabled. 
+         * Value of 1: enabled. 
+         */
+        public final Builder onboardControlSensorsEnabledExtended(Collection<Enum> flags) {
+            return onboardControlSensorsEnabledExtended(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
+         */
+        @MavlinkFieldInfo(
+                position = 17,
+                unitSize = 4,
+                enumType = MavSysStatusSensorExtended.class,
+                extension = true,
+                description = "Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy."
+        )
+        public final Builder onboardControlSensorsHealthExtended(
+                EnumValue<MavSysStatusSensorExtended> onboardControlSensorsHealthExtended) {
+            this.onboardControlSensorsHealthExtended = onboardControlSensorsHealthExtended;
+            return this;
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
+         */
+        public final Builder onboardControlSensorsHealthExtended(MavSysStatusSensorExtended entry) {
+            return onboardControlSensorsHealthExtended(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
+         */
+        public final Builder onboardControlSensorsHealthExtended(Enum... flags) {
+            return onboardControlSensorsHealthExtended(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap showing which onboard controllers and sensors have an error (or are operational). 
+         * Value of 0: error. Value of 1: healthy. 
+         */
+        public final Builder onboardControlSensorsHealthExtended(Collection<Enum> flags) {
+            return onboardControlSensorsHealthExtended(EnumValue.create(flags));
+        }
+
         public final SysStatus build() {
-            return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, batteryRemaining, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4);
+            return new SysStatus(onboardControlSensorsPresent, onboardControlSensorsEnabled, onboardControlSensorsHealth, load, voltageBattery, currentBattery, batteryRemaining, dropRateComm, errorsComm, errorsCount1, errorsCount2, errorsCount3, errorsCount4, onboardControlSensorsPresentExtended, onboardControlSensorsEnabledExtended, onboardControlSensorsHealthExtended);
         }
     }
 }

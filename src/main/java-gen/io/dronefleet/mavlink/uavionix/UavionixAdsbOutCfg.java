@@ -152,13 +152,13 @@ public final class UavionixAdsbOutCfg {
     }
 
     /**
-     * ADS-B transponder reciever and transmit enable flags 
+     * ADS-B transponder receiver and transmit enable flags 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 1,
             enumType = UavionixAdsbOutRfSelect.class,
-            description = "ADS-B transponder reciever and transmit enable flags"
+            description = "ADS-B transponder receiver and transmit enable flags"
     )
     public final EnumValue<UavionixAdsbOutRfSelect> rfselect() {
         return this.rfselect;
@@ -408,13 +408,13 @@ public final class UavionixAdsbOutCfg {
         }
 
         /**
-         * ADS-B transponder reciever and transmit enable flags 
+         * ADS-B transponder receiver and transmit enable flags 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 1,
                 enumType = UavionixAdsbOutRfSelect.class,
-                description = "ADS-B transponder reciever and transmit enable flags"
+                description = "ADS-B transponder receiver and transmit enable flags"
         )
         public final Builder rfselect(EnumValue<UavionixAdsbOutRfSelect> rfselect) {
             this.rfselect = rfselect;
@@ -422,21 +422,21 @@ public final class UavionixAdsbOutCfg {
         }
 
         /**
-         * ADS-B transponder reciever and transmit enable flags 
+         * ADS-B transponder receiver and transmit enable flags 
          */
         public final Builder rfselect(UavionixAdsbOutRfSelect entry) {
             return rfselect(EnumValue.of(entry));
         }
 
         /**
-         * ADS-B transponder reciever and transmit enable flags 
+         * ADS-B transponder receiver and transmit enable flags 
          */
         public final Builder rfselect(Enum... flags) {
             return rfselect(EnumValue.create(flags));
         }
 
         /**
-         * ADS-B transponder reciever and transmit enable flags 
+         * ADS-B transponder receiver and transmit enable flags 
          */
         public final Builder rfselect(Collection<Enum> flags) {
             return rfselect(EnumValue.create(flags));

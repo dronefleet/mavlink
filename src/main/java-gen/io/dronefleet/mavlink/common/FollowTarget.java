@@ -155,13 +155,13 @@ public final class FollowTarget {
     }
 
     /**
-     * (1 0 0 0 for unknown) 
+     * (0 0 0 0 for unknown) 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
             arraySize = 4,
-            description = "(1 0 0 0 for unknown)"
+            description = "(0 0 0 0 for unknown)"
     )
     public final List<Float> attitudeQ() {
         return this.attitudeQ;
@@ -375,13 +375,13 @@ public final class FollowTarget {
         }
 
         /**
-         * (1 0 0 0 for unknown) 
+         * (0 0 0 0 for unknown) 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
                 arraySize = 4,
-                description = "(1 0 0 0 for unknown)"
+                description = "(0 0 0 0 for unknown)"
         )
         public final Builder attitudeQ(List<Float> attitudeQ) {
             this.attitudeQ = attitudeQ;

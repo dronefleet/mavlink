@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
@@ -16,19 +15,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Describe a trajectory using an array of up-to 5 waypoints in the local frame. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
+ * Describe a trajectory using an array of up-to 5 waypoints in the local frame 
+ * (MAV_FRAME_LOCAL_NED). 
  */
 @MavlinkMessageInfo(
         id = 332,
         crc = 236,
-        description = "Describe a trajectory using an array of up-to 5 waypoints in the local frame.",
-        workInProgress = true
+        description = "Describe a trajectory using an array of up-to 5 waypoints in the local frame (MAV_FRAME_LOCAL_NED)."
 )
-@Deprecated
 public final class TrajectoryRepresentationWaypoints {
     private final BigInteger timeUsec;
 
@@ -88,12 +82,12 @@ public final class TrajectoryRepresentationWaypoints {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -103,7 +97,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Number of valid points (up-to 5 waypoints are possible) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Number of valid points (up-to 5 waypoints are possible)"
     )
@@ -115,7 +109,7 @@ public final class TrajectoryRepresentationWaypoints {
      * X-coordinate of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             arraySize = 5,
             description = "X-coordinate of waypoint, set to NaN if not being used"
@@ -128,7 +122,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Y-coordinate of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 4,
             arraySize = 5,
             description = "Y-coordinate of waypoint, set to NaN if not being used"
@@ -141,7 +135,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Z-coordinate of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 4,
             arraySize = 5,
             description = "Z-coordinate of waypoint, set to NaN if not being used"
@@ -154,7 +148,7 @@ public final class TrajectoryRepresentationWaypoints {
      * X-velocity of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 4,
             arraySize = 5,
             description = "X-velocity of waypoint, set to NaN if not being used"
@@ -167,7 +161,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Y-velocity of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 4,
             arraySize = 5,
             description = "Y-velocity of waypoint, set to NaN if not being used"
@@ -180,7 +174,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Z-velocity of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 4,
             arraySize = 5,
             description = "Z-velocity of waypoint, set to NaN if not being used"
@@ -193,7 +187,7 @@ public final class TrajectoryRepresentationWaypoints {
      * X-acceleration of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 9,
             unitSize = 4,
             arraySize = 5,
             description = "X-acceleration of waypoint, set to NaN if not being used"
@@ -206,7 +200,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Y-acceleration of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 10,
             unitSize = 4,
             arraySize = 5,
             description = "Y-acceleration of waypoint, set to NaN if not being used"
@@ -219,7 +213,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Z-acceleration of waypoint, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 11,
             unitSize = 4,
             arraySize = 5,
             description = "Z-acceleration of waypoint, set to NaN if not being used"
@@ -232,7 +226,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Yaw angle, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 12,
             unitSize = 4,
             arraySize = 5,
             description = "Yaw angle, set to NaN if not being used"
@@ -245,7 +239,7 @@ public final class TrajectoryRepresentationWaypoints {
      * Yaw rate, set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 14,
+            position = 13,
             unitSize = 4,
             arraySize = 5,
             description = "Yaw rate, set to NaN if not being used"
@@ -255,14 +249,14 @@ public final class TrajectoryRepresentationWaypoints {
     }
 
     /**
-     * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+     * {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} command id of waypoint, set to UINT16_MAX if not being used. 
      */
     @MavlinkFieldInfo(
-            position = 15,
+            position = 14,
             unitSize = 2,
             arraySize = 5,
             enumType = MavCmd.class,
-            description = "Scheduled action for each waypoint, UINT16_MAX if not being used."
+            description = "MAV_CMD command id of waypoint, set to UINT16_MAX if not being used."
     )
     public final EnumValue<MavCmd> command() {
         return this.command;
@@ -359,12 +353,12 @@ public final class TrajectoryRepresentationWaypoints {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -375,7 +369,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Number of valid points (up-to 5 waypoints are possible) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Number of valid points (up-to 5 waypoints are possible)"
         )
@@ -388,7 +382,7 @@ public final class TrajectoryRepresentationWaypoints {
          * X-coordinate of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 arraySize = 5,
                 description = "X-coordinate of waypoint, set to NaN if not being used"
@@ -402,7 +396,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Y-coordinate of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Y-coordinate of waypoint, set to NaN if not being used"
@@ -416,7 +410,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Z-coordinate of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Z-coordinate of waypoint, set to NaN if not being used"
@@ -430,7 +424,7 @@ public final class TrajectoryRepresentationWaypoints {
          * X-velocity of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 4,
                 arraySize = 5,
                 description = "X-velocity of waypoint, set to NaN if not being used"
@@ -444,7 +438,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Y-velocity of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Y-velocity of waypoint, set to NaN if not being used"
@@ -458,7 +452,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Z-velocity of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Z-velocity of waypoint, set to NaN if not being used"
@@ -472,7 +466,7 @@ public final class TrajectoryRepresentationWaypoints {
          * X-acceleration of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 9,
                 unitSize = 4,
                 arraySize = 5,
                 description = "X-acceleration of waypoint, set to NaN if not being used"
@@ -486,7 +480,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Y-acceleration of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 10,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Y-acceleration of waypoint, set to NaN if not being used"
@@ -500,7 +494,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Z-acceleration of waypoint, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 11,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Z-acceleration of waypoint, set to NaN if not being used"
@@ -514,7 +508,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Yaw angle, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 12,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Yaw angle, set to NaN if not being used"
@@ -528,7 +522,7 @@ public final class TrajectoryRepresentationWaypoints {
          * Yaw rate, set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 14,
+                position = 13,
                 unitSize = 4,
                 arraySize = 5,
                 description = "Yaw rate, set to NaN if not being used"
@@ -539,14 +533,14 @@ public final class TrajectoryRepresentationWaypoints {
         }
 
         /**
-         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         * {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} command id of waypoint, set to UINT16_MAX if not being used. 
          */
         @MavlinkFieldInfo(
-                position = 15,
+                position = 14,
                 unitSize = 2,
                 arraySize = 5,
                 enumType = MavCmd.class,
-                description = "Scheduled action for each waypoint, UINT16_MAX if not being used."
+                description = "MAV_CMD command id of waypoint, set to UINT16_MAX if not being used."
         )
         public final Builder command(EnumValue<MavCmd> command) {
             this.command = command;
@@ -554,21 +548,21 @@ public final class TrajectoryRepresentationWaypoints {
         }
 
         /**
-         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         * {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} command id of waypoint, set to UINT16_MAX if not being used. 
          */
         public final Builder command(MavCmd entry) {
             return command(EnumValue.of(entry));
         }
 
         /**
-         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         * {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} command id of waypoint, set to UINT16_MAX if not being used. 
          */
         public final Builder command(Enum... flags) {
             return command(EnumValue.create(flags));
         }
 
         /**
-         * Scheduled action for each waypoint, UINT16_MAX if not being used. 
+         * {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} command id of waypoint, set to UINT16_MAX if not being used. 
          */
         public final Builder command(Collection<Enum> flags) {
             return command(EnumValue.create(flags));

@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -14,20 +13,16 @@ import java.util.Objects;
 
 /**
  * Report current used cellular network status 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 334,
-        crc = 135,
-        description = "Report current used cellular network status",
-        workInProgress = true
+        crc = 72,
+        description = "Report current used cellular network status"
 )
-@Deprecated
 public final class CellularStatus {
-    private final EnumValue<CellularNetworkStatusFlag> status;
+    private final EnumValue<CellularStatusFlag> status;
+
+    private final EnumValue<CellularNetworkFailedReason> failureReason;
 
     private final EnumValue<CellularNetworkRadioType> type;
 
@@ -39,18 +34,16 @@ public final class CellularStatus {
 
     private final int lac;
 
-    private final long cid;
-
-    private CellularStatus(EnumValue<CellularNetworkStatusFlag> status,
-            EnumValue<CellularNetworkRadioType> type, int quality, int mcc, int mnc, int lac,
-            long cid) {
+    private CellularStatus(EnumValue<CellularStatusFlag> status,
+            EnumValue<CellularNetworkFailedReason> failureReason,
+            EnumValue<CellularNetworkRadioType> type, int quality, int mcc, int mnc, int lac) {
         this.status = status;
+        this.failureReason = failureReason;
         this.type = type;
         this.quality = quality;
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
-        this.cid = cid;
     }
 
     /**
@@ -62,16 +55,29 @@ public final class CellularStatus {
     }
 
     /**
-     * Status bitmap 
+     * Cellular modem status 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1,
+            enumType = CellularStatusFlag.class,
+            description = "Cellular modem status"
+    )
+    public final EnumValue<CellularStatusFlag> status() {
+        return this.status;
+    }
+
+    /**
+     * Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED 
      */
     @MavlinkFieldInfo(
             position = 2,
-            unitSize = 2,
-            enumType = CellularNetworkStatusFlag.class,
-            description = "Status bitmap"
+            unitSize = 1,
+            enumType = CellularNetworkFailedReason.class,
+            description = "Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED"
     )
-    public final EnumValue<CellularNetworkStatusFlag> status() {
-        return this.status;
+    public final EnumValue<CellularNetworkFailedReason> failureReason() {
+        return this.failureReason;
     }
 
     /**
@@ -88,63 +94,51 @@ public final class CellularStatus {
     }
 
     /**
-     * Cellular network RSSI/RSRP in dBm, absolute value 
+     * Signal quality in percent. If unknown, set to UINT8_MAX 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Cellular network RSSI/RSRP in dBm, absolute value"
+            description = "Signal quality in percent. If unknown, set to UINT8_MAX"
     )
     public final int quality() {
         return this.quality;
     }
 
     /**
-     * Mobile country code. If unknown, set to: UINT16_MAX 
+     * Mobile country code. If unknown, set to UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "Mobile country code. If unknown, set to: UINT16_MAX"
+            description = "Mobile country code. If unknown, set to UINT16_MAX"
     )
     public final int mcc() {
         return this.mcc;
     }
 
     /**
-     * Mobile network code. If unknown, set to: UINT16_MAX 
+     * Mobile network code. If unknown, set to UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "Mobile network code. If unknown, set to: UINT16_MAX"
+            description = "Mobile network code. If unknown, set to UINT16_MAX"
     )
     public final int mnc() {
         return this.mnc;
     }
 
     /**
-     * Location area code. If unknown, set to: 0 
+     * Location area code. If unknown, set to 0 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "Location area code. If unknown, set to: 0"
+            description = "Location area code. If unknown, set to 0"
     )
     public final int lac() {
         return this.lac;
-    }
-
-    /**
-     * Cell ID. If unknown, set to: UINT32_MAX 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 4,
-            description = "Cell ID. If unknown, set to: UINT32_MAX"
-    )
-    public final long cid() {
-        return this.cid;
     }
 
     @Override
@@ -153,12 +147,12 @@ public final class CellularStatus {
         if (o == null || !getClass().equals(o.getClass())) return false;
         CellularStatus other = (CellularStatus)o;
         if (!Objects.deepEquals(status, other.status)) return false;
+        if (!Objects.deepEquals(failureReason, other.failureReason)) return false;
         if (!Objects.deepEquals(type, other.type)) return false;
         if (!Objects.deepEquals(quality, other.quality)) return false;
         if (!Objects.deepEquals(mcc, other.mcc)) return false;
         if (!Objects.deepEquals(mnc, other.mnc)) return false;
         if (!Objects.deepEquals(lac, other.lac)) return false;
-        if (!Objects.deepEquals(cid, other.cid)) return false;
         return true;
     }
 
@@ -166,28 +160,30 @@ public final class CellularStatus {
     public int hashCode() {
         int result = 0;
         result = 31 * result + Objects.hashCode(status);
+        result = 31 * result + Objects.hashCode(failureReason);
         result = 31 * result + Objects.hashCode(type);
         result = 31 * result + Objects.hashCode(quality);
         result = 31 * result + Objects.hashCode(mcc);
         result = 31 * result + Objects.hashCode(mnc);
         result = 31 * result + Objects.hashCode(lac);
-        result = 31 * result + Objects.hashCode(cid);
         return result;
     }
 
     @Override
     public String toString() {
         return "CellularStatus{status=" + status
+                 + ", failureReason=" + failureReason
                  + ", type=" + type
                  + ", quality=" + quality
                  + ", mcc=" + mcc
                  + ", mnc=" + mnc
-                 + ", lac=" + lac
-                 + ", cid=" + cid + "}";
+                 + ", lac=" + lac + "}";
     }
 
     public static final class Builder {
-        private EnumValue<CellularNetworkStatusFlag> status;
+        private EnumValue<CellularStatusFlag> status;
+
+        private EnumValue<CellularNetworkFailedReason> failureReason;
 
         private EnumValue<CellularNetworkRadioType> type;
 
@@ -199,41 +195,74 @@ public final class CellularStatus {
 
         private int lac;
 
-        private long cid;
-
         /**
-         * Status bitmap 
+         * Cellular modem status 
          */
         @MavlinkFieldInfo(
-                position = 2,
-                unitSize = 2,
-                enumType = CellularNetworkStatusFlag.class,
-                description = "Status bitmap"
+                position = 1,
+                unitSize = 1,
+                enumType = CellularStatusFlag.class,
+                description = "Cellular modem status"
         )
-        public final Builder status(EnumValue<CellularNetworkStatusFlag> status) {
+        public final Builder status(EnumValue<CellularStatusFlag> status) {
             this.status = status;
             return this;
         }
 
         /**
-         * Status bitmap 
+         * Cellular modem status 
          */
-        public final Builder status(CellularNetworkStatusFlag entry) {
+        public final Builder status(CellularStatusFlag entry) {
             return status(EnumValue.of(entry));
         }
 
         /**
-         * Status bitmap 
+         * Cellular modem status 
          */
         public final Builder status(Enum... flags) {
             return status(EnumValue.create(flags));
         }
 
         /**
-         * Status bitmap 
+         * Cellular modem status 
          */
         public final Builder status(Collection<Enum> flags) {
             return status(EnumValue.create(flags));
+        }
+
+        /**
+         * Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED 
+         */
+        @MavlinkFieldInfo(
+                position = 2,
+                unitSize = 1,
+                enumType = CellularNetworkFailedReason.class,
+                description = "Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED"
+        )
+        public final Builder failureReason(EnumValue<CellularNetworkFailedReason> failureReason) {
+            this.failureReason = failureReason;
+            return this;
+        }
+
+        /**
+         * Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED 
+         */
+        public final Builder failureReason(CellularNetworkFailedReason entry) {
+            return failureReason(EnumValue.of(entry));
+        }
+
+        /**
+         * Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED 
+         */
+        public final Builder failureReason(Enum... flags) {
+            return failureReason(EnumValue.create(flags));
+        }
+
+        /**
+         * Failure reason when status in in CELLULAR_STATUS_FLAG_FAILED 
+         */
+        public final Builder failureReason(Collection<Enum> flags) {
+            return failureReason(EnumValue.create(flags));
         }
 
         /**
@@ -272,12 +301,12 @@ public final class CellularStatus {
         }
 
         /**
-         * Cellular network RSSI/RSRP in dBm, absolute value 
+         * Signal quality in percent. If unknown, set to UINT8_MAX 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Cellular network RSSI/RSRP in dBm, absolute value"
+                description = "Signal quality in percent. If unknown, set to UINT8_MAX"
         )
         public final Builder quality(int quality) {
             this.quality = quality;
@@ -285,12 +314,12 @@ public final class CellularStatus {
         }
 
         /**
-         * Mobile country code. If unknown, set to: UINT16_MAX 
+         * Mobile country code. If unknown, set to UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "Mobile country code. If unknown, set to: UINT16_MAX"
+                description = "Mobile country code. If unknown, set to UINT16_MAX"
         )
         public final Builder mcc(int mcc) {
             this.mcc = mcc;
@@ -298,12 +327,12 @@ public final class CellularStatus {
         }
 
         /**
-         * Mobile network code. If unknown, set to: UINT16_MAX 
+         * Mobile network code. If unknown, set to UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "Mobile network code. If unknown, set to: UINT16_MAX"
+                description = "Mobile network code. If unknown, set to UINT16_MAX"
         )
         public final Builder mnc(int mnc) {
             this.mnc = mnc;
@@ -311,33 +340,20 @@ public final class CellularStatus {
         }
 
         /**
-         * Location area code. If unknown, set to: 0 
+         * Location area code. If unknown, set to 0 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "Location area code. If unknown, set to: 0"
+                description = "Location area code. If unknown, set to 0"
         )
         public final Builder lac(int lac) {
             this.lac = lac;
             return this;
         }
 
-        /**
-         * Cell ID. If unknown, set to: UINT32_MAX 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 4,
-                description = "Cell ID. If unknown, set to: UINT32_MAX"
-        )
-        public final Builder cid(long cid) {
-            this.cid = cid;
-            return this;
-        }
-
         public final CellularStatus build() {
-            return new CellularStatus(status, type, quality, mcc, mnc, lac, cid);
+            return new CellularStatus(status, failureReason, type, quality, mcc, mnc, lac);
         }
     }
 }

@@ -2,6 +2,7 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
+import java.lang.Deprecated;
 
 /**
  * Bitmask of (optional) autopilot capabilities (64 bit). If a bit is set, the autopilot supports 
@@ -10,19 +11,24 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum MavProtocolCapability {
     /**
-     * Autopilot supports MISSION float message type. 
+     * Autopilot supports the {@link io.dronefleet.mavlink.common.MissionItem MISSION_ITEM} float message type. Note that {@link io.dronefleet.mavlink.common.MissionItem MISSION_ITEM} is 
+     * deprecated, and autopilots should use MISSION_INT instead. 
      */
     @MavlinkEntryInfo(1)
     MAV_PROTOCOL_CAPABILITY_MISSION_FLOAT,
 
     /**
      * Autopilot supports the new param float message type. 
+     * @deprecated Since 2022-03, replaced by MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_C_CAST. 
      */
     @MavlinkEntryInfo(2)
+    @Deprecated
     MAV_PROTOCOL_CAPABILITY_PARAM_FLOAT,
 
     /**
-     * Autopilot supports MISSION_INT scaled integer message type. 
+     * Autopilot supports {@link io.dronefleet.mavlink.common.MissionItemInt MISSION_ITEM_INT} scaled integer message type. Note that this flag must 
+     * always be set if missions are supported, because missions must always use {@link io.dronefleet.mavlink.common.MissionItemInt MISSION_ITEM_INT} 
+     * (rather than {@link io.dronefleet.mavlink.common.MissionItem MISSION_ITEM}, which is deprecated). 
      */
     @MavlinkEntryInfo(4)
     MAV_PROTOCOL_CAPABILITY_MISSION_INT,
@@ -34,13 +40,17 @@ public enum MavProtocolCapability {
     MAV_PROTOCOL_CAPABILITY_COMMAND_INT,
 
     /**
-     * Autopilot supports the new param union message type. 
+     * Parameter protocol uses byte-wise encoding of parameter values into param_value (float) 
+     * fields: https://mavlink.io/en/services/parameter.html#parameter-encoding. Note that 
+     * either this flag or MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_C_CAST should be set if the 
+     * parameter protocol is supported. 
      */
     @MavlinkEntryInfo(16)
-    MAV_PROTOCOL_CAPABILITY_PARAM_UNION,
+    MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_BYTEWISE,
 
     /**
-     * Autopilot supports the new {@link io.dronefleet.mavlink.common.FileTransferProtocol FILE_TRANSFER_PROTOCOL} message type. 
+     * Autopilot supports the File Transfer Protocol v1: 
+     * https://mavlink.io/en/services/ftp.html. 
      */
     @MavlinkEntryInfo(32)
     MAV_PROTOCOL_CAPABILITY_FTP,
@@ -76,7 +86,7 @@ public enum MavProtocolCapability {
     MAV_PROTOCOL_CAPABILITY_SET_ACTUATOR_TARGET,
 
     /**
-     * Autopilot supports the flight termination command. 
+     * Autopilot supports the MAV_CMD_DO_FLIGHTTERMINATION command (flight termination). 
      */
     @MavlinkEntryInfo(2048)
     MAV_PROTOCOL_CAPABILITY_FLIGHT_TERMINATION,
@@ -106,8 +116,17 @@ public enum MavProtocolCapability {
     MAV_PROTOCOL_CAPABILITY_MISSION_RALLY,
 
     /**
-     * Autopilot supports the flight information protocol. 
+     * Reserved for future use. 
      */
     @MavlinkEntryInfo(65536)
-    MAV_PROTOCOL_CAPABILITY_FLIGHT_INFORMATION
+    MAV_PROTOCOL_CAPABILITY_RESERVED2,
+
+    /**
+     * Parameter protocol uses C-cast of parameter values to set the param_value (float) fields: 
+     * https://mavlink.io/en/services/parameter.html#parameter-encoding. Note that either 
+     * this flag or MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_BYTEWISE should be set if the parameter 
+     * protocol is supported. 
+     */
+    @MavlinkEntryInfo(131072)
+    MAV_PROTOCOL_CAPABILITY_PARAM_ENCODE_C_CAST
 }

@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Sets the GPS co-ordinates of the vehicle local origin (0,0,0) position. Vehicle should emit 
+ * Sets the GPS coordinates of the vehicle local origin (0,0,0) position. Vehicle should emit 
  * {@link io.dronefleet.mavlink.common.GpsGlobalOrigin GPS_GLOBAL_ORIGIN} irrespective of whether the origin is changed. This enables transform 
  * between the local coordinate frame and the global (GPS) coordinate frame, which may be 
  * necessary when (for example) indoor and outdoor settings are connected and the MAV should move 
@@ -19,7 +19,7 @@ import java.util.Objects;
 @MavlinkMessageInfo(
         id = 48,
         crc = 41,
-        description = "Sets the GPS co-ordinates of the vehicle local origin (0,0,0) position. Vehicle should emit GPS_GLOBAL_ORIGIN irrespective of whether the origin is changed. This enables transform between the local coordinate frame and the global (GPS) coordinate frame, which may be necessary when (for example) indoor and outdoor settings are connected and the MAV should move from in- to outdoor."
+        description = "Sets the GPS coordinates of the vehicle local origin (0,0,0) position. Vehicle should emit GPS_GLOBAL_ORIGIN irrespective of whether the origin is changed. This enables transform between the local coordinate frame and the global (GPS) coordinate frame, which may be necessary when (for example) indoor and outdoor settings are connected and the MAV should move from in- to outdoor."
 )
 public final class SetGpsGlobalOrigin {
     private final int targetSystem;
@@ -102,13 +102,13 @@ public final class SetGpsGlobalOrigin {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 8,
             extension = true,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -215,13 +215,13 @@ public final class SetGpsGlobalOrigin {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 8,
                 extension = true,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

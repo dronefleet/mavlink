@@ -17,7 +17,7 @@ import java.util.Objects;
  * Send a command with up to seven parameters to the MAV and additional metadata 
  */
 @MavlinkMessageInfo(
-        id = 79,
+        id = 224,
         crc = 102,
         description = "Send a command with up to seven parameters to the MAV and additional metadata"
 )

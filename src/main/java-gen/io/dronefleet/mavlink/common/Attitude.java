@@ -9,12 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right). 
+ * The attitude in the aeronautical frame (right-handed, Z-down, Y-right, X-front, ZYX, 
+ * intrinsic). 
  */
 @MavlinkMessageInfo(
         id = 30,
         crc = 39,
-        description = "The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right)."
+        description = "The attitude in the aeronautical frame (right-handed, Z-down, Y-right, X-front, ZYX, intrinsic)."
 )
 public final class Attitude {
     private final long timeBootMs;

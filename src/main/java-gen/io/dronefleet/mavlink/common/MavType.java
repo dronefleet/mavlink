@@ -125,40 +125,47 @@ public enum MavType {
     MAV_TYPE_ONBOARD_CONTROLLER,
 
     /**
-     * Two-rotor VTOL using control surfaces in vertical operation in addition. Tailsitter. 
+     * Two-rotor Tailsitter VTOL that additionally uses control surfaces in vertical operation. 
+     * Note, value previously named MAV_TYPE_VTOL_DUOROTOR. 
      */
     @MavlinkEntryInfo(19)
-    MAV_TYPE_VTOL_DUOROTOR,
+    MAV_TYPE_VTOL_TAILSITTER_DUOROTOR,
 
     /**
-     * Quad-rotor VTOL using a V-shaped quad config in vertical operation. Tailsitter. 
+     * Quad-rotor Tailsitter VTOL using a V-shaped quad config in vertical operation. Note: value 
+     * previously named MAV_TYPE_VTOL_QUADROTOR. 
      */
     @MavlinkEntryInfo(20)
-    MAV_TYPE_VTOL_QUADROTOR,
+    MAV_TYPE_VTOL_TAILSITTER_QUADROTOR,
 
     /**
-     * Tiltrotor VTOL 
+     * Tiltrotor VTOL. Fuselage and wings stay (nominally) horizontal in all flight phases. It able 
+     * to tilt (some) rotors to provide thrust in cruise flight. 
      */
     @MavlinkEntryInfo(21)
     MAV_TYPE_VTOL_TILTROTOR,
 
     /**
-     * VTOL reserved 2 
+     * VTOL with separate fixed rotors for hover and cruise flight. Fuselage and wings stay 
+     * (nominally) horizontal in all flight phases. 
      */
     @MavlinkEntryInfo(22)
-    MAV_TYPE_VTOL_RESERVED2,
+    MAV_TYPE_VTOL_FIXEDROTOR,
 
     /**
-     * VTOL reserved 3 
+     * Tailsitter VTOL. Fuselage and wings orientation changes depending on flight phase: vertical 
+     * for hover, horizontal for cruise. Use more specific VTOL MAV_TYPE_VTOL_DUOROTOR or 
+     * MAV_TYPE_VTOL_QUADROTOR if appropriate. 
      */
     @MavlinkEntryInfo(23)
-    MAV_TYPE_VTOL_RESERVED3,
+    MAV_TYPE_VTOL_TAILSITTER,
 
     /**
-     * VTOL reserved 4 
+     * Tiltwing VTOL. Fuselage stays horizontal in all flight phases. The whole wing, along with any 
+     * attached engine, can tilt between vertical and horizontal mode. 
      */
     @MavlinkEntryInfo(24)
-    MAV_TYPE_VTOL_RESERVED4,
+    MAV_TYPE_VTOL_TILTWING,
 
     /**
      * VTOL reserved 5 
@@ -212,5 +219,59 @@ public enum MavType {
      * Servo 
      */
     @MavlinkEntryInfo(33)
-    MAV_TYPE_SERVO
+    MAV_TYPE_SERVO,
+
+    /**
+     * Open Drone ID. See https://mavlink.io/en/services/opendroneid.html. 
+     */
+    @MavlinkEntryInfo(34)
+    MAV_TYPE_ODID,
+
+    /**
+     * Decarotor 
+     */
+    @MavlinkEntryInfo(35)
+    MAV_TYPE_DECAROTOR,
+
+    /**
+     * Battery 
+     */
+    @MavlinkEntryInfo(36)
+    MAV_TYPE_BATTERY,
+
+    /**
+     * Parachute 
+     */
+    @MavlinkEntryInfo(37)
+    MAV_TYPE_PARACHUTE,
+
+    /**
+     * Log 
+     */
+    @MavlinkEntryInfo(38)
+    MAV_TYPE_LOG,
+
+    /**
+     * OSD 
+     */
+    @MavlinkEntryInfo(39)
+    MAV_TYPE_OSD,
+
+    /**
+     * IMU 
+     */
+    @MavlinkEntryInfo(40)
+    MAV_TYPE_IMU,
+
+    /**
+     * GPS 
+     */
+    @MavlinkEntryInfo(41)
+    MAV_TYPE_GPS,
+
+    /**
+     * Winch 
+     */
+    @MavlinkEntryInfo(42)
+    MAV_TYPE_WINCH
 }

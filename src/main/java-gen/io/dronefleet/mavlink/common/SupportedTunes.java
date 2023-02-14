@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,18 +14,12 @@ import java.util.Objects;
 /**
  * Tune formats supported by vehicle. This should be emitted as response to 
  * MAV_CMD_REQUEST_MESSAGE. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 401,
         crc = 183,
-        description = "Tune formats supported by vehicle. This should be emitted as response to MAV_CMD_REQUEST_MESSAGE.",
-        workInProgress = true
+        description = "Tune formats supported by vehicle. This should be emitted as response to MAV_CMD_REQUEST_MESSAGE."
 )
-@Deprecated
 public final class SupportedTunes {
     private final int targetSystem;
 
@@ -52,7 +45,7 @@ public final class SupportedTunes {
      * System ID 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 1,
             description = "System ID"
     )
@@ -64,7 +57,7 @@ public final class SupportedTunes {
      * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Component ID"
     )
@@ -76,7 +69,7 @@ public final class SupportedTunes {
      * Bitfield of supported tune formats. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             enumType = TuneFormat.class,
             description = "Bitfield of supported tune formats."
@@ -123,7 +116,7 @@ public final class SupportedTunes {
          * System ID 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 1,
                 description = "System ID"
         )
@@ -136,7 +129,7 @@ public final class SupportedTunes {
          * Component ID 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Component ID"
         )
@@ -149,7 +142,7 @@ public final class SupportedTunes {
          * Bitfield of supported tune formats. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 enumType = TuneFormat.class,
                 description = "Bitfield of supported tune formats."

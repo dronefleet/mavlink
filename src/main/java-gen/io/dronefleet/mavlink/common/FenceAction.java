@@ -4,18 +4,19 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- *  
+ * Actions following geofence breach. 
  */
 @MavlinkEnum
 public enum FenceAction {
     /**
-     * Disable fenced mode 
+     * Disable fenced mode. If used in a plan this would mean the next fence is disabled. 
      */
     @MavlinkEntryInfo(0)
     FENCE_ACTION_NONE,
 
     /**
-     * Switched to guided mode to return point (fence point 0) 
+     * Fly to geofence MAV_CMD_NAV_FENCE_RETURN_POINT in GUIDED mode. Note: This action is only 
+     * supported by ArduPlane, and may not be supported in all versions. 
      */
     @MavlinkEntryInfo(1)
     FENCE_ACTION_GUIDED,
@@ -27,14 +28,35 @@ public enum FenceAction {
     FENCE_ACTION_REPORT,
 
     /**
-     * Switched to guided mode to return point (fence point 0) with manual throttle control 
+     * Fly to geofence MAV_CMD_NAV_FENCE_RETURN_POINT with manual throttle control in GUIDED 
+     * mode. Note: This action is only supported by ArduPlane, and may not be supported in all 
+     * versions. 
      */
     @MavlinkEntryInfo(3)
     FENCE_ACTION_GUIDED_THR_PASS,
 
     /**
-     * Switch to RTL (return to launch) mode and head for the return point. 
+     * Return/RTL mode. 
      */
     @MavlinkEntryInfo(4)
-    FENCE_ACTION_RTL
+    FENCE_ACTION_RTL,
+
+    /**
+     * Hold at current location. 
+     */
+    @MavlinkEntryInfo(5)
+    FENCE_ACTION_HOLD,
+
+    /**
+     * Termination failsafe. Motors are shut down (some flight stacks may trigger other failsafe 
+     * actions). 
+     */
+    @MavlinkEntryInfo(6)
+    FENCE_ACTION_TERMINATE,
+
+    /**
+     * Land at current location. 
+     */
+    @MavlinkEntryInfo(7)
+    FENCE_ACTION_LAND
 }

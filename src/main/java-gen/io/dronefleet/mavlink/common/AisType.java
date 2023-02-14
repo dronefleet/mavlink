@@ -391,7 +391,7 @@ public enum AisType {
      *  
      */
     @MavlinkEntryInfo(63)
-    AIS_TYPE_AIS_TYPE_PASSENGER_HAZARDOUS_C,
+    AIS_TYPE_PASSENGER_HAZARDOUS_C,
 
     /**
      *  
@@ -421,7 +421,7 @@ public enum AisType {
      *  
      */
     @MavlinkEntryInfo(68)
-    AIS_TYPE_AIS_TYPE_PASSENGER_RESERVED_4,
+    AIS_TYPE_PASSENGER_RESERVED_4,
 
     /**
      *  

@@ -97,12 +97,12 @@ public final class LoggingData {
 
     /**
      * offset into data where first message starts. This can be used for recovery, when a previous 
-     * message got lost (set to 255 if no start exists). 
+     * message got lost (set to UINT8_MAX if no start exists). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 1,
-            description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists)."
+            description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists)."
     )
     public final int firstMessageOffset() {
         return this.firstMessageOffset;
@@ -224,12 +224,12 @@ public final class LoggingData {
 
         /**
          * offset into data where first message starts. This can be used for recovery, when a previous 
-         * message got lost (set to 255 if no start exists). 
+         * message got lost (set to UINT8_MAX if no start exists). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 1,
-                description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to 255 if no start exists)."
+                description = "offset into data where first message starts. This can be used for recovery, when a previous message got lost (set to UINT8_MAX if no start exists)."
         )
         public final Builder firstMessageOffset(int firstMessageOffset) {
             this.firstMessageOffset = firstMessageOffset;

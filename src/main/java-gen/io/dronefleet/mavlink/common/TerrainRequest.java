@@ -10,12 +10,13 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Request for terrain data and terrain status 
+ * Request for terrain data and terrain status. See terrain protocol docs: 
+ * https://mavlink.io/en/services/terrain.html 
  */
 @MavlinkMessageInfo(
         id = 133,
         crc = 6,
-        description = "Request for terrain data and terrain status"
+        description = "Request for terrain data and terrain status. See terrain protocol docs: https://mavlink.io/en/services/terrain.html"
 )
 public final class TerrainRequest {
     private final int lat;

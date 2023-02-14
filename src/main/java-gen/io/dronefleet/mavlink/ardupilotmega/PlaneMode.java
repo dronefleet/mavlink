@@ -138,5 +138,17 @@ public enum PlaneMode {
      *  
      */
     @MavlinkEntryInfo(22)
-    PLANE_MODE_QAUTOTUNE
+    PLANE_MODE_QAUTOTUNE,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(23)
+    PLANE_MODE_QACRO,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(24)
+    PLANE_MODE_THERMAL
 }

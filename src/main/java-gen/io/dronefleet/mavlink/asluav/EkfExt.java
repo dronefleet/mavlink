@@ -13,7 +13,7 @@ import java.util.Objects;
  * Extended EKF state estimates for ASLUAVs 
  */
 @MavlinkMessageInfo(
-        id = 206,
+        id = 8007,
         crc = 64,
         description = "Extended EKF state estimates for ASLUAVs"
 )

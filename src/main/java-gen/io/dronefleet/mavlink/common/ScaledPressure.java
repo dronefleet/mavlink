@@ -26,11 +26,15 @@ public final class ScaledPressure {
 
     private final int temperature;
 
-    private ScaledPressure(long timeBootMs, float pressAbs, float pressDiff, int temperature) {
+    private final int temperaturePressDiff;
+
+    private ScaledPressure(long timeBootMs, float pressAbs, float pressDiff, int temperature,
+            int temperaturePressDiff) {
         this.timeBootMs = timeBootMs;
         this.pressAbs = pressAbs;
         this.pressDiff = pressDiff;
         this.temperature = temperature;
+        this.temperaturePressDiff = temperaturePressDiff;
     }
 
     /**
@@ -78,16 +82,30 @@ public final class ScaledPressure {
     }
 
     /**
-     * Temperature 
+     * Absolute pressure temperature 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
             signed = true,
-            description = "Temperature"
+            description = "Absolute pressure temperature"
     )
     public final int temperature() {
         return this.temperature;
+    }
+
+    /**
+     * Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC. 
+     */
+    @MavlinkFieldInfo(
+            position = 6,
+            unitSize = 2,
+            signed = true,
+            extension = true,
+            description = "Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC."
+    )
+    public final int temperaturePressDiff() {
+        return this.temperaturePressDiff;
     }
 
     @Override
@@ -99,6 +117,7 @@ public final class ScaledPressure {
         if (!Objects.deepEquals(pressAbs, other.pressAbs)) return false;
         if (!Objects.deepEquals(pressDiff, other.pressDiff)) return false;
         if (!Objects.deepEquals(temperature, other.temperature)) return false;
+        if (!Objects.deepEquals(temperaturePressDiff, other.temperaturePressDiff)) return false;
         return true;
     }
 
@@ -109,6 +128,7 @@ public final class ScaledPressure {
         result = 31 * result + Objects.hashCode(pressAbs);
         result = 31 * result + Objects.hashCode(pressDiff);
         result = 31 * result + Objects.hashCode(temperature);
+        result = 31 * result + Objects.hashCode(temperaturePressDiff);
         return result;
     }
 
@@ -117,7 +137,8 @@ public final class ScaledPressure {
         return "ScaledPressure{timeBootMs=" + timeBootMs
                  + ", pressAbs=" + pressAbs
                  + ", pressDiff=" + pressDiff
-                 + ", temperature=" + temperature + "}";
+                 + ", temperature=" + temperature
+                 + ", temperaturePressDiff=" + temperaturePressDiff + "}";
     }
 
     public static final class Builder {
@@ -128,6 +149,8 @@ public final class ScaledPressure {
         private float pressDiff;
 
         private int temperature;
+
+        private int temperaturePressDiff;
 
         /**
          * Timestamp (time since system boot). 
@@ -169,21 +192,36 @@ public final class ScaledPressure {
         }
 
         /**
-         * Temperature 
+         * Absolute pressure temperature 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
                 signed = true,
-                description = "Temperature"
+                description = "Absolute pressure temperature"
         )
         public final Builder temperature(int temperature) {
             this.temperature = temperature;
             return this;
         }
 
+        /**
+         * Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC. 
+         */
+        @MavlinkFieldInfo(
+                position = 6,
+                unitSize = 2,
+                signed = true,
+                extension = true,
+                description = "Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC."
+        )
+        public final Builder temperaturePressDiff(int temperaturePressDiff) {
+            this.temperaturePressDiff = temperaturePressDiff;
+            return this;
+        }
+
         public final ScaledPressure build() {
-            return new ScaledPressure(timeBootMs, pressAbs, pressDiff, temperature);
+            return new ScaledPressure(timeBootMs, pressAbs, pressDiff, temperature, temperaturePressDiff);
         }
     }
 }

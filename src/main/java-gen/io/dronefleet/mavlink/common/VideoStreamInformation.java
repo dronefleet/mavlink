@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,19 +12,14 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Information about video stream 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
+ * Information about video stream. It may be requested using MAV_CMD_REQUEST_MESSAGE, where 
+ * param2 indicates the video stream id: 0 for all streams, 1 for first, 2 for second, etc. 
  */
 @MavlinkMessageInfo(
         id = 269,
         crc = 109,
-        description = "Information about video stream",
-        workInProgress = true
+        description = "Information about video stream. It may be requested using MAV_CMD_REQUEST_MESSAGE, where param2 indicates the video stream id: 0 for all streams, 1 for first, 2 for second, etc."
 )
-@Deprecated
 public final class VideoStreamInformation {
     private final int streamId;
 
@@ -80,7 +74,7 @@ public final class VideoStreamInformation {
      * Video Stream ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 1,
             description = "Video Stream ID (1 for first, 2 for second, etc.)"
     )
@@ -92,7 +86,7 @@ public final class VideoStreamInformation {
      * Number of streams available. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Number of streams available."
     )
@@ -104,7 +98,7 @@ public final class VideoStreamInformation {
      * Type of stream. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 1,
             enumType = VideoStreamType.class,
             description = "Type of stream."
@@ -117,7 +111,7 @@ public final class VideoStreamInformation {
      * Bitmap of stream status flags. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 2,
             enumType = VideoStreamStatusFlags.class,
             description = "Bitmap of stream status flags."
@@ -130,7 +124,7 @@ public final class VideoStreamInformation {
      * Frame rate. 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 4,
             description = "Frame rate."
     )
@@ -142,7 +136,7 @@ public final class VideoStreamInformation {
      * Horizontal resolution. 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 2,
             description = "Horizontal resolution."
     )
@@ -154,7 +148,7 @@ public final class VideoStreamInformation {
      * Vertical resolution. 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 2,
             description = "Vertical resolution."
     )
@@ -166,7 +160,7 @@ public final class VideoStreamInformation {
      * Bit rate. 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 4,
             description = "Bit rate."
     )
@@ -178,7 +172,7 @@ public final class VideoStreamInformation {
      * Video image rotation clockwise. 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 9,
             unitSize = 2,
             description = "Video image rotation clockwise."
     )
@@ -190,7 +184,7 @@ public final class VideoStreamInformation {
      * Horizontal Field of view. 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 10,
             unitSize = 2,
             description = "Horizontal Field of view."
     )
@@ -202,7 +196,7 @@ public final class VideoStreamInformation {
      * Stream name. 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 11,
             unitSize = 1,
             arraySize = 32,
             description = "Stream name."
@@ -216,7 +210,7 @@ public final class VideoStreamInformation {
      * ground station should listen to). 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 12,
             unitSize = 1,
             arraySize = 160,
             description = "Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to)."
@@ -308,7 +302,7 @@ public final class VideoStreamInformation {
          * Video Stream ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 1,
                 description = "Video Stream ID (1 for first, 2 for second, etc.)"
         )
@@ -321,7 +315,7 @@ public final class VideoStreamInformation {
          * Number of streams available. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Number of streams available."
         )
@@ -334,7 +328,7 @@ public final class VideoStreamInformation {
          * Type of stream. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 1,
                 enumType = VideoStreamType.class,
                 description = "Type of stream."
@@ -369,7 +363,7 @@ public final class VideoStreamInformation {
          * Bitmap of stream status flags. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 2,
                 enumType = VideoStreamStatusFlags.class,
                 description = "Bitmap of stream status flags."
@@ -404,7 +398,7 @@ public final class VideoStreamInformation {
          * Frame rate. 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 4,
                 description = "Frame rate."
         )
@@ -417,7 +411,7 @@ public final class VideoStreamInformation {
          * Horizontal resolution. 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 2,
                 description = "Horizontal resolution."
         )
@@ -430,7 +424,7 @@ public final class VideoStreamInformation {
          * Vertical resolution. 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 2,
                 description = "Vertical resolution."
         )
@@ -443,7 +437,7 @@ public final class VideoStreamInformation {
          * Bit rate. 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 4,
                 description = "Bit rate."
         )
@@ -456,7 +450,7 @@ public final class VideoStreamInformation {
          * Video image rotation clockwise. 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 9,
                 unitSize = 2,
                 description = "Video image rotation clockwise."
         )
@@ -469,7 +463,7 @@ public final class VideoStreamInformation {
          * Horizontal Field of view. 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 10,
                 unitSize = 2,
                 description = "Horizontal Field of view."
         )
@@ -482,7 +476,7 @@ public final class VideoStreamInformation {
          * Stream name. 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 11,
                 unitSize = 1,
                 arraySize = 32,
                 description = "Stream name."
@@ -497,7 +491,7 @@ public final class VideoStreamInformation {
          * ground station should listen to). 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 12,
                 unitSize = 1,
                 arraySize = 160,
                 description = "Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to)."

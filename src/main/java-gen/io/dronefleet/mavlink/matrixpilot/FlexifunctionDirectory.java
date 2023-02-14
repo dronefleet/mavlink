@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Acknowldge sucess or failure of a flexifunction command 
+ * Acknowldge success or failure of a flexifunction command 
  */
 @MavlinkMessageInfo(
         id = 155,
         crc = 12,
-        description = "Acknowldge sucess or failure of a flexifunction command"
+        description = "Acknowldge success or failure of a flexifunction command"
 )
 public final class FlexifunctionDirectory {
     private final int targetSystem;

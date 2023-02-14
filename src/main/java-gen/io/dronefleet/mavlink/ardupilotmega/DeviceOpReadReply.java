@@ -27,12 +27,16 @@ public final class DeviceOpReadReply {
 
     private final byte[] data;
 
-    private DeviceOpReadReply(long requestId, int result, int regstart, int count, byte[] data) {
+    private final int bank;
+
+    private DeviceOpReadReply(long requestId, int result, int regstart, int count, byte[] data,
+            int bank) {
         this.requestId = requestId;
         this.result = result;
         this.regstart = regstart;
         this.count = count;
         this.data = data;
+        this.bank = bank;
     }
 
     /**
@@ -104,6 +108,19 @@ public final class DeviceOpReadReply {
         return this.data;
     }
 
+    /**
+     * Bank number. 
+     */
+    @MavlinkFieldInfo(
+            position = 7,
+            unitSize = 1,
+            extension = true,
+            description = "Bank number."
+    )
+    public final int bank() {
+        return this.bank;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,6 +131,7 @@ public final class DeviceOpReadReply {
         if (!Objects.deepEquals(regstart, other.regstart)) return false;
         if (!Objects.deepEquals(count, other.count)) return false;
         if (!Objects.deepEquals(data, other.data)) return false;
+        if (!Objects.deepEquals(bank, other.bank)) return false;
         return true;
     }
 
@@ -125,6 +143,7 @@ public final class DeviceOpReadReply {
         result = 31 * result + Objects.hashCode(regstart);
         result = 31 * result + Objects.hashCode(count);
         result = 31 * result + Objects.hashCode(data);
+        result = 31 * result + Objects.hashCode(bank);
         return result;
     }
 
@@ -134,7 +153,8 @@ public final class DeviceOpReadReply {
                  + ", result=" + result
                  + ", regstart=" + regstart
                  + ", count=" + count
-                 + ", data=" + data + "}";
+                 + ", data=" + data
+                 + ", bank=" + bank + "}";
     }
 
     public static final class Builder {
@@ -147,6 +167,8 @@ public final class DeviceOpReadReply {
         private int count;
 
         private byte[] data;
+
+        private int bank;
 
         /**
          * Request ID - copied from request. 
@@ -214,8 +236,22 @@ public final class DeviceOpReadReply {
             return this;
         }
 
+        /**
+         * Bank number. 
+         */
+        @MavlinkFieldInfo(
+                position = 7,
+                unitSize = 1,
+                extension = true,
+                description = "Bank number."
+        )
+        public final Builder bank(int bank) {
+            this.bank = bank;
+            return this;
+        }
+
         public final DeviceOpReadReply build() {
-            return new DeviceOpReadReply(requestId, result, regstart, count, data);
+            return new DeviceOpReadReply(requestId, result, regstart, count, data, bank);
         }
     }
 }

@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -10,12 +11,16 @@ import java.util.Objects;
 
 /**
  * Orientation of a mount 
+ * @deprecated Since 2020-01, replaced by MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW. This message 
+ * is being superseded by MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW. The message can still be used to 
+ * communicate with legacy gimbals implementing it. 
  */
 @MavlinkMessageInfo(
         id = 265,
         crc = 26,
         description = "Orientation of a mount"
 )
+@Deprecated
 public final class MountOrientation {
     private final long timeBootMs;
 
@@ -48,7 +53,7 @@ public final class MountOrientation {
      * Timestamp (time since system boot). 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 4,
             description = "Timestamp (time since system boot)."
     )
@@ -60,7 +65,7 @@ public final class MountOrientation {
      * Roll in global frame (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "Roll in global frame (set to NaN for invalid)."
     )
@@ -72,7 +77,7 @@ public final class MountOrientation {
      * Pitch in global frame (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 4,
             description = "Pitch in global frame (set to NaN for invalid)."
     )
@@ -84,7 +89,7 @@ public final class MountOrientation {
      * Yaw relative to vehicle (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 4,
             description = "Yaw relative to vehicle (set to NaN for invalid)."
     )
@@ -96,7 +101,7 @@ public final class MountOrientation {
      * Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid). 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 4,
             extension = true,
             description = "Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid)."
@@ -153,7 +158,7 @@ public final class MountOrientation {
          * Timestamp (time since system boot). 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 4,
                 description = "Timestamp (time since system boot)."
         )
@@ -166,7 +171,7 @@ public final class MountOrientation {
          * Roll in global frame (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "Roll in global frame (set to NaN for invalid)."
         )
@@ -179,7 +184,7 @@ public final class MountOrientation {
          * Pitch in global frame (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 4,
                 description = "Pitch in global frame (set to NaN for invalid)."
         )
@@ -192,7 +197,7 @@ public final class MountOrientation {
          * Yaw relative to vehicle (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 4,
                 description = "Yaw relative to vehicle (set to NaN for invalid)."
         )
@@ -205,7 +210,7 @@ public final class MountOrientation {
          * Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid). 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 4,
                 extension = true,
                 description = "Yaw in absolute frame relative to Earth's North, north is 0 (set to NaN for invalid)."

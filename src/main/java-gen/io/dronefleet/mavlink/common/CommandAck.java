@@ -78,22 +78,22 @@ public final class CommandAck {
     }
 
     /**
-     * WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why 
-     * the command was denied or the progress percentage or 255 if unknown the progress when result is 
-     * MAV_RESULT_IN_PROGRESS. 
+     * Also used as result_param1, it can be set with an enum containing the errors reasons of why the 
+     * command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS 
+     * (UINT8_MAX if the progress is unknown). 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             extension = true,
-            description = "WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS."
+            description = "Also used as result_param1, it can be set with an enum containing the errors reasons of why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS (UINT8_MAX if the progress is unknown)."
     )
     public final int progress() {
         return this.progress;
     }
 
     /**
-     * WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
+     * Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
      * caused it to be denied. 
      */
     @MavlinkFieldInfo(
@@ -101,33 +101,35 @@ public final class CommandAck {
             unitSize = 4,
             signed = true,
             extension = true,
-            description = "WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
+            description = "Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
     )
     public final int resultParam2() {
         return this.resultParam2;
     }
 
     /**
-     * WIP: System which requested the command to be executed 
+     * System ID of the target recipient. This is the ID of the system that sent the command for which 
+     * this {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} is an acknowledgement. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 1,
             extension = true,
-            description = "WIP: System which requested the command to be executed"
+            description = "System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement."
     )
     public final int targetSystem() {
         return this.targetSystem;
     }
 
     /**
-     * WIP: Component which requested the command to be executed 
+     * Component ID of the target recipient. This is the ID of the system that sent the command for which 
+     * this {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} is an acknowledgement. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 1,
             extension = true,
-            description = "WIP: Component which requested the command to be executed"
+            description = "Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement."
     )
     public final int targetComponent() {
         return this.targetComponent;
@@ -253,15 +255,15 @@ public final class CommandAck {
         }
 
         /**
-         * WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why 
-         * the command was denied or the progress percentage or 255 if unknown the progress when result is 
-         * MAV_RESULT_IN_PROGRESS. 
+         * Also used as result_param1, it can be set with an enum containing the errors reasons of why the 
+         * command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS 
+         * (UINT8_MAX if the progress is unknown). 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 extension = true,
-                description = "WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS."
+                description = "Also used as result_param1, it can be set with an enum containing the errors reasons of why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS (UINT8_MAX if the progress is unknown)."
         )
         public final Builder progress(int progress) {
             this.progress = progress;
@@ -269,7 +271,7 @@ public final class CommandAck {
         }
 
         /**
-         * WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
+         * Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT 
          * caused it to be denied. 
          */
         @MavlinkFieldInfo(
@@ -277,7 +279,7 @@ public final class CommandAck {
                 unitSize = 4,
                 signed = true,
                 extension = true,
-                description = "WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
+                description = "Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied."
         )
         public final Builder resultParam2(int resultParam2) {
             this.resultParam2 = resultParam2;
@@ -285,13 +287,14 @@ public final class CommandAck {
         }
 
         /**
-         * WIP: System which requested the command to be executed 
+         * System ID of the target recipient. This is the ID of the system that sent the command for which 
+         * this {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} is an acknowledgement. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 1,
                 extension = true,
-                description = "WIP: System which requested the command to be executed"
+                description = "System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement."
         )
         public final Builder targetSystem(int targetSystem) {
             this.targetSystem = targetSystem;
@@ -299,13 +302,14 @@ public final class CommandAck {
         }
 
         /**
-         * WIP: Component which requested the command to be executed 
+         * Component ID of the target recipient. This is the ID of the system that sent the command for which 
+         * this {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} is an acknowledgement. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 1,
                 extension = true,
-                description = "WIP: Component which requested the command to be executed"
+                description = "Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement."
         )
         public final Builder targetComponent(int targetComponent) {
             this.targetComponent = targetComponent;

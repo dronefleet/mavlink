@@ -10,12 +10,14 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Wind covariance estimate from vehicle. 
+ * Wind estimate from vehicle. Note that despite the name, this message does not actually contain 
+ * any covariances but instead variability and accuracy fields in terms of standard deviation 
+ * (1-STD). 
  */
 @MavlinkMessageInfo(
         id = 231,
         crc = 105,
-        description = "Wind covariance estimate from vehicle."
+        description = "Wind estimate from vehicle. Note that despite the name, this message does not actually contain any covariances but instead variability and accuracy fields in terms of standard deviation (1-STD)."
 )
 public final class WindCov {
     private final BigInteger timeUsec;
@@ -59,108 +61,108 @@ public final class WindCov {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Wind in X (NED) direction 
+     * Wind in North (NED) direction (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 4,
-            description = "Wind in X (NED) direction"
+            description = "Wind in North (NED) direction (NAN if unknown)"
     )
     public final float windX() {
         return this.windX;
     }
 
     /**
-     * Wind in Y (NED) direction 
+     * Wind in East (NED) direction (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
-            description = "Wind in Y (NED) direction"
+            description = "Wind in East (NED) direction (NAN if unknown)"
     )
     public final float windY() {
         return this.windY;
     }
 
     /**
-     * Wind in Z (NED) direction 
+     * Wind in down (NED) direction (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
-            description = "Wind in Z (NED) direction"
+            description = "Wind in down (NED) direction (NAN if unknown)"
     )
     public final float windZ() {
         return this.windZ;
     }
 
     /**
-     * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
+     * Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate."
+            description = "Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)"
     )
     public final float varHoriz() {
         return this.varHoriz;
     }
 
     /**
-     * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
+     * Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 4,
-            description = "Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate."
+            description = "Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)"
     )
     public final float varVert() {
         return this.varVert;
     }
 
     /**
-     * Altitude (MSL) that this measurement was taken at 
+     * Altitude (MSL) that this measurement was taken at (NAN if unknown) 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 4,
-            description = "Altitude (MSL) that this measurement was taken at"
+            description = "Altitude (MSL) that this measurement was taken at (NAN if unknown)"
     )
     public final float windAlt() {
         return this.windAlt;
     }
 
     /**
-     * Horizontal speed 1-STD accuracy 
+     * Horizontal speed 1-STD accuracy (0 if unknown) 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 4,
-            description = "Horizontal speed 1-STD accuracy"
+            description = "Horizontal speed 1-STD accuracy (0 if unknown)"
     )
     public final float horizAccuracy() {
         return this.horizAccuracy;
     }
 
     /**
-     * Vertical speed 1-STD accuracy 
+     * Vertical speed 1-STD accuracy (0 if unknown) 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 4,
-            description = "Vertical speed 1-STD accuracy"
+            description = "Vertical speed 1-STD accuracy (0 if unknown)"
     )
     public final float vertAccuracy() {
         return this.vertAccuracy;
@@ -232,12 +234,12 @@ public final class WindCov {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -245,12 +247,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in X (NED) direction 
+         * Wind in North (NED) direction (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 4,
-                description = "Wind in X (NED) direction"
+                description = "Wind in North (NED) direction (NAN if unknown)"
         )
         public final Builder windX(float windX) {
             this.windX = windX;
@@ -258,12 +260,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in Y (NED) direction 
+         * Wind in East (NED) direction (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
-                description = "Wind in Y (NED) direction"
+                description = "Wind in East (NED) direction (NAN if unknown)"
         )
         public final Builder windY(float windY) {
             this.windY = windY;
@@ -271,12 +273,12 @@ public final class WindCov {
         }
 
         /**
-         * Wind in Z (NED) direction 
+         * Wind in down (NED) direction (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
-                description = "Wind in Z (NED) direction"
+                description = "Wind in down (NED) direction (NAN if unknown)"
         )
         public final Builder windZ(float windZ) {
             this.windZ = windZ;
@@ -284,12 +286,12 @@ public final class WindCov {
         }
 
         /**
-         * Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate. 
+         * Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate."
+                description = "Variability of wind in XY, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)"
         )
         public final Builder varHoriz(float varHoriz) {
             this.varHoriz = varHoriz;
@@ -297,12 +299,12 @@ public final class WindCov {
         }
 
         /**
-         * Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate. 
+         * Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 4,
-                description = "Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate."
+                description = "Variability of wind in Z, 1-STD estimated from a 1 Hz lowpassed wind estimate (NAN if unknown)"
         )
         public final Builder varVert(float varVert) {
             this.varVert = varVert;
@@ -310,12 +312,12 @@ public final class WindCov {
         }
 
         /**
-         * Altitude (MSL) that this measurement was taken at 
+         * Altitude (MSL) that this measurement was taken at (NAN if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 4,
-                description = "Altitude (MSL) that this measurement was taken at"
+                description = "Altitude (MSL) that this measurement was taken at (NAN if unknown)"
         )
         public final Builder windAlt(float windAlt) {
             this.windAlt = windAlt;
@@ -323,12 +325,12 @@ public final class WindCov {
         }
 
         /**
-         * Horizontal speed 1-STD accuracy 
+         * Horizontal speed 1-STD accuracy (0 if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 4,
-                description = "Horizontal speed 1-STD accuracy"
+                description = "Horizontal speed 1-STD accuracy (0 if unknown)"
         )
         public final Builder horizAccuracy(float horizAccuracy) {
             this.horizAccuracy = horizAccuracy;
@@ -336,12 +338,12 @@ public final class WindCov {
         }
 
         /**
-         * Vertical speed 1-STD accuracy 
+         * Vertical speed 1-STD accuracy (0 if unknown) 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 4,
-                description = "Vertical speed 1-STD accuracy"
+                description = "Vertical speed 1-STD accuracy (0 if unknown)"
         )
         public final Builder vertAccuracy(float vertAccuracy) {
             this.vertAccuracy = vertAccuracy;

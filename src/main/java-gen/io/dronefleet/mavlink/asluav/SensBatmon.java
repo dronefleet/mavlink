@@ -13,7 +13,7 @@ import java.util.Objects;
  * Battery pack monitoring data for Li-Ion batteries 
  */
 @MavlinkMessageInfo(
-        id = 209,
+        id = 8010,
         crc = 155,
         description = "Battery pack monitoring data for Li-Ion batteries"
 )

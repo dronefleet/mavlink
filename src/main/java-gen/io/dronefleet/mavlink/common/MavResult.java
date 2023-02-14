@@ -49,10 +49,14 @@ public enum MavResult {
      * the component may send further {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} messages with result MAV_RESULT_IN_PROGRESS (at 
      * a rate decided by the implementation), and must terminate by sending a {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK} message 
      * with final result of the operation. The {@link io.dronefleet.mavlink.common.CommandAck COMMAND_ACK}.progress field can be used to indicate the 
-     * progress of the operation. There is no need for the sender to retry the command, but if done 
-     * during execution, the component will return MAV_RESULT_IN_PROGRESS with an updated 
-     * progress. 
+     * progress of the operation. 
      */
     @MavlinkEntryInfo(5)
-    MAV_RESULT_IN_PROGRESS
+    MAV_RESULT_IN_PROGRESS,
+
+    /**
+     * Command has been cancelled (as a result of receiving a {@link io.dronefleet.mavlink.common.CommandCancel COMMAND_CANCEL} message). 
+     */
+    @MavlinkEntryInfo(6)
+    MAV_RESULT_CANCELLED
 }

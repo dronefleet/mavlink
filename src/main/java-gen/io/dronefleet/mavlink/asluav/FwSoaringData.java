@@ -13,7 +13,7 @@ import java.util.Objects;
  * Fixed-wing soaring (i.e. thermal seeking) data 
  */
 @MavlinkMessageInfo(
-        id = 210,
+        id = 8011,
         crc = 20,
         description = "Fixed-wing soaring (i.e. thermal seeking) data"
 )

@@ -3,10 +3,13 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +29,7 @@ public final class SetAttitudeTarget {
 
     private final int targetComponent;
 
-    private final int typeMask;
+    private final EnumValue<AttitudeTargetTypemask> typeMask;
 
     private final List<Float> q;
 
@@ -38,9 +41,11 @@ public final class SetAttitudeTarget {
 
     private final float thrust;
 
-    private SetAttitudeTarget(long timeBootMs, int targetSystem, int targetComponent, int typeMask,
-            List<Float> q, float bodyRollRate, float bodyPitchRate, float bodyYawRate,
-            float thrust) {
+    private final List<Float> thrustBody;
+
+    private SetAttitudeTarget(long timeBootMs, int targetSystem, int targetComponent,
+            EnumValue<AttitudeTargetTypemask> typeMask, List<Float> q, float bodyRollRate,
+            float bodyPitchRate, float bodyYawRate, float thrust, List<Float> thrustBody) {
         this.timeBootMs = timeBootMs;
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
@@ -50,6 +55,7 @@ public final class SetAttitudeTarget {
         this.bodyPitchRate = bodyPitchRate;
         this.bodyYawRate = bodyYawRate;
         this.thrust = thrust;
+        this.thrustBody = thrustBody;
     }
 
     /**
@@ -97,16 +103,15 @@ public final class SetAttitudeTarget {
     }
 
     /**
-     * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
-     * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
-     * bit 8: attitude 
+     * Bitmap to indicate which dimensions should be ignored by the vehicle. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            description = "Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude"
+            enumType = AttitudeTargetTypemask.class,
+            description = "Bitmap to indicate which dimensions should be ignored by the vehicle."
     )
-    public final int typeMask() {
+    public final EnumValue<AttitudeTargetTypemask> typeMask() {
         return this.typeMask;
     }
 
@@ -171,6 +176,20 @@ public final class SetAttitudeTarget {
         return this.thrust;
     }
 
+    /**
+     * 3D thrust setpoint in the body NED frame, normalized to -1 .. 1 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 4,
+            arraySize = 3,
+            extension = true,
+            description = "3D thrust setpoint in the body NED frame, normalized to -1 .. 1"
+    )
+    public final List<Float> thrustBody() {
+        return this.thrustBody;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -185,6 +204,7 @@ public final class SetAttitudeTarget {
         if (!Objects.deepEquals(bodyPitchRate, other.bodyPitchRate)) return false;
         if (!Objects.deepEquals(bodyYawRate, other.bodyYawRate)) return false;
         if (!Objects.deepEquals(thrust, other.thrust)) return false;
+        if (!Objects.deepEquals(thrustBody, other.thrustBody)) return false;
         return true;
     }
 
@@ -200,6 +220,7 @@ public final class SetAttitudeTarget {
         result = 31 * result + Objects.hashCode(bodyPitchRate);
         result = 31 * result + Objects.hashCode(bodyYawRate);
         result = 31 * result + Objects.hashCode(thrust);
+        result = 31 * result + Objects.hashCode(thrustBody);
         return result;
     }
 
@@ -213,7 +234,8 @@ public final class SetAttitudeTarget {
                  + ", bodyRollRate=" + bodyRollRate
                  + ", bodyPitchRate=" + bodyPitchRate
                  + ", bodyYawRate=" + bodyYawRate
-                 + ", thrust=" + thrust + "}";
+                 + ", thrust=" + thrust
+                 + ", thrustBody=" + thrustBody + "}";
     }
 
     public static final class Builder {
@@ -223,7 +245,7 @@ public final class SetAttitudeTarget {
 
         private int targetComponent;
 
-        private int typeMask;
+        private EnumValue<AttitudeTargetTypemask> typeMask;
 
         private List<Float> q;
 
@@ -234,6 +256,8 @@ public final class SetAttitudeTarget {
         private float bodyYawRate;
 
         private float thrust;
+
+        private List<Float> thrustBody;
 
         /**
          * Timestamp (time since system boot). 
@@ -275,18 +299,38 @@ public final class SetAttitudeTarget {
         }
 
         /**
-         * Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body 
-         * roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, 
-         * bit 8: attitude 
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                description = "Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 6: reserved, bit 7: throttle, bit 8: attitude"
+                enumType = AttitudeTargetTypemask.class,
+                description = "Bitmap to indicate which dimensions should be ignored by the vehicle."
         )
-        public final Builder typeMask(int typeMask) {
+        public final Builder typeMask(EnumValue<AttitudeTargetTypemask> typeMask) {
             this.typeMask = typeMask;
             return this;
+        }
+
+        /**
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(AttitudeTargetTypemask entry) {
+            return typeMask(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(Enum... flags) {
+            return typeMask(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap to indicate which dimensions should be ignored by the vehicle. 
+         */
+        public final Builder typeMask(Collection<Enum> flags) {
+            return typeMask(EnumValue.create(flags));
         }
 
         /**
@@ -355,8 +399,23 @@ public final class SetAttitudeTarget {
             return this;
         }
 
+        /**
+         * 3D thrust setpoint in the body NED frame, normalized to -1 .. 1 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 4,
+                arraySize = 3,
+                extension = true,
+                description = "3D thrust setpoint in the body NED frame, normalized to -1 .. 1"
+        )
+        public final Builder thrustBody(List<Float> thrustBody) {
+            this.thrustBody = thrustBody;
+            return this;
+        }
+
         public final SetAttitudeTarget build() {
-            return new SetAttitudeTarget(timeBootMs, targetSystem, targetComponent, typeMask, q, bodyRollRate, bodyPitchRate, bodyYawRate, thrust);
+            return new SetAttitudeTarget(timeBootMs, targetSystem, targetComponent, typeMask, q, bodyRollRate, bodyPitchRate, bodyYawRate, thrust, thrustBody);
         }
     }
 }

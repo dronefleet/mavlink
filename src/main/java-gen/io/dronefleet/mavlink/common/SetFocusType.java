@@ -33,5 +33,23 @@ public enum SetFocusType {
      * reliably be used in a GCS for an arbitrary camera). 
      */
     @MavlinkEntryInfo(3)
-    FOCUS_TYPE_METERS
+    FOCUS_TYPE_METERS,
+
+    /**
+     * Focus automatically. 
+     */
+    @MavlinkEntryInfo(4)
+    FOCUS_TYPE_AUTO,
+
+    /**
+     * Single auto focus. Mainly used for still pictures. Usually abbreviated as AF-S. 
+     */
+    @MavlinkEntryInfo(5)
+    FOCUS_TYPE_AUTO_SINGLE,
+
+    /**
+     * Continuous auto focus. Mainly used for dynamic scenes. Abbreviated as AF-C. 
+     */
+    @MavlinkEntryInfo(6)
+    FOCUS_TYPE_AUTO_CONTINUOUS
 }

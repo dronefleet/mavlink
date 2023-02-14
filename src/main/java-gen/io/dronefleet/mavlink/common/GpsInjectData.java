@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -10,12 +11,14 @@ import java.util.Objects;
 
 /**
  * Data for injecting into the onboard GPS (used for DGPS) 
+ * @deprecated Since 2022-05, replaced by {@link io.dronefleet.mavlink.common.GpsRtcmData GPS_RTCM_DATA}. 
  */
 @MavlinkMessageInfo(
         id = 123,
         crc = 250,
         description = "Data for injecting into the onboard GPS (used for DGPS)"
 )
+@Deprecated
 public final class GpsInjectData {
     private final int targetSystem;
 
@@ -44,7 +47,7 @@ public final class GpsInjectData {
      * System ID 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             description = "System ID"
     )
@@ -56,7 +59,7 @@ public final class GpsInjectData {
      * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             description = "Component ID"
     )
@@ -68,7 +71,7 @@ public final class GpsInjectData {
      * Data length 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 1,
             description = "Data length"
     )
@@ -80,7 +83,7 @@ public final class GpsInjectData {
      * Raw data (110 is enough for 12 satellites of RTCMv2) 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 1,
             arraySize = 110,
             description = "Raw data (110 is enough for 12 satellites of RTCMv2)"
@@ -132,7 +135,7 @@ public final class GpsInjectData {
          * System ID 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 description = "System ID"
         )
@@ -145,7 +148,7 @@ public final class GpsInjectData {
          * Component ID 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 description = "Component ID"
         )
@@ -158,7 +161,7 @@ public final class GpsInjectData {
          * Data length 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 1,
                 description = "Data length"
         )
@@ -171,7 +174,7 @@ public final class GpsInjectData {
          * Raw data (110 is enough for 12 satellites of RTCMv2) 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 1,
                 arraySize = 110,
                 description = "Raw data (110 is enough for 12 satellites of RTCMv2)"

@@ -9,12 +9,14 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Response from a {@link io.dronefleet.mavlink.common.TerrainCheck TERRAIN_CHECK} request 
+ * Streamed from drone to report progress of terrain map download (initiated by 
+ * {@link io.dronefleet.mavlink.common.TerrainRequest TERRAIN_REQUEST}), or sent as a response to a {@link io.dronefleet.mavlink.common.TerrainCheck TERRAIN_CHECK} request. See terrain protocol 
+ * docs: https://mavlink.io/en/services/terrain.html 
  */
 @MavlinkMessageInfo(
         id = 136,
         crc = 1,
-        description = "Response from a TERRAIN_CHECK request"
+        description = "Streamed from drone to report progress of terrain map download (initiated by TERRAIN_REQUEST), or sent as a response to a TERRAIN_CHECK request. See terrain protocol docs: https://mavlink.io/en/services/terrain.html"
 )
 public final class TerrainReport {
     private final int lat;

@@ -12,7 +12,7 @@ import java.util.Objects;
  * Voltage and current sensor data 
  */
 @MavlinkMessageInfo(
-        id = 201,
+        id = 8002,
         crc = 218,
         description = "Voltage and current sensor data"
 )

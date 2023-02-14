@@ -24,5 +24,17 @@ public enum MavOdidStatus {
      * The UA is in the air. 
      */
     @MavlinkEntryInfo(2)
-    MAV_ODID_STATUS_AIRBORNE
+    MAV_ODID_STATUS_AIRBORNE,
+
+    /**
+     * The UA is having an emergency. 
+     */
+    @MavlinkEntryInfo(3)
+    MAV_ODID_STATUS_EMERGENCY,
+
+    /**
+     * The remote ID system is failing or unreliable in some way. 
+     */
+    @MavlinkEntryInfo(4)
+    MAV_ODID_STATUS_REMOTE_ID_SYSTEM_FAILURE
 }

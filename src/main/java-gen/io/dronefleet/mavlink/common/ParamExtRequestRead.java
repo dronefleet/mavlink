@@ -9,12 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Request to read the value of a parameter with the either the param_id string id or param_index. 
+ * Request to read the value of a parameter with either the param_id string id or param_index. 
+ * {@link io.dronefleet.mavlink.common.ParamExtValue PARAM_EXT_VALUE} should be emitted in response. 
  */
 @MavlinkMessageInfo(
         id = 320,
         crc = 243,
-        description = "Request to read the value of a parameter with the either the param_id string id or param_index."
+        description = "Request to read the value of a parameter with either the param_id string id or param_index. PARAM_EXT_VALUE should be emitted in response."
 )
 public final class ParamExtRequestRead {
     private final int targetSystem;

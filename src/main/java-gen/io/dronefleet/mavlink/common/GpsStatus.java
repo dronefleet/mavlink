@@ -10,13 +10,14 @@ import java.util.Objects;
 
 /**
  * The positioning status, as reported by GPS. This message is intended to display status 
- * information about each satellite visible to the receiver. See message GLOBAL_POSITION for 
- * the global position estimate. This message can contain information for up to 20 satellites. 
+ * information about each satellite visible to the receiver. See message {@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} 
+ * for the global position estimate. This message can contain information for up to 20 
+ * satellites. 
  */
 @MavlinkMessageInfo(
         id = 25,
         crc = 23,
-        description = "The positioning status, as reported by GPS. This message is intended to display status information about each satellite visible to the receiver. See message GLOBAL_POSITION for the global position estimate. This message can contain information for up to 20 satellites."
+        description = "The positioning status, as reported by GPS. This message is intended to display status information about each satellite visible to the receiver. See message GLOBAL_POSITION_INT for the global position estimate. This message can contain information for up to 20 satellites."
 )
 public final class GpsStatus {
     private final int satellitesVisible;

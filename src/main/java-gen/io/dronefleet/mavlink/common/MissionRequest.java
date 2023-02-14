@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,12 +16,15 @@ import java.util.Objects;
  * Request the information of the mission item with the sequence number seq. The response of the 
  * system to this message should be a {@link io.dronefleet.mavlink.common.MissionItem MISSION_ITEM} message. 
  * https://mavlink.io/en/services/mission.html 
+ * @deprecated Since 2020-06, replaced by {@link io.dronefleet.mavlink.common.MissionRequestInt MISSION_REQUEST_INT}. A system that gets this request 
+ * should respond with {@link io.dronefleet.mavlink.common.MissionItemInt MISSION_ITEM_INT} (as though {@link io.dronefleet.mavlink.common.MissionRequestInt MISSION_REQUEST_INT} was received). 
  */
 @MavlinkMessageInfo(
         id = 40,
         crc = 230,
         description = "Request the information of the mission item with the sequence number seq. The response of the system to this message should be a MISSION_ITEM message. https://mavlink.io/en/services/mission.html"
 )
+@Deprecated
 public final class MissionRequest {
     private final int targetSystem;
 
@@ -50,7 +54,7 @@ public final class MissionRequest {
      * System ID 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             description = "System ID"
     )
@@ -62,7 +66,7 @@ public final class MissionRequest {
      * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             description = "Component ID"
     )
@@ -74,7 +78,7 @@ public final class MissionRequest {
      * Sequence 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 2,
             description = "Sequence"
     )
@@ -86,7 +90,7 @@ public final class MissionRequest {
      * Mission type. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 1,
             enumType = MavMissionType.class,
             extension = true,
@@ -139,7 +143,7 @@ public final class MissionRequest {
          * System ID 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 description = "System ID"
         )
@@ -152,7 +156,7 @@ public final class MissionRequest {
          * Component ID 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 description = "Component ID"
         )
@@ -165,7 +169,7 @@ public final class MissionRequest {
          * Sequence 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 2,
                 description = "Sequence"
         )
@@ -178,7 +182,7 @@ public final class MissionRequest {
          * Mission type. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 1,
                 enumType = MavMissionType.class,
                 extension = true,

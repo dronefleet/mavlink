@@ -13,7 +13,7 @@ import java.util.Objects;
  * Monitoring of power board status 
  */
 @MavlinkMessageInfo(
-        id = 212,
+        id = 8013,
         crc = 222,
         description = "Monitoring of power board status"
 )

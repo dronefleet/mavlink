@@ -13,7 +13,7 @@ import java.util.Objects;
  * Monitoring of sensorpod status 
  */
 @MavlinkMessageInfo(
-        id = 211,
+        id = 8012,
         crc = 54,
         description = "Monitoring of sensorpod status"
 )

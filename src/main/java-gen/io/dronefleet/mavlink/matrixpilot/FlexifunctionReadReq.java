@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Reqest reading of flexifunction data 
+ * Request reading of flexifunction data 
  */
 @MavlinkMessageInfo(
         id = 151,
         crc = 26,
-        description = "Reqest reading of flexifunction data"
+        description = "Request reading of flexifunction data"
 )
 public final class FlexifunctionReadReq {
     private final int targetSystem;

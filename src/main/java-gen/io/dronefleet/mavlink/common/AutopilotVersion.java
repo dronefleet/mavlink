@@ -13,13 +13,13 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Version and capability of autopilot software. This should be emitted in response to a 
- * MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES command. 
+ * Version and capability of autopilot software. This should be emitted in response to a request 
+ * with MAV_CMD_REQUEST_MESSAGE. 
  */
 @MavlinkMessageInfo(
         id = 148,
         crc = 178,
-        description = "Version and capability of autopilot software. This should be emitted in response to a MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES command."
+        description = "Version and capability of autopilot software. This should be emitted in response to a request with MAV_CMD_REQUEST_MESSAGE."
 )
 public final class AutopilotVersion {
     private final EnumValue<MavProtocolCapability> capabilities;
@@ -122,12 +122,13 @@ public final class AutopilotVersion {
     }
 
     /**
-     * HW / board version (last 8 bytes should be silicon ID, if any) 
+     * HW / board version (last 8 bits should be silicon ID, if any). The first 16 bits of this field 
+     * specify https://github.com/PX4/PX4-Bootloader/blob/master/board_types.txt 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "HW / board version (last 8 bytes should be silicon ID, if any)"
+            description = "HW / board version (last 8 bits should be silicon ID, if any). The first 16 bits of this field specify https://github.com/PX4/PX4-Bootloader/blob/master/board_types.txt"
     )
     public final long boardVersion() {
         return this.boardVersion;
@@ -383,12 +384,13 @@ public final class AutopilotVersion {
         }
 
         /**
-         * HW / board version (last 8 bytes should be silicon ID, if any) 
+         * HW / board version (last 8 bits should be silicon ID, if any). The first 16 bits of this field 
+         * specify https://github.com/PX4/PX4-Bootloader/blob/master/board_types.txt 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "HW / board version (last 8 bytes should be silicon ID, if any)"
+                description = "HW / board version (last 8 bits should be silicon ID, if any). The first 16 bits of this field specify https://github.com/PX4/PX4-Bootloader/blob/master/board_types.txt"
         )
         public final Builder boardVersion(long boardVersion) {
             this.boardVersion = boardVersion;

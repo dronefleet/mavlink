@@ -27,7 +27,7 @@ public enum MavAutopilot {
     MAV_AUTOPILOT_SLUGS,
 
     /**
-     * ArduPilot - Plane/Copter/Rover/Sub/Tracker, http://ardupilot.org 
+     * ArduPilot - Plane/Copter/Rover/Sub/Tracker, https://ardupilot.org 
      */
     @MavlinkEntryInfo(3)
     MAV_AUTOPILOT_ARDUPILOTMEGA,
@@ -126,5 +126,11 @@ public enum MavAutopilot {
      * AirRails - http://uaventure.com 
      */
     @MavlinkEntryInfo(19)
-    MAV_AUTOPILOT_AIRRAILS
+    MAV_AUTOPILOT_AIRRAILS,
+
+    /**
+     * Fusion Reflex - https://fusion.engineering 
+     */
+    @MavlinkEntryInfo(20)
+    MAV_AUTOPILOT_REFLEX
 }

@@ -12,13 +12,15 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Information about a storage medium. This message is sent in response to a request and whenever 
- * the status of the storage changes ({@link io.dronefleet.mavlink.common.StorageStatus STORAGE_STATUS}). 
+ * Information about a storage medium. This message is sent in response to a request with 
+ * MAV_CMD_REQUEST_MESSAGE and whenever the status of the storage changes ({@link io.dronefleet.mavlink.common.StorageStatus STORAGE_STATUS}). 
+ * Use MAV_CMD_REQUEST_MESSAGE.param2 to indicate the index/id of requested storage: 0 for 
+ * all, 1 for first, 2 for second, etc. 
  */
 @MavlinkMessageInfo(
         id = 261,
         crc = 179,
-        description = "Information about a storage medium. This message is sent in response to a request and whenever the status of the storage changes (STORAGE_STATUS)."
+        description = "Information about a storage medium. This message is sent in response to a request with MAV_CMD_REQUEST_MESSAGE and whenever the status of the storage changes (STORAGE_STATUS). Use MAV_CMD_REQUEST_MESSAGE.param2 to indicate the index/id of requested storage: 0 for all, 1 for first, 2 for second, etc."
 )
 public final class StorageInformation {
     private final long timeBootMs;
@@ -39,9 +41,16 @@ public final class StorageInformation {
 
     private final float writeSpeed;
 
+    private final EnumValue<StorageType> type;
+
+    private final String name;
+
+    private final EnumValue<StorageUsageFlag> storageUsage;
+
     private StorageInformation(long timeBootMs, int storageId, int storageCount,
             EnumValue<StorageStatus> status, float totalCapacity, float usedCapacity,
-            float availableCapacity, float readSpeed, float writeSpeed) {
+            float availableCapacity, float readSpeed, float writeSpeed, EnumValue<StorageType> type,
+            String name, EnumValue<StorageUsageFlag> storageUsage) {
         this.timeBootMs = timeBootMs;
         this.storageId = storageId;
         this.storageCount = storageCount;
@@ -51,6 +60,9 @@ public final class StorageInformation {
         this.availableCapacity = availableCapacity;
         this.readSpeed = readSpeed;
         this.writeSpeed = writeSpeed;
+        this.type = type;
+        this.name = name;
+        this.storageUsage = storageUsage;
     }
 
     /**
@@ -171,6 +183,57 @@ public final class StorageInformation {
         return this.writeSpeed;
     }
 
+    /**
+     * Type of storage 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 1,
+            enumType = StorageType.class,
+            extension = true,
+            description = "Type of storage"
+    )
+    public final EnumValue<StorageType> type() {
+        return this.type;
+    }
+
+    /**
+     * Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL 
+     * terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string 
+     * is empty, the generic type is shown to the user. 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 1,
+            arraySize = 32,
+            extension = true,
+            description = "Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user."
+    )
+    public final String name() {
+        return this.name;
+    }
+
+    /**
+     * Flags indicating whether this instance is preferred storage for photos, videos, etc. Note: 
+     * Implementations should initially set the flags on the system-default storage id used for 
+     * saving media (if possible/supported). This setting can then be overridden using 
+     * MAV_CMD_SET_STORAGE_USAGE. If the media usage flags are not set, a GCS may assume storage ID 1 
+     * is the default storage for all media types. 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 1,
+            enumType = StorageUsageFlag.class,
+            extension = true,
+            description = "Flags indicating whether this instance is preferred storage for photos, videos, etc.\n"
+                            + "        Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).\n"
+                            + "        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.\n"
+                            + "        If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types."
+    )
+    public final EnumValue<StorageUsageFlag> storageUsage() {
+        return this.storageUsage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -185,6 +248,9 @@ public final class StorageInformation {
         if (!Objects.deepEquals(availableCapacity, other.availableCapacity)) return false;
         if (!Objects.deepEquals(readSpeed, other.readSpeed)) return false;
         if (!Objects.deepEquals(writeSpeed, other.writeSpeed)) return false;
+        if (!Objects.deepEquals(type, other.type)) return false;
+        if (!Objects.deepEquals(name, other.name)) return false;
+        if (!Objects.deepEquals(storageUsage, other.storageUsage)) return false;
         return true;
     }
 
@@ -200,6 +266,9 @@ public final class StorageInformation {
         result = 31 * result + Objects.hashCode(availableCapacity);
         result = 31 * result + Objects.hashCode(readSpeed);
         result = 31 * result + Objects.hashCode(writeSpeed);
+        result = 31 * result + Objects.hashCode(type);
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(storageUsage);
         return result;
     }
 
@@ -213,7 +282,10 @@ public final class StorageInformation {
                  + ", usedCapacity=" + usedCapacity
                  + ", availableCapacity=" + availableCapacity
                  + ", readSpeed=" + readSpeed
-                 + ", writeSpeed=" + writeSpeed + "}";
+                 + ", writeSpeed=" + writeSpeed
+                 + ", type=" + type
+                 + ", name=" + name
+                 + ", storageUsage=" + storageUsage + "}";
     }
 
     public static final class Builder {
@@ -234,6 +306,12 @@ public final class StorageInformation {
         private float readSpeed;
 
         private float writeSpeed;
+
+        private EnumValue<StorageType> type;
+
+        private String name;
+
+        private EnumValue<StorageUsageFlag> storageUsage;
 
         /**
          * Timestamp (time since system boot). 
@@ -375,8 +453,116 @@ public final class StorageInformation {
             return this;
         }
 
+        /**
+         * Type of storage 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 1,
+                enumType = StorageType.class,
+                extension = true,
+                description = "Type of storage"
+        )
+        public final Builder type(EnumValue<StorageType> type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Type of storage 
+         */
+        public final Builder type(StorageType entry) {
+            return type(EnumValue.of(entry));
+        }
+
+        /**
+         * Type of storage 
+         */
+        public final Builder type(Enum... flags) {
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Type of storage 
+         */
+        public final Builder type(Collection<Enum> flags) {
+            return type(EnumValue.create(flags));
+        }
+
+        /**
+         * Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL 
+         * terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string 
+         * is empty, the generic type is shown to the user. 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 1,
+                arraySize = 32,
+                extension = true,
+                description = "Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user."
+        )
+        public final Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Flags indicating whether this instance is preferred storage for photos, videos, etc. Note: 
+         * Implementations should initially set the flags on the system-default storage id used for 
+         * saving media (if possible/supported). This setting can then be overridden using 
+         * MAV_CMD_SET_STORAGE_USAGE. If the media usage flags are not set, a GCS may assume storage ID 1 
+         * is the default storage for all media types. 
+         */
+        @MavlinkFieldInfo(
+                position = 13,
+                unitSize = 1,
+                enumType = StorageUsageFlag.class,
+                extension = true,
+                description = "Flags indicating whether this instance is preferred storage for photos, videos, etc.\n"
+                                + "        Note: Implementations should initially set the flags on the system-default storage id used for saving media (if possible/supported).\n"
+                                + "        This setting can then be overridden using MAV_CMD_SET_STORAGE_USAGE.\n"
+                                + "        If the media usage flags are not set, a GCS may assume storage ID 1 is the default storage for all media types."
+        )
+        public final Builder storageUsage(EnumValue<StorageUsageFlag> storageUsage) {
+            this.storageUsage = storageUsage;
+            return this;
+        }
+
+        /**
+         * Flags indicating whether this instance is preferred storage for photos, videos, etc. Note: 
+         * Implementations should initially set the flags on the system-default storage id used for 
+         * saving media (if possible/supported). This setting can then be overridden using 
+         * MAV_CMD_SET_STORAGE_USAGE. If the media usage flags are not set, a GCS may assume storage ID 1 
+         * is the default storage for all media types. 
+         */
+        public final Builder storageUsage(StorageUsageFlag entry) {
+            return storageUsage(EnumValue.of(entry));
+        }
+
+        /**
+         * Flags indicating whether this instance is preferred storage for photos, videos, etc. Note: 
+         * Implementations should initially set the flags on the system-default storage id used for 
+         * saving media (if possible/supported). This setting can then be overridden using 
+         * MAV_CMD_SET_STORAGE_USAGE. If the media usage flags are not set, a GCS may assume storage ID 1 
+         * is the default storage for all media types. 
+         */
+        public final Builder storageUsage(Enum... flags) {
+            return storageUsage(EnumValue.create(flags));
+        }
+
+        /**
+         * Flags indicating whether this instance is preferred storage for photos, videos, etc. Note: 
+         * Implementations should initially set the flags on the system-default storage id used for 
+         * saving media (if possible/supported). This setting can then be overridden using 
+         * MAV_CMD_SET_STORAGE_USAGE. If the media usage flags are not set, a GCS may assume storage ID 1 
+         * is the default storage for all media types. 
+         */
+        public final Builder storageUsage(Collection<Enum> flags) {
+            return storageUsage(EnumValue.create(flags));
+        }
+
         public final StorageInformation build() {
-            return new StorageInformation(timeBootMs, storageId, storageCount, status, totalCapacity, usedCapacity, availableCapacity, readSpeed, writeSpeed);
+            return new StorageInformation(timeBootMs, storageId, storageCount, status, totalCapacity, usedCapacity, availableCapacity, readSpeed, writeSpeed, type, name, storageUsage);
         }
     }
 }

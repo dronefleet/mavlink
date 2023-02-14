@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,18 +14,12 @@ import java.util.Objects;
 
 /**
  * The global position resulting from GPS and sensor fusion. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 340,
         crc = 99,
-        description = "The global position resulting from GPS and sensor fusion.",
-        workInProgress = true
+        description = "The global position resulting from GPS and sensor fusion."
 )
-@Deprecated
 public final class UtmGlobalPosition {
     private final BigInteger time;
 
@@ -100,7 +93,7 @@ public final class UtmGlobalPosition {
      * Time of applicability of position (microseconds since UNIX epoch). 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 8,
             description = "Time of applicability of position (microseconds since UNIX epoch)."
     )
@@ -112,7 +105,7 @@ public final class UtmGlobalPosition {
      * Unique UAS ID. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             arraySize = 18,
             description = "Unique UAS ID."
@@ -125,7 +118,7 @@ public final class UtmGlobalPosition {
      * Latitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             signed = true,
             description = "Latitude (WGS84)"
@@ -138,7 +131,7 @@ public final class UtmGlobalPosition {
      * Longitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 4,
             signed = true,
             description = "Longitude (WGS84)"
@@ -151,7 +144,7 @@ public final class UtmGlobalPosition {
      * Altitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 4,
             signed = true,
             description = "Altitude (WGS84)"
@@ -164,7 +157,7 @@ public final class UtmGlobalPosition {
      * Altitude above ground 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 4,
             signed = true,
             description = "Altitude above ground"
@@ -177,7 +170,7 @@ public final class UtmGlobalPosition {
      * Ground X speed (latitude, positive north) 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 2,
             signed = true,
             description = "Ground X speed (latitude, positive north)"
@@ -190,7 +183,7 @@ public final class UtmGlobalPosition {
      * Ground Y speed (longitude, positive east) 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 2,
             signed = true,
             description = "Ground Y speed (longitude, positive east)"
@@ -203,7 +196,7 @@ public final class UtmGlobalPosition {
      * Ground Z speed (altitude, positive down) 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 9,
             unitSize = 2,
             signed = true,
             description = "Ground Z speed (altitude, positive down)"
@@ -216,7 +209,7 @@ public final class UtmGlobalPosition {
      * Horizontal position uncertainty (standard deviation) 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 10,
             unitSize = 2,
             description = "Horizontal position uncertainty (standard deviation)"
     )
@@ -228,7 +221,7 @@ public final class UtmGlobalPosition {
      * Altitude uncertainty (standard deviation) 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 11,
             unitSize = 2,
             description = "Altitude uncertainty (standard deviation)"
     )
@@ -240,7 +233,7 @@ public final class UtmGlobalPosition {
      * Speed uncertainty (standard deviation) 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 12,
             unitSize = 2,
             description = "Speed uncertainty (standard deviation)"
     )
@@ -252,7 +245,7 @@ public final class UtmGlobalPosition {
      * Next waypoint, latitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 14,
+            position = 13,
             unitSize = 4,
             signed = true,
             description = "Next waypoint, latitude (WGS84)"
@@ -265,7 +258,7 @@ public final class UtmGlobalPosition {
      * Next waypoint, longitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 15,
+            position = 14,
             unitSize = 4,
             signed = true,
             description = "Next waypoint, longitude (WGS84)"
@@ -278,7 +271,7 @@ public final class UtmGlobalPosition {
      * Next waypoint, altitude (WGS84) 
      */
     @MavlinkFieldInfo(
-            position = 16,
+            position = 15,
             unitSize = 4,
             signed = true,
             description = "Next waypoint, altitude (WGS84)"
@@ -291,7 +284,7 @@ public final class UtmGlobalPosition {
      * Time until next update. Set to 0 if unknown or in data driven mode. 
      */
     @MavlinkFieldInfo(
-            position = 17,
+            position = 16,
             unitSize = 2,
             description = "Time until next update. Set to 0 if unknown or in data driven mode."
     )
@@ -303,7 +296,7 @@ public final class UtmGlobalPosition {
      * Flight state 
      */
     @MavlinkFieldInfo(
-            position = 18,
+            position = 17,
             unitSize = 1,
             enumType = UtmFlightState.class,
             description = "Flight state"
@@ -316,7 +309,7 @@ public final class UtmGlobalPosition {
      * Bitwise OR combination of the data available flags. 
      */
     @MavlinkFieldInfo(
-            position = 19,
+            position = 18,
             unitSize = 1,
             enumType = UtmDataAvailFlags.class,
             description = "Bitwise OR combination of the data available flags."
@@ -438,7 +431,7 @@ public final class UtmGlobalPosition {
          * Time of applicability of position (microseconds since UNIX epoch). 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 8,
                 description = "Time of applicability of position (microseconds since UNIX epoch)."
         )
@@ -451,7 +444,7 @@ public final class UtmGlobalPosition {
          * Unique UAS ID. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 arraySize = 18,
                 description = "Unique UAS ID."
@@ -465,7 +458,7 @@ public final class UtmGlobalPosition {
          * Latitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 signed = true,
                 description = "Latitude (WGS84)"
@@ -479,7 +472,7 @@ public final class UtmGlobalPosition {
          * Longitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 4,
                 signed = true,
                 description = "Longitude (WGS84)"
@@ -493,7 +486,7 @@ public final class UtmGlobalPosition {
          * Altitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 4,
                 signed = true,
                 description = "Altitude (WGS84)"
@@ -507,7 +500,7 @@ public final class UtmGlobalPosition {
          * Altitude above ground 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 4,
                 signed = true,
                 description = "Altitude above ground"
@@ -521,7 +514,7 @@ public final class UtmGlobalPosition {
          * Ground X speed (latitude, positive north) 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 2,
                 signed = true,
                 description = "Ground X speed (latitude, positive north)"
@@ -535,7 +528,7 @@ public final class UtmGlobalPosition {
          * Ground Y speed (longitude, positive east) 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 2,
                 signed = true,
                 description = "Ground Y speed (longitude, positive east)"
@@ -549,7 +542,7 @@ public final class UtmGlobalPosition {
          * Ground Z speed (altitude, positive down) 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 9,
                 unitSize = 2,
                 signed = true,
                 description = "Ground Z speed (altitude, positive down)"
@@ -563,7 +556,7 @@ public final class UtmGlobalPosition {
          * Horizontal position uncertainty (standard deviation) 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 10,
                 unitSize = 2,
                 description = "Horizontal position uncertainty (standard deviation)"
         )
@@ -576,7 +569,7 @@ public final class UtmGlobalPosition {
          * Altitude uncertainty (standard deviation) 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 11,
                 unitSize = 2,
                 description = "Altitude uncertainty (standard deviation)"
         )
@@ -589,7 +582,7 @@ public final class UtmGlobalPosition {
          * Speed uncertainty (standard deviation) 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 12,
                 unitSize = 2,
                 description = "Speed uncertainty (standard deviation)"
         )
@@ -602,7 +595,7 @@ public final class UtmGlobalPosition {
          * Next waypoint, latitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 14,
+                position = 13,
                 unitSize = 4,
                 signed = true,
                 description = "Next waypoint, latitude (WGS84)"
@@ -616,7 +609,7 @@ public final class UtmGlobalPosition {
          * Next waypoint, longitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 15,
+                position = 14,
                 unitSize = 4,
                 signed = true,
                 description = "Next waypoint, longitude (WGS84)"
@@ -630,7 +623,7 @@ public final class UtmGlobalPosition {
          * Next waypoint, altitude (WGS84) 
          */
         @MavlinkFieldInfo(
-                position = 16,
+                position = 15,
                 unitSize = 4,
                 signed = true,
                 description = "Next waypoint, altitude (WGS84)"
@@ -644,7 +637,7 @@ public final class UtmGlobalPosition {
          * Time until next update. Set to 0 if unknown or in data driven mode. 
          */
         @MavlinkFieldInfo(
-                position = 17,
+                position = 16,
                 unitSize = 2,
                 description = "Time until next update. Set to 0 if unknown or in data driven mode."
         )
@@ -657,7 +650,7 @@ public final class UtmGlobalPosition {
          * Flight state 
          */
         @MavlinkFieldInfo(
-                position = 18,
+                position = 17,
                 unitSize = 1,
                 enumType = UtmFlightState.class,
                 description = "Flight state"
@@ -692,7 +685,7 @@ public final class UtmGlobalPosition {
          * Bitwise OR combination of the data available flags. 
          */
         @MavlinkFieldInfo(
-                position = 19,
+                position = 18,
                 unitSize = 1,
                 enumType = UtmDataAvailFlags.class,
                 description = "Bitwise OR combination of the data available flags."

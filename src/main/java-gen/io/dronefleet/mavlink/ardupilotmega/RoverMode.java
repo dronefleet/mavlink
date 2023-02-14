@@ -41,6 +41,18 @@ public enum RoverMode {
     /**
      *  
      */
+    @MavlinkEntryInfo(6)
+    ROVER_MODE_FOLLOW,
+
+    /**
+     *  
+     */
+    @MavlinkEntryInfo(7)
+    ROVER_MODE_SIMPLE,
+
+    /**
+     *  
+     */
     @MavlinkEntryInfo(10)
     ROVER_MODE_AUTO,
 

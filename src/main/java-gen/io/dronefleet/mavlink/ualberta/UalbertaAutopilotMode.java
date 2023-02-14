@@ -21,19 +21,19 @@ public enum UalbertaAutopilotMode {
     MODE_MANUAL_SCALED,
 
     /**
-     * dfsdfs 
+     *  
      */
     @MavlinkEntryInfo(3)
     MODE_AUTO_PID_ATT,
 
     /**
-     * dfsfds 
+     *  
      */
     @MavlinkEntryInfo(4)
     MODE_AUTO_PID_VEL,
 
     /**
-     * dfsdfsdfs 
+     *  
      */
     @MavlinkEntryInfo(5)
     MODE_AUTO_PID_POS

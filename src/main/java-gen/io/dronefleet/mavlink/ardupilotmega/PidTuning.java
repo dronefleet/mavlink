@@ -34,8 +34,12 @@ public final class PidTuning {
 
     private final float d;
 
+    private final float srate;
+
+    private final float pdmod;
+
     private PidTuning(EnumValue<PidTuningAxis> axis, float desired, float achieved, float ff,
-            float p, float i, float d) {
+            float p, float i, float d, float srate, float pdmod) {
         this.axis = axis;
         this.desired = desired;
         this.achieved = achieved;
@@ -43,6 +47,8 @@ public final class PidTuning {
         this.p = p;
         this.i = i;
         this.d = d;
+        this.srate = srate;
+        this.pdmod = pdmod;
     }
 
     /**
@@ -138,6 +144,32 @@ public final class PidTuning {
         return this.d;
     }
 
+    /**
+     * Slew rate. 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 4,
+            extension = true,
+            description = "Slew rate."
+    )
+    public final float srate() {
+        return this.srate;
+    }
+
+    /**
+     * P/D oscillation modifier. 
+     */
+    @MavlinkFieldInfo(
+            position = 10,
+            unitSize = 4,
+            extension = true,
+            description = "P/D oscillation modifier."
+    )
+    public final float pdmod() {
+        return this.pdmod;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,6 +182,8 @@ public final class PidTuning {
         if (!Objects.deepEquals(p, other.p)) return false;
         if (!Objects.deepEquals(i, other.i)) return false;
         if (!Objects.deepEquals(d, other.d)) return false;
+        if (!Objects.deepEquals(srate, other.srate)) return false;
+        if (!Objects.deepEquals(pdmod, other.pdmod)) return false;
         return true;
     }
 
@@ -163,6 +197,8 @@ public final class PidTuning {
         result = 31 * result + Objects.hashCode(p);
         result = 31 * result + Objects.hashCode(i);
         result = 31 * result + Objects.hashCode(d);
+        result = 31 * result + Objects.hashCode(srate);
+        result = 31 * result + Objects.hashCode(pdmod);
         return result;
     }
 
@@ -174,7 +210,9 @@ public final class PidTuning {
                  + ", ff=" + ff
                  + ", p=" + p
                  + ", i=" + i
-                 + ", d=" + d + "}";
+                 + ", d=" + d
+                 + ", srate=" + srate
+                 + ", pdmod=" + pdmod + "}";
     }
 
     public static final class Builder {
@@ -191,6 +229,10 @@ public final class PidTuning {
         private float i;
 
         private float d;
+
+        private float srate;
+
+        private float pdmod;
 
         /**
          * Axis. 
@@ -305,8 +347,36 @@ public final class PidTuning {
             return this;
         }
 
+        /**
+         * Slew rate. 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 4,
+                extension = true,
+                description = "Slew rate."
+        )
+        public final Builder srate(float srate) {
+            this.srate = srate;
+            return this;
+        }
+
+        /**
+         * P/D oscillation modifier. 
+         */
+        @MavlinkFieldInfo(
+                position = 10,
+                unitSize = 4,
+                extension = true,
+                description = "P/D oscillation modifier."
+        )
+        public final Builder pdmod(float pdmod) {
+            this.pdmod = pdmod;
+            return this;
+        }
+
         public final PidTuning build() {
-            return new PidTuning(axis, desired, achieved, ff, p, i, d);
+            return new PidTuning(axis, desired, achieved, ff, p, i, d, srate, pdmod);
         }
     }
 }

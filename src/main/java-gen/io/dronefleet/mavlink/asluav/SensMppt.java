@@ -13,7 +13,7 @@ import java.util.Objects;
  * Maximum Power Point Tracker (MPPT) sensor data for solar module power performance tracking 
  */
 @MavlinkMessageInfo(
-        id = 202,
+        id = 8003,
         crc = 231,
         description = "Maximum Power Point Tracker (MPPT) sensor data for solar module power performance tracking"
 )
