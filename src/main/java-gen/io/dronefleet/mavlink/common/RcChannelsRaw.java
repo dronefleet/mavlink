@@ -186,13 +186,13 @@ public final class RcChannelsRaw {
     }
 
     /**
-     * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: 
-     * invalid/unknown. 
+     * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 
+     * UINT8_MAX: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 11,
             unitSize = 1,
-            description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
+            description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
@@ -404,13 +404,13 @@ public final class RcChannelsRaw {
         }
 
         /**
-         * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: 
-         * invalid/unknown. 
+         * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 
+         * UINT8_MAX: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 11,
                 unitSize = 1,
-                description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
+                description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;

@@ -31,5 +31,12 @@ public enum MavOdidIdType {
      * UTM (Unmanned Traffic Management) assigned UUID (RFC4122). 
      */
     @MavlinkEntryInfo(3)
-    MAV_ODID_ID_TYPE_UTM_ASSIGNED_UUID
+    MAV_ODID_ID_TYPE_UTM_ASSIGNED_UUID,
+
+    /**
+     * A 20 byte ID for a specific flight/session. The exact ID type is indicated by the first byte of 
+     * uas_id and these type values are managed by ICAO. 
+     */
+    @MavlinkEntryInfo(4)
+    MAV_ODID_ID_TYPE_SPECIFIC_SESSION_ID
 }

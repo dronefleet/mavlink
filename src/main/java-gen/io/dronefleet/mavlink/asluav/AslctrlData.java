@@ -13,7 +13,7 @@ import java.util.Objects;
  * ASL-fixed-wing controller data 
  */
 @MavlinkMessageInfo(
-        id = 203,
+        id = 8004,
         crc = 172,
         description = "ASL-fixed-wing controller data"
 )

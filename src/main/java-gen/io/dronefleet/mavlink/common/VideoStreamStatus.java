@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,19 +12,14 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Information about the status of a video stream. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
+ * Information about the status of a video stream. It may be requested using 
+ * MAV_CMD_REQUEST_MESSAGE. 
  */
 @MavlinkMessageInfo(
         id = 270,
         crc = 59,
-        description = "Information about the status of a video stream.",
-        workInProgress = true
+        description = "Information about the status of a video stream. It may be requested using MAV_CMD_REQUEST_MESSAGE."
 )
-@Deprecated
 public final class VideoStreamStatus {
     private final int streamId;
 
@@ -68,7 +62,7 @@ public final class VideoStreamStatus {
      * Video Stream ID (1 for first, 2 for second, etc.) 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 1,
             description = "Video Stream ID (1 for first, 2 for second, etc.)"
     )
@@ -80,7 +74,7 @@ public final class VideoStreamStatus {
      * Bitmap of stream status flags 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 2,
             enumType = VideoStreamStatusFlags.class,
             description = "Bitmap of stream status flags"
@@ -93,7 +87,7 @@ public final class VideoStreamStatus {
      * Frame rate 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             description = "Frame rate"
     )
@@ -105,7 +99,7 @@ public final class VideoStreamStatus {
      * Horizontal resolution 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 2,
             description = "Horizontal resolution"
     )
@@ -117,7 +111,7 @@ public final class VideoStreamStatus {
      * Vertical resolution 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 2,
             description = "Vertical resolution"
     )
@@ -129,7 +123,7 @@ public final class VideoStreamStatus {
      * Bit rate 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 4,
             description = "Bit rate"
     )
@@ -141,7 +135,7 @@ public final class VideoStreamStatus {
      * Video image rotation clockwise 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 2,
             description = "Video image rotation clockwise"
     )
@@ -153,7 +147,7 @@ public final class VideoStreamStatus {
      * Horizontal Field of view 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 2,
             description = "Horizontal Field of view"
     )
@@ -224,7 +218,7 @@ public final class VideoStreamStatus {
          * Video Stream ID (1 for first, 2 for second, etc.) 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 1,
                 description = "Video Stream ID (1 for first, 2 for second, etc.)"
         )
@@ -237,7 +231,7 @@ public final class VideoStreamStatus {
          * Bitmap of stream status flags 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 2,
                 enumType = VideoStreamStatusFlags.class,
                 description = "Bitmap of stream status flags"
@@ -272,7 +266,7 @@ public final class VideoStreamStatus {
          * Frame rate 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 description = "Frame rate"
         )
@@ -285,7 +279,7 @@ public final class VideoStreamStatus {
          * Horizontal resolution 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 2,
                 description = "Horizontal resolution"
         )
@@ -298,7 +292,7 @@ public final class VideoStreamStatus {
          * Vertical resolution 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 2,
                 description = "Vertical resolution"
         )
@@ -311,7 +305,7 @@ public final class VideoStreamStatus {
          * Bit rate 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 4,
                 description = "Bit rate"
         )
@@ -324,7 +318,7 @@ public final class VideoStreamStatus {
          * Video image rotation clockwise 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 2,
                 description = "Video image rotation clockwise"
         )
@@ -337,7 +331,7 @@ public final class VideoStreamStatus {
          * Horizontal Field of view 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 2,
                 description = "Horizontal Field of view"
         )

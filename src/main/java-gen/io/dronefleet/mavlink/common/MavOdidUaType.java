@@ -21,10 +21,10 @@ public enum MavOdidUaType {
     MAV_ODID_UA_TYPE_AEROPLANE,
 
     /**
-     * Rotorcraft (including Multirotor). 
+     * Helicopter or multirotor. 
      */
     @MavlinkEntryInfo(2)
-    MAV_ODID_UA_TYPE_ROTORCRAFT,
+    MAV_ODID_UA_TYPE_HELICOPTER_OR_MULTIROTOR,
 
     /**
      * Gyroplane. 
@@ -36,7 +36,7 @@ public enum MavOdidUaType {
      * VTOL (Vertical Take-Off and Landing). Fixed wing aircraft that can take off vertically. 
      */
     @MavlinkEntryInfo(4)
-    MAV_ODID_UA_TYPE_VTOL,
+    MAV_ODID_UA_TYPE_HYBRID_LIFT,
 
     /**
      * Ornithopter. 
@@ -75,7 +75,7 @@ public enum MavOdidUaType {
     MAV_ODID_UA_TYPE_AIRSHIP,
 
     /**
-     * Free Fall/Parachute. 
+     * Free Fall/Parachute (unpowered). 
      */
     @MavlinkEntryInfo(11)
     MAV_ODID_UA_TYPE_FREE_FALL_PARACHUTE,

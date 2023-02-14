@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * The state of the fixed wing navigation and position controller. 
+ * The state of the navigation and position controller. 
  */
 @MavlinkMessageInfo(
         id = 62,
         crc = 183,
-        description = "The state of the fixed wing navigation and position controller."
+        description = "The state of the navigation and position controller."
 )
 public final class NavControllerOutput {
     private final float navRoll;

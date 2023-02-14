@@ -3,10 +3,13 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -46,11 +49,14 @@ public final class HilSensor {
 
     private final float temperature;
 
-    private final long fieldsUpdated;
+    private final EnumValue<HilSensorUpdatedFlags> fieldsUpdated;
+
+    private final int id;
 
     private HilSensor(BigInteger timeUsec, float xacc, float yacc, float zacc, float xgyro,
             float ygyro, float zgyro, float xmag, float ymag, float zmag, float absPressure,
-            float diffPressure, float pressureAlt, float temperature, long fieldsUpdated) {
+            float diffPressure, float pressureAlt, float temperature,
+            EnumValue<HilSensorUpdatedFlags> fieldsUpdated, int id) {
         this.timeUsec = timeUsec;
         this.xacc = xacc;
         this.yacc = yacc;
@@ -66,6 +72,7 @@ public final class HilSensor {
         this.pressureAlt = pressureAlt;
         this.temperature = temperature;
         this.fieldsUpdated = fieldsUpdated;
+        this.id = id;
     }
 
     /**
@@ -78,12 +85,12 @@ public final class HilSensor {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -246,16 +253,29 @@ public final class HilSensor {
     }
 
     /**
-     * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 
-     * 31: full reset of attitude/position/velocities/etc was performed in sim. 
+     * Bitmap for fields that have updated since last message 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
-            description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim."
+            enumType = HilSensorUpdatedFlags.class,
+            description = "Bitmap for fields that have updated since last message"
     )
-    public final long fieldsUpdated() {
+    public final EnumValue<HilSensorUpdatedFlags> fieldsUpdated() {
         return this.fieldsUpdated;
+    }
+
+    /**
+     * Sensor ID (zero indexed). Used for multiple sensor inputs 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 1,
+            extension = true,
+            description = "Sensor ID (zero indexed). Used for multiple sensor inputs"
+    )
+    public final int id() {
+        return this.id;
     }
 
     @Override
@@ -278,6 +298,7 @@ public final class HilSensor {
         if (!Objects.deepEquals(pressureAlt, other.pressureAlt)) return false;
         if (!Objects.deepEquals(temperature, other.temperature)) return false;
         if (!Objects.deepEquals(fieldsUpdated, other.fieldsUpdated)) return false;
+        if (!Objects.deepEquals(id, other.id)) return false;
         return true;
     }
 
@@ -299,6 +320,7 @@ public final class HilSensor {
         result = 31 * result + Objects.hashCode(pressureAlt);
         result = 31 * result + Objects.hashCode(temperature);
         result = 31 * result + Objects.hashCode(fieldsUpdated);
+        result = 31 * result + Objects.hashCode(id);
         return result;
     }
 
@@ -318,7 +340,8 @@ public final class HilSensor {
                  + ", diffPressure=" + diffPressure
                  + ", pressureAlt=" + pressureAlt
                  + ", temperature=" + temperature
-                 + ", fieldsUpdated=" + fieldsUpdated + "}";
+                 + ", fieldsUpdated=" + fieldsUpdated
+                 + ", id=" + id + "}";
     }
 
     public static final class Builder {
@@ -350,16 +373,18 @@ public final class HilSensor {
 
         private float temperature;
 
-        private long fieldsUpdated;
+        private EnumValue<HilSensorUpdatedFlags> fieldsUpdated;
+
+        private int id;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -536,21 +561,56 @@ public final class HilSensor {
         }
 
         /**
-         * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 
-         * 31: full reset of attitude/position/velocities/etc was performed in sim. 
+         * Bitmap for fields that have updated since last message 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
-                description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim."
+                enumType = HilSensorUpdatedFlags.class,
+                description = "Bitmap for fields that have updated since last message"
         )
-        public final Builder fieldsUpdated(long fieldsUpdated) {
+        public final Builder fieldsUpdated(EnumValue<HilSensorUpdatedFlags> fieldsUpdated) {
             this.fieldsUpdated = fieldsUpdated;
             return this;
         }
 
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(HilSensorUpdatedFlags entry) {
+            return fieldsUpdated(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(Enum... flags) {
+            return fieldsUpdated(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(Collection<Enum> flags) {
+            return fieldsUpdated(EnumValue.create(flags));
+        }
+
+        /**
+         * Sensor ID (zero indexed). Used for multiple sensor inputs 
+         */
+        @MavlinkFieldInfo(
+                position = 17,
+                unitSize = 1,
+                extension = true,
+                description = "Sensor ID (zero indexed). Used for multiple sensor inputs"
+        )
+        public final Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
         public final HilSensor build() {
-            return new HilSensor(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, absPressure, diffPressure, pressureAlt, temperature, fieldsUpdated);
+            return new HilSensor(timeUsec, xacc, yacc, zacc, xgyro, ygyro, zgyro, xmag, ymag, zmag, absPressure, diffPressure, pressureAlt, temperature, fieldsUpdated, id);
         }
     }
 }

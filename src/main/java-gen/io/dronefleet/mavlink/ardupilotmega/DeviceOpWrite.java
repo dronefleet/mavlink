@@ -40,9 +40,11 @@ public final class DeviceOpWrite {
 
     private final byte[] data;
 
+    private final int bank;
+
     private DeviceOpWrite(int targetSystem, int targetComponent, long requestId,
             EnumValue<DeviceOpBustype> bustype, int bus, int address, String busname, int regstart,
-            int count, byte[] data) {
+            int count, byte[] data, int bank) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.requestId = requestId;
@@ -53,6 +55,7 @@ public final class DeviceOpWrite {
         this.regstart = regstart;
         this.count = count;
         this.data = data;
+        this.bank = bank;
     }
 
     /**
@@ -186,6 +189,19 @@ public final class DeviceOpWrite {
         return this.data;
     }
 
+    /**
+     * Bank number. 
+     */
+    @MavlinkFieldInfo(
+            position = 12,
+            unitSize = 1,
+            extension = true,
+            description = "Bank number."
+    )
+    public final int bank() {
+        return this.bank;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -201,6 +217,7 @@ public final class DeviceOpWrite {
         if (!Objects.deepEquals(regstart, other.regstart)) return false;
         if (!Objects.deepEquals(count, other.count)) return false;
         if (!Objects.deepEquals(data, other.data)) return false;
+        if (!Objects.deepEquals(bank, other.bank)) return false;
         return true;
     }
 
@@ -217,6 +234,7 @@ public final class DeviceOpWrite {
         result = 31 * result + Objects.hashCode(regstart);
         result = 31 * result + Objects.hashCode(count);
         result = 31 * result + Objects.hashCode(data);
+        result = 31 * result + Objects.hashCode(bank);
         return result;
     }
 
@@ -231,7 +249,8 @@ public final class DeviceOpWrite {
                  + ", busname=" + busname
                  + ", regstart=" + regstart
                  + ", count=" + count
-                 + ", data=" + data + "}";
+                 + ", data=" + data
+                 + ", bank=" + bank + "}";
     }
 
     public static final class Builder {
@@ -254,6 +273,8 @@ public final class DeviceOpWrite {
         private int count;
 
         private byte[] data;
+
+        private int bank;
 
         /**
          * System ID. 
@@ -409,8 +430,22 @@ public final class DeviceOpWrite {
             return this;
         }
 
+        /**
+         * Bank number. 
+         */
+        @MavlinkFieldInfo(
+                position = 12,
+                unitSize = 1,
+                extension = true,
+                description = "Bank number."
+        )
+        public final Builder bank(int bank) {
+            this.bank = bank;
+            return this;
+        }
+
         public final DeviceOpWrite build() {
-            return new DeviceOpWrite(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count, data);
+            return new DeviceOpWrite(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count, data, bank);
         }
     }
 }

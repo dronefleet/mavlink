@@ -9,16 +9,15 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * The RAW values of the RC channels sent to the MAV to override info received from the RC radio. A 
- * value of UINT16_MAX means no change to that channel. A value of 0 means control of that channel 
- * should be released back to the RC radio. The standard PPM modulation is as follows: 1000 
- * microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might 
- * violate this specification. 
+ * The RAW values of the RC channels sent to the MAV to override info received from the RC radio. The 
+ * standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. 
+ * Individual receivers/transmitters might violate this specification. Note carefully the 
+ * semantic differences between the first 8 channels and the subsequent channels 
  */
 @MavlinkMessageInfo(
         id = 70,
         crc = 124,
-        description = "The RAW values of the RC channels sent to the MAV to override info received from the RC radio. A value of UINT16_MAX means no change to that channel. A value of 0 means control of that channel should be released back to the RC radio. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might violate this specification."
+        description = "The RAW values of the RC channels sent to the MAV to override info received from the RC radio. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might violate this specification.  Note carefully the semantic differences between the first 8 channels and the subsequent channels"
 )
 public final class RcChannelsOverride {
     private final int targetSystem;
@@ -120,226 +119,244 @@ public final class RcChannelsOverride {
     }
 
     /**
-     * RC channel 1 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 2,
-            description = "RC channel 1 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan1Raw() {
         return this.chan1Raw;
     }
 
     /**
-     * RC channel 2 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 2,
-            description = "RC channel 2 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan2Raw() {
         return this.chan2Raw;
     }
 
     /**
-     * RC channel 3 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
-            description = "RC channel 3 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan3Raw() {
         return this.chan3Raw;
     }
 
     /**
-     * RC channel 4 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "RC channel 4 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan4Raw() {
         return this.chan4Raw;
     }
 
     /**
-     * RC channel 5 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "RC channel 5 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan5Raw() {
         return this.chan5Raw;
     }
 
     /**
-     * RC channel 6 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 8,
             unitSize = 2,
-            description = "RC channel 6 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan6Raw() {
         return this.chan6Raw;
     }
 
     /**
-     * RC channel 7 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 9,
             unitSize = 2,
-            description = "RC channel 7 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan7Raw() {
         return this.chan7Raw;
     }
 
     /**
-     * RC channel 8 value. A value of UINT16_MAX means to ignore this field. 
+     * RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+     * this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 2,
-            description = "RC channel 8 value. A value of UINT16_MAX means to ignore this field."
+            description = "RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
     )
     public final int chan8Raw() {
         return this.chan8Raw;
     }
 
     /**
-     * RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 
+     * means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 12,
             unitSize = 2,
             extension = true,
-            description = "RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan9Raw() {
         return this.chan9Raw;
     }
 
     /**
-     * RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 2,
             extension = true,
-            description = "RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan10Raw() {
         return this.chan10Raw;
     }
 
     /**
-     * RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 2,
             extension = true,
-            description = "RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan11Raw() {
         return this.chan11Raw;
     }
 
     /**
-     * RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
             extension = true,
-            description = "RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan12Raw() {
         return this.chan12Raw;
     }
 
     /**
-     * RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 16,
             unitSize = 2,
             extension = true,
-            description = "RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan13Raw() {
         return this.chan13Raw;
     }
 
     /**
-     * RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 17,
             unitSize = 2,
             extension = true,
-            description = "RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan14Raw() {
         return this.chan14Raw;
     }
 
     /**
-     * RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 18,
             unitSize = 2,
             extension = true,
-            description = "RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan15Raw() {
         return this.chan15Raw;
     }
 
     /**
-     * RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 19,
             unitSize = 2,
             extension = true,
-            description = "RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan16Raw() {
         return this.chan16Raw;
     }
 
     /**
-     * RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 20,
             unitSize = 2,
             extension = true,
-            description = "RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan17Raw() {
         return this.chan17Raw;
     }
 
     /**
-     * RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. 
+     * RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+     * UINT16_MAX-1 means to release this channel back to the RC radio. 
      */
     @MavlinkFieldInfo(
             position = 21,
             unitSize = 2,
             extension = true,
-            description = "RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field."
+            description = "RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
     )
     public final int chan18Raw() {
         return this.chan18Raw;
@@ -491,12 +508,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 1 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 2,
-                description = "RC channel 1 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan1Raw(int chan1Raw) {
             this.chan1Raw = chan1Raw;
@@ -504,12 +522,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 2 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 2,
-                description = "RC channel 2 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan2Raw(int chan2Raw) {
             this.chan2Raw = chan2Raw;
@@ -517,12 +536,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 3 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
-                description = "RC channel 3 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan3Raw(int chan3Raw) {
             this.chan3Raw = chan3Raw;
@@ -530,12 +550,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 4 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "RC channel 4 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan4Raw(int chan4Raw) {
             this.chan4Raw = chan4Raw;
@@ -543,12 +564,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 5 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "RC channel 5 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan5Raw(int chan5Raw) {
             this.chan5Raw = chan5Raw;
@@ -556,12 +578,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 6 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 8,
                 unitSize = 2,
-                description = "RC channel 6 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan6Raw(int chan6Raw) {
             this.chan6Raw = chan6Raw;
@@ -569,12 +592,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 7 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 9,
                 unitSize = 2,
-                description = "RC channel 7 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan7Raw(int chan7Raw) {
             this.chan7Raw = chan7Raw;
@@ -582,12 +606,13 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 8 value. A value of UINT16_MAX means to ignore this field. 
+         * RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release 
+         * this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 2,
-                description = "RC channel 8 value. A value of UINT16_MAX means to ignore this field."
+                description = "RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio."
         )
         public final Builder chan8Raw(int chan8Raw) {
             this.chan8Raw = chan8Raw;
@@ -595,13 +620,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 
+         * means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 12,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 9 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan9Raw(int chan9Raw) {
             this.chan9Raw = chan9Raw;
@@ -609,13 +635,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 10 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan10Raw(int chan10Raw) {
             this.chan10Raw = chan10Raw;
@@ -623,13 +650,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 11 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan11Raw(int chan11Raw) {
             this.chan11Raw = chan11Raw;
@@ -637,13 +665,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 12 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan12Raw(int chan12Raw) {
             this.chan12Raw = chan12Raw;
@@ -651,13 +680,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 16,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 13 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan13Raw(int chan13Raw) {
             this.chan13Raw = chan13Raw;
@@ -665,13 +695,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 17,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 14 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan14Raw(int chan14Raw) {
             this.chan14Raw = chan14Raw;
@@ -679,13 +710,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 18,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 15 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan15Raw(int chan15Raw) {
             this.chan15Raw = chan15Raw;
@@ -693,13 +725,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 19,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 16 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan16Raw(int chan16Raw) {
             this.chan16Raw = chan16Raw;
@@ -707,13 +740,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 20,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 17 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan17Raw(int chan17Raw) {
             this.chan17Raw = chan17Raw;
@@ -721,13 +755,14 @@ public final class RcChannelsOverride {
         }
 
         /**
-         * RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. 
+         * RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. A value of 
+         * UINT16_MAX-1 means to release this channel back to the RC radio. 
          */
         @MavlinkFieldInfo(
                 position = 21,
                 unitSize = 2,
                 extension = true,
-                description = "RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field."
+                description = "RC channel 18 value. A value of 0 or UINT16_MAX means to ignore this field. A value of UINT16_MAX-1 means to release this channel back to the RC radio."
         )
         public final Builder chan18Raw(int chan18Raw) {
             this.chan18Raw = chan18Raw;

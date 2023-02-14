@@ -19,7 +19,7 @@ import java.util.Objects;
  * Scaling depends on the actual command value. 
  */
 @MavlinkMessageInfo(
-        id = 78,
+        id = 223,
         crc = 119,
         description = "Message encoding a command with parameters as scaled integers and additional metadata. Scaling depends on the actual command value."
 )

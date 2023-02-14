@@ -10,14 +10,14 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 /**
- * Publishes the GPS co-ordinates of the vehicle local origin (0,0,0) position. Emitted 
- * whenever a new GPS-Local position mapping is requested or set - e.g. following 
- * {@link io.dronefleet.mavlink.common.SetGpsGlobalOrigin SET_GPS_GLOBAL_ORIGIN} message. 
+ * Publishes the GPS coordinates of the vehicle local origin (0,0,0) position. Emitted whenever 
+ * a new GPS-Local position mapping is requested or set - e.g. following {@link io.dronefleet.mavlink.common.SetGpsGlobalOrigin SET_GPS_GLOBAL_ORIGIN} 
+ * message. 
  */
 @MavlinkMessageInfo(
         id = 49,
         crc = 39,
-        description = "Publishes the GPS co-ordinates of the vehicle local origin (0,0,0) position. Emitted whenever a new GPS-Local position mapping is requested or set - e.g. following SET_GPS_GLOBAL_ORIGIN message."
+        description = "Publishes the GPS coordinates of the vehicle local origin (0,0,0) position. Emitted whenever a new GPS-Local position mapping is requested or set - e.g. following SET_GPS_GLOBAL_ORIGIN message."
 )
 public final class GpsGlobalOrigin {
     private final int latitude;
@@ -84,13 +84,13 @@ public final class GpsGlobalOrigin {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 8,
             extension = true,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -179,13 +179,13 @@ public final class GpsGlobalOrigin {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 8,
                 extension = true,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;

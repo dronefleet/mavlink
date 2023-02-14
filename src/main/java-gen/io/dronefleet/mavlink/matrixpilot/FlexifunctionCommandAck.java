@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Acknowldge sucess or failure of a flexifunction command 
+ * Acknowldge success or failure of a flexifunction command 
  */
 @MavlinkMessageInfo(
         id = 158,
         crc = 208,
-        description = "Acknowldge sucess or failure of a flexifunction command"
+        description = "Acknowldge success or failure of a flexifunction command"
 )
 public final class FlexifunctionCommandAck {
     private final int commandType;

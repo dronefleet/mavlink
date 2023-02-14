@@ -89,12 +89,12 @@ public final class ServoOutputRaw {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final long timeUsec() {
         return this.timeUsec;
@@ -424,12 +424,12 @@ public final class ServoOutputRaw {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(long timeUsec) {
             this.timeUsec = timeUsec;

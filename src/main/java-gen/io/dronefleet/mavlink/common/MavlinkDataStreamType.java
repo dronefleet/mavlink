@@ -11,36 +11,36 @@ public enum MavlinkDataStreamType {
     /**
      *  
      */
-    @MavlinkEntryInfo(1)
+    @MavlinkEntryInfo(0)
     MAVLINK_DATA_STREAM_IMG_JPEG,
 
     /**
      *  
      */
-    @MavlinkEntryInfo(2)
+    @MavlinkEntryInfo(1)
     MAVLINK_DATA_STREAM_IMG_BMP,
 
     /**
      *  
      */
-    @MavlinkEntryInfo(3)
+    @MavlinkEntryInfo(2)
     MAVLINK_DATA_STREAM_IMG_RAW8U,
 
     /**
      *  
      */
-    @MavlinkEntryInfo(4)
+    @MavlinkEntryInfo(3)
     MAVLINK_DATA_STREAM_IMG_RAW32U,
 
     /**
      *  
      */
-    @MavlinkEntryInfo(5)
+    @MavlinkEntryInfo(4)
     MAVLINK_DATA_STREAM_IMG_PGM,
 
     /**
      *  
      */
-    @MavlinkEntryInfo(6)
+    @MavlinkEntryInfo(5)
     MAVLINK_DATA_STREAM_IMG_PNG
 }

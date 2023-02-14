@@ -38,9 +38,11 @@ public final class DeviceOpRead {
 
     private final int count;
 
+    private final int bank;
+
     private DeviceOpRead(int targetSystem, int targetComponent, long requestId,
             EnumValue<DeviceOpBustype> bustype, int bus, int address, String busname, int regstart,
-            int count) {
+            int count, int bank) {
         this.targetSystem = targetSystem;
         this.targetComponent = targetComponent;
         this.requestId = requestId;
@@ -50,6 +52,7 @@ public final class DeviceOpRead {
         this.busname = busname;
         this.regstart = regstart;
         this.count = count;
+        this.bank = bank;
     }
 
     /**
@@ -170,6 +173,19 @@ public final class DeviceOpRead {
         return this.count;
     }
 
+    /**
+     * Bank number. 
+     */
+    @MavlinkFieldInfo(
+            position = 11,
+            unitSize = 1,
+            extension = true,
+            description = "Bank number."
+    )
+    public final int bank() {
+        return this.bank;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -184,6 +200,7 @@ public final class DeviceOpRead {
         if (!Objects.deepEquals(busname, other.busname)) return false;
         if (!Objects.deepEquals(regstart, other.regstart)) return false;
         if (!Objects.deepEquals(count, other.count)) return false;
+        if (!Objects.deepEquals(bank, other.bank)) return false;
         return true;
     }
 
@@ -199,6 +216,7 @@ public final class DeviceOpRead {
         result = 31 * result + Objects.hashCode(busname);
         result = 31 * result + Objects.hashCode(regstart);
         result = 31 * result + Objects.hashCode(count);
+        result = 31 * result + Objects.hashCode(bank);
         return result;
     }
 
@@ -212,7 +230,8 @@ public final class DeviceOpRead {
                  + ", address=" + address
                  + ", busname=" + busname
                  + ", regstart=" + regstart
-                 + ", count=" + count + "}";
+                 + ", count=" + count
+                 + ", bank=" + bank + "}";
     }
 
     public static final class Builder {
@@ -233,6 +252,8 @@ public final class DeviceOpRead {
         private int regstart;
 
         private int count;
+
+        private int bank;
 
         /**
          * System ID. 
@@ -374,8 +395,22 @@ public final class DeviceOpRead {
             return this;
         }
 
+        /**
+         * Bank number. 
+         */
+        @MavlinkFieldInfo(
+                position = 11,
+                unitSize = 1,
+                extension = true,
+                description = "Bank number."
+        )
+        public final Builder bank(int bank) {
+            this.bank = bank;
+            return this;
+        }
+
         public final DeviceOpRead build() {
-            return new DeviceOpRead(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count);
+            return new DeviceOpRead(targetSystem, targetComponent, requestId, bustype, bus, address, busname, regstart, count, bank);
         }
     }
 }

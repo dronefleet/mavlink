@@ -174,5 +174,30 @@ public enum MavSysStatusSensor {
      * 0x8000000 Satellite Communication 
      */
     @MavlinkEntryInfo(134217728)
-    MAV_SYS_STATUS_SENSOR_SATCOM
+    MAV_SYS_STATUS_SENSOR_SATCOM,
+
+    /**
+     * 0x10000000 pre-arm check status. Always healthy when armed 
+     */
+    @MavlinkEntryInfo(268435456)
+    MAV_SYS_STATUS_PREARM_CHECK,
+
+    /**
+     * 0x20000000 Avoidance/collision prevention 
+     */
+    @MavlinkEntryInfo(536870912)
+    MAV_SYS_STATUS_OBSTACLE_AVOIDANCE,
+
+    /**
+     * 0x40000000 propulsion (actuator, esc, motor or propellor) 
+     */
+    @MavlinkEntryInfo(1073741824)
+    MAV_SYS_STATUS_SENSOR_PROPULSION,
+
+    /**
+     * 0x80000000 Extended bit-field are used for further sensor status bits (needs to be set in 
+     * onboard_control_sensors_present only) 
+     */
+    @MavlinkEntryInfo(-2147483648)
+    MAV_SYS_STATUS_EXTENSION_USED
 }

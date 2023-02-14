@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Battery information. Updates GCS with flight controller battery status. Use 
- * SMART_BATTERY_* messages instead for smart batteries. 
+ * Battery information. Updates GCS with flight controller battery status. Smart batteries 
+ * also use this message, but may additionally send {@link io.dronefleet.mavlink.common.SmartBatteryInfo SMART_BATTERY_INFO}. 
  */
 @MavlinkMessageInfo(
         id = 147,
         crc = 154,
-        description = "Battery information. Updates GCS with flight controller battery status. Use SMART_BATTERY_* messages instead for smart batteries."
+        description = "Battery information. Updates GCS with flight controller battery status. Smart batteries also use this message, but may additionally send SMART_BATTERY_INFO."
 )
 public final class BatteryStatus {
     private final int id;
@@ -45,10 +45,18 @@ public final class BatteryStatus {
 
     private final EnumValue<MavBatteryChargeState> chargeState;
 
+    private final List<Integer> voltagesExt;
+
+    private final EnumValue<MavBatteryMode> mode;
+
+    private final EnumValue<MavBatteryFault> faultBitmask;
+
     private BatteryStatus(int id, EnumValue<MavBatteryFunction> batteryFunction,
             EnumValue<MavBatteryType> type, int temperature, List<Integer> voltages,
             int currentBattery, int currentConsumed, int energyConsumed, int batteryRemaining,
-            int timeRemaining, EnumValue<MavBatteryChargeState> chargeState) {
+            int timeRemaining, EnumValue<MavBatteryChargeState> chargeState,
+            List<Integer> voltagesExt, EnumValue<MavBatteryMode> mode,
+            EnumValue<MavBatteryFault> faultBitmask) {
         this.id = id;
         this.batteryFunction = batteryFunction;
         this.type = type;
@@ -60,6 +68,9 @@ public final class BatteryStatus {
         this.batteryRemaining = batteryRemaining;
         this.timeRemaining = timeRemaining;
         this.chargeState = chargeState;
+        this.voltagesExt = voltagesExt;
+        this.mode = mode;
+        this.faultBitmask = faultBitmask;
     }
 
     /**
@@ -122,14 +133,19 @@ public final class BatteryStatus {
     }
 
     /**
-     * Battery voltage of cells. Cells above the valid cell count for this battery should have the 
-     * UINT16_MAX value. 
+     * Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above 
+     * the valid cell count for this battery should have the UINT16_MAX value. If individual cell 
+     * voltages are unknown or not measured for this battery, then the overall battery voltage should 
+     * be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater 
+     * than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining 
+     * voltage. This can be extended to multiple cells if the total voltage is greater than 2 * 
+     * (UINT16_MAX - 1). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 2,
             arraySize = 10,
-            description = "Battery voltage of cells. Cells above the valid cell count for this battery should have the UINT16_MAX value."
+            description = "Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1)."
     )
     public final List<Integer> voltages() {
         return this.voltages;
@@ -216,6 +232,54 @@ public final class BatteryStatus {
         return this.chargeState;
     }
 
+    /**
+     * Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should 
+     * have a value of 0, where zero indicates not supported (note, this is different than for the 
+     * voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be 
+     * sent instead. 
+     */
+    @MavlinkFieldInfo(
+            position = 13,
+            unitSize = 2,
+            arraySize = 4,
+            extension = true,
+            description = "Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead."
+    )
+    public final List<Integer> voltagesExt() {
+        return this.voltagesExt;
+    }
+
+    /**
+     * Battery mode. Default (0) is that battery mode reporting is not supported or battery is in 
+     * normal-use mode. 
+     */
+    @MavlinkFieldInfo(
+            position = 14,
+            unitSize = 1,
+            enumType = MavBatteryMode.class,
+            extension = true,
+            description = "Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode."
+    )
+    public final EnumValue<MavBatteryMode> mode() {
+        return this.mode;
+    }
+
+    /**
+     * Fault/health indications. These should be set when charge_state is 
+     * MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault 
+     * reporting is not supported). 
+     */
+    @MavlinkFieldInfo(
+            position = 15,
+            unitSize = 4,
+            enumType = MavBatteryFault.class,
+            extension = true,
+            description = "Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported)."
+    )
+    public final EnumValue<MavBatteryFault> faultBitmask() {
+        return this.faultBitmask;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -232,6 +296,9 @@ public final class BatteryStatus {
         if (!Objects.deepEquals(batteryRemaining, other.batteryRemaining)) return false;
         if (!Objects.deepEquals(timeRemaining, other.timeRemaining)) return false;
         if (!Objects.deepEquals(chargeState, other.chargeState)) return false;
+        if (!Objects.deepEquals(voltagesExt, other.voltagesExt)) return false;
+        if (!Objects.deepEquals(mode, other.mode)) return false;
+        if (!Objects.deepEquals(faultBitmask, other.faultBitmask)) return false;
         return true;
     }
 
@@ -249,6 +316,9 @@ public final class BatteryStatus {
         result = 31 * result + Objects.hashCode(batteryRemaining);
         result = 31 * result + Objects.hashCode(timeRemaining);
         result = 31 * result + Objects.hashCode(chargeState);
+        result = 31 * result + Objects.hashCode(voltagesExt);
+        result = 31 * result + Objects.hashCode(mode);
+        result = 31 * result + Objects.hashCode(faultBitmask);
         return result;
     }
 
@@ -264,7 +334,10 @@ public final class BatteryStatus {
                  + ", energyConsumed=" + energyConsumed
                  + ", batteryRemaining=" + batteryRemaining
                  + ", timeRemaining=" + timeRemaining
-                 + ", chargeState=" + chargeState + "}";
+                 + ", chargeState=" + chargeState
+                 + ", voltagesExt=" + voltagesExt
+                 + ", mode=" + mode
+                 + ", faultBitmask=" + faultBitmask + "}";
     }
 
     public static final class Builder {
@@ -289,6 +362,12 @@ public final class BatteryStatus {
         private int timeRemaining;
 
         private EnumValue<MavBatteryChargeState> chargeState;
+
+        private List<Integer> voltagesExt;
+
+        private EnumValue<MavBatteryMode> mode;
+
+        private EnumValue<MavBatteryFault> faultBitmask;
 
         /**
          * Battery ID 
@@ -388,14 +467,19 @@ public final class BatteryStatus {
         }
 
         /**
-         * Battery voltage of cells. Cells above the valid cell count for this battery should have the 
-         * UINT16_MAX value. 
+         * Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above 
+         * the valid cell count for this battery should have the UINT16_MAX value. If individual cell 
+         * voltages are unknown or not measured for this battery, then the overall battery voltage should 
+         * be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater 
+         * than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining 
+         * voltage. This can be extended to multiple cells if the total voltage is greater than 2 * 
+         * (UINT16_MAX - 1). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 2,
                 arraySize = 10,
-                description = "Battery voltage of cells. Cells above the valid cell count for this battery should have the UINT16_MAX value."
+                description = "Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1)."
         )
         public final Builder voltages(List<Integer> voltages) {
             this.voltages = voltages;
@@ -510,8 +594,110 @@ public final class BatteryStatus {
             return chargeState(EnumValue.create(flags));
         }
 
+        /**
+         * Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should 
+         * have a value of 0, where zero indicates not supported (note, this is different than for the 
+         * voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be 
+         * sent instead. 
+         */
+        @MavlinkFieldInfo(
+                position = 13,
+                unitSize = 2,
+                arraySize = 4,
+                extension = true,
+                description = "Battery voltages for cells 11 to 14. Cells above the valid cell count for this battery should have a value of 0, where zero indicates not supported (note, this is different than for the voltages field and allows empty byte truncation). If the measured value is 0 then 1 should be sent instead."
+        )
+        public final Builder voltagesExt(List<Integer> voltagesExt) {
+            this.voltagesExt = voltagesExt;
+            return this;
+        }
+
+        /**
+         * Battery mode. Default (0) is that battery mode reporting is not supported or battery is in 
+         * normal-use mode. 
+         */
+        @MavlinkFieldInfo(
+                position = 14,
+                unitSize = 1,
+                enumType = MavBatteryMode.class,
+                extension = true,
+                description = "Battery mode. Default (0) is that battery mode reporting is not supported or battery is in normal-use mode."
+        )
+        public final Builder mode(EnumValue<MavBatteryMode> mode) {
+            this.mode = mode;
+            return this;
+        }
+
+        /**
+         * Battery mode. Default (0) is that battery mode reporting is not supported or battery is in 
+         * normal-use mode. 
+         */
+        public final Builder mode(MavBatteryMode entry) {
+            return mode(EnumValue.of(entry));
+        }
+
+        /**
+         * Battery mode. Default (0) is that battery mode reporting is not supported or battery is in 
+         * normal-use mode. 
+         */
+        public final Builder mode(Enum... flags) {
+            return mode(EnumValue.create(flags));
+        }
+
+        /**
+         * Battery mode. Default (0) is that battery mode reporting is not supported or battery is in 
+         * normal-use mode. 
+         */
+        public final Builder mode(Collection<Enum> flags) {
+            return mode(EnumValue.create(flags));
+        }
+
+        /**
+         * Fault/health indications. These should be set when charge_state is 
+         * MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault 
+         * reporting is not supported). 
+         */
+        @MavlinkFieldInfo(
+                position = 15,
+                unitSize = 4,
+                enumType = MavBatteryFault.class,
+                extension = true,
+                description = "Fault/health indications. These should be set when charge_state is MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault reporting is not supported)."
+        )
+        public final Builder faultBitmask(EnumValue<MavBatteryFault> faultBitmask) {
+            this.faultBitmask = faultBitmask;
+            return this;
+        }
+
+        /**
+         * Fault/health indications. These should be set when charge_state is 
+         * MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault 
+         * reporting is not supported). 
+         */
+        public final Builder faultBitmask(MavBatteryFault entry) {
+            return faultBitmask(EnumValue.of(entry));
+        }
+
+        /**
+         * Fault/health indications. These should be set when charge_state is 
+         * MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault 
+         * reporting is not supported). 
+         */
+        public final Builder faultBitmask(Enum... flags) {
+            return faultBitmask(EnumValue.create(flags));
+        }
+
+        /**
+         * Fault/health indications. These should be set when charge_state is 
+         * MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY (if not, fault 
+         * reporting is not supported). 
+         */
+        public final Builder faultBitmask(Collection<Enum> flags) {
+            return faultBitmask(EnumValue.create(flags));
+        }
+
         public final BatteryStatus build() {
-            return new BatteryStatus(id, batteryFunction, type, temperature, voltages, currentBattery, currentConsumed, energyConsumed, batteryRemaining, timeRemaining, chargeState);
+            return new BatteryStatus(id, batteryFunction, type, temperature, voltages, currentBattery, currentConsumed, energyConsumed, batteryRemaining, timeRemaining, chargeState, voltagesExt, mode, faultBitmask);
         }
     }
 }

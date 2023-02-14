@@ -33,7 +33,7 @@ public enum MavMissionResult {
     MAV_MISSION_UNSUPPORTED,
 
     /**
-     * Mission item exceeds storage space. 
+     * Mission items exceed storage space. 
      */
     @MavlinkEntryInfo(4)
     MAV_MISSION_NO_SPACE,

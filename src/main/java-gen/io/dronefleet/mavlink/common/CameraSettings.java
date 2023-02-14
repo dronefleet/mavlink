@@ -12,12 +12,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS. 
+ * Settings of a camera. Can be requested with a MAV_CMD_REQUEST_MESSAGE command. 
  */
 @MavlinkMessageInfo(
         id = 260,
         crc = 146,
-        description = "Settings of a camera, can be requested using MAV_CMD_REQUEST_CAMERA_SETTINGS."
+        description = "Settings of a camera. Can be requested with a MAV_CMD_REQUEST_MESSAGE command."
 )
 public final class CameraSettings {
     private final long timeBootMs;
@@ -70,26 +70,26 @@ public final class CameraSettings {
     }
 
     /**
-     * Current zoom level (0.0 to 100.0, NaN if not known) 
+     * Current zoom level as a percentage of the full range (0.0 to 100.0, NaN if not known) 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             extension = true,
-            description = "Current zoom level (0.0 to 100.0, NaN if not known)"
+            description = "Current zoom level as a percentage of the full range (0.0 to 100.0, NaN if not known)"
     )
     public final float zoomlevel() {
         return this.zoomlevel;
     }
 
     /**
-     * Current focus level (0.0 to 100.0, NaN if not known) 
+     * Current focus level as a percentage of the full range (0.0 to 100.0, NaN if not known) 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
             extension = true,
-            description = "Current focus level (0.0 to 100.0, NaN if not known)"
+            description = "Current focus level as a percentage of the full range (0.0 to 100.0, NaN if not known)"
     )
     public final float focuslevel() {
         return this.focuslevel;
@@ -183,13 +183,13 @@ public final class CameraSettings {
         }
 
         /**
-         * Current zoom level (0.0 to 100.0, NaN if not known) 
+         * Current zoom level as a percentage of the full range (0.0 to 100.0, NaN if not known) 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 extension = true,
-                description = "Current zoom level (0.0 to 100.0, NaN if not known)"
+                description = "Current zoom level as a percentage of the full range (0.0 to 100.0, NaN if not known)"
         )
         public final Builder zoomlevel(float zoomlevel) {
             this.zoomlevel = zoomlevel;
@@ -197,13 +197,13 @@ public final class CameraSettings {
         }
 
         /**
-         * Current focus level (0.0 to 100.0, NaN if not known) 
+         * Current focus level as a percentage of the full range (0.0 to 100.0, NaN if not known) 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
                 extension = true,
-                description = "Current focus level (0.0 to 100.0, NaN if not known)"
+                description = "Current focus level as a percentage of the full range (0.0 to 100.0, NaN if not known)"
         )
         public final Builder focuslevel(float focuslevel) {
             this.focuslevel = focuslevel;

@@ -14,14 +14,14 @@ import java.util.Objects;
 
 /**
  * The global position, as returned by the Global Positioning System (GPS). This is NOT the global 
- * position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION 
- * for the global position estimate. 
+ * position estimate of the system, but rather a RAW sensor value. See message 
+ * {@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} for the global position estimate. 
  */
 @MavlinkMessageInfo(
         id = 24,
         crc = 24,
         description = "The global position, as returned by the Global Positioning System (GPS). This is\n"
-                        + "                NOT the global position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate."
+                        + "                NOT the global position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION_INT for the global position estimate."
 )
 public final class GpsRawInt {
     private final BigInteger timeUsec;
@@ -54,9 +54,11 @@ public final class GpsRawInt {
 
     private final long hdgAcc;
 
+    private final int yaw;
+
     private GpsRawInt(BigInteger timeUsec, EnumValue<GpsFixType> fixType, int lat, int lon, int alt,
             int eph, int epv, int vel, int cog, int satellitesVisible, int altEllipsoid, long hAcc,
-            long vAcc, long velAcc, long hdgAcc) {
+            long vAcc, long velAcc, long hdgAcc, int yaw) {
         this.timeUsec = timeUsec;
         this.fixType = fixType;
         this.lat = lat;
@@ -72,6 +74,7 @@ public final class GpsRawInt {
         this.vAcc = vAcc;
         this.velAcc = velAcc;
         this.hdgAcc = hdgAcc;
+        this.yaw = yaw;
     }
 
     /**
@@ -84,12 +87,12 @@ public final class GpsRawInt {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -149,24 +152,24 @@ public final class GpsRawInt {
     }
 
     /**
-     * GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX 
+     * GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 6,
             unitSize = 2,
-            description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
+            description = "GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX"
     )
     public final int eph() {
         return this.eph;
     }
 
     /**
-     * GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX 
+     * GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX 
      */
     @MavlinkFieldInfo(
             position = 7,
             unitSize = 2,
-            description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
+            description = "GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX"
     )
     public final int epv() {
         return this.epv;
@@ -198,12 +201,12 @@ public final class GpsRawInt {
     }
 
     /**
-     * Number of satellites visible. If unknown, set to 255 
+     * Number of satellites visible. If unknown, set to UINT8_MAX 
      */
     @MavlinkFieldInfo(
             position = 10,
             unitSize = 1,
-            description = "Number of satellites visible. If unknown, set to 255"
+            description = "Number of satellites visible. If unknown, set to UINT8_MAX"
     )
     public final int satellitesVisible() {
         return this.satellitesVisible;
@@ -224,39 +227,39 @@ public final class GpsRawInt {
     }
 
     /**
-     * Position uncertainty. Positive for up. 
+     * Position uncertainty. 
      */
     @MavlinkFieldInfo(
             position = 13,
             unitSize = 4,
             extension = true,
-            description = "Position uncertainty. Positive for up."
+            description = "Position uncertainty."
     )
     public final long hAcc() {
         return this.hAcc;
     }
 
     /**
-     * Altitude uncertainty. Positive for up. 
+     * Altitude uncertainty. 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
             extension = true,
-            description = "Altitude uncertainty. Positive for up."
+            description = "Altitude uncertainty."
     )
     public final long vAcc() {
         return this.vAcc;
     }
 
     /**
-     * Speed uncertainty. Positive for up. 
+     * Speed uncertainty. 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
             extension = true,
-            description = "Speed uncertainty. Positive for up."
+            description = "Speed uncertainty."
     )
     public final long velAcc() {
         return this.velAcc;
@@ -273,6 +276,20 @@ public final class GpsRawInt {
     )
     public final long hdgAcc() {
         return this.hdgAcc;
+    }
+
+    /**
+     * Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is 
+     * configured to provide yaw and is currently unable to provide it. Use 36000 for north. 
+     */
+    @MavlinkFieldInfo(
+            position = 17,
+            unitSize = 2,
+            extension = true,
+            description = "Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north."
+    )
+    public final int yaw() {
+        return this.yaw;
     }
 
     @Override
@@ -295,6 +312,7 @@ public final class GpsRawInt {
         if (!Objects.deepEquals(vAcc, other.vAcc)) return false;
         if (!Objects.deepEquals(velAcc, other.velAcc)) return false;
         if (!Objects.deepEquals(hdgAcc, other.hdgAcc)) return false;
+        if (!Objects.deepEquals(yaw, other.yaw)) return false;
         return true;
     }
 
@@ -316,6 +334,7 @@ public final class GpsRawInt {
         result = 31 * result + Objects.hashCode(vAcc);
         result = 31 * result + Objects.hashCode(velAcc);
         result = 31 * result + Objects.hashCode(hdgAcc);
+        result = 31 * result + Objects.hashCode(yaw);
         return result;
     }
 
@@ -335,7 +354,8 @@ public final class GpsRawInt {
                  + ", hAcc=" + hAcc
                  + ", vAcc=" + vAcc
                  + ", velAcc=" + velAcc
-                 + ", hdgAcc=" + hdgAcc + "}";
+                 + ", hdgAcc=" + hdgAcc
+                 + ", yaw=" + yaw + "}";
     }
 
     public static final class Builder {
@@ -369,14 +389,16 @@ public final class GpsRawInt {
 
         private long hdgAcc;
 
+        private int yaw;
+
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -462,12 +484,12 @@ public final class GpsRawInt {
         }
 
         /**
-         * GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX 
+         * GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 6,
                 unitSize = 2,
-                description = "GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX"
+                description = "GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX"
         )
         public final Builder eph(int eph) {
             this.eph = eph;
@@ -475,12 +497,12 @@ public final class GpsRawInt {
         }
 
         /**
-         * GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX 
+         * GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX 
          */
         @MavlinkFieldInfo(
                 position = 7,
                 unitSize = 2,
-                description = "GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX"
+                description = "GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX"
         )
         public final Builder epv(int epv) {
             this.epv = epv;
@@ -515,12 +537,12 @@ public final class GpsRawInt {
         }
 
         /**
-         * Number of satellites visible. If unknown, set to 255 
+         * Number of satellites visible. If unknown, set to UINT8_MAX 
          */
         @MavlinkFieldInfo(
                 position = 10,
                 unitSize = 1,
-                description = "Number of satellites visible. If unknown, set to 255"
+                description = "Number of satellites visible. If unknown, set to UINT8_MAX"
         )
         public final Builder satellitesVisible(int satellitesVisible) {
             this.satellitesVisible = satellitesVisible;
@@ -543,13 +565,13 @@ public final class GpsRawInt {
         }
 
         /**
-         * Position uncertainty. Positive for up. 
+         * Position uncertainty. 
          */
         @MavlinkFieldInfo(
                 position = 13,
                 unitSize = 4,
                 extension = true,
-                description = "Position uncertainty. Positive for up."
+                description = "Position uncertainty."
         )
         public final Builder hAcc(long hAcc) {
             this.hAcc = hAcc;
@@ -557,13 +579,13 @@ public final class GpsRawInt {
         }
 
         /**
-         * Altitude uncertainty. Positive for up. 
+         * Altitude uncertainty. 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
                 extension = true,
-                description = "Altitude uncertainty. Positive for up."
+                description = "Altitude uncertainty."
         )
         public final Builder vAcc(long vAcc) {
             this.vAcc = vAcc;
@@ -571,13 +593,13 @@ public final class GpsRawInt {
         }
 
         /**
-         * Speed uncertainty. Positive for up. 
+         * Speed uncertainty. 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
                 extension = true,
-                description = "Speed uncertainty. Positive for up."
+                description = "Speed uncertainty."
         )
         public final Builder velAcc(long velAcc) {
             this.velAcc = velAcc;
@@ -598,8 +620,23 @@ public final class GpsRawInt {
             return this;
         }
 
+        /**
+         * Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is 
+         * configured to provide yaw and is currently unable to provide it. Use 36000 for north. 
+         */
+        @MavlinkFieldInfo(
+                position = 17,
+                unitSize = 2,
+                extension = true,
+                description = "Yaw in earth frame from north. Use 0 if this GPS does not provide yaw. Use UINT16_MAX if this GPS is configured to provide yaw and is currently unable to provide it. Use 36000 for north."
+        )
+        public final Builder yaw(int yaw) {
+            this.yaw = yaw;
+            return this;
+        }
+
         public final GpsRawInt build() {
-            return new GpsRawInt(timeUsec, fixType, lat, lon, alt, eph, epv, vel, cog, satellitesVisible, altEllipsoid, hAcc, vAcc, velAcc, hdgAcc);
+            return new GpsRawInt(timeUsec, fixType, lat, lon, alt, eph, epv, vel, cog, satellitesVisible, altEllipsoid, hAcc, vAcc, velAcc, hdgAcc, yaw);
         }
     }
 }

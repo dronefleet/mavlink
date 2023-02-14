@@ -59,10 +59,14 @@ public final class SimState {
 
     private final float vd;
 
+    private final int latInt;
+
+    private final int lonInt;
+
     private SimState(float q1, float q2, float q3, float q4, float roll, float pitch, float yaw,
             float xacc, float yacc, float zacc, float xgyro, float ygyro, float zgyro, float lat,
-            float lon, float alt, float stdDevHorz, float stdDevVert, float vn, float ve,
-            float vd) {
+            float lon, float alt, float stdDevHorz, float stdDevVert, float vn, float ve, float vd,
+            int latInt, int lonInt) {
         this.q1 = q1;
         this.q2 = q2;
         this.q3 = q3;
@@ -84,6 +88,8 @@ public final class SimState {
         this.vn = vn;
         this.ve = ve;
         this.vd = vd;
+        this.latInt = latInt;
+        this.lonInt = lonInt;
     }
 
     /**
@@ -251,24 +257,24 @@ public final class SimState {
     }
 
     /**
-     * Latitude 
+     * Latitude (lower precision). Both this and the lat_int field should be set. 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 4,
-            description = "Latitude"
+            description = "Latitude (lower precision). Both this and the lat_int field should be set."
     )
     public final float lat() {
         return this.lat;
     }
 
     /**
-     * Longitude 
+     * Longitude (lower precision). Both this and the lon_int field should be set. 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 4,
-            description = "Longitude"
+            description = "Longitude (lower precision). Both this and the lon_int field should be set."
     )
     public final float lon() {
         return this.lon;
@@ -346,6 +352,36 @@ public final class SimState {
         return this.vd;
     }
 
+    /**
+     * Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this 
+     * field is preferred). 
+     */
+    @MavlinkFieldInfo(
+            position = 23,
+            unitSize = 4,
+            signed = true,
+            extension = true,
+            description = "Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred)."
+    )
+    public final int latInt() {
+        return this.latInt;
+    }
+
+    /**
+     * Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this 
+     * field is preferred). 
+     */
+    @MavlinkFieldInfo(
+            position = 24,
+            unitSize = 4,
+            signed = true,
+            extension = true,
+            description = "Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred)."
+    )
+    public final int lonInt() {
+        return this.lonInt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -372,6 +408,8 @@ public final class SimState {
         if (!Objects.deepEquals(vn, other.vn)) return false;
         if (!Objects.deepEquals(ve, other.ve)) return false;
         if (!Objects.deepEquals(vd, other.vd)) return false;
+        if (!Objects.deepEquals(latInt, other.latInt)) return false;
+        if (!Objects.deepEquals(lonInt, other.lonInt)) return false;
         return true;
     }
 
@@ -399,6 +437,8 @@ public final class SimState {
         result = 31 * result + Objects.hashCode(vn);
         result = 31 * result + Objects.hashCode(ve);
         result = 31 * result + Objects.hashCode(vd);
+        result = 31 * result + Objects.hashCode(latInt);
+        result = 31 * result + Objects.hashCode(lonInt);
         return result;
     }
 
@@ -424,7 +464,9 @@ public final class SimState {
                  + ", stdDevVert=" + stdDevVert
                  + ", vn=" + vn
                  + ", ve=" + ve
-                 + ", vd=" + vd + "}";
+                 + ", vd=" + vd
+                 + ", latInt=" + latInt
+                 + ", lonInt=" + lonInt + "}";
     }
 
     public static final class Builder {
@@ -469,6 +511,10 @@ public final class SimState {
         private float ve;
 
         private float vd;
+
+        private int latInt;
+
+        private int lonInt;
 
         /**
          * True attitude quaternion component 1, w (1 in null-rotation) 
@@ -640,12 +686,12 @@ public final class SimState {
         }
 
         /**
-         * Latitude 
+         * Latitude (lower precision). Both this and the lat_int field should be set. 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 4,
-                description = "Latitude"
+                description = "Latitude (lower precision). Both this and the lat_int field should be set."
         )
         public final Builder lat(float lat) {
             this.lat = lat;
@@ -653,12 +699,12 @@ public final class SimState {
         }
 
         /**
-         * Longitude 
+         * Longitude (lower precision). Both this and the lon_int field should be set. 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 4,
-                description = "Longitude"
+                description = "Longitude (lower precision). Both this and the lon_int field should be set."
         )
         public final Builder lon(float lon) {
             this.lon = lon;
@@ -743,8 +789,40 @@ public final class SimState {
             return this;
         }
 
+        /**
+         * Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this 
+         * field is preferred). 
+         */
+        @MavlinkFieldInfo(
+                position = 23,
+                unitSize = 4,
+                signed = true,
+                extension = true,
+                description = "Latitude (higher precision). If 0, recipients should use the lat field value (otherwise this field is preferred)."
+        )
+        public final Builder latInt(int latInt) {
+            this.latInt = latInt;
+            return this;
+        }
+
+        /**
+         * Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this 
+         * field is preferred). 
+         */
+        @MavlinkFieldInfo(
+                position = 24,
+                unitSize = 4,
+                signed = true,
+                extension = true,
+                description = "Longitude (higher precision). If 0, recipients should use the lon field value (otherwise this field is preferred)."
+        )
+        public final Builder lonInt(int lonInt) {
+            this.lonInt = lonInt;
+            return this;
+        }
+
         public final SimState build() {
-            return new SimState(q1, q2, q3, q4, roll, pitch, yaw, xacc, yacc, zacc, xgyro, ygyro, zgyro, lat, lon, alt, stdDevHorz, stdDevVert, vn, ve, vd);
+            return new SimState(q1, q2, q3, q4, roll, pitch, yaw, xacc, yacc, zacc, xgyro, ygyro, zgyro, lat, lon, alt, stdDevHorz, stdDevVert, vn, ve, vd, latInt, lonInt);
         }
     }
 }

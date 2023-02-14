@@ -3,7 +3,6 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import java.lang.Deprecated;
 import java.lang.Float;
 import java.lang.Object;
 import java.lang.Override;
@@ -13,19 +12,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Describe a trajectory using an array of up-to 5 bezier points in the local frame. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
+ * Describe a trajectory using an array of up-to 5 bezier control points in the local frame 
+ * (MAV_FRAME_LOCAL_NED). 
  */
 @MavlinkMessageInfo(
         id = 333,
         crc = 231,
-        description = "Describe a trajectory using an array of up-to 5 bezier points in the local frame.",
-        workInProgress = true
+        description = "Describe a trajectory using an array of up-to 5 bezier control points in the local frame (MAV_FRAME_LOCAL_NED)."
 )
-@Deprecated
 public final class TrajectoryRepresentationBezier {
     private final BigInteger timeUsec;
 
@@ -62,89 +56,89 @@ public final class TrajectoryRepresentationBezier {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
     }
 
     /**
-     * Number of valid points (up-to 5 waypoints are possible) 
+     * Number of valid control points (up-to 5 points are possible) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
-            description = "Number of valid points (up-to 5 waypoints are possible)"
+            description = "Number of valid control points (up-to 5 points are possible)"
     )
     public final int validPoints() {
         return this.validPoints;
     }
 
     /**
-     * X-coordinate of starting bezier point, set to NaN if not being used 
+     * X-coordinate of bezier control points. Set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             arraySize = 5,
-            description = "X-coordinate of starting bezier point, set to NaN if not being used"
+            description = "X-coordinate of bezier control points. Set to NaN if not being used"
     )
     public final List<Float> posX() {
         return this.posX;
     }
 
     /**
-     * Y-coordinate of starting bezier point, set to NaN if not being used 
+     * Y-coordinate of bezier control points. Set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 4,
             arraySize = 5,
-            description = "Y-coordinate of starting bezier point, set to NaN if not being used"
+            description = "Y-coordinate of bezier control points. Set to NaN if not being used"
     )
     public final List<Float> posY() {
         return this.posY;
     }
 
     /**
-     * Z-coordinate of starting bezier point, set to NaN if not being used 
+     * Z-coordinate of bezier control points. Set to NaN if not being used 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 4,
             arraySize = 5,
-            description = "Z-coordinate of starting bezier point, set to NaN if not being used"
+            description = "Z-coordinate of bezier control points. Set to NaN if not being used"
     )
     public final List<Float> posZ() {
         return this.posZ;
     }
 
     /**
-     * Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated 
+     * Bezier time horizon. Set to NaN if velocity/acceleration should not be incorporated 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 4,
             arraySize = 5,
-            description = "Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated"
+            description = "Bezier time horizon. Set to NaN if velocity/acceleration should not be incorporated"
     )
     public final List<Float> delta() {
         return this.delta;
     }
 
     /**
-     * Yaw, set to NaN for unchanged 
+     * Yaw. Set to NaN for unchanged 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 4,
             arraySize = 5,
-            description = "Yaw, set to NaN for unchanged"
+            description = "Yaw. Set to NaN for unchanged"
     )
     public final List<Float> posYaw() {
         return this.posYaw;
@@ -206,12 +200,12 @@ public final class TrajectoryRepresentationBezier {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -219,12 +213,12 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * Number of valid points (up-to 5 waypoints are possible) 
+         * Number of valid control points (up-to 5 points are possible) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
-                description = "Number of valid points (up-to 5 waypoints are possible)"
+                description = "Number of valid control points (up-to 5 points are possible)"
         )
         public final Builder validPoints(int validPoints) {
             this.validPoints = validPoints;
@@ -232,13 +226,13 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * X-coordinate of starting bezier point, set to NaN if not being used 
+         * X-coordinate of bezier control points. Set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 arraySize = 5,
-                description = "X-coordinate of starting bezier point, set to NaN if not being used"
+                description = "X-coordinate of bezier control points. Set to NaN if not being used"
         )
         public final Builder posX(List<Float> posX) {
             this.posX = posX;
@@ -246,13 +240,13 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * Y-coordinate of starting bezier point, set to NaN if not being used 
+         * Y-coordinate of bezier control points. Set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 4,
                 arraySize = 5,
-                description = "Y-coordinate of starting bezier point, set to NaN if not being used"
+                description = "Y-coordinate of bezier control points. Set to NaN if not being used"
         )
         public final Builder posY(List<Float> posY) {
             this.posY = posY;
@@ -260,13 +254,13 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * Z-coordinate of starting bezier point, set to NaN if not being used 
+         * Z-coordinate of bezier control points. Set to NaN if not being used 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 4,
                 arraySize = 5,
-                description = "Z-coordinate of starting bezier point, set to NaN if not being used"
+                description = "Z-coordinate of bezier control points. Set to NaN if not being used"
         )
         public final Builder posZ(List<Float> posZ) {
             this.posZ = posZ;
@@ -274,13 +268,13 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated 
+         * Bezier time horizon. Set to NaN if velocity/acceleration should not be incorporated 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 4,
                 arraySize = 5,
-                description = "Bezier time horizon, set to NaN if velocity/acceleration should not be incorporated"
+                description = "Bezier time horizon. Set to NaN if velocity/acceleration should not be incorporated"
         )
         public final Builder delta(List<Float> delta) {
             this.delta = delta;
@@ -288,13 +282,13 @@ public final class TrajectoryRepresentationBezier {
         }
 
         /**
-         * Yaw, set to NaN for unchanged 
+         * Yaw. Set to NaN for unchanged 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 4,
                 arraySize = 5,
-                description = "Yaw, set to NaN for unchanged"
+                description = "Yaw. Set to NaN for unchanged"
         )
         public final Builder posYaw(List<Float> posYaw) {
             this.posYaw = posYaw;

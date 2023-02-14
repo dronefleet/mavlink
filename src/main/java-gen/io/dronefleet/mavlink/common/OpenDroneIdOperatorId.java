@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,25 +14,28 @@ import java.util.Objects;
 /**
  * Data for filling the OpenDroneID Operator ID message, which contains the CAA (Civil Aviation 
  * Authority) issued operator ID. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 12905,
-        crc = 56,
-        description = "Data for filling the OpenDroneID Operator ID message, which contains the CAA (Civil Aviation Authority) issued operator ID.",
-        workInProgress = true
+        crc = 49,
+        description = "Data for filling the OpenDroneID Operator ID message, which contains the CAA (Civil Aviation Authority) issued operator ID."
 )
-@Deprecated
 public final class OpenDroneIdOperatorId {
+    private final int targetSystem;
+
+    private final int targetComponent;
+
+    private final byte[] idOrMac;
+
     private final EnumValue<MavOdidOperatorIdType> operatorIdType;
 
     private final String operatorId;
 
-    private OpenDroneIdOperatorId(EnumValue<MavOdidOperatorIdType> operatorIdType,
-            String operatorId) {
+    private OpenDroneIdOperatorId(int targetSystem, int targetComponent, byte[] idOrMac,
+            EnumValue<MavOdidOperatorIdType> operatorIdType, String operatorId) {
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
+        this.idOrMac = idOrMac;
         this.operatorIdType = operatorIdType;
         this.operatorId = operatorId;
     }
@@ -47,10 +49,48 @@ public final class OpenDroneIdOperatorId {
     }
 
     /**
-     * Indicates the type of the operator_id field. 
+     * System ID (0 for broadcast). 
+     */
+    @MavlinkFieldInfo(
+            position = 1,
+            unitSize = 1,
+            description = "System ID (0 for broadcast)."
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID (0 for broadcast). 
      */
     @MavlinkFieldInfo(
             position = 2,
+            unitSize = 1,
+            description = "Component ID (0 for broadcast)."
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
+    }
+
+    /**
+     * Only used for drone ID data received from other UAs. See detailed description at 
+     * https://mavlink.io/en/services/opendroneid.html. 
+     */
+    @MavlinkFieldInfo(
+            position = 3,
+            unitSize = 1,
+            arraySize = 20,
+            description = "Only used for drone ID data received from other UAs. See detailed description at https://mavlink.io/en/services/opendroneid.html."
+    )
+    public final byte[] idOrMac() {
+        return this.idOrMac;
+    }
+
+    /**
+     * Indicates the type of the operator_id field. 
+     */
+    @MavlinkFieldInfo(
+            position = 4,
             unitSize = 1,
             enumType = MavOdidOperatorIdType.class,
             description = "Indicates the type of the operator_id field."
@@ -64,7 +104,7 @@ public final class OpenDroneIdOperatorId {
      * the unused portion of the field. 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 5,
             unitSize = 1,
             arraySize = 20,
             description = "Text description or numeric value expressed as ASCII characters. Shall be filled with nulls in the unused portion of the field."
@@ -78,6 +118,9 @@ public final class OpenDroneIdOperatorId {
         if (this == o) return true;
         if (o == null || !getClass().equals(o.getClass())) return false;
         OpenDroneIdOperatorId other = (OpenDroneIdOperatorId)o;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
+        if (!Objects.deepEquals(idOrMac, other.idOrMac)) return false;
         if (!Objects.deepEquals(operatorIdType, other.operatorIdType)) return false;
         if (!Objects.deepEquals(operatorId, other.operatorId)) return false;
         return true;
@@ -86,6 +129,9 @@ public final class OpenDroneIdOperatorId {
     @Override
     public int hashCode() {
         int result = 0;
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
+        result = 31 * result + Objects.hashCode(idOrMac);
         result = 31 * result + Objects.hashCode(operatorIdType);
         result = 31 * result + Objects.hashCode(operatorId);
         return result;
@@ -93,20 +139,70 @@ public final class OpenDroneIdOperatorId {
 
     @Override
     public String toString() {
-        return "OpenDroneIdOperatorId{operatorIdType=" + operatorIdType
+        return "OpenDroneIdOperatorId{targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent
+                 + ", idOrMac=" + idOrMac
+                 + ", operatorIdType=" + operatorIdType
                  + ", operatorId=" + operatorId + "}";
     }
 
     public static final class Builder {
+        private int targetSystem;
+
+        private int targetComponent;
+
+        private byte[] idOrMac;
+
         private EnumValue<MavOdidOperatorIdType> operatorIdType;
 
         private String operatorId;
 
         /**
-         * Indicates the type of the operator_id field. 
+         * System ID (0 for broadcast). 
+         */
+        @MavlinkFieldInfo(
+                position = 1,
+                unitSize = 1,
+                description = "System ID (0 for broadcast)."
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID (0 for broadcast). 
          */
         @MavlinkFieldInfo(
                 position = 2,
+                unitSize = 1,
+                description = "Component ID (0 for broadcast)."
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
+        /**
+         * Only used for drone ID data received from other UAs. See detailed description at 
+         * https://mavlink.io/en/services/opendroneid.html. 
+         */
+        @MavlinkFieldInfo(
+                position = 3,
+                unitSize = 1,
+                arraySize = 20,
+                description = "Only used for drone ID data received from other UAs. See detailed description at https://mavlink.io/en/services/opendroneid.html."
+        )
+        public final Builder idOrMac(byte[] idOrMac) {
+            this.idOrMac = idOrMac;
+            return this;
+        }
+
+        /**
+         * Indicates the type of the operator_id field. 
+         */
+        @MavlinkFieldInfo(
+                position = 4,
                 unitSize = 1,
                 enumType = MavOdidOperatorIdType.class,
                 description = "Indicates the type of the operator_id field."
@@ -142,7 +238,7 @@ public final class OpenDroneIdOperatorId {
          * the unused portion of the field. 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 5,
                 unitSize = 1,
                 arraySize = 20,
                 description = "Text description or numeric value expressed as ASCII characters. Shall be filled with nulls in the unused portion of the field."
@@ -153,7 +249,7 @@ public final class OpenDroneIdOperatorId {
         }
 
         public final OpenDroneIdOperatorId build() {
-            return new OpenDroneIdOperatorId(operatorIdType, operatorId);
+            return new OpenDroneIdOperatorId(targetSystem, targetComponent, idOrMac, operatorIdType, operatorId);
         }
     }
 }

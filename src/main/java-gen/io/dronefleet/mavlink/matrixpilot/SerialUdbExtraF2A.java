@@ -434,13 +434,13 @@ public final class SerialUdbExtraF2A {
     }
 
     /**
-     * Serial UDB Extra Number of Sattelites in View 
+     * Serial UDB Extra Number of Satellites in View 
      */
     @MavlinkFieldInfo(
             position = 26,
             unitSize = 2,
             signed = true,
-            description = "Serial UDB Extra Number of Sattelites in View"
+            description = "Serial UDB Extra Number of Satellites in View"
     )
     public final int sueSvs() {
         return this.sueSvs;
@@ -958,13 +958,13 @@ public final class SerialUdbExtraF2A {
         }
 
         /**
-         * Serial UDB Extra Number of Sattelites in View 
+         * Serial UDB Extra Number of Satellites in View 
          */
         @MavlinkFieldInfo(
                 position = 26,
                 unitSize = 2,
                 signed = true,
-                description = "Serial UDB Extra Number of Sattelites in View"
+                description = "Serial UDB Extra Number of Satellites in View"
         )
         public final Builder sueSvs(int sueSvs) {
             this.sueSvs = sueSvs;

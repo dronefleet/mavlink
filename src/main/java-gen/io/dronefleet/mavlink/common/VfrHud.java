@@ -48,12 +48,14 @@ public final class VfrHud {
     }
 
     /**
-     * Current indicated airspeed (IAS). 
+     * Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically 
+     * calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to 
+     * estimate stall speed. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 4,
-            description = "Current indicated airspeed (IAS)."
+            description = "Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed."
     )
     public final float airspeed() {
         return this.airspeed;
@@ -170,12 +172,14 @@ public final class VfrHud {
         private float climb;
 
         /**
-         * Current indicated airspeed (IAS). 
+         * Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically 
+         * calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to 
+         * estimate stall speed. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 4,
-                description = "Current indicated airspeed (IAS)."
+                description = "Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed."
         )
         public final Builder airspeed(float airspeed) {
             this.airspeed = airspeed;

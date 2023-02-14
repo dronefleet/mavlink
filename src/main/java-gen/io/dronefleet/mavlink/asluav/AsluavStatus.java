@@ -12,7 +12,7 @@ import java.util.Objects;
  * Extended state information for ASLUAVs 
  */
 @MavlinkMessageInfo(
-        id = 205,
+        id = 8006,
         crc = 97,
         description = "Extended state information for ASLUAVs"
 )

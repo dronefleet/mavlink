@@ -40,13 +40,15 @@ public enum MavBatteryChargeState {
     MAV_BATTERY_CHARGE_STATE_EMERGENCY,
 
     /**
-     * Battery failed, damage unavoidable. 
+     * Battery failed, damage unavoidable. Possible causes (faults) are listed in 
+     * {@link io.dronefleet.mavlink.common.MavBatteryFault MAV_BATTERY_FAULT}. 
      */
     @MavlinkEntryInfo(5)
     MAV_BATTERY_CHARGE_STATE_FAILED,
 
     /**
      * Battery is diagnosed to be defective or an error occurred, usage is discouraged / prohibited. 
+     * Possible causes (faults) are listed in {@link io.dronefleet.mavlink.common.MavBatteryFault MAV_BATTERY_FAULT}. 
      */
     @MavlinkEntryInfo(6)
     MAV_BATTERY_CHARGE_STATE_UNHEALTHY,

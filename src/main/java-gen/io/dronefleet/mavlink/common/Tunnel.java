@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -17,18 +16,12 @@ import java.util.Objects;
  * (broadcast is not forbidden, but discouraged). The encoding of the data is usually extension 
  * specific, i.e. determined by the source, and is usually not documented as part of the MAVLink 
  * specification. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 385,
         crc = 147,
-        description = "Message for transporting \"arbitrary\" variable-length data from one component to another (broadcast is not forbidden, but discouraged). The encoding of the data is usually extension specific, i.e. determined by the source, and is usually not documented as part of the MAVLink specification.",
-        workInProgress = true
+        description = "Message for transporting \"arbitrary\" variable-length data from one component to another (broadcast is not forbidden, but discouraged). The encoding of the data is usually extension specific, i.e. determined by the source, and is usually not documented as part of the MAVLink specification."
 )
-@Deprecated
 public final class Tunnel {
     private final int targetSystem;
 
@@ -61,7 +54,7 @@ public final class Tunnel {
      * System ID (can be 0 for broadcast, but this is discouraged) 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 1,
             description = "System ID (can be 0 for broadcast, but this is discouraged)"
     )
@@ -73,7 +66,7 @@ public final class Tunnel {
      * Component ID (can be 0 for broadcast, but this is discouraged) 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Component ID (can be 0 for broadcast, but this is discouraged)"
     )
@@ -89,7 +82,7 @@ public final class Tunnel {
      * to any widely distributed codebase. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 2,
             enumType = MavTunnelPayloadType.class,
             description = "A code that identifies the content of the payload (0 for unknown, which is the default). If this code is less than 32768, it is a 'registered' payload type and the corresponding code should be added to the MAV_TUNNEL_PAYLOAD_TYPE enum. Software creators can register blocks of types as needed. Codes greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
@@ -102,7 +95,7 @@ public final class Tunnel {
      * Length of the data transported in payload 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 1,
             description = "Length of the data transported in payload"
     )
@@ -115,7 +108,7 @@ public final class Tunnel {
      * of this block is opaque unless you understand the encoding specified by payload_type. 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 1,
             arraySize = 128,
             description = "Variable length payload. The payload length is defined by payload_length. The entire content of this block is opaque unless you understand the encoding specified by payload_type."
@@ -172,7 +165,7 @@ public final class Tunnel {
          * System ID (can be 0 for broadcast, but this is discouraged) 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 1,
                 description = "System ID (can be 0 for broadcast, but this is discouraged)"
         )
@@ -185,7 +178,7 @@ public final class Tunnel {
          * Component ID (can be 0 for broadcast, but this is discouraged) 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Component ID (can be 0 for broadcast, but this is discouraged)"
         )
@@ -202,7 +195,7 @@ public final class Tunnel {
          * to any widely distributed codebase. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 2,
                 enumType = MavTunnelPayloadType.class,
                 description = "A code that identifies the content of the payload (0 for unknown, which is the default). If this code is less than 32768, it is a 'registered' payload type and the corresponding code should be added to the MAV_TUNNEL_PAYLOAD_TYPE enum. Software creators can register blocks of types as needed. Codes greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase."
@@ -249,7 +242,7 @@ public final class Tunnel {
          * Length of the data transported in payload 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 1,
                 description = "Length of the data transported in payload"
         )
@@ -263,7 +256,7 @@ public final class Tunnel {
          * of this block is opaque unless you understand the encoding specified by payload_type. 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 1,
                 arraySize = 128,
                 description = "Variable length payload. The payload length is defined by payload_length. The entire content of this block is opaque unless you understand the encoding specified by payload_type."

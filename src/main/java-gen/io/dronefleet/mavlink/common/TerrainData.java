@@ -12,12 +12,13 @@ import java.util.Objects;
 
 /**
  * Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a 
- * {@link io.dronefleet.mavlink.common.TerrainRequest TERRAIN_REQUEST} 
+ * {@link io.dronefleet.mavlink.common.TerrainRequest TERRAIN_REQUEST}. See terrain protocol docs: 
+ * https://mavlink.io/en/services/terrain.html 
  */
 @MavlinkMessageInfo(
         id = 134,
         crc = 229,
-        description = "Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a TERRAIN_REQUEST"
+        description = "Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a TERRAIN_REQUEST. See terrain protocol docs: https://mavlink.io/en/services/terrain.html"
 )
 public final class TerrainData {
     private final int lat;

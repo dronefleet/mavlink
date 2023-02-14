@@ -13,7 +13,7 @@ import java.util.Objects;
  * Atmospheric sensors (temperature, humidity, ...) 
  */
 @MavlinkMessageInfo(
-        id = 208,
+        id = 8009,
         crc = 144,
         description = "Atmospheric sensors (temperature, humidity, ...)"
 )

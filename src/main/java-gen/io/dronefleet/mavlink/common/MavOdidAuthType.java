@@ -36,5 +36,12 @@ public enum MavOdidAuthType {
      * Authentication is provided by Network Remote ID. 
      */
     @MavlinkEntryInfo(4)
-    MAV_ODID_AUTH_TYPE_NETWORK_REMOTE_ID
+    MAV_ODID_AUTH_TYPE_NETWORK_REMOTE_ID,
+
+    /**
+     * The exact authentication type is indicated by the first byte of authentication_data and these 
+     * type values are managed by ICAO. 
+     */
+    @MavlinkEntryInfo(5)
+    MAV_ODID_AUTH_TYPE_SPECIFIC_AUTHENTICATION
 }

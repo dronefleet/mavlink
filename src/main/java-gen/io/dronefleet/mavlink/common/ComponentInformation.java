@@ -3,60 +3,41 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
-import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Deprecated;
-import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Information about a component. For camera components instead use {@link io.dronefleet.mavlink.common.CameraInformation CAMERA_INFORMATION}, and 
- * for autopilots use {@link io.dronefleet.mavlink.common.AutopilotVersion AUTOPILOT_VERSION}. Components including GCSes should consider 
- * supporting requests of this message via MAV_CMD_REQUEST_MESSAGE. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
+ * Component information message, which may be requested using MAV_CMD_REQUEST_MESSAGE. 
+ * @deprecated Since 2022-04, replaced by {@link io.dronefleet.mavlink.common.ComponentMetadata COMPONENT_METADATA}. 
  */
 @MavlinkMessageInfo(
         id = 395,
-        crc = 231,
-        description = "Information about a component. For camera components instead use CAMERA_INFORMATION, and for autopilots use AUTOPILOT_VERSION. Components including GCSes should consider supporting requests of this message via MAV_CMD_REQUEST_MESSAGE.",
-        workInProgress = true
+        crc = 0,
+        description = "Component information message, which may be requested using MAV_CMD_REQUEST_MESSAGE."
 )
 @Deprecated
 public final class ComponentInformation {
     private final long timeBootMs;
 
-    private final byte[] vendorName;
+    private final long generalMetadataFileCrc;
 
-    private final byte[] modelName;
+    private final String generalMetadataUri;
 
-    private final long firmwareVersion;
+    private final long peripheralsMetadataFileCrc;
 
-    private final long hardwareVersion;
+    private final String peripheralsMetadataUri;
 
-    private final EnumValue<ComponentCapFlags> capabilityFlags;
-
-    private final int componentDefinitionVersion;
-
-    private final String componentDefinitionUri;
-
-    private ComponentInformation(long timeBootMs, byte[] vendorName, byte[] modelName,
-            long firmwareVersion, long hardwareVersion,
-            EnumValue<ComponentCapFlags> capabilityFlags, int componentDefinitionVersion,
-            String componentDefinitionUri) {
+    private ComponentInformation(long timeBootMs, long generalMetadataFileCrc,
+            String generalMetadataUri, long peripheralsMetadataFileCrc,
+            String peripheralsMetadataUri) {
         this.timeBootMs = timeBootMs;
-        this.vendorName = vendorName;
-        this.modelName = modelName;
-        this.firmwareVersion = firmwareVersion;
-        this.hardwareVersion = hardwareVersion;
-        this.capabilityFlags = capabilityFlags;
-        this.componentDefinitionVersion = componentDefinitionVersion;
-        this.componentDefinitionUri = componentDefinitionUri;
+        this.generalMetadataFileCrc = generalMetadataFileCrc;
+        this.generalMetadataUri = generalMetadataUri;
+        this.peripheralsMetadataFileCrc = peripheralsMetadataFileCrc;
+        this.peripheralsMetadataUri = peripheralsMetadataUri;
     }
 
     /**
@@ -80,94 +61,60 @@ public final class ComponentInformation {
     }
 
     /**
-     * Name of the component vendor 
+     * CRC32 of the general metadata file (general_metadata_uri). 
      */
     @MavlinkFieldInfo(
             position = 3,
-            unitSize = 1,
-            arraySize = 32,
-            description = "Name of the component vendor"
+            unitSize = 4,
+            description = "CRC32 of the general metadata file (general_metadata_uri)."
     )
-    public final byte[] vendorName() {
-        return this.vendorName;
+    public final long generalMetadataFileCrc() {
+        return this.generalMetadataFileCrc;
     }
 
     /**
-     * Name of the component model 
+     * MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be 
+     * compressed with xz. The file contains general component metadata, and may contain URI links 
+     * for additional metadata (see {@link io.dronefleet.mavlink.common.CompMetadataType COMP_METADATA_TYPE}). The information is static from boot, and 
+     * may be generated at compile time. The string needs to be zero terminated. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
-            arraySize = 32,
-            description = "Name of the component model"
+            arraySize = 100,
+            description = "MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated."
     )
-    public final byte[] modelName() {
-        return this.modelName;
+    public final String generalMetadataUri() {
+        return this.generalMetadataUri;
     }
 
     /**
-     * Version of the component firmware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
-     * 0xff = Major) 
+     * CRC32 of peripherals metadata file (peripherals_metadata_uri). 
      */
     @MavlinkFieldInfo(
             position = 5,
             unitSize = 4,
-            description = "Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
+            description = "CRC32 of peripherals metadata file (peripherals_metadata_uri)."
     )
-    public final long firmwareVersion() {
-        return this.firmwareVersion;
+    public final long peripheralsMetadataFileCrc() {
+        return this.peripheralsMetadataFileCrc;
     }
 
     /**
-     * Version of the component hardware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
-     * 0xff = Major) 
+     * (Optional) MAVLink FTP URI for the peripherals metadata file 
+     * (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data 
+     * about "attached components" such as UAVCAN nodes. The peripherals are in a separate file 
+     * because the information must be generated dynamically at runtime. The string needs to be zero 
+     * terminated. 
      */
     @MavlinkFieldInfo(
             position = 6,
-            unitSize = 4,
-            description = "Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
-    )
-    public final long hardwareVersion() {
-        return this.hardwareVersion;
-    }
-
-    /**
-     * Bitmap of component capability flags. 
-     */
-    @MavlinkFieldInfo(
-            position = 7,
-            unitSize = 4,
-            enumType = ComponentCapFlags.class,
-            description = "Bitmap of component capability flags."
-    )
-    public final EnumValue<ComponentCapFlags> capabilityFlags() {
-        return this.capabilityFlags;
-    }
-
-    /**
-     * Component definition version (iteration) 
-     */
-    @MavlinkFieldInfo(
-            position = 8,
-            unitSize = 2,
-            description = "Component definition version (iteration)"
-    )
-    public final int componentDefinitionVersion() {
-        return this.componentDefinitionVersion;
-    }
-
-    /**
-     * Component definition URI (if any, otherwise only basic functions will be available). The XML 
-     * format is not yet specified and work in progress. 
-     */
-    @MavlinkFieldInfo(
-            position = 9,
             unitSize = 1,
-            arraySize = 140,
-            description = "Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress."
+            arraySize = 100,
+            description = "(Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about \"attached components\" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated."
     )
-    public final String componentDefinitionUri() {
-        return this.componentDefinitionUri;
+    public final String peripheralsMetadataUri() {
+        return this.peripheralsMetadataUri;
     }
 
     @Override
@@ -176,13 +123,10 @@ public final class ComponentInformation {
         if (o == null || !getClass().equals(o.getClass())) return false;
         ComponentInformation other = (ComponentInformation)o;
         if (!Objects.deepEquals(timeBootMs, other.timeBootMs)) return false;
-        if (!Objects.deepEquals(vendorName, other.vendorName)) return false;
-        if (!Objects.deepEquals(modelName, other.modelName)) return false;
-        if (!Objects.deepEquals(firmwareVersion, other.firmwareVersion)) return false;
-        if (!Objects.deepEquals(hardwareVersion, other.hardwareVersion)) return false;
-        if (!Objects.deepEquals(capabilityFlags, other.capabilityFlags)) return false;
-        if (!Objects.deepEquals(componentDefinitionVersion, other.componentDefinitionVersion)) return false;
-        if (!Objects.deepEquals(componentDefinitionUri, other.componentDefinitionUri)) return false;
+        if (!Objects.deepEquals(generalMetadataFileCrc, other.generalMetadataFileCrc)) return false;
+        if (!Objects.deepEquals(generalMetadataUri, other.generalMetadataUri)) return false;
+        if (!Objects.deepEquals(peripheralsMetadataFileCrc, other.peripheralsMetadataFileCrc)) return false;
+        if (!Objects.deepEquals(peripheralsMetadataUri, other.peripheralsMetadataUri)) return false;
         return true;
     }
 
@@ -190,44 +134,32 @@ public final class ComponentInformation {
     public int hashCode() {
         int result = 0;
         result = 31 * result + Objects.hashCode(timeBootMs);
-        result = 31 * result + Objects.hashCode(vendorName);
-        result = 31 * result + Objects.hashCode(modelName);
-        result = 31 * result + Objects.hashCode(firmwareVersion);
-        result = 31 * result + Objects.hashCode(hardwareVersion);
-        result = 31 * result + Objects.hashCode(capabilityFlags);
-        result = 31 * result + Objects.hashCode(componentDefinitionVersion);
-        result = 31 * result + Objects.hashCode(componentDefinitionUri);
+        result = 31 * result + Objects.hashCode(generalMetadataFileCrc);
+        result = 31 * result + Objects.hashCode(generalMetadataUri);
+        result = 31 * result + Objects.hashCode(peripheralsMetadataFileCrc);
+        result = 31 * result + Objects.hashCode(peripheralsMetadataUri);
         return result;
     }
 
     @Override
     public String toString() {
         return "ComponentInformation{timeBootMs=" + timeBootMs
-                 + ", vendorName=" + vendorName
-                 + ", modelName=" + modelName
-                 + ", firmwareVersion=" + firmwareVersion
-                 + ", hardwareVersion=" + hardwareVersion
-                 + ", capabilityFlags=" + capabilityFlags
-                 + ", componentDefinitionVersion=" + componentDefinitionVersion
-                 + ", componentDefinitionUri=" + componentDefinitionUri + "}";
+                 + ", generalMetadataFileCrc=" + generalMetadataFileCrc
+                 + ", generalMetadataUri=" + generalMetadataUri
+                 + ", peripheralsMetadataFileCrc=" + peripheralsMetadataFileCrc
+                 + ", peripheralsMetadataUri=" + peripheralsMetadataUri + "}";
     }
 
     public static final class Builder {
         private long timeBootMs;
 
-        private byte[] vendorName;
+        private long generalMetadataFileCrc;
 
-        private byte[] modelName;
+        private String generalMetadataUri;
 
-        private long firmwareVersion;
+        private long peripheralsMetadataFileCrc;
 
-        private long hardwareVersion;
-
-        private EnumValue<ComponentCapFlags> capabilityFlags;
-
-        private int componentDefinitionVersion;
-
-        private String componentDefinitionUri;
+        private String peripheralsMetadataUri;
 
         /**
          * Timestamp (time since system boot). 
@@ -243,126 +175,68 @@ public final class ComponentInformation {
         }
 
         /**
-         * Name of the component vendor 
+         * CRC32 of the general metadata file (general_metadata_uri). 
          */
         @MavlinkFieldInfo(
                 position = 3,
-                unitSize = 1,
-                arraySize = 32,
-                description = "Name of the component vendor"
+                unitSize = 4,
+                description = "CRC32 of the general metadata file (general_metadata_uri)."
         )
-        public final Builder vendorName(byte[] vendorName) {
-            this.vendorName = vendorName;
+        public final Builder generalMetadataFileCrc(long generalMetadataFileCrc) {
+            this.generalMetadataFileCrc = generalMetadataFileCrc;
             return this;
         }
 
         /**
-         * Name of the component model 
+         * MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be 
+         * compressed with xz. The file contains general component metadata, and may contain URI links 
+         * for additional metadata (see {@link io.dronefleet.mavlink.common.CompMetadataType COMP_METADATA_TYPE}). The information is static from boot, and 
+         * may be generated at compile time. The string needs to be zero terminated. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
-                arraySize = 32,
-                description = "Name of the component model"
+                arraySize = 100,
+                description = "MAVLink FTP URI for the general metadata file (COMP_METADATA_TYPE_GENERAL), which may be compressed with xz. The file contains general component metadata, and may contain URI links for additional metadata (see COMP_METADATA_TYPE). The information is static from boot, and may be generated at compile time. The string needs to be zero terminated."
         )
-        public final Builder modelName(byte[] modelName) {
-            this.modelName = modelName;
+        public final Builder generalMetadataUri(String generalMetadataUri) {
+            this.generalMetadataUri = generalMetadataUri;
             return this;
         }
 
         /**
-         * Version of the component firmware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
-         * 0xff = Major) 
+         * CRC32 of peripherals metadata file (peripherals_metadata_uri). 
          */
         @MavlinkFieldInfo(
                 position = 5,
                 unitSize = 4,
-                description = "Version of the component firmware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
+                description = "CRC32 of peripherals metadata file (peripherals_metadata_uri)."
         )
-        public final Builder firmwareVersion(long firmwareVersion) {
-            this.firmwareVersion = firmwareVersion;
+        public final Builder peripheralsMetadataFileCrc(long peripheralsMetadataFileCrc) {
+            this.peripheralsMetadataFileCrc = peripheralsMetadataFileCrc;
             return this;
         }
 
         /**
-         * Version of the component hardware (v &lt;&lt; 24 &amp; 0xff = Dev, v &lt;&lt; 16 &amp; 0xff = Patch, v &lt;&lt; 8 &amp; 0xff = Minor, v &amp; 
-         * 0xff = Major) 
+         * (Optional) MAVLink FTP URI for the peripherals metadata file 
+         * (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data 
+         * about "attached components" such as UAVCAN nodes. The peripherals are in a separate file 
+         * because the information must be generated dynamically at runtime. The string needs to be zero 
+         * terminated. 
          */
         @MavlinkFieldInfo(
                 position = 6,
-                unitSize = 4,
-                description = "Version of the component hardware (v << 24 & 0xff = Dev, v << 16 & 0xff = Patch, v << 8 & 0xff = Minor, v & 0xff = Major)"
-        )
-        public final Builder hardwareVersion(long hardwareVersion) {
-            this.hardwareVersion = hardwareVersion;
-            return this;
-        }
-
-        /**
-         * Bitmap of component capability flags. 
-         */
-        @MavlinkFieldInfo(
-                position = 7,
-                unitSize = 4,
-                enumType = ComponentCapFlags.class,
-                description = "Bitmap of component capability flags."
-        )
-        public final Builder capabilityFlags(EnumValue<ComponentCapFlags> capabilityFlags) {
-            this.capabilityFlags = capabilityFlags;
-            return this;
-        }
-
-        /**
-         * Bitmap of component capability flags. 
-         */
-        public final Builder capabilityFlags(ComponentCapFlags entry) {
-            return capabilityFlags(EnumValue.of(entry));
-        }
-
-        /**
-         * Bitmap of component capability flags. 
-         */
-        public final Builder capabilityFlags(Enum... flags) {
-            return capabilityFlags(EnumValue.create(flags));
-        }
-
-        /**
-         * Bitmap of component capability flags. 
-         */
-        public final Builder capabilityFlags(Collection<Enum> flags) {
-            return capabilityFlags(EnumValue.create(flags));
-        }
-
-        /**
-         * Component definition version (iteration) 
-         */
-        @MavlinkFieldInfo(
-                position = 8,
-                unitSize = 2,
-                description = "Component definition version (iteration)"
-        )
-        public final Builder componentDefinitionVersion(int componentDefinitionVersion) {
-            this.componentDefinitionVersion = componentDefinitionVersion;
-            return this;
-        }
-
-        /**
-         * Component definition URI (if any, otherwise only basic functions will be available). The XML 
-         * format is not yet specified and work in progress. 
-         */
-        @MavlinkFieldInfo(
-                position = 9,
                 unitSize = 1,
-                arraySize = 140,
-                description = "Component definition URI (if any, otherwise only basic functions will be available). The XML format is not yet specified and work in progress."
+                arraySize = 100,
+                description = "(Optional) MAVLink FTP URI for the peripherals metadata file (COMP_METADATA_TYPE_PERIPHERALS), which may be compressed with xz. This contains data about \"attached components\" such as UAVCAN nodes. The peripherals are in a separate file because the information must be generated dynamically at runtime. The string needs to be zero terminated."
         )
-        public final Builder componentDefinitionUri(String componentDefinitionUri) {
-            this.componentDefinitionUri = componentDefinitionUri;
+        public final Builder peripheralsMetadataUri(String peripheralsMetadataUri) {
+            this.peripheralsMetadataUri = peripheralsMetadataUri;
             return this;
         }
 
         public final ComponentInformation build() {
-            return new ComponentInformation(timeBootMs, vendorName, modelName, firmwareVersion, hardwareVersion, capabilityFlags, componentDefinitionVersion, componentDefinitionUri);
+            return new ComponentInformation(timeBootMs, generalMetadataFileCrc, generalMetadataUri, peripheralsMetadataFileCrc, peripheralsMetadataUri);
         }
     }
 }

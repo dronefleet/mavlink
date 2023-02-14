@@ -4,6 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -15,14 +16,18 @@ import java.util.Objects;
  * Message encoding a mission item. This message is emitted to announce the presence of a mission 
  * item and to set a mission item on the system. The mission item can be either in x, y, z meters (type: 
  * LOCAL) or x:lat, y:lon, z:altitude. Local frame is Z-down, right handed (NED), global frame is 
- * Z-up, right handed (ENU). See also https://mavlink.io/en/services/mission.html. 
+ * Z-up, right handed (ENU). NaN may be used to indicate an optional/default value (e.g. to use the 
+ * system's current latitude or yaw rather than a specific value). See also 
+ * https://mavlink.io/en/services/mission.html. 
+ * @deprecated Since 2020-06, replaced by {@link io.dronefleet.mavlink.common.MissionItemInt MISSION_ITEM_INT}. 
  */
 @MavlinkMessageInfo(
         id = 39,
         crc = 254,
         description = "Message encoding a mission item. This message is emitted to announce\n"
-                        + "                the presence of a mission item and to set a mission item on the system. The mission item can be either in x, y, z meters (type: LOCAL) or x:lat, y:lon, z:altitude. Local frame is Z-down, right handed (NED), global frame is Z-up, right handed (ENU). See also https://mavlink.io/en/services/mission.html."
+                        + "                the presence of a mission item and to set a mission item on the system. The mission item can be either in x, y, z meters (type: LOCAL) or x:lat, y:lon, z:altitude. Local frame is Z-down, right handed (NED), global frame is Z-up, right handed (ENU). NaN may be used to indicate an optional/default value (e.g. to use the system's current latitude or yaw rather than a specific value). See also https://mavlink.io/en/services/mission.html."
 )
+@Deprecated
 public final class MissionItem {
     private final int targetSystem;
 
@@ -87,7 +92,7 @@ public final class MissionItem {
      * System ID 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 1,
             description = "System ID"
     )
@@ -99,7 +104,7 @@ public final class MissionItem {
      * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 1,
             description = "Component ID"
     )
@@ -111,7 +116,7 @@ public final class MissionItem {
      * Sequence 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 2,
             description = "Sequence"
     )
@@ -123,7 +128,7 @@ public final class MissionItem {
      * The coordinate system of the waypoint. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 1,
             enumType = MavFrame.class,
             description = "The coordinate system of the waypoint."
@@ -136,7 +141,7 @@ public final class MissionItem {
      * The scheduled action for the waypoint. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 6,
             unitSize = 2,
             enumType = MavCmd.class,
             description = "The scheduled action for the waypoint."
@@ -149,7 +154,7 @@ public final class MissionItem {
      * false:0, true:1 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 7,
             unitSize = 1,
             description = "false:0, true:1"
     )
@@ -158,12 +163,13 @@ public final class MissionItem {
     }
 
     /**
-     * Autocontinue to next waypoint 
+     * Autocontinue to next waypoint. 0: false, 1: true. Set false to pause mission after the item 
+     * completes. 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 8,
             unitSize = 1,
-            description = "Autocontinue to next waypoint"
+            description = "Autocontinue to next waypoint. 0: false, 1: true. Set false to pause mission after the item completes."
     )
     public final int autocontinue() {
         return this.autocontinue;
@@ -173,7 +179,7 @@ public final class MissionItem {
      * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 9,
             unitSize = 4,
             description = "PARAM1, see MAV_CMD enum"
     )
@@ -185,7 +191,7 @@ public final class MissionItem {
      * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 10,
             unitSize = 4,
             description = "PARAM2, see MAV_CMD enum"
     )
@@ -197,7 +203,7 @@ public final class MissionItem {
      * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 11,
             unitSize = 4,
             description = "PARAM3, see MAV_CMD enum"
     )
@@ -209,7 +215,7 @@ public final class MissionItem {
      * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 12,
             unitSize = 4,
             description = "PARAM4, see MAV_CMD enum"
     )
@@ -221,7 +227,7 @@ public final class MissionItem {
      * PARAM5 / local: X coordinate, global: latitude 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 13,
             unitSize = 4,
             description = "PARAM5 / local: X coordinate, global: latitude"
     )
@@ -233,7 +239,7 @@ public final class MissionItem {
      * PARAM6 / local: Y coordinate, global: longitude 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 14,
             unitSize = 4,
             description = "PARAM6 / local: Y coordinate, global: longitude"
     )
@@ -245,7 +251,7 @@ public final class MissionItem {
      * PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame). 
      */
     @MavlinkFieldInfo(
-            position = 14,
+            position = 15,
             unitSize = 4,
             description = "PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame)."
     )
@@ -257,7 +263,7 @@ public final class MissionItem {
      * Mission type. 
      */
     @MavlinkFieldInfo(
-            position = 16,
+            position = 17,
             unitSize = 1,
             enumType = MavMissionType.class,
             extension = true,
@@ -365,7 +371,7 @@ public final class MissionItem {
          * System ID 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 1,
                 description = "System ID"
         )
@@ -378,7 +384,7 @@ public final class MissionItem {
          * Component ID 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 1,
                 description = "Component ID"
         )
@@ -391,7 +397,7 @@ public final class MissionItem {
          * Sequence 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 2,
                 description = "Sequence"
         )
@@ -404,7 +410,7 @@ public final class MissionItem {
          * The coordinate system of the waypoint. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 1,
                 enumType = MavFrame.class,
                 description = "The coordinate system of the waypoint."
@@ -439,7 +445,7 @@ public final class MissionItem {
          * The scheduled action for the waypoint. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 6,
                 unitSize = 2,
                 enumType = MavCmd.class,
                 description = "The scheduled action for the waypoint."
@@ -474,7 +480,7 @@ public final class MissionItem {
          * false:0, true:1 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 7,
                 unitSize = 1,
                 description = "false:0, true:1"
         )
@@ -484,12 +490,13 @@ public final class MissionItem {
         }
 
         /**
-         * Autocontinue to next waypoint 
+         * Autocontinue to next waypoint. 0: false, 1: true. Set false to pause mission after the item 
+         * completes. 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 8,
                 unitSize = 1,
-                description = "Autocontinue to next waypoint"
+                description = "Autocontinue to next waypoint. 0: false, 1: true. Set false to pause mission after the item completes."
         )
         public final Builder autocontinue(int autocontinue) {
             this.autocontinue = autocontinue;
@@ -500,7 +507,7 @@ public final class MissionItem {
          * PARAM1, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 9,
                 unitSize = 4,
                 description = "PARAM1, see MAV_CMD enum"
         )
@@ -513,7 +520,7 @@ public final class MissionItem {
          * PARAM2, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 10,
                 unitSize = 4,
                 description = "PARAM2, see MAV_CMD enum"
         )
@@ -526,7 +533,7 @@ public final class MissionItem {
          * PARAM3, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 11,
                 unitSize = 4,
                 description = "PARAM3, see MAV_CMD enum"
         )
@@ -539,7 +546,7 @@ public final class MissionItem {
          * PARAM4, see {@link io.dronefleet.mavlink.common.MavCmd MAV_CMD} enum 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 12,
                 unitSize = 4,
                 description = "PARAM4, see MAV_CMD enum"
         )
@@ -552,7 +559,7 @@ public final class MissionItem {
          * PARAM5 / local: X coordinate, global: latitude 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 13,
                 unitSize = 4,
                 description = "PARAM5 / local: X coordinate, global: latitude"
         )
@@ -565,7 +572,7 @@ public final class MissionItem {
          * PARAM6 / local: Y coordinate, global: longitude 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 14,
                 unitSize = 4,
                 description = "PARAM6 / local: Y coordinate, global: longitude"
         )
@@ -578,7 +585,7 @@ public final class MissionItem {
          * PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame). 
          */
         @MavlinkFieldInfo(
-                position = 14,
+                position = 15,
                 unitSize = 4,
                 description = "PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame)."
         )
@@ -591,7 +598,7 @@ public final class MissionItem {
          * Mission type. 
          */
         @MavlinkFieldInfo(
-                position = 16,
+                position = 17,
                 unitSize = 1,
                 enumType = MavMissionType.class,
                 extension = true,

@@ -9,12 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Request all parameters of this component. After this request, all parameters are emitted. 
+ * Request all parameters of this component. All parameters should be emitted in response as 
+ * {@link io.dronefleet.mavlink.common.ParamExtValue PARAM_EXT_VALUE}. 
  */
 @MavlinkMessageInfo(
         id = 321,
         crc = 88,
-        description = "Request all parameters of this component. After this request, all parameters are emitted."
+        description = "Request all parameters of this component. All parameters should be emitted in response as PARAM_EXT_VALUE."
 )
 public final class ParamExtRequestList {
     private final int targetSystem;

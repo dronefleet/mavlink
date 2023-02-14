@@ -4,7 +4,7 @@ import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * Flags in EKF_STATUS message 
+ * Flags in {@link io.dronefleet.mavlink.common.EstimatorStatus ESTIMATOR_STATUS} message 
  */
 @MavlinkEnum
 public enum EstimatorStatusFlags {

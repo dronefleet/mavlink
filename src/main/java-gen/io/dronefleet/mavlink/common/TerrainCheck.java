@@ -9,13 +9,13 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Request that the vehicle report terrain height at the given location. Used by GCS to check if 
- * vehicle has all terrain data needed for a mission. 
+ * Request that the vehicle report terrain height at the given location (expected response is a 
+ * {@link io.dronefleet.mavlink.common.TerrainReport TERRAIN_REPORT}). Used by GCS to check if vehicle has all terrain data needed for a mission. 
  */
 @MavlinkMessageInfo(
         id = 135,
         crc = 203,
-        description = "Request that the vehicle report terrain height at the given location. Used by GCS to check if vehicle has all terrain data needed for a mission."
+        description = "Request that the vehicle report terrain height at the given location (expected response is a TERRAIN_REPORT). Used by GCS to check if vehicle has all terrain data needed for a mission."
 )
 public final class TerrainCheck {
     private final int lat;

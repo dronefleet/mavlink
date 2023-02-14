@@ -10,12 +10,13 @@ import java.util.Objects;
 
 /**
  * Request a list of available logs. On some systems calling this may stop on-board logging until 
- * {@link io.dronefleet.mavlink.common.LogRequestEnd LOG_REQUEST_END} is called. 
+ * {@link io.dronefleet.mavlink.common.LogRequestEnd LOG_REQUEST_END} is called. If there are no log files available this request shall be answered 
+ * with one {@link io.dronefleet.mavlink.common.LogEntry LOG_ENTRY} message with id = 0 and num_logs = 0. 
  */
 @MavlinkMessageInfo(
         id = 117,
         crc = 128,
-        description = "Request a list of available logs. On some systems calling this may stop on-board logging until LOG_REQUEST_END is called."
+        description = "Request a list of available logs. On some systems calling this may stop on-board logging until LOG_REQUEST_END is called. If there are no log files available this request shall be answered with one LOG_ENTRY message with id = 0 and num_logs = 0."
 )
 public final class LogRequestList {
     private final int targetSystem;

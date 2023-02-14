@@ -3,10 +3,13 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.util.EnumValue;
+import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -46,13 +49,14 @@ public final class HighresImu {
 
     private final float temperature;
 
-    private final int fieldsUpdated;
+    private final EnumValue<HighresImuUpdatedFlags> fieldsUpdated;
 
     private final int id;
 
     private HighresImu(BigInteger timeUsec, float xacc, float yacc, float zacc, float xgyro,
             float ygyro, float zgyro, float xmag, float ymag, float zmag, float absPressure,
-            float diffPressure, float pressureAlt, float temperature, int fieldsUpdated, int id) {
+            float diffPressure, float pressureAlt, float temperature,
+            EnumValue<HighresImuUpdatedFlags> fieldsUpdated, int id) {
         this.timeUsec = timeUsec;
         this.xacc = xacc;
         this.yacc = yacc;
@@ -81,12 +85,12 @@ public final class HighresImu {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -249,14 +253,15 @@ public final class HighresImu {
     }
 
     /**
-     * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
+     * Bitmap for fields that have updated since last message 
      */
     @MavlinkFieldInfo(
             position = 15,
             unitSize = 2,
-            description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
+            enumType = HighresImuUpdatedFlags.class,
+            description = "Bitmap for fields that have updated since last message"
     )
-    public final int fieldsUpdated() {
+    public final EnumValue<HighresImuUpdatedFlags> fieldsUpdated() {
         return this.fieldsUpdated;
     }
 
@@ -369,18 +374,18 @@ public final class HighresImu {
 
         private float temperature;
 
-        private int fieldsUpdated;
+        private EnumValue<HighresImuUpdatedFlags> fieldsUpdated;
 
         private int id;
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -557,16 +562,38 @@ public final class HighresImu {
         }
 
         /**
-         * Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature 
+         * Bitmap for fields that have updated since last message 
          */
         @MavlinkFieldInfo(
                 position = 15,
                 unitSize = 2,
-                description = "Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature"
+                enumType = HighresImuUpdatedFlags.class,
+                description = "Bitmap for fields that have updated since last message"
         )
-        public final Builder fieldsUpdated(int fieldsUpdated) {
+        public final Builder fieldsUpdated(EnumValue<HighresImuUpdatedFlags> fieldsUpdated) {
             this.fieldsUpdated = fieldsUpdated;
             return this;
+        }
+
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(HighresImuUpdatedFlags entry) {
+            return fieldsUpdated(EnumValue.of(entry));
+        }
+
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(Enum... flags) {
+            return fieldsUpdated(EnumValue.create(flags));
+        }
+
+        /**
+         * Bitmap for fields that have updated since last message 
+         */
+        public final Builder fieldsUpdated(Collection<Enum> flags) {
+            return fieldsUpdated(EnumValue.create(flags));
         }
 
         /**

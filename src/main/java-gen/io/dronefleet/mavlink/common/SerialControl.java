@@ -35,14 +35,21 @@ public final class SerialControl {
 
     private final byte[] data;
 
+    private final int targetSystem;
+
+    private final int targetComponent;
+
     private SerialControl(EnumValue<SerialControlDev> device, EnumValue<SerialControlFlag> flags,
-            int timeout, long baudrate, int count, byte[] data) {
+            int timeout, long baudrate, int count, byte[] data, int targetSystem,
+            int targetComponent) {
         this.device = device;
         this.flags = flags;
         this.timeout = timeout;
         this.baudrate = baudrate;
         this.count = count;
         this.data = data;
+        this.targetSystem = targetSystem;
+        this.targetComponent = targetComponent;
     }
 
     /**
@@ -128,6 +135,32 @@ public final class SerialControl {
         return this.data;
     }
 
+    /**
+     * System ID 
+     */
+    @MavlinkFieldInfo(
+            position = 8,
+            unitSize = 1,
+            extension = true,
+            description = "System ID"
+    )
+    public final int targetSystem() {
+        return this.targetSystem;
+    }
+
+    /**
+     * Component ID 
+     */
+    @MavlinkFieldInfo(
+            position = 9,
+            unitSize = 1,
+            extension = true,
+            description = "Component ID"
+    )
+    public final int targetComponent() {
+        return this.targetComponent;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,6 +172,8 @@ public final class SerialControl {
         if (!Objects.deepEquals(baudrate, other.baudrate)) return false;
         if (!Objects.deepEquals(count, other.count)) return false;
         if (!Objects.deepEquals(data, other.data)) return false;
+        if (!Objects.deepEquals(targetSystem, other.targetSystem)) return false;
+        if (!Objects.deepEquals(targetComponent, other.targetComponent)) return false;
         return true;
     }
 
@@ -151,6 +186,8 @@ public final class SerialControl {
         result = 31 * result + Objects.hashCode(baudrate);
         result = 31 * result + Objects.hashCode(count);
         result = 31 * result + Objects.hashCode(data);
+        result = 31 * result + Objects.hashCode(targetSystem);
+        result = 31 * result + Objects.hashCode(targetComponent);
         return result;
     }
 
@@ -161,7 +198,9 @@ public final class SerialControl {
                  + ", timeout=" + timeout
                  + ", baudrate=" + baudrate
                  + ", count=" + count
-                 + ", data=" + data + "}";
+                 + ", data=" + data
+                 + ", targetSystem=" + targetSystem
+                 + ", targetComponent=" + targetComponent + "}";
     }
 
     public static final class Builder {
@@ -176,6 +215,10 @@ public final class SerialControl {
         private int count;
 
         private byte[] data;
+
+        private int targetSystem;
+
+        private int targetComponent;
 
         /**
          * Serial control device type. 
@@ -300,8 +343,36 @@ public final class SerialControl {
             return this;
         }
 
+        /**
+         * System ID 
+         */
+        @MavlinkFieldInfo(
+                position = 8,
+                unitSize = 1,
+                extension = true,
+                description = "System ID"
+        )
+        public final Builder targetSystem(int targetSystem) {
+            this.targetSystem = targetSystem;
+            return this;
+        }
+
+        /**
+         * Component ID 
+         */
+        @MavlinkFieldInfo(
+                position = 9,
+                unitSize = 1,
+                extension = true,
+                description = "Component ID"
+        )
+        public final Builder targetComponent(int targetComponent) {
+            this.targetComponent = targetComponent;
+            return this;
+        }
+
         public final SerialControl build() {
-            return new SerialControl(device, flags, timeout, baudrate, count, data);
+            return new SerialControl(device, flags, timeout, baudrate, count, data, targetSystem, targetComponent);
         }
     }
 }

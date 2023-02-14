@@ -9,12 +9,12 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * File transfer message 
+ * File transfer protocol message: https://mavlink.io/en/services/ftp.html. 
  */
 @MavlinkMessageInfo(
         id = 110,
         crc = 84,
-        description = "File transfer message"
+        description = "File transfer protocol message: https://mavlink.io/en/services/ftp.html."
 )
 public final class FileTransferProtocol {
     private final int targetNetwork;
@@ -79,15 +79,14 @@ public final class FileTransferProtocol {
 
     /**
      * Variable length payload. The length is defined by the remaining message length when 
-     * subtracting the header and other fields. The entire content of this block is opaque unless you 
-     * understand any the encoding message_type. The particular encoding used can be extension 
-     * specific and might not always be documented as part of the mavlink specification. 
+     * subtracting the header and other fields. The content/format of this block is defined in 
+     * https://mavlink.io/en/services/ftp.html. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 1,
             arraySize = 251,
-            description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
+            description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html."
     )
     public final byte[] payload() {
         return this.payload;
@@ -173,15 +172,14 @@ public final class FileTransferProtocol {
 
         /**
          * Variable length payload. The length is defined by the remaining message length when 
-         * subtracting the header and other fields. The entire content of this block is opaque unless you 
-         * understand any the encoding message_type. The particular encoding used can be extension 
-         * specific and might not always be documented as part of the mavlink specification. 
+         * subtracting the header and other fields. The content/format of this block is defined in 
+         * https://mavlink.io/en/services/ftp.html. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 1,
                 arraySize = 251,
-                description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification."
+                description = "Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields. The content/format of this block is defined in https://mavlink.io/en/services/ftp.html."
         )
         public final Builder payload(byte[] payload) {
             this.payload = payload;

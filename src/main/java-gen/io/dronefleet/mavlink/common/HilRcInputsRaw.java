@@ -77,12 +77,12 @@ public final class HilRcInputsRaw {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -233,13 +233,13 @@ public final class HilRcInputsRaw {
     }
 
     /**
-     * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: 
-     * invalid/unknown. 
+     * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 
+     * UINT8_MAX: invalid/unknown. 
      */
     @MavlinkFieldInfo(
             position = 14,
             unitSize = 1,
-            description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
+            description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown."
     )
     public final int rssi() {
         return this.rssi;
@@ -336,12 +336,12 @@ public final class HilRcInputsRaw {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -505,13 +505,13 @@ public final class HilRcInputsRaw {
         }
 
         /**
-         * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: 
-         * invalid/unknown. 
+         * Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 
+         * UINT8_MAX: invalid/unknown. 
          */
         @MavlinkFieldInfo(
                 position = 14,
                 unitSize = 1,
-                description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown."
+                description = "Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown."
         )
         public final Builder rssi(int rssi) {
             this.rssi = rssi;

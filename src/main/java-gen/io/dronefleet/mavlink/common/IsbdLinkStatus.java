@@ -57,12 +57,12 @@ public final class IsbdLinkStatus {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timestamp() {
         return this.timestamp;
@@ -70,12 +70,12 @@ public final class IsbdLinkStatus {
 
     /**
      * Timestamp of the last successful sbd session. The receiving end can infer timestamp format 
-     * (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 2,
             unitSize = 8,
-            description = "Timestamp of the last successful sbd session. The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp of the last successful sbd session. The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger lastHeartbeat() {
         return this.lastHeartbeat;
@@ -215,12 +215,12 @@ public final class IsbdLinkStatus {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timestamp(BigInteger timestamp) {
             this.timestamp = timestamp;
@@ -229,12 +229,12 @@ public final class IsbdLinkStatus {
 
         /**
          * Timestamp of the last successful sbd session. The receiving end can infer timestamp format 
-         * (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 2,
                 unitSize = 8,
-                description = "Timestamp of the last successful sbd session. The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp of the last successful sbd session. The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder lastHeartbeat(BigInteger lastHeartbeat) {
             this.lastHeartbeat = lastHeartbeat;

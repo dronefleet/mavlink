@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -13,12 +14,14 @@ import java.util.Objects;
  * A ping message either requesting or responding to a ping. This allows to measure the system 
  * latencies, including serial port, radio modem and UDP connections. The ping microservice is 
  * documented at https://mavlink.io/en/services/ping.html 
+ * @deprecated Since 2011-08, replaced by {@link io.dronefleet.mavlink.common.SystemTime SYSTEM_TIME}. to be removed / merged with {@link io.dronefleet.mavlink.common.SystemTime SYSTEM_TIME} 
  */
 @MavlinkMessageInfo(
         id = 4,
         crc = 237,
         description = "A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections. The ping microservice is documented at https://mavlink.io/en/services/ping.html"
 )
+@Deprecated
 public final class Ping {
     private final BigInteger timeUsec;
 
@@ -45,12 +48,12 @@ public final class Ping {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
-            position = 1,
+            position = 2,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -60,7 +63,7 @@ public final class Ping {
      * {@link io.dronefleet.mavlink.common.Ping PING} sequence 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 3,
             unitSize = 4,
             description = "PING sequence"
     )
@@ -73,7 +76,7 @@ public final class Ping {
      * number is the system id of the requesting system 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 4,
             unitSize = 1,
             description = "0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system"
     )
@@ -86,7 +89,7 @@ public final class Ping {
      * number is the component id of the requesting component. 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 5,
             unitSize = 1,
             description = "0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component."
     )
@@ -135,12 +138,12 @@ public final class Ping {
 
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
-                position = 1,
+                position = 2,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -151,7 +154,7 @@ public final class Ping {
          * {@link io.dronefleet.mavlink.common.Ping PING} sequence 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 3,
                 unitSize = 4,
                 description = "PING sequence"
         )
@@ -165,7 +168,7 @@ public final class Ping {
          * number is the system id of the requesting system 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 4,
                 unitSize = 1,
                 description = "0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system"
         )
@@ -179,7 +182,7 @@ public final class Ping {
          * number is the component id of the requesting component. 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 5,
                 unitSize = 1,
                 description = "0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component."
         )

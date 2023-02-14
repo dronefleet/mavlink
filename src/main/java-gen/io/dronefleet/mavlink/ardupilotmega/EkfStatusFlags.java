@@ -66,5 +66,11 @@ public enum EkfStatusFlags {
      * Set if EKF's predicted horizontal position (absolute) estimate is good. 
      */
     @MavlinkEntryInfo(512)
-    EKF_PRED_POS_HORIZ_ABS
+    EKF_PRED_POS_HORIZ_ABS,
+
+    /**
+     * Set if EKF has never been healthy. 
+     */
+    @MavlinkEntryInfo(1024)
+    EKF_UNINITIALIZED
 }

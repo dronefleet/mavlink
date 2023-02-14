@@ -72,28 +72,28 @@ public final class VisionPositionDelta {
     }
 
     /**
-     * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
-     * current orientation. 
+     * Defines a rotation vector [roll, pitch, yaw] to the current MAV_FRAME_BODY_FRD from the 
+     * previous MAV_FRAME_BODY_FRD. 
      */
     @MavlinkFieldInfo(
             position = 3,
             unitSize = 4,
             arraySize = 3,
-            description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation."
+            description = "Defines a rotation vector [roll, pitch, yaw] to the current MAV_FRAME_BODY_FRD from the previous MAV_FRAME_BODY_FRD."
     )
     public final List<Float> angleDelta() {
         return this.angleDelta;
     }
 
     /**
-     * Change in position from previous to current frame rotated into body frame (0=forward, 
-     * 1=right, 2=down). 
+     * Change in position to the current MAV_FRAME_BODY_FRD from the previous FRAME_BODY_FRD 
+     * rotated to the current MAV_FRAME_BODY_FRD. 
      */
     @MavlinkFieldInfo(
             position = 4,
             unitSize = 4,
             arraySize = 3,
-            description = "Change in position from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)."
+            description = "Change in position to the current MAV_FRAME_BODY_FRD from the previous FRAME_BODY_FRD rotated to the current MAV_FRAME_BODY_FRD."
     )
     public final List<Float> positionDelta() {
         return this.positionDelta;
@@ -182,14 +182,14 @@ public final class VisionPositionDelta {
         }
 
         /**
-         * Defines a rotation vector in body frame that rotates the vehicle from the previous to the 
-         * current orientation. 
+         * Defines a rotation vector [roll, pitch, yaw] to the current MAV_FRAME_BODY_FRD from the 
+         * previous MAV_FRAME_BODY_FRD. 
          */
         @MavlinkFieldInfo(
                 position = 3,
                 unitSize = 4,
                 arraySize = 3,
-                description = "Defines a rotation vector in body frame that rotates the vehicle from the previous to the current orientation."
+                description = "Defines a rotation vector [roll, pitch, yaw] to the current MAV_FRAME_BODY_FRD from the previous MAV_FRAME_BODY_FRD."
         )
         public final Builder angleDelta(List<Float> angleDelta) {
             this.angleDelta = angleDelta;
@@ -197,14 +197,14 @@ public final class VisionPositionDelta {
         }
 
         /**
-         * Change in position from previous to current frame rotated into body frame (0=forward, 
-         * 1=right, 2=down). 
+         * Change in position to the current MAV_FRAME_BODY_FRD from the previous FRAME_BODY_FRD 
+         * rotated to the current MAV_FRAME_BODY_FRD. 
          */
         @MavlinkFieldInfo(
                 position = 4,
                 unitSize = 4,
                 arraySize = 3,
-                description = "Change in position from previous to current frame rotated into body frame (0=forward, 1=right, 2=down)."
+                description = "Change in position to the current MAV_FRAME_BODY_FRD from the previous FRAME_BODY_FRD rotated to the current MAV_FRAME_BODY_FRD."
         )
         public final Builder positionDelta(List<Float> positionDelta) {
             this.positionDelta = positionDelta;

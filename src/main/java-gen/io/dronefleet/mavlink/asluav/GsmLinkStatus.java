@@ -16,7 +16,7 @@ import java.util.Objects;
  * Status of GSM modem (connected to onboard computer) 
  */
 @MavlinkMessageInfo(
-        id = 213,
+        id = 8014,
         crc = 200,
         description = "Status of GSM modem (connected to onboard computer)"
 )

@@ -58,11 +58,13 @@ public final class Odometry {
 
     private final EnumValue<MavEstimatorType> estimatorType;
 
+    private final int quality;
+
     private Odometry(BigInteger timeUsec, EnumValue<MavFrame> frameId,
             EnumValue<MavFrame> childFrameId, float x, float y, float z, List<Float> q, float vx,
             float vy, float vz, float rollspeed, float pitchspeed, float yawspeed,
             List<Float> poseCovariance, List<Float> velocityCovariance, int resetCounter,
-            EnumValue<MavEstimatorType> estimatorType) {
+            EnumValue<MavEstimatorType> estimatorType, int quality) {
         this.timeUsec = timeUsec;
         this.frameId = frameId;
         this.childFrameId = childFrameId;
@@ -80,6 +82,7 @@ public final class Odometry {
         this.velocityCovariance = velocityCovariance;
         this.resetCounter = resetCounter;
         this.estimatorType = estimatorType;
+        this.quality = quality;
     }
 
     /**
@@ -92,12 +95,12 @@ public final class Odometry {
 
     /**
      * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-     * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+     * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
      */
     @MavlinkFieldInfo(
             position = 1,
             unitSize = 8,
-            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+            description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
     )
     public final BigInteger timeUsec() {
         return this.timeUsec;
@@ -310,6 +313,21 @@ public final class Odometry {
         return this.estimatorType;
     }
 
+    /**
+     * Optional odometry quality metric as a percentage. -1 = odometry has failed, 0 = unknown/unset 
+     * quality, 1 = worst quality, 100 = best quality 
+     */
+    @MavlinkFieldInfo(
+            position = 19,
+            unitSize = 1,
+            signed = true,
+            extension = true,
+            description = "Optional odometry quality metric as a percentage. -1 = odometry has failed, 0 = unknown/unset quality, 1 = worst quality, 100 = best quality"
+    )
+    public final int quality() {
+        return this.quality;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -332,6 +350,7 @@ public final class Odometry {
         if (!Objects.deepEquals(velocityCovariance, other.velocityCovariance)) return false;
         if (!Objects.deepEquals(resetCounter, other.resetCounter)) return false;
         if (!Objects.deepEquals(estimatorType, other.estimatorType)) return false;
+        if (!Objects.deepEquals(quality, other.quality)) return false;
         return true;
     }
 
@@ -355,6 +374,7 @@ public final class Odometry {
         result = 31 * result + Objects.hashCode(velocityCovariance);
         result = 31 * result + Objects.hashCode(resetCounter);
         result = 31 * result + Objects.hashCode(estimatorType);
+        result = 31 * result + Objects.hashCode(quality);
         return result;
     }
 
@@ -376,7 +396,8 @@ public final class Odometry {
                  + ", poseCovariance=" + poseCovariance
                  + ", velocityCovariance=" + velocityCovariance
                  + ", resetCounter=" + resetCounter
-                 + ", estimatorType=" + estimatorType + "}";
+                 + ", estimatorType=" + estimatorType
+                 + ", quality=" + quality + "}";
     }
 
     public static final class Builder {
@@ -414,14 +435,16 @@ public final class Odometry {
 
         private EnumValue<MavEstimatorType> estimatorType;
 
+        private int quality;
+
         /**
          * Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp 
-         * format (since 1.1.1970 or since system boot) by checking for the magnitude the number. 
+         * format (since 1.1.1970 or since system boot) by checking for the magnitude of the number. 
          */
         @MavlinkFieldInfo(
                 position = 1,
                 unitSize = 8,
-                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number."
+                description = "Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number."
         )
         public final Builder timeUsec(BigInteger timeUsec) {
             this.timeUsec = timeUsec;
@@ -714,8 +737,24 @@ public final class Odometry {
             return estimatorType(EnumValue.create(flags));
         }
 
+        /**
+         * Optional odometry quality metric as a percentage. -1 = odometry has failed, 0 = unknown/unset 
+         * quality, 1 = worst quality, 100 = best quality 
+         */
+        @MavlinkFieldInfo(
+                position = 19,
+                unitSize = 1,
+                signed = true,
+                extension = true,
+                description = "Optional odometry quality metric as a percentage. -1 = odometry has failed, 0 = unknown/unset quality, 1 = worst quality, 100 = best quality"
+        )
+        public final Builder quality(int quality) {
+            this.quality = quality;
+            return this;
+        }
+
         public final Odometry build() {
-            return new Odometry(timeUsec, frameId, childFrameId, x, y, z, q, vx, vy, vz, rollspeed, pitchspeed, yawspeed, poseCovariance, velocityCovariance, resetCounter, estimatorType);
+            return new Odometry(timeUsec, frameId, childFrameId, x, y, z, q, vx, vy, vz, rollspeed, pitchspeed, yawspeed, poseCovariance, velocityCovariance, resetCounter, estimatorType, quality);
         }
     }
 }

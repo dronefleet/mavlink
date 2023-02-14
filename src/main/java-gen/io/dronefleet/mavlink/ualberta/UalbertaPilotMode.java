@@ -9,13 +9,13 @@ import io.dronefleet.mavlink.annotations.MavlinkEnum;
 @MavlinkEnum
 public enum UalbertaPilotMode {
     /**
-     * sdf 
+     *  
      */
     @MavlinkEntryInfo(1)
     PILOT_MANUAL,
 
     /**
-     * dfs 
+     *  
      */
     @MavlinkEntryInfo(2)
     PILOT_AUTO,

@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -14,18 +13,12 @@ import java.util.Objects;
 
 /**
  * Play vehicle tone/tune (buzzer). Supersedes message {@link io.dronefleet.mavlink.common.PlayTune PLAY_TUNE}. 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 400,
         crc = 110,
-        description = "Play vehicle tone/tune (buzzer). Supersedes message PLAY_TUNE.",
-        workInProgress = true
+        description = "Play vehicle tone/tune (buzzer). Supersedes message PLAY_TUNE."
 )
-@Deprecated
 public final class PlayTuneV2 {
     private final int targetSystem;
 
@@ -55,7 +48,7 @@ public final class PlayTuneV2 {
      * System ID 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 1,
             description = "System ID"
     )
@@ -67,7 +60,7 @@ public final class PlayTuneV2 {
      * Component ID 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 1,
             description = "Component ID"
     )
@@ -79,7 +72,7 @@ public final class PlayTuneV2 {
      * Tune format 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             enumType = TuneFormat.class,
             description = "Tune format"
@@ -92,7 +85,7 @@ public final class PlayTuneV2 {
      * Tune definition as a NULL-terminated string. 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 1,
             arraySize = 248,
             description = "Tune definition as a NULL-terminated string."
@@ -144,7 +137,7 @@ public final class PlayTuneV2 {
          * System ID 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 1,
                 description = "System ID"
         )
@@ -157,7 +150,7 @@ public final class PlayTuneV2 {
          * Component ID 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 1,
                 description = "Component ID"
         )
@@ -170,7 +163,7 @@ public final class PlayTuneV2 {
          * Tune format 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 enumType = TuneFormat.class,
                 description = "Tune format"
@@ -205,7 +198,7 @@ public final class PlayTuneV2 {
          * Tune definition as a NULL-terminated string. 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 1,
                 arraySize = 248,
                 description = "Tune definition as a NULL-terminated string."

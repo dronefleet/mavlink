@@ -44,7 +44,7 @@ public enum MavDataStream {
     MAV_DATA_STREAM_RAW_CONTROLLER,
 
     /**
-     * Enable LOCAL_POSITION, GLOBAL_POSITION/{@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} messages. 
+     * Enable LOCAL_POSITION, {@link io.dronefleet.mavlink.common.GlobalPositionInt GLOBAL_POSITION_INT} messages. 
      */
     @MavlinkEntryInfo(6)
     MAV_DATA_STREAM_POSITION,

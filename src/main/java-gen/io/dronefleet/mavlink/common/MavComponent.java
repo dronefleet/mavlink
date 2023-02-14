@@ -143,7 +143,7 @@ public enum MavComponent {
      * be published by components outside of the private network. 
      */
     @MavlinkEntryInfo(40)
-    MAV_COMP_ID_USE16,
+    MAV_COMP_ID_USER16,
 
     /**
      * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
@@ -335,11 +335,10 @@ public enum MavComponent {
     MAV_COMP_ID_USER43,
 
     /**
-     * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
-     * be published by components outside of the private network. 
+     * Telemetry radio (e.g. SiK radio, or other component that emits {@link io.dronefleet.mavlink.common.RadioStatus RADIO_STATUS} messages). 
      */
     @MavlinkEntryInfo(68)
-    MAV_COMP_ID_USER44,
+    MAV_COMP_ID_TELEMETRY_RADIO,
 
     /**
      * Id for a component on privately managed MAVLink network. Can be used for any purpose but may not 
@@ -725,6 +724,18 @@ public enum MavComponent {
     MAV_COMP_ID_FLARM,
 
     /**
+     * Parachute component. 
+     */
+    @MavlinkEntryInfo(161)
+    MAV_COMP_ID_PARACHUTE,
+
+    /**
+     * Winch component. 
+     */
+    @MavlinkEntryInfo(169)
+    MAV_COMP_ID_WINCH,
+
+    /**
      * Gimbal #2. 
      */
     @MavlinkEntryInfo(171)
@@ -755,10 +766,60 @@ public enum MavComponent {
     MAV_COMP_ID_GIMBAL6,
 
     /**
+     * Battery #1. 
+     */
+    @MavlinkEntryInfo(180)
+    MAV_COMP_ID_BATTERY,
+
+    /**
+     * Battery #2. 
+     */
+    @MavlinkEntryInfo(181)
+    MAV_COMP_ID_BATTERY2,
+
+    /**
+     * CAN over MAVLink client. 
+     */
+    @MavlinkEntryInfo(189)
+    MAV_COMP_ID_MAVCAN,
+
+    /**
      * Component that can generate/supply a mission flight plan (e.g. GCS or developer API). 
      */
     @MavlinkEntryInfo(190)
     MAV_COMP_ID_MISSIONPLANNER,
+
+    /**
+     * Component that lives on the onboard computer (companion computer) and has some generic 
+     * functionalities, such as settings system parameters and monitoring the status of some 
+     * processes that don't directly speak mavlink and so on. 
+     */
+    @MavlinkEntryInfo(191)
+    MAV_COMP_ID_ONBOARD_COMPUTER,
+
+    /**
+     * Component that lives on the onboard computer (companion computer) and has some generic 
+     * functionalities, such as settings system parameters and monitoring the status of some 
+     * processes that don't directly speak mavlink and so on. 
+     */
+    @MavlinkEntryInfo(192)
+    MAV_COMP_ID_ONBOARD_COMPUTER2,
+
+    /**
+     * Component that lives on the onboard computer (companion computer) and has some generic 
+     * functionalities, such as settings system parameters and monitoring the status of some 
+     * processes that don't directly speak mavlink and so on. 
+     */
+    @MavlinkEntryInfo(193)
+    MAV_COMP_ID_ONBOARD_COMPUTER3,
+
+    /**
+     * Component that lives on the onboard computer (companion computer) and has some generic 
+     * functionalities, such as settings system parameters and monitoring the status of some 
+     * processes that don't directly speak mavlink and so on. 
+     */
+    @MavlinkEntryInfo(194)
+    MAV_COMP_ID_ONBOARD_COMPUTER4,
 
     /**
      * Component that finds an optimal path between points based on a certain constraint (e.g. 
@@ -816,6 +877,24 @@ public enum MavComponent {
     MAV_COMP_ID_GPS2,
 
     /**
+     * Open Drone ID transmitter/receiver (Bluetooth/WiFi/Internet). 
+     */
+    @MavlinkEntryInfo(236)
+    MAV_COMP_ID_ODID_TXRX_1,
+
+    /**
+     * Open Drone ID transmitter/receiver (Bluetooth/WiFi/Internet). 
+     */
+    @MavlinkEntryInfo(237)
+    MAV_COMP_ID_ODID_TXRX_2,
+
+    /**
+     * Open Drone ID transmitter/receiver (Bluetooth/WiFi/Internet). 
+     */
+    @MavlinkEntryInfo(238)
+    MAV_COMP_ID_ODID_TXRX_3,
+
+    /**
      * Component to bridge MAVLink to UDP (i.e. from a UART). 
      */
     @MavlinkEntryInfo(240)
@@ -834,9 +913,11 @@ public enum MavComponent {
     MAV_COMP_ID_TUNNEL_NODE,
 
     /**
-     * Component for handling system messages (e.g. to ARM, takeoff, etc.). 
+     * Deprecated, don't use. Component for handling system messages (e.g. to ARM, takeoff, etc.). 
      * @deprecated Since 2018-11, replaced by MAV_COMP_ID_ALL. System control does not require a 
-     * separate component ID. 
+     * separate component ID. Instead, system commands should be sent with 
+     * target_component=MAV_COMP_ID_ALL allowing the target component to use any appropriate 
+     * component id. 
      */
     @MavlinkEntryInfo(250)
     @Deprecated

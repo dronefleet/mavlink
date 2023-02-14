@@ -57,9 +57,27 @@ public enum CameraCapFlags {
     CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS,
 
     /**
-     * Camera has video streaming capabilities (use MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION 
-     * for video streaming info) 
+     * Camera has video streaming capabilities (request {@link io.dronefleet.mavlink.common.VideoStreamInformation VIDEO_STREAM_INFORMATION} with 
+     * MAV_CMD_REQUEST_MESSAGE for video streaming info) 
      */
     @MavlinkEntryInfo(256)
-    CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM
+    CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM,
+
+    /**
+     * Camera supports tracking of a point on the camera view. 
+     */
+    @MavlinkEntryInfo(512)
+    CAMERA_CAP_FLAGS_HAS_TRACKING_POINT,
+
+    /**
+     * Camera supports tracking of a selection rectangle on the camera view. 
+     */
+    @MavlinkEntryInfo(1024)
+    CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE,
+
+    /**
+     * Camera supports tracking geo status ({@link io.dronefleet.mavlink.common.CameraTrackingGeoStatus CAMERA_TRACKING_GEO_STATUS}). 
+     */
+    @MavlinkEntryInfo(2048)
+    CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS
 }

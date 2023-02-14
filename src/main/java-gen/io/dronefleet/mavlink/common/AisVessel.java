@@ -4,7 +4,6 @@ import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
 import io.dronefleet.mavlink.util.EnumValue;
-import java.lang.Deprecated;
 import java.lang.Enum;
 import java.lang.Object;
 import java.lang.Override;
@@ -14,18 +13,12 @@ import java.util.Objects;
 
 /**
  * The location and information of an AIS vessel 
- * @deprecated This message is a work in progress. It may be modified in a non backward-compatible 
- * way in a future release without any warning. This version of the message may not even work with 
- * autopilots that support this message due to discrepancies between dialect versions. Unless 
- * you completely understand the risks of doing so, don't use it. 
  */
 @MavlinkMessageInfo(
         id = 301,
         crc = 243,
-        description = "The location and information of an AIS vessel",
-        workInProgress = true
+        description = "The location and information of an AIS vessel"
 )
-@Deprecated
 public final class AisVessel {
     private final long mmsi;
 
@@ -96,7 +89,7 @@ public final class AisVessel {
      * Mobile Marine Service Identifier, 9 decimal digits 
      */
     @MavlinkFieldInfo(
-            position = 2,
+            position = 1,
             unitSize = 4,
             description = "Mobile Marine Service Identifier, 9 decimal digits"
     )
@@ -108,7 +101,7 @@ public final class AisVessel {
      * Latitude 
      */
     @MavlinkFieldInfo(
-            position = 3,
+            position = 2,
             unitSize = 4,
             signed = true,
             description = "Latitude"
@@ -121,7 +114,7 @@ public final class AisVessel {
      * Longitude 
      */
     @MavlinkFieldInfo(
-            position = 4,
+            position = 3,
             unitSize = 4,
             signed = true,
             description = "Longitude"
@@ -134,7 +127,7 @@ public final class AisVessel {
      * Course over ground 
      */
     @MavlinkFieldInfo(
-            position = 5,
+            position = 4,
             unitSize = 2,
             description = "Course over ground"
     )
@@ -146,7 +139,7 @@ public final class AisVessel {
      * True heading 
      */
     @MavlinkFieldInfo(
-            position = 6,
+            position = 5,
             unitSize = 2,
             description = "True heading"
     )
@@ -158,7 +151,7 @@ public final class AisVessel {
      * Speed over ground 
      */
     @MavlinkFieldInfo(
-            position = 7,
+            position = 6,
             unitSize = 2,
             description = "Speed over ground"
     )
@@ -170,7 +163,7 @@ public final class AisVessel {
      * Turn rate 
      */
     @MavlinkFieldInfo(
-            position = 8,
+            position = 7,
             unitSize = 1,
             signed = true,
             description = "Turn rate"
@@ -183,7 +176,7 @@ public final class AisVessel {
      * Navigational status 
      */
     @MavlinkFieldInfo(
-            position = 9,
+            position = 8,
             unitSize = 1,
             enumType = AisNavStatus.class,
             description = "Navigational status"
@@ -196,7 +189,7 @@ public final class AisVessel {
      * Type of vessels 
      */
     @MavlinkFieldInfo(
-            position = 10,
+            position = 9,
             unitSize = 1,
             enumType = AisType.class,
             description = "Type of vessels"
@@ -209,7 +202,7 @@ public final class AisVessel {
      * Distance from lat/lon location to bow 
      */
     @MavlinkFieldInfo(
-            position = 11,
+            position = 10,
             unitSize = 2,
             description = "Distance from lat/lon location to bow"
     )
@@ -221,7 +214,7 @@ public final class AisVessel {
      * Distance from lat/lon location to stern 
      */
     @MavlinkFieldInfo(
-            position = 12,
+            position = 11,
             unitSize = 2,
             description = "Distance from lat/lon location to stern"
     )
@@ -233,7 +226,7 @@ public final class AisVessel {
      * Distance from lat/lon location to port side 
      */
     @MavlinkFieldInfo(
-            position = 13,
+            position = 12,
             unitSize = 1,
             description = "Distance from lat/lon location to port side"
     )
@@ -245,7 +238,7 @@ public final class AisVessel {
      * Distance from lat/lon location to starboard side 
      */
     @MavlinkFieldInfo(
-            position = 14,
+            position = 13,
             unitSize = 1,
             description = "Distance from lat/lon location to starboard side"
     )
@@ -257,7 +250,7 @@ public final class AisVessel {
      * The vessel callsign 
      */
     @MavlinkFieldInfo(
-            position = 15,
+            position = 14,
             unitSize = 1,
             arraySize = 7,
             description = "The vessel callsign"
@@ -270,7 +263,7 @@ public final class AisVessel {
      * The vessel name 
      */
     @MavlinkFieldInfo(
-            position = 16,
+            position = 15,
             unitSize = 1,
             arraySize = 20,
             description = "The vessel name"
@@ -283,7 +276,7 @@ public final class AisVessel {
      * Time since last communication in seconds 
      */
     @MavlinkFieldInfo(
-            position = 17,
+            position = 16,
             unitSize = 2,
             description = "Time since last communication in seconds"
     )
@@ -295,7 +288,7 @@ public final class AisVessel {
      * Bitmask to indicate various statuses including valid data fields 
      */
     @MavlinkFieldInfo(
-            position = 18,
+            position = 17,
             unitSize = 2,
             enumType = AisFlags.class,
             description = "Bitmask to indicate various statuses including valid data fields"
@@ -412,7 +405,7 @@ public final class AisVessel {
          * Mobile Marine Service Identifier, 9 decimal digits 
          */
         @MavlinkFieldInfo(
-                position = 2,
+                position = 1,
                 unitSize = 4,
                 description = "Mobile Marine Service Identifier, 9 decimal digits"
         )
@@ -425,7 +418,7 @@ public final class AisVessel {
          * Latitude 
          */
         @MavlinkFieldInfo(
-                position = 3,
+                position = 2,
                 unitSize = 4,
                 signed = true,
                 description = "Latitude"
@@ -439,7 +432,7 @@ public final class AisVessel {
          * Longitude 
          */
         @MavlinkFieldInfo(
-                position = 4,
+                position = 3,
                 unitSize = 4,
                 signed = true,
                 description = "Longitude"
@@ -453,7 +446,7 @@ public final class AisVessel {
          * Course over ground 
          */
         @MavlinkFieldInfo(
-                position = 5,
+                position = 4,
                 unitSize = 2,
                 description = "Course over ground"
         )
@@ -466,7 +459,7 @@ public final class AisVessel {
          * True heading 
          */
         @MavlinkFieldInfo(
-                position = 6,
+                position = 5,
                 unitSize = 2,
                 description = "True heading"
         )
@@ -479,7 +472,7 @@ public final class AisVessel {
          * Speed over ground 
          */
         @MavlinkFieldInfo(
-                position = 7,
+                position = 6,
                 unitSize = 2,
                 description = "Speed over ground"
         )
@@ -492,7 +485,7 @@ public final class AisVessel {
          * Turn rate 
          */
         @MavlinkFieldInfo(
-                position = 8,
+                position = 7,
                 unitSize = 1,
                 signed = true,
                 description = "Turn rate"
@@ -506,7 +499,7 @@ public final class AisVessel {
          * Navigational status 
          */
         @MavlinkFieldInfo(
-                position = 9,
+                position = 8,
                 unitSize = 1,
                 enumType = AisNavStatus.class,
                 description = "Navigational status"
@@ -541,7 +534,7 @@ public final class AisVessel {
          * Type of vessels 
          */
         @MavlinkFieldInfo(
-                position = 10,
+                position = 9,
                 unitSize = 1,
                 enumType = AisType.class,
                 description = "Type of vessels"
@@ -576,7 +569,7 @@ public final class AisVessel {
          * Distance from lat/lon location to bow 
          */
         @MavlinkFieldInfo(
-                position = 11,
+                position = 10,
                 unitSize = 2,
                 description = "Distance from lat/lon location to bow"
         )
@@ -589,7 +582,7 @@ public final class AisVessel {
          * Distance from lat/lon location to stern 
          */
         @MavlinkFieldInfo(
-                position = 12,
+                position = 11,
                 unitSize = 2,
                 description = "Distance from lat/lon location to stern"
         )
@@ -602,7 +595,7 @@ public final class AisVessel {
          * Distance from lat/lon location to port side 
          */
         @MavlinkFieldInfo(
-                position = 13,
+                position = 12,
                 unitSize = 1,
                 description = "Distance from lat/lon location to port side"
         )
@@ -615,7 +608,7 @@ public final class AisVessel {
          * Distance from lat/lon location to starboard side 
          */
         @MavlinkFieldInfo(
-                position = 14,
+                position = 13,
                 unitSize = 1,
                 description = "Distance from lat/lon location to starboard side"
         )
@@ -628,7 +621,7 @@ public final class AisVessel {
          * The vessel callsign 
          */
         @MavlinkFieldInfo(
-                position = 15,
+                position = 14,
                 unitSize = 1,
                 arraySize = 7,
                 description = "The vessel callsign"
@@ -642,7 +635,7 @@ public final class AisVessel {
          * The vessel name 
          */
         @MavlinkFieldInfo(
-                position = 16,
+                position = 15,
                 unitSize = 1,
                 arraySize = 20,
                 description = "The vessel name"
@@ -656,7 +649,7 @@ public final class AisVessel {
          * Time since last communication in seconds 
          */
         @MavlinkFieldInfo(
-                position = 17,
+                position = 16,
                 unitSize = 2,
                 description = "Time since last communication in seconds"
         )
@@ -669,7 +662,7 @@ public final class AisVessel {
          * Bitmask to indicate various statuses including valid data fields 
          */
         @MavlinkFieldInfo(
-                position = 18,
+                position = 17,
                 unitSize = 2,
                 enumType = AisFlags.class,
                 description = "Bitmask to indicate various statuses including valid data fields"
