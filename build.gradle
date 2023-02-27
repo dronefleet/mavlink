@@ -1,5 +1,5 @@
 group 'io.dronefleet.mavlink'
-version '1.1.10'
+version '1.1.11'
 
 apply plugin: 'java'
 apply plugin: 'io.dronefleet.mavlink.generator'
@@ -24,6 +24,5 @@ sourceSets.main.java.srcDirs += genSrc
 dependencies {
     compile project('mavlink-protocol')
 
-    testCompile project('clibrary-test-tool')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
