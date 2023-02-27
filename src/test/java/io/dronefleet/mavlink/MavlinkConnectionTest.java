@@ -1,9 +1,9 @@
 package io.dronefleet.mavlink;
 
-import io.dronefleet.mavlink.common.Heartbeat;
-import io.dronefleet.mavlink.common.MavAutopilot;
-import io.dronefleet.mavlink.common.MavState;
-import io.dronefleet.mavlink.common.MavType;
+import io.dronefleet.mavlink.minimal.Heartbeat;
+import io.dronefleet.mavlink.minimal.MavAutopilot;
+import io.dronefleet.mavlink.minimal.MavState;
+import io.dronefleet.mavlink.minimal.MavType;
 import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import org.junit.Before;
 import org.junit.Test;

@@ -2,10 +2,11 @@ package io.dronefleet.mavlink.common;
 
 import io.dronefleet.mavlink.AbstractMavlinkDialect;
 import io.dronefleet.mavlink.MavlinkDialect;
+import io.dronefleet.mavlink.standard.StandardDialect;
 import io.dronefleet.mavlink.util.UnmodifiableMapBuilder;
 import java.lang.Class;
 import java.lang.Integer;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,8 @@ public final class CommonDialect extends AbstractMavlinkDialect {
     /**
      * A list of all of the dependencies of this dialect.
      */
-    private static final List<MavlinkDialect> dependencies = Collections.emptyList();
+    private static final List<MavlinkDialect> dependencies = Arrays.asList(
+            new StandardDialect());
 
     /**
      * A list of all message types supported by this dialect.
@@ -238,8 +240,6 @@ public final class CommonDialect extends AbstractMavlinkDialect {
             .put(12918, OpenDroneIdArmStatus.class)
             .put(12919, OpenDroneIdSystemUpdate.class)
             .put(12920, HygrometerSensor.class)
-            .put(0, Heartbeat.class)
-            .put(300, ProtocolVersion.class)
             .build();
 
     public CommonDialect() {

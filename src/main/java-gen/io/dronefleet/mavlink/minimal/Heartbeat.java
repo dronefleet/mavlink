@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.common;
+package io.dronefleet.mavlink.minimal;
 
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;

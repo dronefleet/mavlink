@@ -5,8 +5,8 @@ import io.dronefleet.mavlink.ardupilotmega.ArdupilotmegaDialect;
 import io.dronefleet.mavlink.asluav.AsluavDialect;
 import io.dronefleet.mavlink.autoquad.AutoquadDialect;
 import io.dronefleet.mavlink.common.CommonDialect;
-import io.dronefleet.mavlink.common.Heartbeat;
-import io.dronefleet.mavlink.common.MavAutopilot;
+import io.dronefleet.mavlink.minimal.MavAutopilot;
+import io.dronefleet.mavlink.minimal.Heartbeat;
 import io.dronefleet.mavlink.paparazzi.PaparazziDialect;
 import io.dronefleet.mavlink.protocol.MavlinkPacket;
 import io.dronefleet.mavlink.protocol.MavlinkPacketReader;
@@ -83,7 +83,8 @@ public class MavlinkConnection {
 
         /**
          * Sets the default dialect to be used by the built connection. The default dialect
-         * will be assumed for systems which did not yet send a {@link Heartbeat}.
+         * will be assumed for systems which did not yet send a
+         * {@link io.dronefleet.mavlink.minimal.Heartbeat heartbeat}.
          *
          * @param dialect The default dialect to use.
          * @return This builder.

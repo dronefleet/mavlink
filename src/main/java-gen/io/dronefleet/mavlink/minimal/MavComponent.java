@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.common;
+package io.dronefleet.mavlink.minimal;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
@@ -335,7 +335,7 @@ public enum MavComponent {
     MAV_COMP_ID_USER43,
 
     /**
-     * Telemetry radio (e.g. SiK radio, or other component that emits {@link io.dronefleet.mavlink.common.RadioStatus RADIO_STATUS} messages). 
+     * Telemetry radio (e.g. SiK radio, or other component that emits RADIO_STATUS messages). 
      */
     @MavlinkEntryInfo(68)
     MAV_COMP_ID_TELEMETRY_RADIO,
@@ -907,7 +907,7 @@ public enum MavComponent {
     MAV_COMP_ID_UART_BRIDGE,
 
     /**
-     * Component handling {@link io.dronefleet.mavlink.common.Tunnel TUNNEL} messages (e.g. vendor specific GUI of a component). 
+     * Component handling TUNNEL messages (e.g. vendor specific GUI of a component). 
      */
     @MavlinkEntryInfo(242)
     MAV_COMP_ID_TUNNEL_NODE,

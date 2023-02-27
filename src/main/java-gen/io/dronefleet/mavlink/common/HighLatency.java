@@ -3,6 +3,7 @@ package io.dronefleet.mavlink.common;
 import io.dronefleet.mavlink.annotations.MavlinkFieldInfo;
 import io.dronefleet.mavlink.annotations.MavlinkMessageBuilder;
 import io.dronefleet.mavlink.annotations.MavlinkMessageInfo;
+import io.dronefleet.mavlink.minimal.MavModeFlag;
 import io.dronefleet.mavlink.util.EnumValue;
 import java.lang.Deprecated;
 import java.lang.Enum;

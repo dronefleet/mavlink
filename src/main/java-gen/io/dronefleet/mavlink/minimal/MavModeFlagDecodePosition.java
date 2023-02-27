@@ -1,4 +1,4 @@
-package io.dronefleet.mavlink.common;
+package io.dronefleet.mavlink.minimal;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;

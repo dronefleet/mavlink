@@ -1,10 +1,10 @@
-package io.dronefleet.mavlink.common;
+package io.dronefleet.mavlink.minimal;
 
 import io.dronefleet.mavlink.annotations.MavlinkEntryInfo;
 import io.dronefleet.mavlink.annotations.MavlinkEnum;
 
 /**
- * MAVLINK component type reported in {@link io.dronefleet.mavlink.common.Heartbeat HEARTBEAT} message. Flight controllers must report the 
+ * MAVLINK component type reported in {@link io.dronefleet.mavlink.minimal.Heartbeat HEARTBEAT} message. Flight controllers must report the 
  * type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components 
  * must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA). 
  */
