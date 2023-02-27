@@ -55,7 +55,7 @@ public class PackageGenerator {
         return Stream.concat(
                 enums.stream(),
                 dependencies.stream()
-                        .map(pg -> pg.enums)
+                        .map(PackageGenerator::getEnumsIncludingDependencies)
                         .flatMap(List::stream))
                 .collect(Collectors.toList());
     }
