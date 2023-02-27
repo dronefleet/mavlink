@@ -12,10 +12,6 @@ repositories {
     mavenCentral()
 }
 
-test {
-    systemProperty "java.library.path", file("${project('clibrary-test-tool').buildDir}/libs/testtool/shared").absolutePath
-}
-
 def genSrc = "src/main/java-gen"
 
 generateDialect {
