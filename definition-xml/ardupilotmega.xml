@@ -1159,6 +1159,12 @@
       <entry value="3" name="GPS_ACCURACY_LEVEL_BAD"/>
       <entry value="4" name="GPS_ACCURACY_LEVEL_UNRELIABLE"/>
     </enum>
+    <enum name="BATTERY_FAULT_LEVEL">
+      <description>Severity of a battery fault.</description>
+      <entry value="0" name="BATTERY_FAULT_LEVEL_NONE"/>
+      <entry value="1" name="BATTERY_FAULT_LEVEL_LOW"/>
+      <entry value="2" name="BATTERY_FAULT_LEVEL_CRITICAL"/>
+    </enum>
     <enum name="MAV_GPS_RTK_RESULT">
       <description>Result of RTK message (in a GPS_RTK_ACK message).</description>
       <entry value="0" name="MAV_GPS_RTK_ACCEPTED">
@@ -1815,6 +1821,8 @@
     <message id="12010" name="COMPONENT_HEALTH_STATUS">
       <description>Health status of different components</description>
       <field type="uint8_t" name="gps_accuracy_level" enum="GPS_ACCURACY_LEVEL">Accuracy level of the GPS units.</field>
+      <extensions/>
+      <field type="uint8_t" name="battery_fault_level" enum="BATTERY_FAULT_LEVEL">Battery fault level.</field>
     </message>
     <message id="12100" name="SET_LOG_LABEL">
       <description>Mark the current log with a specific label</description>
